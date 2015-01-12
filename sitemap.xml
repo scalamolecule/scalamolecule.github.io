@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  <url>
+    <loc>http://marcgrue.github.io/molecule/</loc>
+    <lastmod>2015-01-02T22:06:44+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://marcgrue.github.io/molecule/manual/overview/</loc>
+    <lastmod>2015-01-02T22:06:44+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://marcgrue.github.io/molecule/tutorials/overview/</loc>
+    <lastmod>2015-01-02T22:06:44+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://marcgrue.github.io/molecule/community/overview/</loc>
+    <lastmod>2014-05-14T02:13:50+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://marcgrue.github.io/molecule/compare/overview/</loc>
+    <lastmod>2014-05-14T02:13:50+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://marcgrue.github.io/molecule/developer/overview/</loc>
+    <lastmod>2014-05-14T02:13:50+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://marcgrue.github.io/molecule/</loc>
+    <lastmod>2015-01-02T22:06:44+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://marcgrue.github.io/molecule/tutorials/seattle/</loc>
+    <lastmod>2015-01-02T22:06:44+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://marcgrue.github.io/molecule/community/forum/</loc>
+    <lastmod>2014-05-14T02:13:50+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://marcgrue.github.io/molecule/compare/sql/</loc>
+    <lastmod>2014-05-14T02:13:50+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://marcgrue.github.io/molecule/developer/transformation/</loc>
+    <lastmod>2014-05-14T02:13:50+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://marcgrue.github.io/molecule/home/introduction/</loc>
+    <lastmod>2015-01-02T22:06:44+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://marcgrue.github.io/molecule/manual/basics/attributes/</loc>
+    <lastmod>2015-01-02T22:06:44+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://marcgrue.github.io/molecule/manual/basics/</loc>
+    <lastmod>2015-01-02T22:06:44+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://marcgrue.github.io/molecule/home/setup/</loc>
+    <lastmod>2014-05-14T02:13:50+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://marcgrue.github.io/molecule/manual/database-setup/</loc>
+    <lastmod>2015-01-02T22:06:44+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://marcgrue.github.io/molecule/manual/modelling/</loc>
+    <lastmod>2015-01-02T22:06:44+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://marcgrue.github.io/molecule/manual/schema-definition/</loc>
+    <lastmod>2015-01-02T22:06:44+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://marcgrue.github.io/molecule/manual/populate-database/</loc>
+    <lastmod>2015-01-02T22:06:44+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://marcgrue.github.io/molecule/home/about/</loc>
+    <lastmod>2014-05-14T02:13:50+00:00</lastmod>
+  </url>
+  
+</urlset>
