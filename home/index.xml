@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Homes on Molecule</title>
-    <link>http://marcgrue.github.io/molecule/home/</link>
+    <link>http://scalamolecule.github.io/home/</link>
     <description>Recent content in Homes on Molecule</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     
     
     <lastBuildDate>Fri, 02 Jan 2015 22:06:44 CET</lastBuildDate>
-    <atom:link href="http://marcgrue.github.io/molecule/home/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://scalamolecule.github.io/home/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Home</title>
-      <link>http://marcgrue.github.io/molecule/</link>
+      <link>http://scalamolecule.github.io/</link>
       <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
       
-      <guid>http://marcgrue.github.io/molecule/</guid>
+      <guid>http://scalamolecule.github.io/</guid>
       <description>
 
 &lt;p&gt;&lt;br&gt;&lt;/p&gt;
@@ -114,17 +114,17 @@ Person.name(&amp;quot;Lisa&amp;quot; or &amp;quot;Linda&amp;quot;).age.Address.s
 &lt;h3 id=&#34;get-started:ffcff61ab3a11ef1d50900901a24ec54&#34;&gt;Get started&lt;/h3&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://marcgrue.github.io/molecule/molecule/home/introduction&#34;&gt;Introduction&lt;/a&gt; to Datomic/Molecule&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://marcgrue.github.io/molecule/molecule/manual/database-setup&#34;&gt;Setup Database&lt;/a&gt;: initiate a Datomic database and create a database schema with Molecule&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://marcgrue.github.io/molecule/molecule/manual/populate-database&#34;&gt;Populate Database&lt;/a&gt;: populate a Datomic database with Molecule&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://marcgrue.github.io/molecule/molecule/tutorials/seattle&#34;&gt;Molecule Seattle tutorial&lt;/a&gt; examples of using Molecule (based on the
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.github.io/home/introduction&#34;&gt;Introduction&lt;/a&gt; to Datomic/Molecule&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.github.io/manual/database-setup&#34;&gt;Setup Database&lt;/a&gt;: initiate a Datomic database and create a database schema with Molecule&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.github.io/manual/populate-database&#34;&gt;Populate Database&lt;/a&gt;: populate a Datomic database with Molecule&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.github.io/tutorials/seattle&#34;&gt;Molecule Seattle tutorial&lt;/a&gt; examples of using Molecule (based on the
 &lt;a href=&#34;http://docs.datomic.com/tutorial.html&#34;&gt;Datomic Seattle tutorial&lt;/a&gt;)&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h3 id=&#34;download-code:ffcff61ab3a11ef1d50900901a24ec54&#34;&gt;Download code&lt;/h3&gt;
 
 &lt;ol&gt;
-&lt;li&gt;&lt;code&gt;git clone https://github.com/marcgrue/molecule.git&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;git clone https://github.com/scalamolecule/molecule.git&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;sbt compile&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;Open in your IDE&lt;/li&gt;
 &lt;li&gt;Run tests and poke around&amp;hellip;&lt;/li&gt;
@@ -136,10 +136,10 @@ Person.name(&amp;quot;Lisa&amp;quot; or &amp;quot;Linda&amp;quot;).age.Address.s
     
     <item>
       <title>Introduction</title>
-      <link>http://marcgrue.github.io/molecule/home/introduction/</link>
+      <link>http://scalamolecule.github.io/home/introduction/</link>
       <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
       
-      <guid>http://marcgrue.github.io/molecule/home/introduction/</guid>
+      <guid>http://scalamolecule.github.io/home/introduction/</guid>
       <description>
 
 &lt;h1 id=&#34;molecule-introduction:2767292a573dc549b9b4297b701af3ab&#34;&gt;Molecule introduction&lt;/h1&gt;
@@ -169,14 +169,14 @@ instance see all our previous addresses if this was part of our domain model.&lt
 
 &lt;p&gt;&lt;code&gt;attributes&lt;/code&gt; are typically organized in &lt;code&gt;namespaces&lt;/code&gt; to group related qualities of our domain:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://marcgrue.github.io/molecule/molecule/img/DatomicElements1.png&#34; alt=&#34;&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;http://scalamolecule.github.io/img/DatomicElements1.png&#34; alt=&#34;&#34; /&gt;
 &lt;/p&gt;
 
 &lt;h3 id=&#34;entity-row-in-an-sql-table:2767292a573dc549b9b4297b701af3ab&#34;&gt;Entity != row in an sql Table&lt;/h3&gt;
 
 &lt;p&gt;An &lt;code&gt;entity&lt;/code&gt; can have &lt;em&gt;any&lt;/em&gt; &lt;code&gt;attribute&lt;/code&gt; from &lt;em&gt;any&lt;/em&gt; &lt;code&gt;namespace&lt;/code&gt; associated to it:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://marcgrue.github.io/molecule/molecule/img/DatomicElements2.png&#34; alt=&#34;&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;http://scalamolecule.github.io/img/DatomicElements2.png&#34; alt=&#34;&#34; /&gt;
 &lt;/p&gt;
 
 &lt;p&gt;An entity is therefore not like a row in a table but rather a &amp;ldquo;cross-cutting&amp;rdquo; thing that we can
@@ -224,18 +224,18 @@ OR &amp;ldquo;facebook_page&amp;rdquo;. With your own definitions you can write 
 
 &lt;h3 id=&#34;further-reading:2767292a573dc549b9b4297b701af3ab&#34;&gt;Further reading&amp;hellip;&lt;/h3&gt;
 
-&lt;p&gt;Go straight to the &lt;a href=&#34;https://github.com/marcgrue/molecule/wiki/Molecule-Seattle-tutorial&#34;&gt;Molecule Seattle tutorial&lt;/a&gt; to see a wide range of
+&lt;p&gt;Go straight to the &lt;a href=&#34;https://github.com/scalamolecule/wiki/Molecule-Seattle-tutorial&#34;&gt;Molecule Seattle tutorial&lt;/a&gt; to see a wide range of
  queries that Molecule can express, or check out first how we use Molecule to
- &lt;a href=&#34;https://github.com/marcgrue/molecule/wiki/Setup-a-Datomic-database&#34;&gt;setup the database&lt;/a&gt; and &lt;a href=&#34;https://github.com/marcgrue/molecule/wiki/Populate-the-database&#34;&gt;populated it with data&lt;/a&gt;.&lt;/p&gt;
+ &lt;a href=&#34;https://github.com/scalamolecule/wiki/Setup-a-Datomic-database&#34;&gt;setup the database&lt;/a&gt; and &lt;a href=&#34;https://github.com/scalamolecule/wiki/Populate-the-database&#34;&gt;populated it with data&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Setup</title>
-      <link>http://marcgrue.github.io/molecule/home/setup/</link>
+      <link>http://scalamolecule.github.io/home/setup/</link>
       <pubDate>Wed, 14 May 2014 02:13:50 UTC</pubDate>
       
-      <guid>http://marcgrue.github.io/molecule/home/setup/</guid>
+      <guid>http://scalamolecule.github.io/home/setup/</guid>
       <description>
 
 &lt;h1 id=&#34;setup-molecule:2cc0b07f42930e4520820be1fe66f913&#34;&gt;Setup Molecule&lt;/h1&gt;
@@ -243,7 +243,7 @@ OR &amp;ldquo;facebook_page&amp;rdquo;. With your own definitions you can write 
 &lt;h3 id=&#34;download-code:2cc0b07f42930e4520820be1fe66f913&#34;&gt;Download code&lt;/h3&gt;
 
 &lt;ol&gt;
-&lt;li&gt;&lt;code&gt;git clone https://github.com/marcgrue/molecule.git&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;git clone https://github.com/scalamolecule/molecule.git&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;sbt compile&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;Import into your IDE&lt;/li&gt;
 &lt;li&gt;Run tests and poke around&amp;hellip;&lt;/li&gt;
@@ -252,7 +252,7 @@ OR &amp;ldquo;facebook_page&amp;rdquo;. With your own definitions you can write 
 &lt;h3 id=&#34;dependency-in-your-project:2cc0b07f42930e4520820be1fe66f913&#34;&gt;Dependency in your project&lt;/h3&gt;
 
 &lt;p&gt;Molecule 0.2.0 for Scala 2.11.4 is available at
-&lt;a href=&#34;https://oss.sonatype.org/content/repositories/releases/com/marcgrue/molecule_2.11/&#34;&gt;Sonatype&lt;/a&gt;
+&lt;a href=&#34;https://oss.sonatype.org/content/repositories/releases/com/scalamolecule/molecule_2.11/&#34;&gt;Sonatype&lt;/a&gt;
  so that you can add a dependency in your sbt file to &lt;code&gt;&amp;quot;com.marcgrue&amp;quot; % &amp;quot;molecule_2.11.4&amp;quot; % &amp;quot;0.2.0&amp;quot;&lt;/code&gt;.&lt;/p&gt;
 
 &lt;p&gt;Since Molecule generates boilerplate code from your definitions it also needs to have the &lt;code&gt;DslBoilerplate.scala&lt;/code&gt; file in your project folder. Please have a look at how the sbt build file
@@ -277,10 +277,10 @@ OR &amp;ldquo;facebook_page&amp;rdquo;. With your own definitions you can write 
     
     <item>
       <title>About</title>
-      <link>http://marcgrue.github.io/molecule/home/about/</link>
+      <link>http://scalamolecule.github.io/home/about/</link>
       <pubDate>Wed, 14 May 2014 02:13:50 UTC</pubDate>
       
-      <guid>http://marcgrue.github.io/molecule/home/about/</guid>
+      <guid>http://scalamolecule.github.io/home/about/</guid>
       <description>
 
 &lt;h1 id=&#34;about:6083a88ee3411b0d17ce02d738f69d47&#34;&gt;About&lt;/h1&gt;

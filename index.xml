@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Molecule</title>
-    <link>http://marcgrue.github.io/molecule/</link>
+    <link>http://scalamolecule.github.io/</link>
     <description>Recent content on Molecule</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     
     
     <lastBuildDate>Fri, 02 Jan 2015 22:06:44 CET</lastBuildDate>
-    <atom:link href="http://marcgrue.github.io/molecule/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://scalamolecule.github.io/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Manual</title>
-      <link>http://marcgrue.github.io/molecule/manual/overview/</link>
+      <link>http://scalamolecule.github.io/manual/overview/</link>
       <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
       
-      <guid>http://marcgrue.github.io/molecule/manual/overview/</guid>
+      <guid>http://scalamolecule.github.io/manual/overview/</guid>
       <description>
 
 &lt;h1 id=&#34;molecule-manual:68f80267fa3a50980dbb745a782b8dca&#34;&gt;Molecule manual&lt;/h1&gt;
@@ -87,10 +87,10 @@
     
     <item>
       <title>Tutorials</title>
-      <link>http://marcgrue.github.io/molecule/tutorials/overview/</link>
+      <link>http://scalamolecule.github.io/tutorials/overview/</link>
       <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
       
-      <guid>http://marcgrue.github.io/molecule/tutorials/overview/</guid>
+      <guid>http://scalamolecule.github.io/tutorials/overview/</guid>
       <description>
 
 &lt;h1 id=&#34;molecule-tutorials:68f80267fa3a50980dbb745a782b8dca&#34;&gt;Molecule tutorials&lt;/h1&gt;
@@ -98,18 +98,18 @@
 &lt;p&gt;As we see more tutorials on Molecule we&amp;rsquo;ll collect them here:&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://marcgrue.github.io/molecule/molecule/tutorials/seattle&#34;&gt;Seattle tutorial&lt;/a&gt; - all-round introduction to using Molecule:
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.github.io/tutorials/seattle&#34;&gt;Seattle tutorial&lt;/a&gt; - all-round introduction to using Molecule:
 
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://marcgrue.github.io/molecule/molecule/tutorials/seattle/#0:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Basic introduction to Molecule&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://marcgrue.github.io/molecule/molecule/tutorials/seattle/#1:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Queries with attributes&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://marcgrue.github.io/molecule/molecule/tutorials/seattle/#4:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Relationships across references&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://marcgrue.github.io/molecule/molecule/tutorials/seattle/#5:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Parameterized molecules for caching queries&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://marcgrue.github.io/molecule/molecule/tutorials/seattle/#6:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Functions and fulltext search in queries&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://marcgrue.github.io/molecule/molecule/tutorials/seattle/#8:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Querying with rules - logical OR&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://marcgrue.github.io/molecule/molecule/tutorials/seattle/#9:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Working with time&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://marcgrue.github.io/molecule/molecule/tutorials/seattle/#10:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Inserting data&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://marcgrue.github.io/molecule/molecule/tutorials/seattle/#11:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Updating/deleting data&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.github.io/tutorials/seattle/#0:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Basic introduction to Molecule&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.github.io/tutorials/seattle/#1:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Queries with attributes&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.github.io/tutorials/seattle/#4:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Relationships across references&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.github.io/tutorials/seattle/#5:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Parameterized molecules for caching queries&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.github.io/tutorials/seattle/#6:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Functions and fulltext search in queries&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.github.io/tutorials/seattle/#8:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Querying with rules - logical OR&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.github.io/tutorials/seattle/#9:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Working with time&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.github.io/tutorials/seattle/#10:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Inserting data&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.github.io/tutorials/seattle/#11:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Updating/deleting data&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
@@ -127,33 +127,11 @@
     </item>
     
     <item>
-      <title>Community</title>
-      <link>http://marcgrue.github.io/molecule/community/overview/</link>
-      <pubDate>Wed, 14 May 2014 02:13:50 UTC</pubDate>
-      
-      <guid>http://marcgrue.github.io/molecule/community/overview/</guid>
-      <description>
-
-&lt;h1 id=&#34;community:68f80267fa3a50980dbb745a782b8dca&#34;&gt;Community&lt;/h1&gt;
-
-&lt;h2 id=&#34;resources:68f80267fa3a50980dbb745a782b8dca&#34;&gt;Resources&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;[Molecule google list][moleculegroup] for questions and discussions about Molecule and other Scala-based Datomic resources&lt;/li&gt;
-&lt;li&gt;[Issues][issues] - please feel free to raise issues/report bugs&lt;/li&gt;
-&lt;li&gt;[Pull requests][pullrequests] are welcome&lt;/li&gt;
-&lt;li&gt;[Datomic][datomic] website&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/pellucidanalytics/datomisca&#34;&gt;Datomisca&lt;/a&gt;, a Scala API for Datomic&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-    </item>
-    
-    <item>
       <title>Compare</title>
-      <link>http://marcgrue.github.io/molecule/compare/overview/</link>
+      <link>http://scalamolecule.github.io/compare/overview/</link>
       <pubDate>Wed, 14 May 2014 02:13:50 UTC</pubDate>
       
-      <guid>http://marcgrue.github.io/molecule/compare/overview/</guid>
+      <guid>http://scalamolecule.github.io/compare/overview/</guid>
       <description>
 
 &lt;h1 id=&#34;compare-with-other-databases:68f80267fa3a50980dbb745a782b8dca&#34;&gt;Compare with other databases&lt;/h1&gt;
@@ -180,11 +158,33 @@
     </item>
     
     <item>
-      <title>Developer</title>
-      <link>http://marcgrue.github.io/molecule/developer/overview/</link>
+      <title>Community</title>
+      <link>http://scalamolecule.github.io/community/overview/</link>
       <pubDate>Wed, 14 May 2014 02:13:50 UTC</pubDate>
       
-      <guid>http://marcgrue.github.io/molecule/developer/overview/</guid>
+      <guid>http://scalamolecule.github.io/community/overview/</guid>
+      <description>
+
+&lt;h1 id=&#34;community:68f80267fa3a50980dbb745a782b8dca&#34;&gt;Community&lt;/h1&gt;
+
+&lt;h2 id=&#34;resources:68f80267fa3a50980dbb745a782b8dca&#34;&gt;Resources&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;[Molecule google list][moleculegroup] for questions and discussions about Molecule and other Scala-based Datomic resources&lt;/li&gt;
+&lt;li&gt;[Issues][issues] - please feel free to raise issues/report bugs&lt;/li&gt;
+&lt;li&gt;[Pull requests][pullrequests] are welcome&lt;/li&gt;
+&lt;li&gt;[Datomic][datomic] website&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/pellucidanalytics/datomisca&#34;&gt;Datomisca&lt;/a&gt;, a Scala API for Datomic&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Developer</title>
+      <link>http://scalamolecule.github.io/developer/overview/</link>
+      <pubDate>Wed, 14 May 2014 02:13:50 UTC</pubDate>
+      
+      <guid>http://scalamolecule.github.io/developer/overview/</guid>
       <description>
 
 &lt;h1 id=&#34;developer:68f80267fa3a50980dbb745a782b8dca&#34;&gt;Developer&lt;/h1&gt;
@@ -257,10 +257,10 @@ allows you to&lt;/p&gt;
     
     <item>
       <title>Home</title>
-      <link>http://marcgrue.github.io/molecule/</link>
+      <link>http://scalamolecule.github.io/</link>
       <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
       
-      <guid>http://marcgrue.github.io/molecule/</guid>
+      <guid>http://scalamolecule.github.io/</guid>
       <description>
 
 &lt;p&gt;&lt;br&gt;&lt;/p&gt;
@@ -358,17 +358,17 @@ Person.name(&amp;quot;Lisa&amp;quot; or &amp;quot;Linda&amp;quot;).age.Address.s
 &lt;h3 id=&#34;get-started:ffcff61ab3a11ef1d50900901a24ec54&#34;&gt;Get started&lt;/h3&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://marcgrue.github.io/molecule/molecule/home/introduction&#34;&gt;Introduction&lt;/a&gt; to Datomic/Molecule&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://marcgrue.github.io/molecule/molecule/manual/database-setup&#34;&gt;Setup Database&lt;/a&gt;: initiate a Datomic database and create a database schema with Molecule&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://marcgrue.github.io/molecule/molecule/manual/populate-database&#34;&gt;Populate Database&lt;/a&gt;: populate a Datomic database with Molecule&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://marcgrue.github.io/molecule/molecule/tutorials/seattle&#34;&gt;Molecule Seattle tutorial&lt;/a&gt; examples of using Molecule (based on the
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.github.io/home/introduction&#34;&gt;Introduction&lt;/a&gt; to Datomic/Molecule&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.github.io/manual/database-setup&#34;&gt;Setup Database&lt;/a&gt;: initiate a Datomic database and create a database schema with Molecule&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.github.io/manual/populate-database&#34;&gt;Populate Database&lt;/a&gt;: populate a Datomic database with Molecule&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.github.io/tutorials/seattle&#34;&gt;Molecule Seattle tutorial&lt;/a&gt; examples of using Molecule (based on the
 &lt;a href=&#34;http://docs.datomic.com/tutorial.html&#34;&gt;Datomic Seattle tutorial&lt;/a&gt;)&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h3 id=&#34;download-code:ffcff61ab3a11ef1d50900901a24ec54&#34;&gt;Download code&lt;/h3&gt;
 
 &lt;ol&gt;
-&lt;li&gt;&lt;code&gt;git clone https://github.com/marcgrue/molecule.git&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;git clone https://github.com/scalamolecule/molecule.git&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;sbt compile&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;Open in your IDE&lt;/li&gt;
 &lt;li&gt;Run tests and poke around&amp;hellip;&lt;/li&gt;
@@ -380,10 +380,10 @@ Person.name(&amp;quot;Lisa&amp;quot; or &amp;quot;Linda&amp;quot;).age.Address.s
     
     <item>
       <title>Seattle</title>
-      <link>http://marcgrue.github.io/molecule/tutorials/seattle/</link>
+      <link>http://scalamolecule.github.io/tutorials/seattle/</link>
       <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
       
-      <guid>http://marcgrue.github.io/molecule/tutorials/seattle/</guid>
+      <guid>http://scalamolecule.github.io/tutorials/seattle/</guid>
       <description>
 
 &lt;h1 id=&#34;contents:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Molecule Seattle tutorial&lt;/h1&gt;
@@ -409,7 +409,7 @@ how Molecule works.&lt;/em&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;0:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;&lt;a href=&#34;#contents:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;☝︎&lt;/a&gt; Introduction&lt;/h2&gt;
 
-&lt;p&gt;After &lt;a href=&#34;http://marcgrue.github.io/molecule/molecule/manual/database-setup&#34;&gt;setting up the database&lt;/a&gt; and &lt;a href=&#34;http://marcgrue.github.io/molecule/molecule/manual/populate-database&#34;&gt;populating it with data&lt;/a&gt; we can
+&lt;p&gt;After &lt;a href=&#34;http://scalamolecule.github.io/manual/database-setup&#34;&gt;setting up the database&lt;/a&gt; and &lt;a href=&#34;http://scalamolecule.github.io/manual/populate-database&#34;&gt;populating it with data&lt;/a&gt; we can
 start making queries. We make queries by building &amp;ldquo;molecules&amp;rdquo; which are
 chains of attributes put together with the builder pattern. We can imagine
 this as a 3-dimensional data structure of atoms bound together in various
@@ -1164,7 +1164,7 @@ where we can supply raw data from any source easily as long
 as we can format it as a list of tuples/HLists of values each matching
 our template molecule.&lt;/p&gt;
 
-&lt;p&gt;We use an insert-molecule also when we initially &lt;a href=&#34;https://github.com/marcgrue/molecule/blob/master/examples/src/test/scala/molecule/examples/seattle/SeattleSpec.scala#L43&#34;&gt;populate
+&lt;p&gt;We use an insert-molecule also when we initially &lt;a href=&#34;https://github.com/scalamolecule/blob/master/examples/src/test/scala/examples/seattle/SeattleSpec.scala#L43&#34;&gt;populate
 the Seattle database&lt;/a&gt;.&lt;/p&gt;
 
 &lt;h3 id=&#34;missing-attribute-values-null-values:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Missing attribute values (Null values)&lt;/h3&gt;
@@ -1269,16 +1269,16 @@ values as they existed at specific points in time, we can retrieve
 retracted data by looking in the past. In other words, the data
 isn&amp;rsquo;t really gone. If we want data to really be gone after we
 retract it, we have to disable history for the specific attribute,
-as described in &lt;a href=&#34;http://marcgrue.github.io/molecule/molecule/manual/database-setup&#34;&gt;Database setup&lt;/a&gt;.&lt;/p&gt;
+as described in &lt;a href=&#34;http://scalamolecule.github.io/manual/database-setup&#34;&gt;Database setup&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Forum</title>
-      <link>http://marcgrue.github.io/molecule/community/forum/</link>
+      <link>http://scalamolecule.github.io/community/forum/</link>
       <pubDate>Wed, 14 May 2014 02:13:50 UTC</pubDate>
       
-      <guid>http://marcgrue.github.io/molecule/community/forum/</guid>
+      <guid>http://scalamolecule.github.io/community/forum/</guid>
       <description>
 
 &lt;h1 id=&#34;forum:9bf17893d33490888c600c67505ec118&#34;&gt;Forum&lt;/h1&gt;
@@ -1287,10 +1287,10 @@ as described in &lt;a href=&#34;http://marcgrue.github.io/molecule/molecule/manu
     
     <item>
       <title>SQL</title>
-      <link>http://marcgrue.github.io/molecule/compare/sql/</link>
+      <link>http://scalamolecule.github.io/compare/sql/</link>
       <pubDate>Wed, 14 May 2014 02:13:50 UTC</pubDate>
       
-      <guid>http://marcgrue.github.io/molecule/compare/sql/</guid>
+      <guid>http://scalamolecule.github.io/compare/sql/</guid>
       <description>
 
 &lt;h1 id=&#34;compare-with-sql:d1babb582138b02a13547d2c6eb6df72&#34;&gt;Compare with SQL&lt;/h1&gt;
@@ -1299,10 +1299,10 @@ as described in &lt;a href=&#34;http://marcgrue.github.io/molecule/molecule/manu
     
     <item>
       <title>Transformation</title>
-      <link>http://marcgrue.github.io/molecule/developer/transformation/</link>
+      <link>http://scalamolecule.github.io/developer/transformation/</link>
       <pubDate>Wed, 14 May 2014 02:13:50 UTC</pubDate>
       
-      <guid>http://marcgrue.github.io/molecule/developer/transformation/</guid>
+      <guid>http://scalamolecule.github.io/developer/transformation/</guid>
       <description>
 
 &lt;h1 id=&#34;source-code-transformation:596edf0adf55e6ba8eb0683b47bc2db2&#34;&gt;Source code transformation&lt;/h1&gt;
@@ -1370,10 +1370,10 @@ allows you to&lt;/p&gt;
     
     <item>
       <title>Introduction</title>
-      <link>http://marcgrue.github.io/molecule/home/introduction/</link>
+      <link>http://scalamolecule.github.io/home/introduction/</link>
       <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
       
-      <guid>http://marcgrue.github.io/molecule/home/introduction/</guid>
+      <guid>http://scalamolecule.github.io/home/introduction/</guid>
       <description>
 
 &lt;h1 id=&#34;molecule-introduction:2767292a573dc549b9b4297b701af3ab&#34;&gt;Molecule introduction&lt;/h1&gt;
@@ -1403,14 +1403,14 @@ instance see all our previous addresses if this was part of our domain model.&lt
 
 &lt;p&gt;&lt;code&gt;attributes&lt;/code&gt; are typically organized in &lt;code&gt;namespaces&lt;/code&gt; to group related qualities of our domain:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://marcgrue.github.io/molecule/molecule/img/DatomicElements1.png&#34; alt=&#34;&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;http://scalamolecule.github.io/img/DatomicElements1.png&#34; alt=&#34;&#34; /&gt;
 &lt;/p&gt;
 
 &lt;h3 id=&#34;entity-row-in-an-sql-table:2767292a573dc549b9b4297b701af3ab&#34;&gt;Entity != row in an sql Table&lt;/h3&gt;
 
 &lt;p&gt;An &lt;code&gt;entity&lt;/code&gt; can have &lt;em&gt;any&lt;/em&gt; &lt;code&gt;attribute&lt;/code&gt; from &lt;em&gt;any&lt;/em&gt; &lt;code&gt;namespace&lt;/code&gt; associated to it:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://marcgrue.github.io/molecule/molecule/img/DatomicElements2.png&#34; alt=&#34;&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;http://scalamolecule.github.io/img/DatomicElements2.png&#34; alt=&#34;&#34; /&gt;
 &lt;/p&gt;
 
 &lt;p&gt;An entity is therefore not like a row in a table but rather a &amp;ldquo;cross-cutting&amp;rdquo; thing that we can
@@ -1458,18 +1458,18 @@ OR &amp;ldquo;facebook_page&amp;rdquo;. With your own definitions you can write 
 
 &lt;h3 id=&#34;further-reading:2767292a573dc549b9b4297b701af3ab&#34;&gt;Further reading&amp;hellip;&lt;/h3&gt;
 
-&lt;p&gt;Go straight to the &lt;a href=&#34;https://github.com/marcgrue/molecule/wiki/Molecule-Seattle-tutorial&#34;&gt;Molecule Seattle tutorial&lt;/a&gt; to see a wide range of
+&lt;p&gt;Go straight to the &lt;a href=&#34;https://github.com/scalamolecule/wiki/Molecule-Seattle-tutorial&#34;&gt;Molecule Seattle tutorial&lt;/a&gt; to see a wide range of
  queries that Molecule can express, or check out first how we use Molecule to
- &lt;a href=&#34;https://github.com/marcgrue/molecule/wiki/Setup-a-Datomic-database&#34;&gt;setup the database&lt;/a&gt; and &lt;a href=&#34;https://github.com/marcgrue/molecule/wiki/Populate-the-database&#34;&gt;populated it with data&lt;/a&gt;.&lt;/p&gt;
+ &lt;a href=&#34;https://github.com/scalamolecule/wiki/Setup-a-Datomic-database&#34;&gt;setup the database&lt;/a&gt; and &lt;a href=&#34;https://github.com/scalamolecule/wiki/Populate-the-database&#34;&gt;populated it with data&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Attributes</title>
-      <link>http://marcgrue.github.io/molecule/manual/basics/attributes/</link>
+      <link>http://scalamolecule.github.io/manual/basics/attributes/</link>
       <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
       
-      <guid>http://marcgrue.github.io/molecule/manual/basics/attributes/</guid>
+      <guid>http://scalamolecule.github.io/manual/basics/attributes/</guid>
       <description>
 
 &lt;h1 id=&#34;attributes:199f4b06fef5a61f833f209ac24fd4c2&#34;&gt;Attributes&lt;/h1&gt;
@@ -1478,10 +1478,10 @@ OR &amp;ldquo;facebook_page&amp;rdquo;. With your own definitions you can write 
     
     <item>
       <title>Basics</title>
-      <link>http://marcgrue.github.io/molecule/manual/basics/</link>
+      <link>http://scalamolecule.github.io/manual/basics/</link>
       <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
       
-      <guid>http://marcgrue.github.io/molecule/manual/basics/</guid>
+      <guid>http://scalamolecule.github.io/manual/basics/</guid>
       <description>
 
 &lt;h1 id=&#34;basics:adb90e22eee79282d53440b555325fbd&#34;&gt;Basics&lt;/h1&gt;
@@ -1506,10 +1506,10 @@ OR &amp;ldquo;facebook_page&amp;rdquo;. With your own definitions you can write 
     
     <item>
       <title>Setup</title>
-      <link>http://marcgrue.github.io/molecule/home/setup/</link>
+      <link>http://scalamolecule.github.io/home/setup/</link>
       <pubDate>Wed, 14 May 2014 02:13:50 UTC</pubDate>
       
-      <guid>http://marcgrue.github.io/molecule/home/setup/</guid>
+      <guid>http://scalamolecule.github.io/home/setup/</guid>
       <description>
 
 &lt;h1 id=&#34;setup-molecule:2cc0b07f42930e4520820be1fe66f913&#34;&gt;Setup Molecule&lt;/h1&gt;
@@ -1517,7 +1517,7 @@ OR &amp;ldquo;facebook_page&amp;rdquo;. With your own definitions you can write 
 &lt;h3 id=&#34;download-code:2cc0b07f42930e4520820be1fe66f913&#34;&gt;Download code&lt;/h3&gt;
 
 &lt;ol&gt;
-&lt;li&gt;&lt;code&gt;git clone https://github.com/marcgrue/molecule.git&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;git clone https://github.com/scalamolecule/molecule.git&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;sbt compile&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;Import into your IDE&lt;/li&gt;
 &lt;li&gt;Run tests and poke around&amp;hellip;&lt;/li&gt;
@@ -1526,7 +1526,7 @@ OR &amp;ldquo;facebook_page&amp;rdquo;. With your own definitions you can write 
 &lt;h3 id=&#34;dependency-in-your-project:2cc0b07f42930e4520820be1fe66f913&#34;&gt;Dependency in your project&lt;/h3&gt;
 
 &lt;p&gt;Molecule 0.2.0 for Scala 2.11.4 is available at
-&lt;a href=&#34;https://oss.sonatype.org/content/repositories/releases/com/marcgrue/molecule_2.11/&#34;&gt;Sonatype&lt;/a&gt;
+&lt;a href=&#34;https://oss.sonatype.org/content/repositories/releases/com/scalamolecule/molecule_2.11/&#34;&gt;Sonatype&lt;/a&gt;
  so that you can add a dependency in your sbt file to &lt;code&gt;&amp;quot;com.marcgrue&amp;quot; % &amp;quot;molecule_2.11.4&amp;quot; % &amp;quot;0.2.0&amp;quot;&lt;/code&gt;.&lt;/p&gt;
 
 &lt;p&gt;Since Molecule generates boilerplate code from your definitions it also needs to have the &lt;code&gt;DslBoilerplate.scala&lt;/code&gt; file in your project folder. Please have a look at how the sbt build file
@@ -1551,10 +1551,10 @@ OR &amp;ldquo;facebook_page&amp;rdquo;. With your own definitions you can write 
     
     <item>
       <title>Database setup</title>
-      <link>http://marcgrue.github.io/molecule/manual/database-setup/</link>
+      <link>http://scalamolecule.github.io/manual/database-setup/</link>
       <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
       
-      <guid>http://marcgrue.github.io/molecule/manual/database-setup/</guid>
+      <guid>http://scalamolecule.github.io/manual/database-setup/</guid>
       <description>
 
 &lt;h1 id=&#34;database-setup:029b5641f6c81b30970318acf78606be&#34;&gt;Database setup&lt;/h1&gt;

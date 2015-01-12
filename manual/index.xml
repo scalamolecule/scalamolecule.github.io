@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Manuals on Molecule</title>
-    <link>http://marcgrue.github.io/molecule/manual/</link>
+    <link>http://scalamolecule.github.io/manual/</link>
     <description>Recent content in Manuals on Molecule</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     
     
     <lastBuildDate>Fri, 02 Jan 2015 22:06:44 CET</lastBuildDate>
-    <atom:link href="http://marcgrue.github.io/molecule/manual/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://scalamolecule.github.io/manual/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Manual</title>
-      <link>http://marcgrue.github.io/molecule/manual/overview/</link>
+      <link>http://scalamolecule.github.io/manual/overview/</link>
       <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
       
-      <guid>http://marcgrue.github.io/molecule/manual/overview/</guid>
+      <guid>http://scalamolecule.github.io/manual/overview/</guid>
       <description>
 
 &lt;h1 id=&#34;molecule-manual:68f80267fa3a50980dbb745a782b8dca&#34;&gt;Molecule manual&lt;/h1&gt;
@@ -87,10 +87,10 @@
     
     <item>
       <title>Attributes</title>
-      <link>http://marcgrue.github.io/molecule/manual/basics/attributes/</link>
+      <link>http://scalamolecule.github.io/manual/basics/attributes/</link>
       <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
       
-      <guid>http://marcgrue.github.io/molecule/manual/basics/attributes/</guid>
+      <guid>http://scalamolecule.github.io/manual/basics/attributes/</guid>
       <description>
 
 &lt;h1 id=&#34;attributes:199f4b06fef5a61f833f209ac24fd4c2&#34;&gt;Attributes&lt;/h1&gt;
@@ -99,10 +99,10 @@
     
     <item>
       <title>Basics</title>
-      <link>http://marcgrue.github.io/molecule/manual/basics/</link>
+      <link>http://scalamolecule.github.io/manual/basics/</link>
       <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
       
-      <guid>http://marcgrue.github.io/molecule/manual/basics/</guid>
+      <guid>http://scalamolecule.github.io/manual/basics/</guid>
       <description>
 
 &lt;h1 id=&#34;basics:adb90e22eee79282d53440b555325fbd&#34;&gt;Basics&lt;/h1&gt;
@@ -127,10 +127,10 @@
     
     <item>
       <title>Database setup</title>
-      <link>http://marcgrue.github.io/molecule/manual/database-setup/</link>
+      <link>http://scalamolecule.github.io/manual/database-setup/</link>
       <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
       
-      <guid>http://marcgrue.github.io/molecule/manual/database-setup/</guid>
+      <guid>http://scalamolecule.github.io/manual/database-setup/</guid>
       <description>
 
 &lt;h1 id=&#34;database-setup:029b5641f6c81b30970318acf78606be&#34;&gt;Database setup&lt;/h1&gt;
@@ -152,10 +152,10 @@ molecules can later issue queries against it.&lt;/p&gt;
     
     <item>
       <title>Modelling</title>
-      <link>http://marcgrue.github.io/molecule/manual/modelling/</link>
+      <link>http://scalamolecule.github.io/manual/modelling/</link>
       <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
       
-      <guid>http://marcgrue.github.io/molecule/manual/modelling/</guid>
+      <guid>http://scalamolecule.github.io/manual/modelling/</guid>
       <description>
 
 &lt;h1 id=&#34;modelling:1a78f08b347c58aecd18d23e659bda2c&#34;&gt;Modelling&lt;/h1&gt;
@@ -163,7 +163,7 @@ molecules can later issue queries against it.&lt;/p&gt;
 &lt;p&gt;A Datomic &lt;code&gt;schema&lt;/code&gt; defines the set of &lt;code&gt;attributes&lt;/code&gt; you can assign to &lt;code&gt;entities&lt;/code&gt;.
 We organize &lt;code&gt;attributes&lt;/code&gt; in &lt;code&gt;namespaces&lt;/code&gt; to group related qualities:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://marcgrue.github.io/molecule/molecule/img/DatomicElements1.png&#34; alt=&#34;Schema&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;http://scalamolecule.github.io/img/DatomicElements1.png&#34; alt=&#34;Schema&#34; /&gt;
 &lt;/p&gt;
 
 &lt;p&gt;This makes it easier to overview our domain data structures.&lt;/p&gt;
@@ -174,7 +174,7 @@ We organize &lt;code&gt;attributes&lt;/code&gt; in &lt;code&gt;namespaces&lt;/co
 a table having columns (attributes). But this is not the case. An
 entity in Datomic can associate values of attributes &lt;em&gt;from any namespace&lt;/em&gt;:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://marcgrue.github.io/molecule/molecule/img/DatomicElements2.png&#34; alt=&#34;&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;http://scalamolecule.github.io/img/DatomicElements2.png&#34; alt=&#34;&#34; /&gt;
 &lt;/p&gt;
 
 &lt;p&gt;This gives us great freedom to model our domain with more &amp;ldquo;loose&amp;rdquo; namespaces rather than &amp;ldquo;hardcoded things&amp;rdquo; as table definitions. Later we can compose entities grabbing specific attributes from various namespaces as needed.&lt;/p&gt;
@@ -183,10 +183,10 @@ entity in Datomic can associate values of attributes &lt;em&gt;from any namespac
     
     <item>
       <title>Schema definition</title>
-      <link>http://marcgrue.github.io/molecule/manual/schema-definition/</link>
+      <link>http://scalamolecule.github.io/manual/schema-definition/</link>
       <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
       
-      <guid>http://marcgrue.github.io/molecule/manual/schema-definition/</guid>
+      <guid>http://scalamolecule.github.io/manual/schema-definition/</guid>
       <description>
 
 &lt;h1 id=&#34;defining-a-schema:cd34be2af46d72d5650506b793ee6fb3&#34;&gt;Defining a schema&lt;/h1&gt;
@@ -339,15 +339,15 @@ data in a format that Datomic needs in a schema file. Our two first attributes
     
     <item>
       <title>Populate database</title>
-      <link>http://marcgrue.github.io/molecule/manual/populate-database/</link>
+      <link>http://scalamolecule.github.io/manual/populate-database/</link>
       <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
       
-      <guid>http://marcgrue.github.io/molecule/manual/populate-database/</guid>
+      <guid>http://scalamolecule.github.io/manual/populate-database/</guid>
       <description>
 
 &lt;h1 id=&#34;populate-database:e9f2a6d6fbcde0decfe7c5afb620a7be&#34;&gt;Populate database&lt;/h1&gt;
 
-&lt;p&gt;We have &lt;a href=&#34;https://github.com/marcgrue/molecule/wiki/Setup-a-Datomic-database&#34;&gt;setup the database&lt;/a&gt; and now we want to populate it with data.&lt;/p&gt;
+&lt;p&gt;We have &lt;a href=&#34;https://github.com/scalamolecule/wiki/Setup-a-Datomic-database&#34;&gt;setup the database&lt;/a&gt; and now we want to populate it with data.&lt;/p&gt;
 
 &lt;p&gt;If we recall the Seattle domain then we have some attributes organized in 3
 related namespaces:&lt;/p&gt;
