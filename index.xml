@@ -127,6 +127,28 @@
     </item>
     
     <item>
+      <title>Community</title>
+      <link>http://scalamolecule.org/community/overview/</link>
+      <pubDate>Wed, 14 May 2014 02:13:50 UTC</pubDate>
+      
+      <guid>http://scalamolecule.org/community/overview/</guid>
+      <description>
+
+&lt;h1 id=&#34;community:68f80267fa3a50980dbb745a782b8dca&#34;&gt;Community&lt;/h1&gt;
+
+&lt;h2 id=&#34;resources:68f80267fa3a50980dbb745a782b8dca&#34;&gt;Resources&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;[Molecule google list][moleculegroup] for questions and discussions about Molecule and other Scala-based Datomic resources&lt;/li&gt;
+&lt;li&gt;[Issues][issues] - please feel free to raise issues/report bugs&lt;/li&gt;
+&lt;li&gt;[Pull requests][pullrequests] are welcome&lt;/li&gt;
+&lt;li&gt;[Datomic][datomic] website&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/pellucidanalytics/datomisca&#34;&gt;Datomisca&lt;/a&gt;, a Scala API for Datomic&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Compare</title>
       <link>http://scalamolecule.org/compare/overview/</link>
       <pubDate>Wed, 14 May 2014 02:13:50 UTC</pubDate>
@@ -153,28 +175,6 @@
 &lt;li&gt;Titan&lt;/li&gt;
 &lt;li&gt;Neo4j&lt;/li&gt;
 &lt;li&gt;Gremlin&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Community</title>
-      <link>http://scalamolecule.org/community/overview/</link>
-      <pubDate>Wed, 14 May 2014 02:13:50 UTC</pubDate>
-      
-      <guid>http://scalamolecule.org/community/overview/</guid>
-      <description>
-
-&lt;h1 id=&#34;community:68f80267fa3a50980dbb745a782b8dca&#34;&gt;Community&lt;/h1&gt;
-
-&lt;h2 id=&#34;resources:68f80267fa3a50980dbb745a782b8dca&#34;&gt;Resources&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;[Molecule google list][moleculegroup] for questions and discussions about Molecule and other Scala-based Datomic resources&lt;/li&gt;
-&lt;li&gt;[Issues][issues] - please feel free to raise issues/report bugs&lt;/li&gt;
-&lt;li&gt;[Pull requests][pullrequests] are welcome&lt;/li&gt;
-&lt;li&gt;[Datomic][datomic] website&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/pellucidanalytics/datomisca&#34;&gt;Datomisca&lt;/a&gt;, a Scala API for Datomic&lt;/li&gt;
 &lt;/ul&gt;
 </description>
     </item>
@@ -1550,33 +1550,27 @@ OR &amp;ldquo;facebook_page&amp;rdquo;. With your own definitions you can write 
     </item>
     
     <item>
-      <title>Modelling</title>
-      <link>http://scalamolecule.org/manual/modelling/</link>
+      <title>Database setup</title>
+      <link>http://scalamolecule.org/manual/database-setup/</link>
       <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
       
-      <guid>http://scalamolecule.org/manual/modelling/</guid>
+      <guid>http://scalamolecule.org/manual/database-setup/</guid>
       <description>
 
-&lt;h1 id=&#34;modelling:1a78f08b347c58aecd18d23e659bda2c&#34;&gt;Modelling&lt;/h1&gt;
+&lt;h1 id=&#34;database-setup:029b5641f6c81b30970318acf78606be&#34;&gt;Database setup&lt;/h1&gt;
 
-&lt;p&gt;A Datomic &lt;code&gt;schema&lt;/code&gt; defines the set of &lt;code&gt;attributes&lt;/code&gt; you can assign to &lt;code&gt;entities&lt;/code&gt;.
-We organize &lt;code&gt;attributes&lt;/code&gt; in &lt;code&gt;namespaces&lt;/code&gt; to group related qualities:&lt;/p&gt;
+&lt;p&gt;To create a fresh in-memory Datomic database we simply pass an URI string to
+&lt;code&gt;Peer.createDatabase&lt;/code&gt; (to be sure that this URI is not already populated we
+first delete it):&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://scalamolecule.org/img/DatomicElements1.png&#34; alt=&#34;Schema&#34; /&gt;
-&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val uri = &amp;quot;datomic:mem://seattle&amp;quot;
+Peer.deleteDatabase(uri)
+Peer.createDatabase(uri)
+implicit val conn = Peer.connect(uri)
+&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;This makes it easier to overview our domain data structures.&lt;/p&gt;
-
-&lt;h4 id=&#34;schema-table:1a78f08b347c58aecd18d23e659bda2c&#34;&gt;Schema != Table&lt;/h4&gt;
-
-&lt;p&gt;If coming from an sql background one might at first think of a namespace as
-a table having columns (attributes). But this is not the case. An
-entity in Datomic can associate values of attributes &lt;em&gt;from any namespace&lt;/em&gt;:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://scalamolecule.org/img/DatomicElements2.png&#34; alt=&#34;&#34; /&gt;
-&lt;/p&gt;
-
-&lt;p&gt;This gives us great freedom to model our domain with more &amp;ldquo;loose&amp;rdquo; namespaces rather than &amp;ldquo;hardcoded things&amp;rdquo; as table definitions. Later we can compose entities grabbing specific attributes from various namespaces as needed.&lt;/p&gt;
+&lt;p&gt;We save the returned Datomic Connection as an implicit value so that our
+molecules can later issue queries against it.&lt;/p&gt;
 </description>
     </item>
     
