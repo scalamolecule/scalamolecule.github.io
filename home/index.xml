@@ -25,7 +25,7 @@
 
 &lt;h4 id=&#34;write-powerful-datomic-queries-with-the-words-of-your-domain:ffcff61ab3a11ef1d50900901a24ec54&#34;&gt;&lt;strong&gt;&lt;em&gt;Write powerful &lt;a href=&#34;http://www.datomic.com&#34;&gt;Datomic&lt;/a&gt; queries with the words of your domain:&lt;/em&gt;&lt;/strong&gt;&lt;/h4&gt;
 
-&lt;div id=&#34;myCarousel&#34; class=&#34;carousel slide&#34; data-interval=&#34;0&#34; data-ride=&#34;carousel&#34;&gt;
+&lt;div id=&#34;myCarousel&#34; class=&#34;carousel slide&#34; data-interval=&#34;6000&#34; data-ride=&#34;carousel&#34;&gt;
     &lt;!-- Carousel indicators --&gt;
     &lt;ol class=&#34;carousel-indicators&#34;&gt;
         &lt;li data-target=&#34;#myCarousel&#34; data-slide-to=&#34;0&#34; class=&#34;active&#34;&gt;&lt;/li&gt;
