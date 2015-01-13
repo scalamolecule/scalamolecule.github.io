@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Developers on Molecule</title>
-    <link>http://scalamolecule.github.io/developer/</link>
+    <link>http://scalamolecule.org/developer/</link>
     <description>Recent content in Developers on Molecule</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     
     
     <lastBuildDate>Wed, 14 May 2014 02:13:50 UTC</lastBuildDate>
-    <atom:link href="http://scalamolecule.github.io/developer/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://scalamolecule.org/developer/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Developer</title>
-      <link>http://scalamolecule.github.io/developer/overview/</link>
+      <link>http://scalamolecule.org/developer/overview/</link>
       <pubDate>Wed, 14 May 2014 02:13:50 UTC</pubDate>
       
-      <guid>http://scalamolecule.github.io/developer/overview/</guid>
+      <guid>http://scalamolecule.org/developer/overview/</guid>
       <description>
 
 &lt;h1 id=&#34;developer:68f80267fa3a50980dbb745a782b8dca&#34;&gt;Developer&lt;/h1&gt;
@@ -89,10 +89,10 @@ allows you to&lt;/p&gt;
     
     <item>
       <title>Transformation</title>
-      <link>http://scalamolecule.github.io/developer/transformation/</link>
+      <link>http://scalamolecule.org/developer/transformation/</link>
       <pubDate>Wed, 14 May 2014 02:13:50 UTC</pubDate>
       
-      <guid>http://scalamolecule.github.io/developer/transformation/</guid>
+      <guid>http://scalamolecule.org/developer/transformation/</guid>
       <description>
 
 &lt;h1 id=&#34;source-code-transformation:596edf0adf55e6ba8eb0683b47bc2db2&#34;&gt;Source code transformation&lt;/h1&gt;

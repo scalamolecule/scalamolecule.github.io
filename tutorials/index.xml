@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tutorials on Molecule</title>
-    <link>http://scalamolecule.github.io/tutorials/</link>
+    <link>http://scalamolecule.org/tutorials/</link>
     <description>Recent content in Tutorials on Molecule</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     
     
     <lastBuildDate>Fri, 02 Jan 2015 22:06:44 CET</lastBuildDate>
-    <atom:link href="http://scalamolecule.github.io/tutorials/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://scalamolecule.org/tutorials/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Tutorials</title>
-      <link>http://scalamolecule.github.io/tutorials/overview/</link>
+      <link>http://scalamolecule.org/tutorials/overview/</link>
       <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
       
-      <guid>http://scalamolecule.github.io/tutorials/overview/</guid>
+      <guid>http://scalamolecule.org/tutorials/overview/</guid>
       <description>
 
 &lt;h1 id=&#34;molecule-tutorials:68f80267fa3a50980dbb745a782b8dca&#34;&gt;Molecule tutorials&lt;/h1&gt;
@@ -24,18 +24,18 @@
 &lt;p&gt;As we see more tutorials on Molecule we&amp;rsquo;ll collect them here:&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://scalamolecule.github.io/tutorials/seattle&#34;&gt;Seattle tutorial&lt;/a&gt; - all-round introduction to using Molecule:
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/tutorials/seattle&#34;&gt;Seattle tutorial&lt;/a&gt; - all-round introduction to using Molecule:
 
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://scalamolecule.github.io/tutorials/seattle/#0:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Basic introduction to Molecule&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://scalamolecule.github.io/tutorials/seattle/#1:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Queries with attributes&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://scalamolecule.github.io/tutorials/seattle/#4:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Relationships across references&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://scalamolecule.github.io/tutorials/seattle/#5:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Parameterized molecules for caching queries&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://scalamolecule.github.io/tutorials/seattle/#6:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Functions and fulltext search in queries&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://scalamolecule.github.io/tutorials/seattle/#8:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Querying with rules - logical OR&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://scalamolecule.github.io/tutorials/seattle/#9:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Working with time&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://scalamolecule.github.io/tutorials/seattle/#10:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Inserting data&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://scalamolecule.github.io/tutorials/seattle/#11:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Updating/deleting data&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/tutorials/seattle/#0:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Basic introduction to Molecule&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/tutorials/seattle/#1:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Queries with attributes&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/tutorials/seattle/#4:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Relationships across references&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/tutorials/seattle/#5:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Parameterized molecules for caching queries&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/tutorials/seattle/#6:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Functions and fulltext search in queries&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/tutorials/seattle/#8:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Querying with rules - logical OR&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/tutorials/seattle/#9:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Working with time&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/tutorials/seattle/#10:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Inserting data&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/tutorials/seattle/#11:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Updating/deleting data&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
@@ -54,10 +54,10 @@
     
     <item>
       <title>Seattle</title>
-      <link>http://scalamolecule.github.io/tutorials/seattle/</link>
+      <link>http://scalamolecule.org/tutorials/seattle/</link>
       <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
       
-      <guid>http://scalamolecule.github.io/tutorials/seattle/</guid>
+      <guid>http://scalamolecule.org/tutorials/seattle/</guid>
       <description>
 
 &lt;h1 id=&#34;contents:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Molecule Seattle tutorial&lt;/h1&gt;
@@ -83,7 +83,7 @@ how Molecule works.&lt;/em&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;0:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;&lt;a href=&#34;#contents:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;☝︎&lt;/a&gt; Introduction&lt;/h2&gt;
 
-&lt;p&gt;After &lt;a href=&#34;http://scalamolecule.github.io/manual/database-setup&#34;&gt;setting up the database&lt;/a&gt; and &lt;a href=&#34;http://scalamolecule.github.io/manual/populate-database&#34;&gt;populating it with data&lt;/a&gt; we can
+&lt;p&gt;After &lt;a href=&#34;http://scalamolecule.org/manual/database-setup&#34;&gt;setting up the database&lt;/a&gt; and &lt;a href=&#34;http://scalamolecule.org/manual/populate-database&#34;&gt;populating it with data&lt;/a&gt; we can
 start making queries. We make queries by building &amp;ldquo;molecules&amp;rdquo; which are
 chains of attributes put together with the builder pattern. We can imagine
 this as a 3-dimensional data structure of atoms bound together in various
@@ -943,7 +943,7 @@ values as they existed at specific points in time, we can retrieve
 retracted data by looking in the past. In other words, the data
 isn&amp;rsquo;t really gone. If we want data to really be gone after we
 retract it, we have to disable history for the specific attribute,
-as described in &lt;a href=&#34;http://scalamolecule.github.io/manual/database-setup&#34;&gt;Database setup&lt;/a&gt;.&lt;/p&gt;
+as described in &lt;a href=&#34;http://scalamolecule.org/manual/database-setup&#34;&gt;Database setup&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>
     
