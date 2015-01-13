@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Communities on Molecule</title>
-    <link>http://scalamolecule.github.io/community/</link>
+    <link>http://scalamolecule/community/</link>
     <description>Recent content in Communities on Molecule</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     
     
     <lastBuildDate>Wed, 14 May 2014 02:13:50 UTC</lastBuildDate>
-    <atom:link href="http://scalamolecule.github.io/community/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://scalamolecule/community/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Community</title>
-      <link>http://scalamolecule.github.io/community/overview/</link>
+      <link>http://scalamolecule/community/overview/</link>
       <pubDate>Wed, 14 May 2014 02:13:50 UTC</pubDate>
       
-      <guid>http://scalamolecule.github.io/community/overview/</guid>
+      <guid>http://scalamolecule/community/overview/</guid>
       <description>
 
 &lt;h1 id=&#34;community:68f80267fa3a50980dbb745a782b8dca&#34;&gt;Community&lt;/h1&gt;
@@ -35,10 +35,10 @@
     
     <item>
       <title>Forum</title>
-      <link>http://scalamolecule.github.io/community/forum/</link>
+      <link>http://scalamolecule/community/forum/</link>
       <pubDate>Wed, 14 May 2014 02:13:50 UTC</pubDate>
       
-      <guid>http://scalamolecule.github.io/community/forum/</guid>
+      <guid>http://scalamolecule/community/forum/</guid>
       <description>
 
 &lt;h1 id=&#34;forum:9bf17893d33490888c600c67505ec118&#34;&gt;Forum&lt;/h1&gt;
