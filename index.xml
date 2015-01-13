@@ -149,6 +149,37 @@
     </item>
     
     <item>
+      <title>Compare</title>
+      <link>http://scalamolecule.github.io/compare/overview/</link>
+      <pubDate>Wed, 14 May 2014 02:13:50 UTC</pubDate>
+      
+      <guid>http://scalamolecule.github.io/compare/overview/</guid>
+      <description>
+
+&lt;h1 id=&#34;compare-with-other-databases:68f80267fa3a50980dbb745a782b8dca&#34;&gt;Compare with other databases&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Overview&lt;/li&gt;
+&lt;li&gt;SQL
+
+&lt;ul&gt;
+&lt;li&gt;Slick&lt;/li&gt;
+&lt;li&gt;Sqltyped tutorial&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Mongodb
+
+&lt;ul&gt;
+&lt;li&gt;Original&lt;/li&gt;
+&lt;li&gt;Rogue tutorial&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Titan&lt;/li&gt;
+&lt;li&gt;Neo4j&lt;/li&gt;
+&lt;li&gt;Gremlin&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Developer</title>
       <link>http://scalamolecule.github.io/developer/overview/</link>
       <pubDate>Wed, 14 May 2014 02:13:50 UTC</pubDate>
@@ -221,37 +252,6 @@ allows you to&lt;/p&gt;
 &amp;ldquo;molecularized&amp;rdquo; succesfully (see the
 [Molecule Seattle tutorial][tutorial] and
 [code][tutorialcode]). So as a proof-of-concept it looks promising&amp;hellip;&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Compare</title>
-      <link>http://scalamolecule.github.io/compare/overview/</link>
-      <pubDate>Wed, 14 May 2014 02:13:50 UTC</pubDate>
-      
-      <guid>http://scalamolecule.github.io/compare/overview/</guid>
-      <description>
-
-&lt;h1 id=&#34;compare-with-other-databases:68f80267fa3a50980dbb745a782b8dca&#34;&gt;Compare with other databases&lt;/h1&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Overview&lt;/li&gt;
-&lt;li&gt;SQL
-
-&lt;ul&gt;
-&lt;li&gt;Slick&lt;/li&gt;
-&lt;li&gt;Sqltyped tutorial&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;Mongodb
-
-&lt;ul&gt;
-&lt;li&gt;Original&lt;/li&gt;
-&lt;li&gt;Rogue tutorial&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;Titan&lt;/li&gt;
-&lt;li&gt;Neo4j&lt;/li&gt;
-&lt;li&gt;Gremlin&lt;/li&gt;
-&lt;/ul&gt;
 </description>
     </item>
     
@@ -1274,18 +1274,6 @@ as described in &lt;a href=&#34;http://scalamolecule.github.io/manual/database-s
     </item>
     
     <item>
-      <title>Forum</title>
-      <link>http://scalamolecule.github.io/community/forum/</link>
-      <pubDate>Wed, 14 May 2014 02:13:50 UTC</pubDate>
-      
-      <guid>http://scalamolecule.github.io/community/forum/</guid>
-      <description>
-
-&lt;h1 id=&#34;forum:9bf17893d33490888c600c67505ec118&#34;&gt;Forum&lt;/h1&gt;
-</description>
-    </item>
-    
-    <item>
       <title>SQL</title>
       <link>http://scalamolecule.github.io/compare/sql/</link>
       <pubDate>Wed, 14 May 2014 02:13:50 UTC</pubDate>
@@ -1294,6 +1282,18 @@ as described in &lt;a href=&#34;http://scalamolecule.github.io/manual/database-s
       <description>
 
 &lt;h1 id=&#34;compare-with-sql:d1babb582138b02a13547d2c6eb6df72&#34;&gt;Compare with SQL&lt;/h1&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Forum</title>
+      <link>http://scalamolecule.github.io/community/forum/</link>
+      <pubDate>Wed, 14 May 2014 02:13:50 UTC</pubDate>
+      
+      <guid>http://scalamolecule.github.io/community/forum/</guid>
+      <description>
+
+&lt;h1 id=&#34;forum:9bf17893d33490888c600c67505ec118&#34;&gt;Forum&lt;/h1&gt;
 </description>
     </item>
     
