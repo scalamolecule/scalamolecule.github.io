@@ -2,103 +2,103 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://scalamolecule/</loc>
+    <loc>http://scalamolecule.org/</loc>
     <lastmod>2015-01-02T22:06:44+01:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://scalamolecule/manual/overview/</loc>
+    <loc>http://scalamolecule.org/manual/overview/</loc>
     <lastmod>2015-01-02T22:06:44+01:00</lastmod>
   </url>
   
   <url>
-    <loc>http://scalamolecule/tutorials/overview/</loc>
+    <loc>http://scalamolecule.org/tutorials/overview/</loc>
     <lastmod>2015-01-02T22:06:44+01:00</lastmod>
   </url>
   
   <url>
-    <loc>http://scalamolecule/compare/overview/</loc>
+    <loc>http://scalamolecule.org/community/overview/</loc>
     <lastmod>2014-05-14T02:13:50+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://scalamolecule/community/overview/</loc>
+    <loc>http://scalamolecule.org/compare/overview/</loc>
     <lastmod>2014-05-14T02:13:50+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://scalamolecule/developer/overview/</loc>
+    <loc>http://scalamolecule.org/developer/overview/</loc>
     <lastmod>2014-05-14T02:13:50+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://scalamolecule/</loc>
+    <loc>http://scalamolecule.org/</loc>
     <lastmod>2015-01-02T22:06:44+01:00</lastmod>
   </url>
   
   <url>
-    <loc>http://scalamolecule/tutorials/seattle/</loc>
+    <loc>http://scalamolecule.org/tutorials/seattle/</loc>
     <lastmod>2015-01-02T22:06:44+01:00</lastmod>
   </url>
   
   <url>
-    <loc>http://scalamolecule/community/forum/</loc>
+    <loc>http://scalamolecule.org/community/forum/</loc>
     <lastmod>2014-05-14T02:13:50+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://scalamolecule/compare/sql/</loc>
+    <loc>http://scalamolecule.org/compare/sql/</loc>
     <lastmod>2014-05-14T02:13:50+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://scalamolecule/developer/transformation/</loc>
+    <loc>http://scalamolecule.org/developer/transformation/</loc>
     <lastmod>2014-05-14T02:13:50+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://scalamolecule/home/introduction/</loc>
+    <loc>http://scalamolecule.org/home/introduction/</loc>
     <lastmod>2015-01-02T22:06:44+01:00</lastmod>
   </url>
   
   <url>
-    <loc>http://scalamolecule/manual/basics/attributes/</loc>
+    <loc>http://scalamolecule.org/manual/basics/attributes/</loc>
     <lastmod>2015-01-02T22:06:44+01:00</lastmod>
   </url>
   
   <url>
-    <loc>http://scalamolecule/manual/basics/</loc>
+    <loc>http://scalamolecule.org/manual/basics/</loc>
     <lastmod>2015-01-02T22:06:44+01:00</lastmod>
   </url>
   
   <url>
-    <loc>http://scalamolecule/home/setup/</loc>
+    <loc>http://scalamolecule.org/home/setup/</loc>
     <lastmod>2014-05-14T02:13:50+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://scalamolecule/manual/modelling/</loc>
+    <loc>http://scalamolecule.org/manual/modelling/</loc>
     <lastmod>2015-01-02T22:06:44+01:00</lastmod>
   </url>
   
   <url>
-    <loc>http://scalamolecule/manual/database-setup/</loc>
+    <loc>http://scalamolecule.org/manual/database-setup/</loc>
     <lastmod>2015-01-02T22:06:44+01:00</lastmod>
   </url>
   
   <url>
-    <loc>http://scalamolecule/manual/schema-definition/</loc>
+    <loc>http://scalamolecule.org/manual/schema-definition/</loc>
     <lastmod>2015-01-02T22:06:44+01:00</lastmod>
   </url>
   
   <url>
-    <loc>http://scalamolecule/manual/populate-database/</loc>
+    <loc>http://scalamolecule.org/manual/populate-database/</loc>
     <lastmod>2015-01-02T22:06:44+01:00</lastmod>
   </url>
   
   <url>
-    <loc>http://scalamolecule/home/about/</loc>
+    <loc>http://scalamolecule.org/home/about/</loc>
     <lastmod>2014-05-14T02:13:50+00:00</lastmod>
   </url>
   
