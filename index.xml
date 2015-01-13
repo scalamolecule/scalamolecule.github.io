@@ -12,6 +12,47 @@
     <atom:link href="http://scalamolecule.org/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>Tutorials</title>
+      <link>http://scalamolecule.org/tutorials/overview/</link>
+      <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
+      
+      <guid>http://scalamolecule.org/tutorials/overview/</guid>
+      <description>
+
+&lt;h1 id=&#34;molecule-tutorials:68f80267fa3a50980dbb745a782b8dca&#34;&gt;Molecule tutorials&lt;/h1&gt;
+
+&lt;p&gt;As we see more tutorials on Molecule we&amp;rsquo;ll collect them here:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/tutorials/seattle&#34;&gt;Seattle tutorial&lt;/a&gt; - all-round introduction to using Molecule:
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/tutorials/seattle/#0:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Basic introduction to Molecule&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/tutorials/seattle/#1:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Queries with attributes&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/tutorials/seattle/#4:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Relationships across references&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/tutorials/seattle/#5:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Parameterized molecules for caching queries&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/tutorials/seattle/#6:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Functions and fulltext search in queries&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/tutorials/seattle/#8:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Querying with rules - logical OR&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/tutorials/seattle/#9:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Working with time&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/tutorials/seattle/#10:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Inserting data&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/tutorials/seattle/#11:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Updating/deleting data&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Wish-list for cookbook recipees (in random order):&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Transaction management - saving meta data with your transactions&lt;/li&gt;
+&lt;li&gt;Schema queries - what do we use them for?&lt;/li&gt;
+&lt;li&gt;Pagination - how do we retrive paginated result sets?&lt;/li&gt;
+&lt;li&gt;Authorization - roles and groups&lt;/li&gt;
+&lt;li&gt;Recursive queries - examples and uses&lt;/li&gt;
+&lt;li&gt;more&amp;hellip;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Manual</title>
       <link>http://scalamolecule.org/manual/overview/</link>
       <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
@@ -81,47 +122,6 @@
 &lt;li&gt;&lt;p&gt;Recursive queries (practical uses)&lt;/p&gt;&lt;/li&gt;
 
 &lt;li&gt;&lt;p&gt;Schema queries (practical uses)&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Tutorials</title>
-      <link>http://scalamolecule.org/tutorials/overview/</link>
-      <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
-      
-      <guid>http://scalamolecule.org/tutorials/overview/</guid>
-      <description>
-
-&lt;h1 id=&#34;molecule-tutorials:68f80267fa3a50980dbb745a782b8dca&#34;&gt;Molecule tutorials&lt;/h1&gt;
-
-&lt;p&gt;As we see more tutorials on Molecule we&amp;rsquo;ll collect them here:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/tutorials/seattle&#34;&gt;Seattle tutorial&lt;/a&gt; - all-round introduction to using Molecule:
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/tutorials/seattle/#0:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Basic introduction to Molecule&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/tutorials/seattle/#1:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Queries with attributes&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/tutorials/seattle/#4:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Relationships across references&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/tutorials/seattle/#5:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Parameterized molecules for caching queries&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/tutorials/seattle/#6:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Functions and fulltext search in queries&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/tutorials/seattle/#8:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Querying with rules - logical OR&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/tutorials/seattle/#9:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Working with time&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/tutorials/seattle/#10:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Inserting data&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/tutorials/seattle/#11:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Updating/deleting data&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Wish-list for cookbook recipees (in random order):&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Transaction management - saving meta data with your transactions&lt;/li&gt;
-&lt;li&gt;Schema queries - what do we use them for?&lt;/li&gt;
-&lt;li&gt;Pagination - how do we retrive paginated result sets?&lt;/li&gt;
-&lt;li&gt;Authorization - roles and groups&lt;/li&gt;
-&lt;li&gt;Recursive queries - examples and uses&lt;/li&gt;
-&lt;li&gt;more&amp;hellip;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
     </item>
@@ -1550,33 +1550,27 @@ OR &amp;ldquo;facebook_page&amp;rdquo;. With your own definitions you can write 
     </item>
     
     <item>
-      <title>Modelling</title>
-      <link>http://scalamolecule.org/manual/modelling/</link>
+      <title>Database setup</title>
+      <link>http://scalamolecule.org/manual/database-setup/</link>
       <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
       
-      <guid>http://scalamolecule.org/manual/modelling/</guid>
+      <guid>http://scalamolecule.org/manual/database-setup/</guid>
       <description>
 
-&lt;h1 id=&#34;modelling:1a78f08b347c58aecd18d23e659bda2c&#34;&gt;Modelling&lt;/h1&gt;
+&lt;h1 id=&#34;database-setup:029b5641f6c81b30970318acf78606be&#34;&gt;Database setup&lt;/h1&gt;
 
-&lt;p&gt;A Datomic &lt;code&gt;schema&lt;/code&gt; defines the set of &lt;code&gt;attributes&lt;/code&gt; you can assign to &lt;code&gt;entities&lt;/code&gt;.
-We organize &lt;code&gt;attributes&lt;/code&gt; in &lt;code&gt;namespaces&lt;/code&gt; to group related qualities:&lt;/p&gt;
+&lt;p&gt;To create a fresh in-memory Datomic database we simply pass an URI string to
+&lt;code&gt;Peer.createDatabase&lt;/code&gt; (to be sure that this URI is not already populated we
+first delete it):&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://scalamolecule.org/img/DatomicElements1.png&#34; alt=&#34;Schema&#34; /&gt;
-&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val uri = &amp;quot;datomic:mem://seattle&amp;quot;
+Peer.deleteDatabase(uri)
+Peer.createDatabase(uri)
+implicit val conn = Peer.connect(uri)
+&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;This makes it easier to overview our domain data structures.&lt;/p&gt;
-
-&lt;h4 id=&#34;schema-table:1a78f08b347c58aecd18d23e659bda2c&#34;&gt;Schema != Table&lt;/h4&gt;
-
-&lt;p&gt;If coming from an sql background one might at first think of a namespace as
-a table having columns (attributes). But this is not the case. An
-entity in Datomic can associate values of attributes &lt;em&gt;from any namespace&lt;/em&gt;:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://scalamolecule.org/img/DatomicElements2.png&#34; alt=&#34;&#34; /&gt;
-&lt;/p&gt;
-
-&lt;p&gt;This gives us great freedom to model our domain with more &amp;ldquo;loose&amp;rdquo; namespaces rather than &amp;ldquo;hardcoded things&amp;rdquo; as table definitions. Later we can compose entities grabbing specific attributes from various namespaces as needed.&lt;/p&gt;
+&lt;p&gt;We save the returned Datomic Connection as an implicit value so that our
+molecules can later issue queries against it.&lt;/p&gt;
 </description>
     </item>
     
