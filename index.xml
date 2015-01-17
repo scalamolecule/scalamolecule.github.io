@@ -385,8 +385,6 @@ allows you to&lt;/p&gt;
 
 &lt;p&gt;Molecule is a Scala meta-DSL that translates &amp;ldquo;molecules&amp;rdquo; of your domain attributes to Datalog queries for &lt;a href=&#34;http://www.datomic.com&#34;&gt;Datomic&lt;/a&gt; - the database of immutable facts.&lt;/p&gt;
 
-&lt;p&gt;Given a simple schema of your domain namespaces and their attributes, Molecule generates boilerplate code so that you can compose query molecules in endless combinations.&lt;/p&gt;
-
 &lt;h3 id=&#34;how-does-it-work:ffcff61ab3a11ef1d50900901a24ec54&#34;&gt;How does it work?&lt;/h3&gt;
 
 &lt;div class=&#34;sequence-block&#34;&gt;
@@ -426,7 +424,7 @@ Person.name(&amp;quot;Lisa&amp;quot; or &amp;quot;Linda&amp;quot;).age.Address.s
 // etc..        
 &lt;/code&gt;&lt;/pre&gt;
 
-        &lt;p&gt;The implicit macro &lt;code&gt;get&lt;/code&gt; turns our molecule into a valid Datalog query at compile time so there&#39;s no runtime overhead. 
+        &lt;p&gt;The implicit macro &lt;code&gt;get&lt;/code&gt; turns our molecule into a valid Datalog query at compile time. So there&#39;s no runtime overhead. 
     &lt;/div&gt;
 &lt;/div&gt;
 
@@ -443,17 +441,16 @@ val persons: Seq[String :: Int :: HNil] = Person.name.age.hl
     &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;h3 id=&#34;guarantees:ffcff61ab3a11ef1d50900901a24ec54&#34;&gt;Guarantees&lt;/h3&gt;
+&lt;h3 id=&#34;try-demo:ffcff61ab3a11ef1d50900901a24ec54&#34;&gt;Try demo&lt;/h3&gt;
 
-&lt;p&gt;Queries are&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;git clone https://github.com/scalamolecule/molecule-demo.git&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;sbt compile&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Open in your IDE&lt;/li&gt;
+&lt;li&gt;Run tests and poke around&amp;hellip;&lt;/li&gt;
+&lt;/ol&gt;
 
-&lt;ul&gt;
-&lt;li&gt;Valid (won&amp;rsquo;t compile otherwise)&lt;/li&gt;
-&lt;li&gt;Returning predictable results without null values (we ask for existing attributes)&lt;/li&gt;
-&lt;li&gt;Type-interferred&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&#34;get-started:ffcff61ab3a11ef1d50900901a24ec54&#34;&gt;Get started&lt;/h3&gt;
+&lt;h3 id=&#34;read-more:ffcff61ab3a11ef1d50900901a24ec54&#34;&gt;Read more&lt;/h3&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/home/introduction&#34;&gt;Introduction&lt;/a&gt; to Datomic/Molecule&lt;/li&gt;
@@ -463,7 +460,7 @@ val persons: Seq[String :: Int :: HNil] = Person.name.age.hl
 &lt;a href=&#34;http://docs.datomic.com/tutorial.html&#34;&gt;Datomic Seattle tutorial&lt;/a&gt;)&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&#34;download-code:ffcff61ab3a11ef1d50900901a24ec54&#34;&gt;Download code&lt;/h3&gt;
+&lt;h3 id=&#34;download-and-test:ffcff61ab3a11ef1d50900901a24ec54&#34;&gt;Download and test&lt;/h3&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;code&gt;git clone https://github.com/scalamolecule/molecule.git&lt;/code&gt;&lt;/li&gt;
@@ -472,7 +469,8 @@ val persons: Seq[String :: Int :: HNil] = Person.name.age.hl
 &lt;li&gt;Run tests and poke around&amp;hellip;&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h3 id=&#34;try-demo:ffcff61ab3a11ef1d50900901a24ec54&#34;&gt;Try demo&lt;/h3&gt;
+&lt;p&gt;&lt;br&gt;
+Thank you for reading so far!&lt;/p&gt;
 </description>
     </item>
     
@@ -1467,18 +1465,6 @@ allows you to&lt;/p&gt;
     </item>
     
     <item>
-      <title>Attributes</title>
-      <link>http://scalamolecule.org/manual/basics/attributes/</link>
-      <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
-      
-      <guid>http://scalamolecule.org/manual/basics/attributes/</guid>
-      <description>
-
-&lt;h1 id=&#34;attributes:199f4b06fef5a61f833f209ac24fd4c2&#34;&gt;Attributes&lt;/h1&gt;
-</description>
-    </item>
-    
-    <item>
       <title>Introduction</title>
       <link>http://scalamolecule.org/home/introduction/</link>
       <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
@@ -1571,6 +1557,18 @@ OR &amp;ldquo;facebook_page&amp;rdquo;. With your own definitions you can write 
 &lt;p&gt;Go straight to the &lt;a href=&#34;https://github.com/scalamolecule/wiki/Molecule-Seattle-tutorial&#34;&gt;Molecule Seattle tutorial&lt;/a&gt; to see a wide range of
  queries that Molecule can express, or check out first how we use Molecule to
  &lt;a href=&#34;https://github.com/scalamolecule/wiki/Setup-a-Datomic-database&#34;&gt;setup the database&lt;/a&gt; and &lt;a href=&#34;https://github.com/scalamolecule/wiki/Populate-the-database&#34;&gt;populated it with data&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Attributes</title>
+      <link>http://scalamolecule.org/manual/basics/attributes/</link>
+      <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
+      
+      <guid>http://scalamolecule.org/manual/basics/attributes/</guid>
+      <description>
+
+&lt;h1 id=&#34;attributes:199f4b06fef5a61f833f209ac24fd4c2&#34;&gt;Attributes&lt;/h1&gt;
 </description>
     </item>
     

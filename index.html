@@ -348,8 +348,6 @@
 
 <p>Molecule is a Scala meta-DSL that translates &ldquo;molecules&rdquo; of your domain attributes to Datalog queries for <a href="http://www.datomic.com">Datomic</a> - the database of immutable facts.</p>
 
-<p>Given a simple schema of your domain namespaces and their attributes, Molecule generates boilerplate code so that you can compose query molecules in endless combinations.</p>
-
 <h3 id="how-does-it-work:ffcff61ab3a11ef1d50900901a24ec54">How does it work?</h3>
 
 <div class="sequence-block">
@@ -389,7 +387,7 @@ Person.name(&quot;Lisa&quot; or &quot;Linda&quot;).age.Address.street.contains(&
 // etc..        
 </code></pre>
 
-        <p>The implicit macro <code>get</code> turns our molecule into a valid Datalog query at compile time so there's no runtime overhead. 
+        <p>The implicit macro <code>get</code> turns our molecule into a valid Datalog query at compile time. So there's no runtime overhead. 
     </div>
 </div>
 
@@ -406,17 +404,16 @@ val persons: Seq[String :: Int :: HNil] = Person.name.age.hl
     </div>
 </div>
 
-<h3 id="guarantees:ffcff61ab3a11ef1d50900901a24ec54">Guarantees</h3>
+<h3 id="try-demo:ffcff61ab3a11ef1d50900901a24ec54">Try demo</h3>
 
-<p>Queries are</p>
+<ol>
+<li><code>git clone https://github.com/scalamolecule/molecule-demo.git</code></li>
+<li><code>sbt compile</code></li>
+<li>Open in your IDE</li>
+<li>Run tests and poke around&hellip;</li>
+</ol>
 
-<ul>
-<li>Valid (won&rsquo;t compile otherwise)</li>
-<li>Returning predictable results without null values (we ask for existing attributes)</li>
-<li>Type-interferred</li>
-</ul>
-
-<h3 id="get-started:ffcff61ab3a11ef1d50900901a24ec54">Get started</h3>
+<h3 id="read-more:ffcff61ab3a11ef1d50900901a24ec54">Read more</h3>
 
 <ul>
 <li><a href="/home/introduction">Introduction</a> to Datomic/Molecule</li>
@@ -426,7 +423,7 @@ val persons: Seq[String :: Int :: HNil] = Person.name.age.hl
 <a href="http://docs.datomic.com/tutorial.html">Datomic Seattle tutorial</a>)</li>
 </ul>
 
-<h3 id="download-code:ffcff61ab3a11ef1d50900901a24ec54">Download code</h3>
+<h3 id="download-and-test:ffcff61ab3a11ef1d50900901a24ec54">Download and test</h3>
 
 <ol>
 <li><code>git clone https://github.com/scalamolecule/molecule.git</code></li>
@@ -435,7 +432,8 @@ val persons: Seq[String :: Int :: HNil] = Person.name.age.hl
 <li>Run tests and poke around&hellip;</li>
 </ol>
 
-<h3 id="try-demo:ffcff61ab3a11ef1d50900901a24ec54">Try demo</h3>
+<p><br>
+Thank you for reading so far!</p>
 
 	
 
