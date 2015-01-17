@@ -23,7 +23,7 @@
 
 &lt;h1 id=&#34;molecule:ffcff61ab3a11ef1d50900901a24ec54&#34;&gt;Molecule&lt;/h1&gt;
 
-&lt;h4 id=&#34;write-powerful-datomic-queries-with-the-words-of-your-domain:ffcff61ab3a11ef1d50900901a24ec54&#34;&gt;&lt;strong&gt;&lt;em&gt;Write powerful &lt;a href=&#34;http://www.datomic.com&#34;&gt;Datomic&lt;/a&gt; queries with the words of your domain:&lt;/em&gt;&lt;/strong&gt;&lt;/h4&gt;
+&lt;h4 id=&#34;write-powerful-datomic-queries-with-the-words-of-your-domain:ffcff61ab3a11ef1d50900901a24ec54&#34;&gt;&lt;em&gt;Write powerful &lt;a href=&#34;http://www.datomic.com&#34;&gt;Datomic&lt;/a&gt; queries with the words of your domain:&lt;/em&gt;&lt;/h4&gt;
 
 &lt;div id=&#34;myCarousel&#34; class=&#34;carousel slide&#34; data-interval=&#34;9000&#34; data-ride=&#34;carousel&#34;&gt;
     &lt;!-- Carousel indicators --&gt;
@@ -240,30 +240,77 @@ Thank you for reading so far!&lt;/p&gt;
 
 &lt;h1 id=&#34;molecule-introduction:2767292a573dc549b9b4297b701af3ab&#34;&gt;Molecule introduction&lt;/h1&gt;
 
-&lt;p&gt;Facts like&lt;/p&gt;
+&lt;p&gt;Molecule let&amp;rsquo;s you model and query your domain data structures directly with the words of your domain.&lt;/p&gt;
 
-&lt;pre&gt;John likes pizza 12:35:54&lt;/pre&gt;
+&lt;h3 id=&#34;query:2767292a573dc549b9b4297b701af3ab&#34;&gt;Query&lt;/h3&gt;
 
-&lt;p&gt;are stored in Datomic as &lt;code&gt;Datom&lt;/code&gt;s having these 4 basic elements:&lt;/p&gt;
+&lt;p&gt;Describing our domain with Attributes grouped in Namespaces allow us to for instance find Persons in our Datomic database by composing molecules attribute by attribute with the builder pattern:&lt;/p&gt;
 
-&lt;p&gt;&lt;code&gt;entity&lt;/code&gt; &lt;code&gt;attribute&lt;/code&gt; &lt;code&gt;value&lt;/code&gt; &lt;code&gt;transaction&lt;/code&gt;(time)&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val personMolecule = m(Person.name.age)
+&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;In this example, &lt;em&gt;likes&lt;/em&gt; is an &lt;code&gt;attribute&lt;/code&gt; and it has the &lt;code&gt;value&lt;/code&gt; &lt;em&gt;pizza&lt;/em&gt;. It is &lt;strong&gt;asserted&lt;/strong&gt; that
-the &lt;code&gt;entity&lt;/code&gt; &lt;em&gt;John&lt;/em&gt; likes pizza at &lt;code&gt;transaction&lt;/code&gt; time 12:35:54.&lt;/p&gt;
+&lt;p&gt;An implicit macro method &lt;code&gt;get&lt;/code&gt; (or &lt;code&gt;hl&lt;/code&gt; for HLists) will at compile time translate our molecule to a Datalog query. And at runtime it will get executed against Datomic to retrieve a type-inferred result set of tuples/HLists:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val persons: Seq[(String, Int)]         = Person.name.age.get
+val persons: Seq[String :: Int :: HNil] = Person.name.age.hl
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Note how our type-inferred molecules make it impossible to write invalid queries since they simply wouldn&amp;rsquo;t compile.&lt;/p&gt;
+
+&lt;h3 id=&#34;insert-and-update:2767292a573dc549b9b4297b701af3ab&#34;&gt;Insert and update&lt;/h3&gt;
+
+&lt;p&gt;We also insert and update data with molecules:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;// Insert and retrieve new entity id
+val lisaId = Person.name(&amp;quot;Lisa&amp;quot;).age(&amp;quot;27&amp;quot;).insert.id
+
+// Update
+Person(lisaId).age(&amp;quot;28&amp;quot;).update
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;expressive-powers:2767292a573dc549b9b4297b701af3ab&#34;&gt;Expressive powers&lt;/h3&gt;
+
+&lt;p&gt;We can apply conditional values, ranges etc to our molecules to express more subtle data structures:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Community.name.`type`(&amp;quot;twitter&amp;quot; or &amp;quot;facebook_page&amp;quot;)
+  .Neighborhood.District.region(&amp;quot;sw&amp;quot; or &amp;quot;s&amp;quot; or &amp;quot;se&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;which will find &amp;ldquo;names of twitter/facebook_page communities in neighborhoods of southern districts&amp;rdquo;&lt;/p&gt;
+
+&lt;h2 id=&#34;datomic-and-molecule:2767292a573dc549b9b4297b701af3ab&#34;&gt;Datomic and Molecule&lt;/h2&gt;
+
+&lt;p&gt;Molecule is a domain-tailored abstraction layer on top of the Datomic database. It can therefore be good to know a little about Datomic in order to understand Molecule.&lt;/p&gt;
+
+&lt;h3 id=&#34;facts-datoms-with-time-built-in:2767292a573dc549b9b4297b701af3ab&#34;&gt;Facts/Datoms with time built in&lt;/h3&gt;
+
+&lt;p&gt;Instead of mapping objects to tables or documents, the core unit of data in Molecule is an atomic piece of information: an &lt;em&gt;attribute&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;Attributes are composed to form &amp;ldquo;molecules&amp;rdquo; that describe unique and flexible data structures in endless combinations suiting your domain. Those are then translated to Datalog queries being executed against the underlying Datomic database.&lt;/p&gt;
+
+&lt;p&gt;An attribute in Datomic is part of &lt;em&gt;fact&lt;/em&gt; or &lt;em&gt;Datom&lt;/em&gt; consisting of four elements:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt; John     likes    pizza       12:35:54
+   |        |        |            |
+Entity  Attribute  Value  Transactiion/time
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;With Molecule we could model the fact like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person(johnId).likes(&amp;quot;pizza&amp;quot;).update
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;em&gt;likes&lt;/em&gt; is an &lt;code&gt;attribute&lt;/code&gt; with &lt;code&gt;value&lt;/code&gt; &lt;em&gt;pizza&lt;/em&gt;. It is &lt;strong&gt;asserted&lt;/strong&gt; that the &lt;code&gt;entity&lt;/code&gt; &lt;em&gt;johnId&lt;/em&gt; likes) pizza at &lt;code&gt;transaction&lt;/code&gt; time 12:35:54. A timestamp is automatically set with all transactions. But if we need &amp;ldquo;domain time&amp;rdquo; we could add such attribute to the transaction as well, since this is simply a saved data structure in Datomic as our domain data.&lt;/p&gt;
 
 &lt;h3 id=&#34;immutable-data:2767292a573dc549b9b4297b701af3ab&#34;&gt;Immutable data&lt;/h3&gt;
 
-&lt;p&gt;Everytime a fact is asserted the old value of the attribute is &lt;em&gt;not deleted&lt;/em&gt;. A Datomic database
-is immutable. We can go back in time and see the values of an attribute &lt;em&gt;at any point in time&lt;/em&gt;. We could for
-instance see all our previous addresses if this was part of our domain model.&lt;/p&gt;
+&lt;p&gt;Everytime a fact is asserted the old value of the attribute is &lt;em&gt;not deleted&lt;/em&gt;. A Datomic database is immutable. We can go back in time and see the values of an attribute &lt;em&gt;at any point in time&lt;/em&gt;. We could for instance see all our previous addresses if this was part of our domain model.&lt;/p&gt;
 
-&lt;p&gt;Also when we delete data, it&amp;rsquo;s actually not deleted, but &amp;ldquo;retracted&amp;rdquo;. Retracted data doesn&amp;rsquo;t show
- up when we are querying the current database. But if we look at the database at an earlier point in
-  time we can see the data before it got retracted.&lt;/p&gt;
+&lt;p&gt;Also when we delete data, it&amp;rsquo;s actually not deleted, but &amp;ldquo;retracted&amp;rdquo;. Retracted data doesn&amp;rsquo;t show up when we are querying the current database. But if we look at the database at an earlier point in time we can see the data before it got retracted.&lt;/p&gt;
 
 &lt;h3 id=&#34;namespaces-and-attributes:2767292a573dc549b9b4297b701af3ab&#34;&gt;Namespaces and attributes&lt;/h3&gt;
 
-&lt;p&gt;&lt;code&gt;attributes&lt;/code&gt; are typically organized in &lt;code&gt;namespaces&lt;/code&gt; to group related qualities of our domain:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;attributes&lt;/code&gt; are organized in &lt;code&gt;namespaces&lt;/code&gt; to group related qualities of our domain:&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&#34;http://scalamolecule.org/img/DatomicElements1.png&#34; alt=&#34;&#34; /&gt;
 &lt;/p&gt;
@@ -275,48 +322,7 @@ instance see all our previous addresses if this was part of our domain model.&lt
 &lt;p&gt;&lt;img src=&#34;http://scalamolecule.org/img/DatomicElements2.png&#34; alt=&#34;&#34; /&gt;
 &lt;/p&gt;
 
-&lt;p&gt;An entity is therefore not like a row in a table but rather a &amp;ldquo;cross-cutting&amp;rdquo; thing that we can
-freely associate any attribute value to. Note how &amp;ldquo;attrB1&amp;rdquo; in this example is not associated to entity1.&lt;/p&gt;
-
-&lt;h3 id=&#34;molecules:2767292a573dc549b9b4297b701af3ab&#34;&gt;Molecules&lt;/h3&gt;
-
-&lt;p&gt;If we imagine attributes as atomic data units, then we can
-imagine molecules as 3-dimensional data structures composed of atoms.&lt;/p&gt;
-
-&lt;p&gt;In Molecule we use the builder pattern to model such data structures, attribute
-by attribute until we have a desired data structure. We could model &lt;code&gt;entity1&lt;/code&gt;
-from the example above as&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;NamespaceA.attrA1.attrA2.NamespaceB.attrB2
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;queries-with-molecules:2767292a573dc549b9b4297b701af3ab&#34;&gt;Queries with molecules&lt;/h3&gt;
-
-&lt;p&gt;If a namespace &lt;code&gt;Community&lt;/code&gt; has two attributes &lt;code&gt;name&lt;/code&gt; and &lt;code&gt;url&lt;/code&gt; we can
-model a data structure of community names and urls as a molecule and then ask
-the database to return those to us as a list of tuples with &lt;code&gt;name&lt;/code&gt;/&lt;code&gt;url&lt;/code&gt; values:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val namesAndUrls: List[(String, String)] = m(Community.name.url).get
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Note how the return types of &lt;code&gt;name&lt;/code&gt; and &lt;code&gt;url&lt;/code&gt; are infered.&lt;/p&gt;
-
-&lt;p&gt;Implicit conversions even allow us to condense our query.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val namesAndUrls = Community.name.url.get
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;values-and-expressions:2767292a573dc549b9b4297b701af3ab&#34;&gt;Values and expressions&lt;/h3&gt;
-
-&lt;p&gt;Values and expressions can be applied to attributes of our molecule so that
- we can express more complex data structures:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Community.name.`type`(&amp;quot;twitter&amp;quot; or &amp;quot;facebook_page&amp;quot;)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Here we find &lt;code&gt;name&lt;/code&gt;s of communities of a &lt;code&gt;type&lt;/code&gt; that has either the value &amp;ldquo;twitter&amp;rdquo;
-OR &amp;ldquo;facebook_page&amp;rdquo;. With your own definitions you can write similar
- complex queries in a simple way using the terms of your own domain.&lt;/p&gt;
+&lt;p&gt;An entity is therefore not like a row in a table but rather a &amp;ldquo;cross-cutting&amp;rdquo; thing that we can freely associate any attribute value to. Note how &amp;ldquo;attrB1&amp;rdquo; in this example is not associated to entity1.&lt;/p&gt;
 
 &lt;h3 id=&#34;further-reading:2767292a573dc549b9b4297b701af3ab&#34;&gt;Further reading&amp;hellip;&lt;/h3&gt;
 
@@ -336,37 +342,43 @@ OR &amp;ldquo;facebook_page&amp;rdquo;. With your own definitions you can write 
 
 &lt;h1 id=&#34;setup-molecule:2cc0b07f42930e4520820be1fe66f913&#34;&gt;Setup Molecule&lt;/h1&gt;
 
-&lt;h3 id=&#34;download-code:2cc0b07f42930e4520820be1fe66f913&#34;&gt;Download code&lt;/h3&gt;
+&lt;h3 id=&#34;download-the-molecule-library-with-all-tests:2cc0b07f42930e4520820be1fe66f913&#34;&gt;Download the Molecule library with all tests&lt;/h3&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;code&gt;git clone https://github.com/scalamolecule/molecule.git&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;sbt compile&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Import into your IDE&lt;/li&gt;
+&lt;li&gt;Open in your IDE&lt;/li&gt;
+&lt;li&gt;Run tests and poke around&amp;hellip;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&#34;or-try-the-demo-project:2cc0b07f42930e4520820be1fe66f913&#34;&gt;Or try the demo project&amp;hellip;&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;git clone https://github.com/scalamolecule/molecule-demo.git&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;sbt compile&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Open in your IDE&lt;/li&gt;
 &lt;li&gt;Run tests and poke around&amp;hellip;&lt;/li&gt;
 &lt;/ol&gt;
 
 &lt;h3 id=&#34;dependency-in-your-project:2cc0b07f42930e4520820be1fe66f913&#34;&gt;Dependency in your project&lt;/h3&gt;
 
-&lt;p&gt;Molecule 0.2.0 for Scala 2.11.4 is available at
-&lt;a href=&#34;https://oss.sonatype.org/content/repositories/releases/com/scalamolecule/molecule_2.11/&#34;&gt;Sonatype&lt;/a&gt;
- so that you can add a dependency in your sbt file to &lt;code&gt;&amp;quot;com.marcgrue&amp;quot; % &amp;quot;molecule_2.11.4&amp;quot; % &amp;quot;0.2.0&amp;quot;&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Molecule 0.2.1 for Scala 2.11.4 is available at &lt;a href=&#34;https://oss.sonatype.org/content/repositories/releases/com/scalamolecule/molecule_2.11/&#34;&gt;Sonatype&lt;/a&gt; so that you can add a dependency in your sbt file to &lt;code&gt;&amp;quot;org.scalamolecule&amp;quot; % &amp;quot;molecule_2.11&amp;quot; % &amp;quot;0.2.1&amp;quot;&lt;/code&gt;.&lt;/p&gt;
 
-&lt;p&gt;Since Molecule generates boilerplate code from your definitions it also needs to have the &lt;code&gt;DslBoilerplate.scala&lt;/code&gt; file in your project folder. Please have a look at how the sbt build file
- of the Molecule project itself puts things together and simply copy that to your own project:&lt;/p&gt;
+&lt;p&gt;Since Molecule generates boilerplate code from your definitions it also needs to have the &lt;code&gt;DslBoilerplate.scala&lt;/code&gt; file in your project folder. Please have a look at how the sbt build file of the Molecule project itself puts things together and simply copy that to your own project:&lt;/p&gt;
 
 &lt;ol&gt;
 &lt;li&gt;Setup your sbt build file [as in Molecule][moleculesbt]:
 
 &lt;ul&gt;
-&lt;li&gt;Add library dependency &lt;code&gt;&amp;quot;com.marcgrue&amp;quot; % &amp;quot;molecule_2.11.4&amp;quot; % &amp;quot;0.2.0&amp;quot;&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;List directories where you have your [definition file(s)][setup]&lt;/li&gt;
+&lt;li&gt;Add library dependency &lt;code&gt;&amp;quot;org.scalamolecule&amp;quot; % &amp;quot;molecule_2.11&amp;quot; % &amp;quot;0.2.1&amp;quot;&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;List directories where you have your &lt;a href=&#34;http://scalamolecule.org/manual/database-setup&#34;&gt;definition file(s)&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;Define your domain schema in a [schema definition file][setup]&lt;/li&gt;
+&lt;li&gt;Define your domain schema in a &lt;a href=&#34;http://scalamolecule.org/manual/schema-definition&#34;&gt;schema definition file&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;sbt compile&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Import into your IDE&lt;/li&gt;
-&lt;li&gt;[Setup your database][setup]&lt;/li&gt;
-&lt;li&gt;[Populate your database][populate] with data&lt;/li&gt;
-&lt;li&gt;[Make molecule queries][tutorial]&lt;/li&gt;
+&lt;li&gt;Open in your IDE&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/manual/database-setup&#34;&gt;Setup your database&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/manual/populate-database&#34;&gt;Populate your database&lt;/a&gt; with data&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/tutorials/seattle&#34;&gt;Make molecule queries&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 </description>
     </item>
@@ -381,13 +393,16 @@ OR &amp;ldquo;facebook_page&amp;rdquo;. With your own definitions you can write 
 
 &lt;h1 id=&#34;about:6083a88ee3411b0d17ce02d738f69d47&#34;&gt;About&lt;/h1&gt;
 
-&lt;p&gt;Molecule is created by Marc Grue&amp;hellip;&lt;/p&gt;
+&lt;p&gt;Molecule is created by &lt;a href=&#34;http://marcgrue.com&#34;&gt;Marc Grue&lt;/a&gt; as he saw a possibility to make life easier accessing Datomic.&lt;/p&gt;
 
-&lt;p&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://scalamolecule.org/img/mg.jpg&#34; alt=&#34;&#34; /&gt;
+&lt;/p&gt;
 
-&lt;h4 id=&#34;contibutors:6083a88ee3411b0d17ce02d738f69d47&#34;&gt;Contibutors&lt;/h4&gt;
+&lt;p&gt;Marc is a professional double bass player in the &lt;a href=&#34;http://www.gso.se/en/page/Gothenburg-Symphony/About-The-Orchestra&#34;&gt;Gothenburg Symphony Orchestra&lt;/a&gt;, the National Symphony Orchestra of Sweden.&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&#34;http://marcgrue.com&#34;&gt;Marc Grue&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;contributions-are-welcome:6083a88ee3411b0d17ce02d738f69d47&#34;&gt;Contributions are welcome!&lt;/h3&gt;
+
+&lt;p&gt;Hopefully you want to contribute to Molecule too! &lt;a href=&#34;https://github.com/scalamolecule/molecule/pulls&#34;&gt;Pull requests&lt;/a&gt; for improvements to Molecule are most welcome.&lt;/p&gt;
 
 &lt;h4 id=&#34;inspired-by:6083a88ee3411b0d17ce02d738f69d47&#34;&gt;Inspired by&lt;/h4&gt;
 

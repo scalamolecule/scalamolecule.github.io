@@ -19,26 +19,500 @@
       <guid>http://scalamolecule.org/compare/overview/</guid>
       <description>
 
-&lt;h1 id=&#34;compare-with-other-databases:68f80267fa3a50980dbb745a782b8dca&#34;&gt;Compare with other databases&lt;/h1&gt;
+&lt;h1 id=&#34;molecule-and-others:68f80267fa3a50980dbb745a782b8dca&#34;&gt;Molecule and others&amp;hellip;&lt;/h1&gt;
+
+&lt;p&gt;Molecule takes data modelling and querying one step further towards simplicity than Todays type-safe object/functional-relational mappers.&lt;/p&gt;
+
+&lt;h3 id=&#34;some-consume-while-molecule-is:68f80267fa3a50980dbb745a782b8dca&#34;&gt;Some &lt;em&gt;consume&lt;/em&gt; while Molecule &amp;ldquo;&lt;em&gt;is&lt;/em&gt;&amp;ldquo;&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://slick.typesafe.com/doc/3.0.0-M1/queries.html#joining-and-zipping&#34;&gt;Slick&lt;/a&gt; for instance &amp;ldquo;&lt;em&gt;consume&lt;/em&gt;&amp;rdquo; data objects in a Scala sequence comprehension:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;// Slick
+val implCrossJoin = for {
+  c &amp;lt;- coffees
+  s &amp;lt;- suppliers
+} yield (c.name, s.name)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Whereas in Molecule, &lt;em&gt;the data objects themselves form the query&lt;/em&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;// Molecule
+val coffeeSupliers = Coffees.name.Suppliers.name.get
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Even though the Slick approach is no doubt very intuitive and smart, Molecule instead applies a meta-programming approach trying to push the limit for how little code we can possibly write as end users given the knowledge we have of the code and schemas we write.&lt;/p&gt;
+
+&lt;p&gt;While there&amp;rsquo;s nothing wrong in &amp;ldquo;consuming&amp;rdquo; objects in itself, it is still a tiny layer of abstraction squeezed in between the programmer and his/her mental model of a domain. As an example (I hope) we don&amp;rsquo;t think in terms of sequence comprehensions, maps and flatMaps when we think of things in our domain. If we can &amp;ldquo;stay close&amp;rdquo; to &amp;ldquo;things&amp;rdquo;, &amp;ldquo;Person names&amp;rdquo; etc when writing queries the closer we stay to our mental model of our domain which is a main goal of Molecule.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://squeryl.org/selects.html&#34;&gt;Squeryl&lt;/a&gt; &lt;em&gt;consume&lt;/em&gt; data objects also in a DSL construct:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;// Squeryl
+def songs = from(MusicDb.songs)(s =&amp;gt; where(s.artistId === id) select(s))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;In Molecule we would get song entities (&lt;code&gt;e&lt;/code&gt;) filtered by Artist by applying a required value directly to an attribute like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;// Molecule
+val songs = Song.e.artist(id).get
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;compare-with-your-current-database:68f80267fa3a50980dbb745a782b8dca&#34;&gt;Compare with your current database!&lt;/h3&gt;
+
+&lt;p&gt;Over time we&amp;rsquo;ll compare Molecule with as many database systems as our time permits to explore. If you know some of them well and want to translate it to Molecule, please feel free to submit a pull request or bring up ideas&amp;hellip;&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;Overview&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/compare/datomic&#34;&gt;Datomic&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;SQL
 
 &lt;ul&gt;
 &lt;li&gt;Slick&lt;/li&gt;
+&lt;li&gt;Squeryl&lt;/li&gt;
 &lt;li&gt;Sqltyped tutorial&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;li&gt;Mongodb
 
 &lt;ul&gt;
-&lt;li&gt;Original&lt;/li&gt;
-&lt;li&gt;Rogue tutorial&lt;/li&gt;
+&lt;li&gt;Native&lt;/li&gt;
+&lt;li&gt;Rogue&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;li&gt;Titan&lt;/li&gt;
 &lt;li&gt;Neo4j&lt;/li&gt;
 &lt;li&gt;Gremlin&lt;/li&gt;
+&lt;li&gt;More&amp;hellip;?&lt;/li&gt;
 &lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Datomic</title>
+      <link>http://scalamolecule.org/compare/datomic/</link>
+      <pubDate>Wed, 14 May 2014 02:13:50 UTC</pubDate>
+      
+      <guid>http://scalamolecule.org/compare/datomic/</guid>
+      <description>
+
+&lt;h1 id=&#34;compare-with-datomic-datalog:fce8223ee4fefc246edc14cd715d3099&#34;&gt;Compare with Datomic/Datalog&lt;/h1&gt;
+
+&lt;p&gt;It might seem strange to compare Molecule with Datomic since Molecule is adapting to Datomic. But Datalog is still very different from Molecule. So let&amp;rsquo;s have a look at their differences - &lt;a href=&#34;https://github.com/scalamolecule/molecule/blob/master/examples/src/test/scala/molecule/examples/seattle/SeattleQueryTests.scala&#34;&gt;follow along in the code&lt;/a&gt; from which we will pick a few examples based on the Seattle tutorial examples.&lt;/p&gt;
+
+&lt;h3 id=&#34;querying-for-attribute-values:fce8223ee4fefc246edc14cd715d3099&#34;&gt;Querying &lt;em&gt;for&lt;/em&gt; attribute values&lt;/h3&gt;
+
+&lt;p&gt;The most basic query is to ask for entities with some attribute values:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;// Datalog
+[:find  ?b ?c (distinct ?d)
+ :where [?a :community/name ?b]
+        [?a :community/url ?c]
+        [?a :community/category ?d]]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;In Molecule we simply use the namespace name and add the attribute names:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;// Molecule
+Community.name.url.category
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Datalog has a &lt;code&gt;:find&lt;/code&gt; and &lt;code&gt;:where&lt;/code&gt; section similar to &lt;code&gt;select&lt;/code&gt; and &lt;code&gt;where&lt;/code&gt; in the SQL world. The &lt;code&gt;:find&lt;/code&gt; section defines which values to return and the where section defines one or more clauses filtering the result set.&lt;/p&gt;
+
+&lt;p&gt;In this case we asked for the values of variable &lt;code&gt;?b&lt;/code&gt;, &lt;code&gt;?c&lt;/code&gt; and &lt;code&gt;?d&lt;/code&gt; each one bound in its where clause. With molecule we use the three attribute names all associated to the &lt;code&gt;Community&lt;/code&gt; namespace.&lt;/p&gt;
+
+&lt;h3 id=&#34;querying-by-attribute-values:fce8223ee4fefc246edc14cd715d3099&#34;&gt;Querying &lt;em&gt;by&lt;/em&gt; attribute values&lt;/h3&gt;
+
+&lt;p&gt;Let&amp;rsquo;s query by an enumerated value for the &lt;code&gt;type&lt;/code&gt; attribute:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[:find  ?b
+ :where [?a :community/name ?b]
+        [?a :community/type &amp;quot;:community.type/twitter&amp;quot;]]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Community.name.type_(&amp;quot;twitter&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Noter how we add an underscore to the &lt;code&gt;type&lt;/code&gt; attribute to tell Molecule that we want to omit returning this value in the result set (since it will have the value &amp;ldquo;twitter&amp;rdquo; for all returned entities).&lt;/p&gt;
+
+&lt;p&gt;Since the &lt;code&gt;type&lt;/code&gt; attribute is defined as en enumeration Molecule checks the &amp;ldquo;twitter&amp;rdquo; value at &lt;em&gt;compile time&lt;/em&gt; against the defined enumeration values that we have definied in our schema for the &lt;code&gt;Community&lt;/code&gt; namespace to ensure that &amp;ldquo;twitter&amp;rdquo; is one of the enums. If it is not, our molecule won&amp;rsquo;t compile and we&amp;rsquo;ll get an error showing the available enum values.&lt;/p&gt;
+
+&lt;p&gt;For a many-cardinality attribute like &lt;code&gt;category&lt;/code&gt; Datalog applies logical OR with Datalog rules:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[:find  ?b
+ :in    $ %
+ :where [?a :community/name ?b]
+        (rule1 ?a)]
+
+INPUTS:
+List(
+  1 datomic.db.Db@xxx
+  2 [[(rule1 ?a) [?a :community/category &amp;quot;news&amp;quot;]]
+     [(rule1 ?a) [?a :community/category &amp;quot;arts&amp;quot;]]]
+)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;In Molecule we can apply the two values either separated with &lt;code&gt;or&lt;/code&gt; or commas:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Community.name.category_(&amp;quot;news&amp;quot; or &amp;quot;arts&amp;quot;)
+
+// Same as
+Community.name.category_(&amp;quot;news&amp;quot;, &amp;quot;arts&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;querying-across-references:fce8223ee4fefc246edc14cd715d3099&#34;&gt;Querying across references&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;[:find  ?b ?e2
+ :where [?a :community/name ?b]
+        [?a :community/neighborhood ?c]
+        [?c :neighborhood/district ?d]
+        [?d :district/region ?e]
+        [?e :db/ident ?e1]
+        [(.getName ^clojure.lang.Keyword ?e1) ?e2]]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Community.name.Neighborhood.District.region
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;parameterizing-queries:fce8223ee4fefc246edc14cd715d3099&#34;&gt;Parameterizing queries&lt;/h3&gt;
+
+&lt;p&gt;Community input molecule awaiting some type value&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[:find  ?b ?c2
+ :in    $ ?c
+ :where [?a :community/name ?b]
+        [?a :community/type ?c]
+        [?c :db/ident ?c1]
+        [(.getName ^clojure.lang.Keyword ?c1) ?c2]]
+
+INPUTS:
+List(
+  1 datomic.db.Db@xxx
+  2 :community.type/twitter
+)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val communitiesOfType  = m(Community.name.type(?))
+val twitterCommunities = communitiesOfType(&amp;quot;twitter&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Multiple input values for one attribute - logical OR&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[:find  ?b ?c2
+ :in    $ ?c
+ :where [?a :community/name ?b]
+        [?a :community/type ?c]
+        [?c :db/ident ?c1]
+        [(.getName ^clojure.lang.Keyword ?c1) ?c2]]
+
+INPUTS:
+List(
+  1 datomic.db.Db@xxx
+  2 :community.type/twitter
+)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;m(Community.name.`type`(?)).apply(&amp;quot;facebook_page&amp;quot; or &amp;quot;twitter&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Single tuple of input values for two attributes - logical AND&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[:find  ?b
+ :in    $ [[ ?c ?d ]]
+ :where [?a :community/name ?b]
+        [?a :community/type ?c]
+        [?a :community/orgtype ?d]]
+
+INPUTS:
+List(
+  1 datomic.db.Db@xxx
+  2 [[:community.type/email_list, :community.orgtype/community]]
+)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;m(Community.name.type_(?).orgtype_(?))(&amp;quot;email_list&amp;quot; and &amp;quot;community&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Multiple tuple of input values for two attributes - logical AND&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[:find  ?b ?c2 ?d2
+ :in    $ [[ ?c ?d ]]
+ :where [?a :community/name ?b]
+        [?a :community/type ?c]
+        [?c :db/ident ?c1]
+        [(.getName ^clojure.lang.Keyword ?c1) ?c2]
+        [?a :community/orgtype ?d]
+        [?d :db/ident ?d1]
+        [(.getName ^clojure.lang.Keyword ?d1) ?d2]]
+
+INPUTS:
+List(
+  1 datomic.db.Db@xxx
+  2 [[:community.type/email_list, :community.orgtype/community], 
+     [:community.type/website, :community.orgtype/commercial]]
+)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;m(Community.name.`type`(?).orgtype(?))
+.apply(Seq((&amp;quot;email_list&amp;quot;, &amp;quot;community&amp;quot;), (&amp;quot;website&amp;quot;, &amp;quot;commercial&amp;quot;)))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;invoking-functions-in-queries:fce8223ee4fefc246edc14cd715d3099&#34;&gt;Invoking functions in queries&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;[:find  ?b
+ :where [?a :community/name ?b]
+        [(.compareTo ^String ?b &amp;quot;C&amp;quot;) ?b2]
+        [(&amp;lt; ?b2 0)]]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Community.name.&amp;lt;(&amp;quot;C&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;fulltext-search:fce8223ee4fefc246edc14cd715d3099&#34;&gt;Fulltext search&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;[:find  ?b
+ :where [(fulltext $ :community/name &amp;quot;Wallingford&amp;quot;) [[ ?a ?b ]]]]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Community.name.contains(&amp;quot;Wallingford&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Fulltext search on many-attribute (&lt;code&gt;category&lt;/code&gt;)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[:find  ?b (distinct ?d)
+ :where [?a :community/name ?b]
+        [?a :community/type &amp;quot;:community.type/website&amp;quot;]
+        [(fulltext $ :community/category &amp;quot;food&amp;quot;) [[ ?a ?d ]]]]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Community.name.type_(&amp;quot;website&amp;quot;).category.contains(&amp;quot;food&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;querying-with-rules-logical-or:fce8223ee4fefc246edc14cd715d3099&#34;&gt;Querying with rules (logical OR)&lt;/h3&gt;
+
+&lt;p&gt;Social media communities&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[:find  ?b
+ :in    $ %
+ :where [?a :community/name ?b]
+        (rule1 ?a)]
+
+INPUTS:
+List(
+  1 datomic.db.Db@xxx
+  2 [[(rule1 ?a) [?a :community/type &amp;quot;:community.type/twitter&amp;quot;]]
+     [(rule1 ?a) [?a :community/type &amp;quot;:community.type/facebook_page&amp;quot;]]]
+)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Community.name.type_(&amp;quot;twitter&amp;quot; or &amp;quot;facebook_page&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Social media communities in southern regions&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[:find  ?b
+ :in    $ %
+ :where [?a :community/name ?b]
+        (rule1 ?a)
+        [?a :community/neighborhood ?d]
+        [?d :neighborhood/district ?e]
+        (rule2 ?e)]
+
+INPUTS:
+List(
+  1 datomic.db.Db@xxx
+  2 [[(rule1 ?a) [?a :community/type &amp;quot;:community.type/twitter&amp;quot;]]
+     [(rule1 ?a) [?a :community/type &amp;quot;:community.type/facebook_page&amp;quot;]]
+     [(rule2 ?e) [?e :district/region &amp;quot;:district.region/sw&amp;quot;]]
+     [(rule2 ?e) [?e :district/region &amp;quot;:district.region/s&amp;quot;]]
+     [(rule2 ?e) [?e :district/region &amp;quot;:district.region/se&amp;quot;]]]
+)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Community.name.type_(&amp;quot;twitter&amp;quot; or &amp;quot;facebook_page&amp;quot;)
+  .Neighborhood.District.region_(&amp;quot;sw&amp;quot; or &amp;quot;s&amp;quot; or &amp;quot;se&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Parameterized&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[:find  ?b
+ :in    $ %
+ :where [?a :community/name ?b]
+        [?a :community/type ?c]
+        [?a :community/neighborhood ?d]
+        [?d :neighborhood/district ?e]
+        [?e :district/region ?f]
+        (rule1 ?a)
+        (rule2 ?e)]
+
+INPUTS:
+List(
+  1 datomic.db.Db@xxx
+  2 [[(rule1 ?a) [?a :community/type &amp;quot;:community.type/twitter&amp;quot;]]
+     [(rule1 ?a) [?a :community/type &amp;quot;:community.type/facebook_page&amp;quot;]]
+     [(rule2 ?e) [?e :district/region &amp;quot;:district.region/sw&amp;quot;]]
+     [(rule2 ?e) [?e :district/region &amp;quot;:district.region/s&amp;quot;]]
+     [(rule2 ?e) [?e :district/region &amp;quot;:district.region/se&amp;quot;]]]
+)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;m(Community.name.type_(?).Neighborhood.District.region_(?))
+  .apply((&amp;quot;twitter&amp;quot; or &amp;quot;facebook_page&amp;quot;) and (&amp;quot;sw&amp;quot; or &amp;quot;s&amp;quot; or &amp;quot;se&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;working-with-time:fce8223ee4fefc246edc14cd715d3099&#34;&gt;Working with time&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;[:find  ?b
+ :where [?a :db/txInstant ?b]]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Db.txInstant
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;inserting-data:fce8223ee4fefc246edc14cd715d3099&#34;&gt;Inserting data&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;List(
+  List(  :db/add,   #db/id[:db.part/user -1000001],   :community/name        ,   AAA                             )
+  List(  :db/add,   #db/id[:db.part/user -1000001],   :community/url         ,   myUrl                           )
+  List(  :db/add,   #db/id[:db.part/user -1000001],   :community/type        ,   :community.type/twitter         )
+  List(  :db/add,   #db/id[:db.part/user -1000001],   :community/orgtype     ,   :community.orgtype/personal     )
+  List(  :db/add,   #db/id[:db.part/user -1000001],   :community/category    ,   my                              )
+  List(  :db/add,   #db/id[:db.part/user -1000001],   :community/category    ,   favorites                       )
+  List(  :db/add,   #db/id[:db.part/user -1000001],   :community/neighborhood,   #db/id[:db.part/user -1000002]  )
+  List(  :db/add,   #db/id[:db.part/user -1000002],   :neighborhood/name     ,   myNeighborhood                  )
+  List(  :db/add,   #db/id[:db.part/user -1000002],   :neighborhood/district ,   #db/id[:db.part/user -1000003]  )
+  List(  :db/add,   #db/id[:db.part/user -1000003],   :district/name         ,   myDistrict                      )
+  List(  :db/add,   #db/id[:db.part/user -1000003],   :district/region       ,   :district.region/nw             )
+)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Community
+  .name(&amp;quot;AAA&amp;quot;)
+  .url(&amp;quot;myUrl&amp;quot;)
+  .`type`(&amp;quot;twitter&amp;quot;)
+  .orgtype(&amp;quot;personal&amp;quot;)
+  .category(&amp;quot;my&amp;quot;, &amp;quot;favorites&amp;quot;)
+  .Neighborhood.name(&amp;quot;myNeighborhood&amp;quot;)
+  .District.name(&amp;quot;myDistrict&amp;quot;).region(&amp;quot;nw&amp;quot;).add
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Multiple entities:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;List(
+  List(  :db/add,   #db/id[:db.part/user -1000001],   :community/name        ,   DDD Blogging Georgetown                        )
+  List(  :db/add,   #db/id[:db.part/user -1000001],   :community/url         ,   http://www.blogginggeorgetown.com/             )
+  List(  :db/add,   #db/id[:db.part/user -1000001],   :community/type        ,   :community.type/blog                           )
+  List(  :db/add,   #db/id[:db.part/user -1000001],   :community/orgtype     ,   :community.orgtype/commercial                  )
+  List(  :db/add,   #db/id[:db.part/user -1000001],   :community/category    ,   DD cat 1                                       )
+  List(  :db/add,   #db/id[:db.part/user -1000001],   :community/category    ,   DD cat 2                                       )
+  List(  :db/add,   #db/id[:db.part/user -1000001],   :community/neighborhood,   #db/id[:db.part/user -1000002]                 )
+  List(  :db/add,   #db/id[:db.part/user -1000002],   :neighborhood/name     ,   DD Georgetown                                  )
+  List(  :db/add,   #db/id[:db.part/user -1000002],   :neighborhood/district ,   #db/id[:db.part/user -1000003]                 )
+  List(  :db/add,   #db/id[:db.part/user -1000003],   :district/name         ,   Greater Duwamish                               )
+  List(  :db/add,   #db/id[:db.part/user -1000003],   :district/region       ,   :district.region/s                             )
+  
+  List(  :db/add,   #db/id[:db.part/user -1000004],   :community/name        ,   DDD Interbay District Blog                     )
+  List(  :db/add,   #db/id[:db.part/user -1000004],   :community/url         ,   http://interbayneighborhood.neighborlogs.com/  )
+  List(  :db/add,   #db/id[:db.part/user -1000004],   :community/type        ,   :community.type/blog                           )
+  List(  :db/add,   #db/id[:db.part/user -1000004],   :community/orgtype     ,   :community.orgtype/community                   )
+  List(  :db/add,   #db/id[:db.part/user -1000004],   :community/category    ,   DD cat 3                                       )
+  List(  :db/add,   #db/id[:db.part/user -1000004],   :community/neighborhood,   #db/id[:db.part/user -1000005]                 )
+  List(  :db/add,   #db/id[:db.part/user -1000005],   :neighborhood/name     ,   DD Interbay                                    )
+  List(  :db/add,   #db/id[:db.part/user -1000005],   :neighborhood/district ,   #db/id[:db.part/user -1000006]                 )
+  List(  :db/add,   #db/id[:db.part/user -1000006],   :district/name         ,   Magnolia/Queen Anne                            )
+  List(  :db/add,   #db/id[:db.part/user -1000006],   :district/region       ,   :district.region/w                             )
+)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Community.name.url.`type`.orgtype.category.Neighborhood.name.District.name.region insert List(
+  (&amp;quot;DDD Blogging Georgetown&amp;quot;, &amp;quot;http://www.blogginggeorgetown.com/&amp;quot;, &amp;quot;blog&amp;quot;, &amp;quot;commercial&amp;quot;, Set(&amp;quot;DD cat 1&amp;quot;, &amp;quot;DD cat 2&amp;quot;), &amp;quot;DD Georgetown&amp;quot;, &amp;quot;Greater Duwamish&amp;quot;, &amp;quot;s&amp;quot;),
+  (&amp;quot;DDD Interbay District Blog&amp;quot;, &amp;quot;http://interbayneighborhood.neighborlogs.com/&amp;quot;, &amp;quot;blog&amp;quot;, &amp;quot;community&amp;quot;, Set(&amp;quot;DD cat 3&amp;quot;), &amp;quot;DD Interbay&amp;quot;, &amp;quot;Magnolia/Queen Anne&amp;quot;, &amp;quot;w&amp;quot;)
+)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;updating-data:fce8223ee4fefc246edc14cd715d3099&#34;&gt;Updating data&lt;/h3&gt;
+
+&lt;p&gt;Updating one-attribute&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;List(
+  List(  :db/add,   17592186045649,   :community/name,   belltown 2  )
+  List(  :db/add,   17592186045649,   :community/url ,   url 2       )
+)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Community(belltownId).name(&amp;quot;belltown 2&amp;quot;).url(&amp;quot;url 2&amp;quot;).update
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Updating many-attribute&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;List(
+  List(  :db/retract,   17592186045649,   :community/category,   news       )
+  List(  :db/add    ,   17592186045649,   :community/category,   Cool news  )
+)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Community(belltownId).category(&amp;quot;news&amp;quot; -&amp;gt; &amp;quot;Cool news&amp;quot;).update
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Update multiple values of many-attribute&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;List(
+  List(  :db/retract,   17592186045649,   :community/category,   Cool news          )
+  List(  :db/add    ,   17592186045649,   :community/category,   Super cool news    )
+  List(  :db/retract,   17592186045649,   :community/category,   events             )
+  List(  :db/add    ,   17592186045649,   :community/category,   Super cool events  )
+)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Community(belltownId).category(
+  &amp;quot;Cool news&amp;quot; -&amp;gt; &amp;quot;Super cool news&amp;quot;,
+  &amp;quot;events&amp;quot; -&amp;gt; &amp;quot;Super cool events&amp;quot;
+).update
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Update multiple values of many-attribute&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;List(
+  List(  :db/retract,   17592186045649,   :community/category,   Cool news          )
+  List(  :db/add    ,   17592186045649,   :community/category,   Super cool news    )
+  List(  :db/retract,   17592186045649,   :community/category,   events             )
+  List(  :db/add    ,   17592186045649,   :community/category,   Super cool events  )
+)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Community(belltownId).category(
+  &amp;quot;Cool news&amp;quot; -&amp;gt; &amp;quot;Super cool news&amp;quot;,
+  &amp;quot;events&amp;quot; -&amp;gt; &amp;quot;Super cool events&amp;quot;
+).update
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Add a value to a many-attribute&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;List(
+  List(  :db/add,   17592186045649,   :community/category,   extra category  )
+)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Community(belltownId).category.add(&amp;quot;extra category&amp;quot;).update
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Remove value from a many-attribute&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;List(
+  List(  :db/retract,   17592186045649,   :community/category,   Super cool events  )
+)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Community(belltownId).category.remove(&amp;quot;Super cool events&amp;quot;).update
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Mixing updates and deletes&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;List(
+  List(  :db/add    ,   17592186045649,   :community/name    ,   belltown 3                      )
+  List(  :db/retract,   17592186045649,   :community/url     ,   http://www.belltownpeople.com/  )
+  List(  :db/retract,   17592186045649,   :community/category,   events                          )
+  List(  :db/retract,   17592186045649,   :community/category,   news                            )
+)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Community(belltownId).name(&amp;quot;belltown 3&amp;quot;).url().category().update
+&lt;/code&gt;&lt;/pre&gt;
 </description>
     </item>
     
