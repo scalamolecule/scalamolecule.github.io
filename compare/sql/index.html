@@ -35,7 +35,12 @@
             <a data-toggle="dropdown" href="http://scalamolecule.org/compare/overview/" target="_top" onclick="javascript:top.location = 'http:\/\/scalamolecule.org\/compare\/overview\/';return true;">Compare</a>
               <ul class="dropdown-menu level1" role="menu" aria-labelledby="dropdownMenu">
                 <li><a href="http://scalamolecule.org/compare/datomic/">Datomic</a></li>
-                <li><a href="http://scalamolecule.org/compare/sql/">SQL</a></li>
+                <li class="dropdown-submenu">
+                  <a href="http://scalamolecule.org/compare/sql/">SQL</a>
+                  <ul class="dropdown-menu">
+                    <li><a href="http://scalamolecule.org/compare/sql/slick/">Slick</a></li>
+                  </ul>
+                </li>
             </ul>
           </li>
           <li class="dropdown ">
@@ -85,13 +90,240 @@
     <li><a href="http://scalamolecule.org/compare/overview/">Compare</a></li>
     <li><a href="http://scalamolecule.org/compare/datomic/">Datomic</a></li>
     <li class="active">SQL</li>
+      <ul style="list-style: none; padding-left: 15px;">
+        <li><a href="http://scalamolecule.org/compare/sql/slick/">Slick</a></li>
+      </ul>
   </ul>
 </div>
 
 <div class="col-sm-10 column" style="padding:0;">
 	
 
-<h1 id="compare-with-sql:d1babb582138b02a13547d2c6eb6df72">Compare with SQL</h1>
+<h1 id="sql-vs-molecule-examples:d1babb582138b02a13547d2c6eb6df72">SQL vs. Molecule examples</h1>
+
+<p>We&rsquo;ll make a similar comparison to SQL as <a href="http://slick.typesafe.com/doc/3.0.0-M1/sql-to-slick.html#sql-vs-slick-examples">Slick</a> does:</p>
+
+<h4 id="select:d1babb582138b02a13547d2c6eb6df72">SELECT *</h4>
+
+<pre><code>sql&quot;select * from PERSON&quot;.as[Person].list
+</code></pre>
+
+<p>In molecule we would declare each attribute we are interested in also to infer the exact return type</p>
+
+<pre><code class="language-scala">val persons: Seq[(String, Int)] = Person.name.age.get
+</code></pre>
+
+<h4 id="select-1:d1babb582138b02a13547d2c6eb6df72">SELECT</h4>
+
+<pre><code>sql&quot;&quot;&quot;
+  select AGE, concat(concat(concat(NAME,' ('),ID),')')
+  from PERSON
+&quot;&quot;&quot;.as[(Int,String)].list
+</code></pre>
+
+<p>With Molecule we would concatenate <code>name</code> and <code>id</code> with the returned result set:</p>
+
+<pre><code class="language-scala">Person.age.name.e.get map { case (age, name, id) =&gt; (age, s&quot;$name ($id)&quot; }
+</code></pre>
+
+<h4 id="where:d1babb582138b02a13547d2c6eb6df72">WHERE</h4>
+
+<pre><code class="language-scala">sql&quot;select * from PERSON where AGE &gt;= 18 AND NAME = 'C. Vogt'&quot;.as[Person].list
+</code></pre>
+
+<p>Molecule filter values by applying a required value to an attribute or supply a value to compare against (<code>&gt;=(18)</code>):</p>
+
+<pre><code class="language-scala">Person.age.&gt;=(18).name(&quot;C. Vogt&quot;).get
+</code></pre>
+
+<p>(Again we would define which attribute values we want to return)</p>
+
+<h4 id="order-by:d1babb582138b02a13547d2c6eb6df72">ORDER BY</h4>
+
+<pre><code class="language-scala">sql&quot;select * from PERSON order by AGE asc, NAME&quot;.as[Person].list
+</code></pre>
+
+<p>Ordering is applied on the result set:</p>
+
+<pre><code class="language-scala">Person.age.name.get sortBy(_._1)
+</code></pre>
+
+<h4 id="aggregations:d1babb582138b02a13547d2c6eb6df72">Aggregations</h4>
+
+<pre><code class="language-scala">sql&quot;select max(AGE) from PERSON&quot;.as[Option[Int]].first
+</code></pre>
+
+<p>Aggregate functions like <code>max</code> are all applied as a keyword value to an attribute.</p>
+
+<pre><code class="language-scala">Person.age(max).get
+// or get a range of top values
+Person.age(max(3)).get
+</code></pre>
+
+<p>We can aggregate values also with the counterpart <code>min</code> or get a random value with <code>rand</code>. Or perform aggregate calculations with <code>count</code>, <code>countDistinct</code>, <code>sum</code>, <code>avg</code>, <code>median</code>, <code>variance</code> and <code>stddev</code> which are all built functions in Datomic.</p>
+
+<h4 id="group-by:d1babb582138b02a13547d2c6eb6df72">GROUP BY</h4>
+
+<pre><code class="language-scala">sql&quot;&quot;&quot;
+  select ADDRESS_ID, AVG(AGE)
+  from PERSON
+  group by ADDRESS_ID
+&quot;&quot;&quot;.as[(Int,Option[Int])].list
+</code></pre>
+
+<p>Molecule&hellip;</p>
+
+<pre><code class="language-scala">// TODO
+Person.address(groupBy).age(avg)).get
+</code></pre>
+
+<h4 id="having:d1babb582138b02a13547d2c6eb6df72">HAVING</h4>
+
+<pre><code class="language-scala">sql&quot;&quot;&quot;
+  select ADDRESS_ID
+  from PERSON
+  group by ADDRESS_ID
+  having avg(AGE) &gt; 50
+&quot;&quot;&quot;.as[Int].list
+</code></pre>
+
+<p>Molecule&hellip;</p>
+
+<pre><code class="language-scala">// TODO
+Person.address(groupBy).age_(avg &gt; 50)).get
+</code></pre>
+
+<h4 id="implicit-join:d1babb582138b02a13547d2c6eb6df72">Implicit join</h4>
+
+<pre><code class="language-scala">sql&quot;&quot;&quot;
+  select P.NAME, A.CITY
+  from PERSON P, ADDRESS A
+  where P.ADDRESS_ID = A.id
+&quot;&quot;&quot;.as[(String,String)].list
+</code></pre>
+
+<p>Molecule&hellip;</p>
+
+<pre><code class="language-scala">Person.name.Address.city.get
+</code></pre>
+
+<h4 id="explicit-join:d1babb582138b02a13547d2c6eb6df72">Explicit join</h4>
+
+<pre><code class="language-scala">sql&quot;&quot;&quot;
+  select P.NAME, A.CITY
+  from PERSON P
+  join ADDRESS A on P.ADDRESS_ID = A.id
+&quot;&quot;&quot;.as[(String,String)].list
+</code></pre>
+
+<p>Molecule&hellip;</p>
+
+<pre><code class="language-scala">Person.name.Address.city.get
+</code></pre>
+
+<h4 id="left-right-outer-join:d1babb582138b02a13547d2c6eb6df72">left/right/outer join</h4>
+
+<pre><code class="language-scala">sql&quot;&quot;&quot;
+  select P.NAME,A.CITY
+  from ADDRESS A
+  left join PERSON P on P.ADDRESS_ID = A.id
+&quot;&quot;&quot;.as[(Option[String],String)].list
+</code></pre>
+
+<p>Molecule&hellip;</p>
+
+<pre><code class="language-scala">// TODO
+Person.name(maybe).Address.city.get
+</code></pre>
+
+<h4 id="subquery:d1babb582138b02a13547d2c6eb6df72">Subquery</h4>
+
+<pre><code class="language-scala">sql&quot;&quot;&quot;
+  select *
+  from PERSON P
+  where P.ADDRESS_ID in (select ID
+                 from ADDRESS
+                 where CITY = 'New York City')
+&quot;&quot;&quot;.as[Person].list
+</code></pre>
+
+<p>Molecule&hellip;</p>
+
+<pre><code class="language-scala">Person.age.name.Address.city_(&quot;New York City&quot;).get
+</code></pre>
+
+<h4 id="scalar-value-subquery-custom-function:d1babb582138b02a13547d2c6eb6df72">Scalar value subquery / custom function</h4>
+
+<pre><code class="language-scala">sql&quot;&quot;&quot;
+  select * from PERSON P,
+                     (select rand() * MAX(ID) as ID from PERSON) RAND_ID
+  where P.ID &gt;= RAND_ID.ID
+  order by P.ID asc
+  limit 1
+&quot;&quot;&quot;.as[Person].first
+</code></pre>
+
+<p>Molecule&hellip;</p>
+
+<pre><code class="language-scala">// TODO
+</code></pre>
+
+<h4 id="insert:d1babb582138b02a13547d2c6eb6df72">INSERT</h4>
+
+<pre><code class="language-scala">sqlu&quot;&quot;&quot;
+  insert into PERSON (NAME, AGE, ADDRESS_ID) values ('M Odersky', 12345, 1)
+&quot;&quot;&quot;.first
+</code></pre>
+
+<p>Molecule&hellip;</p>
+
+<pre><code class="language-scala">Person.name(&quot;M Odersky&quot;).age(12345).address(1).add
+</code></pre>
+
+<h4 id="update:d1babb582138b02a13547d2c6eb6df72">UPDATE</h4>
+
+<pre><code class="language-scala">sqlu&quot;&quot;&quot;
+  update PERSON set NAME='M. Odersky', AGE=54321 where NAME='M Odersky'
+&quot;&quot;&quot;.first
+</code></pre>
+
+<p>Molecule&hellip;</p>
+
+<pre><code class="language-scala">val odersky = Person.name(&quot;M Odersky&quot;).get.id
+Person(odersky).name(&quot;M. Odersky&quot;).age(54321).update
+</code></pre>
+
+<h4 id="delete:d1babb582138b02a13547d2c6eb6df72">DELETE</h4>
+
+<pre><code class="language-scala">sqlu&quot;&quot;&quot;
+  delete PERSON where NAME='M. Odersky'
+&quot;&quot;&quot;.first
+</code></pre>
+
+<p>Molecule&hellip;</p>
+
+<pre><code class="language-scala">Person.name(&quot;M. Odersky&quot;).get.id.delete
+</code></pre>
+
+<h4 id="case:d1babb582138b02a13547d2c6eb6df72">CASE</h4>
+
+<pre><code class="language-scala">sql&quot;&quot;&quot;
+  select
+    case 
+      when ADDRESS_ID = 1 then 'A'
+      when ADDRESS_ID = 2 then 'B'
+    end
+  from PERSON P
+&quot;&quot;&quot;.as[Option[String]].list
+</code></pre>
+
+<p>Molecule&hellip;</p>
+
+<pre><code class="language-scala">Person.Address.e(1 or 2).get map {
+  case 1 =&gt; &quot;A&quot;
+  case 2 =&gt; &quot;B&quot;
+}
+</code></pre>
 
 </div>     
   </div> 

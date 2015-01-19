@@ -4,7 +4,7 @@
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
   <link href='http://fonts.googleapis.com/css?family=Merriweather+Sans:400,300,300italic,400italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
-  <title>Compare</title>
+  <title>Slick</title>
   <link href="/css/bootstrap.min.css" rel="stylesheet">
   <link href="/css/highlight/styles/solarized_light.css" rel="stylesheet" />
   <link href="/css/style.css" rel="stylesheet">
@@ -87,11 +87,11 @@
 
 <div class="col-sm-2 column" style="padding-left:0;padding-top:22px;padding-left:10px;">
   <ul style="list-style: none; padding:0; margin:0;font-size:12px;">
-    <li class="active">Compare</li>
+    <li><a href="http://scalamolecule.org/compare/overview/">Compare</a></li>
     <li><a href="http://scalamolecule.org/compare/datomic/">Datomic</a></li>
     <li><a href="http://scalamolecule.org/compare/sql/">SQL</a></li>
       <ul style="list-style: none; padding-left: 15px;">
-        <li><a href="http://scalamolecule.org/compare/sql/slick/">Slick</a></li>
+        <li class="active">Slick</li>
       </ul>
   </ul>
 </div>
@@ -99,69 +99,195 @@
 <div class="col-sm-10 column" style="padding:0;">
 	
 
-<h1 id="other-databases-vs-molecule:68f80267fa3a50980dbb745a782b8dca">Other databases vs. Molecule</h1>
+<h1 id="slick-vs-molecule-examples:ce7ebdb2cbbacd766a8940138f40260d">Slick vs. Molecule examples</h1>
 
-<p>Every database/abstraction layer has its strengths and weaknesses and we&rsquo;ll try here to compare existing systems with Molecule with some examples of how they accomplish similar tasks.</p>
+<p>Using the examples from <a href="http://slick.typesafe.com/doc/3.0.0-M1/sql-to-slick.html#sql-vs-slick-examples">Slick</a>&hellip;</p>
 
-<h3 id="others-consume-molecule-declares-data-structures:68f80267fa3a50980dbb745a782b8dca">Others <em>consume</em>, Molecule <em>declares</em> data structures</h3>
+<h4 id="select-all-table-values:ce7ebdb2cbbacd766a8940138f40260d">Select all table values</h4>
 
-<p>Many systems lets you define data objects matching your domain that are then <em>consumed</em> by the host language (Scala) in combination with DSLs.</p>
-
-<p>If we take <a href="http://slick.typesafe.com/doc/3.0.0-M1/queries.html#joining-and-zipping">Slick</a> for instance we could say that it &ldquo;<em>consumes</em>&rdquo; the data objects <code>coffees</code> and <code>suppliers</code> in this Scala sequence comprehension:</p>
-
-<pre><code class="language-scala">// Slick
-val implCrossJoin = for {
-  c &lt;- coffees
-  s &lt;- suppliers
-} yield (c.name, s.name)
+<pre><code>// Slick
+people.run
 </code></pre>
 
-<p>Whereas in Molecule, we only <em>declare</em> which attributes we are interested in. Molecule attributes <em>themselves</em> form the query - they are not <em>consumed</em> by an outer construct. That way, the domain terms directly form the query without additional keywords and constructs:</p>
+<p>In molecule we would declare each attribute we are interested in also to infer the exact return type</p>
 
 <pre><code class="language-scala">// Molecule
-val coffeeSupliers = Coffees.name.Suppliers.name.get
+Person.name.age.get
 </code></pre>
 
-<p>We get the exact same type-inferred result back, a <code>Seq[(String, String)]</code></p>
+<h4 id="select-certain-columns:ce7ebdb2cbbacd766a8940138f40260d">Select certain columns</h4>
 
-<p><a href="http://squeryl.org/selects.html">Squeryl</a> also <em>consumes</em> data objects, now in a DSL construct:</p>
-
-<pre><code class="language-scala">// Squeryl
-def songs = from(MusicDb.songs)(s =&gt; where(s.artistId === id) select(s))
+<pre><code>people.map(p =&gt; (p.age, p.name ++ &quot; (&quot; ++ p.id.asColumnOf[String] ++ &quot;)&quot;)).run
 </code></pre>
 
-<p>In Molecule we don&rsquo;t need to use keywords like <code>from</code>, <code>where</code> and <code>select</code> (apart from the final <code>get</code> method). We instead get song entities (<code>e</code>) filtered by Artist by simply applying a required value directly to the <code>artist</code> attribute:</p>
+<p>With Molecule we would concatenate <code>name</code> and <code>id</code> with the returned result set:</p>
 
-<pre><code class="language-scala">// Molecule
-val songs = Song.e.artist(id).get
+<pre><code class="language-scala">Person.age.name.e.get map { case (age, name, id) =&gt; (age, s&quot;$name ($id)&quot; }
 </code></pre>
 
-<h3 id="more-databases-to-compare:68f80267fa3a50980dbb745a782b8dca">More databases to compare&hellip;</h3>
+<h4 id="filter-where:ce7ebdb2cbbacd766a8940138f40260d">filter / WHERE</h4>
 
-<p>Over time we&rsquo;ll compare Molecule with as many database systems as possible. Those not linked yet below are on our wish list:</p>
+<pre><code class="language-scala">people.filter(p =&gt; p.age &gt;= 18 &amp;&amp; p.name === &quot;C. Vogt&quot;).run
+</code></pre>
 
-<ul>
-<li><a href="/compare/datomic">Datomic</a></li>
-<li>SQL
+<p>Molecule filter values by applying a required value to an attribute or supply a value to compare against (<code>&gt;=(18)</code>):</p>
 
-<ul>
-<li>Slick</li>
-<li>Squeryl</li>
-<li>Sqltyped tutorial</li>
-</ul></li>
-<li>Mongodb
+<pre><code class="language-scala">Person.age.&gt;=(18).name(&quot;C. Vogt&quot;).get
+</code></pre>
 
-<ul>
-<li>Native</li>
-<li>Rogue</li>
-</ul></li>
-<li>Titan</li>
-<li>Neo4j</li>
-<li>Gremlin</li>
-<li>More&hellip;?</li>
-</ul>
+<p>(Again we would define which attribute values we want to return)</p>
 
-<p>If you want to translate one into Molecule, please feel free to submit a pull request or bring up ideas.</p>
+<h4 id="sortby-order-by:ce7ebdb2cbbacd766a8940138f40260d">sortBy / ORDER BY</h4>
+
+<pre><code class="language-scala">people.sortBy(p =&gt; (p.age.asc, p.name)).run
+</code></pre>
+
+<p>Ordering is applied on the result set:</p>
+
+<pre><code class="language-scala">Person.age.name.get sortBy(_._1)
+</code></pre>
+
+<h4 id="aggregations:ce7ebdb2cbbacd766a8940138f40260d">Aggregations</h4>
+
+<pre><code class="language-scala">people.map(_.age).max.run
+</code></pre>
+
+<p>Aggregate functions like <code>max</code> are all applied as a keyword value to an attribute.</p>
+
+<pre><code class="language-scala">Person.age(max).get
+
+// or get a range of top values
+Person.age(max(3)).get
+</code></pre>
+
+<p>We can aggregate values also with the counterpart <code>min</code> or get a random value with <code>rand</code>. Or perform aggregate calculations with <code>count</code>, <code>countDistinct</code>, <code>sum</code>, <code>avg</code>, <code>median</code>, <code>variance</code> and <code>stddev</code> which are all built functions in Datomic.</p>
+
+<h4 id="groupby-group-by:ce7ebdb2cbbacd766a8940138f40260d">groupBy / GROUP BY</h4>
+
+<pre><code class="language-scala">people.groupBy(p =&gt; p.addressId)
+       .map{ case (addressId, group) =&gt; (addressId, group.map(_.age).avg) }
+       .list
+</code></pre>
+
+<pre><code class="language-scala">// TODO
+Person.address(groupBy).age(avg)).get
+</code></pre>
+
+<h4 id="groupby-filter-having:ce7ebdb2cbbacd766a8940138f40260d">groupBy+filter / HAVING</h4>
+
+<pre><code class="language-scala">people.groupBy(p =&gt; p.addressId)
+       .map{ case (addressId, group) =&gt; (addressId, group.map(_.age).avg) }
+       .filter{ case (addressId, avgAge) =&gt; avgAge &gt; 50 }
+       .map(_._1)
+       .run
+</code></pre>
+
+<pre><code class="language-scala">// TODO
+Person.address(groupBy).age_(avg &gt; 50)).get
+</code></pre>
+
+<h4 id="implicit-join:ce7ebdb2cbbacd766a8940138f40260d">Implicit join</h4>
+
+<pre><code class="language-scala">people.flatMap(p =&gt;
+  addresses.filter(a =&gt; p.addressId === a.id)
+           .map(a =&gt; (p.name, a.city))
+).run
+
+// or equivalent for-expression:
+(for(p &lt;- people;
+     a &lt;- addresses if p.addressId === a.id
+ ) yield (p.name, a.city)
+).run
+</code></pre>
+
+<pre><code class="language-scala">Person.name.Address.city.get
+</code></pre>
+
+<h4 id="explicit-join:ce7ebdb2cbbacd766a8940138f40260d">Explicit join</h4>
+
+<pre><code class="language-scala">(people join addresses on (_.addressId === _.id))
+  .map{ case (p, a) =&gt; (p.name, a.city) }.run
+</code></pre>
+
+<pre><code class="language-scala">Person.name.Address.city.get
+</code></pre>
+
+<h4 id="left-right-outer-join:ce7ebdb2cbbacd766a8940138f40260d">left/right/outer join</h4>
+
+<pre><code class="language-scala">(addresses joinLeft people on (_.id === _.addressId))
+  .map{ case (a, p) =&gt; (p.map(_.name), a.city) }.run
+</code></pre>
+
+<pre><code class="language-scala">// TODO
+Person.name(maybe).Address.city.get
+</code></pre>
+
+<h4 id="subquery:ce7ebdb2cbbacd766a8940138f40260d">Subquery</h4>
+
+<pre><code class="language-scala">val address_ids = addresses.filter(_.city === &quot;New York City&quot;).map(_.id)
+people.filter(_.id in address_ids).run // &lt;- run as one query
+</code></pre>
+
+<pre><code class="language-scala">Person.age.name.Address.city_(&quot;New York City&quot;).get
+</code></pre>
+
+<h4 id="scalar-value-subquery-custom-function:ce7ebdb2cbbacd766a8940138f40260d">Scalar value subquery / custom function</h4>
+
+<pre><code class="language-scala">val rand = SimpleFunction.nullary[Double](&quot;RAND&quot;)
+
+val rndId = (people.map(_.id).max.asColumnOf[Double] * rand).asColumnOf[Int]
+
+people.filter(_.id &gt;= rndId)
+       .sortBy(_.id)
+       .first
+</code></pre>
+
+<pre><code class="language-scala">// TODO
+</code></pre>
+
+<h4 id="insert:ce7ebdb2cbbacd766a8940138f40260d">insert</h4>
+
+<pre><code class="language-scala">people.map(p =&gt; (p.name, p.age, p.addressId))
+       .insert((&quot;M Odersky&quot;,12345,1))
+</code></pre>
+
+<pre><code class="language-scala">Person.name(&quot;M Odersky&quot;).age(12345).address(1).add
+</code></pre>
+
+<h4 id="update:ce7ebdb2cbbacd766a8940138f40260d">update</h4>
+
+<pre><code class="language-scala">people.filter(_.name === &quot;M Odersky&quot;)
+       .map(p =&gt; (p.name,p.age))
+       .update((&quot;M. Odersky&quot;,54321))
+</code></pre>
+
+<pre><code class="language-scala">val odersky = Person.name(&quot;M Odersky&quot;).get.id
+Person(odersky).name(&quot;M. Odersky&quot;).age(54321).update
+</code></pre>
+
+<h4 id="delete:ce7ebdb2cbbacd766a8940138f40260d">delete</h4>
+
+<pre><code class="language-scala">people.filter(p =&gt; p.name === &quot;M. Odersky&quot;)
+       .delete
+</code></pre>
+
+<pre><code class="language-scala">Person.name(&quot;M. Odersky&quot;).get.id.delete
+</code></pre>
+
+<h4 id="case:ce7ebdb2cbbacd766a8940138f40260d">case</h4>
+
+<pre><code class="language-scala">people.map(p =&gt;
+  Case
+    If(p.addressId === 1) Then &quot;A&quot;
+    If(p.addressId === 2) Then &quot;B&quot;
+).list
+</code></pre>
+
+<pre><code class="language-scala">Person.Address.e(1 or 2).get map {
+  case 1 =&gt; &quot;A&quot;
+  case 2 =&gt; &quot;B&quot;
+}
+</code></pre>
 
 </div>     
   </div> 

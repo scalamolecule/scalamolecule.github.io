@@ -35,7 +35,7 @@
             <a data-toggle="dropdown" href="http://localhost:1313/compare/overview/" target="_top" onclick="javascript:top.location = 'http:\/\/localhost:1313\/compare\/overview\/';return true;">Compare</a>
               <ul class="dropdown-menu level1" role="menu" aria-labelledby="dropdownMenu">
                 <li><a href="http://localhost:1313/compare/datomic/">Datomic</a></li>
-                <li><a href="http://localhost:1313/compare/sql%20copy/">SQL</a></li>
+                <li><a href="http://localhost:1313/compare/sql/">SQL</a></li>
             </ul>
           </li>
           <li class="dropdown ">
@@ -84,18 +84,18 @@
   <ul style="list-style: none; padding:0; margin:0;font-size:12px;">
     <li><a href="http://localhost:1313/compare/overview/">Compare</a></li>
     <li><a href="http://localhost:1313/compare/datomic/">Datomic</a></li>
-    <li class="active">SQL</li>
+    <li><a href="http://localhost:1313/compare/sql/">SQL</a></li>
   </ul>
 </div>
 
 <div class="col-sm-10 column" style="padding:0;">
 	
 
-<h1 id="sql-vs-molecule-examples:65b12fb4755dafb0cc51374c5a0634b4">SQL vs. Molecule examples</h1>
+<h1 id="sql-vs-molecule-examples:ce7ebdb2cbbacd766a8940138f40260d">SQL vs. Molecule examples</h1>
 
 <p>We&rsquo;ll make a similar comparison to SQL as <a href="http://slick.typesafe.com/doc/3.0.0-M1/sql-to-slick.html#sql-vs-slick-examples">Slick</a> does:</p>
 
-<h4 id="select:65b12fb4755dafb0cc51374c5a0634b4">SELECT *</h4>
+<h4 id="select:ce7ebdb2cbbacd766a8940138f40260d">SELECT *</h4>
 
 <pre><code>sql&quot;select * from PERSON&quot;.as[Person].list
 </code></pre>
@@ -105,7 +105,7 @@
 <pre><code class="language-scala">val persons: Seq[(String, Int)] = Person.name.age.get
 </code></pre>
 
-<h4 id="select-1:65b12fb4755dafb0cc51374c5a0634b4">SELECT</h4>
+<h4 id="select-1:ce7ebdb2cbbacd766a8940138f40260d">SELECT</h4>
 
 <pre><code>sql&quot;&quot;&quot;
   select AGE, concat(concat(concat(NAME,' ('),ID),')')
@@ -118,7 +118,7 @@
 <pre><code class="language-scala">Person.age.name.e.get map { case (age, name, id) =&gt; (age, s&quot;$name ($id)&quot; }
 </code></pre>
 
-<h4 id="where:65b12fb4755dafb0cc51374c5a0634b4">WHERE</h4>
+<h4 id="where:ce7ebdb2cbbacd766a8940138f40260d">WHERE</h4>
 
 <pre><code class="language-scala">sql&quot;select * from PERSON where AGE &gt;= 18 AND NAME = 'C. Vogt'&quot;.as[Person].list
 </code></pre>
@@ -130,7 +130,7 @@
 
 <p>(Again we would define which attribute values we want to return)</p>
 
-<h4 id="order-by:65b12fb4755dafb0cc51374c5a0634b4">ORDER BY</h4>
+<h4 id="order-by:ce7ebdb2cbbacd766a8940138f40260d">ORDER BY</h4>
 
 <pre><code class="language-scala">sql&quot;select * from PERSON order by AGE asc, NAME&quot;.as[Person].list
 </code></pre>
@@ -140,7 +140,7 @@
 <pre><code class="language-scala">Person.age.name.get sortBy(_._1)
 </code></pre>
 
-<h4 id="aggregations:65b12fb4755dafb0cc51374c5a0634b4">Aggregations</h4>
+<h4 id="aggregations:ce7ebdb2cbbacd766a8940138f40260d">Aggregations</h4>
 
 <pre><code class="language-scala">sql&quot;select max(AGE) from PERSON&quot;.as[Option[Int]].first
 </code></pre>
@@ -154,7 +154,7 @@ Person.age(max(3)).get
 
 <p>We can aggregate values also with the counterpart <code>min</code> or get a random value with <code>rand</code>. Or perform aggregate calculations with <code>count</code>, <code>countDistinct</code>, <code>sum</code>, <code>avg</code>, <code>median</code>, <code>variance</code> and <code>stddev</code> which are all built functions in Datomic.</p>
 
-<h4 id="group-by:65b12fb4755dafb0cc51374c5a0634b4">GROUP BY</h4>
+<h4 id="group-by:ce7ebdb2cbbacd766a8940138f40260d">GROUP BY</h4>
 
 <pre><code class="language-scala">sql&quot;&quot;&quot;
   select ADDRESS_ID, AVG(AGE)
@@ -168,7 +168,7 @@ Person.age(max(3)).get
 <pre><code class="language-scala">Person.address(groupBy).age(avg)).get
 </code></pre>
 
-<h4 id="having:65b12fb4755dafb0cc51374c5a0634b4">HAVING</h4>
+<h4 id="having:ce7ebdb2cbbacd766a8940138f40260d">HAVING</h4>
 
 <pre><code class="language-scala">sql&quot;&quot;&quot;
   select ADDRESS_ID
@@ -183,7 +183,7 @@ Person.age(max(3)).get
 <pre><code class="language-scala">Person.address(groupBy).age_(avg &gt; 50)).get
 </code></pre>
 
-<h4 id="implicit-join:65b12fb4755dafb0cc51374c5a0634b4">Implicit join</h4>
+<h4 id="implicit-join:ce7ebdb2cbbacd766a8940138f40260d">Implicit join</h4>
 
 <pre><code class="language-scala">sql&quot;&quot;&quot;
   select P.NAME, A.CITY
@@ -197,7 +197,7 @@ Person.age(max(3)).get
 <pre><code class="language-scala">Person.name.Address.city.get
 </code></pre>
 
-<h4 id="explicit-join:65b12fb4755dafb0cc51374c5a0634b4">Explicit join</h4>
+<h4 id="explicit-join:ce7ebdb2cbbacd766a8940138f40260d">Explicit join</h4>
 
 <pre><code class="language-scala">sql&quot;&quot;&quot;
   select P.NAME, A.CITY
@@ -211,7 +211,7 @@ Person.age(max(3)).get
 <pre><code class="language-scala">Person.name.Address.city.get
 </code></pre>
 
-<h4 id="left-right-outer-join:65b12fb4755dafb0cc51374c5a0634b4">left/right/outer join</h4>
+<h4 id="left-right-outer-join:ce7ebdb2cbbacd766a8940138f40260d">left/right/outer join</h4>
 
 <pre><code class="language-scala">sql&quot;&quot;&quot;
   select P.NAME,A.CITY
@@ -225,7 +225,7 @@ Person.age(max(3)).get
 <pre><code class="language-scala">Person.name(maybe).Address.city.get
 </code></pre>
 
-<h4 id="subquery:65b12fb4755dafb0cc51374c5a0634b4">Subquery</h4>
+<h4 id="subquery:ce7ebdb2cbbacd766a8940138f40260d">Subquery</h4>
 
 <pre><code class="language-scala">sql&quot;&quot;&quot;
   select *
@@ -241,7 +241,7 @@ Person.age(max(3)).get
 <pre><code class="language-scala">Person.age.name.Address.city_(&quot;New York City&quot;).get
 </code></pre>
 
-<h4 id="scalar-value-subquery-custom-function:65b12fb4755dafb0cc51374c5a0634b4">Scalar value subquery / custom function</h4>
+<h4 id="scalar-value-subquery-custom-function:ce7ebdb2cbbacd766a8940138f40260d">Scalar value subquery / custom function</h4>
 
 <pre><code class="language-scala">sql&quot;&quot;&quot;
   select * from PERSON P,
@@ -257,7 +257,7 @@ Person.age(max(3)).get
 <pre><code class="language-scala">??
 </code></pre>
 
-<h4 id="insert:65b12fb4755dafb0cc51374c5a0634b4">INSERT</h4>
+<h4 id="insert:ce7ebdb2cbbacd766a8940138f40260d">INSERT</h4>
 
 <pre><code class="language-scala">sqlu&quot;&quot;&quot;
   insert into PERSON (NAME, AGE, ADDRESS_ID) values ('M Odersky', 12345, 1)
@@ -269,7 +269,7 @@ Person.age(max(3)).get
 <pre><code class="language-scala">Person.name(&quot;M Odersky&quot;).age(12345).address(1).add
 </code></pre>
 
-<h4 id="update:65b12fb4755dafb0cc51374c5a0634b4">UPDATE</h4>
+<h4 id="update:ce7ebdb2cbbacd766a8940138f40260d">UPDATE</h4>
 
 <pre><code class="language-scala">sqlu&quot;&quot;&quot;
   update PERSON set NAME='M. Odersky', AGE=54321 where NAME='M Odersky'
@@ -282,7 +282,7 @@ Person.age(max(3)).get
 Person(odersky).name(&quot;M. Odersky&quot;).age(54321).update
 </code></pre>
 
-<h4 id="delete:65b12fb4755dafb0cc51374c5a0634b4">DELETE</h4>
+<h4 id="delete:ce7ebdb2cbbacd766a8940138f40260d">DELETE</h4>
 
 <pre><code class="language-scala">sqlu&quot;&quot;&quot;
   delete PERSON where NAME='M. Odersky'
@@ -294,7 +294,7 @@ Person(odersky).name(&quot;M. Odersky&quot;).age(54321).update
 <pre><code class="language-scala">Person.name(&quot;M. Odersky&quot;).get.id.delete
 </code></pre>
 
-<h4 id="case:65b12fb4755dafb0cc51374c5a0634b4">CASE</h4>
+<h4 id="case:ce7ebdb2cbbacd766a8940138f40260d">CASE</h4>
 
 <pre><code class="language-scala">sql&quot;&quot;&quot;
   select
