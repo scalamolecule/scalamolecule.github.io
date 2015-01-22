@@ -169,8 +169,9 @@ Person.age(max(3)).get
        .list
 </code></pre>
 
-<pre><code class="language-scala">// TODO
-Person.address(groupBy).age(avg)).get
+<p>Molecule automatically group by attributes not having an aggregate expression. In this case the query will group by <code>address</code> and calculate the average <code>age</code> for persons living there.</p>
+
+<pre><code class="language-scala">Person.address.age(avg).get
 </code></pre>
 
 <h4 id="groupby-filter-having:ce7ebdb2cbbacd766a8940138f40260d">groupBy+filter / HAVING</h4>
@@ -182,8 +183,7 @@ Person.address(groupBy).age(avg)).get
        .run
 </code></pre>
 
-<pre><code class="language-scala">// TODO
-Person.address(groupBy).age_(avg &gt; 50)).get
+<pre><code class="language-scala">Person.address.age(avg).get.filter(_._2 &gt; 50)
 </code></pre>
 
 <h4 id="implicit-join:ce7ebdb2cbbacd766a8940138f40260d">Implicit join</h4>

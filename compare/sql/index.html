@@ -171,10 +171,9 @@ Person.age(max(3)).get
 &quot;&quot;&quot;.as[(Int,Option[Int])].list
 </code></pre>
 
-<p>Molecule&hellip;</p>
+<p>Molecule automatically group by attributes not having an aggregate expression. In this case the query will group by <code>address</code> and calculate the average <code>age</code> for persons living there.</p>
 
-<pre><code class="language-scala">// TODO
-Person.address(groupBy).age(avg)).get
+<pre><code class="language-scala">Person.address.age(avg).get
 </code></pre>
 
 <h4 id="having:d1babb582138b02a13547d2c6eb6df72">HAVING</h4>
@@ -187,10 +186,7 @@ Person.address(groupBy).age(avg)).get
 &quot;&quot;&quot;.as[Int].list
 </code></pre>
 
-<p>Molecule&hellip;</p>
-
-<pre><code class="language-scala">// TODO
-Person.address(groupBy).age_(avg &gt; 50)).get
+<pre><code class="language-scala">Person.address.age(avg).get.filter(_._2 &gt; 50)
 </code></pre>
 
 <h4 id="implicit-join:d1babb582138b02a13547d2c6eb6df72">Implicit join</h4>
@@ -201,8 +197,6 @@ Person.address(groupBy).age_(avg &gt; 50)).get
   where P.ADDRESS_ID = A.id
 &quot;&quot;&quot;.as[(String,String)].list
 </code></pre>
-
-<p>Molecule&hellip;</p>
 
 <pre><code class="language-scala">Person.name.Address.city.get
 </code></pre>
@@ -216,8 +210,6 @@ Person.address(groupBy).age_(avg &gt; 50)).get
 &quot;&quot;&quot;.as[(String,String)].list
 </code></pre>
 
-<p>Molecule&hellip;</p>
-
 <pre><code class="language-scala">Person.name.Address.city.get
 </code></pre>
 
@@ -229,8 +221,6 @@ Person.address(groupBy).age_(avg &gt; 50)).get
   left join PERSON P on P.ADDRESS_ID = A.id
 &quot;&quot;&quot;.as[(Option[String],String)].list
 </code></pre>
-
-<p>Molecule&hellip;</p>
 
 <pre><code class="language-scala">// TODO
 Person.name(maybe).Address.city.get
@@ -247,8 +237,6 @@ Person.name(maybe).Address.city.get
 &quot;&quot;&quot;.as[Person].list
 </code></pre>
 
-<p>Molecule&hellip;</p>
-
 <pre><code class="language-scala">Person.age.name.Address.city_(&quot;New York City&quot;).get
 </code></pre>
 
@@ -263,8 +251,6 @@ Person.name(maybe).Address.city.get
 &quot;&quot;&quot;.as[Person].first
 </code></pre>
 
-<p>Molecule&hellip;</p>
-
 <pre><code class="language-scala">// TODO
 </code></pre>
 
@@ -274,8 +260,6 @@ Person.name(maybe).Address.city.get
   insert into PERSON (NAME, AGE, ADDRESS_ID) values ('M Odersky', 12345, 1)
 &quot;&quot;&quot;.first
 </code></pre>
-
-<p>Molecule&hellip;</p>
 
 <pre><code class="language-scala">Person.name(&quot;M Odersky&quot;).age(12345).address(1).add
 </code></pre>
@@ -287,8 +271,6 @@ Person.name(maybe).Address.city.get
 &quot;&quot;&quot;.first
 </code></pre>
 
-<p>Molecule&hellip;</p>
-
 <pre><code class="language-scala">val odersky = Person.name(&quot;M Odersky&quot;).get.id
 Person(odersky).name(&quot;M. Odersky&quot;).age(54321).update
 </code></pre>
@@ -299,8 +281,6 @@ Person(odersky).name(&quot;M. Odersky&quot;).age(54321).update
   delete PERSON where NAME='M. Odersky'
 &quot;&quot;&quot;.first
 </code></pre>
-
-<p>Molecule&hellip;</p>
 
 <pre><code class="language-scala">Person.name(&quot;M. Odersky&quot;).get.id.delete
 </code></pre>
@@ -316,8 +296,6 @@ Person(odersky).name(&quot;M. Odersky&quot;).age(54321).update
   from PERSON P
 &quot;&quot;&quot;.as[Option[String]].list
 </code></pre>
-
-<p>Molecule&hellip;</p>
 
 <pre><code class="language-scala">Person.Address.e(1 or 2).get map {
   case 1 =&gt; &quot;A&quot;
