@@ -667,20 +667,6 @@ Person.name(maybe).Address.city.get
 &lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.age.name.Address.city_(&amp;quot;New York City&amp;quot;).get
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h4 id=&#34;scalar-value-subquery-custom-function:d1babb582138b02a13547d2c6eb6df72&#34;&gt;Scalar value subquery / custom function&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;sql&amp;quot;&amp;quot;&amp;quot;
-  select * from PERSON P,
-                     (select rand() * MAX(ID) as ID from PERSON) RAND_ID
-  where P.ID &amp;gt;= RAND_ID.ID
-  order by P.ID asc
-  limit 1
-&amp;quot;&amp;quot;&amp;quot;.as[Person].first
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;// TODO
-&lt;/code&gt;&lt;/pre&gt;
-
 &lt;h4 id=&#34;insert:d1babb582138b02a13547d2c6eb6df72&#34;&gt;INSERT&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;sqlu&amp;quot;&amp;quot;&amp;quot;
@@ -870,20 +856,6 @@ people.filter(_.id in address_ids).run // &amp;lt;- run as one query
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.age.name.Address.city_(&amp;quot;New York City&amp;quot;).get
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h4 id=&#34;scalar-value-subquery-custom-function:ce7ebdb2cbbacd766a8940138f40260d&#34;&gt;Scalar value subquery / custom function&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val rand = SimpleFunction.nullary[Double](&amp;quot;RAND&amp;quot;)
-
-val rndId = (people.map(_.id).max.asColumnOf[Double] * rand).asColumnOf[Int]
-
-people.filter(_.id &amp;gt;= rndId)
-       .sortBy(_.id)
-       .first
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;// TODO
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;h4 id=&#34;insert:ce7ebdb2cbbacd766a8940138f40260d&#34;&gt;insert&lt;/h4&gt;

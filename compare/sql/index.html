@@ -240,20 +240,6 @@ Person.name(maybe).Address.city.get
 <pre><code class="language-scala">Person.age.name.Address.city_(&quot;New York City&quot;).get
 </code></pre>
 
-<h4 id="scalar-value-subquery-custom-function:d1babb582138b02a13547d2c6eb6df72">Scalar value subquery / custom function</h4>
-
-<pre><code class="language-scala">sql&quot;&quot;&quot;
-  select * from PERSON P,
-                     (select rand() * MAX(ID) as ID from PERSON) RAND_ID
-  where P.ID &gt;= RAND_ID.ID
-  order by P.ID asc
-  limit 1
-&quot;&quot;&quot;.as[Person].first
-</code></pre>
-
-<pre><code class="language-scala">// TODO
-</code></pre>
-
 <h4 id="insert:d1babb582138b02a13547d2c6eb6df72">INSERT</h4>
 
 <pre><code class="language-scala">sqlu&quot;&quot;&quot;

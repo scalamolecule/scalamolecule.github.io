@@ -231,20 +231,6 @@ people.filter(_.id in address_ids).run // &lt;- run as one query
 <pre><code class="language-scala">Person.age.name.Address.city_(&quot;New York City&quot;).get
 </code></pre>
 
-<h4 id="scalar-value-subquery-custom-function:ce7ebdb2cbbacd766a8940138f40260d">Scalar value subquery / custom function</h4>
-
-<pre><code class="language-scala">val rand = SimpleFunction.nullary[Double](&quot;RAND&quot;)
-
-val rndId = (people.map(_.id).max.asColumnOf[Double] * rand).asColumnOf[Int]
-
-people.filter(_.id &gt;= rndId)
-       .sortBy(_.id)
-       .first
-</code></pre>
-
-<pre><code class="language-scala">// TODO
-</code></pre>
-
 <h4 id="insert:ce7ebdb2cbbacd766a8940138f40260d">insert</h4>
 
 <pre><code class="language-scala">people.map(p =&gt; (p.name, p.age, p.addressId))
