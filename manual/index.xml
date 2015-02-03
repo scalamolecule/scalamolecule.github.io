@@ -699,13 +699,13 @@ molecules so we can&amp;rsquo;t exceed Scala&amp;rsquo;s arity limit of 22 for t
     
     <item>
       <title>Datomic</title>
-      <link>http://scalamolecule.org/manual/schema/datomic/</link>
+      <link>http://scalamolecule.org/manual/schema/datomic-schema/</link>
       <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
       
-      <guid>http://scalamolecule.org/manual/schema/datomic/</guid>
+      <guid>http://scalamolecule.org/manual/schema/datomic-schema/</guid>
       <description>
 
-&lt;h1 id=&#34;datomic-schema:fce8223ee4fefc246edc14cd715d3099&#34;&gt;Datomic schema&lt;/h1&gt;
+&lt;h1 id=&#34;datomic-schema:8e92211a4ec532acc58a1fee7ac4346e&#34;&gt;Datomic schema&lt;/h1&gt;
 
 &lt;p&gt;A Molecule schema definition of attributes &lt;code&gt;name&lt;/code&gt; and &lt;code&gt;url&lt;/code&gt; like&lt;/p&gt;
 
