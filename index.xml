@@ -408,11 +408,11 @@ allows you to&lt;/p&gt;
         &lt;/div&gt;
         &lt;div class=&#34;item&#34;&gt;
             &lt;div class=&#34;carousel-caption&#34;&gt;                   
-                &lt;h3 id=&#34;more-up-the-sleeve:ffcff61ab3a11ef1d50900901a24ec54&#34;&gt;More up the sleeve..&lt;/h3&gt;
+                &lt;h3 id=&#34;more-up-the-sleeve:ffcff61ab3a11ef1d50900901a24ec54&#34;&gt;More..&lt;/h3&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/manual/aggregates&#34;&gt;Aggregates&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/manual/graphs&#34;&gt;Graphs&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;etc&amp;hellip;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/home/introduction&#34;&gt;Introduction&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/tutorials/seattle&#34;&gt;Seattle Tutorial&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/home/setup&#34;&gt;Setup&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
             &lt;/div&gt;
         &lt;/div&gt;
@@ -1477,6 +1477,18 @@ as described in &lt;a href=&#34;http://scalamolecule.org/manual/database-setup&#
     </item>
     
     <item>
+      <title>Forum</title>
+      <link>http://scalamolecule.org/community/forum/</link>
+      <pubDate>Wed, 14 May 2014 02:13:50 UTC</pubDate>
+      
+      <guid>http://scalamolecule.org/community/forum/</guid>
+      <description>
+
+&lt;h1 id=&#34;forum:9bf17893d33490888c600c67505ec118&#34;&gt;Forum&lt;/h1&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Datomic</title>
       <link>http://scalamolecule.org/compare/datomic/</link>
       <pubDate>Wed, 14 May 2014 02:13:50 UTC</pubDate>
@@ -1977,18 +1989,6 @@ allows you to&lt;/p&gt;
 &amp;ldquo;molecularized&amp;rdquo; succesfully (see the
 [Molecule Seattle tutorial][tutorial] and
 [code][tutorialcode]). So as a proof-of-concept it looks promising&amp;hellip;&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Forum</title>
-      <link>http://scalamolecule.org/community/forum/</link>
-      <pubDate>Wed, 14 May 2014 02:13:50 UTC</pubDate>
-      
-      <guid>http://scalamolecule.org/community/forum/</guid>
-      <description>
-
-&lt;h1 id=&#34;forum:9bf17893d33490888c600c67505ec118&#34;&gt;Forum&lt;/h1&gt;
 </description>
     </item>
     
