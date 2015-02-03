@@ -171,7 +171,7 @@ Entity  Attribute  Value  Transaction/time
 <pre><code class="language-scala">Person(johnId).likes(&quot;pizza&quot;).update
 </code></pre>
 
-<p><em>likes</em> is an <code>attribute</code> with <code>value</code> <em>pizza</em>. It is <strong>asserted</strong> that the <code>entity</code> <em>johnId</em> likes) pizza at <code>transaction</code> time 12:35:54. A timestamp is automatically set with all transactions. But if we need &ldquo;domain time&rdquo; we could add such attribute to the transaction as well, since this is simply a saved data structure in Datomic as our domain data.</p>
+<p><em>likes</em> is an <code>attribute</code> with <code>value</code> <em>pizza</em>. It is <strong>asserted</strong> that the <code>entity</code> <em>johnId</em> likes pizza at <code>transaction</code> time 12:35:54. A timestamp is automatically set with all transactions. But if we need &ldquo;domain time&rdquo; we could add such attribute to the transaction as well, since this is simply a saved data structure in Datomic as our domain data.</p>
 
 <h3 id="immutable-data:2767292a573dc549b9b4297b701af3ab">Immutable data</h3>
 

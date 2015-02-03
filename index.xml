@@ -1478,18 +1478,6 @@ as described in &lt;a href=&#34;http://scalamolecule.org/manual/database-setup&#
     </item>
     
     <item>
-      <title>Forum</title>
-      <link>http://scalamolecule.org/community/forum/</link>
-      <pubDate>Wed, 14 May 2014 02:13:50 UTC</pubDate>
-      
-      <guid>http://scalamolecule.org/community/forum/</guid>
-      <description>
-
-&lt;h1 id=&#34;forum:9bf17893d33490888c600c67505ec118&#34;&gt;Forum&lt;/h1&gt;
-</description>
-    </item>
-    
-    <item>
       <title>Datomic</title>
       <link>http://scalamolecule.org/compare/datomic/</link>
       <pubDate>Wed, 14 May 2014 02:13:50 UTC</pubDate>
@@ -1923,6 +1911,18 @@ List(
     </item>
     
     <item>
+      <title>Forum</title>
+      <link>http://scalamolecule.org/community/forum/</link>
+      <pubDate>Wed, 14 May 2014 02:13:50 UTC</pubDate>
+      
+      <guid>http://scalamolecule.org/community/forum/</guid>
+      <description>
+
+&lt;h1 id=&#34;forum:9bf17893d33490888c600c67505ec118&#34;&gt;Forum&lt;/h1&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Transformation</title>
       <link>http://scalamolecule.org/developer/transformation/</link>
       <pubDate>Wed, 14 May 2014 02:13:50 UTC</pubDate>
@@ -2063,7 +2063,7 @@ Entity  Attribute  Value  Transaction/time
 &lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person(johnId).likes(&amp;quot;pizza&amp;quot;).update
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;em&gt;likes&lt;/em&gt; is an &lt;code&gt;attribute&lt;/code&gt; with &lt;code&gt;value&lt;/code&gt; &lt;em&gt;pizza&lt;/em&gt;. It is &lt;strong&gt;asserted&lt;/strong&gt; that the &lt;code&gt;entity&lt;/code&gt; &lt;em&gt;johnId&lt;/em&gt; likes) pizza at &lt;code&gt;transaction&lt;/code&gt; time 12:35:54. A timestamp is automatically set with all transactions. But if we need &amp;ldquo;domain time&amp;rdquo; we could add such attribute to the transaction as well, since this is simply a saved data structure in Datomic as our domain data.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;likes&lt;/em&gt; is an &lt;code&gt;attribute&lt;/code&gt; with &lt;code&gt;value&lt;/code&gt; &lt;em&gt;pizza&lt;/em&gt;. It is &lt;strong&gt;asserted&lt;/strong&gt; that the &lt;code&gt;entity&lt;/code&gt; &lt;em&gt;johnId&lt;/em&gt; likes pizza at &lt;code&gt;transaction&lt;/code&gt; time 12:35:54. A timestamp is automatically set with all transactions. But if we need &amp;ldquo;domain time&amp;rdquo; we could add such attribute to the transaction as well, since this is simply a saved data structure in Datomic as our domain data.&lt;/p&gt;
 
 &lt;h3 id=&#34;immutable-data:2767292a573dc549b9b4297b701af3ab&#34;&gt;Immutable data&lt;/h3&gt;
 
