@@ -34,7 +34,6 @@
           <li class="dropdown ">
             <a data-toggle="dropdown" href="http://scalamolecule.org/compare/overview/" target="_top" onclick="javascript:top.location = 'http:\/\/scalamolecule.org\/compare\/overview\/';return true;">Compare</a>
               <ul class="dropdown-menu level1" role="menu" aria-labelledby="dropdownMenu">
-                <li><a href="http://scalamolecule.org/compare/datomic/">Datomic</a></li>
                 <li class="dropdown-submenu">
                   <a href="http://scalamolecule.org/compare/sql/">SQL</a>
                   <ul class="dropdown-menu">
@@ -68,7 +67,9 @@
                   <a href="http://scalamolecule.org/manual/schema/">Schema</a>
                   <ul class="dropdown-menu">
                     <li><a href="http://scalamolecule.org/manual/schema/definition/">Definition</a></li>
+                    <li><a href="http://scalamolecule.org/manual/schema/files/">Files</a></li>
                     <li><a href="http://scalamolecule.org/manual/schema/boilerplate/">Boilerplate</a></li>
+                    <li><a href="http://scalamolecule.org/manual/schema/datomic/">Datomic</a></li>
                   </ul>
                 </li>
                 <li><a href="http://scalamolecule.org/manual/populate-database/">Populate database</a></li>
@@ -111,7 +112,9 @@
     <li><a href="http://scalamolecule.org/manual/schema/">Schema</a></li>
       <ul style="list-style: none; padding-left: 15px;">
         <li><a href="http://scalamolecule.org/manual/schema/definition/">Definition</a></li>
+        <li><a href="http://scalamolecule.org/manual/schema/files/">Files</a></li>
         <li class="active"><b>Boilerplate</b></li>
+        <li><a href="http://scalamolecule.org/manual/schema/datomic/">Datomic</a></li>
       </ul>
     <li><a href="http://scalamolecule.org/manual/populate-database/">Populate database</a></li>
   </ul>
@@ -122,21 +125,60 @@
 
 <h1 id="boilerplate-code:36a3cc328100a137a125b621a816413d">Boilerplate code</h1>
 
-<pre><code class="language-scala">@InOut(3, 8)
-trait SeattleDefinition {
+<p>SBT will call ask the <code>DslBoilerplate</code> file in our project folder to use our schema definition files as templates to generate a series of domain-specific boilerplate traits for us.</p>
 
-  // namespace traits...
-}
+<p>With these generated we can then build intuitive molecules like</p>
+
+<pre><code class="language-scala">Community.name.Neighborhood.name.District.region
 </code></pre>
 
-<h3 id="code-generation:36a3cc328100a137a125b621a816413d">Code generation</h3>
+<h3 id="namespace-traits:36a3cc328100a137a125b621a816413d">Namespace traits</h3>
 
-<p>When running <code>sbt compile</code></p>
+<p>Each namespace is defined as a trait for each arity of our molecule. We start all molecules from a Namespace object like <code>Community</code>:</p>
+
+<pre><code class="language-scala">// (simplified...)
+object Community extends Community_0
+
+trait Community_0  {
+  val name          : /* types... */ = ???
+  val url           : /* types... */ = ???
+  val category      : /* types... */ = ???
+  
+  def Neighborhood  : /* types... */ = ???
+}
+
+trait Community_1  {
+  val name          : /* types... */ = ???
+  val url           : /* types... */ = ???
+  val category      : /* types... */ = ???
+  
+  def Neighborhood  : /* types... */ = ???
+}
+
+// etc...
+</code></pre>
+
+<h3 id="increasing-arity:36a3cc328100a137a125b621a816413d">Increasing arity&hellip;</h3>
+
+<p>When we build <code>Community.name</code>, the <code>name</code> field of <code>Community_0</code> points on to <code>Community_1</code> since the arity of our molecule is now 1. We expect <code>Community.name</code> to return values for 1 attribute.</p>
+
+<p>All fields are assigned the <code>???</code> &ldquo;unimplemented method&rdquo; which will be implemented with a Scala macro when we compile our project during development (not the <code>sbt compile</code> we do initially).</p>
 
 <h3 id="in-out-arities:36a3cc328100a137a125b621a816413d">In/Out arities</h3>
 
-<p>We annotate the definition trait with <code>@InOut(x, y)</code>. This is to tell Molecule
-how many inputs and outputs we expect molecules to be able to accept.</p>
+<p>We annotate schema definition traits with <code>@InOut(x, y)</code> to tell Molecule the arity of inputs and outputs we expect molecules to be able to accept.</p>
+
+<pre><code class="language-scala">@InOut(3, 8) // &lt;-- In-arity: 3, Out-arity: 8
+trait SeattleDefinition {
+  // namespaces...
+}
+</code></pre>
+
+<p>This will generate up to a <code>Community_8</code> but no further since we don&rsquo;t expect in this case to build molecules with more than 8 attributes.</p>
+
+<p>There&rsquo;s no reason to create more boilerplate classes than necessary. We can always adjust the number up or down and recompile with <code>sbt compile</code> to re-generate the domain classes if our schema/requirements change.</p>
+
+<h3 id="input-output-molecules:36a3cc328100a137a125b621a816413d">Input/Output molecules</h3>
 
 <p>An input molecule like <code>Community.name(?).url(?)</code> for instance awaits 2 inputs. For now the
 maximum is 3. Given that input values can be expressions like <code>name(&quot;John&quot; or &quot;Lisa&quot;)</code> it seems
@@ -145,117 +187,6 @@ unlikely that we will need to receive input for much more than 3 attributes at a
 <p>Outputs are the number of attributes we can build a molecule of. <code>Community.name.url.Neighborhood.name</code>
 for instance has 3 attributes (in 2 namespaces). We need to be able to return tuples of values from
 molecules so we can&rsquo;t exceed Scala&rsquo;s arity limit of 22 for tuples.</p>
-
-<p>The number of in/out attributes determines the arity of the boilerplate domain classes Molecule will generate for us to build molecules from. So if we know already that we will only build molecules with say maximum 8 attributes then there&rsquo;s no reason to create more boilerplate classes than necessary. We can always adjust the number up or down and recompile with <code>sbt compile</code> to re-generate the domain classes if our schema/requirements change.</p>
-
-<h3 id="namespaces:36a3cc328100a137a125b621a816413d">Namespaces</h3>
-
-<p>Each trait in the Definition</p>
-
-<p>Attributes having something in common are defined as fields in a namespace trait and we list all namespace traits in a Definition trait.</p>
-
-<h3 id="attribute-types:36a3cc328100a137a125b621a816413d">Attribute types</h3>
-
-<p>In the Seattle schema we defined 3 namespaces with different kinds of attributes:</p>
-
-<ul>
-<li><code>oneString</code>, <code>manyString</code> etc defines cardinality and type of an attribute</li>
-<li><code>oneEnum</code>/<code>manyEnum</code> defines enumerated values</li>
-<li><code>one[&lt;ReferencedNamespace&gt;]</code> defines a reference to another namespace</li>
-</ul>
-
-<h3 id="attribute-options:36a3cc328100a137a125b621a816413d">Attribute options</h3>
-
-<p>Each attribute can also have some extra options:</p>
-
-<p>
-<table border="1" cellpadding="5" cellspacing="0" style="background-color:#f5f5f5;">
-  <tr>
-    <th align="left" valign="top" scope="col">Option</th>
-    <th valign="top" scope="col"><strong>Indexes</strong></th>
-    <th scope="col">Description</th>
-  </tr>
-  <tr valign="top">
-    <td valign="top">doc</td>
-    <td align="center" valign="top">&nbsp;</td>
-    <td>Attribute description.</td>
-  </tr>
-  <tr valign="top">
-    <td valign="top">uniqueValue</td>
-    <td align="center" valign="top">✔︎</td>
-    <td>Attribute value is unique to each entity.<br>
-      <em>Attempts to insert a duplicate value for a different entity id will fail.</em></td>
-  </tr>
-  <tr valign="top">
-    <td valign="top">uniqueIdentity</td>
-    <td align="center" valign="top">✔︎</td>
-    <td>Attribute value is unique to each entity and &quot;upsert&quot; is enabled.<br>
-      <em>Attempts to insert a duplicate value for a temporary entity id will cause all attributes associated with that temporary id to be merged with the entity already in the database.</em></td>
-  </tr>
-  <tr>
-    <td valign="top">indexed</td>
-    <td align="center" valign="top">✔︎</td>
-    <td>Generated index for this attribute.</td>
-  </tr>
-  <tr>
-    <td valign="top">fullTextSearch</td>
-    <td align="center" valign="top">✔︎</td>
-    <td>Generate eventually consistent fulltext search index for this attribute.</td>
-  </tr>
-  <tr>
-    <td valign="top">isComponent</td>
-    <td align="center" valign="top">✔︎</td>
-    <td>Specifies that an attribute whose type is :db.type/ref refers to a subcomponent of the entity to which the attribute is applied.<br>
-    <em>When you retract an entity with :db.fn/retractEntity, all subcomponents are also retracted. When you touch an entity, all its subcomponent entities are touched recursively.</em></td>
-  </tr>
-  <tr>
-    <td valign="top">noHistory</td>
-    <td align="center" valign="top">&nbsp;</td>
-    <td>Whether past values of an attribute should not be retained.</td>
-  </tr>
-</table>
-</p>
-
-<p>Datomic indexes the values of all attributes having an option except for the <code>doc</code> and <code>noHistory</code> options.</p>
-
-<p>As you saw, we added <code>fulltextSearch</code> and <code>uniqueIdentity</code> to some of the attributes in the Seattle definition above. Molecule&rsquo;s schema definition DSL let&rsquo;s you only choose allowed options for any attribute type.</p>
-
-<h2 id="transacting-a-schema:36a3cc328100a137a125b621a816413d">Transacting a schema</h2>
-
-<p>Having defined our domain in namespaces of attributes we then run <code>sbt compile</code>.
-This makes Molecule automatically transform our definitions to transactional
-data in a format that Datomic needs in a schema file. Our two first attributes
-<code>name</code> and <code>url</code> for instance transforms to the following list of maps of key/values:</p>
-
-<pre><code class="language-scala">object SeattleSchema extends Schema {
-
-  lazy val tx = Util.list(
-
-    // Community ----------------------------------------------------------
-
-    Util.map(&quot;:db/id&quot;                , Peer.tempid(&quot;:db.part/db&quot;),
-             &quot;:db/ident&quot;             , &quot;:community/name&quot;,
-             &quot;:db/valueType&quot;         , &quot;:db.type/string&quot;,
-             &quot;:db/cardinality&quot;       , &quot;:db.cardinality/one&quot;,
-             &quot;:db/fulltext&quot;          , true.asInstanceOf[Object],
-             &quot;:db.install/_attribute&quot;, &quot;:db.part/db&quot;),
-
-    Util.map(&quot;:db/id&quot;                , Peer.tempid(&quot;:db.part/db&quot;),
-             &quot;:db/ident&quot;             , &quot;:community/url&quot;,
-             &quot;:db/valueType&quot;         , &quot;:db.type/string&quot;,
-             &quot;:db/cardinality&quot;       , &quot;:db.cardinality/one&quot;,
-             &quot;:db/fulltext&quot;          , true.asInstanceOf[Object],
-             &quot;:db.install/_attribute&quot;, &quot;:db.part/db&quot;),
-           
- // etc...
-</code></pre>
-
-<p>Note how each attribute name is prefixed with the namespace name (&rdquo;:community/name&rdquo;).</p>
-
-<p>Now we can easily transact the schema by simply writing:</p>
-
-<pre><code class="language-scala">conn.transact(SeattleSchema.tx).get()
-</code></pre>
 
 </div>     
   </div> 

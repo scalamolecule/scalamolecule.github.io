@@ -386,22 +386,26 @@ entity in Datomic can associate values of attributes &lt;em&gt;from any namespac
     </item>
     
     <item>
-      <title>Definition</title>
-      <link>http://scalamolecule.org/manual/schema/definition/</link>
+      <title>Schema</title>
+      <link>http://scalamolecule.org/manual/schema/</link>
       <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
       
-      <guid>http://scalamolecule.org/manual/schema/definition/</guid>
+      <guid>http://scalamolecule.org/manual/schema/</guid>
       <description>
 
-&lt;h1 id=&#34;define-schema:eb6ae157f5199f108ae8e599fe0e98dc&#34;&gt;Define schema&lt;/h1&gt;
+&lt;h1 id=&#34;molecule-schema:e608d9ac6a0d5e2b6db229b78a3e65b4&#34;&gt;Molecule schema&lt;/h1&gt;
+
+&lt;p&gt;A Molecule Schema defines what attributes you&amp;rsquo;ll have available to build molecules.&lt;/p&gt;
+
+&lt;p&gt;Preparing your domain to use Molecule in 3 steps:&lt;/p&gt;
+
+&lt;h3 id=&#34;1-define-schema:e608d9ac6a0d5e2b6db229b78a3e65b4&#34;&gt;1. Define Schema&lt;/h3&gt;
 
 &lt;p&gt;A schema defines what attributes you&amp;rsquo;ll have available to build molecules.&lt;/p&gt;
 
 &lt;p&gt;Attributes having something in common are defined as fields in a namespace trait and we list all namespace traits in a Definition trait.&lt;/p&gt;
 
-&lt;p&gt;Defining the schema of the
-&lt;a href=&#34;http://docs.datomic.com/tutorial.html&#34;&gt;Datomic Seattle tutorial&lt;/a&gt;
-for instance looks like this:&lt;/p&gt;
+&lt;p&gt;Shortened example from the &lt;a href=&#34;http://docs.datomic.com/tutorial.html&#34;&gt;Datomic Seattle tutorial&lt;/a&gt;:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;@InOut(3, 8)
 trait SeattleDefinition {
@@ -410,8 +414,8 @@ trait SeattleDefinition {
     val name         = oneString.fullTextSearch
     val url          = oneString
     val category     = manyString.fullTextSearch
-    val orgtype      = oneEnum(&#39;community, &#39;commercial, &#39;nonprofit, &#39;personal)
-    val `type`       = oneEnum(&#39;email_list, &#39;twitter, &#39;facebook_page, &#39;blog, &#39;website, &#39;wiki, &#39;myspace, &#39;ning)
+    val orgtype      = oneEnum(&#39;community, &#39;commercial, &#39;nonprofit)
+    val `type`       = oneEnum(&#39;email_list, &#39;twitter, &#39;facebook_page)
     val neighborhood = one[Neighborhood]
   }
 
@@ -427,46 +431,76 @@ trait SeattleDefinition {
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;Here we define 3 namespaces: &lt;code&gt;Community&lt;/code&gt;, &lt;code&gt;Neighborhood&lt;/code&gt; and &lt;code&gt;District&lt;/code&gt; all having some attributes defined as fields given some type.&lt;/p&gt;
+&lt;p&gt;Here we have a &lt;code&gt;Community&lt;/code&gt;, &lt;code&gt;Neighborhood&lt;/code&gt; and &lt;code&gt;District&lt;/code&gt; namespace each defining some attributes of various types.&lt;/p&gt;
 
-&lt;h3 id=&#34;definition-trait:eb6ae157f5199f108ae8e599fe0e98dc&#34;&gt;Definition trait&lt;/h3&gt;
+&lt;p&gt;Model your own domain structures with similar schemas and save each definition in a file in a &amp;ldquo;schema&amp;rdquo; folder anywhere within your project.&lt;/p&gt;
 
-&lt;p&gt;Molecule has 3 conventions to define schemas:&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://scalamolecule.org/manual/&#34;&gt;Read more&amp;hellip;&lt;/a&gt;&lt;/p&gt;
 
-&lt;ol&gt;
-&lt;li&gt;A definition file can have one definition trait&lt;/li&gt;
-&lt;li&gt;A definition trait name ends with &amp;ldquo;Definition&amp;rdquo; (like in &amp;ldquo;SeattleDefinition&amp;rdquo;)&lt;/li&gt;
-&lt;li&gt;One or more definition files are placed in a folder named &amp;ldquo;schema&amp;rdquo;&lt;/li&gt;
-&lt;/ol&gt;
+&lt;h3 id=&#34;2-tell-sbt:e608d9ac6a0d5e2b6db229b78a3e65b4&#34;&gt;2. Tell sbt&lt;/h3&gt;
 
-&lt;h3 id=&#34;code-generation:eb6ae157f5199f108ae8e599fe0e98dc&#34;&gt;Code generation&lt;/h3&gt;
+&lt;p&gt;Tell sbt where to find your &amp;ldquo;schema&amp;rdquo; folders containing definition files:&lt;/p&gt;
 
-&lt;p&gt;When running &lt;code&gt;sbt compile&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;settings = commonSettings ++ Seq(
+  definitionDirectories(
+    &amp;quot;examples/src/main/scala/molecule/examples/dayOfDatomic&amp;quot;,
+    &amp;quot;examples/src/main/scala/molecule/examples/seattle&amp;quot;,
+    &amp;quot;examples/src/main/scala/molecule/examples/mbrainz&amp;quot;
+  )
+)
+&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#34;in-out-arities:eb6ae157f5199f108ae8e599fe0e98dc&#34;&gt;In/Out arities&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&#34;http://scalamolecule.org/manual/&#34;&gt;Read more&amp;hellip;&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;We annotate the definition trait with &lt;code&gt;@InOut(x, y)&lt;/code&gt;. This is to tell Molecule
-how many inputs and outputs we expect molecules to be able to accept.&lt;/p&gt;
+&lt;h3 id=&#34;3-compile-generate-boilerplate-code:e608d9ac6a0d5e2b6db229b78a3e65b4&#34;&gt;3. Compile (generate boilerplate code)&lt;/h3&gt;
 
-&lt;p&gt;An input molecule like &lt;code&gt;Community.name(?).url(?)&lt;/code&gt; for instance awaits 2 inputs. For now the
-maximum is 3. Given that input values can be expressions like &lt;code&gt;name(&amp;quot;John&amp;quot; or &amp;quot;Lisa&amp;quot;)&lt;/code&gt; it seems
-unlikely that we will need to receive input for much more than 3 attributes at a time.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;sbt compile&lt;/code&gt; your project, wait for your domain-customized boilerplate code to be generated - and you&amp;rsquo;re ready to make intuitive molecule queries!&lt;/p&gt;
 
-&lt;p&gt;Outputs are the number of attributes we can build a molecule of. &lt;code&gt;Community.name.url.Neighborhood.name&lt;/code&gt;
-for instance has 3 attributes (in 2 namespaces). We need to be able to return tuples of values from
-molecules so we can&amp;rsquo;t exceed Scala&amp;rsquo;s arity limit of 22 for tuples.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://scalamolecule.org/manual/&#34;&gt;Read more&amp;hellip;&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Definition</title>
+      <link>http://scalamolecule.org/manual/schema/definition/</link>
+      <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
+      
+      <guid>http://scalamolecule.org/manual/schema/definition/</guid>
+      <description>
 
-&lt;p&gt;The number of in/out attributes determines the arity of the boilerplate domain classes Molecule will generate for us to build molecules from. So if we know already that we will only build molecules with say maximum 8 attributes then there&amp;rsquo;s no reason to create more boilerplate classes than necessary. We can always adjust the number up or down and recompile with &lt;code&gt;sbt compile&lt;/code&gt; to re-generate the domain classes if our schema/requirements change.&lt;/p&gt;
+&lt;h1 id=&#34;define-molecule-schema:eb6ae157f5199f108ae8e599fe0e98dc&#34;&gt;Define Molecule Schema&lt;/h1&gt;
 
-&lt;h3 id=&#34;namespaces:eb6ae157f5199f108ae8e599fe0e98dc&#34;&gt;Namespaces&lt;/h3&gt;
+&lt;p&gt;Molecule provides an easy way to model your domain in a Molecule Schema.&lt;/p&gt;
 
-&lt;p&gt;Each trait in the Definition&lt;/p&gt;
-
-&lt;p&gt;Attributes having something in common are defined as fields in a namespace trait and we list all namespace traits in a Definition trait.&lt;/p&gt;
+&lt;p&gt;A simple dsl lets you define attributes of your domain by type, cardinality and options/values with as little ceremony as possible.&lt;/p&gt;
 
 &lt;h3 id=&#34;attribute-types:eb6ae157f5199f108ae8e599fe0e98dc&#34;&gt;Attribute types&lt;/h3&gt;
 
-&lt;p&gt;In the Seattle schema we defined 3 namespaces with different kinds of attributes:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;@InOut(3, 8)
+trait SeattleDefinition {
+
+  trait Community {
+    val name         = oneString.fullTextSearch
+    val url          = oneString
+    val category     = manyString.fullTextSearch
+    val orgtype      = oneEnum(&#39;community, &#39;commercial, &#39;nonprofit)
+    val `type`       = oneEnum(&#39;email_list, &#39;twitter, &#39;facebook_page)
+    val neighborhood = one[Neighborhood]
+  }
+
+  trait Neighborhood {
+    val name     = oneString.fullTextSearch.uniqueIdentity
+    val district = one[District]
+  }
+
+  trait District {
+    val name   = oneString.fullTextSearch.uniqueIdentity
+    val region = oneEnum(&#39;n, &#39;ne, &#39;e, &#39;se, &#39;s, &#39;sw, &#39;w, &#39;nw)
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;In the Seattle schema we define 3 namespaces with different kinds of attributes:&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;code&gt;oneString&lt;/code&gt;, &lt;code&gt;manyString&lt;/code&gt; etc defines cardinality and type of an attribute&lt;/li&gt;
@@ -529,118 +563,62 @@ molecules so we can&amp;rsquo;t exceed Scala&amp;rsquo;s arity limit of 22 for t
 &lt;p&gt;Datomic indexes the values of all attributes having an option except for the &lt;code&gt;doc&lt;/code&gt; and &lt;code&gt;noHistory&lt;/code&gt; options.&lt;/p&gt;
 
 &lt;p&gt;As you saw, we added &lt;code&gt;fulltextSearch&lt;/code&gt; and &lt;code&gt;uniqueIdentity&lt;/code&gt; to some of the attributes in the Seattle definition above. Molecule&amp;rsquo;s schema definition DSL let&amp;rsquo;s you only choose allowed options for any attribute type.&lt;/p&gt;
-
-&lt;h2 id=&#34;transacting-a-schema:eb6ae157f5199f108ae8e599fe0e98dc&#34;&gt;Transacting a schema&lt;/h2&gt;
-
-&lt;p&gt;Having defined our domain in namespaces of attributes we then run &lt;code&gt;sbt compile&lt;/code&gt;.
-This makes Molecule automatically transform our definitions to transactional
-data in a format that Datomic needs in a schema file. Our two first attributes
-&lt;code&gt;name&lt;/code&gt; and &lt;code&gt;url&lt;/code&gt; for instance transforms to the following list of maps of key/values:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;object SeattleSchema extends Schema {
-
-  lazy val tx = Util.list(
-
-    // Community ----------------------------------------------------------
-
-    Util.map(&amp;quot;:db/id&amp;quot;                , Peer.tempid(&amp;quot;:db.part/db&amp;quot;),
-             &amp;quot;:db/ident&amp;quot;             , &amp;quot;:community/name&amp;quot;,
-             &amp;quot;:db/valueType&amp;quot;         , &amp;quot;:db.type/string&amp;quot;,
-             &amp;quot;:db/cardinality&amp;quot;       , &amp;quot;:db.cardinality/one&amp;quot;,
-             &amp;quot;:db/fulltext&amp;quot;          , true.asInstanceOf[Object],
-             &amp;quot;:db.install/_attribute&amp;quot;, &amp;quot;:db.part/db&amp;quot;),
-
-    Util.map(&amp;quot;:db/id&amp;quot;                , Peer.tempid(&amp;quot;:db.part/db&amp;quot;),
-             &amp;quot;:db/ident&amp;quot;             , &amp;quot;:community/url&amp;quot;,
-             &amp;quot;:db/valueType&amp;quot;         , &amp;quot;:db.type/string&amp;quot;,
-             &amp;quot;:db/cardinality&amp;quot;       , &amp;quot;:db.cardinality/one&amp;quot;,
-             &amp;quot;:db/fulltext&amp;quot;          , true.asInstanceOf[Object],
-             &amp;quot;:db.install/_attribute&amp;quot;, &amp;quot;:db.part/db&amp;quot;),
-           
- // etc...
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Note how each attribute name is prefixed with the namespace name (&amp;rdquo;:community/name&amp;rdquo;).&lt;/p&gt;
-
-&lt;p&gt;Now we can easily transact the schema by simply writing:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;conn.transact(SeattleSchema.tx).get()
-&lt;/code&gt;&lt;/pre&gt;
 </description>
     </item>
     
     <item>
-      <title>Schema</title>
-      <link>http://scalamolecule.org/manual/schema/</link>
+      <title>Files</title>
+      <link>http://scalamolecule.org/manual/schema/files/</link>
       <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
       
-      <guid>http://scalamolecule.org/manual/schema/</guid>
+      <guid>http://scalamolecule.org/manual/schema/files/</guid>
       <description>
 
-&lt;h1 id=&#34;database-schema:e608d9ac6a0d5e2b6db229b78a3e65b4&#34;&gt;Database schema&lt;/h1&gt;
+&lt;h1 id=&#34;molecule-files:fdd0f32a8956014c694267605f409cb7&#34;&gt;Molecule files&lt;/h1&gt;
 
-&lt;p&gt;A schema defines what attributes you&amp;rsquo;ll have available to build molecules.&lt;/p&gt;
+&lt;p&gt;Your Molecule schema definition file should be in a folder named &amp;ldquo;schema&amp;rdquo; anywhere within your source code:&lt;/p&gt;
 
-&lt;p&gt;Preparing your domain to use Molecule takes 3 steps:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://scalamolecule.org/img/boilerplate/definition-file.jpg&#34; alt=&#34;&#34; /&gt;
+&lt;/p&gt;
 
-&lt;h3 id=&#34;1-define-schema:e608d9ac6a0d5e2b6db229b78a3e65b4&#34;&gt;1. Define Schema&lt;/h3&gt;
+&lt;h3 id=&#34;telling-sbt:fdd0f32a8956014c694267605f409cb7&#34;&gt;Telling sbt&lt;/h3&gt;
 
-&lt;p&gt;A schema defines what attributes you&amp;rsquo;ll have available to build molecules.&lt;/p&gt;
-
-&lt;p&gt;Attributes having something in common are defined as fields in a namespace trait and we list all namespace traits in a Definition trait.&lt;/p&gt;
-
-&lt;p&gt;Shortened example from the &lt;a href=&#34;http://docs.datomic.com/tutorial.html&#34;&gt;Datomic Seattle tutorial&lt;/a&gt;:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;@InOut(3, 8)
-trait SeattleDefinition {
-
-  trait Community {
-    val name         = oneString.fullTextSearch
-    val url          = oneString
-    val category     = manyString.fullTextSearch
-    val orgtype      = oneEnum(&#39;community, &#39;commercial, &#39;nonprofit)
-    val `type`       = oneEnum(&#39;email_list, &#39;twitter, &#39;facebook_page)
-    val neighborhood = one[Neighborhood]
-  }
-
-  trait Neighborhood {
-    val name     = oneString.fullTextSearch.uniqueIdentity
-    val district = one[District]
-  }
-
-  trait District {
-    val name   = oneString.fullTextSearch.uniqueIdentity
-    val region = oneEnum(&#39;n, &#39;ne, &#39;e, &#39;se, &#39;s, &#39;sw, &#39;w, &#39;nw)
-  }
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Here we have a &lt;code&gt;Community&lt;/code&gt;, &lt;code&gt;Neighborhood&lt;/code&gt; and &lt;code&gt;District&lt;/code&gt; namespace each defining some attributes of various types.&lt;/p&gt;
-
-&lt;p&gt;Model your own domain structures with similar schemas and save each definition in a file in a &amp;ldquo;schema&amp;rdquo; folder anywhere within your project.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;http://scalamolecule.org/manual/&#34;&gt;Read more&amp;hellip;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;2-tell-sbt:e608d9ac6a0d5e2b6db229b78a3e65b4&#34;&gt;2. Tell sbt&lt;/h3&gt;
-
-&lt;p&gt;Tell sbt where to find your &amp;ldquo;schema&amp;rdquo; folders containing definition files:&lt;/p&gt;
+&lt;p&gt;In the project build file we then tell sbt where such &amp;ldquo;schema&amp;rdquo; folders reside:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;settings = commonSettings ++ Seq(
   definitionDirectories(
     &amp;quot;examples/src/main/scala/molecule/examples/dayOfDatomic&amp;quot;,
-    &amp;quot;examples/src/main/scala/molecule/examples/seattle&amp;quot;,
-    &amp;quot;examples/src/main/scala/molecule/examples/mbrainz&amp;quot;
+    &amp;quot;examples/src/main/scala/molecule/examples/mbrainz&amp;quot;,
+    &amp;quot;examples/src/main/scala/molecule/examples/seattle&amp;quot;
   )
 )
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;a href=&#34;http://scalamolecule.org/manual/&#34;&gt;Read more&amp;hellip;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;We can add several locations with the &lt;code&gt;definitionDirectories&lt;/code&gt; method which will tell sbt where to look for our schema definition files.&lt;/p&gt;
 
-&lt;h3 id=&#34;3-compile-generate-boilerplate-code:e608d9ac6a0d5e2b6db229b78a3e65b4&#34;&gt;3. Compile / generate boilerplate code&lt;/h3&gt;
+&lt;h3 id=&#34;files-generated:fdd0f32a8956014c694267605f409cb7&#34;&gt;Files generated&lt;/h3&gt;
 
-&lt;p&gt;&lt;code&gt;sbt compile&lt;/code&gt; your project, wait for your domain-customized boilerplate code to be generated - and you&amp;rsquo;re ready to make intuitive molecule queries!&lt;/p&gt;
+&lt;p&gt;Running &lt;code&gt;sbt compile&lt;/code&gt; in your project root will then generate some source code files in the &lt;code&gt;src_managed&lt;/code&gt; directory (inside the target directory):&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&#34;http://scalamolecule.org/manual/&#34;&gt;Read more&amp;hellip;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://scalamolecule.org/img/boilerplate/generated-files.jpg&#34; alt=&#34;&#34; /&gt;
+&lt;/p&gt;
+
+&lt;h3 id=&#34;boilerplate-dsl-files:fdd0f32a8956014c694267605f409cb7&#34;&gt;Boilerplate dsl files&lt;/h3&gt;
+
+&lt;p&gt;Molecule creates a &lt;code&gt;dsl&lt;/code&gt; folder having a subfolder - or &amp;ldquo;definition directory&amp;rdquo; - for each schema definition file (could be more than one).&lt;/p&gt;
+
+&lt;p&gt;Within each definition directory we&amp;rsquo;ll find a file generated for each namespace defined (&lt;code&gt;Community.scala&lt;/code&gt; etc).&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://scalamolecule.org/manual/schema/boilerplate&#34;&gt;More on the boilerplate dsl files&amp;hellip;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;schema-file:fdd0f32a8956014c694267605f409cb7&#34;&gt;Schema file&lt;/h3&gt;
+
+&lt;p&gt;Molecule places the generated Datomic schema file &lt;code&gt;SeattleSchema&lt;/code&gt; in the same package as &lt;code&gt;SeattleDefinition&lt;/code&gt; so that they&amp;rsquo;ll turn up beside each other in our IDE package view:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://scalamolecule.org/img/boilerplate/project-files.png&#34; alt=&#34;&#34; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://scalamolecule.org/manual/schema/datomic&#34;&gt;More on the Datomic schema&amp;hellip;&lt;/a&gt;&lt;/p&gt;
 </description>
     </item>
     
@@ -654,21 +632,60 @@ trait SeattleDefinition {
 
 &lt;h1 id=&#34;boilerplate-code:36a3cc328100a137a125b621a816413d&#34;&gt;Boilerplate code&lt;/h1&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;@InOut(3, 8)
-trait SeattleDefinition {
+&lt;p&gt;SBT will call ask the &lt;code&gt;DslBoilerplate&lt;/code&gt; file in our project folder to use our schema definition files as templates to generate a series of domain-specific boilerplate traits for us.&lt;/p&gt;
 
-  // namespace traits...
-}
+&lt;p&gt;With these generated we can then build intuitive molecules like&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Community.name.Neighborhood.name.District.region
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#34;code-generation:36a3cc328100a137a125b621a816413d&#34;&gt;Code generation&lt;/h3&gt;
+&lt;h3 id=&#34;namespace-traits:36a3cc328100a137a125b621a816413d&#34;&gt;Namespace traits&lt;/h3&gt;
 
-&lt;p&gt;When running &lt;code&gt;sbt compile&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Each namespace is defined as a trait for each arity of our molecule. We start all molecules from a Namespace object like &lt;code&gt;Community&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;// (simplified...)
+object Community extends Community_0
+
+trait Community_0  {
+  val name          : /* types... */ = ???
+  val url           : /* types... */ = ???
+  val category      : /* types... */ = ???
+  
+  def Neighborhood  : /* types... */ = ???
+}
+
+trait Community_1  {
+  val name          : /* types... */ = ???
+  val url           : /* types... */ = ???
+  val category      : /* types... */ = ???
+  
+  def Neighborhood  : /* types... */ = ???
+}
+
+// etc...
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;increasing-arity:36a3cc328100a137a125b621a816413d&#34;&gt;Increasing arity&amp;hellip;&lt;/h3&gt;
+
+&lt;p&gt;When we build &lt;code&gt;Community.name&lt;/code&gt;, the &lt;code&gt;name&lt;/code&gt; field of &lt;code&gt;Community_0&lt;/code&gt; points on to &lt;code&gt;Community_1&lt;/code&gt; since the arity of our molecule is now 1. We expect &lt;code&gt;Community.name&lt;/code&gt; to return values for 1 attribute.&lt;/p&gt;
+
+&lt;p&gt;All fields are assigned the &lt;code&gt;???&lt;/code&gt; &amp;ldquo;unimplemented method&amp;rdquo; which will be implemented with a Scala macro when we compile our project during development (not the &lt;code&gt;sbt compile&lt;/code&gt; we do initially).&lt;/p&gt;
 
 &lt;h3 id=&#34;in-out-arities:36a3cc328100a137a125b621a816413d&#34;&gt;In/Out arities&lt;/h3&gt;
 
-&lt;p&gt;We annotate the definition trait with &lt;code&gt;@InOut(x, y)&lt;/code&gt;. This is to tell Molecule
-how many inputs and outputs we expect molecules to be able to accept.&lt;/p&gt;
+&lt;p&gt;We annotate schema definition traits with &lt;code&gt;@InOut(x, y)&lt;/code&gt; to tell Molecule the arity of inputs and outputs we expect molecules to be able to accept.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;@InOut(3, 8) // &amp;lt;-- In-arity: 3, Out-arity: 8
+trait SeattleDefinition {
+  // namespaces...
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This will generate up to a &lt;code&gt;Community_8&lt;/code&gt; but no further since we don&amp;rsquo;t expect in this case to build molecules with more than 8 attributes.&lt;/p&gt;
+
+&lt;p&gt;There&amp;rsquo;s no reason to create more boilerplate classes than necessary. We can always adjust the number up or down and recompile with &lt;code&gt;sbt compile&lt;/code&gt; to re-generate the domain classes if our schema/requirements change.&lt;/p&gt;
+
+&lt;h3 id=&#34;input-output-molecules:36a3cc328100a137a125b621a816413d&#34;&gt;Input/Output molecules&lt;/h3&gt;
 
 &lt;p&gt;An input molecule like &lt;code&gt;Community.name(?).url(?)&lt;/code&gt; for instance awaits 2 inputs. For now the
 maximum is 3. Given that input values can be expressions like &lt;code&gt;name(&amp;quot;John&amp;quot; or &amp;quot;Lisa&amp;quot;)&lt;/code&gt; it seems
@@ -677,93 +694,37 @@ unlikely that we will need to receive input for much more than 3 attributes at a
 &lt;p&gt;Outputs are the number of attributes we can build a molecule of. &lt;code&gt;Community.name.url.Neighborhood.name&lt;/code&gt;
 for instance has 3 attributes (in 2 namespaces). We need to be able to return tuples of values from
 molecules so we can&amp;rsquo;t exceed Scala&amp;rsquo;s arity limit of 22 for tuples.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Datomic</title>
+      <link>http://scalamolecule.org/manual/schema/datomic/</link>
+      <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
+      
+      <guid>http://scalamolecule.org/manual/schema/datomic/</guid>
+      <description>
 
-&lt;p&gt;The number of in/out attributes determines the arity of the boilerplate domain classes Molecule will generate for us to build molecules from. So if we know already that we will only build molecules with say maximum 8 attributes then there&amp;rsquo;s no reason to create more boilerplate classes than necessary. We can always adjust the number up or down and recompile with &lt;code&gt;sbt compile&lt;/code&gt; to re-generate the domain classes if our schema/requirements change.&lt;/p&gt;
+&lt;h1 id=&#34;datomic-schema:fce8223ee4fefc246edc14cd715d3099&#34;&gt;Datomic schema&lt;/h1&gt;
 
-&lt;h3 id=&#34;namespaces:36a3cc328100a137a125b621a816413d&#34;&gt;Namespaces&lt;/h3&gt;
+&lt;p&gt;A Molecule schema definition of attributes &lt;code&gt;name&lt;/code&gt; and &lt;code&gt;url&lt;/code&gt; like&lt;/p&gt;
 
-&lt;p&gt;Each trait in the Definition&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;trait SeattleDefinition {
+  trait Community {
+    val name         = oneString.fullTextSearch
+    val url          = oneString
+    // etc...
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;Attributes having something in common are defined as fields in a namespace trait and we list all namespace traits in a Definition trait.&lt;/p&gt;
-
-&lt;h3 id=&#34;attribute-types:36a3cc328100a137a125b621a816413d&#34;&gt;Attribute types&lt;/h3&gt;
-
-&lt;p&gt;In the Seattle schema we defined 3 namespaces with different kinds of attributes:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;oneString&lt;/code&gt;, &lt;code&gt;manyString&lt;/code&gt; etc defines cardinality and type of an attribute&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;oneEnum&lt;/code&gt;/&lt;code&gt;manyEnum&lt;/code&gt; defines enumerated values&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;one[&amp;lt;ReferencedNamespace&amp;gt;]&lt;/code&gt; defines a reference to another namespace&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&#34;attribute-options:36a3cc328100a137a125b621a816413d&#34;&gt;Attribute options&lt;/h3&gt;
-
-&lt;p&gt;Each attribute can also have some extra options:&lt;/p&gt;
-
-&lt;p&gt;
-&lt;table border=&#34;1&#34; cellpadding=&#34;5&#34; cellspacing=&#34;0&#34; style=&#34;background-color:#f5f5f5;&#34;&gt;
-  &lt;tr&gt;
-    &lt;th align=&#34;left&#34; valign=&#34;top&#34; scope=&#34;col&#34;&gt;Option&lt;/th&gt;
-    &lt;th valign=&#34;top&#34; scope=&#34;col&#34;&gt;&lt;strong&gt;Indexes&lt;/strong&gt;&lt;/th&gt;
-    &lt;th scope=&#34;col&#34;&gt;Description&lt;/th&gt;
-  &lt;/tr&gt;
-  &lt;tr valign=&#34;top&#34;&gt;
-    &lt;td valign=&#34;top&#34;&gt;doc&lt;/td&gt;
-    &lt;td align=&#34;center&#34; valign=&#34;top&#34;&gt;&amp;nbsp;&lt;/td&gt;
-    &lt;td&gt;Attribute description.&lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr valign=&#34;top&#34;&gt;
-    &lt;td valign=&#34;top&#34;&gt;uniqueValue&lt;/td&gt;
-    &lt;td align=&#34;center&#34; valign=&#34;top&#34;&gt;✔︎&lt;/td&gt;
-    &lt;td&gt;Attribute value is unique to each entity.&lt;br&gt;
-      &lt;em&gt;Attempts to insert a duplicate value for a different entity id will fail.&lt;/em&gt;&lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr valign=&#34;top&#34;&gt;
-    &lt;td valign=&#34;top&#34;&gt;uniqueIdentity&lt;/td&gt;
-    &lt;td align=&#34;center&#34; valign=&#34;top&#34;&gt;✔︎&lt;/td&gt;
-    &lt;td&gt;Attribute value is unique to each entity and &amp;quot;upsert&amp;quot; is enabled.&lt;br&gt;
-      &lt;em&gt;Attempts to insert a duplicate value for a temporary entity id will cause all attributes associated with that temporary id to be merged with the entity already in the database.&lt;/em&gt;&lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-    &lt;td valign=&#34;top&#34;&gt;indexed&lt;/td&gt;
-    &lt;td align=&#34;center&#34; valign=&#34;top&#34;&gt;✔︎&lt;/td&gt;
-    &lt;td&gt;Generated index for this attribute.&lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-    &lt;td valign=&#34;top&#34;&gt;fullTextSearch&lt;/td&gt;
-    &lt;td align=&#34;center&#34; valign=&#34;top&#34;&gt;✔︎&lt;/td&gt;
-    &lt;td&gt;Generate eventually consistent fulltext search index for this attribute.&lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-    &lt;td valign=&#34;top&#34;&gt;isComponent&lt;/td&gt;
-    &lt;td align=&#34;center&#34; valign=&#34;top&#34;&gt;✔︎&lt;/td&gt;
-    &lt;td&gt;Specifies that an attribute whose type is :db.type/ref refers to a subcomponent of the entity to which the attribute is applied.&lt;br&gt;
-    &lt;em&gt;When you retract an entity with :db.fn/retractEntity, all subcomponents are also retracted. When you touch an entity, all its subcomponent entities are touched recursively.&lt;/em&gt;&lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-    &lt;td valign=&#34;top&#34;&gt;noHistory&lt;/td&gt;
-    &lt;td align=&#34;center&#34; valign=&#34;top&#34;&gt;&amp;nbsp;&lt;/td&gt;
-    &lt;td&gt;Whether past values of an attribute should not be retained.&lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/table&gt;
-&lt;/p&gt;
-
-&lt;p&gt;Datomic indexes the values of all attributes having an option except for the &lt;code&gt;doc&lt;/code&gt; and &lt;code&gt;noHistory&lt;/code&gt; options.&lt;/p&gt;
-
-&lt;p&gt;As you saw, we added &lt;code&gt;fulltextSearch&lt;/code&gt; and &lt;code&gt;uniqueIdentity&lt;/code&gt; to some of the attributes in the Seattle definition above. Molecule&amp;rsquo;s schema definition DSL let&amp;rsquo;s you only choose allowed options for any attribute type.&lt;/p&gt;
-
-&lt;h2 id=&#34;transacting-a-schema:36a3cc328100a137a125b621a816413d&#34;&gt;Transacting a schema&lt;/h2&gt;
-
-&lt;p&gt;Having defined our domain in namespaces of attributes we then run &lt;code&gt;sbt compile&lt;/code&gt;.
-This makes Molecule automatically transform our definitions to transactional
-data in a format that Datomic needs in a schema file. Our two first attributes
-&lt;code&gt;name&lt;/code&gt; and &lt;code&gt;url&lt;/code&gt; for instance transforms to the following list of maps of key/values:&lt;/p&gt;
+&lt;p&gt;will generate a corresponding Datomic schema definition with the following list of maps of key/values:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;object SeattleSchema extends Schema {
 
   lazy val tx = Util.list(
 
-    // Community ----------------------------------------------------------
+    // Community ------------------------------------------------
 
     Util.map(&amp;quot;:db/id&amp;quot;                , Peer.tempid(&amp;quot;:db.part/db&amp;quot;),
              &amp;quot;:db/ident&amp;quot;             , &amp;quot;:community/name&amp;quot;,
@@ -779,12 +740,14 @@ data in a format that Datomic needs in a schema file. Our two first attributes
              &amp;quot;:db/fulltext&amp;quot;          , true.asInstanceOf[Object],
              &amp;quot;:db.install/_attribute&amp;quot;, &amp;quot;:db.part/db&amp;quot;),
            
- // etc...
+    // etc...
+  )
+}
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Note how each attribute name is prefixed with the namespace name (&amp;rdquo;:community/name&amp;rdquo;).&lt;/p&gt;
 
-&lt;p&gt;Now we can easily transact the schema by simply writing:&lt;/p&gt;
+&lt;p&gt;Our definition is transformed to a transactional data format that we can directly feed into Datomic to create a Datomic schema:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;conn.transact(SeattleSchema.tx).get()
 &lt;/code&gt;&lt;/pre&gt;
