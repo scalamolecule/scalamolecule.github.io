@@ -127,6 +127,28 @@
     </item>
     
     <item>
+      <title>Community</title>
+      <link>http://scalamolecule.org/community/overview/</link>
+      <pubDate>Wed, 14 May 2014 02:13:50 UTC</pubDate>
+      
+      <guid>http://scalamolecule.org/community/overview/</guid>
+      <description>
+
+&lt;h1 id=&#34;community:68f80267fa3a50980dbb745a782b8dca&#34;&gt;Community&lt;/h1&gt;
+
+&lt;h2 id=&#34;resources:68f80267fa3a50980dbb745a782b8dca&#34;&gt;Resources&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;[Molecule google list][moleculegroup] for questions and discussions about Molecule and other Scala-based Datomic resources&lt;/li&gt;
+&lt;li&gt;[Issues][issues] - please feel free to raise issues/report bugs&lt;/li&gt;
+&lt;li&gt;[Pull requests][pullrequests] are welcome&lt;/li&gt;
+&lt;li&gt;[Datomic][datomic] website&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/pellucidanalytics/datomisca&#34;&gt;Datomisca&lt;/a&gt;, a Scala API for Datomic&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Compare</title>
       <link>http://scalamolecule.org/compare/overview/</link>
       <pubDate>Wed, 14 May 2014 02:13:50 UTC</pubDate>
@@ -197,28 +219,6 @@ val songs = Song.e.artist(id).get
 &lt;/ul&gt;
 
 &lt;p&gt;If you want to translate one into Molecule, please feel free to submit a pull request or bring up ideas.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Community</title>
-      <link>http://scalamolecule.org/community/overview/</link>
-      <pubDate>Wed, 14 May 2014 02:13:50 UTC</pubDate>
-      
-      <guid>http://scalamolecule.org/community/overview/</guid>
-      <description>
-
-&lt;h1 id=&#34;community:68f80267fa3a50980dbb745a782b8dca&#34;&gt;Community&lt;/h1&gt;
-
-&lt;h2 id=&#34;resources:68f80267fa3a50980dbb745a782b8dca&#34;&gt;Resources&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;[Molecule google list][moleculegroup] for questions and discussions about Molecule and other Scala-based Datomic resources&lt;/li&gt;
-&lt;li&gt;[Issues][issues] - please feel free to raise issues/report bugs&lt;/li&gt;
-&lt;li&gt;[Pull requests][pullrequests] are welcome&lt;/li&gt;
-&lt;li&gt;[Datomic][datomic] website&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/pellucidanalytics/datomisca&#34;&gt;Datomisca&lt;/a&gt;, a Scala API for Datomic&lt;/li&gt;
-&lt;/ul&gt;
 </description>
     </item>
     
@@ -514,6 +514,71 @@ val persons: Seq[String :: Int :: HNil] = Person.name.age.hl
 
 &lt;p&gt;&lt;br&gt;
 Thank you for reading so far!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Builder</title>
+      <link>http://scalamolecule.org/manual/attribute/builder/</link>
+      <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
+      
+      <guid>http://scalamolecule.org/manual/attribute/builder/</guid>
+      <description>
+
+&lt;h1 id=&#34;attribute-builder-pattern:8fd4bc5e57a8b030c7141267f15a6e67&#34;&gt;Attribute builder pattern&lt;/h1&gt;
+
+&lt;p&gt;When we have defined a schema, Molecule generates the necessary boilerplate code so that we can build &amp;ldquo;molecular data structures&amp;rdquo; by building sequences of Attributes separated with dots (the &amp;ldquo;builder pattern&amp;rdquo;).&lt;/p&gt;
+
+&lt;p&gt;We could for instance build a molecule representing the data structure of Persons with name, age and gender Attributes:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.name.age.gender // etc
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The fundamental building blocks are Namespaces like &lt;code&gt;Person&lt;/code&gt; and Attributes like &lt;code&gt;name&lt;/code&gt;, &lt;code&gt;age&lt;/code&gt; and &lt;code&gt;gender&lt;/code&gt;. Namespaces are simply prefixes to Attribute names to avoid name clashes and to group our Attributes in meaningful ways according to our domain.&lt;/p&gt;
+
+&lt;p&gt;As you see we start our molecule from some Namespace and then build on Attribute by Attribute.&lt;/p&gt;
+
+&lt;h3 id=&#34;all-attributes-looked-for:8fd4bc5e57a8b030c7141267f15a6e67&#34;&gt;All Attributes looked for&lt;/h3&gt;
+
+&lt;p&gt;When we use a molecule to query the Datomic database we ask for entities having all our Attributes associated with them.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Note that this is different from selecting rows from a sql table where you can also get null values back!&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;If for instance we have entities representing Persons in our data set that haven&amp;rsquo;t got any age Attribute associated with them then this query will &lt;em&gt;not&lt;/em&gt; return those entities:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val persons = Person.name.age.get
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Basically we look for &lt;strong&gt;matches&lt;/strong&gt; to our molecule data structure.&lt;/p&gt;
+
+&lt;h3 id=&#34;underscore-omits-values:8fd4bc5e57a8b030c7141267f15a6e67&#34;&gt;Underscore omits values&lt;/h3&gt;
+
+&lt;p&gt;Sometimes we want to grap entities that we &lt;em&gt;know&lt;/em&gt; have certain attributes, but without returning those values. If for instance we wanted to find all names of Persons that have an age attribute set but we don&amp;rsquo;t need to return those age values, then we can add an underscore &lt;code&gt;_&lt;/code&gt; after the &lt;code&gt;age&lt;/code&gt; Attribute so that it becomes &lt;code&gt;age_&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val names = Person.name.age_.get
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This will return names of person entities having both a name and age Attribute set. Note how the age values are no longer returned from the type signatures:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val persons: List[(String, Int)] = Person.name.age.get
+val names  : List[String]        = Person.name.age_.get
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This way we can switch on and off individual attributes from the result set without affecting the data structures we look for.&lt;/p&gt;
+
+&lt;h3 id=&#34;tuples-or-hlists-returned:8fd4bc5e57a8b030c7141267f15a6e67&#34;&gt;Tuples or HLists returned&lt;/h3&gt;
+
+&lt;p&gt;Molecule returns all result sets as either tuples of values (with &lt;code&gt;get&lt;/code&gt;) or Shapeless HLists (with &lt;code&gt;hl&lt;/code&gt;).&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val persons: List[(String, Int)]         = Person.name.age.get
+val persons: List[String :: Int :: HNil] = Person.name.age.hl
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;molecule-max-size:8fd4bc5e57a8b030c7141267f15a6e67&#34;&gt;Molecule max size&lt;/h3&gt;
+
+&lt;p&gt;The size of molecules are limited to Scala&amp;rsquo;s limit size of 22 for tuples. Since molecules only look for attributes having a value it seems unlikely that we need to surpass this upper limit except in very special cases.&lt;/p&gt;
+
+&lt;p&gt;Once the entities matching our qriteria are found we can use those entities to find additional optional attribute values.&lt;/p&gt;
 </description>
     </item>
     
@@ -1413,18 +1478,6 @@ as described in &lt;a href=&#34;http://scalamolecule.org/manual/database-setup&#
     </item>
     
     <item>
-      <title>Forum</title>
-      <link>http://scalamolecule.org/community/forum/</link>
-      <pubDate>Wed, 14 May 2014 02:13:50 UTC</pubDate>
-      
-      <guid>http://scalamolecule.org/community/forum/</guid>
-      <description>
-
-&lt;h1 id=&#34;forum:9bf17893d33490888c600c67505ec118&#34;&gt;Forum&lt;/h1&gt;
-</description>
-    </item>
-    
-    <item>
       <title>Datomic</title>
       <link>http://scalamolecule.org/compare/datomic/</link>
       <pubDate>Wed, 14 May 2014 02:13:50 UTC</pubDate>
@@ -1858,6 +1911,18 @@ List(
     </item>
     
     <item>
+      <title>Forum</title>
+      <link>http://scalamolecule.org/community/forum/</link>
+      <pubDate>Wed, 14 May 2014 02:13:50 UTC</pubDate>
+      
+      <guid>http://scalamolecule.org/community/forum/</guid>
+      <description>
+
+&lt;h1 id=&#34;forum:9bf17893d33490888c600c67505ec118&#34;&gt;Forum&lt;/h1&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Transformation</title>
       <link>http://scalamolecule.org/developer/transformation/</link>
       <pubDate>Wed, 14 May 2014 02:13:50 UTC</pubDate>
@@ -1953,7 +2018,7 @@ allows you to&lt;/p&gt;
 val persons: Seq[String :: Int :: HNil] = Person.name.age.hl
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;Note how our type-inferred molecules make it impossible to write invalid queries since they simply wouldn&amp;rsquo;t compile.&lt;/p&gt;
+&lt;p&gt;The attributes of our domain directly form our molecules. Furthermore the compiler prevents us from making any invalid queries since all molecules are type-infered already in our IDE.&lt;/p&gt;
 
 &lt;h3 id=&#34;insert-and-update:2767292a573dc549b9b4297b701af3ab&#34;&gt;Insert and update&lt;/h3&gt;
 
@@ -1974,7 +2039,7 @@ Person(lisaId).age(&amp;quot;28&amp;quot;).update
   .Neighborhood.District.region(&amp;quot;sw&amp;quot; or &amp;quot;s&amp;quot; or &amp;quot;se&amp;quot;)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;which will find &amp;ldquo;names of twitter/facebook_page communities in neighborhoods of southern districts&amp;rdquo;&lt;/p&gt;
+&lt;p&gt;which will find &amp;ldquo;names of twitter/facebook_page communities in neighborhoods of southern districts&amp;rdquo;.&lt;/p&gt;
 
 &lt;h2 id=&#34;datomic-and-molecule:2767292a573dc549b9b4297b701af3ab&#34;&gt;Datomic and Molecule&lt;/h2&gt;
 
@@ -1988,9 +2053,9 @@ Person(lisaId).age(&amp;quot;28&amp;quot;).update
 
 &lt;p&gt;An attribute in Datomic is part of &lt;em&gt;fact&lt;/em&gt; or &lt;em&gt;Datom&lt;/em&gt; consisting of four elements:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt; John     likes    pizza       12:35:54
-   |        |        |            |
-Entity  Attribute  Value  Transactiion/time
+&lt;pre&gt;&lt;code&gt; John     likes    pizza      12:35:54
+   |        |        |           |
+Entity  Attribute  Value  Transaction/time
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;With Molecule we could model the fact like this:&lt;/p&gt;
@@ -2031,14 +2096,50 @@ Entity  Attribute  Value  Transactiion/time
     </item>
     
     <item>
-      <title>Attributes</title>
-      <link>http://scalamolecule.org/manual/basics/attributes/</link>
+      <title>Types</title>
+      <link>http://scalamolecule.org/manual/attribute/types/</link>
       <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
       
-      <guid>http://scalamolecule.org/manual/basics/attributes/</guid>
+      <guid>http://scalamolecule.org/manual/attribute/types/</guid>
       <description>
 
-&lt;h1 id=&#34;attributes:199f4b06fef5a61f833f209ac24fd4c2&#34;&gt;Attributes&lt;/h1&gt;
+&lt;h1 id=&#34;attribute-types:3d59665407ad3f08f6bcaef4686926f7&#34;&gt;Attribute types&lt;/h1&gt;
+
+&lt;p&gt;Molecule Attributes can have the following types:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Cardinality one     Cardinality many
+---------------     ----------------
+String              Set[String]
+Int                 Set[Int]   
+Long                Set[Long]    
+Float               Set[Float]     
+Double              Set[Double]      
+Boolean             N/A       
+Date                Set[Date]    
+UUID                Set[UUID]    
+URI                 Set[URI]   
+enum: String        enums: Set[String]              
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Attribute are defined in your schema.&lt;/p&gt;
+
+&lt;h3 id=&#34;types-inferred:3d59665407ad3f08f6bcaef4686926f7&#34;&gt;Types inferred&lt;/h3&gt;
+
+&lt;p&gt;Types are inferred so that you can determine the result signature of a molecule&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val persons: List[(String, Int)] = Person.name.age.get
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;cardinality-one-many:3d59665407ad3f08f6bcaef4686926f7&#34;&gt;Cardinality one/many&lt;/h3&gt;
+
+&lt;p&gt;Attributes defined as cardinality-many will return sets of values. A Person could for instance have a &lt;code&gt;hobbies&lt;/code&gt; cardinality-many Attribute defined and thus return sets of hobby values:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val engaged: List[(String, Set[String])] = Person.name.hobbies.get
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;enums:3d59665407ad3f08f6bcaef4686926f7&#34;&gt;Enums&lt;/h3&gt;
+
+&lt;p&gt;Enum values are predefined values that an Attribute can have. They are defined in your schema. Cardinality one enums can have one enum value and cardinality many can have a set of unique enum values for each entity.&lt;/p&gt;
 </description>
     </item>
     
@@ -2425,34 +2526,6 @@ Person(odersky).name(&amp;quot;M. Odersky&amp;quot;).age(54321).update
   case 2 =&amp;gt; &amp;quot;B&amp;quot;
 }
 &lt;/code&gt;&lt;/pre&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Basics</title>
-      <link>http://scalamolecule.org/manual/basics/</link>
-      <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
-      
-      <guid>http://scalamolecule.org/manual/basics/</guid>
-      <description>
-
-&lt;h1 id=&#34;basics:adb90e22eee79282d53440b555325fbd&#34;&gt;Basics&lt;/h1&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Quick start&lt;/li&gt;
-&lt;li&gt;Getting started
-
-&lt;ul&gt;
-&lt;li&gt;Introduction&lt;/li&gt;
-&lt;li&gt;Installation&lt;/li&gt;
-&lt;li&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;Installation&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&#34;safe:adb90e22eee79282d53440b555325fbd&#34;&gt;Safe&lt;/h3&gt;
-
-&lt;p&gt;Our query asks for entities having values defined for all three attributes. If some entity doesn&amp;rsquo;t have the &lt;code&gt;street&lt;/code&gt; attribute set it won&amp;rsquo;t be returned. So we can safely assume that our result set contains no null values and we therefore return the raw values (without using Optional for instance).&lt;/p&gt;
 </description>
     </item>
     

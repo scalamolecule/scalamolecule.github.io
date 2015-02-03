@@ -53,14 +53,24 @@
             <a data-toggle="dropdown" href="http://scalamolecule.org/manual/overview/" target="_top" onclick="javascript:top.location = 'http:\/\/scalamolecule.org\/manual\/overview\/';return true;">Manual</a>
               <ul class="dropdown-menu level1" role="menu" aria-labelledby="dropdownMenu">
                 <li class="dropdown-submenu">
-                  <a href="http://scalamolecule.org/manual/basics/">Basics</a>
+                  <a href="http://scalamolecule.org/manual/attribute/">Attributes</a>
                   <ul class="dropdown-menu">
-                    <li><a href="http://scalamolecule.org/manual/basics/attributes/">Attributes</a></li>
+                    <li><a href="http://scalamolecule.org/manual/attribute/builder/">Builder</a></li>
+                    <li><a href="http://scalamolecule.org/manual/attribute/types/">Types</a></li>
+                    <li><a href="http://scalamolecule.org/manual/attribute/values/">Values</a></li>
+                    <li><a href="http://scalamolecule.org/manual/attribute/logical-or/">Logical-OR</a></li>
+                    <li><a href="http://scalamolecule.org/manual/attribute/parameterize/">Parameterize</a></li>
                   </ul>
                 </li>
                 <li><a href="http://scalamolecule.org/manual/database-setup/">Database setup</a></li>
                 <li><a href="http://scalamolecule.org/manual/modelling/">Modelling</a></li>
-                <li><a href="http://scalamolecule.org/manual/schema-definition/">Schema definition</a></li>
+                <li class="dropdown-submenu">
+                  <a href="http://scalamolecule.org/manual/schema/">Schema</a>
+                  <ul class="dropdown-menu">
+                    <li><a href="http://scalamolecule.org/manual/schema/definition/">Definition</a></li>
+                    <li><a href="http://scalamolecule.org/manual/schema/boilerplate/">Boilerplate</a></li>
+                  </ul>
+                </li>
                 <li><a href="http://scalamolecule.org/manual/populate-database/">Populate database</a></li>
             </ul>
           </li>
@@ -103,6 +113,7 @@
 
 <ol>
 <li><code>git clone https://github.com/scalamolecule/molecule.git</code></li>
+<li><code>cd molecule</code></li>
 <li><code>sbt compile</code></li>
 <li>Open in your IDE</li>
 <li>Run tests and poke around&hellip;</li>
@@ -112,6 +123,7 @@
 
 <ol>
 <li><code>git clone https://github.com/scalamolecule/molecule-demo.git</code></li>
+<li><code>cd molecule-demo</code></li>
 <li><code>sbt compile</code></li>
 <li>Open in your IDE</li>
 <li>Run tests and poke around&hellip;</li>
@@ -127,7 +139,8 @@
 <li>Setup your sbt build file [as in Molecule][moleculesbt]:
 
 <ul>
-<li>Add library dependency <code>&quot;org.scalamolecule&quot; % &quot;molecule_2.11&quot; % &quot;0.2.1&quot;</code></li>
+<li>Add library dependency<br>
+<code>&quot;org.scalamolecule&quot; % &quot;molecule_2.11&quot; % &quot;0.2.1&quot;</code></li>
 <li>List directories where you have your <a href="http://scalamolecule.org/manual/database-setup">definition file(s)</a></li>
 </ul></li>
 <li>Define your domain schema in a <a href="http://scalamolecule.org/manual/schema-definition">schema definition file</a></li>

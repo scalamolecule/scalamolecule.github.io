@@ -255,7 +255,7 @@ Thank you for reading so far!&lt;/p&gt;
 val persons: Seq[String :: Int :: HNil] = Person.name.age.hl
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;Note how our type-inferred molecules make it impossible to write invalid queries since they simply wouldn&amp;rsquo;t compile.&lt;/p&gt;
+&lt;p&gt;The attributes of our domain directly form our molecules. Furthermore the compiler prevents us from making any invalid queries since all molecules are type-infered already in our IDE.&lt;/p&gt;
 
 &lt;h3 id=&#34;insert-and-update:2767292a573dc549b9b4297b701af3ab&#34;&gt;Insert and update&lt;/h3&gt;
 
@@ -276,7 +276,7 @@ Person(lisaId).age(&amp;quot;28&amp;quot;).update
   .Neighborhood.District.region(&amp;quot;sw&amp;quot; or &amp;quot;s&amp;quot; or &amp;quot;se&amp;quot;)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;which will find &amp;ldquo;names of twitter/facebook_page communities in neighborhoods of southern districts&amp;rdquo;&lt;/p&gt;
+&lt;p&gt;which will find &amp;ldquo;names of twitter/facebook_page communities in neighborhoods of southern districts&amp;rdquo;.&lt;/p&gt;
 
 &lt;h2 id=&#34;datomic-and-molecule:2767292a573dc549b9b4297b701af3ab&#34;&gt;Datomic and Molecule&lt;/h2&gt;
 
@@ -290,9 +290,9 @@ Person(lisaId).age(&amp;quot;28&amp;quot;).update
 
 &lt;p&gt;An attribute in Datomic is part of &lt;em&gt;fact&lt;/em&gt; or &lt;em&gt;Datom&lt;/em&gt; consisting of four elements:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt; John     likes    pizza       12:35:54
-   |        |        |            |
-Entity  Attribute  Value  Transactiion/time
+&lt;pre&gt;&lt;code&gt; John     likes    pizza      12:35:54
+   |        |        |           |
+Entity  Attribute  Value  Transaction/time
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;With Molecule we could model the fact like this:&lt;/p&gt;
@@ -346,6 +346,7 @@ Entity  Attribute  Value  Transactiion/time
 
 &lt;ol&gt;
 &lt;li&gt;&lt;code&gt;git clone https://github.com/scalamolecule/molecule.git&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;cd molecule&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;sbt compile&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;Open in your IDE&lt;/li&gt;
 &lt;li&gt;Run tests and poke around&amp;hellip;&lt;/li&gt;
@@ -355,6 +356,7 @@ Entity  Attribute  Value  Transactiion/time
 
 &lt;ol&gt;
 &lt;li&gt;&lt;code&gt;git clone https://github.com/scalamolecule/molecule-demo.git&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;cd molecule-demo&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;sbt compile&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;Open in your IDE&lt;/li&gt;
 &lt;li&gt;Run tests and poke around&amp;hellip;&lt;/li&gt;
@@ -370,7 +372,8 @@ Entity  Attribute  Value  Transactiion/time
 &lt;li&gt;Setup your sbt build file [as in Molecule][moleculesbt]:
 
 &lt;ul&gt;
-&lt;li&gt;Add library dependency &lt;code&gt;&amp;quot;org.scalamolecule&amp;quot; % &amp;quot;molecule_2.11&amp;quot; % &amp;quot;0.2.1&amp;quot;&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Add library dependency&lt;br&gt;
+&lt;code&gt;&amp;quot;org.scalamolecule&amp;quot; % &amp;quot;molecule_2.11&amp;quot; % &amp;quot;0.2.1&amp;quot;&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;List directories where you have your &lt;a href=&#34;http://scalamolecule.org/manual/database-setup&#34;&gt;definition file(s)&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;li&gt;Define your domain schema in a &lt;a href=&#34;http://scalamolecule.org/manual/schema-definition&#34;&gt;schema definition file&lt;/a&gt;&lt;/li&gt;
@@ -398,7 +401,7 @@ Entity  Attribute  Value  Transactiion/time
 &lt;p&gt;&lt;img src=&#34;http://scalamolecule.org/img/mg.jpg&#34; alt=&#34;&#34; /&gt;
 &lt;/p&gt;
 
-&lt;p&gt;Marc is a professional double bass player in the &lt;a href=&#34;http://www.gso.se/en/page/Gothenburg-Symphony/About-The-Orchestra&#34;&gt;Gothenburg Symphony Orchestra&lt;/a&gt;, the National Symphony Orchestra of Sweden.&lt;/p&gt;
+&lt;p&gt;Marc is a professional double bass player in the &lt;a href=&#34;http://www.gso.se/en/page/Gothenburg-Symphony/About-The-Orchestra&#34;&gt;Gothenburg Symphony Orchestra&lt;/a&gt;, the National Symphony Orchestra of Sweden and a dedicated Scala meta-programmer.&lt;/p&gt;
 
 &lt;h3 id=&#34;contributions-are-welcome:6083a88ee3411b0d17ce02d738f69d47&#34;&gt;Contributions are welcome!&lt;/h3&gt;
 

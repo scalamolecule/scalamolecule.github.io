@@ -86,42 +86,246 @@
     </item>
     
     <item>
-      <title>Attributes</title>
-      <link>http://scalamolecule.org/manual/basics/attributes/</link>
+      <title>Builder</title>
+      <link>http://scalamolecule.org/manual/attribute/builder/</link>
       <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
       
-      <guid>http://scalamolecule.org/manual/basics/attributes/</guid>
+      <guid>http://scalamolecule.org/manual/attribute/builder/</guid>
       <description>
 
-&lt;h1 id=&#34;attributes:199f4b06fef5a61f833f209ac24fd4c2&#34;&gt;Attributes&lt;/h1&gt;
+&lt;h1 id=&#34;attribute-builder-pattern:8fd4bc5e57a8b030c7141267f15a6e67&#34;&gt;Attribute builder pattern&lt;/h1&gt;
+
+&lt;p&gt;When we have defined a schema, Molecule generates the necessary boilerplate code so that we can build &amp;ldquo;molecular data structures&amp;rdquo; by building sequences of Attributes separated with dots (the &amp;ldquo;builder pattern&amp;rdquo;).&lt;/p&gt;
+
+&lt;p&gt;We could for instance build a molecule representing the data structure of Persons with name, age and gender Attributes:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.name.age.gender // etc
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The fundamental building blocks are Namespaces like &lt;code&gt;Person&lt;/code&gt; and Attributes like &lt;code&gt;name&lt;/code&gt;, &lt;code&gt;age&lt;/code&gt; and &lt;code&gt;gender&lt;/code&gt;. Namespaces are simply prefixes to Attribute names to avoid name clashes and to group our Attributes in meaningful ways according to our domain.&lt;/p&gt;
+
+&lt;p&gt;As you see we start our molecule from some Namespace and then build on Attribute by Attribute.&lt;/p&gt;
+
+&lt;h3 id=&#34;all-attributes-looked-for:8fd4bc5e57a8b030c7141267f15a6e67&#34;&gt;All Attributes looked for&lt;/h3&gt;
+
+&lt;p&gt;When we use a molecule to query the Datomic database we ask for entities having all our Attributes associated with them.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Note that this is different from selecting rows from a sql table where you can also get null values back!&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;If for instance we have entities representing Persons in our data set that haven&amp;rsquo;t got any age Attribute associated with them then this query will &lt;em&gt;not&lt;/em&gt; return those entities:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val persons = Person.name.age.get
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Basically we look for &lt;strong&gt;matches&lt;/strong&gt; to our molecule data structure.&lt;/p&gt;
+
+&lt;h3 id=&#34;underscore-omits-values:8fd4bc5e57a8b030c7141267f15a6e67&#34;&gt;Underscore omits values&lt;/h3&gt;
+
+&lt;p&gt;Sometimes we want to grap entities that we &lt;em&gt;know&lt;/em&gt; have certain attributes, but without returning those values. If for instance we wanted to find all names of Persons that have an age attribute set but we don&amp;rsquo;t need to return those age values, then we can add an underscore &lt;code&gt;_&lt;/code&gt; after the &lt;code&gt;age&lt;/code&gt; Attribute so that it becomes &lt;code&gt;age_&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val names = Person.name.age_.get
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This will return names of person entities having both a name and age Attribute set. Note how the age values are no longer returned from the type signatures:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val persons: List[(String, Int)] = Person.name.age.get
+val names  : List[String]        = Person.name.age_.get
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This way we can switch on and off individual attributes from the result set without affecting the data structures we look for.&lt;/p&gt;
+
+&lt;h3 id=&#34;tuples-or-hlists-returned:8fd4bc5e57a8b030c7141267f15a6e67&#34;&gt;Tuples or HLists returned&lt;/h3&gt;
+
+&lt;p&gt;Molecule returns all result sets as either tuples of values (with &lt;code&gt;get&lt;/code&gt;) or Shapeless HLists (with &lt;code&gt;hl&lt;/code&gt;).&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val persons: List[(String, Int)]         = Person.name.age.get
+val persons: List[String :: Int :: HNil] = Person.name.age.hl
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;molecule-max-size:8fd4bc5e57a8b030c7141267f15a6e67&#34;&gt;Molecule max size&lt;/h3&gt;
+
+&lt;p&gt;The size of molecules are limited to Scala&amp;rsquo;s limit size of 22 for tuples. Since molecules only look for attributes having a value it seems unlikely that we need to surpass this upper limit except in very special cases.&lt;/p&gt;
+
+&lt;p&gt;Once the entities matching our qriteria are found we can use those entities to find additional optional attribute values.&lt;/p&gt;
 </description>
     </item>
     
     <item>
-      <title>Basics</title>
-      <link>http://scalamolecule.org/manual/basics/</link>
+      <title>Types</title>
+      <link>http://scalamolecule.org/manual/attribute/types/</link>
       <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
       
-      <guid>http://scalamolecule.org/manual/basics/</guid>
+      <guid>http://scalamolecule.org/manual/attribute/types/</guid>
       <description>
 
-&lt;h1 id=&#34;basics:adb90e22eee79282d53440b555325fbd&#34;&gt;Basics&lt;/h1&gt;
+&lt;h1 id=&#34;attribute-types:3d59665407ad3f08f6bcaef4686926f7&#34;&gt;Attribute types&lt;/h1&gt;
+
+&lt;p&gt;Molecule Attributes can have the following types:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Cardinality one     Cardinality many
+---------------     ----------------
+String              Set[String]
+Int                 Set[Int]   
+Long                Set[Long]    
+Float               Set[Float]     
+Double              Set[Double]      
+Boolean             N/A       
+Date                Set[Date]    
+UUID                Set[UUID]    
+URI                 Set[URI]   
+enum: String        enums: Set[String]              
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Attribute are defined in your schema.&lt;/p&gt;
+
+&lt;h3 id=&#34;types-inferred:3d59665407ad3f08f6bcaef4686926f7&#34;&gt;Types inferred&lt;/h3&gt;
+
+&lt;p&gt;Types are inferred so that you can determine the result signature of a molecule&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val persons: List[(String, Int)] = Person.name.age.get
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;cardinality-one-many:3d59665407ad3f08f6bcaef4686926f7&#34;&gt;Cardinality one/many&lt;/h3&gt;
+
+&lt;p&gt;Attributes defined as cardinality-many will return sets of values. A Person could for instance have a &lt;code&gt;hobbies&lt;/code&gt; cardinality-many Attribute defined and thus return sets of hobby values:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val engaged: List[(String, Set[String])] = Person.name.hobbies.get
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;enums:3d59665407ad3f08f6bcaef4686926f7&#34;&gt;Enums&lt;/h3&gt;
+
+&lt;p&gt;Enum values are predefined values that an Attribute can have. They are defined in your schema. Cardinality one enums can have one enum value and cardinality many can have a set of unique enum values for each entity.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Attributes</title>
+      <link>http://scalamolecule.org/manual/attribute/</link>
+      <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
+      
+      <guid>http://scalamolecule.org/manual/attribute/</guid>
+      <description>
+
+&lt;h1 id=&#34;molecule-attributes:651c8385d47938834a1f2253cde93eb1&#34;&gt;Molecule Attributes&lt;/h1&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://scalamolecule.org/manual/attribute/builder&#34;&gt;Build molecules&lt;/a&gt; with the builder pattern&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.name.age.gender  // require values
+Person.name.age_.gender // require but omit values
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://scalamolecule.org/manual/attribute/types&#34;&gt;Infer types&lt;/a&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val name   : String      = Person.name.get.one
+val age    : Int         = Person.age.get.one
+val hobbies: Set[String] = Person.hobbies.get.one // cardinality-many
+val gender : String      = Person.gender.get.one  // enum values
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://scalamolecule.org/manual/attribute/values&#34;&gt;Apply values&lt;/a&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.age(42)               // equal value
+Person.age.&amp;lt;(42)             // range values
+Person.age.!=(42)            // negated values
+Person.name.contains(&amp;quot;John&amp;quot;) // fulltext search
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://scalamolecule.org/manual/attribute/logical-or&#34;&gt;Apply logical-OR&lt;/a&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.name(&amp;quot;John&amp;quot; or &amp;quot;Jonas&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://scalamolecule.org/manual/attribute/parameterize&#34;&gt;Parameterize&lt;/a&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val person      = Person.name(?).age(?)
+val john        = person(&amp;quot;John&amp;quot; and 42) // logical-AND
+val johnOrJonas = person((&amp;quot;John&amp;quot; and 42) or (&amp;quot;Jonas&amp;quot; and 38))
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Values</title>
+      <link>http://scalamolecule.org/manual/attribute/values/</link>
+      <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
+      
+      <guid>http://scalamolecule.org/manual/attribute/values/</guid>
+      <description>
+
+&lt;h1 id=&#34;applying-attribute-values:9c08d56b101cc26c9feeba7c0313bf79&#34;&gt;Applying Attribute values&lt;/h1&gt;
+
+&lt;p&gt;We can apply values to Attributes in order to filter the data structures we are looking for. We could for instance look for names of female persons:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.name.gender.apply(&amp;quot;female&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;or simply&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.name.gender(&amp;quot;female&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;omit-applied-value:9c08d56b101cc26c9feeba7c0313bf79&#34;&gt;Omit applied value&lt;/h3&gt;
+
+&lt;p&gt;Instead of returning the gender value &amp;ldquo;female&amp;rdquo; for all entities returned we could add an underscore to only return the names of female persones:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val females: List[String] = Person.name.gender_(&amp;quot;female&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;inferred-types:9c08d56b101cc26c9feeba7c0313bf79&#34;&gt;Inferred types&lt;/h3&gt;
+
+&lt;p&gt;Only applied values matching the Attribute type can compile. And we can even infer the type in our IDE so that we will get warned if we try to apply a non-matchig type:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;// types match
+Person.name(&amp;quot;John&amp;quot;).age(42)
+
+// won&#39;t compile
+// IDE will bark: 42(Int) is not of type String
+Person.name(42)
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Logical-OR</title>
+      <link>http://scalamolecule.org/manual/attribute/logical-or/</link>
+      <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
+      
+      <guid>http://scalamolecule.org/manual/attribute/logical-or/</guid>
+      <description>
+
+&lt;h1 id=&#34;logical-or:55f1a6165be7a28dff30748e23c3dd18&#34;&gt;Logical-OR&lt;/h1&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.name.age.gender // etc
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.name.age_.gender // etc
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;ul&gt;
-&lt;li&gt;Quick start&lt;/li&gt;
-&lt;li&gt;Getting started
-
-&lt;ul&gt;
-&lt;li&gt;Introduction&lt;/li&gt;
-&lt;li&gt;Installation&lt;/li&gt;
-&lt;li&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;Installation&lt;/li&gt;
+&lt;li&gt;tuples/hlist - limit of 22&lt;/li&gt;
 &lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Parameterize</title>
+      <link>http://scalamolecule.org/manual/attribute/parameterize/</link>
+      <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
+      
+      <guid>http://scalamolecule.org/manual/attribute/parameterize/</guid>
+      <description>
 
-&lt;h3 id=&#34;safe:adb90e22eee79282d53440b555325fbd&#34;&gt;Safe&lt;/h3&gt;
+&lt;h1 id=&#34;parameterize-attributes:913d405893862d6b41d1b084193fb4f6&#34;&gt;Parameterize Attributes&lt;/h1&gt;
 
-&lt;p&gt;Our query asks for entities having values defined for all three attributes. If some entity doesn&amp;rsquo;t have the &lt;code&gt;street&lt;/code&gt; attribute set it won&amp;rsquo;t be returned. So we can safely assume that our result set contains no null values and we therefore return the raw values (without using Optional for instance).&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.name.age.gender // etc
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.name.age_.gender // etc
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;tuples/hlist - limit of 22&lt;/li&gt;
+&lt;/ul&gt;
 </description>
     </item>
     
@@ -182,46 +386,66 @@ entity in Datomic can associate values of attributes &lt;em&gt;from any namespac
     </item>
     
     <item>
-      <title>Schema definition</title>
-      <link>http://scalamolecule.org/manual/schema-definition/</link>
+      <title>Definition</title>
+      <link>http://scalamolecule.org/manual/schema/definition/</link>
       <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
       
-      <guid>http://scalamolecule.org/manual/schema-definition/</guid>
+      <guid>http://scalamolecule.org/manual/schema/definition/</guid>
       <description>
 
-&lt;h1 id=&#34;defining-a-schema:cd34be2af46d72d5650506b793ee6fb3&#34;&gt;Defining a schema&lt;/h1&gt;
+&lt;h1 id=&#34;define-schema:eb6ae157f5199f108ae8e599fe0e98dc&#34;&gt;Define schema&lt;/h1&gt;
 
-&lt;p&gt;In Molecule you simply define namespaces as Scala vanilla traits having
-fields that model each attribute.&lt;/p&gt;
+&lt;p&gt;A schema defines what attributes you&amp;rsquo;ll have available to build molecules.&lt;/p&gt;
+
+&lt;p&gt;Attributes having something in common are defined as fields in a namespace trait and we list all namespace traits in a Definition trait.&lt;/p&gt;
 
 &lt;p&gt;Defining the schema of the
 &lt;a href=&#34;http://docs.datomic.com/tutorial.html&#34;&gt;Datomic Seattle tutorial&lt;/a&gt;
 for instance looks like this:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;@InOut(3, 8)
-trait Community {
-  val name         = oneString.fullTextSearch
-  val url          = oneString.fullTextSearch
-  val category     = manyString.fullTextSearch
-  val orgtype      = oneEnum(&#39;community, &#39;commercial, &#39;nonprofit, &#39;personal)
-  val `type`       = oneEnum(&#39;email_list, &#39;twitter, &#39;facebook_page, &#39;blog, &#39;website, &#39;wiki, &#39;myspace, &#39;ning)
-  val neighborhood = one[Neighborhood]
-}
+trait SeattleDefinition {
 
-trait Neighborhood {
-  val name     = oneString.fullTextSearch.uniqueIdentity
-  val district = one[District]
-}
+  trait Community {
+    val name         = oneString.fullTextSearch
+    val url          = oneString
+    val category     = manyString.fullTextSearch
+    val orgtype      = oneEnum(&#39;community, &#39;commercial, &#39;nonprofit, &#39;personal)
+    val `type`       = oneEnum(&#39;email_list, &#39;twitter, &#39;facebook_page, &#39;blog, &#39;website, &#39;wiki, &#39;myspace, &#39;ning)
+    val neighborhood = one[Neighborhood]
+  }
 
-trait District {
-  val name   = oneString.fullTextSearch.uniqueIdentity
-  val region = oneEnum(&#39;n, &#39;ne, &#39;e, &#39;se, &#39;s, &#39;sw, &#39;w, &#39;nw)
+  trait Neighborhood {
+    val name     = oneString.fullTextSearch.uniqueIdentity
+    val district = one[District]
+  }
+
+  trait District {
+    val name   = oneString.fullTextSearch.uniqueIdentity
+    val region = oneEnum(&#39;n, &#39;ne, &#39;e, &#39;se, &#39;s, &#39;sw, &#39;w, &#39;nw)
+  }
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#34;in-out-arities:cd34be2af46d72d5650506b793ee6fb3&#34;&gt;In/Out arities&lt;/h3&gt;
+&lt;p&gt;Here we define 3 namespaces: &lt;code&gt;Community&lt;/code&gt;, &lt;code&gt;Neighborhood&lt;/code&gt; and &lt;code&gt;District&lt;/code&gt; all having some attributes defined as fields given some type.&lt;/p&gt;
 
-&lt;p&gt;We annotate the first namespace in the schema with &lt;code&gt;@InOut(x, y)&lt;/code&gt;. This is to tell Molecule
+&lt;h3 id=&#34;definition-trait:eb6ae157f5199f108ae8e599fe0e98dc&#34;&gt;Definition trait&lt;/h3&gt;
+
+&lt;p&gt;Molecule has 3 conventions to define schemas:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;A definition file can have one definition trait&lt;/li&gt;
+&lt;li&gt;A definition trait name ends with &amp;ldquo;Definition&amp;rdquo; (like in &amp;ldquo;SeattleDefinition&amp;rdquo;)&lt;/li&gt;
+&lt;li&gt;One or more definition files are placed in a folder named &amp;ldquo;schema&amp;rdquo;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&#34;code-generation:eb6ae157f5199f108ae8e599fe0e98dc&#34;&gt;Code generation&lt;/h3&gt;
+
+&lt;p&gt;When running &lt;code&gt;sbt compile&lt;/code&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;in-out-arities:eb6ae157f5199f108ae8e599fe0e98dc&#34;&gt;In/Out arities&lt;/h3&gt;
+
+&lt;p&gt;We annotate the definition trait with &lt;code&gt;@InOut(x, y)&lt;/code&gt;. This is to tell Molecule
 how many inputs and outputs we expect molecules to be able to accept.&lt;/p&gt;
 
 &lt;p&gt;An input molecule like &lt;code&gt;Community.name(?).url(?)&lt;/code&gt; for instance awaits 2 inputs. For now the
@@ -232,7 +456,15 @@ unlikely that we will need to receive input for much more than 3 attributes at a
 for instance has 3 attributes (in 2 namespaces). We need to be able to return tuples of values from
 molecules so we can&amp;rsquo;t exceed Scala&amp;rsquo;s arity limit of 22 for tuples.&lt;/p&gt;
 
-&lt;h3 id=&#34;attribute-types:cd34be2af46d72d5650506b793ee6fb3&#34;&gt;Attribute types&lt;/h3&gt;
+&lt;p&gt;The number of in/out attributes determines the arity of the boilerplate domain classes Molecule will generate for us to build molecules from. So if we know already that we will only build molecules with say maximum 8 attributes then there&amp;rsquo;s no reason to create more boilerplate classes than necessary. We can always adjust the number up or down and recompile with &lt;code&gt;sbt compile&lt;/code&gt; to re-generate the domain classes if our schema/requirements change.&lt;/p&gt;
+
+&lt;h3 id=&#34;namespaces:eb6ae157f5199f108ae8e599fe0e98dc&#34;&gt;Namespaces&lt;/h3&gt;
+
+&lt;p&gt;Each trait in the Definition&lt;/p&gt;
+
+&lt;p&gt;Attributes having something in common are defined as fields in a namespace trait and we list all namespace traits in a Definition trait.&lt;/p&gt;
+
+&lt;h3 id=&#34;attribute-types:eb6ae157f5199f108ae8e599fe0e98dc&#34;&gt;Attribute types&lt;/h3&gt;
 
 &lt;p&gt;In the Seattle schema we defined 3 namespaces with different kinds of attributes:&lt;/p&gt;
 
@@ -242,7 +474,7 @@ molecules so we can&amp;rsquo;t exceed Scala&amp;rsquo;s arity limit of 22 for t
 &lt;li&gt;&lt;code&gt;one[&amp;lt;ReferencedNamespace&amp;gt;]&lt;/code&gt; defines a reference to another namespace&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&#34;attribute-options:cd34be2af46d72d5650506b793ee6fb3&#34;&gt;Attribute options&lt;/h3&gt;
+&lt;h3 id=&#34;attribute-options:eb6ae157f5199f108ae8e599fe0e98dc&#34;&gt;Attribute options&lt;/h3&gt;
 
 &lt;p&gt;Each attribute can also have some extra options:&lt;/p&gt;
 
@@ -298,7 +530,229 @@ molecules so we can&amp;rsquo;t exceed Scala&amp;rsquo;s arity limit of 22 for t
 
 &lt;p&gt;As you saw, we added &lt;code&gt;fulltextSearch&lt;/code&gt; and &lt;code&gt;uniqueIdentity&lt;/code&gt; to some of the attributes in the Seattle definition above. Molecule&amp;rsquo;s schema definition DSL let&amp;rsquo;s you only choose allowed options for any attribute type.&lt;/p&gt;
 
-&lt;h2 id=&#34;transacting-a-schema:cd34be2af46d72d5650506b793ee6fb3&#34;&gt;Transacting a schema&lt;/h2&gt;
+&lt;h2 id=&#34;transacting-a-schema:eb6ae157f5199f108ae8e599fe0e98dc&#34;&gt;Transacting a schema&lt;/h2&gt;
+
+&lt;p&gt;Having defined our domain in namespaces of attributes we then run &lt;code&gt;sbt compile&lt;/code&gt;.
+This makes Molecule automatically transform our definitions to transactional
+data in a format that Datomic needs in a schema file. Our two first attributes
+&lt;code&gt;name&lt;/code&gt; and &lt;code&gt;url&lt;/code&gt; for instance transforms to the following list of maps of key/values:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;object SeattleSchema extends Schema {
+
+  lazy val tx = Util.list(
+
+    // Community ----------------------------------------------------------
+
+    Util.map(&amp;quot;:db/id&amp;quot;                , Peer.tempid(&amp;quot;:db.part/db&amp;quot;),
+             &amp;quot;:db/ident&amp;quot;             , &amp;quot;:community/name&amp;quot;,
+             &amp;quot;:db/valueType&amp;quot;         , &amp;quot;:db.type/string&amp;quot;,
+             &amp;quot;:db/cardinality&amp;quot;       , &amp;quot;:db.cardinality/one&amp;quot;,
+             &amp;quot;:db/fulltext&amp;quot;          , true.asInstanceOf[Object],
+             &amp;quot;:db.install/_attribute&amp;quot;, &amp;quot;:db.part/db&amp;quot;),
+
+    Util.map(&amp;quot;:db/id&amp;quot;                , Peer.tempid(&amp;quot;:db.part/db&amp;quot;),
+             &amp;quot;:db/ident&amp;quot;             , &amp;quot;:community/url&amp;quot;,
+             &amp;quot;:db/valueType&amp;quot;         , &amp;quot;:db.type/string&amp;quot;,
+             &amp;quot;:db/cardinality&amp;quot;       , &amp;quot;:db.cardinality/one&amp;quot;,
+             &amp;quot;:db/fulltext&amp;quot;          , true.asInstanceOf[Object],
+             &amp;quot;:db.install/_attribute&amp;quot;, &amp;quot;:db.part/db&amp;quot;),
+           
+ // etc...
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Note how each attribute name is prefixed with the namespace name (&amp;rdquo;:community/name&amp;rdquo;).&lt;/p&gt;
+
+&lt;p&gt;Now we can easily transact the schema by simply writing:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;conn.transact(SeattleSchema.tx).get()
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Schema</title>
+      <link>http://scalamolecule.org/manual/schema/</link>
+      <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
+      
+      <guid>http://scalamolecule.org/manual/schema/</guid>
+      <description>
+
+&lt;h1 id=&#34;database-schema:e608d9ac6a0d5e2b6db229b78a3e65b4&#34;&gt;Database schema&lt;/h1&gt;
+
+&lt;p&gt;A schema defines what attributes you&amp;rsquo;ll have available to build molecules.&lt;/p&gt;
+
+&lt;p&gt;Preparing your domain to use Molecule takes 3 steps:&lt;/p&gt;
+
+&lt;h3 id=&#34;1-define-schema:e608d9ac6a0d5e2b6db229b78a3e65b4&#34;&gt;1. Define Schema&lt;/h3&gt;
+
+&lt;p&gt;A schema defines what attributes you&amp;rsquo;ll have available to build molecules.&lt;/p&gt;
+
+&lt;p&gt;Attributes having something in common are defined as fields in a namespace trait and we list all namespace traits in a Definition trait.&lt;/p&gt;
+
+&lt;p&gt;Shortened example from the &lt;a href=&#34;http://docs.datomic.com/tutorial.html&#34;&gt;Datomic Seattle tutorial&lt;/a&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;@InOut(3, 8)
+trait SeattleDefinition {
+
+  trait Community {
+    val name         = oneString.fullTextSearch
+    val url          = oneString
+    val category     = manyString.fullTextSearch
+    val orgtype      = oneEnum(&#39;community, &#39;commercial, &#39;nonprofit)
+    val `type`       = oneEnum(&#39;email_list, &#39;twitter, &#39;facebook_page)
+    val neighborhood = one[Neighborhood]
+  }
+
+  trait Neighborhood {
+    val name     = oneString.fullTextSearch.uniqueIdentity
+    val district = one[District]
+  }
+
+  trait District {
+    val name   = oneString.fullTextSearch.uniqueIdentity
+    val region = oneEnum(&#39;n, &#39;ne, &#39;e, &#39;se, &#39;s, &#39;sw, &#39;w, &#39;nw)
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Here we have a &lt;code&gt;Community&lt;/code&gt;, &lt;code&gt;Neighborhood&lt;/code&gt; and &lt;code&gt;District&lt;/code&gt; namespace each defining some attributes of various types.&lt;/p&gt;
+
+&lt;p&gt;Model your own domain structures with similar schemas and save each definition in a file in a &amp;ldquo;schema&amp;rdquo; folder anywhere within your project.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://scalamolecule.org/manual/&#34;&gt;Read more&amp;hellip;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;2-tell-sbt:e608d9ac6a0d5e2b6db229b78a3e65b4&#34;&gt;2. Tell sbt&lt;/h3&gt;
+
+&lt;p&gt;Tell sbt where to find your &amp;ldquo;schema&amp;rdquo; folders containing definition files:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;settings = commonSettings ++ Seq(
+  definitionDirectories(
+    &amp;quot;examples/src/main/scala/molecule/examples/dayOfDatomic&amp;quot;,
+    &amp;quot;examples/src/main/scala/molecule/examples/seattle&amp;quot;,
+    &amp;quot;examples/src/main/scala/molecule/examples/mbrainz&amp;quot;
+  )
+)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://scalamolecule.org/manual/&#34;&gt;Read more&amp;hellip;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;3-compile-generate-boilerplate-code:e608d9ac6a0d5e2b6db229b78a3e65b4&#34;&gt;3. Compile / generate boilerplate code&lt;/h3&gt;
+
+&lt;p&gt;&lt;code&gt;sbt compile&lt;/code&gt; your project, wait for your domain-customized boilerplate code to be generated - and you&amp;rsquo;re ready to make intuitive molecule queries!&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://scalamolecule.org/manual/&#34;&gt;Read more&amp;hellip;&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Boilerplate</title>
+      <link>http://scalamolecule.org/manual/schema/boilerplate/</link>
+      <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
+      
+      <guid>http://scalamolecule.org/manual/schema/boilerplate/</guid>
+      <description>
+
+&lt;h1 id=&#34;boilerplate-code:36a3cc328100a137a125b621a816413d&#34;&gt;Boilerplate code&lt;/h1&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;@InOut(3, 8)
+trait SeattleDefinition {
+
+  // namespace traits...
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;code-generation:36a3cc328100a137a125b621a816413d&#34;&gt;Code generation&lt;/h3&gt;
+
+&lt;p&gt;When running &lt;code&gt;sbt compile&lt;/code&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;in-out-arities:36a3cc328100a137a125b621a816413d&#34;&gt;In/Out arities&lt;/h3&gt;
+
+&lt;p&gt;We annotate the definition trait with &lt;code&gt;@InOut(x, y)&lt;/code&gt;. This is to tell Molecule
+how many inputs and outputs we expect molecules to be able to accept.&lt;/p&gt;
+
+&lt;p&gt;An input molecule like &lt;code&gt;Community.name(?).url(?)&lt;/code&gt; for instance awaits 2 inputs. For now the
+maximum is 3. Given that input values can be expressions like &lt;code&gt;name(&amp;quot;John&amp;quot; or &amp;quot;Lisa&amp;quot;)&lt;/code&gt; it seems
+unlikely that we will need to receive input for much more than 3 attributes at a time.&lt;/p&gt;
+
+&lt;p&gt;Outputs are the number of attributes we can build a molecule of. &lt;code&gt;Community.name.url.Neighborhood.name&lt;/code&gt;
+for instance has 3 attributes (in 2 namespaces). We need to be able to return tuples of values from
+molecules so we can&amp;rsquo;t exceed Scala&amp;rsquo;s arity limit of 22 for tuples.&lt;/p&gt;
+
+&lt;p&gt;The number of in/out attributes determines the arity of the boilerplate domain classes Molecule will generate for us to build molecules from. So if we know already that we will only build molecules with say maximum 8 attributes then there&amp;rsquo;s no reason to create more boilerplate classes than necessary. We can always adjust the number up or down and recompile with &lt;code&gt;sbt compile&lt;/code&gt; to re-generate the domain classes if our schema/requirements change.&lt;/p&gt;
+
+&lt;h3 id=&#34;namespaces:36a3cc328100a137a125b621a816413d&#34;&gt;Namespaces&lt;/h3&gt;
+
+&lt;p&gt;Each trait in the Definition&lt;/p&gt;
+
+&lt;p&gt;Attributes having something in common are defined as fields in a namespace trait and we list all namespace traits in a Definition trait.&lt;/p&gt;
+
+&lt;h3 id=&#34;attribute-types:36a3cc328100a137a125b621a816413d&#34;&gt;Attribute types&lt;/h3&gt;
+
+&lt;p&gt;In the Seattle schema we defined 3 namespaces with different kinds of attributes:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;oneString&lt;/code&gt;, &lt;code&gt;manyString&lt;/code&gt; etc defines cardinality and type of an attribute&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;oneEnum&lt;/code&gt;/&lt;code&gt;manyEnum&lt;/code&gt; defines enumerated values&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;one[&amp;lt;ReferencedNamespace&amp;gt;]&lt;/code&gt; defines a reference to another namespace&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;attribute-options:36a3cc328100a137a125b621a816413d&#34;&gt;Attribute options&lt;/h3&gt;
+
+&lt;p&gt;Each attribute can also have some extra options:&lt;/p&gt;
+
+&lt;p&gt;
+&lt;table border=&#34;1&#34; cellpadding=&#34;5&#34; cellspacing=&#34;0&#34; style=&#34;background-color:#f5f5f5;&#34;&gt;
+  &lt;tr&gt;
+    &lt;th align=&#34;left&#34; valign=&#34;top&#34; scope=&#34;col&#34;&gt;Option&lt;/th&gt;
+    &lt;th valign=&#34;top&#34; scope=&#34;col&#34;&gt;&lt;strong&gt;Indexes&lt;/strong&gt;&lt;/th&gt;
+    &lt;th scope=&#34;col&#34;&gt;Description&lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;tr valign=&#34;top&#34;&gt;
+    &lt;td valign=&#34;top&#34;&gt;doc&lt;/td&gt;
+    &lt;td align=&#34;center&#34; valign=&#34;top&#34;&gt;&amp;nbsp;&lt;/td&gt;
+    &lt;td&gt;Attribute description.&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr valign=&#34;top&#34;&gt;
+    &lt;td valign=&#34;top&#34;&gt;uniqueValue&lt;/td&gt;
+    &lt;td align=&#34;center&#34; valign=&#34;top&#34;&gt;✔︎&lt;/td&gt;
+    &lt;td&gt;Attribute value is unique to each entity.&lt;br&gt;
+      &lt;em&gt;Attempts to insert a duplicate value for a different entity id will fail.&lt;/em&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr valign=&#34;top&#34;&gt;
+    &lt;td valign=&#34;top&#34;&gt;uniqueIdentity&lt;/td&gt;
+    &lt;td align=&#34;center&#34; valign=&#34;top&#34;&gt;✔︎&lt;/td&gt;
+    &lt;td&gt;Attribute value is unique to each entity and &amp;quot;upsert&amp;quot; is enabled.&lt;br&gt;
+      &lt;em&gt;Attempts to insert a duplicate value for a temporary entity id will cause all attributes associated with that temporary id to be merged with the entity already in the database.&lt;/em&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td valign=&#34;top&#34;&gt;indexed&lt;/td&gt;
+    &lt;td align=&#34;center&#34; valign=&#34;top&#34;&gt;✔︎&lt;/td&gt;
+    &lt;td&gt;Generated index for this attribute.&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td valign=&#34;top&#34;&gt;fullTextSearch&lt;/td&gt;
+    &lt;td align=&#34;center&#34; valign=&#34;top&#34;&gt;✔︎&lt;/td&gt;
+    &lt;td&gt;Generate eventually consistent fulltext search index for this attribute.&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td valign=&#34;top&#34;&gt;isComponent&lt;/td&gt;
+    &lt;td align=&#34;center&#34; valign=&#34;top&#34;&gt;✔︎&lt;/td&gt;
+    &lt;td&gt;Specifies that an attribute whose type is :db.type/ref refers to a subcomponent of the entity to which the attribute is applied.&lt;br&gt;
+    &lt;em&gt;When you retract an entity with :db.fn/retractEntity, all subcomponents are also retracted. When you touch an entity, all its subcomponent entities are touched recursively.&lt;/em&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td valign=&#34;top&#34;&gt;noHistory&lt;/td&gt;
+    &lt;td align=&#34;center&#34; valign=&#34;top&#34;&gt;&amp;nbsp;&lt;/td&gt;
+    &lt;td&gt;Whether past values of an attribute should not be retained.&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Datomic indexes the values of all attributes having an option except for the &lt;code&gt;doc&lt;/code&gt; and &lt;code&gt;noHistory&lt;/code&gt; options.&lt;/p&gt;
+
+&lt;p&gt;As you saw, we added &lt;code&gt;fulltextSearch&lt;/code&gt; and &lt;code&gt;uniqueIdentity&lt;/code&gt; to some of the attributes in the Seattle definition above. Molecule&amp;rsquo;s schema definition DSL let&amp;rsquo;s you only choose allowed options for any attribute type.&lt;/p&gt;
+
+&lt;h2 id=&#34;transacting-a-schema:36a3cc328100a137a125b621a816413d&#34;&gt;Transacting a schema&lt;/h2&gt;
 
 &lt;p&gt;Having defined our domain in namespaces of attributes we then run &lt;code&gt;sbt compile&lt;/code&gt;.
 This makes Molecule automatically transform our definitions to transactional

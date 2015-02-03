@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Xxolds on Molecule</title>
+    <link>http://localhost:1313/xxold/</link>
+    <description>Recent content in Xxolds on Molecule</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+    
+    <lastBuildDate>Fri, 02 Jan 2015 22:06:44 CET</lastBuildDate>
+    <atom:link href="http://localhost:1313/xxold/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Attributes</title>
+      <link>http://localhost:1313/xxOld/attributes/</link>
+      <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
+      
+      <guid>http://localhost:1313/xxOld/attributes/</guid>
+      <description>
+
+&lt;h1 id=&#34;attribute-builder-pattern:199f4b06fef5a61f833f209ac24fd4c2&#34;&gt;Attribute builder pattern&lt;/h1&gt;
+
+&lt;p&gt;Molecule Attributes are organized in Namespaces.&lt;/p&gt;
+
+&lt;h3 id=&#34;namespaced-attributes:199f4b06fef5a61f833f209ac24fd4c2&#34;&gt;Namespaced Attributes&lt;/h3&gt;
+
+&lt;p&gt;A molecule starts with a Namespace and builds on with attributes and/or other Namespaces/Attributes to form a desired data structure to work with. We could for instance have some attributes that relates to how we model a Person and organize those attributes in a &lt;code&gt;Person&lt;/code&gt; namespace:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;trait Person {
+  val name = oneString
+  val age  = oneInt
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We can then use the Attributes &lt;code&gt;name&lt;/code&gt; and &lt;code&gt;age&lt;/code&gt; to build a molecule that will query for names and ages of person in the database:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val persons = Person.name.age.get
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>xxBasics</title>
+      <link>http://localhost:1313/xxOld/basics/</link>
+      <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
+      
+      <guid>http://localhost:1313/xxOld/basics/</guid>
+      <description>
+
+&lt;h1 id=&#34;basics:adb90e22eee79282d53440b555325fbd&#34;&gt;Basics&lt;/h1&gt;
+
+&lt;p&gt;Molecule is a domain-tailored abstraction layer on top of the Datomic database. It can therefore be good to first know a little about Datomic in order to understand Molecule.&lt;/p&gt;
+
+&lt;h3 id=&#34;facts-datoms:adb90e22eee79282d53440b555325fbd&#34;&gt;Facts/Datoms&lt;/h3&gt;
+
+&lt;p&gt;The core unit of data in Datomic is a fact or a &amp;ldquo;&lt;em&gt;datom&lt;/em&gt;&amp;rdquo; that consists of 4 elements:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt; John     likes    pizza      12:35:54
+   |        |        |           |
+Entity  Attribute  Value  Transaction/time
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The fact that John likes pizza at a certain time is modelled as a datom in Datomic.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;likes&lt;/em&gt; is an &lt;code&gt;attribute&lt;/code&gt; with &lt;code&gt;value&lt;/code&gt; &lt;em&gt;pizza&lt;/em&gt;. It is &lt;strong&gt;asserted&lt;/strong&gt; that the &lt;code&gt;entity&lt;/code&gt; &lt;em&gt;johnId&lt;/em&gt; likes pizza at &lt;code&gt;transaction&lt;/code&gt; time 12:35:54 (a timestamp is automatically set with all transactions).&lt;/p&gt;
+
+&lt;h3 id=&#34;datomic-attributes:adb90e22eee79282d53440b555325fbd&#34;&gt;Datomic Attributes&lt;/h3&gt;
+
+&lt;p&gt;Attributes are often (but not necessarily!) prefixed with a Namespace in Datomic. The &lt;code&gt;likes&lt;/code&gt; Attribute could for instance have been prefixed with a &lt;code&gt;Person&lt;/code&gt; Namespace so that we can refer to it as &lt;code&gt;:person/likes&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Namespaces are simply used to prefix Attributes with a meaningful common characteristic of your domain which can also help prevent Attribute name clashes.&lt;/p&gt;
+
+&lt;h3 id=&#34;molecule-attributes:adb90e22eee79282d53440b555325fbd&#34;&gt;Molecule Attributes&lt;/h3&gt;
+
+&lt;p&gt;With Molecule we model Namespaces with uppercase words and Attributes with lower-case words. We can model the above fact like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.name(&amp;quot;John&amp;quot;).likes(&amp;quot;pizza&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This is like a &amp;ldquo;molecular data structure&amp;rdquo; of Attributes with some values that we are interested in. In this case Entities with two Attributes having certain values. We can imagine that we &amp;ldquo;project&amp;rdquo; a data template onto the graph of data that we operate on to see if there&amp;rsquo;s some &amp;ldquo;matches&amp;rdquo;.&lt;/p&gt;
+
+&lt;h3 id=&#34;entities:adb90e22eee79282d53440b555325fbd&#34;&gt;Entities&lt;/h3&gt;
+
+&lt;p&gt;An Entity is basically an id number that is created when we assert one or more facts in a transaction. An Entity is comprised by the Attributes associated with it. Or we could say that an Entity is a bunch of associations to Attribute values - or &lt;em&gt;Datoms&lt;/em&gt; in the words of Datomic.&lt;/p&gt;
+
+&lt;p&gt;Those Attributes could come from multiple Namespaces which make Entities free and not bound to any Namespace.&lt;/p&gt;
+
+&lt;h3 id=&#34;inserting-data:adb90e22eee79282d53440b555325fbd&#34;&gt;Inserting data&lt;/h3&gt;
+
+&lt;p&gt;We can create a new Entity with two Attributes and return the created id:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val johnId = Person.name(&amp;quot;John&amp;quot;).likes(&amp;quot;pizza&amp;quot;).insert.id
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;There&amp;rsquo;s now an entity with two Attributes associated with it and together we can think of this entity as representing John. A transaction time is automatically set with each transaction by Datomic.&lt;/p&gt;
+
+&lt;h3 id=&#34;querying-data:adb90e22eee79282d53440b555325fbd&#34;&gt;Querying data&lt;/h3&gt;
+
+&lt;h3 id=&#34;manipulating-data:adb90e22eee79282d53440b555325fbd&#34;&gt;Manipulating data&lt;/h3&gt;
+
+&lt;p&gt;If John at a later point likes something else than pizza we can assert a new fact that will then get a later timestamp of this transaction:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person(johnId).likes(&amp;quot;pizza&amp;quot;).update
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;. You can see it as a &amp;ldquo;template&amp;rdquo; for d&lt;/p&gt;
+
+&lt;p&gt;As you see we can apply values to an Attribute to insert and update&lt;/p&gt;
+
+&lt;p&gt;Attributes are composed to form &amp;ldquo;molecules&amp;rdquo; that describe unique and flexible data structures in unique combinations suiting your domain. Those are then translated to Datalog queries being executed against the underlying Datomic database.&lt;/p&gt;
+
+&lt;p&gt;An attribute in Datomic is part of &lt;em&gt;fact&lt;/em&gt; or &lt;em&gt;Datom&lt;/em&gt; consisting of four elements:&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;likes&lt;/em&gt; is an &lt;code&gt;attribute&lt;/code&gt; with &lt;code&gt;value&lt;/code&gt; &lt;em&gt;pizza&lt;/em&gt;. It is &lt;strong&gt;asserted&lt;/strong&gt; that the &lt;code&gt;entity&lt;/code&gt; &lt;em&gt;johnId&lt;/em&gt; likes) pizza at &lt;code&gt;transaction&lt;/code&gt; time 12:35:54. A timestamp is automatically set with all transactions. But if we need &amp;ldquo;domain time&amp;rdquo; we could add such attribute to the transaction as well, since this is simply a saved data structure in Datomic as our domain data.&lt;/p&gt;
+
+&lt;h3 id=&#34;immutable-data:adb90e22eee79282d53440b555325fbd&#34;&gt;Immutable data&lt;/h3&gt;
+
+&lt;p&gt;Everytime a fact is asserted the old value of the attribute is &lt;em&gt;not deleted&lt;/em&gt;. A Datomic database is immutable. We can go back in time and see the values of an attribute &lt;em&gt;at any point in time&lt;/em&gt;. We could for instance see all our previous addresses if this was part of our domain model.&lt;/p&gt;
+
+&lt;p&gt;Also when we delete data, it&amp;rsquo;s actually not deleted, but &amp;ldquo;retracted&amp;rdquo;. Retracted data doesn&amp;rsquo;t show up when we are querying the current database. But if we look at the database at an earlier point in time we can see the data before it got retracted.&lt;/p&gt;
+
+&lt;h3 id=&#34;namespaces-and-attributes:adb90e22eee79282d53440b555325fbd&#34;&gt;Namespaces and attributes&lt;/h3&gt;
+
+&lt;p&gt;&lt;code&gt;attributes&lt;/code&gt; are organized in &lt;code&gt;namespaces&lt;/code&gt; to group related qualities of our domain:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/img/DatomicElements1.png&#34; alt=&#34;&#34; /&gt;
+&lt;/p&gt;
+
+&lt;h3 id=&#34;entity-row-in-an-sql-table:adb90e22eee79282d53440b555325fbd&#34;&gt;Entity != row in an sql Table&lt;/h3&gt;
+
+&lt;p&gt;An &lt;code&gt;entity&lt;/code&gt; can have &lt;em&gt;any&lt;/em&gt; &lt;code&gt;attribute&lt;/code&gt; from &lt;em&gt;any&lt;/em&gt; &lt;code&gt;namespace&lt;/code&gt; associated to it:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/img/DatomicElements2.png&#34; alt=&#34;&#34; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;An entity is therefore not like a row in a table but rather a &amp;ldquo;cross-cutting&amp;rdquo; thing that we can freely associate any attribute value to. Note how &amp;ldquo;attrB1&amp;rdquo; in this example is not associated to entity1.&lt;/p&gt;
+
+&lt;h3 id=&#34;further-reading:adb90e22eee79282d53440b555325fbd&#34;&gt;Further reading&amp;hellip;&lt;/h3&gt;
+
+&lt;p&gt;Go straight to the &lt;a href=&#34;https://github.com/scalamolecule/wiki/Molecule-Seattle-tutorial&#34;&gt;Molecule Seattle tutorial&lt;/a&gt; to see a wide range of
+ queries that Molecule can express, or check out first how we use Molecule to
+ &lt;a href=&#34;https://github.com/scalamolecule/wiki/Setup-a-Datomic-database&#34;&gt;setup the database&lt;/a&gt; and &lt;a href=&#34;https://github.com/scalamolecule/wiki/Populate-the-database&#34;&gt;populated it with data&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;From a Schema that we define, Molecule will create the necessary boilerplate code so that we can build unique strings of &amp;ldquo;molecular data structures&amp;rdquo; like for instance names and ages of Persons:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val persons = Person.name.age.get
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The fundamental building blocks are Namespaces like &lt;code&gt;Person&lt;/code&gt; and Attributes like &lt;code&gt;name&lt;/code&gt; and &lt;code&gt;age&lt;/code&gt;. Attributes are not dependent of or a sub-unit of Namespaces like Columns are to Tables in the SQL world. Namespaces are rather a way of organizing Attributes to avoid name clashes.&lt;/p&gt;
+
+&lt;p&gt;. We could for instance build a&lt;/p&gt;
+
+&lt;h3 id=&#34;building-molecules:adb90e22eee79282d53440b555325fbd&#34;&gt;Building molecules&lt;/h3&gt;
+
+&lt;p&gt;A molecule starts with a Namespace and builds on with attributes and/or other Namespaces/Attributes to form a desired data structure to work with. We could for instance have some attributes that relates to how we model a Person and organize those attributes in a &lt;code&gt;Person&lt;/code&gt; namespace:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;trait Person {
+  val name = oneString
+  val age  = oneInt
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We can then use the Attributes &lt;code&gt;name&lt;/code&gt; and &lt;code&gt;age&lt;/code&gt; to build a molecule that will query for names and ages of person in the database:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val persons = Person.name.age.get
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;a &lt;code&gt;Person&lt;/code&gt; namespace&lt;/p&gt;
+
+&lt;p&gt;Attributes are organized in Namespaces that are more organizational than operational as tables are in the SQL world. Namespaces are more a way of organizing attributes that have something in common according to your domain.&lt;/p&gt;
+
+&lt;h3 id=&#34;safe:adb90e22eee79282d53440b555325fbd&#34;&gt;Safe&lt;/h3&gt;
+
+&lt;p&gt;Our query asks for entities having values defined for all three attributes. If some entity doesn&amp;rsquo;t have the &lt;code&gt;street&lt;/code&gt; attribute set it won&amp;rsquo;t be returned. So we can safely assume that our result set contains no null values and we therefore return the raw values (without using Optional for instance).&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
