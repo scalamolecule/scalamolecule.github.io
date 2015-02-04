@@ -150,7 +150,7 @@ Community.name.url.category
 <pre><code class="language-scala">Community.name.type_(&quot;twitter&quot;)
 </code></pre>
 
-<p>Noter how we add an underscore to the <code>type</code> attribute to tell Molecule that we want to omit returning this value in the result set (since it will have the value &ldquo;twitter&rdquo; for all returned entities).</p>
+<p>Note how we add an underscore to the <code>type</code> attribute to tell Molecule that we want to omit returning this value in the result set (since it will have the value &ldquo;twitter&rdquo; for all returned entities).</p>
 
 <p>Since the <code>type</code> attribute is defined as en enumeration Molecule checks the &ldquo;twitter&rdquo; value at <em>compile time</em> against the defined enumeration values that we have definied in our schema for the <code>Community</code> namespace to ensure that &ldquo;twitter&rdquo; is one of the enums. If it is not, our molecule won&rsquo;t compile and we&rsquo;ll get an error showing the available enum values.</p>
 

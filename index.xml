@@ -127,6 +127,28 @@
     </item>
     
     <item>
+      <title>Community</title>
+      <link>http://scalamolecule.org/community/overview/</link>
+      <pubDate>Wed, 14 May 2014 02:13:50 UTC</pubDate>
+      
+      <guid>http://scalamolecule.org/community/overview/</guid>
+      <description>
+
+&lt;h1 id=&#34;community:68f80267fa3a50980dbb745a782b8dca&#34;&gt;Community&lt;/h1&gt;
+
+&lt;h2 id=&#34;resources:68f80267fa3a50980dbb745a782b8dca&#34;&gt;Resources&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;[Molecule google list][moleculegroup] for questions and discussions about Molecule and other Scala-based Datomic resources&lt;/li&gt;
+&lt;li&gt;[Issues][issues] - please feel free to raise issues/report bugs&lt;/li&gt;
+&lt;li&gt;[Pull requests][pullrequests] are welcome&lt;/li&gt;
+&lt;li&gt;[Datomic][datomic] website&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/pellucidanalytics/datomisca&#34;&gt;Datomisca&lt;/a&gt;, a Scala API for Datomic&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Compare</title>
       <link>http://scalamolecule.org/compare/overview/</link>
       <pubDate>Wed, 14 May 2014 02:13:50 UTC</pubDate>
@@ -197,28 +219,6 @@ val songs = Song.e.artist(id).get
 &lt;/ul&gt;
 
 &lt;p&gt;If you want to translate one into Molecule, please feel free to submit a pull request or bring up ideas.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Community</title>
-      <link>http://scalamolecule.org/community/overview/</link>
-      <pubDate>Wed, 14 May 2014 02:13:50 UTC</pubDate>
-      
-      <guid>http://scalamolecule.org/community/overview/</guid>
-      <description>
-
-&lt;h1 id=&#34;community:68f80267fa3a50980dbb745a782b8dca&#34;&gt;Community&lt;/h1&gt;
-
-&lt;h2 id=&#34;resources:68f80267fa3a50980dbb745a782b8dca&#34;&gt;Resources&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;[Molecule google list][moleculegroup] for questions and discussions about Molecule and other Scala-based Datomic resources&lt;/li&gt;
-&lt;li&gt;[Issues][issues] - please feel free to raise issues/report bugs&lt;/li&gt;
-&lt;li&gt;[Pull requests][pullrequests] are welcome&lt;/li&gt;
-&lt;li&gt;[Datomic][datomic] website&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/pellucidanalytics/datomisca&#34;&gt;Datomisca&lt;/a&gt;, a Scala API for Datomic&lt;/li&gt;
-&lt;/ul&gt;
 </description>
     </item>
     
@@ -1477,6 +1477,18 @@ as described in &lt;a href=&#34;http://scalamolecule.org/manual/database-setup&#
     </item>
     
     <item>
+      <title>Forum</title>
+      <link>http://scalamolecule.org/community/forum/</link>
+      <pubDate>Wed, 14 May 2014 02:13:50 UTC</pubDate>
+      
+      <guid>http://scalamolecule.org/community/forum/</guid>
+      <description>
+
+&lt;h1 id=&#34;forum:9bf17893d33490888c600c67505ec118&#34;&gt;Forum&lt;/h1&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Datomic</title>
       <link>http://scalamolecule.org/compare/datomic/</link>
       <pubDate>Wed, 14 May 2014 02:13:50 UTC</pubDate>
@@ -1523,7 +1535,7 @@ Community.name.url.category
 &lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Community.name.type_(&amp;quot;twitter&amp;quot;)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;Noter how we add an underscore to the &lt;code&gt;type&lt;/code&gt; attribute to tell Molecule that we want to omit returning this value in the result set (since it will have the value &amp;ldquo;twitter&amp;rdquo; for all returned entities).&lt;/p&gt;
+&lt;p&gt;Note how we add an underscore to the &lt;code&gt;type&lt;/code&gt; attribute to tell Molecule that we want to omit returning this value in the result set (since it will have the value &amp;ldquo;twitter&amp;rdquo; for all returned entities).&lt;/p&gt;
 
 &lt;p&gt;Since the &lt;code&gt;type&lt;/code&gt; attribute is defined as en enumeration Molecule checks the &amp;ldquo;twitter&amp;rdquo; value at &lt;em&gt;compile time&lt;/em&gt; against the defined enumeration values that we have definied in our schema for the &lt;code&gt;Community&lt;/code&gt; namespace to ensure that &amp;ldquo;twitter&amp;rdquo; is one of the enums. If it is not, our molecule won&amp;rsquo;t compile and we&amp;rsquo;ll get an error showing the available enum values.&lt;/p&gt;
 
@@ -1908,18 +1920,6 @@ List(
 
 &lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Community(belltownId).name(&amp;quot;belltown 3&amp;quot;).url().category().update
 &lt;/code&gt;&lt;/pre&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Forum</title>
-      <link>http://scalamolecule.org/community/forum/</link>
-      <pubDate>Wed, 14 May 2014 02:13:50 UTC</pubDate>
-      
-      <guid>http://scalamolecule.org/community/forum/</guid>
-      <description>
-
-&lt;h1 id=&#34;forum:9bf17893d33490888c600c67505ec118&#34;&gt;Forum&lt;/h1&gt;
 </description>
     </item>
     

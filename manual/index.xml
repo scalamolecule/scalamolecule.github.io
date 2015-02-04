@@ -665,6 +665,8 @@ trait Community_1  {
 // etc...
 &lt;/code&gt;&lt;/pre&gt;
 
+&lt;p&gt;See&lt;/p&gt;
+
 &lt;h3 id=&#34;increasing-arity:36a3cc328100a137a125b621a816413d&#34;&gt;Increasing arity&amp;hellip;&lt;/h3&gt;
 
 &lt;p&gt;When we build &lt;code&gt;Community.name&lt;/code&gt;, the &lt;code&gt;name&lt;/code&gt; field of &lt;code&gt;Community_0&lt;/code&gt; points on to &lt;code&gt;Community_1&lt;/code&gt; since the arity of our molecule is now 1. We expect &lt;code&gt;Community.name&lt;/code&gt; to return values for 1 attribute.&lt;/p&gt;
