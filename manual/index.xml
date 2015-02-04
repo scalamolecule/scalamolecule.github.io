@@ -397,7 +397,7 @@ entity in Datomic can associate values of attributes &lt;em&gt;from any namespac
 
 &lt;p&gt;A Molecule Schema defines what attributes you&amp;rsquo;ll have available to build molecules.&lt;/p&gt;
 
-&lt;p&gt;Preparing your domain to use Molecule in 3 steps:&lt;/p&gt;
+&lt;p&gt;Prepare your domain in 3 steps to use Molecule:&lt;/p&gt;
 
 &lt;h3 id=&#34;1-define-schema:e608d9ac6a0d5e2b6db229b78a3e65b4&#34;&gt;1. Define Schema&lt;/h3&gt;
 
