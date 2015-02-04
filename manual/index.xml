@@ -632,7 +632,7 @@ trait SeattleDefinition {
 
 &lt;h1 id=&#34;boilerplate-code:36a3cc328100a137a125b621a816413d&#34;&gt;Boilerplate code&lt;/h1&gt;
 
-&lt;p&gt;SBT will call ask the &lt;code&gt;DslBoilerplate&lt;/code&gt; file in our project folder to use our schema definition files as templates to generate a series of domain-specific boilerplate traits for us.&lt;/p&gt;
+&lt;p&gt;SBT will ask the &lt;code&gt;DslBoilerplate&lt;/code&gt; file in our project folder to use our schema definition files as templates to generate a series of domain-specific boilerplate traits for us.&lt;/p&gt;
 
 &lt;p&gt;With these generated we can then build intuitive molecules like&lt;/p&gt;
 
