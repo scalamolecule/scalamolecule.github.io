@@ -95,7 +95,9 @@ val songs = Song.e.artist(id).get
 
 &lt;h1 id=&#34;compare-with-datomic-datalog:fce8223ee4fefc246edc14cd715d3099&#34;&gt;Compare with Datomic/Datalog&lt;/h1&gt;
 
-&lt;p&gt;It might seem strange to compare Molecule with Datomic since Molecule is adapting to Datomic. But Datalog is still very different from Molecule. So let&amp;rsquo;s have a look at their differences - &lt;a href=&#34;https://github.com/scalamolecule/molecule/blob/master/examples/src/test/scala/molecule/examples/seattle/SeattleQueryTests.scala&#34;&gt;follow along in the code&lt;/a&gt; from which we will pick a few examples based on the Seattle tutorial examples.&lt;/p&gt;
+&lt;p&gt;Even though Molecule is adapting to Datomic we&amp;rsquo;ll have a look the other way around to see how Datomic compares to Molecule.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/scalamolecule/molecule/blob/master/examples/src/test/scala/molecule/examples/seattle/SeattleQueryTests.scala&#34;&gt;Follow along in the code&lt;/a&gt; from which we will pick a few examples based on the Seattle tutorial examples.&lt;/p&gt;
 
 &lt;h3 id=&#34;querying-for-attribute-values:fce8223ee4fefc246edc14cd715d3099&#34;&gt;Querying &lt;em&gt;for&lt;/em&gt; attribute values&lt;/h3&gt;
 
