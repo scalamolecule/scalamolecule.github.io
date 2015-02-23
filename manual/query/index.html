@@ -138,10 +138,10 @@ Person.name.age_.gender // require but omit values (&quot;tacet values&quot;)
 
 <p><a href="/manual/query/types">Types</a> - all types inferred by IDE</p>
 
-<pre><code class="language-scala">val name   : String      = Person.name.get.one
-val age    : Int         = Person.age.get.one
-val hobbies: Set[String] = Person.hobbies.get.one // cardinality-many
-val gender : String      = Person.gender.get.one  // enum values
+<pre><code class="language-scala">val name   : String      = Person.name.one
+val age    : Int         = Person.age.one
+val hobbies: Set[String] = Person.hobbies.one // cardinality-many
+val gender : String      = Person.gender.one  // enum values
 </code></pre>
 
 <p><a href="/manual/query/expressions">Expressions</a> - filter attribute values with expressions</p>

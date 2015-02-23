@@ -295,7 +295,7 @@ trait SeattleDefinition {
 
 &lt;p&gt;A simple dsl lets you define attributes of your domain by type, cardinality and options/values with as little ceremony as possible.&lt;/p&gt;
 
-&lt;h3 id=&#34;attribute-types:eb6ae157f5199f108ae8e599fe0e98dc&#34;&gt;Attribute types&lt;/h3&gt;
+&lt;h3 id=&#34;schema-definition:eb6ae157f5199f108ae8e599fe0e98dc&#34;&gt;Schema definition&lt;/h3&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;@InOut(3, 8)
 trait SeattleDefinition {
@@ -329,7 +329,7 @@ trait SeattleDefinition {
 &lt;li&gt;&lt;code&gt;one[&amp;lt;ReferencedNamespace&amp;gt;]&lt;/code&gt; defines a reference to another namespace&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&#34;attribute-types-1:eb6ae157f5199f108ae8e599fe0e98dc&#34;&gt;Attribute types&lt;/h3&gt;
+&lt;h3 id=&#34;attribute-types:eb6ae157f5199f108ae8e599fe0e98dc&#34;&gt;Attribute types&lt;/h3&gt;
 
 &lt;p&gt;We have the following types available:&lt;/p&gt;
 
@@ -813,10 +813,10 @@ Person.name.age_.gender // require but omit values (&amp;quot;tacet values&amp;q
 
 &lt;p&gt;&lt;a href=&#34;http://scalamolecule.org/manual/query/types&#34;&gt;Types&lt;/a&gt; - all types inferred by IDE&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val name   : String      = Person.name.get.one
-val age    : Int         = Person.age.get.one
-val hobbies: Set[String] = Person.hobbies.get.one // cardinality-many
-val gender : String      = Person.gender.get.one  // enum values
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val name   : String      = Person.name.one
+val age    : Int         = Person.age.one
+val hobbies: Set[String] = Person.hobbies.one // cardinality-many
+val gender : String      = Person.gender.one  // enum values
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;&lt;a href=&#34;http://scalamolecule.org/manual/query/expressions&#34;&gt;Expressions&lt;/a&gt; - filter attribute values with expressions&lt;/p&gt;
