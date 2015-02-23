@@ -38,7 +38,17 @@
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/manual/attribute/builder/</loc>
+    <loc>http://scalamolecule.org/manual/query/builder/</loc>
+    <lastmod>2015-01-02T22:06:44+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://scalamolecule.org/manual/schema/files/</loc>
+    <lastmod>2015-01-02T22:06:44+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://scalamolecule.org/manual/schema/</loc>
     <lastmod>2015-01-02T22:06:44+01:00</lastmod>
   </url>
   
@@ -68,7 +78,17 @@
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/manual/attribute/types/</loc>
+    <loc>http://scalamolecule.org/manual/query/types/</loc>
+    <lastmod>2015-01-02T22:06:44+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://scalamolecule.org/manual/schema/definition/</loc>
+    <lastmod>2015-01-02T22:06:44+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://scalamolecule.org/manual/setup/</loc>
     <lastmod>2015-01-02T22:06:44+01:00</lastmod>
   </url>
   
@@ -83,12 +103,12 @@
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/manual/attribute/values/</loc>
+    <loc>http://scalamolecule.org/manual/insert/</loc>
     <lastmod>2015-01-02T22:06:44+01:00</lastmod>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/manual/attribute/</loc>
+    <loc>http://scalamolecule.org/manual/query/expressions/</loc>
     <lastmod>2015-01-02T22:06:44+01:00</lastmod>
   </url>
   
@@ -98,37 +118,32 @@
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/manual/attribute/logical-or/</loc>
+    <loc>http://scalamolecule.org/manual/query/aggregates/</loc>
     <lastmod>2015-01-02T22:06:44+01:00</lastmod>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/manual/attribute/parameterize/</loc>
+    <loc>http://scalamolecule.org/manual/update/</loc>
     <lastmod>2015-01-02T22:06:44+01:00</lastmod>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/manual/database-setup/</loc>
+    <loc>http://scalamolecule.org/manual/query/or-logic/</loc>
     <lastmod>2015-01-02T22:06:44+01:00</lastmod>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/manual/modelling/</loc>
+    <loc>http://scalamolecule.org/manual/query/parameterize/</loc>
     <lastmod>2015-01-02T22:06:44+01:00</lastmod>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/manual/schema/</loc>
+    <loc>http://scalamolecule.org/manual/query/</loc>
     <lastmod>2015-01-02T22:06:44+01:00</lastmod>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/manual/schema/definition/</loc>
-    <lastmod>2015-01-02T22:06:44+01:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://scalamolecule.org/manual/schema/files/</loc>
+    <loc>http://scalamolecule.org/manual/schema/modelling/</loc>
     <lastmod>2015-01-02T22:06:44+01:00</lastmod>
   </url>
   
@@ -139,11 +154,6 @@
   
   <url>
     <loc>http://scalamolecule.org/manual/schema/datomic-schema/</loc>
-    <lastmod>2015-01-02T22:06:44+01:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://scalamolecule.org/manual/populate-database/</loc>
     <lastmod>2015-01-02T22:06:44+01:00</lastmod>
   </url>
   
