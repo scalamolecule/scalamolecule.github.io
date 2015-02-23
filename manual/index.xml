@@ -176,7 +176,7 @@ URI                 Set[URI]
 enum: String        enums: Set[String]              
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;Attribute are defined in your schema.&lt;/p&gt;
+&lt;p&gt;Attribute are defined in your &lt;a href=&#34;http://scalamolecule.org/manual/schema/definition/&#34;&gt;schema&lt;/a&gt;.&lt;/p&gt;
 
 &lt;h3 id=&#34;types-inferred:3d59665407ad3f08f6bcaef4686926f7&#34;&gt;Types inferred&lt;/h3&gt;
 
