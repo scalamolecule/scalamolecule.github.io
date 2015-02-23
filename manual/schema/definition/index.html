@@ -164,6 +164,41 @@ trait SeattleDefinition {
 <li><code>one[&lt;ReferencedNamespace&gt;]</code> defines a reference to another namespace</li>
 </ul>
 
+<h3 id="attribute-types-1:eb6ae157f5199f108ae8e599fe0e98dc">Attribute types</h3>
+
+<p>We have the following types available:</p>
+
+<pre><code>Cardinality one     Cardinality many
+---------------     ----------------
+oneString           manyString
+oneInt              manyInt   
+oneLong             manyLong    
+oneFloat            manyFloat     
+oneDouble           manyDouble      
+oneBoolean          manyBoolean      
+oneDate             manyDate    
+oneUUID             manyUUID    
+oneURI              manyURI   
+oneEnum             manyEnum              
+</code></pre>
+
+<p>Datomic also has types <code>BigInt</code> and <code>Bytes</code> and those could later be implemented in Molecule if there&rsquo;s a need for those types.</p>
+
+<p>Cardinality-one attributes can have one value per entity.</p>
+
+<p>Cardinality-many attributes can have a <em>Set of unique values</em> per entity. Often we choose instead to model many-values as a many-reference to some other namespace where we can define more.</p>
+
+<h3 id="reference-types:eb6ae157f5199f108ae8e599fe0e98dc">Reference types</h3>
+
+<p>References are also treated like attributes. It&rsquo;s basically a reference to one or many entities. We define such relationship by supplying the referenced namespace as the type parameter to the <code>one</code>/<code>many</code></p>
+
+<pre><code>Cardinality one         Cardinality many
+---------------         ----------------
+one[&lt;Ref-namespace&gt;]    many[&lt;Ref-namespace&gt;]
+</code></pre>
+
+<p>In the example above we saw a reference from Community to Neighborhood defined as <code>one[Neighborhood]</code>. We would for instance likely define an Order/Order Line relationship in an Order namespace as <code>many[OrderLine]</code>.</p>
+
 <h3 id="attribute-options:eb6ae157f5199f108ae8e599fe0e98dc">Attribute options</h3>
 
 <p>Each attribute can also have some extra options:</p>

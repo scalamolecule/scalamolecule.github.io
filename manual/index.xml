@@ -169,7 +169,7 @@ Int                 Set[Int]
 Long                Set[Long]    
 Float               Set[Float]     
 Double              Set[Double]      
-Boolean             N/A       
+Boolean             Set[Boolean]      
 Date                Set[Date]    
 UUID                Set[UUID]    
 URI                 Set[URI]   
@@ -507,6 +507,41 @@ trait SeattleDefinition {
 &lt;li&gt;&lt;code&gt;oneEnum&lt;/code&gt;/&lt;code&gt;manyEnum&lt;/code&gt; defines enumerated values&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;one[&amp;lt;ReferencedNamespace&amp;gt;]&lt;/code&gt; defines a reference to another namespace&lt;/li&gt;
 &lt;/ul&gt;
+
+&lt;h3 id=&#34;attribute-types-1:eb6ae157f5199f108ae8e599fe0e98dc&#34;&gt;Attribute types&lt;/h3&gt;
+
+&lt;p&gt;We have the following types available:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Cardinality one     Cardinality many
+---------------     ----------------
+oneString           manyString
+oneInt              manyInt   
+oneLong             manyLong    
+oneFloat            manyFloat     
+oneDouble           manyDouble      
+oneBoolean          manyBoolean      
+oneDate             manyDate    
+oneUUID             manyUUID    
+oneURI              manyURI   
+oneEnum             manyEnum              
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Datomic also has types &lt;code&gt;BigInt&lt;/code&gt; and &lt;code&gt;Bytes&lt;/code&gt; and those could later be implemented in Molecule if there&amp;rsquo;s a need for those types.&lt;/p&gt;
+
+&lt;p&gt;Cardinality-one attributes can have one value per entity.&lt;/p&gt;
+
+&lt;p&gt;Cardinality-many attributes can have a &lt;em&gt;Set of unique values&lt;/em&gt; per entity. Often we choose instead to model many-values as a many-reference to some other namespace where we can define more.&lt;/p&gt;
+
+&lt;h3 id=&#34;reference-types:eb6ae157f5199f108ae8e599fe0e98dc&#34;&gt;Reference types&lt;/h3&gt;
+
+&lt;p&gt;References are also treated like attributes. It&amp;rsquo;s basically a reference to one or many entities. We define such relationship by supplying the referenced namespace as the type parameter to the &lt;code&gt;one&lt;/code&gt;/&lt;code&gt;many&lt;/code&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Cardinality one         Cardinality many
+---------------         ----------------
+one[&amp;lt;Ref-namespace&amp;gt;]    many[&amp;lt;Ref-namespace&amp;gt;]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;In the example above we saw a reference from Community to Neighborhood defined as &lt;code&gt;one[Neighborhood]&lt;/code&gt;. We would for instance likely define an Order/Order Line relationship in an Order namespace as &lt;code&gt;many[OrderLine]&lt;/code&gt;.&lt;/p&gt;
 
 &lt;h3 id=&#34;attribute-options:eb6ae157f5199f108ae8e599fe0e98dc&#34;&gt;Attribute options&lt;/h3&gt;
 
