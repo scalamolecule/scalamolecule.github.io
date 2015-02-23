@@ -39,7 +39,7 @@ or
 &lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/manual/schema/datomic-schema&#34;&gt;Datomic&lt;/a&gt; - Datomic schema transaction data generated&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/manual/setup&#34;&gt;Setup&lt;/a&gt; - Before your first molecule&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/manual/insert&#34;&gt;Insert&lt;/a&gt; - 3 insertion approaches&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/manual/insert&#34;&gt;Insert&lt;/a&gt; - Data-molecule, Insert-molecule, Insert-molecule as template&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/manual/update&#34;&gt;Update/retract&lt;/a&gt; - Updates/retraction/re-assertions explained&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/manual/query&#34;&gt;Query&lt;/a&gt; - Overview of basic query tools
 
