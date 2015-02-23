@@ -72,7 +72,6 @@
                     <li><a href="http://scalamolecule.org/manual/query/types/">Types</a></li>
                     <li><a href="http://scalamolecule.org/manual/query/expressions/">Expressions</a></li>
                     <li><a href="http://scalamolecule.org/manual/query/aggregates/">Aggregates</a></li>
-                    <li><a href="http://scalamolecule.org/manual/query/or-logic/">OR-logic</a></li>
                     <li><a href="http://scalamolecule.org/manual/query/parameterize/">Parameterize</a></li>
                   </ul>
                 </li>
@@ -119,7 +118,6 @@
         <li><a href="http://scalamolecule.org/manual/query/types/">Types</a></li>
         <li><a href="http://scalamolecule.org/manual/query/expressions/">Expressions</a></li>
         <li><a href="http://scalamolecule.org/manual/query/aggregates/">Aggregates</a></li>
-        <li><a href="http://scalamolecule.org/manual/query/or-logic/">OR-logic</a></li>
         <li><a href="http://scalamolecule.org/manual/query/parameterize/">Parameterize</a></li>
       </ul>
   </ul>
@@ -130,66 +128,53 @@
 
 <h1 id="molecule-manual:68f80267fa3a50980dbb745a782b8dca">Molecule manual</h1>
 
-<ul>
-<li>Introduction</li>
-<li>Setup</li>
-<li>Model</li>
-<li>Schema
+<p>This is a light-weight manual for Molecule.</p>
+
+<p>For more in-depth examples see
+<a href="https://github.com/scalamolecule/molecule/tree/master/coretest/src/test/scala/molecule">core tests</a>
+or
+<a href="https://github.com/scalamolecule/molecule/tree/master/examples/src/test/scala/molecule/examples">examples</a></p>
 
 <ul>
-<li>Definition</li>
-<li>Types</li>
-<li>Options</li>
-<li>Enum values</li>
-<li>Modelling trategies</li>
-<li>Queries</li>
+<li><a href="/manual/schema">Schema</a> - Overview of schema creation
+
+<ul>
+<li><a href="/manual/schema/files">Files</a> - Schema file organization</li>
+<li><a href="/manual/schema/definition">Definition</a> - Schema definition types and options</li>
+<li><a href="/manual/schema/modelling">Modelling</a> - Some modelling advice</li>
+<li><a href="/manual/schema/boilerplate">Boilerplate</a> - Boilerplate generated from schema</li>
+<li><a href="/manual/schema/datomic-schema">Datomic</a> - Datomic schema transaction data generated</li>
 </ul></li>
+<li><a href="/manual/setup">Setup</a> - Before your first molecule</li>
+<li><a href="/manual/insert">Insert</a> - 3 insertion approaches</li>
+<li><a href="/manual/update">Update/retract</a> - Updates/retraction/re-assertions explained</li>
+<li><a href="/manual/query">Query</a> - Overview of basic query tools
+
+<ul>
+<li><a href="/manual/query/builder">Builder</a> - Explict and tacet attribute values</li>
+<li><a href="/manual/query/types">Types</a> - Inferred types from all molecules</li>
+<li><a href="/manual/query/expressions">Expressions</a> - Equality, OR, Negation, Comparison, Fulltext search</li>
+<li><a href="/manual/query/aggregates">Aggregates</a> - Min, max, count, countDistinct, sum, avg, median, variance, stddev, random, sample</li>
+<li><a href="/manual/query/parameterize">Parameterize</a> - Cached Input-molecules for optimized queries</li>
+</ul></li>
+</ul>
+
+<p>On our wish list (in no particular order):</p>
+
+<ul>
 <li>Indexes</li>
 <li>Optimization</li>
-
-<li><p>Reference?</p></li>
-
-<li><p>FAQ</p></li>
-
-<li><p>Troubleshooting</p></li>
-
-<li><p>Overview</p></li>
-
-<li></li>
-
-<li><p>Datomic</p>
-
-<ul>
-<li>Seattle</li>
-<li>Whirlwind of Datomic</li>
-<li>Day of Datomic</li>
-<li>MBrainz</li>
-<li>nuBank&hellip;</li>
-</ul></li>
-
-<li><p>Web</p>
-
-<ul>
-<li>Entity ids</li>
-<li>Authorization</li>
-<li>REST?</li>
-<li>Pagination</li>
-</ul></li>
-
-<li><p>Graph</p>
+<li>Relationships</li>
+<li>FAQ</li>
+<li>Troubleshooting</li>
+<li>Graph
 
 <ul>
 <li>Traversal</li>
 <li>Hyperedges</li>
 </ul></li>
-
-<li><p>Relationships</p></li>
-
-<li><p>Aggregates</p></li>
-
-<li><p>Recursive queries (practical uses)</p></li>
-
-<li><p>Schema queries (practical uses)</p></li>
+<li>Recursive queries</li>
+<li>Schema queries</li>
 </ul>
 
 </div>     

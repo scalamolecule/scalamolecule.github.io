@@ -72,7 +72,6 @@
                     <li><a href="http://scalamolecule.org/manual/query/types/">Types</a></li>
                     <li><a href="http://scalamolecule.org/manual/query/expressions/">Expressions</a></li>
                     <li><a href="http://scalamolecule.org/manual/query/aggregates/">Aggregates</a></li>
-                    <li><a href="http://scalamolecule.org/manual/query/or-logic/">OR-logic</a></li>
                     <li><a href="http://scalamolecule.org/manual/query/parameterize/">Parameterize</a></li>
                   </ul>
                 </li>
@@ -119,7 +118,6 @@
         <li><a href="http://scalamolecule.org/manual/query/types/">Types</a></li>
         <li><a href="http://scalamolecule.org/manual/query/expressions/">Expressions</a></li>
         <li><a href="http://scalamolecule.org/manual/query/aggregates/">Aggregates</a></li>
-        <li><a href="http://scalamolecule.org/manual/query/or-logic/">OR-logic</a></li>
         <li><a href="http://scalamolecule.org/manual/query/parameterize/">Parameterize</a></li>
       </ul>
   </ul>
@@ -147,11 +145,11 @@ val gender : String      = Person.gender.one  // enum values
 <p><a href="/manual/query/expressions">Expressions</a> - filter attribute values with expressions</p>
 
 <pre><code class="language-scala">Person.age(42)               // equal value
+Person.age.!=(42)            // negate values
 Person.age.&lt;(42)             // compare values
 Person.age.&gt;(42)             // compare values
 Person.age.&lt;=(42)            // compare values
 Person.age.&gt;=(42)            // compare values
-Person.age.!=(42)            // negate values
 Person.name.contains(&quot;John&quot;) // fulltext search
 </code></pre>
 
@@ -159,8 +157,7 @@ Person.name.contains(&quot;John&quot;) // fulltext search
 
 <pre><code class="language-scala">Person.age(min) 
 Person.age(max) 
-// ... rand, sample, count, countDistinct
-// ... sum, avg, median, variance, stddev
+// rand, sample, count, countDistinct, sum, avg, median, variance, stddev
 </code></pre>
 
 <p><a href="/manual/query/or-logic">OR-logic</a> - apply OR logic to collect alternative values</p>
@@ -168,7 +165,7 @@ Person.age(max)
 <pre><code class="language-scala">Person.name(&quot;John&quot; or &quot;Jonas&quot;)
 </code></pre>
 
-<p><a href="/manual/query/parameterize">Parameterize</a> - let Datomic cache queries and optimize performance</p>
+<p><a href="/manual/query/parameterize">Parameterize</a> - re-use molecules and let Datomic cache queries and optimize performance</p>
 
 <pre><code class="language-scala">val person = Person.name(?).age(?)
 

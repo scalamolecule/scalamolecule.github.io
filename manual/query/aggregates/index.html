@@ -72,7 +72,6 @@
                     <li><a href="http://scalamolecule.org/manual/query/types/">Types</a></li>
                     <li><a href="http://scalamolecule.org/manual/query/expressions/">Expressions</a></li>
                     <li><a href="http://scalamolecule.org/manual/query/aggregates/">Aggregates</a></li>
-                    <li><a href="http://scalamolecule.org/manual/query/or-logic/">OR-logic</a></li>
                     <li><a href="http://scalamolecule.org/manual/query/parameterize/">Parameterize</a></li>
                   </ul>
                 </li>
@@ -119,7 +118,6 @@
         <li><a href="http://scalamolecule.org/manual/query/types/">Types</a></li>
         <li><a href="http://scalamolecule.org/manual/query/expressions/">Expressions</a></li>
         <li class="active"><b>Aggregates</b></li>
-        <li><a href="http://scalamolecule.org/manual/query/or-logic/">OR-logic</a></li>
         <li><a href="http://scalamolecule.org/manual/query/parameterize/">Parameterize</a></li>
       </ul>
   </ul>
@@ -129,6 +127,86 @@
 	
 
 <h1 id="aggregates:de7f9909aae9c5ac545867cc473806f6">Aggregates</h1>
+
+<p>Datomic offers some built-in aggregate functions to aggregate attribute values.</p>
+
+<h3 id="aggregates-returning-a-single-value:de7f9909aae9c5ac545867cc473806f6">Aggregates returning a single value</h3>
+
+<h4 id="min-max:de7f9909aae9c5ac545867cc473806f6">min/max</h4>
+
+<p>In Molecule you simply apply the aggregate function name as a keyword to your attribute.</p>
+
+<pre><code class="language-scala">Person.age(min) // lowest age
+Person.age(max) // highest age
+</code></pre>
+
+<p>Supports all types.</p>
+
+<h4 id="count:de7f9909aae9c5ac545867cc473806f6">count</h4>
+
+<p>Not to be confused with <code>sum</code> in that <code>count</code> counts the entities having attribute with some value</p>
+
+<pre><code class="language-scala">Person.age(count) // count of all persons with an age (not the sum of ages)
+</code></pre>
+
+<h4 id="countdistinct:de7f9909aae9c5ac545867cc473806f6">countDistinct</h4>
+
+<p>Not to be confused with <code>sum</code> in that <code>count</code> counts the entities having attribute with some value</p>
+
+<pre><code class="language-scala">Person.age(countDistinct)  // count of unique ages
+</code></pre>
+
+<h4 id="sum:de7f9909aae9c5ac545867cc473806f6">sum</h4>
+
+<pre><code class="language-scala">Person.age(sum) // sum of all ages
+</code></pre>
+
+<h4 id="avg:de7f9909aae9c5ac545867cc473806f6">avg</h4>
+
+<pre><code class="language-scala">Person.age(avg) // average of all ages
+</code></pre>
+
+<h4 id="median:de7f9909aae9c5ac545867cc473806f6">median</h4>
+
+<pre><code class="language-scala">Person.age(median) // median of all ages
+</code></pre>
+
+<h4 id="variance:de7f9909aae9c5ac545867cc473806f6">variance</h4>
+
+<pre><code class="language-scala">Person.age(variance) // variance of all ages
+</code></pre>
+
+<h4 id="stddev:de7f9909aae9c5ac545867cc473806f6">stddev</h4>
+
+<pre><code class="language-scala">Person.age(stddev) // standard deviation of all ages
+</code></pre>
+
+<h3 id="aggregates-returning-collections-of-values:de7f9909aae9c5ac545867cc473806f6">Aggregates returning collections of values</h3>
+
+<h4 id="distinct:de7f9909aae9c5ac545867cc473806f6">distinct</h4>
+
+<pre><code class="language-scala">Person.age(distinct) // distinct ages
+</code></pre>
+
+<h4 id="min-n:de7f9909aae9c5ac545867cc473806f6">min(n)</h4>
+
+<pre><code class="language-scala">Person.age(min(3)) // 3 lowest ages
+</code></pre>
+
+<h4 id="max-n:de7f9909aae9c5ac545867cc473806f6">max(n)</h4>
+
+<pre><code class="language-scala">Person.age(max(3)) // 3 highest ages
+</code></pre>
+
+<h4 id="rand-n:de7f9909aae9c5ac545867cc473806f6">rand(n)</h4>
+
+<pre><code class="language-scala">Person.age(max(3)) // 3 random persons (with potential for duplicates!)
+</code></pre>
+
+<h4 id="sample-n:de7f9909aae9c5ac545867cc473806f6">sample(n)</h4>
+
+<pre><code class="language-scala">Person.age(max(3)) // 3 sample persons (without duplicates!)
+</code></pre>
 
 </div>     
   </div> 

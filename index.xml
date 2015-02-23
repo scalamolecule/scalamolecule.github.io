@@ -21,66 +21,53 @@
 
 &lt;h1 id=&#34;molecule-manual:68f80267fa3a50980dbb745a782b8dca&#34;&gt;Molecule manual&lt;/h1&gt;
 
-&lt;ul&gt;
-&lt;li&gt;Introduction&lt;/li&gt;
-&lt;li&gt;Setup&lt;/li&gt;
-&lt;li&gt;Model&lt;/li&gt;
-&lt;li&gt;Schema
+&lt;p&gt;This is a light-weight manual for Molecule.&lt;/p&gt;
+
+&lt;p&gt;For more in-depth examples see
+&lt;a href=&#34;https://github.com/scalamolecule/molecule/tree/master/coretest/src/test/scala/molecule&#34;&gt;core tests&lt;/a&gt;
+or
+&lt;a href=&#34;https://github.com/scalamolecule/molecule/tree/master/examples/src/test/scala/molecule/examples&#34;&gt;examples&lt;/a&gt;&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;Definition&lt;/li&gt;
-&lt;li&gt;Types&lt;/li&gt;
-&lt;li&gt;Options&lt;/li&gt;
-&lt;li&gt;Enum values&lt;/li&gt;
-&lt;li&gt;Modelling trategies&lt;/li&gt;
-&lt;li&gt;Queries&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/manual/schema&#34;&gt;Schema&lt;/a&gt; - Overview of schema creation
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/manual/schema/files&#34;&gt;Files&lt;/a&gt; - Schema file organization&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/manual/schema/definition&#34;&gt;Definition&lt;/a&gt; - Schema definition types and options&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/manual/schema/modelling&#34;&gt;Modelling&lt;/a&gt; - Some modelling advice&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/manual/schema/boilerplate&#34;&gt;Boilerplate&lt;/a&gt; - Boilerplate generated from schema&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/manual/schema/datomic-schema&#34;&gt;Datomic&lt;/a&gt; - Datomic schema transaction data generated&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/manual/setup&#34;&gt;Setup&lt;/a&gt; - Before your first molecule&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/manual/insert&#34;&gt;Insert&lt;/a&gt; - 3 insertion approaches&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/manual/update&#34;&gt;Update/retract&lt;/a&gt; - Updates/retraction/re-assertions explained&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/manual/query&#34;&gt;Query&lt;/a&gt; - Overview of basic query tools
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/manual/query/builder&#34;&gt;Builder&lt;/a&gt; - Explict and tacet attribute values&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/manual/query/types&#34;&gt;Types&lt;/a&gt; - Inferred types from all molecules&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/manual/query/expressions&#34;&gt;Expressions&lt;/a&gt; - Equality, OR, Negation, Comparison, Fulltext search&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/manual/query/aggregates&#34;&gt;Aggregates&lt;/a&gt; - Min, max, count, countDistinct, sum, avg, median, variance, stddev, random, sample&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/manual/query/parameterize&#34;&gt;Parameterize&lt;/a&gt; - Cached Input-molecules for optimized queries&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;On our wish list (in no particular order):&lt;/p&gt;
+
+&lt;ul&gt;
 &lt;li&gt;Indexes&lt;/li&gt;
 &lt;li&gt;Optimization&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Reference?&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;FAQ&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Troubleshooting&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Overview&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Datomic&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Seattle&lt;/li&gt;
-&lt;li&gt;Whirlwind of Datomic&lt;/li&gt;
-&lt;li&gt;Day of Datomic&lt;/li&gt;
-&lt;li&gt;MBrainz&lt;/li&gt;
-&lt;li&gt;nuBank&amp;hellip;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Web&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Entity ids&lt;/li&gt;
-&lt;li&gt;Authorization&lt;/li&gt;
-&lt;li&gt;REST?&lt;/li&gt;
-&lt;li&gt;Pagination&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Graph&lt;/p&gt;
+&lt;li&gt;Relationships&lt;/li&gt;
+&lt;li&gt;FAQ&lt;/li&gt;
+&lt;li&gt;Troubleshooting&lt;/li&gt;
+&lt;li&gt;Graph
 
 &lt;ul&gt;
 &lt;li&gt;Traversal&lt;/li&gt;
 &lt;li&gt;Hyperedges&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Relationships&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Aggregates&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Recursive queries (practical uses)&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Schema queries (practical uses)&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;Recursive queries&lt;/li&gt;
+&lt;li&gt;Schema queries&lt;/li&gt;
 &lt;/ul&gt;
 </description>
     </item>
@@ -122,28 +109,6 @@
 &lt;li&gt;Authorization - roles and groups&lt;/li&gt;
 &lt;li&gt;Recursive queries - examples and uses&lt;/li&gt;
 &lt;li&gt;more&amp;hellip;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Community</title>
-      <link>http://scalamolecule.org/community/overview/</link>
-      <pubDate>Wed, 14 May 2014 02:13:50 UTC</pubDate>
-      
-      <guid>http://scalamolecule.org/community/overview/</guid>
-      <description>
-
-&lt;h1 id=&#34;community:68f80267fa3a50980dbb745a782b8dca&#34;&gt;Community&lt;/h1&gt;
-
-&lt;h2 id=&#34;resources:68f80267fa3a50980dbb745a782b8dca&#34;&gt;Resources&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;[Molecule google list][moleculegroup] for questions and discussions about Molecule and other Scala-based Datomic resources&lt;/li&gt;
-&lt;li&gt;[Issues][issues] - please feel free to raise issues/report bugs&lt;/li&gt;
-&lt;li&gt;[Pull requests][pullrequests] are welcome&lt;/li&gt;
-&lt;li&gt;[Datomic][datomic] website&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/pellucidanalytics/datomisca&#34;&gt;Datomisca&lt;/a&gt;, a Scala API for Datomic&lt;/li&gt;
 &lt;/ul&gt;
 </description>
     </item>
@@ -219,6 +184,28 @@ val songs = Song.e.artist(id).get
 &lt;/ul&gt;
 
 &lt;p&gt;If you want to translate one into Molecule, please feel free to submit a pull request or bring up ideas.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Community</title>
+      <link>http://scalamolecule.org/community/overview/</link>
+      <pubDate>Wed, 14 May 2014 02:13:50 UTC</pubDate>
+      
+      <guid>http://scalamolecule.org/community/overview/</guid>
+      <description>
+
+&lt;h1 id=&#34;community:68f80267fa3a50980dbb745a782b8dca&#34;&gt;Community&lt;/h1&gt;
+
+&lt;h2 id=&#34;resources:68f80267fa3a50980dbb745a782b8dca&#34;&gt;Resources&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;[Molecule google list][moleculegroup] for questions and discussions about Molecule and other Scala-based Datomic resources&lt;/li&gt;
+&lt;li&gt;[Issues][issues] - please feel free to raise issues/report bugs&lt;/li&gt;
+&lt;li&gt;[Pull requests][pullrequests] are welcome&lt;/li&gt;
+&lt;li&gt;[Datomic][datomic] website&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/pellucidanalytics/datomisca&#34;&gt;Datomisca&lt;/a&gt;, a Scala API for Datomic&lt;/li&gt;
+&lt;/ul&gt;
 </description>
     </item>
     

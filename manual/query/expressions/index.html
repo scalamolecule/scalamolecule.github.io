@@ -72,7 +72,6 @@
                     <li><a href="http://scalamolecule.org/manual/query/types/">Types</a></li>
                     <li><a href="http://scalamolecule.org/manual/query/expressions/">Expressions</a></li>
                     <li><a href="http://scalamolecule.org/manual/query/aggregates/">Aggregates</a></li>
-                    <li><a href="http://scalamolecule.org/manual/query/or-logic/">OR-logic</a></li>
                     <li><a href="http://scalamolecule.org/manual/query/parameterize/">Parameterize</a></li>
                   </ul>
                 </li>
@@ -119,7 +118,6 @@
         <li><a href="http://scalamolecule.org/manual/query/types/">Types</a></li>
         <li class="active"><b>Expressions</b></li>
         <li><a href="http://scalamolecule.org/manual/query/aggregates/">Aggregates</a></li>
-        <li><a href="http://scalamolecule.org/manual/query/or-logic/">OR-logic</a></li>
         <li><a href="http://scalamolecule.org/manual/query/parameterize/">Parameterize</a></li>
       </ul>
   </ul>
@@ -130,33 +128,101 @@
 
 <h1 id="expressions:ccf7e9e64ce1a51aa79e6eb1314d9467">Expressions</h1>
 
+<h3 id="equality:ccf7e9e64ce1a51aa79e6eb1314d9467">Equality</h3>
+
 <p>We can apply values to Attributes in order to filter the data structures we are looking for. We could for instance look for names of female persons:</p>
 
-<pre><code class="language-scala">Person.name.gender.apply(&quot;female&quot;)
+<pre><code class="language-scala">Person.age.apply(42)
 </code></pre>
 
 <p>or simply</p>
 
-<pre><code class="language-scala">Person.name.gender(&quot;female&quot;)
+<pre><code class="language-scala">Person.age(42)
 </code></pre>
 
-<h3 id="omit-applied-value:ccf7e9e64ce1a51aa79e6eb1314d9467">Omit applied value</h3>
+<h3 id="or-logic:ccf7e9e64ce1a51aa79e6eb1314d9467">OR-logic</h3>
 
-<p>Instead of returning the gender value &ldquo;female&rdquo; for all entities returned we could add an underscore to only return the names of female persones:</p>
+<p>We can apply OR-logic to find a selection of alternatives</p>
 
-<pre><code class="language-scala">val females: List[String] = Person.name.gender_(&quot;female&quot;)
+<pre><code class="language-scala">Person.age(40 or 41 or 42)
+// .. same as
+Person.age(40, 41, 42)
+// .. same as
+Person.age(List(40, 41, 42))
 </code></pre>
 
-<h3 id="inferred-types:ccf7e9e64ce1a51aa79e6eb1314d9467">Inferred types</h3>
+<h3 id="negation:ccf7e9e64ce1a51aa79e6eb1314d9467">Negation</h3>
 
-<p>Only applied values matching the Attribute type can compile. And we can even infer the type in our IDE so that we will get warned if we try to apply a non-matchig type:</p>
+<p>We can exclude a certain attribute value</p>
 
-<pre><code class="language-scala">// types match
-Person.name(&quot;John&quot;).age(42)
+<pre><code class="language-scala">Person.age.!=(42)
+// or
+Person.age.not(42)
+</code></pre>
 
-// won't compile
-// IDE will bark: 42(Int) is not of type String
-Person.name(42)
+<p>With negations we can again apply multiple values as alternatives</p>
+
+<pre><code class="language-scala">Person.age.!=(40 or 41 or 42)
+Person.age.!=(40, 41, 42)
+Person.age.!=(List(40, 41, 42))
+</code></pre>
+
+<h3 id="comparison:ccf7e9e64ce1a51aa79e6eb1314d9467">Comparison</h3>
+
+<p>We can filer attribute values that satisfy comparison expressions:</p>
+
+<pre><code class="language-scala">Person.age.&lt;(42)
+Person.age.&gt;(42)
+Person.age.&lt;=(42)
+Person.age.&gt;=(42)
+</code></pre>
+
+<p>Comparison of all types are performed with java&rsquo;s <code>compareTo</code> method. Text strings can for instance also be sorted by a letter:</p>
+
+<pre><code class="language-scala">Community.name.&lt;(&quot;C&quot;).get(3) === List(
+  &quot;ArtsWest&quot;, &quot;All About South Park&quot;, &quot;Ballard Neighbor Connection&quot;)
+</code></pre>
+
+<h3 id="fulltext-search:ccf7e9e64ce1a51aa79e6eb1314d9467">Fulltext search</h3>
+
+<p>If we add the <code>fullTextSearch</code> option to a String attribute definition Datomic will index the text strings saved so that we can do fulltext searches accross all values. We could for instance search for Community names containing the word &ldquo;Town&rdquo; in their name:</p>
+
+<pre><code class="language-scala">Community.name.contains(&quot;Town&quot;)
+</code></pre>
+
+<p>Note that only full words are considered, so &ldquo;Tow&rdquo; won&rsquo;t match. Also the following common words are not considered:</p>
+
+<pre><code>&quot;a&quot;, &quot;an&quot;, &quot;and&quot;, &quot;are&quot;, &quot;as&quot;, &quot;at&quot;, &quot;be&quot;, &quot;but&quot;, &quot;by&quot;,
+&quot;for&quot;, &quot;if&quot;, &quot;in&quot;, &quot;into&quot;, &quot;is&quot;, &quot;it&quot;,
+&quot;no&quot;, &quot;not&quot;, &quot;of&quot;, &quot;on&quot;, &quot;or&quot;, &quot;such&quot;,
+&quot;that&quot;, &quot;the&quot;, &quot;their&quot;, &quot;then&quot;, &quot;there&quot;, &quot;these&quot;,
+&quot;they&quot;, &quot;this&quot;, &quot;to&quot;, &quot;was&quot;, &quot;will&quot;, &quot;with&quot;
+</code></pre>
+
+<h3 id="we-can-use-variables-too:ccf7e9e64ce1a51aa79e6eb1314d9467">We can use variables too</h3>
+
+<p>Even though Molecule introspects molecule constructions at compile time we can still use (runtime) variables for our expressions</p>
+
+<pre><code class="language-scala">val youngAge = 25
+val goodAge = 42
+Person.age(goodAge)
+Person.age.&gt;(goodAge)
+Person.age.&lt;=(goodAge)
+Person.age.&gt;=(goodAge)
+Person.age.!=(goodAge)
+Person.age.!=(youngAge or goodAge)
+</code></pre>
+
+<p>Technically, Molecule saves the TermName of the variable for later resolution at runtime so that we can freely use variables in our expressions.</p>
+
+<pre><code class="language-scala">val ages = List(youngAge, goodAge)
+Person.age(goodAge)
+Person.age.&gt;(goodAge)
+Person.age.&lt;=(goodAge)
+Person.age.&gt;=(goodAge)
+Person.age.!=(goodAge)
+Person.age.!=(youngAge or goodAge)
+// etc...
 </code></pre>
 
 </div>     

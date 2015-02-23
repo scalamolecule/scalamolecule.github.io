@@ -21,66 +21,53 @@
 
 &lt;h1 id=&#34;molecule-manual:68f80267fa3a50980dbb745a782b8dca&#34;&gt;Molecule manual&lt;/h1&gt;
 
-&lt;ul&gt;
-&lt;li&gt;Introduction&lt;/li&gt;
-&lt;li&gt;Setup&lt;/li&gt;
-&lt;li&gt;Model&lt;/li&gt;
-&lt;li&gt;Schema
+&lt;p&gt;This is a light-weight manual for Molecule.&lt;/p&gt;
+
+&lt;p&gt;For more in-depth examples see
+&lt;a href=&#34;https://github.com/scalamolecule/molecule/tree/master/coretest/src/test/scala/molecule&#34;&gt;core tests&lt;/a&gt;
+or
+&lt;a href=&#34;https://github.com/scalamolecule/molecule/tree/master/examples/src/test/scala/molecule/examples&#34;&gt;examples&lt;/a&gt;&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;Definition&lt;/li&gt;
-&lt;li&gt;Types&lt;/li&gt;
-&lt;li&gt;Options&lt;/li&gt;
-&lt;li&gt;Enum values&lt;/li&gt;
-&lt;li&gt;Modelling trategies&lt;/li&gt;
-&lt;li&gt;Queries&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/manual/schema&#34;&gt;Schema&lt;/a&gt; - Overview of schema creation
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/manual/schema/files&#34;&gt;Files&lt;/a&gt; - Schema file organization&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/manual/schema/definition&#34;&gt;Definition&lt;/a&gt; - Schema definition types and options&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/manual/schema/modelling&#34;&gt;Modelling&lt;/a&gt; - Some modelling advice&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/manual/schema/boilerplate&#34;&gt;Boilerplate&lt;/a&gt; - Boilerplate generated from schema&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/manual/schema/datomic-schema&#34;&gt;Datomic&lt;/a&gt; - Datomic schema transaction data generated&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/manual/setup&#34;&gt;Setup&lt;/a&gt; - Before your first molecule&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/manual/insert&#34;&gt;Insert&lt;/a&gt; - 3 insertion approaches&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/manual/update&#34;&gt;Update/retract&lt;/a&gt; - Updates/retraction/re-assertions explained&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/manual/query&#34;&gt;Query&lt;/a&gt; - Overview of basic query tools
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/manual/query/builder&#34;&gt;Builder&lt;/a&gt; - Explict and tacet attribute values&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/manual/query/types&#34;&gt;Types&lt;/a&gt; - Inferred types from all molecules&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/manual/query/expressions&#34;&gt;Expressions&lt;/a&gt; - Equality, OR, Negation, Comparison, Fulltext search&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/manual/query/aggregates&#34;&gt;Aggregates&lt;/a&gt; - Min, max, count, countDistinct, sum, avg, median, variance, stddev, random, sample&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/manual/query/parameterize&#34;&gt;Parameterize&lt;/a&gt; - Cached Input-molecules for optimized queries&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;On our wish list (in no particular order):&lt;/p&gt;
+
+&lt;ul&gt;
 &lt;li&gt;Indexes&lt;/li&gt;
 &lt;li&gt;Optimization&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Reference?&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;FAQ&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Troubleshooting&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Overview&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Datomic&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Seattle&lt;/li&gt;
-&lt;li&gt;Whirlwind of Datomic&lt;/li&gt;
-&lt;li&gt;Day of Datomic&lt;/li&gt;
-&lt;li&gt;MBrainz&lt;/li&gt;
-&lt;li&gt;nuBank&amp;hellip;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Web&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Entity ids&lt;/li&gt;
-&lt;li&gt;Authorization&lt;/li&gt;
-&lt;li&gt;REST?&lt;/li&gt;
-&lt;li&gt;Pagination&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Graph&lt;/p&gt;
+&lt;li&gt;Relationships&lt;/li&gt;
+&lt;li&gt;FAQ&lt;/li&gt;
+&lt;li&gt;Troubleshooting&lt;/li&gt;
+&lt;li&gt;Graph
 
 &lt;ul&gt;
 &lt;li&gt;Traversal&lt;/li&gt;
 &lt;li&gt;Hyperedges&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Relationships&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Aggregates&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Recursive queries (practical uses)&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Schema queries (practical uses)&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;Recursive queries&lt;/li&gt;
+&lt;li&gt;Schema queries&lt;/li&gt;
 &lt;/ul&gt;
 </description>
     </item>
@@ -505,33 +492,101 @@ enum: String        enums: Set[String]
 
 &lt;h1 id=&#34;expressions:ccf7e9e64ce1a51aa79e6eb1314d9467&#34;&gt;Expressions&lt;/h1&gt;
 
+&lt;h3 id=&#34;equality:ccf7e9e64ce1a51aa79e6eb1314d9467&#34;&gt;Equality&lt;/h3&gt;
+
 &lt;p&gt;We can apply values to Attributes in order to filter the data structures we are looking for. We could for instance look for names of female persons:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.name.gender.apply(&amp;quot;female&amp;quot;)
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.age.apply(42)
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;or simply&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.name.gender(&amp;quot;female&amp;quot;)
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.age(42)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#34;omit-applied-value:ccf7e9e64ce1a51aa79e6eb1314d9467&#34;&gt;Omit applied value&lt;/h3&gt;
+&lt;h3 id=&#34;or-logic:ccf7e9e64ce1a51aa79e6eb1314d9467&#34;&gt;OR-logic&lt;/h3&gt;
 
-&lt;p&gt;Instead of returning the gender value &amp;ldquo;female&amp;rdquo; for all entities returned we could add an underscore to only return the names of female persones:&lt;/p&gt;
+&lt;p&gt;We can apply OR-logic to find a selection of alternatives&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val females: List[String] = Person.name.gender_(&amp;quot;female&amp;quot;)
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.age(40 or 41 or 42)
+// .. same as
+Person.age(40, 41, 42)
+// .. same as
+Person.age(List(40, 41, 42))
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#34;inferred-types:ccf7e9e64ce1a51aa79e6eb1314d9467&#34;&gt;Inferred types&lt;/h3&gt;
+&lt;h3 id=&#34;negation:ccf7e9e64ce1a51aa79e6eb1314d9467&#34;&gt;Negation&lt;/h3&gt;
 
-&lt;p&gt;Only applied values matching the Attribute type can compile. And we can even infer the type in our IDE so that we will get warned if we try to apply a non-matchig type:&lt;/p&gt;
+&lt;p&gt;We can exclude a certain attribute value&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;// types match
-Person.name(&amp;quot;John&amp;quot;).age(42)
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.age.!=(42)
+// or
+Person.age.not(42)
+&lt;/code&gt;&lt;/pre&gt;
 
-// won&#39;t compile
-// IDE will bark: 42(Int) is not of type String
-Person.name(42)
+&lt;p&gt;With negations we can again apply multiple values as alternatives&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.age.!=(40 or 41 or 42)
+Person.age.!=(40, 41, 42)
+Person.age.!=(List(40, 41, 42))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;comparison:ccf7e9e64ce1a51aa79e6eb1314d9467&#34;&gt;Comparison&lt;/h3&gt;
+
+&lt;p&gt;We can filer attribute values that satisfy comparison expressions:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.age.&amp;lt;(42)
+Person.age.&amp;gt;(42)
+Person.age.&amp;lt;=(42)
+Person.age.&amp;gt;=(42)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Comparison of all types are performed with java&amp;rsquo;s &lt;code&gt;compareTo&lt;/code&gt; method. Text strings can for instance also be sorted by a letter:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Community.name.&amp;lt;(&amp;quot;C&amp;quot;).get(3) === List(
+  &amp;quot;ArtsWest&amp;quot;, &amp;quot;All About South Park&amp;quot;, &amp;quot;Ballard Neighbor Connection&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;fulltext-search:ccf7e9e64ce1a51aa79e6eb1314d9467&#34;&gt;Fulltext search&lt;/h3&gt;
+
+&lt;p&gt;If we add the &lt;code&gt;fullTextSearch&lt;/code&gt; option to a String attribute definition Datomic will index the text strings saved so that we can do fulltext searches accross all values. We could for instance search for Community names containing the word &amp;ldquo;Town&amp;rdquo; in their name:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Community.name.contains(&amp;quot;Town&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Note that only full words are considered, so &amp;ldquo;Tow&amp;rdquo; won&amp;rsquo;t match. Also the following common words are not considered:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;quot;a&amp;quot;, &amp;quot;an&amp;quot;, &amp;quot;and&amp;quot;, &amp;quot;are&amp;quot;, &amp;quot;as&amp;quot;, &amp;quot;at&amp;quot;, &amp;quot;be&amp;quot;, &amp;quot;but&amp;quot;, &amp;quot;by&amp;quot;,
+&amp;quot;for&amp;quot;, &amp;quot;if&amp;quot;, &amp;quot;in&amp;quot;, &amp;quot;into&amp;quot;, &amp;quot;is&amp;quot;, &amp;quot;it&amp;quot;,
+&amp;quot;no&amp;quot;, &amp;quot;not&amp;quot;, &amp;quot;of&amp;quot;, &amp;quot;on&amp;quot;, &amp;quot;or&amp;quot;, &amp;quot;such&amp;quot;,
+&amp;quot;that&amp;quot;, &amp;quot;the&amp;quot;, &amp;quot;their&amp;quot;, &amp;quot;then&amp;quot;, &amp;quot;there&amp;quot;, &amp;quot;these&amp;quot;,
+&amp;quot;they&amp;quot;, &amp;quot;this&amp;quot;, &amp;quot;to&amp;quot;, &amp;quot;was&amp;quot;, &amp;quot;will&amp;quot;, &amp;quot;with&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;we-can-use-variables-too:ccf7e9e64ce1a51aa79e6eb1314d9467&#34;&gt;We can use variables too&lt;/h3&gt;
+
+&lt;p&gt;Even though Molecule introspects molecule constructions at compile time we can still use (runtime) variables for our expressions&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val youngAge = 25
+val goodAge = 42
+Person.age(goodAge)
+Person.age.&amp;gt;(goodAge)
+Person.age.&amp;lt;=(goodAge)
+Person.age.&amp;gt;=(goodAge)
+Person.age.!=(goodAge)
+Person.age.!=(youngAge or goodAge)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Technically, Molecule saves the TermName of the variable for later resolution at runtime so that we can freely use variables in our expressions.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val ages = List(youngAge, goodAge)
+Person.age(goodAge)
+Person.age.&amp;gt;(goodAge)
+Person.age.&amp;lt;=(goodAge)
+Person.age.&amp;gt;=(goodAge)
+Person.age.!=(goodAge)
+Person.age.!=(youngAge or goodAge)
+// etc...
 &lt;/code&gt;&lt;/pre&gt;
 </description>
     </item>
@@ -644,6 +699,86 @@ woudn&amp;rsquo;t compile and our IDE will infer that and warn us of an invalid 
       <description>
 
 &lt;h1 id=&#34;aggregates:de7f9909aae9c5ac545867cc473806f6&#34;&gt;Aggregates&lt;/h1&gt;
+
+&lt;p&gt;Datomic offers some built-in aggregate functions to aggregate attribute values.&lt;/p&gt;
+
+&lt;h3 id=&#34;aggregates-returning-a-single-value:de7f9909aae9c5ac545867cc473806f6&#34;&gt;Aggregates returning a single value&lt;/h3&gt;
+
+&lt;h4 id=&#34;min-max:de7f9909aae9c5ac545867cc473806f6&#34;&gt;min/max&lt;/h4&gt;
+
+&lt;p&gt;In Molecule you simply apply the aggregate function name as a keyword to your attribute.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.age(min) // lowest age
+Person.age(max) // highest age
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Supports all types.&lt;/p&gt;
+
+&lt;h4 id=&#34;count:de7f9909aae9c5ac545867cc473806f6&#34;&gt;count&lt;/h4&gt;
+
+&lt;p&gt;Not to be confused with &lt;code&gt;sum&lt;/code&gt; in that &lt;code&gt;count&lt;/code&gt; counts the entities having attribute with some value&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.age(count) // count of all persons with an age (not the sum of ages)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;countdistinct:de7f9909aae9c5ac545867cc473806f6&#34;&gt;countDistinct&lt;/h4&gt;
+
+&lt;p&gt;Not to be confused with &lt;code&gt;sum&lt;/code&gt; in that &lt;code&gt;count&lt;/code&gt; counts the entities having attribute with some value&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.age(countDistinct)  // count of unique ages
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;sum:de7f9909aae9c5ac545867cc473806f6&#34;&gt;sum&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.age(sum) // sum of all ages
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;avg:de7f9909aae9c5ac545867cc473806f6&#34;&gt;avg&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.age(avg) // average of all ages
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;median:de7f9909aae9c5ac545867cc473806f6&#34;&gt;median&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.age(median) // median of all ages
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;variance:de7f9909aae9c5ac545867cc473806f6&#34;&gt;variance&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.age(variance) // variance of all ages
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;stddev:de7f9909aae9c5ac545867cc473806f6&#34;&gt;stddev&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.age(stddev) // standard deviation of all ages
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;aggregates-returning-collections-of-values:de7f9909aae9c5ac545867cc473806f6&#34;&gt;Aggregates returning collections of values&lt;/h3&gt;
+
+&lt;h4 id=&#34;distinct:de7f9909aae9c5ac545867cc473806f6&#34;&gt;distinct&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.age(distinct) // distinct ages
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;min-n:de7f9909aae9c5ac545867cc473806f6&#34;&gt;min(n)&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.age(min(3)) // 3 lowest ages
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;max-n:de7f9909aae9c5ac545867cc473806f6&#34;&gt;max(n)&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.age(max(3)) // 3 highest ages
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;rand-n:de7f9909aae9c5ac545867cc473806f6&#34;&gt;rand(n)&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.age(max(3)) // 3 random persons (with potential for duplicates!)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;sample-n:de7f9909aae9c5ac545867cc473806f6&#34;&gt;sample(n)&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.age(max(3)) // 3 sample persons (without duplicates!)
+&lt;/code&gt;&lt;/pre&gt;
 </description>
     </item>
     
@@ -742,28 +877,6 @@ Community(belltownId).category(&amp;quot;news&amp;quot; -&amp;gt; &amp;quot;Cool
     </item>
     
     <item>
-      <title>OR-logic</title>
-      <link>http://scalamolecule.org/manual/query/or-logic/</link>
-      <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
-      
-      <guid>http://scalamolecule.org/manual/query/or-logic/</guid>
-      <description>
-
-&lt;h1 id=&#34;or-logic:04d91c3eed2ce47f783de21cf8c28a71&#34;&gt;OR-logic&lt;/h1&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.name.age.gender // etc
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.name.age_.gender // etc
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;ul&gt;
-&lt;li&gt;tuples/hlist - limit of 22&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-    </item>
-    
-    <item>
       <title>Parameterize</title>
       <link>http://scalamolecule.org/manual/query/parameterize/</link>
       <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
@@ -771,27 +884,48 @@ Community(belltownId).category(&amp;quot;news&amp;quot; -&amp;gt; &amp;quot;Cool
       <guid>http://scalamolecule.org/manual/query/parameterize/</guid>
       <description>
 
-&lt;h1 id=&#34;parameterize-attributes:913d405893862d6b41d1b084193fb4f6&#34;&gt;Parameterize Attributes&lt;/h1&gt;
+&lt;h1 id=&#34;parameterized-input-molecules:913d405893862d6b41d1b084193fb4f6&#34;&gt;Parameterized Input-molecules&lt;/h1&gt;
+
+&lt;p&gt;Basically we can parameterize any molecule. Instead of a value we apply the placeholder &lt;code&gt;?&lt;/code&gt; as a value. This signals to Molecule that we intend to supply a value later as input.&lt;/p&gt;
+
+&lt;p&gt;By assigning parameterized &amp;ldquo;Input-molecules&amp;rdquo; to variables we can re-use those variables to query for similar data structures where only some data part varies:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;// 1 input parameter
-val personName  = Person.name(?)
-val johnOrLisas = personName(&amp;quot;John&amp;quot; or &amp;quot;Lisa&amp;quot;) // OR
+val person = Person.name(?)
 
-// more input parameters
-val person      = Person.name(?).age(?)
-val john        = person(&amp;quot;John&amp;quot; and 42) // AND
-val johnOrJonas = person((&amp;quot;John&amp;quot; and 42) or (&amp;quot;Jonas&amp;quot; and 38)) // AND/OR
+val john = person(&amp;quot;John&amp;quot;).one
+val lisa = person(&amp;quot;Lisa&amp;quot;).one
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.name.age.gender // etc
+&lt;p&gt;Of course more complex molecules would benefit even more from this approach.&lt;/p&gt;
+
+&lt;h3 id=&#34;datomic-cache-and-optimization:913d405893862d6b41d1b084193fb4f6&#34;&gt;Datomic cache and optimization&lt;/h3&gt;
+
+&lt;p&gt;Datomic will cache and optimize the queries from such Input-molecules. This gives us an additional reason to use them.&lt;/p&gt;
+
+&lt;h3 id=&#34;parameterized-expressions:913d405893862d6b41d1b084193fb4f6&#34;&gt;Parameterized expressions&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val personName = Person.name.())?
+val johnOrLisas = personName(&amp;quot;John&amp;quot; or &amp;quot;Lisa&amp;quot;).get // OR
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.name.age_.gender // etc
+&lt;h3 id=&#34;multiple-parameters:913d405893862d6b41d1b084193fb4f6&#34;&gt;Multiple parameters&lt;/h3&gt;
+
+&lt;p&gt;Molecules can have up to 3 &lt;code&gt;?&lt;/code&gt; placeholder parameters. Since we can apply expressions and logic to them it seems likely that this will satisfy the majority of all parameterized queires.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val person      = Person.name(?).age(?)
+val john        = person(&amp;quot;John&amp;quot; and 42).one // AND
+val johnOrJonas = person((&amp;quot;John&amp;quot; and 42) or (&amp;quot;Jonas&amp;quot; and 38)).get // AND/OR
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;ul&gt;
-&lt;li&gt;tuples/hlist - limit of 22&lt;/li&gt;
-&lt;/ul&gt;
+&lt;h3 id=&#34;mix-parameterized-and-static-expressions:913d405893862d6b41d1b084193fb4f6&#34;&gt;Mix parameterized and static expressions&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val americansYoungerThan = Person.name.age.&amp;lt;(?).Country.name(&amp;quot;USA&amp;quot;)
+val americanKids = americansYoungerThan(13).get
+val americanBabies = americansYoungerThan(1).get
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;For more examples, please see the &lt;a href=&#34;https://github.com/scalamolecule/molecule/blob/master/examples/src/test/scala/molecule/examples/seattle/SeattleTests.scala#L141&#34;&gt;Seattle examples&lt;/a&gt;&lt;/p&gt;
 </description>
     </item>
     
@@ -822,11 +956,11 @@ val gender : String      = Person.gender.one  // enum values
 &lt;p&gt;&lt;a href=&#34;http://scalamolecule.org/manual/query/expressions&#34;&gt;Expressions&lt;/a&gt; - filter attribute values with expressions&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.age(42)               // equal value
+Person.age.!=(42)            // negate values
 Person.age.&amp;lt;(42)             // compare values
 Person.age.&amp;gt;(42)             // compare values
 Person.age.&amp;lt;=(42)            // compare values
 Person.age.&amp;gt;=(42)            // compare values
-Person.age.!=(42)            // negate values
 Person.name.contains(&amp;quot;John&amp;quot;) // fulltext search
 &lt;/code&gt;&lt;/pre&gt;
 
@@ -834,8 +968,7 @@ Person.name.contains(&amp;quot;John&amp;quot;) // fulltext search
 
 &lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.age(min) 
 Person.age(max) 
-// ... rand, sample, count, countDistinct
-// ... sum, avg, median, variance, stddev
+// rand, sample, count, countDistinct, sum, avg, median, variance, stddev
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;&lt;a href=&#34;http://scalamolecule.org/manual/query/or-logic&#34;&gt;OR-logic&lt;/a&gt; - apply OR logic to collect alternative values&lt;/p&gt;
@@ -843,7 +976,7 @@ Person.age(max)
 &lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.name(&amp;quot;John&amp;quot; or &amp;quot;Jonas&amp;quot;)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;a href=&#34;http://scalamolecule.org/manual/query/parameterize&#34;&gt;Parameterize&lt;/a&gt; - let Datomic cache queries and optimize performance&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://scalamolecule.org/manual/query/parameterize&#34;&gt;Parameterize&lt;/a&gt; - re-use molecules and let Datomic cache queries and optimize performance&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val person = Person.name(?).age(?)
 
@@ -894,6 +1027,83 @@ related namespaces:&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;Community.type&lt;/code&gt;, &lt;code&gt;Community.orgtype&lt;/code&gt; and &lt;code&gt;District.region&lt;/code&gt; all have fixed
 enumerated values to choose from. And &lt;code&gt;Community.category&lt;/code&gt; is the only
 many-cardinality attribute allowed to have multiple values.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Boilerplate</title>
+      <link>http://scalamolecule.org/manual/schema/boilerplate/</link>
+      <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
+      
+      <guid>http://scalamolecule.org/manual/schema/boilerplate/</guid>
+      <description>
+
+&lt;h1 id=&#34;boilerplate-code:36a3cc328100a137a125b621a816413d&#34;&gt;Boilerplate code&lt;/h1&gt;
+
+&lt;p&gt;SBT will ask the &lt;code&gt;DslBoilerplate&lt;/code&gt; file in our project folder to use our schema definition files as templates to generate a series of domain-specific boilerplate traits for us.&lt;/p&gt;
+
+&lt;p&gt;With these generated we can then build intuitive molecules like&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Community.name.Neighborhood.name.District.region
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;namespace-traits:36a3cc328100a137a125b621a816413d&#34;&gt;Namespace traits&lt;/h3&gt;
+
+&lt;p&gt;Each namespace is defined as a trait for each arity of our molecule. We start all molecules from a Namespace object like &lt;code&gt;Community&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;// (simplified...)
+object Community extends Community_0
+
+trait Community_0  {
+  val name          : /* types... */ = ???
+  val url           : /* types... */ = ???
+  val category      : /* types... */ = ???
+  
+  def Neighborhood  : /* types... */ = ???
+}
+
+trait Community_1  {
+  val name          : /* types... */ = ???
+  val url           : /* types... */ = ???
+  val category      : /* types... */ = ???
+  
+  def Neighborhood  : /* types... */ = ???
+}
+
+// etc...
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;See&lt;/p&gt;
+
+&lt;h3 id=&#34;increasing-arity:36a3cc328100a137a125b621a816413d&#34;&gt;Increasing arity&amp;hellip;&lt;/h3&gt;
+
+&lt;p&gt;When we build &lt;code&gt;Community.name&lt;/code&gt;, the &lt;code&gt;name&lt;/code&gt; field of &lt;code&gt;Community_0&lt;/code&gt; points on to &lt;code&gt;Community_1&lt;/code&gt; since the arity of our molecule is now 1. We expect &lt;code&gt;Community.name&lt;/code&gt; to return values for 1 attribute.&lt;/p&gt;
+
+&lt;p&gt;All fields are assigned the &lt;code&gt;???&lt;/code&gt; &amp;ldquo;unimplemented method&amp;rdquo; which will be implemented with a Scala macro when we compile our project during development (not the &lt;code&gt;sbt compile&lt;/code&gt; we do initially).&lt;/p&gt;
+
+&lt;h3 id=&#34;in-out-arities:36a3cc328100a137a125b621a816413d&#34;&gt;In/Out arities&lt;/h3&gt;
+
+&lt;p&gt;We annotate schema definition traits with &lt;code&gt;@InOut(x, y)&lt;/code&gt; to tell Molecule the arity of inputs and outputs we expect molecules to be able to accept.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;@InOut(3, 8) // &amp;lt;-- In-arity: 3, Out-arity: 8
+trait SeattleDefinition {
+  // namespaces...
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This will generate up to a &lt;code&gt;Community_8&lt;/code&gt; but no further since we don&amp;rsquo;t expect in this case to build molecules with more than 8 attributes.&lt;/p&gt;
+
+&lt;p&gt;There&amp;rsquo;s no reason to create more boilerplate classes than necessary. We can always adjust the number up or down and recompile with &lt;code&gt;sbt compile&lt;/code&gt; to re-generate the domain classes if our schema/requirements change.&lt;/p&gt;
+
+&lt;h3 id=&#34;input-output-molecules:36a3cc328100a137a125b621a816413d&#34;&gt;Input/Output molecules&lt;/h3&gt;
+
+&lt;p&gt;An input molecule like &lt;code&gt;Community.name(?).url(?)&lt;/code&gt; for instance awaits 2 inputs. For now the
+maximum is 3. Given that input values can be expressions like &lt;code&gt;name(&amp;quot;John&amp;quot; or &amp;quot;Lisa&amp;quot;)&lt;/code&gt; it seems
+unlikely that we will need to receive input for much more than 3 attributes at a time.&lt;/p&gt;
+
+&lt;p&gt;Outputs are the number of attributes we can build a molecule of. &lt;code&gt;Community.name.url.Neighborhood.name&lt;/code&gt;
+for instance has 3 attributes (in 2 namespaces). We need to be able to return tuples of values from
+molecules so we can&amp;rsquo;t exceed Scala&amp;rsquo;s arity limit of 22 for tuples.&lt;/p&gt;
 </description>
     </item>
     
