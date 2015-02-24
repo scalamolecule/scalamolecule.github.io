@@ -123,13 +123,13 @@ or
 
 &lt;h1 id=&#34;community:68f80267fa3a50980dbb745a782b8dca&#34;&gt;Community&lt;/h1&gt;
 
-&lt;h2 id=&#34;resources:68f80267fa3a50980dbb745a782b8dca&#34;&gt;Resources&lt;/h2&gt;
+&lt;p&gt;The &lt;a href=&#34;https://groups.google.com/forum/#!forum/molecule-dsl&#34;&gt;Molecule google list&lt;/a&gt; is open to questions and discussions about Molecule and other Scala-based Datomic resources.&lt;/p&gt;
+
+&lt;h3 id=&#34;resources:68f80267fa3a50980dbb745a782b8dca&#34;&gt;Resources&lt;/h3&gt;
 
 &lt;ul&gt;
-&lt;li&gt;[Molecule google list][moleculegroup] for questions and discussions about Molecule and other Scala-based Datomic resources&lt;/li&gt;
-&lt;li&gt;[Issues][issues] - please feel free to raise issues/report bugs&lt;/li&gt;
-&lt;li&gt;[Pull requests][pullrequests] are welcome&lt;/li&gt;
-&lt;li&gt;[Datomic][datomic] website&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/scalamolecule/molecule/issues&#34;&gt;Issues&lt;/a&gt; - please feel free to raise issues/report bugs or make pull requests&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://datomic.com&#34;&gt;Datomic&lt;/a&gt; website&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/pellucidanalytics/datomisca&#34;&gt;Datomisca&lt;/a&gt;, a Scala API for Datomic&lt;/li&gt;
 &lt;/ul&gt;
 </description>
@@ -2048,18 +2048,6 @@ List(
     </item>
     
     <item>
-      <title>Forum</title>
-      <link>http://scalamolecule.org/community/forum/</link>
-      <pubDate>Wed, 14 May 2014 02:13:50 UTC</pubDate>
-      
-      <guid>http://scalamolecule.org/community/forum/</guid>
-      <description>
-
-&lt;h1 id=&#34;forum:9bf17893d33490888c600c67505ec118&#34;&gt;Forum&lt;/h1&gt;
-</description>
-    </item>
-    
-    <item>
       <title>Tx data</title>
       <link>http://scalamolecule.org/developer/txdata/</link>
       <pubDate>Wed, 14 May 2014 02:13:50 UTC</pubDate>
@@ -2263,6 +2251,147 @@ enum: String        enums: Set[String]
 &lt;h3 id=&#34;enums:3d59665407ad3f08f6bcaef4686926f7&#34;&gt;Enums&lt;/h3&gt;
 
 &lt;p&gt;Enum values are predefined values that an Attribute can have. They are defined in your schema. Cardinality one enums can have one enum value and cardinality many can have a set of unique enum values for each entity.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Definition</title>
+      <link>http://scalamolecule.org/manual/schema/definition/</link>
+      <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
+      
+      <guid>http://scalamolecule.org/manual/schema/definition/</guid>
+      <description>
+
+&lt;h1 id=&#34;define-molecule-schema:eb6ae157f5199f108ae8e599fe0e98dc&#34;&gt;Define Molecule Schema&lt;/h1&gt;
+
+&lt;p&gt;Molecule provides an easy way to model your domain in a Molecule Schema.&lt;/p&gt;
+
+&lt;p&gt;A simple dsl lets you define attributes of your domain by type, cardinality and options/values with as little ceremony as possible.&lt;/p&gt;
+
+&lt;h3 id=&#34;schema-definition:eb6ae157f5199f108ae8e599fe0e98dc&#34;&gt;Schema definition&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;@InOut(3, 8)
+trait SeattleDefinition {
+
+  trait Community {
+    val name         = oneString.fullTextSearch
+    val url          = oneString
+    val category     = manyString.fullTextSearch
+    val orgtype      = oneEnum(&#39;community, &#39;commercial, &#39;nonprofit)
+    val `type`       = oneEnum(&#39;email_list, &#39;twitter, &#39;facebook_page)
+    val neighborhood = one[Neighborhood]
+  }
+
+  trait Neighborhood {
+    val name     = oneString.fullTextSearch.uniqueIdentity
+    val district = one[District]
+  }
+
+  trait District {
+    val name   = oneString.fullTextSearch.uniqueIdentity
+    val region = oneEnum(&#39;n, &#39;ne, &#39;e, &#39;se, &#39;s, &#39;sw, &#39;w, &#39;nw)
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;In the Seattle schema we define 3 namespaces with different kinds of attributes:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;oneString&lt;/code&gt;, &lt;code&gt;manyString&lt;/code&gt; etc defines cardinality and type of an attribute&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;oneEnum&lt;/code&gt;/&lt;code&gt;manyEnum&lt;/code&gt; defines enumerated values&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;one[&amp;lt;ReferencedNamespace&amp;gt;]&lt;/code&gt; defines a reference to another namespace&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;attribute-types:eb6ae157f5199f108ae8e599fe0e98dc&#34;&gt;Attribute types&lt;/h3&gt;
+
+&lt;p&gt;We have the following types available:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Cardinality one     Cardinality many
+---------------     ----------------
+oneString           manyString
+oneInt              manyInt   
+oneLong             manyLong    
+oneFloat            manyFloat     
+oneDouble           manyDouble      
+oneBoolean          manyBoolean      
+oneDate             manyDate    
+oneUUID             manyUUID    
+oneURI              manyURI   
+oneEnum             manyEnum              
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Datomic also has types &lt;code&gt;BigInt&lt;/code&gt; and &lt;code&gt;Bytes&lt;/code&gt; and those could later be implemented in Molecule if there&amp;rsquo;s a need for those types.&lt;/p&gt;
+
+&lt;p&gt;Cardinality-one attributes can have one value per entity.&lt;/p&gt;
+
+&lt;p&gt;Cardinality-many attributes can have a &lt;em&gt;Set of unique values&lt;/em&gt; per entity. Often we choose instead to model many-values as a many-reference to some other namespace where we can define more.&lt;/p&gt;
+
+&lt;h3 id=&#34;reference-types:eb6ae157f5199f108ae8e599fe0e98dc&#34;&gt;Reference types&lt;/h3&gt;
+
+&lt;p&gt;References are also treated like attributes. It&amp;rsquo;s basically a reference to one or many entities. We define such relationship by supplying the referenced namespace as the type parameter to the &lt;code&gt;one&lt;/code&gt;/&lt;code&gt;many&lt;/code&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Cardinality one         Cardinality many
+---------------         ----------------
+one[&amp;lt;Ref-namespace&amp;gt;]    many[&amp;lt;Ref-namespace&amp;gt;]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;In the example above we saw a reference from Community to Neighborhood defined as &lt;code&gt;one[Neighborhood]&lt;/code&gt;. We would for instance likely define an Order/Order Line relationship in an Order namespace as &lt;code&gt;many[OrderLine]&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h3 id=&#34;attribute-options:eb6ae157f5199f108ae8e599fe0e98dc&#34;&gt;Attribute options&lt;/h3&gt;
+
+&lt;p&gt;Each attribute can also have some extra options:&lt;/p&gt;
+
+&lt;p&gt;
+&lt;table border=&#34;1&#34; cellpadding=&#34;5&#34; cellspacing=&#34;0&#34; style=&#34;background-color:#f5f5f5;&#34;&gt;
+  &lt;tr&gt;
+    &lt;th align=&#34;left&#34; valign=&#34;top&#34; scope=&#34;col&#34;&gt;Option&lt;/th&gt;
+    &lt;th valign=&#34;top&#34; scope=&#34;col&#34;&gt;&lt;strong&gt;Indexes&lt;/strong&gt;&lt;/th&gt;
+    &lt;th scope=&#34;col&#34;&gt;Description&lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;tr valign=&#34;top&#34;&gt;
+    &lt;td valign=&#34;top&#34;&gt;doc&lt;/td&gt;
+    &lt;td align=&#34;center&#34; valign=&#34;top&#34;&gt;&amp;nbsp;&lt;/td&gt;
+    &lt;td&gt;Attribute description.&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr valign=&#34;top&#34;&gt;
+    &lt;td valign=&#34;top&#34;&gt;uniqueValue&lt;/td&gt;
+    &lt;td align=&#34;center&#34; valign=&#34;top&#34;&gt;✔︎&lt;/td&gt;
+    &lt;td&gt;Attribute value is unique to each entity.&lt;br&gt;
+      &lt;em&gt;Attempts to insert a duplicate value for a different entity id will fail.&lt;/em&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr valign=&#34;top&#34;&gt;
+    &lt;td valign=&#34;top&#34;&gt;uniqueIdentity&lt;/td&gt;
+    &lt;td align=&#34;center&#34; valign=&#34;top&#34;&gt;✔︎&lt;/td&gt;
+    &lt;td&gt;Attribute value is unique to each entity and &amp;quot;upsert&amp;quot; is enabled.&lt;br&gt;
+      &lt;em&gt;Attempts to insert a duplicate value for a temporary entity id will cause all attributes associated with that temporary id to be merged with the entity already in the database.&lt;/em&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td valign=&#34;top&#34;&gt;indexed&lt;/td&gt;
+    &lt;td align=&#34;center&#34; valign=&#34;top&#34;&gt;✔︎&lt;/td&gt;
+    &lt;td&gt;Generated index for this attribute.&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td valign=&#34;top&#34;&gt;fullTextSearch&lt;/td&gt;
+    &lt;td align=&#34;center&#34; valign=&#34;top&#34;&gt;✔︎&lt;/td&gt;
+    &lt;td&gt;Generate eventually consistent fulltext search index for this attribute.&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td valign=&#34;top&#34;&gt;isComponent&lt;/td&gt;
+    &lt;td align=&#34;center&#34; valign=&#34;top&#34;&gt;✔︎&lt;/td&gt;
+    &lt;td&gt;Specifies that an attribute whose type is :db.type/ref refers to a subcomponent of the entity to which the attribute is applied.&lt;br&gt;
+    &lt;em&gt;When you retract an entity with :db.fn/retractEntity, all subcomponents are also retracted. When you touch an entity, all its subcomponent entities are touched recursively.&lt;/em&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td valign=&#34;top&#34;&gt;noHistory&lt;/td&gt;
+    &lt;td align=&#34;center&#34; valign=&#34;top&#34;&gt;&amp;nbsp;&lt;/td&gt;
+    &lt;td&gt;Whether past values of an attribute should not be retained.&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Datomic indexes the values of all attributes having an option except for the &lt;code&gt;doc&lt;/code&gt; and &lt;code&gt;noHistory&lt;/code&gt; options.&lt;/p&gt;
+
+&lt;p&gt;As you saw, we added &lt;code&gt;fulltextSearch&lt;/code&gt; and &lt;code&gt;uniqueIdentity&lt;/code&gt; to some of the attributes in the Seattle definition above. Molecule&amp;rsquo;s schema definition DSL let&amp;rsquo;s you only choose allowed options for any attribute type.&lt;/p&gt;
 </description>
     </item>
     
