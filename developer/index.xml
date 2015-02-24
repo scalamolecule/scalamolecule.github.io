@@ -251,19 +251,19 @@ trait Community_2[A, B] extends Community with Out_2[Community_2, Community_3, C
 
 &lt;h1 id=&#34;macro-transformation:596edf0adf55e6ba8eb0683b47bc2db2&#34;&gt;Macro transformation&lt;/h1&gt;
 
+&lt;p&gt;Molecule performs a series of transformation of the molecules we write so that they in the end become a Datomic query:&lt;/p&gt;
+
 &lt;h3 id=&#34;1-source-code:596edf0adf55e6ba8eb0683b47bc2db2&#34;&gt;1. Source code&lt;/h3&gt;
 
-&lt;p&gt;A little more elaborate molecule like&lt;/p&gt;
+&lt;p&gt;To find southern media communities we could make the following molecule&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Community.name.`type`(&amp;quot;twitter&amp;quot; or &amp;quot;facebook_page&amp;quot;)
   .Neighborhood.District.region(&amp;quot;sw&amp;quot; or &amp;quot;s&amp;quot; or &amp;quot;se&amp;quot;)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;is at compile time taken through a series of various abstraction transformations by Molecule macros.&lt;/p&gt;
+&lt;h3 id=&#34;2-model-ast:596edf0adf55e6ba8eb0683b47bc2db2&#34;&gt;2. Model AST&lt;/h3&gt;
 
-&lt;h3 id=&#34;2-model:596edf0adf55e6ba8eb0683b47bc2db2&#34;&gt;2. Model&lt;/h3&gt;
-
-&lt;p&gt;Our source code is pattern matched element by element and abstracted to a Model of &lt;code&gt;Atoms&lt;/code&gt; and &lt;code&gt;Bonds&lt;/code&gt;:&lt;/p&gt;
+&lt;p&gt;The source code of our molecule is then pattern matched element by element in order to create an abstracted Model of &lt;code&gt;Atom&lt;/code&gt;s and &lt;code&gt;Bond&lt;/code&gt;s:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Model(List(
   Atom(&amp;quot;community&amp;quot;, &amp;quot;name&amp;quot;, &amp;quot;String&amp;quot;, 1, VarValue, None),
@@ -276,7 +276,7 @@ trait Community_2[A, B] extends Community with Out_2[Community_2, Community_3, C
 
 &lt;p&gt;This simple &lt;a href=&#34;https://github.com/scalamolecule/molecule/blob/master/core/src/main/scala/molecule/ast/model.scala#L26-L33&#34;&gt;Model AST&lt;/a&gt; has shown to cover a surprising wide spectre of queries.&lt;/p&gt;
 
-&lt;h3 id=&#34;3-query:596edf0adf55e6ba8eb0683b47bc2db2&#34;&gt;3. Query&lt;/h3&gt;
+&lt;h3 id=&#34;3-query-ast:596edf0adf55e6ba8eb0683b47bc2db2&#34;&gt;3. Query AST&lt;/h3&gt;
 
 &lt;p&gt;Our model is then transformed to a Query AST which is a little more elaborate:&lt;/p&gt;
 
@@ -303,7 +303,7 @@ trait Community_2[A, B] extends Community with Out_2[Community_2, Community_3, C
 )
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;As you see this abstraction is tailored to Datomic.&lt;/p&gt;
+&lt;p&gt;As you see this &lt;a href=&#34;https://github.com/scalamolecule/molecule/blob/master/core/src/main/scala/molecule/ast/query.scala&#34;&gt;Query abstraction&lt;/a&gt; is tailored to Datomic.&lt;/p&gt;
 
 &lt;p&gt;In principle we should be able to use the same model to create other Query abstractions tailored to other database systems!&amp;hellip;&lt;/p&gt;
 
@@ -329,6 +329,8 @@ List(
      [(rule2 ?e) [?e :district/region &#34;:district.region/s&#34;]]
      [(rule2 ?e) [?e :district/region &#34;:district.region/se&#34;]]]
 &lt;/pre&gt;
+
+&lt;p&gt;All 3 transformations happen at compile time and therefore have no impact on the runtime performance.&lt;/p&gt;
 </description>
     </item>
     

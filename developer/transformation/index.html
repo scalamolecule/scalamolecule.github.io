@@ -115,19 +115,19 @@
 
 <h1 id="macro-transformation:596edf0adf55e6ba8eb0683b47bc2db2">Macro transformation</h1>
 
+<p>Molecule performs a series of transformation of the molecules we write so that they in the end become a Datomic query:</p>
+
 <h3 id="1-source-code:596edf0adf55e6ba8eb0683b47bc2db2">1. Source code</h3>
 
-<p>A little more elaborate molecule like</p>
+<p>To find southern media communities we could make the following molecule</p>
 
 <pre><code class="language-scala">Community.name.`type`(&quot;twitter&quot; or &quot;facebook_page&quot;)
   .Neighborhood.District.region(&quot;sw&quot; or &quot;s&quot; or &quot;se&quot;)
 </code></pre>
 
-<p>is at compile time taken through a series of various abstraction transformations by Molecule macros.</p>
+<h3 id="2-model-ast:596edf0adf55e6ba8eb0683b47bc2db2">2. Model AST</h3>
 
-<h3 id="2-model:596edf0adf55e6ba8eb0683b47bc2db2">2. Model</h3>
-
-<p>Our source code is pattern matched element by element and abstracted to a Model of <code>Atoms</code> and <code>Bonds</code>:</p>
+<p>The source code of our molecule is then pattern matched element by element in order to create an abstracted Model of <code>Atom</code>s and <code>Bond</code>s:</p>
 
 <pre><code class="language-scala">Model(List(
   Atom(&quot;community&quot;, &quot;name&quot;, &quot;String&quot;, 1, VarValue, None),
@@ -140,7 +140,7 @@
 
 <p>This simple <a href="https://github.com/scalamolecule/molecule/blob/master/core/src/main/scala/molecule/ast/model.scala#L26-L33">Model AST</a> has shown to cover a surprising wide spectre of queries.</p>
 
-<h3 id="3-query:596edf0adf55e6ba8eb0683b47bc2db2">3. Query</h3>
+<h3 id="3-query-ast:596edf0adf55e6ba8eb0683b47bc2db2">3. Query AST</h3>
 
 <p>Our model is then transformed to a Query AST which is a little more elaborate:</p>
 
@@ -167,7 +167,7 @@
 )
 </code></pre>
 
-<p>As you see this abstraction is tailored to Datomic.</p>
+<p>As you see this <a href="https://github.com/scalamolecule/molecule/blob/master/core/src/main/scala/molecule/ast/query.scala">Query abstraction</a> is tailored to Datomic.</p>
 
 <p>In principle we should be able to use the same model to create other Query abstractions tailored to other database systems!&hellip;</p>
 
@@ -193,6 +193,8 @@ List(
      [(rule2 ?e) [?e :district/region ":district.region/s"]]
      [(rule2 ?e) [?e :district/region ":district.region/se"]]]
 </pre>
+
+<p>All 3 transformations happen at compile time and therefore have no impact on the runtime performance.</p>
 
 </div>     
   </div> 
