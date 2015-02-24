@@ -73,6 +73,7 @@
                     <li><a href="http://scalamolecule.org/manual/query/expressions/">Expressions</a></li>
                     <li><a href="http://scalamolecule.org/manual/query/aggregates/">Aggregates</a></li>
                     <li><a href="http://scalamolecule.org/manual/query/parameterize/">Parameterize</a></li>
+                    <li><a href="http://scalamolecule.org/manual/query/relationships/">Relationships</a></li>
                   </ul>
                 </li>
             </ul>
@@ -80,6 +81,8 @@
           <li class="dropdown active">
             <a data-toggle="dropdown" href="http://scalamolecule.org/developer/overview/" target="_top" onclick="javascript:top.location = 'http:\/\/scalamolecule.org\/developer\/overview\/';return true;">Developer</a>
               <ul class="dropdown-menu level1" role="menu" aria-labelledby="dropdownMenu">
+                <li><a href="http://scalamolecule.org/developer/txdata/">Tx data</a></li>
+                <li><a href="http://scalamolecule.org/developer/boilerplate/">Boilerplate</a></li>
                 <li><a href="http://scalamolecule.org/developer/transformation/">Transformation</a></li>
             </ul>
           </li>
@@ -101,6 +104,8 @@
 <div class="col-sm-2 column" style="padding-left:0;padding-top:22px;padding-left:10px;">
   <ul style="list-style: none; padding:0; margin:0;font-size:12px;">
     <li><a href="http://scalamolecule.org/developer/overview/">Developer</a></li>
+    <li><a href="http://scalamolecule.org/developer/txdata/">Tx data</a></li>
+    <li><a href="http://scalamolecule.org/developer/boilerplate/">Boilerplate</a></li>
     <li class="active"><b>Transformation</b></li>
   </ul>
 </div>
@@ -108,66 +113,86 @@
 <div class="col-sm-10 column" style="padding:0;">
 	
 
-<h1 id="source-code-transformation:596edf0adf55e6ba8eb0683b47bc2db2">Source code transformation</h1>
+<h1 id="macro-transformation:596edf0adf55e6ba8eb0683b47bc2db2">Macro transformation</h1>
 
-<p>As an example: to find</p>
+<h3 id="1-source-code:596edf0adf55e6ba8eb0683b47bc2db2">1. Source code</h3>
 
-<p><em>Names of twitter/facebook_page communities in neighborhoods of southern districts</em></p>
-
-<p>we can compose a &ldquo;molecule query&rdquo; that is very close to our
-human sentence:</p>
+<p>A little more elaborate molecule like</p>
 
 <pre><code class="language-scala">Community.name.`type`(&quot;twitter&quot; or &quot;facebook_page&quot;)
   .Neighborhood.District.region(&quot;sw&quot; or &quot;s&quot; or &quot;se&quot;)
 </code></pre>
 
-<p>Molecule transforms this at compile time (with macros) to a little more elaborate Datalog query string and
- input rules that finds those communities in the Datomic database:</p>
+<p>is at compile time taken through a series of various abstraction transformations by Molecule macros.</p>
+
+<h3 id="2-model:596edf0adf55e6ba8eb0683b47bc2db2">2. Model</h3>
+
+<p>Our source code is pattern matched element by element and abstracted to a Model of <code>Atoms</code> and <code>Bonds</code>:</p>
+
+<pre><code class="language-scala">Model(List(
+  Atom(&quot;community&quot;, &quot;name&quot;, &quot;String&quot;, 1, VarValue, None),
+  Atom(&quot;community&quot;, &quot;type_&quot;, &quot;String&quot;, 1, Eq(List(&quot;twitter&quot;, &quot;facebook_page&quot;)), Some(&quot;:community.type/&quot;)),
+  Bond(&quot;community&quot;, &quot;neighborhood&quot;, &quot;neighborhood&quot;),
+  Bond(&quot;neighborhood&quot;, &quot;district&quot;, &quot;district&quot;),
+  Atom(&quot;district&quot;, &quot;region_&quot;, &quot;String&quot;, 1, Eq(List(&quot;sw&quot;, &quot;s&quot;, &quot;se&quot;)), Some(&quot;:district.region/&quot;)))
+)
+</code></pre>
+
+<p>This simple <a href="https://github.com/scalamolecule/molecule/blob/master/core/src/main/scala/molecule/ast/model.scala#L26-L33">Model AST</a> has shown to cover a surprising wide spectre of queries.</p>
+
+<h3 id="3-query:596edf0adf55e6ba8eb0683b47bc2db2">3. Query</h3>
+
+<p>Our model is then transformed to a Query AST which is a little more elaborate:</p>
+
+<pre><code class="language-scala">Query(
+  Find(List(
+    Var(&quot;b&quot;))),
+  In(List(), List(
+    Rule(&quot;rule1&quot;, List(Var(&quot;a&quot;)), List(
+      DataClause(ImplDS, Var(&quot;a&quot;), KW(&quot;community&quot;, &quot;type&quot;), Val(&quot;:community.type/twitter&quot;), Empty))),
+    Rule(&quot;rule1&quot;, List(Var(&quot;a&quot;)), List(
+      DataClause(ImplDS, Var(&quot;a&quot;), KW(&quot;community&quot;, &quot;type&quot;), Val(&quot;:community.type/facebook_page&quot;), Empty))),
+    Rule(&quot;rule2&quot;, List(Var(&quot;e&quot;)), List(
+      DataClause(ImplDS, Var(&quot;e&quot;), KW(&quot;district&quot;, &quot;region&quot;), Val(&quot;:district.region/sw&quot;), Empty))),
+    Rule(&quot;rule2&quot;, List(Var(&quot;e&quot;)), List(
+      DataClause(ImplDS, Var(&quot;e&quot;), KW(&quot;district&quot;, &quot;region&quot;), Val(&quot;:district.region/s&quot;), Empty))),
+    Rule(&quot;rule2&quot;, List(Var(&quot;e&quot;)), List(
+      DataClause(ImplDS, Var(&quot;e&quot;), KW(&quot;district&quot;, &quot;region&quot;), Val(&quot;:district.region/se&quot;), Empty)))), List(DS)),
+  Where(List(
+    DataClause(ImplDS, Var(&quot;a&quot;), KW(&quot;community&quot;, &quot;name&quot;), Var(&quot;b&quot;), Empty),
+    RuleInvocation(&quot;rule1&quot;, List(Var(&quot;a&quot;))),
+    DataClause(ImplDS, Var(&quot;a&quot;), KW(&quot;community&quot;, &quot;neighborhood&quot;, &quot;neighborhood&quot;), Var(&quot;d&quot;), Empty),
+    DataClause(ImplDS, Var(&quot;d&quot;), KW(&quot;neighborhood&quot;, &quot;district&quot;, &quot;district&quot;), Var(&quot;e&quot;), Empty),
+    RuleInvocation(&quot;rule2&quot;, List(Var(&quot;e&quot;)))))
+)
+</code></pre>
+
+<p>As you see this abstraction is tailored to Datomic.</p>
+
+<p>In principle we should be able to use the same model to create other Query abstractions tailored to other database systems!&hellip;</p>
+
+<h3 id="4-datomic-query-string:596edf0adf55e6ba8eb0683b47bc2db2">4. Datomic query string</h3>
+
+<p>Finally Molecule transforms our Query AST to Datomic query text strings:</p>
 
 <pre>
-[:find ?a
- :in $ %
- :where
-   [?ent :community/name ?a]
-   (rule1 ?ent)
-   [?ent :community/neighborhood ?c]
-   [?c :neighborhood/district ?d]
-   (rule2 ?d)]
+[:find  ?b
+ :in    $ %
+ :where [?a :community/name ?b]
+        (rule1 ?a)
+        [?a :community/neighborhood ?d]
+        [?d :neighborhood/district ?e]
+        (rule2 ?e)]
 
 INPUTS:
 List(
-  datomic.db.Db@xxx,
-  [[[rule1 ?ent] [?ent :community/type ":community.type/twitter"]]
-   [[rule1 ?ent] [?ent :community/type ":community.type/facebook_page"]]
-   [[rule2 ?d] [?d :district/region ":district.region/sw"]]
-   [[rule2 ?d] [?d :district/region ":district.region/s"]]
-   [[rule2 ?d] [?d :district/region ":district.region/se"]]]
-)
+  1 datomic.db.Db@xxx
+  2 [[(rule1 ?a) [?a :community/type ":community.type/twitter"]]
+     [(rule1 ?a) [?a :community/type ":community.type/facebook_page"]]
+     [(rule2 ?e) [?e :district/region ":district.region/sw"]]
+     [(rule2 ?e) [?e :district/region ":district.region/s"]]
+     [(rule2 ?e) [?e :district/region ":district.region/se"]]]
 </pre>
-
-<h4 id="benefits:596edf0adf55e6ba8eb0683b47bc2db2">Benefits</h4>
-
-<p>By not having to write such complex Datalog queries and rules &ldquo;by hand&rdquo;, Molecule
-allows you to</p>
-
-<ul>
-<li>Type less</li>
-<li>Make type safe queries with inferred return types</li>
-<li>Use your domain terms directly as query building blocks</li>
-<li>Model complex queries intuitively (easier to understand and maintain)</li>
-<li>Reduce syntactic noise</li>
-<li>Focus more on your domain and less on queries</li>
-</ul>
-
-<h4 id="possible-drawbacks:596edf0adf55e6ba8eb0683b47bc2db2">Possible drawbacks</h4>
-
-<p>We still need to explore how far Molecule can match the expressive powers
- of Datalog. So far, all
- examples in the
-[Seattle tutorial][seattle] have been
-&ldquo;molecularized&rdquo; succesfully (see the
-[Molecule Seattle tutorial][tutorial] and
-[code][tutorialcode]). So as a proof-of-concept it looks promising&hellip;</p>
 
 </div>     
   </div> 

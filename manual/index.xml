@@ -988,6 +988,47 @@ val Lisa   = person(&amp;quot;Lisa&amp;quot;, 27).one
     </item>
     
     <item>
+      <title>Relationships</title>
+      <link>http://scalamolecule.org/manual/query/relationships/</link>
+      <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
+      
+      <guid>http://scalamolecule.org/manual/query/relationships/</guid>
+      <description>
+
+&lt;h1 id=&#34;relationships:c826c531212d0a54ebca2cc2d2da67b7&#34;&gt;Relationships&lt;/h1&gt;
+
+&lt;p&gt;Relationships are modelled in Molecule as &amp;ldquo;references between namespaces&amp;rdquo;.&lt;/p&gt;
+
+&lt;p&gt;It&amp;rsquo;s not that namespaces automatically become entities referencing each other but rather that referenced entities will likely pick attributes from a certain namespace.&lt;/p&gt;
+
+&lt;h3 id=&#34;one-references:c826c531212d0a54ebca2cc2d2da67b7&#34;&gt;One-references&lt;/h3&gt;
+
+&lt;p&gt;A &lt;code&gt;Person&lt;/code&gt; could have a cardinality-one reference to &lt;code&gt;City&lt;/code&gt; having a cardinality-one reference to a &lt;code&gt;Country&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.name.City.name.Country.name
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Strictly speaking we would have an entity with an asserted &lt;code&gt;:person/name&lt;/code&gt; attribute value with a reference to another entity with an asserted &lt;code&gt;:city/name&lt;/code&gt; attribute value etc. But in practice we simply talk about &amp;ldquo;namespace A has a relationship/reference to namespace B&amp;rdquo;.&lt;/p&gt;
+
+&lt;p&gt;A namespace is not like an SQL Table but rather organizes some attributes by a meaningful name - it&amp;rsquo;s, well, a &lt;em&gt;namespace&lt;/em&gt;.&lt;/p&gt;
+
+&lt;h3 id=&#34;many-references:c826c531212d0a54ebca2cc2d2da67b7&#34;&gt;Many-references&lt;/h3&gt;
+
+&lt;p&gt;If we have an &lt;code&gt;Order&lt;/code&gt; with multiple &lt;code&gt;OrderLine&lt;/code&gt;s we would instead define a cardinality-many reference to the &lt;code&gt;OrderLine&lt;/code&gt; namespace in our Schema definition:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val orderLines = many[OrderLine]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This would cause Molecule to generate boilerplate code that would allow us to for instance insert multiple products for an order in one go:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;m(Order.id.LineItems * LineItem.product.price.quantity).insert(
+  &amp;quot;order1&amp;quot;, List((chocolateId, 48.00, 1), (whiskyId, 38.00, 2))
+)
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Modelling</title>
       <link>http://scalamolecule.org/manual/schema/modelling/</link>
       <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
@@ -1027,83 +1068,6 @@ related namespaces:&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;Community.type&lt;/code&gt;, &lt;code&gt;Community.orgtype&lt;/code&gt; and &lt;code&gt;District.region&lt;/code&gt; all have fixed
 enumerated values to choose from. And &lt;code&gt;Community.category&lt;/code&gt; is the only
 many-cardinality attribute allowed to have multiple values.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Boilerplate</title>
-      <link>http://scalamolecule.org/manual/schema/boilerplate/</link>
-      <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
-      
-      <guid>http://scalamolecule.org/manual/schema/boilerplate/</guid>
-      <description>
-
-&lt;h1 id=&#34;boilerplate-code:36a3cc328100a137a125b621a816413d&#34;&gt;Boilerplate code&lt;/h1&gt;
-
-&lt;p&gt;SBT will ask the &lt;code&gt;DslBoilerplate&lt;/code&gt; file in our project folder to use our schema definition files as templates to generate a series of domain-specific boilerplate traits for us.&lt;/p&gt;
-
-&lt;p&gt;With these generated we can then build intuitive molecules like&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Community.name.Neighborhood.name.District.region
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;namespace-traits:36a3cc328100a137a125b621a816413d&#34;&gt;Namespace traits&lt;/h3&gt;
-
-&lt;p&gt;Each namespace is defined as a trait for each arity of our molecule. We start all molecules from a Namespace object like &lt;code&gt;Community&lt;/code&gt;:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;// (simplified...)
-object Community extends Community_0
-
-trait Community_0  {
-  val name          : /* types... */ = ???
-  val url           : /* types... */ = ???
-  val category      : /* types... */ = ???
-  
-  def Neighborhood  : /* types... */ = ???
-}
-
-trait Community_1  {
-  val name          : /* types... */ = ???
-  val url           : /* types... */ = ???
-  val category      : /* types... */ = ???
-  
-  def Neighborhood  : /* types... */ = ???
-}
-
-// etc...
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;See&lt;/p&gt;
-
-&lt;h3 id=&#34;increasing-arity:36a3cc328100a137a125b621a816413d&#34;&gt;Increasing arity&amp;hellip;&lt;/h3&gt;
-
-&lt;p&gt;When we build &lt;code&gt;Community.name&lt;/code&gt;, the &lt;code&gt;name&lt;/code&gt; field of &lt;code&gt;Community_0&lt;/code&gt; points on to &lt;code&gt;Community_1&lt;/code&gt; since the arity of our molecule is now 1. We expect &lt;code&gt;Community.name&lt;/code&gt; to return values for 1 attribute.&lt;/p&gt;
-
-&lt;p&gt;All fields are assigned the &lt;code&gt;???&lt;/code&gt; &amp;ldquo;unimplemented method&amp;rdquo; which will be implemented with a Scala macro when we compile our project during development (not the &lt;code&gt;sbt compile&lt;/code&gt; we do initially).&lt;/p&gt;
-
-&lt;h3 id=&#34;in-out-arities:36a3cc328100a137a125b621a816413d&#34;&gt;In/Out arities&lt;/h3&gt;
-
-&lt;p&gt;We annotate schema definition traits with &lt;code&gt;@InOut(x, y)&lt;/code&gt; to tell Molecule the arity of inputs and outputs we expect molecules to be able to accept.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;@InOut(3, 8) // &amp;lt;-- In-arity: 3, Out-arity: 8
-trait SeattleDefinition {
-  // namespaces...
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;This will generate up to a &lt;code&gt;Community_8&lt;/code&gt; but no further since we don&amp;rsquo;t expect in this case to build molecules with more than 8 attributes.&lt;/p&gt;
-
-&lt;p&gt;There&amp;rsquo;s no reason to create more boilerplate classes than necessary. We can always adjust the number up or down and recompile with &lt;code&gt;sbt compile&lt;/code&gt; to re-generate the domain classes if our schema/requirements change.&lt;/p&gt;
-
-&lt;h3 id=&#34;input-output-molecules:36a3cc328100a137a125b621a816413d&#34;&gt;Input/Output molecules&lt;/h3&gt;
-
-&lt;p&gt;An input molecule like &lt;code&gt;Community.name(?).url(?)&lt;/code&gt; for instance awaits 2 inputs. For now the
-maximum is 3. Given that input values can be expressions like &lt;code&gt;name(&amp;quot;John&amp;quot; or &amp;quot;Lisa&amp;quot;)&lt;/code&gt; it seems
-unlikely that we will need to receive input for much more than 3 attributes at a time.&lt;/p&gt;
-
-&lt;p&gt;Outputs are the number of attributes we can build a molecule of. &lt;code&gt;Community.name.url.Neighborhood.name&lt;/code&gt;
-for instance has 3 attributes (in 2 namespaces). We need to be able to return tuples of values from
-molecules so we can&amp;rsquo;t exceed Scala&amp;rsquo;s arity limit of 22 for tuples.&lt;/p&gt;
 </description>
     </item>
     

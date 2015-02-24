@@ -4,7 +4,7 @@
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
   <link href='http://fonts.googleapis.com/css?family=Merriweather+Sans:400,300,300italic,400italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
-  <title>Modelling</title>
+  <title>Relationships</title>
   <link href="/css/bootstrap.min.css" rel="stylesheet">
   <link href="/css/highlight/styles/solarized_light.css" rel="stylesheet" />
   <link href="/css/style.css" rel="stylesheet">
@@ -108,7 +108,7 @@
       <ul style="list-style: none; padding-left: 15px;">
         <li><a href="http://scalamolecule.org/manual/schema/files/">Files</a></li>
         <li><a href="http://scalamolecule.org/manual/schema/definition/">Definition</a></li>
-        <li class="active"><b>Modelling</b></li>
+        <li><a href="http://scalamolecule.org/manual/schema/modelling/">Modelling</a></li>
         <li><a href="http://scalamolecule.org/manual/schema/boilerplate/">Boilerplate</a></li>
         <li><a href="http://scalamolecule.org/manual/schema/datomic-schema/">Datomic</a></li>
       </ul>
@@ -122,7 +122,7 @@
         <li><a href="http://scalamolecule.org/manual/query/expressions/">Expressions</a></li>
         <li><a href="http://scalamolecule.org/manual/query/aggregates/">Aggregates</a></li>
         <li><a href="http://scalamolecule.org/manual/query/parameterize/">Parameterize</a></li>
-        <li><a href="http://scalamolecule.org/manual/query/relationships/">Relationships</a></li>
+        <li class="active"><b>Relationships</b></li>
       </ul>
   </ul>
 </div>
@@ -130,38 +130,36 @@
 <div class="col-sm-10 column" style="padding:0;">
 	
 
-<h1 id="modelling:1a78f08b347c58aecd18d23e659bda2c">Modelling</h1>
+<h1 id="relationships:c826c531212d0a54ebca2cc2d2da67b7">Relationships</h1>
 
-<p>A Datomic <code>schema</code> defines the set of <code>attributes</code> you can assign to <code>entities</code>.
-We organize <code>attributes</code> in <code>namespaces</code> to group related qualities:</p>
+<p>Relationships are modelled in Molecule as &ldquo;references between namespaces&rdquo;.</p>
 
-<p><img src="/img/DatomicElements1.png" alt="Schema" />
-</p>
+<p>It&rsquo;s not that namespaces automatically become entities referencing each other but rather that referenced entities will likely pick attributes from a certain namespace.</p>
 
-<p>This makes it easier to overview our domain data structures.</p>
+<h3 id="one-references:c826c531212d0a54ebca2cc2d2da67b7">One-references</h3>
 
-<h4 id="namespace-table:1a78f08b347c58aecd18d23e659bda2c">Namespace != Table</h4>
+<p>A <code>Person</code> could have a cardinality-one reference to <code>City</code> having a cardinality-one reference to a <code>Country</code>:</p>
 
-<p>If coming from an sql background one might at first think of a namespace as
-a table having columns (attributes). But this is not the case. An
-entity in Datomic can associate values of attributes <em>from any namespace</em>:</p>
+<pre><code class="language-scala">Person.name.City.name.Country.name
+</code></pre>
 
-<p><img src="/img/DatomicElements2.png" alt="" />
-</p>
+<p>Strictly speaking we would have an entity with an asserted <code>:person/name</code> attribute value with a reference to another entity with an asserted <code>:city/name</code> attribute value etc. But in practice we simply talk about &ldquo;namespace A has a relationship/reference to namespace B&rdquo;.</p>
 
-<p>This gives us great freedom to model our domain with more &ldquo;loose&rdquo; namespaces rather than &ldquo;hardcoded things&rdquo; as table definitions. Later we can compose entities grabbing specific attributes from various namespaces as needed.</p>
+<p>A namespace is not like an SQL Table but rather organizes some attributes by a meaningful name - it&rsquo;s, well, a <em>namespace</em>.</p>
 
-<h3 id="relating-namespaces:1a78f08b347c58aecd18d23e659bda2c">Relating namespaces</h3>
+<h3 id="many-references:c826c531212d0a54ebca2cc2d2da67b7">Many-references</h3>
 
-<p>If we recall the Seattle domain then we have some attributes organized in 3
-related namespaces:</p>
+<p>If we have an <code>Order</code> with multiple <code>OrderLine</code>s we would instead define a cardinality-many reference to the <code>OrderLine</code> namespace in our Schema definition:</p>
 
-<p><img src="/img/DatomicElements3.png" alt="Seattle Model" />
-</p>
+<pre><code class="language-scala">val orderLines = many[OrderLine]
+</code></pre>
 
-<p><code>Community.type</code>, <code>Community.orgtype</code> and <code>District.region</code> all have fixed
-enumerated values to choose from. And <code>Community.category</code> is the only
-many-cardinality attribute allowed to have multiple values.</p>
+<p>This would cause Molecule to generate boilerplate code that would allow us to for instance insert multiple products for an order in one go:</p>
+
+<pre><code class="language-scala">m(Order.id.LineItems * LineItem.product.price.quantity).insert(
+  &quot;order1&quot;, List((chocolateId, 48.00, 1), (whiskyId, 38.00, 2))
+)
+</code></pre>
 
 </div>     
   </div> 

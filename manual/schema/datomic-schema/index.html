@@ -73,6 +73,7 @@
                     <li><a href="http://scalamolecule.org/manual/query/expressions/">Expressions</a></li>
                     <li><a href="http://scalamolecule.org/manual/query/aggregates/">Aggregates</a></li>
                     <li><a href="http://scalamolecule.org/manual/query/parameterize/">Parameterize</a></li>
+                    <li><a href="http://scalamolecule.org/manual/query/relationships/">Relationships</a></li>
                   </ul>
                 </li>
             </ul>
@@ -80,6 +81,8 @@
           <li class="dropdown ">
             <a data-toggle="dropdown" href="http://scalamolecule.org/developer/overview/" target="_top" onclick="javascript:top.location = 'http:\/\/scalamolecule.org\/developer\/overview\/';return true;">Developer</a>
               <ul class="dropdown-menu level1" role="menu" aria-labelledby="dropdownMenu">
+                <li><a href="http://scalamolecule.org/developer/txdata/">Tx data</a></li>
+                <li><a href="http://scalamolecule.org/developer/boilerplate/">Boilerplate</a></li>
                 <li><a href="http://scalamolecule.org/developer/transformation/">Transformation</a></li>
             </ul>
           </li>
@@ -119,6 +122,7 @@
         <li><a href="http://scalamolecule.org/manual/query/expressions/">Expressions</a></li>
         <li><a href="http://scalamolecule.org/manual/query/aggregates/">Aggregates</a></li>
         <li><a href="http://scalamolecule.org/manual/query/parameterize/">Parameterize</a></li>
+        <li><a href="http://scalamolecule.org/manual/query/relationships/">Relationships</a></li>
       </ul>
   </ul>
 </div>
@@ -128,18 +132,7 @@
 
 <h1 id="datomic-schema:8e92211a4ec532acc58a1fee7ac4346e">Datomic schema</h1>
 
-<p>A Molecule schema definition of attributes <code>name</code> and <code>url</code> like</p>
-
-<pre><code class="language-scala">trait SeattleDefinition {
-  trait Community {
-    val name         = oneString.fullTextSearch
-    val url          = oneString
-    // etc...
-  }
-}
-</code></pre>
-
-<p>will generate a corresponding Datomic schema definition with the following list of maps of key/values:</p>
+<p>Our <a href="/schema/definition">Schema definition file</a> will generate a corresponding Datomic schema file:</p>
 
 <pre><code class="language-scala">object SeattleSchema extends Schema {
 
@@ -166,9 +159,7 @@
 }
 </code></pre>
 
-<p>Note how each attribute name is prefixed with the namespace name (&rdquo;:community/name&rdquo;).</p>
-
-<p>Our definition is transformed to a transactional data format that we can directly feed into Datomic to create a Datomic schema:</p>
+<p>We transact our schema by simply feeding <code>tx</code> into Datomic:</p>
 
 <pre><code class="language-scala">conn.transact(SeattleSchema.tx).get()
 </code></pre>

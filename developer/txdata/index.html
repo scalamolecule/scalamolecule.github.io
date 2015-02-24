@@ -4,7 +4,7 @@
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
   <link href='http://fonts.googleapis.com/css?family=Merriweather+Sans:400,300,300italic,400italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
-  <title>Modelling</title>
+  <title>Tx data</title>
   <link href="/css/bootstrap.min.css" rel="stylesheet">
   <link href="/css/highlight/styles/solarized_light.css" rel="stylesheet" />
   <link href="/css/style.css" rel="stylesheet">
@@ -49,7 +49,7 @@
                 <li><a href="http://scalamolecule.org/tutorials/seattle/">Seattle</a></li>
             </ul>
           </li>
-          <li class="dropdown active">
+          <li class="dropdown ">
             <a data-toggle="dropdown" href="http://scalamolecule.org/manual/overview/" target="_top" onclick="javascript:top.location = 'http:\/\/scalamolecule.org\/manual\/overview\/';return true;">Manual</a>
               <ul class="dropdown-menu level1" role="menu" aria-labelledby="dropdownMenu">
                 <li class="dropdown-submenu">
@@ -78,7 +78,7 @@
                 </li>
             </ul>
           </li>
-          <li class="dropdown ">
+          <li class="dropdown active">
             <a data-toggle="dropdown" href="http://scalamolecule.org/developer/overview/" target="_top" onclick="javascript:top.location = 'http:\/\/scalamolecule.org\/developer\/overview\/';return true;">Developer</a>
               <ul class="dropdown-menu level1" role="menu" aria-labelledby="dropdownMenu">
                 <li><a href="http://scalamolecule.org/developer/txdata/">Tx data</a></li>
@@ -103,65 +103,62 @@
 
 <div class="col-sm-2 column" style="padding-left:0;padding-top:22px;padding-left:10px;">
   <ul style="list-style: none; padding:0; margin:0;font-size:12px;">
-    <li><a href="http://scalamolecule.org/manual/overview/">Manual</a></li>
-    <li><a href="http://scalamolecule.org/manual/schema/">Schema</a></li>
-      <ul style="list-style: none; padding-left: 15px;">
-        <li><a href="http://scalamolecule.org/manual/schema/files/">Files</a></li>
-        <li><a href="http://scalamolecule.org/manual/schema/definition/">Definition</a></li>
-        <li class="active"><b>Modelling</b></li>
-        <li><a href="http://scalamolecule.org/manual/schema/boilerplate/">Boilerplate</a></li>
-        <li><a href="http://scalamolecule.org/manual/schema/datomic-schema/">Datomic</a></li>
-      </ul>
-    <li><a href="http://scalamolecule.org/manual/setup/">Setup</a></li>
-    <li><a href="http://scalamolecule.org/manual/insert/">Insert</a></li>
-    <li><a href="http://scalamolecule.org/manual/update/">Update/retract</a></li>
-    <li><a href="http://scalamolecule.org/manual/query/">Query</a></li>
-      <ul style="list-style: none; padding-left: 15px;">
-        <li><a href="http://scalamolecule.org/manual/query/builder/">Builder</a></li>
-        <li><a href="http://scalamolecule.org/manual/query/types/">Types</a></li>
-        <li><a href="http://scalamolecule.org/manual/query/expressions/">Expressions</a></li>
-        <li><a href="http://scalamolecule.org/manual/query/aggregates/">Aggregates</a></li>
-        <li><a href="http://scalamolecule.org/manual/query/parameterize/">Parameterize</a></li>
-        <li><a href="http://scalamolecule.org/manual/query/relationships/">Relationships</a></li>
-      </ul>
+    <li><a href="http://scalamolecule.org/developer/overview/">Developer</a></li>
+    <li class="active"><b>Tx data</b></li>
+    <li><a href="http://scalamolecule.org/developer/boilerplate/">Boilerplate</a></li>
+    <li><a href="http://scalamolecule.org/developer/transformation/">Transformation</a></li>
   </ul>
 </div>
 
 <div class="col-sm-10 column" style="padding:0;">
 	
 
-<h1 id="modelling:1a78f08b347c58aecd18d23e659bda2c">Modelling</h1>
+<h1 id="schema-transaction-data:cd2a84f3e0b729702691d1980ae83981">Schema transaction data</h1>
 
-<p>A Datomic <code>schema</code> defines the set of <code>attributes</code> you can assign to <code>entities</code>.
-We organize <code>attributes</code> in <code>namespaces</code> to group related qualities:</p>
+<p>A <a href="/schema/definition">Schema definition file</a> like</p>
 
-<p><img src="/img/DatomicElements1.png" alt="Schema" />
-</p>
+<pre><code class="language-scala">trait SeattleDefinition {
+  trait Community {
+    val name = oneString.fullTextSearch
+  }
+}
+</code></pre>
 
-<p>This makes it easier to overview our domain data structures.</p>
+<p>defines</p>
 
-<h4 id="namespace-table:1a78f08b347c58aecd18d23e659bda2c">Namespace != Table</h4>
+<ul>
+<li>name (&ldquo;name&rdquo;)</li>
+<li>cardinality (&ldquo;one&rdquo;)</li>
+<li>type (String)</li>
+<li>options (fullTextSearch)</li>
+</ul>
 
-<p>If coming from an sql background one might at first think of a namespace as
-a table having columns (attributes). But this is not the case. An
-entity in Datomic can associate values of attributes <em>from any namespace</em>:</p>
+<p>of a <code>name</code> attribute in the <code>Community</code> namespace.</p>
 
-<p><img src="/img/DatomicElements2.png" alt="" />
-</p>
+<p>This is enough information to generate the necessary code to transact the schema in Datomic:</p>
 
-<p>This gives us great freedom to model our domain with more &ldquo;loose&rdquo; namespaces rather than &ldquo;hardcoded things&rdquo; as table definitions. Later we can compose entities grabbing specific attributes from various namespaces as needed.</p>
+<pre><code class="language-scala">object SeattleSchema extends Schema {
 
-<h3 id="relating-namespaces:1a78f08b347c58aecd18d23e659bda2c">Relating namespaces</h3>
+  lazy val tx = Util.list(
 
-<p>If we recall the Seattle domain then we have some attributes organized in 3
-related namespaces:</p>
+    // Community ------------------------------------------------
 
-<p><img src="/img/DatomicElements3.png" alt="Seattle Model" />
-</p>
+    Util.map(&quot;:db/id&quot;                , Peer.tempid(&quot;:db.part/db&quot;),
+             &quot;:db/ident&quot;             , &quot;:community/name&quot;,
+             &quot;:db/valueType&quot;         , &quot;:db.type/string&quot;,
+             &quot;:db/cardinality&quot;       , &quot;:db.cardinality/one&quot;,
+             &quot;:db/fulltext&quot;          , true.asInstanceOf[Object],
+             &quot;:db.install/_attribute&quot;, &quot;:db.part/db&quot;)
+  )
+}
+</code></pre>
 
-<p><code>Community.type</code>, <code>Community.orgtype</code> and <code>District.region</code> all have fixed
-enumerated values to choose from. And <code>Community.category</code> is the only
-many-cardinality attribute allowed to have multiple values.</p>
+<p>To avoid having to write this code manually, the <code>MoleculeBoilerplate</code> file generates is for us based on our schema definition. It has to be in our project folder for sbt to use it to generate our boilerplate code when we run <code>sbt compile</code>.</p>
+
+<ul>
+<li><a href="/manual/schema/files">File organization</a></li>
+<li><a href="/manual/schema/definition">Types and options</a></li>
+</ul>
 
 </div>     
   </div> 

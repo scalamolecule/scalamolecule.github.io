@@ -73,6 +73,7 @@
                     <li><a href="http://scalamolecule.org/manual/query/expressions/">Expressions</a></li>
                     <li><a href="http://scalamolecule.org/manual/query/aggregates/">Aggregates</a></li>
                     <li><a href="http://scalamolecule.org/manual/query/parameterize/">Parameterize</a></li>
+                    <li><a href="http://scalamolecule.org/manual/query/relationships/">Relationships</a></li>
                   </ul>
                 </li>
             </ul>
@@ -80,6 +81,8 @@
           <li class="dropdown active">
             <a data-toggle="dropdown" href="http://scalamolecule.org/developer/overview/" target="_top" onclick="javascript:top.location = 'http:\/\/scalamolecule.org\/developer\/overview\/';return true;">Developer</a>
               <ul class="dropdown-menu level1" role="menu" aria-labelledby="dropdownMenu">
+                <li><a href="http://scalamolecule.org/developer/txdata/">Tx data</a></li>
+                <li><a href="http://scalamolecule.org/developer/boilerplate/">Boilerplate</a></li>
                 <li><a href="http://scalamolecule.org/developer/transformation/">Transformation</a></li>
             </ul>
           </li>
@@ -101,6 +104,8 @@
 <div class="col-sm-2 column" style="padding-left:0;padding-top:22px;padding-left:10px;">
   <ul style="list-style: none; padding:0; margin:0;font-size:12px;">
     <li class="active"><b>Developer</b></li>
+    <li><a href="http://scalamolecule.org/developer/txdata/">Tx data</a></li>
+    <li><a href="http://scalamolecule.org/developer/boilerplate/">Boilerplate</a></li>
     <li><a href="http://scalamolecule.org/developer/transformation/">Transformation</a></li>
   </ul>
 </div>
@@ -110,69 +115,87 @@
 
 <h1 id="developer:68f80267fa3a50980dbb745a782b8dca">Developer</h1>
 
-<ul>
-<li>Source code transformation</li>
-<li></li>
-</ul>
+<p>The basic philosophy of Molecule is to think from the User&rsquo;s perspective towards a technical solution.</p>
 
-<p>As an example: to find</p>
+<p>The priority is always to make it as easy as possible for the end User to make Datomic queries, no matter how challenging on the Molecule backend.</p>
 
-<p><em>Names of twitter/facebook_page communities in neighborhoods of southern districts</em></p>
+<p>When we asked</p>
 
-<p>we can compose a &ldquo;molecule query&rdquo; that is very close to our
-human sentence:</p>
+<p><em>&ldquo;how can I most intuitively and with most minimal code query for persons?&rdquo;</em></p>
 
-<pre><code class="language-scala">Community.name.`type`(&quot;twitter&quot; or &quot;facebook_page&quot;)
-  .Neighborhood.District.region(&quot;sw&quot; or &quot;s&quot; or &quot;se&quot;)
+<p>we first tried something like this</p>
+
+<pre><code class="language-scala">import Person._
+m(firstName ~ lastName ~ age) // all fields of a `Person` trait...
 </code></pre>
 
-<p>Molecule transforms this at compile time (with macros) to a little more elaborate Datalog query string and
- input rules that finds those communities in the Datomic database:</p>
+<p>But it quickly became un-intuitive with relations, expressions etc.</p>
 
-<pre>
-[:find ?a
- :in $ %
- :where
-   [?ent :community/name ?a]
-   (rule1 ?ent)
-   [?ent :community/neighborhood ?c]
-   [?c :neighborhood/district ?d]
-   (rule2 ?d)]
+<h3 id="builder-pattern:68f80267fa3a50980dbb745a782b8dca">Builder pattern</h3>
 
-INPUTS:
-List(
-  datomic.db.Db@xxx,
-  [[[rule1 ?ent] [?ent :community/type ":community.type/twitter"]]
-   [[rule1 ?ent] [?ent :community/type ":community.type/facebook_page"]]
-   [[rule2 ?d] [?d :district/region ":district.region/sw"]]
-   [[rule2 ?d] [?d :district/region ":district.region/s"]]
-   [[rule2 ?d] [?d :district/region ":district.region/se"]]]
-)
-</pre>
+<p>Instead we settled on using the builder pattern</p>
 
-<h4 id="benefits:68f80267fa3a50980dbb745a782b8dca">Benefits</h4>
+<pre><code class="language-scala">Person.firstName.lastName.age
+</code></pre>
 
-<p>By not having to write such complex Datalog queries and rules &ldquo;by hand&rdquo;, Molecule
-allows you to</p>
+<p>We can&rsquo;t think of a more minimal Scala representation of &ldquo;finding persons&rdquo;.</p>
 
-<ul>
-<li>Type less</li>
-<li>Make type safe queries with inferred return types</li>
-<li>Use your domain terms directly as query building blocks</li>
-<li>Model complex queries intuitively (easier to understand and maintain)</li>
-<li>Reduce syntactic noise</li>
-<li>Focus more on your domain and less on queries</li>
-</ul>
+<h3 id="generated-boilerplate-code:68f80267fa3a50980dbb745a782b8dca">Generated boilerplate code</h3>
 
-<h4 id="possible-drawbacks:68f80267fa3a50980dbb745a782b8dca">Possible drawbacks</h4>
+<p>The builder pattern has shown a surprising strong capacity to express a wide range of query constructs. But it also requires an extensive amount of boilerplace code to work.</p>
 
-<p>We still need to explore how far Molecule can match the expressive powers
- of Datalog. So far, all
- examples in the
-[Seattle tutorial][seattle] have been
-&ldquo;molecularized&rdquo; succesfully (see the
-[Molecule Seattle tutorial][tutorial] and
-[code][tutorialcode]). So as a proof-of-concept it looks promising&hellip;</p>
+<p>We therefore generate all boilerplate code automatically when we compile our project with <code>sbt compile</code>.</p>
+
+<p>From a minimal definition of for instance an attribute</p>
+
+<pre><code class="language-scala">val name = oneString.fullTextSearch // maybe more options...
+</code></pre>
+
+<p>we have enough information about type, cardinality and options to generate the following artifacts:</p>
+
+<ol>
+<li><a href="/developer/txdata">Schema transaction data</a> (in a Datomic format)</li>
+<li><a href="/developer/boilerplate">Scala code</a> to build molecules</li>
+</ol>
+
+<h3 id="scala-macro-transformations:68f80267fa3a50980dbb745a782b8dca">Scala macro transformations</h3>
+
+<p>Our generated boilerplate code allow us to build molecules attribute by attribute:</p>
+
+<pre><code class="language-scala">val molecule = m(Person.name.age)
+</code></pre>
+
+<p>The <code>m</code>olecule method transforms our source code <em>at compile time</em> through a series of states:</p>
+
+<ol>
+<li>Source code</li>
+<li>Model AST</li>
+<li>Query AST</li>
+<li>Datomic query string</li>
+</ol>
+
+<p>The end result is simply a Datomic query string:</p>
+
+<pre><code class="language-scala">&quot;[:find ?b ?c :where [?a :person/name ?b] [?a :person/age ?c]]&quot;
+</code></pre>
+
+<p>Since the query is created at compile time it&rsquo;s all ready to fetch our data <em>at runtime</em> with no performance impact:</p>
+
+<pre><code class="language-scala">val data = personsMolecule.get
+</code></pre>
+
+<p>Given implicit conversions we could even unify the two steps:</p>
+
+<pre><code class="language-scala">val persons = Person.name.age.get
+</code></pre>
+
+<p>The query would still be created at compile time and fetching data at runtime.</p>
+
+<h3 id="closed-eco-system:68f80267fa3a50980dbb745a782b8dca">Closed eco-system</h3>
+
+<p>Since we create our molecules from our self-generated boilerplate code our macros have full knowledge about the possible constructs we can expect. We are therefore in full control of the entire &ldquo;eco-system&rdquo; from molecule to Datomic query. Non-valid molecules simply won&rsquo;t compile. And we can infer all type information from our molecules.</p>
+
+<p><a href="/developer/transformation">Read more about the macro transformations&hellip;</a></p>
 
 </div>     
   </div> 

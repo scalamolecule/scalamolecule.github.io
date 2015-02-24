@@ -219,69 +219,87 @@ val songs = Song.e.artist(id).get
 
 &lt;h1 id=&#34;developer:68f80267fa3a50980dbb745a782b8dca&#34;&gt;Developer&lt;/h1&gt;
 
-&lt;ul&gt;
-&lt;li&gt;Source code transformation&lt;/li&gt;
-&lt;li&gt;&lt;/li&gt;
-&lt;/ul&gt;
+&lt;p&gt;The basic philosophy of Molecule is to think from the User&amp;rsquo;s perspective towards a technical solution.&lt;/p&gt;
 
-&lt;p&gt;As an example: to find&lt;/p&gt;
+&lt;p&gt;The priority is always to make it as easy as possible for the end User to make Datomic queries, no matter how challenging on the Molecule backend.&lt;/p&gt;
 
-&lt;p&gt;&lt;em&gt;Names of twitter/facebook_page communities in neighborhoods of southern districts&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;When we asked&lt;/p&gt;
 
-&lt;p&gt;we can compose a &amp;ldquo;molecule query&amp;rdquo; that is very close to our
-human sentence:&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;&amp;ldquo;how can I most intuitively and with most minimal code query for persons?&amp;rdquo;&lt;/em&gt;&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Community.name.`type`(&amp;quot;twitter&amp;quot; or &amp;quot;facebook_page&amp;quot;)
-  .Neighborhood.District.region(&amp;quot;sw&amp;quot; or &amp;quot;s&amp;quot; or &amp;quot;se&amp;quot;)
+&lt;p&gt;we first tried something like this&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;import Person._
+m(firstName ~ lastName ~ age) // all fields of a `Person` trait...
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;Molecule transforms this at compile time (with macros) to a little more elaborate Datalog query string and
- input rules that finds those communities in the Datomic database:&lt;/p&gt;
+&lt;p&gt;But it quickly became un-intuitive with relations, expressions etc.&lt;/p&gt;
 
-&lt;pre&gt;
-[:find ?a
- :in $ %
- :where
-   [?ent :community/name ?a]
-   (rule1 ?ent)
-   [?ent :community/neighborhood ?c]
-   [?c :neighborhood/district ?d]
-   (rule2 ?d)]
+&lt;h3 id=&#34;builder-pattern:68f80267fa3a50980dbb745a782b8dca&#34;&gt;Builder pattern&lt;/h3&gt;
 
-INPUTS:
-List(
-  datomic.db.Db@xxx,
-  [[[rule1 ?ent] [?ent :community/type &#34;:community.type/twitter&#34;]]
-   [[rule1 ?ent] [?ent :community/type &#34;:community.type/facebook_page&#34;]]
-   [[rule2 ?d] [?d :district/region &#34;:district.region/sw&#34;]]
-   [[rule2 ?d] [?d :district/region &#34;:district.region/s&#34;]]
-   [[rule2 ?d] [?d :district/region &#34;:district.region/se&#34;]]]
-)
-&lt;/pre&gt;
+&lt;p&gt;Instead we settled on using the builder pattern&lt;/p&gt;
 
-&lt;h4 id=&#34;benefits:68f80267fa3a50980dbb745a782b8dca&#34;&gt;Benefits&lt;/h4&gt;
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.firstName.lastName.age
+&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;By not having to write such complex Datalog queries and rules &amp;ldquo;by hand&amp;rdquo;, Molecule
-allows you to&lt;/p&gt;
+&lt;p&gt;We can&amp;rsquo;t think of a more minimal Scala representation of &amp;ldquo;finding persons&amp;rdquo;.&lt;/p&gt;
 
-&lt;ul&gt;
-&lt;li&gt;Type less&lt;/li&gt;
-&lt;li&gt;Make type safe queries with inferred return types&lt;/li&gt;
-&lt;li&gt;Use your domain terms directly as query building blocks&lt;/li&gt;
-&lt;li&gt;Model complex queries intuitively (easier to understand and maintain)&lt;/li&gt;
-&lt;li&gt;Reduce syntactic noise&lt;/li&gt;
-&lt;li&gt;Focus more on your domain and less on queries&lt;/li&gt;
-&lt;/ul&gt;
+&lt;h3 id=&#34;generated-boilerplate-code:68f80267fa3a50980dbb745a782b8dca&#34;&gt;Generated boilerplate code&lt;/h3&gt;
 
-&lt;h4 id=&#34;possible-drawbacks:68f80267fa3a50980dbb745a782b8dca&#34;&gt;Possible drawbacks&lt;/h4&gt;
+&lt;p&gt;The builder pattern has shown a surprising strong capacity to express a wide range of query constructs. But it also requires an extensive amount of boilerplace code to work.&lt;/p&gt;
 
-&lt;p&gt;We still need to explore how far Molecule can match the expressive powers
- of Datalog. So far, all
- examples in the
-[Seattle tutorial][seattle] have been
-&amp;ldquo;molecularized&amp;rdquo; succesfully (see the
-[Molecule Seattle tutorial][tutorial] and
-[code][tutorialcode]). So as a proof-of-concept it looks promising&amp;hellip;&lt;/p&gt;
+&lt;p&gt;We therefore generate all boilerplate code automatically when we compile our project with &lt;code&gt;sbt compile&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;From a minimal definition of for instance an attribute&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val name = oneString.fullTextSearch // maybe more options...
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;we have enough information about type, cardinality and options to generate the following artifacts:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/developer/txdata&#34;&gt;Schema transaction data&lt;/a&gt; (in a Datomic format)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/developer/boilerplate&#34;&gt;Scala code&lt;/a&gt; to build molecules&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&#34;scala-macro-transformations:68f80267fa3a50980dbb745a782b8dca&#34;&gt;Scala macro transformations&lt;/h3&gt;
+
+&lt;p&gt;Our generated boilerplate code allow us to build molecules attribute by attribute:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val molecule = m(Person.name.age)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The &lt;code&gt;m&lt;/code&gt;olecule method transforms our source code &lt;em&gt;at compile time&lt;/em&gt; through a series of states:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Source code&lt;/li&gt;
+&lt;li&gt;Model AST&lt;/li&gt;
+&lt;li&gt;Query AST&lt;/li&gt;
+&lt;li&gt;Datomic query string&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;The end result is simply a Datomic query string:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;&amp;quot;[:find ?b ?c :where [?a :person/name ?b] [?a :person/age ?c]]&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Since the query is created at compile time it&amp;rsquo;s all ready to fetch our data &lt;em&gt;at runtime&lt;/em&gt; with no performance impact:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val data = personsMolecule.get
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Given implicit conversions we could even unify the two steps:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val persons = Person.name.age.get
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The query would still be created at compile time and fetching data at runtime.&lt;/p&gt;
+
+&lt;h3 id=&#34;closed-eco-system:68f80267fa3a50980dbb745a782b8dca&#34;&gt;Closed eco-system&lt;/h3&gt;
+
+&lt;p&gt;Since we create our molecules from our self-generated boilerplate code our macros have full knowledge about the possible constructs we can expect. We are therefore in full control of the entire &amp;ldquo;eco-system&amp;rdquo; from molecule to Datomic query. Non-valid molecules simply won&amp;rsquo;t compile. And we can infer all type information from our molecules.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://scalamolecule.org/developer/transformation&#34;&gt;Read more about the macro transformations&amp;hellip;&lt;/a&gt;&lt;/p&gt;
 </description>
     </item>
     
@@ -2042,73 +2060,59 @@ List(
     </item>
     
     <item>
-      <title>Transformation</title>
-      <link>http://scalamolecule.org/developer/transformation/</link>
+      <title>Tx data</title>
+      <link>http://scalamolecule.org/developer/txdata/</link>
       <pubDate>Wed, 14 May 2014 02:13:50 UTC</pubDate>
       
-      <guid>http://scalamolecule.org/developer/transformation/</guid>
+      <guid>http://scalamolecule.org/developer/txdata/</guid>
       <description>
 
-&lt;h1 id=&#34;source-code-transformation:596edf0adf55e6ba8eb0683b47bc2db2&#34;&gt;Source code transformation&lt;/h1&gt;
+&lt;h1 id=&#34;schema-transaction-data:cd2a84f3e0b729702691d1980ae83981&#34;&gt;Schema transaction data&lt;/h1&gt;
 
-&lt;p&gt;As an example: to find&lt;/p&gt;
+&lt;p&gt;A &lt;a href=&#34;http://scalamolecule.org/schema/definition&#34;&gt;Schema definition file&lt;/a&gt; like&lt;/p&gt;
 
-&lt;p&gt;&lt;em&gt;Names of twitter/facebook_page communities in neighborhoods of southern districts&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;we can compose a &amp;ldquo;molecule query&amp;rdquo; that is very close to our
-human sentence:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Community.name.`type`(&amp;quot;twitter&amp;quot; or &amp;quot;facebook_page&amp;quot;)
-  .Neighborhood.District.region(&amp;quot;sw&amp;quot; or &amp;quot;s&amp;quot; or &amp;quot;se&amp;quot;)
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;trait SeattleDefinition {
+  trait Community {
+    val name = oneString.fullTextSearch
+  }
+}
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;Molecule transforms this at compile time (with macros) to a little more elaborate Datalog query string and
- input rules that finds those communities in the Datomic database:&lt;/p&gt;
-
-&lt;pre&gt;
-[:find ?a
- :in $ %
- :where
-   [?ent :community/name ?a]
-   (rule1 ?ent)
-   [?ent :community/neighborhood ?c]
-   [?c :neighborhood/district ?d]
-   (rule2 ?d)]
-
-INPUTS:
-List(
-  datomic.db.Db@xxx,
-  [[[rule1 ?ent] [?ent :community/type &#34;:community.type/twitter&#34;]]
-   [[rule1 ?ent] [?ent :community/type &#34;:community.type/facebook_page&#34;]]
-   [[rule2 ?d] [?d :district/region &#34;:district.region/sw&#34;]]
-   [[rule2 ?d] [?d :district/region &#34;:district.region/s&#34;]]
-   [[rule2 ?d] [?d :district/region &#34;:district.region/se&#34;]]]
-)
-&lt;/pre&gt;
-
-&lt;h4 id=&#34;benefits:596edf0adf55e6ba8eb0683b47bc2db2&#34;&gt;Benefits&lt;/h4&gt;
-
-&lt;p&gt;By not having to write such complex Datalog queries and rules &amp;ldquo;by hand&amp;rdquo;, Molecule
-allows you to&lt;/p&gt;
+&lt;p&gt;defines&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;Type less&lt;/li&gt;
-&lt;li&gt;Make type safe queries with inferred return types&lt;/li&gt;
-&lt;li&gt;Use your domain terms directly as query building blocks&lt;/li&gt;
-&lt;li&gt;Model complex queries intuitively (easier to understand and maintain)&lt;/li&gt;
-&lt;li&gt;Reduce syntactic noise&lt;/li&gt;
-&lt;li&gt;Focus more on your domain and less on queries&lt;/li&gt;
+&lt;li&gt;name (&amp;ldquo;name&amp;rdquo;)&lt;/li&gt;
+&lt;li&gt;cardinality (&amp;ldquo;one&amp;rdquo;)&lt;/li&gt;
+&lt;li&gt;type (String)&lt;/li&gt;
+&lt;li&gt;options (fullTextSearch)&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h4 id=&#34;possible-drawbacks:596edf0adf55e6ba8eb0683b47bc2db2&#34;&gt;Possible drawbacks&lt;/h4&gt;
+&lt;p&gt;of a &lt;code&gt;name&lt;/code&gt; attribute in the &lt;code&gt;Community&lt;/code&gt; namespace.&lt;/p&gt;
 
-&lt;p&gt;We still need to explore how far Molecule can match the expressive powers
- of Datalog. So far, all
- examples in the
-[Seattle tutorial][seattle] have been
-&amp;ldquo;molecularized&amp;rdquo; succesfully (see the
-[Molecule Seattle tutorial][tutorial] and
-[code][tutorialcode]). So as a proof-of-concept it looks promising&amp;hellip;&lt;/p&gt;
+&lt;p&gt;This is enough information to generate the necessary code to transact the schema in Datomic:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;object SeattleSchema extends Schema {
+
+  lazy val tx = Util.list(
+
+    // Community ------------------------------------------------
+
+    Util.map(&amp;quot;:db/id&amp;quot;                , Peer.tempid(&amp;quot;:db.part/db&amp;quot;),
+             &amp;quot;:db/ident&amp;quot;             , &amp;quot;:community/name&amp;quot;,
+             &amp;quot;:db/valueType&amp;quot;         , &amp;quot;:db.type/string&amp;quot;,
+             &amp;quot;:db/cardinality&amp;quot;       , &amp;quot;:db.cardinality/one&amp;quot;,
+             &amp;quot;:db/fulltext&amp;quot;          , true.asInstanceOf[Object],
+             &amp;quot;:db.install/_attribute&amp;quot;, &amp;quot;:db.part/db&amp;quot;)
+  )
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;To avoid having to write this code manually, the &lt;code&gt;MoleculeBoilerplate&lt;/code&gt; file generates is for us based on our schema definition. It has to be in our project folder for sbt to use it to generate our boilerplate code when we run &lt;code&gt;sbt compile&lt;/code&gt;.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/manual/schema/files&#34;&gt;File organization&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/manual/schema/definition&#34;&gt;Types and options&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
 </description>
     </item>
     
