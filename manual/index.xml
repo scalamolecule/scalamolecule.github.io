@@ -984,6 +984,11 @@ Person.age(max)
 val Johan  = person(&amp;quot;John&amp;quot;, 33).one
 val Lisa   = person(&amp;quot;Lisa&amp;quot;, 27).one
 &lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://scalamolecule.org/manual/query/relationships&#34;&gt;Relationships&lt;/a&gt; - Connect namespaces with relationships&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.name.City.name.Country.name
+&lt;/code&gt;&lt;/pre&gt;
 </description>
     </item>
     

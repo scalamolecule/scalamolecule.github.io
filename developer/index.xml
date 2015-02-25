@@ -331,6 +331,8 @@ List(
 &lt;/pre&gt;
 
 &lt;p&gt;All 3 transformations happen at compile time and therefore have no impact on the runtime performance.&lt;/p&gt;
+
+&lt;p&gt;See more examples of &lt;a href=&#34;https://github.com/scalamolecule/molecule/blob/master/examples/src/test/scala/molecule/examples/seattle/SeattleTransformationTests.scala#L11&#34;&gt;transformation of the Seattle molecules&lt;/a&gt;&amp;hellip;&lt;/p&gt;
 </description>
     </item>
     
