@@ -287,7 +287,7 @@ Person(lisaId).age(&amp;quot;28&amp;quot;).update
 
 &lt;p&gt;Attributes are composed to form &amp;ldquo;molecules&amp;rdquo; that describe unique and flexible data structures in endless combinations suiting your domain. Those are then translated to Datalog queries being executed against the underlying Datomic database.&lt;/p&gt;
 
-&lt;p&gt;An attribute in Datomic is part of &lt;em&gt;fact&lt;/em&gt; or &lt;em&gt;Datom&lt;/em&gt; consisting of four elements:&lt;/p&gt;
+&lt;p&gt;An attribute in Datomic is part of a &lt;em&gt;fact&lt;/em&gt; or &lt;em&gt;Datom&lt;/em&gt; consisting of four elements:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt; John     likes    pizza      12:35:54
    |        |        |           |
@@ -325,9 +325,9 @@ Entity  Attribute  Value  Transaction/time
 
 &lt;h3 id=&#34;further-reading:2767292a573dc549b9b4297b701af3ab&#34;&gt;Further reading&amp;hellip;&lt;/h3&gt;
 
-&lt;p&gt;Go straight to the &lt;a href=&#34;https://github.com/scalamolecule/wiki/Molecule-Seattle-tutorial&#34;&gt;Molecule Seattle tutorial&lt;/a&gt; to see a wide range of
+&lt;p&gt;Go straight to the &lt;a href=&#34;http://scalamolecule.org/tutorials/seattle&#34;&gt;Molecule Seattle tutorial&lt;/a&gt; to see a wide range of
  queries that Molecule can express, or check out first how we use Molecule to
- &lt;a href=&#34;https://github.com/scalamolecule/wiki/Setup-a-Datomic-database&#34;&gt;setup the database&lt;/a&gt; and &lt;a href=&#34;https://github.com/scalamolecule/wiki/Populate-the-database&#34;&gt;populated it with data&lt;/a&gt;.&lt;/p&gt;
+ &lt;a href=&#34;http://scalamolecule.org/manual/setup&#34;&gt;setup the database&lt;/a&gt; and &lt;a href=&#34;http://scalamolecule.org/manual/insert&#34;&gt;populated it with data&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>
     
