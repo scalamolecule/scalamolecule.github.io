@@ -126,7 +126,7 @@
 
 <h3 id="2-model-ast:596edf0adf55e6ba8eb0683b47bc2db2">2. Model AST</h3>
 
-<p>The source code of our molecule is then pattern matched element by element in order to create an abstracted Model of <code>Atom</code>s and <code>Bond</code>s:</p>
+<p>The source code of our molecule is then pattern matched in <a href="https://github.com/scalamolecule/molecule/blob/master/core/src/main/scala/molecule/transform/Dsl2Model.scala">Dsl2Model</a> element by element in order to create an abstracted Model of <code>Atom</code>s and <code>Bond</code>s:</p>
 
 <pre><code class="language-scala">Model(List(
   Atom(&quot;community&quot;, &quot;name&quot;, &quot;String&quot;, 1, VarValue, None),
@@ -141,7 +141,7 @@
 
 <h3 id="3-query-ast:596edf0adf55e6ba8eb0683b47bc2db2">3. Query AST</h3>
 
-<p>Our model is then transformed to a Query AST which is a little more elaborate:</p>
+<p>Our model is then transformed in <a href="https://github.com/scalamolecule/molecule/blob/master/core/src/main/scala/molecule/transform/Model2Query.scala">Model2Query</a> to a Query AST which is a little more elaborate:</p>
 
 <pre><code class="language-scala">Query(
   Find(List(
@@ -166,13 +166,13 @@
 )
 </code></pre>
 
-<p>As you see this <a href="https://github.com/scalamolecule/molecule/blob/master/core/src/main/scala/molecule/ast/query.scala">Query abstraction</a> is tailored to Datomic.</p>
+<p>As you see this <a href="https://github.com/scalamolecule/molecule/blob/master/core/src/main/scala/molecule/ast/query.scala">Query AST</a> is tailored to Datomic.</p>
 
 <p>In principle we should be able to use the same model to create other Query abstractions tailored to other database systems!&hellip;</p>
 
 <h3 id="4-datomic-query-string:596edf0adf55e6ba8eb0683b47bc2db2">4. Datomic query string</h3>
 
-<p>Finally Molecule transforms our Query AST to Datomic query text strings:</p>
+<p>Finally Molecule transforms our Query AST in <a href="https://github.com/scalamolecule/molecule/blob/master/core/src/main/scala/molecule/transform/Query2String.scala">Query2String</a> to a Datomic query text strings:</p>
 
 <pre>
 [:find  ?b

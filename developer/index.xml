@@ -153,7 +153,7 @@ m(firstName ~ lastName ~ age) // all fields of a `Person` trait...
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;To avoid having to write this code manually, the &lt;code&gt;MoleculeBoilerplate&lt;/code&gt; file generates is for us based on our schema definition. It has to be in our project folder for sbt to use it to generate our boilerplate code when we run &lt;code&gt;sbt compile&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;To avoid having to write this code manually, the &lt;a href=&#34;https://github.com/scalamolecule/molecule/blob/master/project/DslBoilerplate.scala&#34;&gt;MoleculeBoilerplate&lt;/a&gt; file generates this for us based on our schema definition. It has to be in our &lt;a href=&#34;https://github.com/scalamolecule/molecule/tree/master/project&#34;&gt;project folder&lt;/a&gt; for sbt to use it to generate our boilerplate code when we run &lt;code&gt;sbt compile&lt;/code&gt;.&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/manual/schema/files&#34;&gt;File organization&lt;/a&gt;&lt;/li&gt;
@@ -263,7 +263,7 @@ trait Community_2[A, B] extends Community with Out_2[Community_2, Community_3, C
 
 &lt;h3 id=&#34;2-model-ast:596edf0adf55e6ba8eb0683b47bc2db2&#34;&gt;2. Model AST&lt;/h3&gt;
 
-&lt;p&gt;The source code of our molecule is then pattern matched element by element in order to create an abstracted Model of &lt;code&gt;Atom&lt;/code&gt;s and &lt;code&gt;Bond&lt;/code&gt;s:&lt;/p&gt;
+&lt;p&gt;The source code of our molecule is then pattern matched in &lt;a href=&#34;https://github.com/scalamolecule/molecule/blob/master/core/src/main/scala/molecule/transform/Dsl2Model.scala&#34;&gt;Dsl2Model&lt;/a&gt; element by element in order to create an abstracted Model of &lt;code&gt;Atom&lt;/code&gt;s and &lt;code&gt;Bond&lt;/code&gt;s:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Model(List(
   Atom(&amp;quot;community&amp;quot;, &amp;quot;name&amp;quot;, &amp;quot;String&amp;quot;, 1, VarValue, None),
@@ -278,7 +278,7 @@ trait Community_2[A, B] extends Community with Out_2[Community_2, Community_3, C
 
 &lt;h3 id=&#34;3-query-ast:596edf0adf55e6ba8eb0683b47bc2db2&#34;&gt;3. Query AST&lt;/h3&gt;
 
-&lt;p&gt;Our model is then transformed to a Query AST which is a little more elaborate:&lt;/p&gt;
+&lt;p&gt;Our model is then transformed in &lt;a href=&#34;https://github.com/scalamolecule/molecule/blob/master/core/src/main/scala/molecule/transform/Model2Query.scala&#34;&gt;Model2Query&lt;/a&gt; to a Query AST which is a little more elaborate:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Query(
   Find(List(
@@ -303,13 +303,13 @@ trait Community_2[A, B] extends Community with Out_2[Community_2, Community_3, C
 )
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;As you see this &lt;a href=&#34;https://github.com/scalamolecule/molecule/blob/master/core/src/main/scala/molecule/ast/query.scala&#34;&gt;Query abstraction&lt;/a&gt; is tailored to Datomic.&lt;/p&gt;
+&lt;p&gt;As you see this &lt;a href=&#34;https://github.com/scalamolecule/molecule/blob/master/core/src/main/scala/molecule/ast/query.scala&#34;&gt;Query AST&lt;/a&gt; is tailored to Datomic.&lt;/p&gt;
 
 &lt;p&gt;In principle we should be able to use the same model to create other Query abstractions tailored to other database systems!&amp;hellip;&lt;/p&gt;
 
 &lt;h3 id=&#34;4-datomic-query-string:596edf0adf55e6ba8eb0683b47bc2db2&#34;&gt;4. Datomic query string&lt;/h3&gt;
 
-&lt;p&gt;Finally Molecule transforms our Query AST to Datomic query text strings:&lt;/p&gt;
+&lt;p&gt;Finally Molecule transforms our Query AST in &lt;a href=&#34;https://github.com/scalamolecule/molecule/blob/master/core/src/main/scala/molecule/transform/Query2String.scala&#34;&gt;Query2String&lt;/a&gt; to a Datomic query text strings:&lt;/p&gt;
 
 &lt;pre&gt;
 [:find  ?b
