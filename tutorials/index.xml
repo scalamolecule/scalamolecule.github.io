@@ -172,26 +172,26 @@ so we add the &lt;code&gt;name&lt;/code&gt; attribute with an underscore (to omi
 
 // Use the community id to touch all the entity&#39;s attribute values
 communityId.touch === Map(
-  &amp;quot;:community/type&amp;quot; -&amp;gt; &amp;quot;:community.type/blog&amp;quot;,
-  &amp;quot;:community/url&amp;quot; -&amp;gt; &amp;quot;http://eastballard.wordpress.com/&amp;quot;,
-  &amp;quot;:community/category&amp;quot; -&amp;gt; List(&amp;quot;news&amp;quot;, &amp;quot;events&amp;quot;, &amp;quot;meeting&amp;quot;, &amp;quot;community association&amp;quot;),
+  &amp;quot;:community/type&amp;quot; -&amp;gt; &amp;quot;:community.type/website&amp;quot;,
+  &amp;quot;:community/url&amp;quot; -&amp;gt; &amp;quot;http://www.greenlakecommunitycouncil.org/&amp;quot;,
+  &amp;quot;:community/category&amp;quot; -&amp;gt; List(&amp;quot;community council&amp;quot;),
   &amp;quot;:community/orgtype&amp;quot; -&amp;gt; &amp;quot;:community.orgtype/community&amp;quot;,
-  &amp;quot;:db/id&amp;quot; -&amp;gt; 17592186045520L,
-  &amp;quot;:community/name&amp;quot; -&amp;gt; &amp;quot;East Ballard Community Association Blog&amp;quot;,
+  &amp;quot;:db/id&amp;quot; -&amp;gt; 17592186045665L,
+  &amp;quot;:community/name&amp;quot; -&amp;gt; &amp;quot;Greenlake Community Council&amp;quot;,
   &amp;quot;:community/neighborhood&amp;quot; -&amp;gt; Map(
-    &amp;quot;:db/id&amp;quot; -&amp;gt; 17592186045456L,
+    &amp;quot;:db/id&amp;quot; -&amp;gt; 17592186045666L,
     &amp;quot;:neighborhood/district&amp;quot; -&amp;gt; Map(
-      &amp;quot;:db/id&amp;quot; -&amp;gt; 17592186045457L,
-      &amp;quot;:district/name&amp;quot; -&amp;gt; &amp;quot;Ballard&amp;quot;,
-      &amp;quot;:district/region&amp;quot; -&amp;gt; &amp;quot;:district.region/nw&amp;quot;),
-    &amp;quot;:neighborhood/name&amp;quot; -&amp;gt; &amp;quot;Ballard&amp;quot;))
+      &amp;quot;:db/id&amp;quot; -&amp;gt; 17592186045667L,
+      &amp;quot;:district/name&amp;quot; -&amp;gt; &amp;quot;Northwest&amp;quot;,
+      &amp;quot;:district/region&amp;quot; -&amp;gt; &amp;quot;:district.region/sw&amp;quot;),
+    &amp;quot;:neighborhood/name&amp;quot; -&amp;gt; &amp;quot;Green Lake&amp;quot;))
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;We can also retrive attribute values one by one by simply applying an attribute name to the entity id:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;communityId(&amp;quot;:community/name&amp;quot;) === Some(&amp;quot;East Ballard Community Association Blog&amp;quot;)
-communityId(&amp;quot;:community/url&amp;quot;) === Some(&amp;quot;http://eastballard.wordpress.com/&amp;quot;)
-communityId(&amp;quot;:community/category&amp;quot;) === Some(List(&amp;quot;news&amp;quot;, &amp;quot;events&amp;quot;, &amp;quot;meeting&amp;quot;, &amp;quot;community association&amp;quot;))
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;communityId(&amp;quot;:community/name&amp;quot;) === Some(&amp;quot;Greenlake Community Council&amp;quot;)
+communityId(&amp;quot;:community/url&amp;quot;) === Some(&amp;quot;http://www.greenlakecommunitycouncil.org/&amp;quot;)
+communityId(&amp;quot;:community/category&amp;quot;) === Some(Set(&amp;quot;community council&amp;quot;))
 communityId(&amp;quot;:community/emptyOrBogusAttribute&amp;quot;) === None
 &lt;/code&gt;&lt;/pre&gt;
 
@@ -203,27 +203,27 @@ attribute defined in the molecule we&amp;rsquo;ll get a list of this attribute&a
 value back.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Community.name.get(3) === List(
-  &amp;quot;Capitol Hill Triangle&amp;quot;,
-  &amp;quot;Miller Park Neighborhood Association&amp;quot;,
-  &amp;quot;Capitol Hill Community Council&amp;quot;)
+  &amp;quot;KOMO Communities - Ballard&amp;quot;,
+  &amp;quot;Ballard Blog&amp;quot;,
+  &amp;quot;Ballard Historical Society&amp;quot;)
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;If our molecule defines two or more attributes we&amp;rsquo;ll get tuples of
 values back.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Community.name.url.get(3) === List(
-  (&amp;quot;Chinatown/International District&amp;quot;, &amp;quot;http://www.cidbia.org/&amp;quot;),
-  (&amp;quot;All About Belltown&amp;quot;, &amp;quot;http://www.belltown.org/&amp;quot;),
-  (&amp;quot;Friends of Discovery Park&amp;quot;, &amp;quot;http://www.friendsdiscoverypark.org/&amp;quot;))
+  (&amp;quot;Broadview Community Council&amp;quot;, &amp;quot;http://groups.google.com/group/broadview-community-council&amp;quot;),
+  (&amp;quot;KOMO Communities - Wallingford&amp;quot;, &amp;quot;http://wallingford.komonews.com&amp;quot;),
+  (&amp;quot;Aurora Seattle&amp;quot;, &amp;quot;http://www.auroraseattle.com/&amp;quot;))
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Or we can choose to get the same data back with the &lt;code&gt;hl&lt;/code&gt; method as Shapeless
 HLists where each element has its own type.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Community.name.url.hl(3) === List(
-  &amp;quot;Chinatown/International District&amp;quot; :: &amp;quot;http://www.cidbia.org/&amp;quot; :: HNil,
-  &amp;quot;All About Belltown&amp;quot; :: &amp;quot;http://www.belltown.org/&amp;quot; :: HNil,
-  &amp;quot;Friends of Discovery Park&amp;quot; :: &amp;quot;http://www.friendsdiscoverypark.org/&amp;quot; :: HNil)
+  &amp;quot;Broadview Community Council&amp;quot; :: &amp;quot;http://groups.google.com/group/broadview-community-council&amp;quot; :: HNil,
+  &amp;quot;KOMO Communities - Wallingford&amp;quot; :: &amp;quot;http://wallingford.komonews.com&amp;quot; :: HNil,
+  &amp;quot;Aurora Seattle&amp;quot; :: &amp;quot;http://www.auroraseattle.com/&amp;quot; :: HNil)
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;This gives us access to a wide range of &lt;a href=&#34;https://github.com/milessabin/shapeless/blob/master/core/src/test/scala/shapeless/hlist.scala&#34;&gt;useful functions of HLists&lt;/a&gt;.&lt;/p&gt;
@@ -235,9 +235,9 @@ entities that will match our molecule data structure. Let&amp;rsquo;s find commu
 of type &amp;ldquo;twitter&amp;rdquo;:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Community.name.`type`(&amp;quot;twitter&amp;quot;).get(3) === List(
+  (&amp;quot;Columbia Citizens&amp;quot;, &amp;quot;twitter&amp;quot;),
   (&amp;quot;Discover SLU&amp;quot;, &amp;quot;twitter&amp;quot;),
-  (&amp;quot;Magnolia Voice&amp;quot;, &amp;quot;twitter&amp;quot;),
-  (&amp;quot;MyWallingford&amp;quot;, &amp;quot;twitter&amp;quot;))
+  (&amp;quot;Fremont Universe&amp;quot;, &amp;quot;twitter&amp;quot;))
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;(We use the back-ticks to avoid having Scala to think of &lt;code&gt;type&lt;/code&gt;
@@ -247,7 +247,7 @@ as a Scala keyword)&lt;/p&gt;
 by adding an underscore to the &lt;code&gt;type&lt;/code&gt; attribute (and we don&amp;rsquo;t need the back-ticks anymore).&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Community.name.type_(&amp;quot;twitter&amp;quot;).get(3) === List(
-  &amp;quot;Discover SLU&amp;quot;, &amp;quot;Fremont Universe&amp;quot;, &amp;quot;Columbia Citizens&amp;quot;)
+  &amp;quot;Magnolia Voice&amp;quot;, &amp;quot;Columbia Citizens&amp;quot;, &amp;quot;Discover SLU&amp;quot;)
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Notice that we get some different communities. We are not guaranteed a specific order
@@ -261,7 +261,7 @@ So we could as well write the following and get the same result.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val tw = &amp;quot;twitter&amp;quot;
 Community.name.type_(tw).get(3) === List(
-  &amp;quot;Discover SLU&amp;quot;, &amp;quot;Fremont Universe&amp;quot;, &amp;quot;Columbia Citizens&amp;quot;)
+  &amp;quot;Magnolia Voice&amp;quot;, &amp;quot;Columbia Citizens&amp;quot;, &amp;quot;Discover SLU&amp;quot;)
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Retrieving values of many-attributes like &lt;code&gt;category&lt;/code&gt; gives us sets
@@ -276,9 +276,9 @@ of values back&lt;/p&gt;
 it will match entities having any of those values (OR-semantics).&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Community.name.category_(&amp;quot;news&amp;quot;, &amp;quot;arts&amp;quot;).get(3) === List(
-  &amp;quot;Capitol Hill Community Council&amp;quot;,
-  &amp;quot;KOMO Communities - Rainier Valley&amp;quot;,
-  &amp;quot;Discover SLU&amp;quot;)
+  &amp;quot;Beach Drive Blog&amp;quot;,
+  &amp;quot;KOMO Communities - Ballard&amp;quot;,
+  &amp;quot;Ballard Blog&amp;quot;)
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;h2 id=&#34;4:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;&lt;a href=&#34;#contents:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;☝︎&lt;/a&gt; Querying across references&lt;/h2&gt;
@@ -289,17 +289,17 @@ Molecule lets you traverse those references by going from one namespace
 to the next. Let&amp;rsquo;s find communities in the noth-eastern region:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Community.name.Neighborhood.District.region_(&amp;quot;ne&amp;quot;).get(3) === List(
-  &amp;quot;KOMO Communities - U-District&amp;quot;,
   &amp;quot;Maple Leaf Community Council&amp;quot;,
+  &amp;quot;Hawthorne Hills Community Website&amp;quot;,
   &amp;quot;KOMO Communities - View Ridge&amp;quot;)
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Or comunity names and their region:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Community.name.Neighborhood.District.region.get(3) === List(
-  (&amp;quot;Broadview Community Council&amp;quot;, &amp;quot;sw&amp;quot;),
-  (&amp;quot;KOMO Communities - Green Lake&amp;quot;, &amp;quot;sw&amp;quot;),
-  (&amp;quot;Friends of Frink Park&amp;quot;, &amp;quot;e&amp;quot;))
+  (&amp;quot;KOMO Communities - North Seattle&amp;quot;,&amp;quot;n&amp;quot;),
+  (&amp;quot;Morgan Junction Community Association&amp;quot;,&amp;quot;sw&amp;quot;),
+  (&amp;quot;Friends of Seward Park&amp;quot;,&amp;quot;se&amp;quot;))
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;h2 id=&#34;5:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;&lt;a href=&#34;#contents:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;☝︎&lt;/a&gt; Parameterizing queries - input molecules&lt;/h2&gt;
@@ -329,10 +329,10 @@ val facebookCommunities = communitiesOfType(&amp;quot;facebook_page&amp;quot;)
 different input values. Now we can more efficiently get out results.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;twitterCommunities.get(3) === List(
-  &amp;quot;Discover SLU&amp;quot;, &amp;quot;Fremont Universe&amp;quot;, &amp;quot;Columbia Citizens&amp;quot;)
+  &amp;quot;Magnolia Voice&amp;quot;, &amp;quot;Columbia Citizens&amp;quot;, &amp;quot;Discover SLU&amp;quot;)
   
 facebookCommunities.get(3) === List(
-  &amp;quot;Discover SLU&amp;quot;, &amp;quot;Blogging Georgetown&amp;quot;, &amp;quot;Fremont Universe&amp;quot;)
+  &amp;quot;Magnolia Voice&amp;quot;, &amp;quot;Columbia Citizens&amp;quot;, &amp;quot;Discover SLU&amp;quot;)
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;If we omit the underscore we can get the type too&lt;/p&gt;
@@ -340,9 +340,9 @@ facebookCommunities.get(3) === List(
 &lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val communitiesWithType = m(Community.name.`type`(?))
 
 communitiesWithType(&amp;quot;twitter&amp;quot;).get(3) === List(
-  (&amp;quot;Magnolia Voice&amp;quot;, &amp;quot;twitter&amp;quot;),
   (&amp;quot;Discover SLU&amp;quot;, &amp;quot;twitter&amp;quot;),
-  (&amp;quot;MyWallingford&amp;quot;, &amp;quot;twitter&amp;quot;))
+  (&amp;quot;Fremont Universe&amp;quot;, &amp;quot;twitter&amp;quot;),
+  (&amp;quot;Columbia Citizens&amp;quot;, &amp;quot;twitter&amp;quot;))
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;h3 id=&#34;multiple-input-values-for-an-attribute-logical-or:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Multiple input values for an attribute - logical OR&lt;/h3&gt;
@@ -350,9 +350,9 @@ communitiesWithType(&amp;quot;twitter&amp;quot;).get(3) === List(
 &lt;p&gt;Find communities of type &amp;ldquo;facebook_page&amp;rdquo; OR &amp;ldquo;twitter&amp;rdquo;:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;communitiesWithType(&amp;quot;facebook_page&amp;quot; or &amp;quot;twitter&amp;quot;).get(3) === List(
-  (&amp;quot;Fremont Universe&amp;quot;, &amp;quot;facebook_page&amp;quot;),
-  (&amp;quot;Fauntleroy Community Association&amp;quot;, &amp;quot;facebook_page&amp;quot;),
-  (&amp;quot;Discover SLU&amp;quot;, &amp;quot;twitter&amp;quot;))
+  (&amp;quot;Eastlake Community Council&amp;quot;, &amp;quot;facebook_page&amp;quot;),
+  (&amp;quot;Discover SLU&amp;quot;, &amp;quot;twitter&amp;quot;),
+  (&amp;quot;MyWallingford&amp;quot;, &amp;quot;facebook_page&amp;quot;))
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Alternative syntaxes where comma-separations act as logical OR:&lt;/p&gt;
@@ -374,9 +374,9 @@ values are present.&lt;/p&gt;
 &amp;ldquo;email_list&amp;rdquo; AND &lt;code&gt;orgtype&lt;/code&gt; &amp;ldquo;community&amp;rdquo;.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;typeAndOrgtype(&amp;quot;email_list&amp;quot; and &amp;quot;community&amp;quot;).get(3) === List(
-  &amp;quot;Greenwood Community Council Announcements&amp;quot;,
-  &amp;quot;Madrona Moms&amp;quot;,
-  &amp;quot;Ballard Neighbor Connection&amp;quot;)
+  &amp;quot;Ballard Moms&amp;quot;,
+  &amp;quot;Admiral Neighborhood Association&amp;quot;,
+  &amp;quot;15th Ave Community&amp;quot;)
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;The order of arguments in the logical AND expression will correspond
@@ -421,11 +421,11 @@ communities. Note how this combines logical AND and OR.&lt;/p&gt;
   (&amp;quot;email_list&amp;quot; and &amp;quot;community&amp;quot;) or 
   (&amp;quot;website&amp;quot; and &amp;quot;commercial&amp;quot;)
 ).get(5) === List(
-  (&amp;quot;Madrona Moms&amp;quot;, &amp;quot;email_list&amp;quot;, &amp;quot;community&amp;quot;),
+  (&amp;quot;Fremont Arts Council&amp;quot;, &amp;quot;email_list&amp;quot;, &amp;quot;community&amp;quot;),
+  (&amp;quot;Greenwood Community Council Announcements&amp;quot;, &amp;quot;email_list&amp;quot;, &amp;quot;community&amp;quot;),
   (&amp;quot;Broadview Community Council&amp;quot;, &amp;quot;email_list&amp;quot;, &amp;quot;community&amp;quot;),
-  (&amp;quot;Greenwood Community Council Discussion&amp;quot;, &amp;quot;email_list&amp;quot;, &amp;quot;community&amp;quot;),
   (&amp;quot;Alki News&amp;quot;, &amp;quot;email_list&amp;quot;, &amp;quot;community&amp;quot;),
-  (&amp;quot;Discover SLU&amp;quot;, &amp;quot;website&amp;quot;, &amp;quot;commercial&amp;quot;))
+  (&amp;quot;Beacon Hill Burglaries&amp;quot;, &amp;quot;email_list&amp;quot;, &amp;quot;community&amp;quot;))
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;As usual we can use alternative syntaxes as well. Here we group the
@@ -445,7 +445,7 @@ instance find communities whose &lt;code&gt;name&lt;/code&gt; come before &amp;l
 alphabetical order.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;m(Community.name &amp;lt; &amp;quot;C&amp;quot;).get(3) === List(
-  &amp;quot;ArtsWest&amp;quot;, &amp;quot;All About South Park&amp;quot;, &amp;quot;Ballard Neighbor Connection&amp;quot;)
+  &amp;quot;Ballard Blog&amp;quot;, &amp;quot;Beach Drive Blog&amp;quot;, &amp;quot;Beacon Hill Blog&amp;quot;)
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Note how we use the &lt;code&gt;m&lt;/code&gt; method here to allow the postfix notation
@@ -453,7 +453,7 @@ alphabetical order.&lt;/p&gt;
 explicitly if you prefer this syntax:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Community.name.&amp;lt;(&amp;quot;C&amp;quot;).get(3) === List(
-  &amp;quot;ArtsWest&amp;quot;, &amp;quot;All About South Park&amp;quot;, &amp;quot;Ballard Neighbor Connection&amp;quot;)
+  &amp;quot;Ballard Blog&amp;quot;, &amp;quot;Beach Drive Blog&amp;quot;, &amp;quot;Beacon Hill Blog&amp;quot;)
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;We can also parameterize the molecule.&lt;/p&gt;
@@ -461,7 +461,7 @@ explicitly if you prefer this syntax:&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val communitiesBefore = m(Community.name &amp;lt; ?)
 
 communitiesBefore(&amp;quot;C&amp;quot;).get(3) === List(
-  &amp;quot;ArtsWest&amp;quot;, &amp;quot;All About South Park&amp;quot;, &amp;quot;Ballard Neighbor Connection&amp;quot;)
+  &amp;quot;Ballard Blog&amp;quot;, &amp;quot;Beach Drive Blog&amp;quot;, &amp;quot;Beacon Hill Blog&amp;quot;)
   
 communitiesBefore(&amp;quot;A&amp;quot;).get(3) === List(&amp;quot;15th Ave Community&amp;quot;)
 &lt;/code&gt;&lt;/pre&gt;
@@ -495,8 +495,8 @@ constraints. Here we look for website communities with a &lt;code&gt;category&lt
 containing the word &amp;ldquo;food&amp;rdquo;:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;m(Community.name.type_(&amp;quot;website&amp;quot;).category contains &amp;quot;food&amp;quot;).get(3) === List(
-  (&amp;quot;Community Harvest of Southwest Seattle&amp;quot;, Set(&amp;quot;sustainable food&amp;quot;)), 
-  (&amp;quot;InBallard&amp;quot;, Set(&amp;quot;food&amp;quot;))
+  (&amp;quot;Community Harvest of Southwest Seattle&amp;quot;, Set(&amp;quot;sustainable food&amp;quot;)),
+  (&amp;quot;InBallard&amp;quot;, Set(&amp;quot;food&amp;quot;)))
 )
 &lt;/code&gt;&lt;/pre&gt;
 
@@ -505,8 +505,8 @@ containing the word &amp;ldquo;food&amp;rdquo;:&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val typeAndCategory = m(Community.name.type_(?).category contains ?)
 
 typeAndCategory(&amp;quot;website&amp;quot;, Set(&amp;quot;food&amp;quot;)).get(3) === List(
-  (&amp;quot;Community Harvest of Southwest Seattle&amp;quot;, Set(&amp;quot;sustainable food&amp;quot;)), 
-  (&amp;quot;InBallard&amp;quot;, Set(&amp;quot;food&amp;quot;))
+  (&amp;quot;Community Harvest of Southwest Seattle&amp;quot;, Set(&amp;quot;sustainable food&amp;quot;)),
+  (&amp;quot;InBallard&amp;quot;, Set(&amp;quot;food&amp;quot;)))
 )
 &lt;/code&gt;&lt;/pre&gt;
 
@@ -526,25 +526,25 @@ to Datomic rules.&lt;/p&gt;
 logical OR expresion:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Community.name.type_(&amp;quot;twitter&amp;quot; or &amp;quot;facebook_page&amp;quot;).get(3) === List(
-  &amp;quot;Discover SLU&amp;quot;, &amp;quot;Blogging Georgetown&amp;quot;, &amp;quot;Fremont Universe&amp;quot;)
+  &amp;quot;Magnolia Voice&amp;quot;, &amp;quot;Columbia Citizens&amp;quot;, &amp;quot;Discover SLU&amp;quot;)
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;&amp;hellip; or find communities in the NE or SW regions.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Community.name.Neighborhood.District.region_(&amp;quot;ne&amp;quot; or &amp;quot;sw&amp;quot;).get(3) === List(
-  &amp;quot;Greenwood Community Council Announcements&amp;quot;, 
-  &amp;quot;Maple Leaf Community Council&amp;quot;, 
-  &amp;quot;Genesee-Schmitz Neighborhood Council&amp;quot;)
+  &amp;quot;Beach Drive Blog&amp;quot;, 
+  &amp;quot;KOMO Communities - Green Lake&amp;quot;, 
+  &amp;quot;Delridge Produce Cooperative&amp;quot;)
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;And we can combine them to find social-media communities in
 southern regions.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val southernSocialMedia = List(
-  &amp;quot;Blogging Georgetown&amp;quot;,
   &amp;quot;Columbia Citizens&amp;quot;,
+  &amp;quot;Fauntleroy Community Association&amp;quot;,
   &amp;quot;MyWallingford&amp;quot;,
-  &amp;quot;Fauntleroy Community Association&amp;quot;)
+  &amp;quot;Blogging Georgetown&amp;quot;)
 
 Community.name.type_(&amp;quot;twitter&amp;quot; or &amp;quot;facebook_page&amp;quot;)
   .Neighborhood
@@ -605,7 +605,7 @@ molecule to retrieve transaction times, sort them into reverse
 chronological order, and store the most recent two as dataTxDate
 and schemaTxDate, when we added our data and our schema, respectively.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val txDates = Db.txInstant.get(2).sorted.reverse
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val txDates = Db.txInstant.get.sorted.reverse
 val dataTxDate = txDates(0)
 val schemaTxDate = txDates(1)
 &lt;/code&gt;&lt;/pre&gt;
@@ -626,14 +626,14 @@ communities, and prints the size of the results. Because we&amp;rsquo;re
 using a database value from before we ran the transaction to
 load seed data, the size is 0.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;communities.asOf(schemaTxDate).size === 0
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;communities.asOf(schemaTxDate).get.size === 0
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;If we do the same thing using the date of our seed data
 transaction, the query returns 150 results, because as of
 that moment, the seed data is there.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;communities.asOf(dataTxDate).size === 150
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;communities.asOf(dataTxDate).get.size === 150
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;h3 id=&#34;changes-since-a-date-since-comparedate:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Changes since a date - since(compareDate)&lt;/h3&gt;
@@ -651,14 +651,14 @@ made since we ran the transaction to load our schema -
 including the changes made when we loaded our seed data -
 the size is 150.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;communities.since(schemaTxDate).size === 150
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;communities.since(schemaTxDate).get.size === 150
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;If we do the same thing using the date of our seed data
 transaction, the query returns 0 results, because we haven&amp;rsquo;t
 added any communities since that time.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;communities.since(dataTxDate).size === 0
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;communities.since(dataTxDate).get.size === 0
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;While we passed specific transaction dates to &lt;code&gt;asOf&lt;/code&gt;
@@ -708,7 +708,7 @@ If we execute our community counting query against it,
 we get 258 results.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;// future db
-communities.imagine(newDataTx).size === 258
+communities.imagine(newDataTx).get.size === 258
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;The actual data hasn&amp;rsquo;t changed yet, so if we query the
@@ -721,16 +721,16 @@ seed data transaction ran, and query for communities we
 get 108 results, the number added by new data transaction.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;// existing db
-communities.size === 150
+communities.get.size === 150
 
 // transact
 conn.transact(newDataTx)
 
 // updated db
-communities.size === 258
+communities.get.size === 258
 
 // number of new transactions
-communities.since(dataTxDate).size === 108
+communities.since(dataTxDate).get.size === 108
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;h2 id=&#34;10:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;&lt;a href=&#34;#contents:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;☝︎&lt;/a&gt; Insert data&lt;/h2&gt;
@@ -754,8 +754,8 @@ molecule with values and then &lt;code&gt;add&lt;/code&gt; it:&lt;/p&gt;
   .orgtype(&amp;quot;personal&amp;quot;)
   .category(&amp;quot;my&amp;quot;, &amp;quot;favorites&amp;quot;)
   .Neighborhood.name(&amp;quot;myNeighborhood&amp;quot;)
-  .District.name(&amp;quot;myDistrict&amp;quot;).region(&amp;quot;nw&amp;quot;).add.ids === List(
-    17592186045785L, 17592186045786L, 17592186045787L)
+  .District.name(&amp;quot;myDistrict&amp;quot;).region(&amp;quot;nw&amp;quot;).add.eids === List(
+    17592186045891L, 17592186045892L, 17592186045893L)
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Note how we can add values for referenced namespaces and multiple values for
@@ -789,7 +789,7 @@ to define it as an Input-Molecule:&lt;/p&gt;
   &amp;quot;BBB&amp;quot;, &amp;quot;url B&amp;quot;, &amp;quot;twitter&amp;quot;, &amp;quot;personal&amp;quot;, Set(&amp;quot;some&amp;quot;, &amp;quot;cat B&amp;quot;), 
     &amp;quot;neighborhood B&amp;quot;, 
     &amp;quot;district B&amp;quot;, &amp;quot;s&amp;quot;
-) === List(17592186045789L, 17592186045790L, 17592186045791L)
+).eids === List(17592186045895L, 17592186045896L, 17592186045897L)
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;As before, three entities are created here since we reference a new Neighborhood and District.&lt;/p&gt;
@@ -802,7 +802,7 @@ to define it as an Input-Molecule:&lt;/p&gt;
   &amp;quot;CCC&amp;quot; :: &amp;quot;url C&amp;quot; :: &amp;quot;twitter&amp;quot; :: &amp;quot;personal&amp;quot; :: Set(&amp;quot;some&amp;quot;, &amp;quot;cat C&amp;quot;) :: 
     &amp;quot;neighborhood C&amp;quot; :: 
     &amp;quot;district C&amp;quot; :: &amp;quot;ne&amp;quot; :: HNil
-) === List(17592186045793L, 17592186045794L, 17592186045795L)
+).eids === List(17592186045899L, 17592186045900L, 17592186045901L)
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Again each element of the HList has to be of the expected
@@ -828,9 +828,9 @@ referenced neighborhoods/district/regions in one go:&lt;/p&gt;
 
 // Insert 3 new communities with 3 new neighborhoods
 insertCommunity(newCommunitiesData) === List(
-  17592186045669L, 17592186045670L, 17592186045452L,
-  17592186045671L, 17592186045672L, 17592186045540L,
-  17592186045673L, 17592186045674L, 17592186045443L)
+  17592186045909L, 17592186045910L, 17592186045911L,
+  17592186045912L, 17592186045913L, 17592186045914L,
+  17592186045915L, 17592186045916L, 17592186045917L)
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;This approach gives us a clean way of populating a database

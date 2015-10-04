@@ -56,7 +56,8 @@
               <a href="http://scalamolecule.org/manual/schema/">Schema</a>
               <ul class="dropdown-menu">
                 <li><a href="http://scalamolecule.org/manual/schema/files/">Files</a></li>
-                <li><a href="http://scalamolecule.org/manual/schema/definition/">Definition</a></li>
+                <li><a href="http://scalamolecule.org/manual/schema/attributes/">Attributes</a></li>
+                <li><a href="http://scalamolecule.org/manual/schema/partitions/">Partitions</a></li>
                 <li><a href="http://scalamolecule.org/manual/schema/modelling/">Modelling</a></li>
                 <li><a href="http://scalamolecule.org/manual/schema/boilerplate/">Boilerplate</a></li>
                 <li><a href="http://scalamolecule.org/manual/schema/datomic-schema/">Datomic</a></li>
@@ -122,7 +123,7 @@
 
 <p>A namespace is not like an SQL Table but rather organizes some attributes by a meaningful name - it&rsquo;s, well, a <em>namespace</em>.</p>
 
-<h3 id="one-to-many:c826c531212d0a54ebca2cc2d2da67b7">One-to-Many</h3>
+<h3 id="one-many-to-many:c826c531212d0a54ebca2cc2d2da67b7">One/Many-to-Many</h3>
 
 <p>If we have an <code>Order</code> with multiple <code>OrderLine</code>s we would instead define a cardinality-many reference to the <code>OrderLine</code> namespace in our Schema definition:</p>
 
@@ -132,8 +133,33 @@
 <p>This would cause Molecule to generate boilerplate code that would allow us to for instance insert multiple products for an order in one go:</p>
 
 <pre><code class="language-scala">m(Order.id.LineItems * LineItem.product.price.quantity).insert(
-  &quot;order1&quot;, List((chocolateId, 48.00, 1), (whiskyId, 38.00, 2))
+  (&quot;order1&quot;, List((chocolateId, 48.00, 1), (whiskyId, 38.00, 2)))
+  (&quot;order2&quot;, List((bread, 13.00, 4)))  
 )
+</code></pre>
+
+<p>We can then fetch the nested data</p>
+
+<pre><code class="language-scala">m(Order.id.LineItems * LineItem.product.price.quantity).get === List(
+  (&quot;order1&quot;, List((chocolateId, 48.00, 1), (whiskyId, 38.00, 2)))
+  (&quot;order2&quot;, List((bread, 13.00, 4)))  
+)
+</code></pre>
+
+<p>The nested data structures can be arbitrarily deep (currently max 10 levels deep - can be expanded though if needed):</p>
+
+<pre><code class="language-scala">m(Order.orderid.LineItems * (LineItem.quantity.price.Comments * Comment.text.descr)).get === List(
+  (23, List(
+    (1, 48.00, List(
+      (&quot;first&quot;, &quot;1a&quot;),
+      (&quot;product&quot;, &quot;1b&quot;))),
+    (2, 38.00, List(
+      (&quot;second&quot;, &quot;2b&quot;),
+      (&quot;is&quot;, &quot;2b&quot;),
+      (&quot;best&quot;, &quot;2c&quot;)))
+  ))
+)
+// etc...
 </code></pre>
 
 </div>
@@ -158,7 +184,11 @@
                   
                 
                   
-                  <li><a href="http://scalamolecule.org/manual/schema/definition/">Definition</a></li>
+                  <li><a href="http://scalamolecule.org/manual/schema/attributes/">Attributes</a></li>
+                  
+                
+                  
+                  <li><a href="http://scalamolecule.org/manual/schema/partitions/">Partitions</a></li>
                   
                 
                   

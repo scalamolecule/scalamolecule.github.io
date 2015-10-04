@@ -117,7 +117,7 @@ m(firstName ~ lastName ~ age) // all fields of a `Person` trait...
 
 &lt;p&gt;A &lt;a href=&#34;http://scalamolecule.org/schema/definition&#34;&gt;Schema definition file&lt;/a&gt; like&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;trait SeattleDefinition {
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;object SeattleDefinition {
   trait Community {
     val name = oneString.fullTextSearch
   }
@@ -137,23 +137,27 @@ m(firstName ~ lastName ~ age) // all fields of a `Person` trait...
 
 &lt;p&gt;This is enough information to generate the necessary code to transact the schema in Datomic:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;object SeattleSchema extends Schema {
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;object SeattleSchema extends Transaction {
+  
+  lazy val partitions = Util.list()
 
-  lazy val tx = Util.list(
+  lazy val namespaces = Util.list(
+    
+    // Community --------------------------------------------------------
 
-    // Community ------------------------------------------------
-
-    Util.map(&amp;quot;:db/id&amp;quot;                , Peer.tempid(&amp;quot;:db.part/db&amp;quot;),
-             &amp;quot;:db/ident&amp;quot;             , &amp;quot;:community/name&amp;quot;,
+    Util.map(&amp;quot;:db/ident&amp;quot;             , &amp;quot;:community/name&amp;quot;,
              &amp;quot;:db/valueType&amp;quot;         , &amp;quot;:db.type/string&amp;quot;,
              &amp;quot;:db/cardinality&amp;quot;       , &amp;quot;:db.cardinality/one&amp;quot;,
              &amp;quot;:db/fulltext&amp;quot;          , true.asInstanceOf[Object],
-             &amp;quot;:db.install/_attribute&amp;quot;, &amp;quot;:db.part/db&amp;quot;)
-  )
+             &amp;quot;:db/index&amp;quot;             , true.asInstanceOf[Object],
+             &amp;quot;:db/id&amp;quot;                , Peer.tempid(&amp;quot;:db.part/db&amp;quot;),
+             &amp;quot;:db.install/_attribute&amp;quot;, &amp;quot;:db.part/db&amp;quot;),
+             
+    // etc...
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;To avoid having to write this code manually, the &lt;a href=&#34;https://github.com/scalamolecule/molecule/blob/master/project/DslBoilerplate.scala&#34;&gt;MoleculeBoilerplate&lt;/a&gt; file generates this for us based on our schema definition. It has to be in our &lt;a href=&#34;https://github.com/scalamolecule/molecule/tree/master/project&#34;&gt;project folder&lt;/a&gt; for sbt to use it to generate our boilerplate code when we run &lt;code&gt;sbt compile&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;To avoid having to write this code manually, the &lt;a href=&#34;https://github.com/scalamolecule/molecule/blob/master/project/MoleculeBoilerplate.scala&#34;&gt;MoleculeBoilerplate&lt;/a&gt; file generates this for us based on our schema definition. It has to be in our &lt;a href=&#34;https://github.com/scalamolecule/molecule/tree/master/project&#34;&gt;project folder&lt;/a&gt; for sbt to use it to generate our boilerplate code when we run &lt;code&gt;sbt compile&lt;/code&gt;.&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/manual/schema/files&#34;&gt;File organization&lt;/a&gt;&lt;/li&gt;
@@ -184,22 +188,27 @@ trait SeattleDefinition {
 
 &lt;p&gt;would generate the following boilerplate code&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;object Community extends Community_0
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;object Community extends Community_0 {
+  def apply(e: Long): Community_0 = ???
+}
 
 trait Community {
- class name [Ns, In] extends OneString [Ns, In] with FulltextSearch[Ns, In]
+  class name [Ns, In] extends OneString [Ns, In] with FulltextSearch[Ns, In] with Indexed
 }
 
 trait Community_0 extends Community with Out_0[Community_0, Community_1, Community_In_1_0, Community_In_1_1] {
-  val name  : name[Community_1[String], Community_In_1_1[String, String]] with Community_1[String] = ???
-  val name_ : name[Community_0, Community_In_1_0[String]] with Community_0 = ???
+  lazy val name : name[Community_1[String], Community_In_1_1[String, String]] with Community_1[String] = 
+    new name[Community_1[String], Community_In_1_1[String, String]] with Community_1[String] { 
+      override val _kw = &amp;quot;:community/name&amp;quot; 
+    }
+  lazy val name_ : name[Community_0, Community_In_1_0[String]] with Community_0 = ???
 }
          
 trait Community_1[A] extends Community with Out_1[Community_1, Community_2, Community_In_1_1, Community_In_1_2, A] {
-  val name  : name[Community_2[A, String], Community_In_1_2[String, A, String]] with Community_2[A, String] = ???
-  val name_ : name[Community_1[A], Community_In_1_1[String, A]] with Community_1[A] = ???
+  lazy val name  : name[Community_2[A, String], Community_In_1_2[String, A, String]] with Community_2[A, String] = ???
+  lazy val name_ : name[Community_1[A], Community_In_1_1[String, A]] with Community_1[A] = ???
 }
-
+         
 trait Community_2[A, B] extends Community with Out_2[Community_2, Community_3, Community_In_1_2, Community_In_1_3, A, B] {
   // etc up to arity 8...
 

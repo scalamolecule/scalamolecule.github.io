@@ -56,7 +56,8 @@
               <a href="http://scalamolecule.org/manual/schema/">Schema</a>
               <ul class="dropdown-menu">
                 <li><a href="http://scalamolecule.org/manual/schema/files/">Files</a></li>
-                <li><a href="http://scalamolecule.org/manual/schema/definition/">Definition</a></li>
+                <li><a href="http://scalamolecule.org/manual/schema/attributes/">Attributes</a></li>
+                <li><a href="http://scalamolecule.org/manual/schema/partitions/">Partitions</a></li>
                 <li><a href="http://scalamolecule.org/manual/schema/modelling/">Modelling</a></li>
                 <li><a href="http://scalamolecule.org/manual/schema/boilerplate/">Boilerplate</a></li>
                 <li><a href="http://scalamolecule.org/manual/schema/datomic-schema/">Datomic</a></li>
@@ -133,7 +134,7 @@
 
 <p><code>&quot;org.scalamolecule&quot; % &quot;molecule_2.11&quot; % &quot;0.3.0&quot;</code></p>
 
-<p>Since Molecule generates boilerplate code from your definitions it also needs to have the <code>DslBoilerplate.scala</code> file in your project folder. Please have a look at how the sbt build file of the Molecule project itself puts things together and simply copy that to your own project:</p>
+<p>Since Molecule generates boilerplate code from your definitions it also needs to have the <code>MoleculeBoilerplate.scala</code> file in your project folder. Please have a look at how the sbt build file of the Molecule project itself puts things together and simply copy that to your own project:</p>
 
 <ol>
 <li>Setup your sbt build file [as in Molecule][moleculesbt]:

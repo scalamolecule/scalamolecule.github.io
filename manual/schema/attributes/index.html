@@ -4,7 +4,7 @@
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
   <link href='http://fonts.googleapis.com/css?family=Merriweather+Sans:400,300,300italic,400italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
-  <title>Builder</title>
+  <title>Attributes</title>
   <link href="/css/bootstrap.min.css" rel="stylesheet">
   <link href="/css/highlight/styles/solarized_light.css" rel="stylesheet" />
   <link href="/css/style.css" rel="stylesheet">
@@ -106,60 +106,136 @@
 <div class="col-sm-10 column" style="padding-left:8px;">
 	
 
-<h1 id="attribute-builder-pattern:8fd4bc5e57a8b030c7141267f15a6e67">Attribute builder pattern</h1>
+<h1 id="define-attributes-in-a-schema:199f4b06fef5a61f833f209ac24fd4c2">Define Attributes in a Schema</h1>
 
-<p>When we have defined a schema, Molecule generates the necessary boilerplate code so that we can build &ldquo;molecular data structures&rdquo; by building sequences of Attributes separated with dots (the &ldquo;builder pattern&rdquo;).</p>
+<p>Molecule provides an easy way to model your domain in a Molecule Schema.</p>
 
-<p>We could for instance build a molecule representing the data structure of Persons with name, age and gender Attributes:</p>
+<p>A simple dsl lets you define attributes of your domain by type, cardinality and options/values with as little ceremony as possible.</p>
 
-<pre><code class="language-scala">Person.name.age.gender // etc
+<h3 id="schema-definition:199f4b06fef5a61f833f209ac24fd4c2">Schema definition</h3>
+
+<pre><code class="language-scala">@InOut(3, 8)
+object SeattleDefinition {
+
+  trait Community {
+    val name         = oneString.fullTextSearch
+    val url          = oneString
+    val category     = manyString.fullTextSearch
+    val orgtype      = oneEnum('community, 'commercial, 'nonprofit)
+    val `type`       = oneEnum('email_list, 'twitter, 'facebook_page)
+    val neighborhood = one[Neighborhood]
+  }
+
+  trait Neighborhood {
+    val name     = oneString.fullTextSearch.uniqueIdentity
+    val district = one[District]
+  }
+
+  trait District {
+    val name   = oneString.fullTextSearch.uniqueIdentity
+    val region = oneEnum('n, 'ne, 'e, 'se, 's, 'sw, 'w, 'nw)
+  }
+}
 </code></pre>
 
-<p>The fundamental building blocks are Namespaces like <code>Person</code> and Attributes like <code>name</code>, <code>age</code> and <code>gender</code>. Namespaces are simply prefixes to Attribute names to avoid name clashes and to group our Attributes in meaningful ways according to our domain.</p>
+<p>In the Seattle schema we define 3 namespaces with different kinds of attributes:</p>
 
-<p>As you see we start our molecule from some Namespace and then build on Attribute by Attribute.</p>
+<ul>
+<li><code>oneString</code>, <code>manyString</code> etc defines cardinality and type of an attribute</li>
+<li><code>oneEnum</code>/<code>manyEnum</code> defines enumerated values</li>
+<li><code>one[&lt;ReferencedNamespace&gt;]</code> defines a reference to another namespace</li>
+</ul>
 
-<h3 id="all-attributes-looked-for:8fd4bc5e57a8b030c7141267f15a6e67">All Attributes looked for</h3>
+<h3 id="attribute-types:199f4b06fef5a61f833f209ac24fd4c2">Attribute types</h3>
 
-<p>When we use a molecule to query the Datomic database we ask for entities having all our Attributes associated with them.</p>
+<p>We have the following types available:</p>
 
-<p><em>Note that this is different from selecting rows from a sql table where you can also get null values back!</em></p>
-
-<p>If for instance we have entities representing Persons in our data set that haven&rsquo;t got any age Attribute associated with them then this query will <em>not</em> return those entities:</p>
-
-<pre><code class="language-scala">val persons = Person.name.age.get
+<pre><code>Cardinality one     Cardinality many
+---------------     ----------------
+oneString           manyString
+oneInt              manyInt   
+oneLong             manyLong    
+oneFloat            manyFloat     
+oneDouble           manyDouble      
+oneBoolean          manyBoolean      
+oneDate             manyDate    
+oneUUID             manyUUID    
+oneURI              manyURI   
+oneEnum             manyEnum              
 </code></pre>
 
-<p>Basically we look for <strong>matches</strong> to our molecule data structure.</p>
+<p>Datomic also has types <code>BigInt</code> and <code>Bytes</code> and those could later be implemented in Molecule if there&rsquo;s a need for those types.</p>
 
-<h3 id="underscore-omits-values:8fd4bc5e57a8b030c7141267f15a6e67">Underscore omits values</h3>
+<p>Cardinality-one attributes can have one value per entity.</p>
 
-<p>Sometimes we want to grap entities that we <em>know</em> have certain attributes, but without returning those values. If for instance we wanted to find all names of Persons that have an age attribute set but we don&rsquo;t need to return those age values, then we can add an underscore <code>_</code> after the <code>age</code> Attribute so that it becomes <code>age_</code>:</p>
+<p>Cardinality-many attributes can have a <em>Set of unique values</em> per entity. Often we choose instead to model many-values as a many-reference to some other namespace where we can define more.</p>
 
-<pre><code class="language-scala">val names = Person.name.age_.get
+<h3 id="reference-types:199f4b06fef5a61f833f209ac24fd4c2">Reference types</h3>
+
+<p>References are also treated like attributes. It&rsquo;s basically a reference to one or many entities. We define such relationship by supplying the referenced namespace as the type parameter to the <code>one</code>/<code>many</code></p>
+
+<pre><code>Cardinality one         Cardinality many
+---------------         ----------------
+one[&lt;Ref-namespace&gt;]    many[&lt;Ref-namespace&gt;]
 </code></pre>
 
-<p>This will return names of person entities having both a name and age Attribute set. Note how the age values are no longer returned from the type signatures:</p>
+<p>In the example above we saw a reference from Community to Neighborhood defined as <code>one[Neighborhood]</code>. We would for instance likely define an Order/Order Line relationship in an Order namespace as <code>many[OrderLine]</code>.</p>
 
-<pre><code class="language-scala">val persons: List[(String, Int)] = Person.name.age.get
-val names  : List[String]        = Person.name.age_.get
-</code></pre>
+<h3 id="attribute-options:199f4b06fef5a61f833f209ac24fd4c2">Attribute options</h3>
 
-<p>This way we can switch on and off individual attributes from the result set without affecting the data structures we look for.</p>
+<p>Each attribute can also have some extra options:</p>
 
-<h3 id="tuples-or-hlists-returned:8fd4bc5e57a8b030c7141267f15a6e67">Tuples or HLists returned</h3>
+<p>
+<table border="1" cellpadding="5" cellspacing="0" style="background-color:#f5f5f5;">
+  <tr>
+    <th align="left" valign="top" scope="col">Option</th>
+    <th valign="top" scope="col"><strong>Indexes</strong></th>
+    <th scope="col">Description</th>
+  </tr>
+  <tr valign="top">
+    <td valign="top">doc</td>
+    <td align="center" valign="top">&nbsp;</td>
+    <td>Attribute description.</td>
+  </tr>
+  <tr valign="top">
+    <td valign="top">uniqueValue</td>
+    <td align="center" valign="top">✔︎</td>
+    <td>Attribute value is unique to each entity.<br>
+      <em>Attempts to insert a duplicate value for a different entity id will fail.</em></td>
+  </tr>
+  <tr valign="top">
+    <td valign="top">uniqueIdentity</td>
+    <td align="center" valign="top">✔︎</td>
+    <td>Attribute value is unique to each entity and &quot;upsert&quot; is enabled.<br>
+      <em>Attempts to insert a duplicate value for a temporary entity id will cause all attributes associated with that temporary id to be merged with the entity already in the database.</em></td>
+  </tr>
+  <tr>
+    <td valign="top">indexed</td>
+    <td align="center" valign="top">✔︎</td>
+    <td>Generated index for this attribute.</td>
+  </tr>
+  <tr>
+    <td valign="top">fullTextSearch</td>
+    <td align="center" valign="top">✔︎</td>
+    <td>Generate eventually consistent fulltext search index for this attribute.</td>
+  </tr>
+  <tr>
+    <td valign="top">isComponent</td>
+    <td align="center" valign="top">✔︎</td>
+    <td>Specifies that an attribute whose type is :db.type/ref refers to a subcomponent of the entity to which the attribute is applied.<br>
+    <em>When you retract an entity with :db.fn/retractEntity, all subcomponents are also retracted. When you touch an entity, all its subcomponent entities are touched recursively.</em></td>
+  </tr>
+  <tr>
+    <td valign="top">noHistory</td>
+    <td align="center" valign="top">&nbsp;</td>
+    <td>Whether past values of an attribute should not be retained.</td>
+  </tr>
+</table>
+</p>
 
-<p>Molecule returns all result sets as either tuples of values (with <code>get</code>) or Shapeless HLists (with <code>hl</code>).</p>
+<p>Datomic indexes the values of all attributes having an option except for the <code>doc</code> and <code>noHistory</code> options.</p>
 
-<pre><code class="language-scala">val persons: List[(String, Int)]         = Person.name.age.get
-val persons: List[String :: Int :: HNil] = Person.name.age.hl
-</code></pre>
-
-<h3 id="molecule-max-size:8fd4bc5e57a8b030c7141267f15a6e67">Molecule max size</h3>
-
-<p>The size of molecules are limited to Scala&rsquo;s limit size of 22 for tuples. Since molecules only look for attributes having a value it seems unlikely that we need to surpass this upper limit except in very special cases.</p>
-
-<p>Once the entities matching our qriteria are found we can use those entities to find additional optional attribute values.</p>
+<p>As you saw, we added <code>fulltextSearch</code> and <code>uniqueIdentity</code> to some of the attributes in the Seattle definition above. Molecule&rsquo;s schema definition DSL let&rsquo;s you only choose allowed options for any attribute type.</p>
 
 </div>
 
@@ -183,7 +259,7 @@ val persons: List[String :: Int :: HNil] = Person.name.age.hl
                   
                 
                   
-                  <li><a href="http://scalamolecule.org/manual/schema/attributes/">Attributes</a></li>
+                  <li class="active"><b>Attributes</b></li>
                   
                 
                   
@@ -226,7 +302,7 @@ val persons: List[String :: Int :: HNil] = Person.name.age.hl
               
                 <ul style="padding-left:25px;">
                   
-                  <li class="active"><b>Builder</b></li>
+                  <li><a href="http://scalamolecule.org/manual/query/builder/">Builder</a></li>
                   
                 
                   

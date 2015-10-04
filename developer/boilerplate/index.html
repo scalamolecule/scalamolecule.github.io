@@ -56,7 +56,8 @@
               <a href="http://scalamolecule.org/manual/schema/">Schema</a>
               <ul class="dropdown-menu">
                 <li><a href="http://scalamolecule.org/manual/schema/files/">Files</a></li>
-                <li><a href="http://scalamolecule.org/manual/schema/definition/">Definition</a></li>
+                <li><a href="http://scalamolecule.org/manual/schema/attributes/">Attributes</a></li>
+                <li><a href="http://scalamolecule.org/manual/schema/partitions/">Partitions</a></li>
                 <li><a href="http://scalamolecule.org/manual/schema/modelling/">Modelling</a></li>
                 <li><a href="http://scalamolecule.org/manual/schema/boilerplate/">Boilerplate</a></li>
                 <li><a href="http://scalamolecule.org/manual/schema/datomic-schema/">Datomic</a></li>
@@ -119,22 +120,27 @@ trait SeattleDefinition {
 
 <p>would generate the following boilerplate code</p>
 
-<pre><code class="language-scala">object Community extends Community_0
+<pre><code class="language-scala">object Community extends Community_0 {
+  def apply(e: Long): Community_0 = ???
+}
 
 trait Community {
- class name [Ns, In] extends OneString [Ns, In] with FulltextSearch[Ns, In]
+  class name [Ns, In] extends OneString [Ns, In] with FulltextSearch[Ns, In] with Indexed
 }
 
 trait Community_0 extends Community with Out_0[Community_0, Community_1, Community_In_1_0, Community_In_1_1] {
-  val name  : name[Community_1[String], Community_In_1_1[String, String]] with Community_1[String] = ???
-  val name_ : name[Community_0, Community_In_1_0[String]] with Community_0 = ???
+  lazy val name : name[Community_1[String], Community_In_1_1[String, String]] with Community_1[String] = 
+    new name[Community_1[String], Community_In_1_1[String, String]] with Community_1[String] { 
+      override val _kw = &quot;:community/name&quot; 
+    }
+  lazy val name_ : name[Community_0, Community_In_1_0[String]] with Community_0 = ???
 }
          
 trait Community_1[A] extends Community with Out_1[Community_1, Community_2, Community_In_1_1, Community_In_1_2, A] {
-  val name  : name[Community_2[A, String], Community_In_1_2[String, A, String]] with Community_2[A, String] = ???
-  val name_ : name[Community_1[A], Community_In_1_1[String, A]] with Community_1[A] = ???
+  lazy val name  : name[Community_2[A, String], Community_In_1_2[String, A, String]] with Community_2[A, String] = ???
+  lazy val name_ : name[Community_1[A], Community_In_1_1[String, A]] with Community_1[A] = ???
 }
-
+         
 trait Community_2[A, B] extends Community with Out_2[Community_2, Community_3, Community_In_1_2, Community_In_1_3, A, B] {
   // etc up to arity 8...
 

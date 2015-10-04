@@ -365,7 +365,7 @@ Entity  Attribute  Value  Transaction/time
 
 &lt;p&gt;&lt;code&gt;&amp;quot;org.scalamolecule&amp;quot; % &amp;quot;molecule_2.11&amp;quot; % &amp;quot;0.3.0&amp;quot;&lt;/code&gt;&lt;/p&gt;
 
-&lt;p&gt;Since Molecule generates boilerplate code from your definitions it also needs to have the &lt;code&gt;DslBoilerplate.scala&lt;/code&gt; file in your project folder. Please have a look at how the sbt build file of the Molecule project itself puts things together and simply copy that to your own project:&lt;/p&gt;
+&lt;p&gt;Since Molecule generates boilerplate code from your definitions it also needs to have the &lt;code&gt;MoleculeBoilerplate.scala&lt;/code&gt; file in your project folder. Please have a look at how the sbt build file of the Molecule project itself puts things together and simply copy that to your own project:&lt;/p&gt;
 
 &lt;ol&gt;
 &lt;li&gt;Setup your sbt build file [as in Molecule][moleculesbt]:
@@ -395,26 +395,12 @@ Entity  Attribute  Value  Transaction/time
 
 &lt;h1 id=&#34;about:6083a88ee3411b0d17ce02d738f69d47&#34;&gt;About&lt;/h1&gt;
 
-&lt;p&gt;Molecule is created by &lt;a href=&#34;http://marcgrue.com&#34;&gt;Marc Grue&lt;/a&gt; as he saw a possibility to make life easier accessing Datomic.&lt;/p&gt;
+&lt;p&gt;Molecule is created by Marc Grue (bass player in the Gothenburg Symphony orchestra and a dedicated Scala programmer).&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&#34;http://scalamolecule.org/img/mg.jpg&#34; alt=&#34;&#34; /&gt;
 &lt;/p&gt;
 
-&lt;p&gt;Marc is a professional double bass player in the &lt;a href=&#34;http://www.gso.se/en/page/Gothenburg-Symphony/About-The-Orchestra&#34;&gt;Gothenburg Symphony Orchestra&lt;/a&gt;, the National Symphony Orchestra of Sweden and a dedicated Scala meta-programmer.&lt;/p&gt;
-
-&lt;h3 id=&#34;contributions-are-welcome:6083a88ee3411b0d17ce02d738f69d47&#34;&gt;Contributions are welcome!&lt;/h3&gt;
-
-&lt;p&gt;Hopefully you want to contribute to Molecule too! &lt;a href=&#34;https://github.com/scalamolecule/molecule/pulls&#34;&gt;Pull requests&lt;/a&gt; for improvements to Molecule are most welcome.&lt;/p&gt;
-
-&lt;h4 id=&#34;inspired-by:6083a88ee3411b0d17ce02d738f69d47&#34;&gt;Inspired by&lt;/h4&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/foursquare/rogue&#34;&gt;Rogue&lt;/a&gt;, type-safe Scala DSL for MongoDB&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/pellucidanalytics/datomisca&#34;&gt;Datomisca&lt;/a&gt;, a Scala API for Datomic&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/jonifreeman/sqltyped&#34;&gt;SqlTyped&lt;/a&gt;, Embedding SQL as an external DSL into Scala&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/nau/jscala&#34;&gt;JScala&lt;/a&gt;, Scala macro that produces JavaScript from Scala code&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/sirthias/parboiled2&#34;&gt;Parboiled2&lt;/a&gt;, A macro-based PEG parser generator for Scala&lt;/li&gt;
-&lt;/ul&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/scalamolecule/molecule/pulls&#34;&gt;Pull requests&lt;/a&gt; are welcome and you can ask questions in the &lt;a href=&#34;https://groups.google.com/forum/#!forum/molecule-dsl&#34;&gt;Molecule forum&lt;/a&gt;.&lt;/p&gt;
 
 &lt;h4 id=&#34;license:6083a88ee3411b0d17ce02d738f69d47&#34;&gt;License&lt;/h4&gt;
 
