@@ -1006,18 +1006,18 @@ val Lisa   = person(&amp;quot;Lisa&amp;quot;, 27).one
 
 &lt;p&gt;It&amp;rsquo;s not that namespaces automatically become entities referencing each other but rather that referenced entities will likely pick attributes from a certain namespace.&lt;/p&gt;
 
-&lt;h3 id=&#34;one-references:c826c531212d0a54ebca2cc2d2da67b7&#34;&gt;One-references&lt;/h3&gt;
+&lt;h3 id=&#34;one-to-one:c826c531212d0a54ebca2cc2d2da67b7&#34;&gt;One-to-One&lt;/h3&gt;
 
 &lt;p&gt;A &lt;code&gt;Person&lt;/code&gt; could have a cardinality-one reference to &lt;code&gt;City&lt;/code&gt; having a cardinality-one reference to a &lt;code&gt;Country&lt;/code&gt;:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.name.City.name.Country.name
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;Strictly speaking we would have an entity with an asserted &lt;code&gt;:person/name&lt;/code&gt; attribute value with a reference to another entity with an asserted &lt;code&gt;:city/name&lt;/code&gt; attribute value etc. But in practice we simply talk about &amp;ldquo;namespace A has a relationship/reference to namespace B&amp;rdquo;.&lt;/p&gt;
+&lt;p&gt;Strictly speaking we have an entity with an asserted &lt;code&gt;:person/name&lt;/code&gt; attribute value with a reference to another entity with an asserted &lt;code&gt;:city/name&lt;/code&gt; attribute value etc. But in practice we simply talk about &amp;ldquo;namespace A has a relationship/reference to namespace B&amp;rdquo;.&lt;/p&gt;
 
 &lt;p&gt;A namespace is not like an SQL Table but rather organizes some attributes by a meaningful name - it&amp;rsquo;s, well, a &lt;em&gt;namespace&lt;/em&gt;.&lt;/p&gt;
 
-&lt;h3 id=&#34;many-references:c826c531212d0a54ebca2cc2d2da67b7&#34;&gt;Many-references&lt;/h3&gt;
+&lt;h3 id=&#34;one-to-many:c826c531212d0a54ebca2cc2d2da67b7&#34;&gt;One-to-Many&lt;/h3&gt;
 
 &lt;p&gt;If we have an &lt;code&gt;Order&lt;/code&gt; with multiple &lt;code&gt;OrderLine&lt;/code&gt;s we would instead define a cardinality-many reference to the &lt;code&gt;OrderLine&lt;/code&gt; namespace in our Schema definition:&lt;/p&gt;
 

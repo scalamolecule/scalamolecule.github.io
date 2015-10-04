@@ -305,13 +305,11 @@ m(firstName ~ lastName ~ age) // all fields of a `Person` trait...
     
     <item>
       <title>Home</title>
-      <link>http://scalamolecule.org/</link>
+      <link>http://scalamolecule.org/home/front/</link>
       <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
       
-      <guid>http://scalamolecule.org/</guid>
+      <guid>http://scalamolecule.org/home/front/</guid>
       <description>
-
-&lt;p&gt;&lt;br&gt;&lt;/p&gt;
 
 &lt;h1 id=&#34;molecule:ffcff61ab3a11ef1d50900901a24ec54&#34;&gt;Molecule&lt;/h1&gt;
 

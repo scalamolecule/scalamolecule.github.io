@@ -730,7 +730,7 @@ Person(odersky).name(&amp;quot;M. Odersky&amp;quot;).age(54321).update
 
 &lt;h1 id=&#34;slick-vs-molecule-examples:ce7ebdb2cbbacd766a8940138f40260d&#34;&gt;Slick vs. Molecule examples&lt;/h1&gt;
 
-&lt;p&gt;Using the examples from &lt;a href=&#34;http://slick.typesafe.com/doc/3.0.0-M1/sql-to-slick.html#sql-vs-slick-examples&#34;&gt;Slick&lt;/a&gt;&amp;hellip;&lt;/p&gt;
+&lt;p&gt;Using examples from &lt;a href=&#34;http://slick.typesafe.com/doc/3.0.0-M1/sql-to-slick.html#sql-vs-slick-examples&#34;&gt;Slick&lt;/a&gt;:&lt;/p&gt;
 
 &lt;h4 id=&#34;select-all-table-values:ce7ebdb2cbbacd766a8940138f40260d&#34;&gt;Select all table values&lt;/h4&gt;
 
