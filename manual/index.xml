@@ -505,8 +505,6 @@ enum: String        enums: Set[String]
 
 &lt;p&gt;In Molecule we can organize namespaces in partitions with objects:&lt;/p&gt;
 
-&lt;p&gt;Each attribute can also have some ex&lt;/p&gt;
-
 &lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;@InOut(0, 4)
 object PartitionTestDefinition {
 
@@ -532,12 +530,12 @@ object PartitionTestDefinition {
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;Partition names are then prepended to namespace names:&lt;/p&gt;
+&lt;p&gt;Here we have a &lt;code&gt;gen&lt;/code&gt; (general) partition and a &lt;code&gt;lit&lt;/code&gt; (litterature) partition. Each partition can contain as many namespaces as you want. This can be a way also to structure large domains conceptually. The partition name is prepended to the namespaces it contains. But we only need to use it for the first namespace starting a molecule:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;lit_Book.title.cat.Author.name.gender.get === ...
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;Notice how we only need to prepend the first namespace of the molecule! &lt;code&gt;Author&lt;/code&gt; is already defined as a related namespace.&lt;/p&gt;
+&lt;p&gt;Since &lt;code&gt;Author&lt;/code&gt; is already defined as a related namespace we don&amp;rsquo;t need to prepend the partition name there.&lt;/p&gt;
 
 &lt;p&gt;When we insert a &lt;code&gt;Person&lt;/code&gt; the created entity will automatically be saved in the &lt;code&gt;gen&lt;/code&gt; partition (or whatever we call it).&lt;/p&gt;
 </description>

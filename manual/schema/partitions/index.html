@@ -114,8 +114,6 @@
 
 <p>In Molecule we can organize namespaces in partitions with objects:</p>
 
-<p>Each attribute can also have some ex</p>
-
 <pre><code class="language-scala">@InOut(0, 4)
 object PartitionTestDefinition {
 
@@ -141,12 +139,12 @@ object PartitionTestDefinition {
 }
 </code></pre>
 
-<p>Partition names are then prepended to namespace names:</p>
+<p>Here we have a <code>gen</code> (general) partition and a <code>lit</code> (litterature) partition. Each partition can contain as many namespaces as you want. This can be a way also to structure large domains conceptually. The partition name is prepended to the namespaces it contains. But we only need to use it for the first namespace starting a molecule:</p>
 
 <pre><code class="language-scala">lit_Book.title.cat.Author.name.gender.get === ...
 </code></pre>
 
-<p>Notice how we only need to prepend the first namespace of the molecule! <code>Author</code> is already defined as a related namespace.</p>
+<p>Since <code>Author</code> is already defined as a related namespace we don&rsquo;t need to prepend the partition name there.</p>
 
 <p>When we insert a <code>Person</code> the created entity will automatically be saved in the <code>gen</code> partition (or whatever we call it).</p>
 
