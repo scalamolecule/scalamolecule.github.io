@@ -259,7 +259,7 @@ val persons: Seq[String :: Int :: HNil] = Person.name.age.hl
 &lt;p&gt;We also insert and update data with molecules:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;// Insert and retrieve new entity id
-val lisaId = Person.name(&amp;quot;Lisa&amp;quot;).age(&amp;quot;27&amp;quot;).insert.id
+val lisaId = Person.name(&amp;quot;Lisa&amp;quot;).age(&amp;quot;27&amp;quot;).insert.eid
 
 // Update
 Person(lisaId).age(&amp;quot;28&amp;quot;).update
@@ -361,7 +361,9 @@ Entity  Attribute  Value  Transaction/time
 
 &lt;h3 id=&#34;dependency-in-your-project:2cc0b07f42930e4520820be1fe66f913&#34;&gt;Dependency in your project&lt;/h3&gt;
 
-&lt;p&gt;Molecule 0.2.1 for Scala 2.11.4 is available at &lt;a href=&#34;https://oss.sonatype.org/content/repositories/releases/com/scalamolecule/molecule_2.11/&#34;&gt;Sonatype&lt;/a&gt; so that you can add a dependency in your sbt file to &lt;code&gt;&amp;quot;org.scalamolecule&amp;quot; % &amp;quot;molecule_2.11&amp;quot; % &amp;quot;0.2.1&amp;quot;&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Molecule 0.3.0 for Scala 2.11.6 is available at &lt;a href=&#34;https://oss.sonatype.org/content/repositories/releases/com/scalamolecule/molecule_2.11/&#34;&gt;Sonatype&lt;/a&gt; so that you can add a dependency in your sbt file:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;&amp;quot;org.scalamolecule&amp;quot; % &amp;quot;molecule_2.11&amp;quot; % &amp;quot;0.3.0&amp;quot;&lt;/code&gt;&lt;/p&gt;
 
 &lt;p&gt;Since Molecule generates boilerplate code from your definitions it also needs to have the &lt;code&gt;DslBoilerplate.scala&lt;/code&gt; file in your project folder. Please have a look at how the sbt build file of the Molecule project itself puts things together and simply copy that to your own project:&lt;/p&gt;
 
@@ -370,7 +372,7 @@ Entity  Attribute  Value  Transaction/time
 
 &lt;ul&gt;
 &lt;li&gt;Add library dependency&lt;br&gt;
-&lt;code&gt;&amp;quot;org.scalamolecule&amp;quot; % &amp;quot;molecule_2.11&amp;quot; % &amp;quot;0.2.1&amp;quot;&lt;/code&gt;&lt;/li&gt;
+&lt;code&gt;&amp;quot;org.scalamolecule&amp;quot; % &amp;quot;molecule_2.11&amp;quot; % &amp;quot;0.3.0&amp;quot;&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;List directories where you have your &lt;a href=&#34;http://scalamolecule.org/manual/database-setup&#34;&gt;definition file(s)&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;li&gt;Define your domain schema in a &lt;a href=&#34;http://scalamolecule.org/manual/schema-definition&#34;&gt;schema definition file&lt;/a&gt;&lt;/li&gt;

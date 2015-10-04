@@ -129,7 +129,7 @@ val persons: Seq[String :: Int :: HNil] = Person.name.age.hl
 <p>We also insert and update data with molecules:</p>
 
 <pre><code class="language-scala">// Insert and retrieve new entity id
-val lisaId = Person.name(&quot;Lisa&quot;).age(&quot;27&quot;).insert.id
+val lisaId = Person.name(&quot;Lisa&quot;).age(&quot;27&quot;).insert.eid
 
 // Update
 Person(lisaId).age(&quot;28&quot;).update
