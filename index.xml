@@ -114,28 +114,6 @@ or
     </item>
     
     <item>
-      <title>Community</title>
-      <link>http://scalamolecule.org/community/overview/</link>
-      <pubDate>Wed, 14 May 2014 02:13:50 UTC</pubDate>
-      
-      <guid>http://scalamolecule.org/community/overview/</guid>
-      <description>
-
-&lt;h1 id=&#34;community:68f80267fa3a50980dbb745a782b8dca&#34;&gt;Community&lt;/h1&gt;
-
-&lt;p&gt;The &lt;a href=&#34;https://groups.google.com/forum/#!forum/molecule-dsl&#34;&gt;Molecule google list&lt;/a&gt; is open to questions and discussions about Molecule and other Scala-based Datomic resources.&lt;/p&gt;
-
-&lt;h3 id=&#34;resources:68f80267fa3a50980dbb745a782b8dca&#34;&gt;Resources&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/scalamolecule/molecule/issues&#34;&gt;Issues&lt;/a&gt; - please feel free to raise issues/report bugs or make pull requests&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://datomic.com&#34;&gt;Datomic&lt;/a&gt; website&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/pellucidanalytics/datomisca&#34;&gt;Datomisca&lt;/a&gt;, a Scala API for Datomic&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-    </item>
-    
-    <item>
       <title>Compare</title>
       <link>http://scalamolecule.org/compare/overview/</link>
       <pubDate>Wed, 14 May 2014 02:13:50 UTC</pubDate>
@@ -206,6 +184,28 @@ val songs = Song.e.artist(id).get
 &lt;/ul&gt;
 
 &lt;p&gt;If you want to translate one into Molecule, please feel free to submit a pull request or bring up ideas.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Community</title>
+      <link>http://scalamolecule.org/community/overview/</link>
+      <pubDate>Wed, 14 May 2014 02:13:50 UTC</pubDate>
+      
+      <guid>http://scalamolecule.org/community/overview/</guid>
+      <description>
+
+&lt;h1 id=&#34;community:68f80267fa3a50980dbb745a782b8dca&#34;&gt;Community&lt;/h1&gt;
+
+&lt;p&gt;The &lt;a href=&#34;https://groups.google.com/forum/#!forum/molecule-dsl&#34;&gt;Molecule google list&lt;/a&gt; is open to questions and discussions about Molecule and other Scala-based Datomic resources.&lt;/p&gt;
+
+&lt;h3 id=&#34;resources:68f80267fa3a50980dbb745a782b8dca&#34;&gt;Resources&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/scalamolecule/molecule/issues&#34;&gt;Issues&lt;/a&gt; - please feel free to raise issues/report bugs or make pull requests&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://datomic.com&#34;&gt;Datomic&lt;/a&gt; website&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/pellucidanalytics/datomisca&#34;&gt;Datomisca&lt;/a&gt;, a Scala API for Datomic&lt;/li&gt;
+&lt;/ul&gt;
 </description>
     </item>
     
@@ -497,6 +497,15 @@ val persons: Seq[String :: Int :: HNil] = Person.name.age.hl
 &lt;li&gt;Run tests and poke around&amp;hellip;&lt;/li&gt;
 &lt;/ol&gt;
 
+&lt;h3 id=&#34;molecule-in-your-own-project:ffcff61ab3a11ef1d50900901a24ec54&#34;&gt;Molecule in your own project&lt;/h3&gt;
+
+&lt;p&gt;Add Molecule dependency to your project&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;&amp;quot;org.scalamolecule&amp;quot; %% &amp;quot;molecule&amp;quot; % &amp;quot;0.4.0&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;(See more on setup &lt;a href=&#34;http://scalamolecule.org/manual/database-setup&#34;&gt;here&lt;/a&gt;)&lt;/p&gt;
+
 &lt;h3 id=&#34;read-more:ffcff61ab3a11ef1d50900901a24ec54&#34;&gt;Read more&lt;/h3&gt;
 
 &lt;ul&gt;
@@ -540,7 +549,9 @@ val persons: Seq[String :: Int :: HNil] = Person.name.age.hl
 
 &lt;p&gt;As you see we start our molecule from some Namespace and then build on Attribute by Attribute.&lt;/p&gt;
 
-&lt;h3 id=&#34;all-attributes-looked-for:8fd4bc5e57a8b030c7141267f15a6e67&#34;&gt;All Attributes looked for&lt;/h3&gt;
+&lt;h3 id=&#34;3-ways-of-getting-data:8fd4bc5e57a8b030c7141267f15a6e67&#34;&gt;3 ways of getting data&lt;/h3&gt;
+
+&lt;h4 id=&#34;1-mandatory-attributes:8fd4bc5e57a8b030c7141267f15a6e67&#34;&gt;1. Mandatory Attributes&lt;/h4&gt;
 
 &lt;p&gt;When we use a molecule to query the Datomic database we ask for entities having all our Attributes associated with them.&lt;/p&gt;
 
@@ -553,9 +564,9 @@ val persons: Seq[String :: Int :: HNil] = Person.name.age.hl
 
 &lt;p&gt;Basically we look for &lt;strong&gt;matches&lt;/strong&gt; to our molecule data structure.&lt;/p&gt;
 
-&lt;h3 id=&#34;underscore-omits-values:8fd4bc5e57a8b030c7141267f15a6e67&#34;&gt;Underscore omits values&lt;/h3&gt;
+&lt;h4 id=&#34;2-mandatory-un-fetched-attributes-with-suffix:8fd4bc5e57a8b030c7141267f15a6e67&#34;&gt;2. Mandatory un-fetched Attributes with &lt;code&gt;_&lt;/code&gt; suffix&lt;/h4&gt;
 
-&lt;p&gt;Sometimes we want to grap entities that we &lt;em&gt;know&lt;/em&gt; have certain attributes, but without returning those values. If for instance we wanted to find all names of Persons that have an age attribute set but we don&amp;rsquo;t need to return those age values, then we can add an underscore &lt;code&gt;_&lt;/code&gt; after the &lt;code&gt;age&lt;/code&gt; Attribute so that it becomes &lt;code&gt;age_&lt;/code&gt;:&lt;/p&gt;
+&lt;p&gt;Sometimes we want to grap entities that we &lt;em&gt;know&lt;/em&gt; have certain attributes, but without returning those values. If for instance we wanted to find all names of Persons that have an age attribute set but we don&amp;rsquo;t need to return those age values, then we can add an underscore &lt;code&gt;_&lt;/code&gt; after the &lt;code&gt;age&lt;/code&gt; Attribute:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val names = Person.name.age_.get
 &lt;/code&gt;&lt;/pre&gt;
@@ -568,6 +579,15 @@ val names  : List[String]        = Person.name.age_.get
 
 &lt;p&gt;This way we can switch on and off individual attributes from the result set without affecting the data structures we look for.&lt;/p&gt;
 
+&lt;h4 id=&#34;3-optional-attributes-with-suffix-like-null-values:8fd4bc5e57a8b030c7141267f15a6e67&#34;&gt;3. Optional Attributes with &lt;code&gt;$&lt;/code&gt; suffix (like Null values)&lt;/h4&gt;
+
+&lt;p&gt;If an attribute value is only sometimes set, we can ask for it&amp;rsquo;s optional value by adding a dollar sign &lt;code&gt;$&lt;/code&gt; after the attribute:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val names: List[(String, Option[String], String)] = Person.firstName.middleName$.lastName.get
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;That way we can get all person names with or without middleNames. As you can see from the return type, the middle name is wrapped in an `Option.&lt;/p&gt;
+
 &lt;h3 id=&#34;tuples-or-hlists-returned:8fd4bc5e57a8b030c7141267f15a6e67&#34;&gt;Tuples or HLists returned&lt;/h3&gt;
 
 &lt;p&gt;Molecule returns all result sets as either tuples of values (with &lt;code&gt;get&lt;/code&gt;) or Shapeless HLists (with &lt;code&gt;hl&lt;/code&gt;).&lt;/p&gt;
@@ -576,11 +596,67 @@ val names  : List[String]        = Person.name.age_.get
 val persons: List[String :: Int :: HNil] = Person.name.age.hl
 &lt;/code&gt;&lt;/pre&gt;
 
+&lt;p&gt;At the moment the HList implementation is not as full as the tuple implementation. It seems as though tuples does the job very well.&lt;/p&gt;
+
 &lt;h3 id=&#34;molecule-max-size:8fd4bc5e57a8b030c7141267f15a6e67&#34;&gt;Molecule max size&lt;/h3&gt;
 
-&lt;p&gt;The size of molecules are limited to Scala&amp;rsquo;s limit size of 22 for tuples. Since molecules only look for attributes having a value it seems unlikely that we need to surpass this upper limit except in very special cases.&lt;/p&gt;
+&lt;p&gt;The size of molecules are limited to Scala&amp;rsquo;s arity limit of 22 for tuples.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Files</title>
+      <link>http://scalamolecule.org/manual/schema/files/</link>
+      <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
+      
+      <guid>http://scalamolecule.org/manual/schema/files/</guid>
+      <description>
 
-&lt;p&gt;Once the entities matching our qriteria are found we can use those entities to find additional optional attribute values.&lt;/p&gt;
+&lt;h1 id=&#34;molecule-files:fdd0f32a8956014c694267605f409cb7&#34;&gt;Molecule files&lt;/h1&gt;
+
+&lt;p&gt;Your Molecule schema definition file should be in a folder named &amp;ldquo;schema&amp;rdquo; anywhere within your source code:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://scalamolecule.org/img/boilerplate/definition-file.jpg&#34; alt=&#34;&#34; /&gt;
+&lt;/p&gt;
+
+&lt;h3 id=&#34;telling-sbt:fdd0f32a8956014c694267605f409cb7&#34;&gt;Telling sbt&lt;/h3&gt;
+
+&lt;p&gt;In the project build file we then tell sbt where such &amp;ldquo;schema&amp;rdquo; folders reside:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;settings = commonSettings ++ Seq(
+  definitionDirectories(
+    &amp;quot;examples/src/main/scala/molecule/examples/dayOfDatomic&amp;quot;,
+    &amp;quot;examples/src/main/scala/molecule/examples/mbrainz&amp;quot;,
+    &amp;quot;examples/src/main/scala/molecule/examples/seattle&amp;quot;
+  )
+)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We can add several locations with the &lt;code&gt;definitionDirectories&lt;/code&gt; method which will tell sbt where to look for our schema definition files.&lt;/p&gt;
+
+&lt;h3 id=&#34;files-generated:fdd0f32a8956014c694267605f409cb7&#34;&gt;Files generated&lt;/h3&gt;
+
+&lt;p&gt;Running &lt;code&gt;sbt compile&lt;/code&gt; in your project root will then generate some source code files in the &lt;code&gt;src_managed&lt;/code&gt; directory (inside the target directory):&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://scalamolecule.org/img/boilerplate/generated-files.jpg&#34; alt=&#34;&#34; /&gt;
+&lt;/p&gt;
+
+&lt;h3 id=&#34;boilerplate-dsl-files:fdd0f32a8956014c694267605f409cb7&#34;&gt;Boilerplate dsl files&lt;/h3&gt;
+
+&lt;p&gt;Molecule creates a &lt;code&gt;dsl&lt;/code&gt; folder having a subfolder - or &amp;ldquo;definition directory&amp;rdquo; - for each schema definition file (could be more than one).&lt;/p&gt;
+
+&lt;p&gt;Within each definition directory we&amp;rsquo;ll find a file generated for each namespace defined (&lt;code&gt;Community.scala&lt;/code&gt; etc).&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://scalamolecule.org/manual/schema/boilerplate&#34;&gt;More on the boilerplate dsl files&amp;hellip;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;schema-file:fdd0f32a8956014c694267605f409cb7&#34;&gt;Schema file&lt;/h3&gt;
+
+&lt;p&gt;Molecule places the generated Datomic schema file &lt;code&gt;SeattleSchema&lt;/code&gt; in the same package as &lt;code&gt;SeattleDefinition&lt;/code&gt; so that they&amp;rsquo;ll turn up beside each other in our IDE package view:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://scalamolecule.org/img/boilerplate/project-files.png&#34; alt=&#34;&#34; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://scalamolecule.org/manual/schema/datomic&#34;&gt;More on the Datomic schema&amp;hellip;&lt;/a&gt;&lt;/p&gt;
 </description>
     </item>
     
@@ -656,62 +732,6 @@ object SeattleDefinition {
 &lt;p&gt;&lt;code&gt;sbt compile&lt;/code&gt; your project, wait for your domain-customized boilerplate code to be generated - and you&amp;rsquo;re ready to make intuitive molecule queries!&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&#34;http://scalamolecule.org/manual/&#34;&gt;Read more&amp;hellip;&lt;/a&gt;&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Files</title>
-      <link>http://scalamolecule.org/manual/schema/files/</link>
-      <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
-      
-      <guid>http://scalamolecule.org/manual/schema/files/</guid>
-      <description>
-
-&lt;h1 id=&#34;molecule-files:fdd0f32a8956014c694267605f409cb7&#34;&gt;Molecule files&lt;/h1&gt;
-
-&lt;p&gt;Your Molecule schema definition file should be in a folder named &amp;ldquo;schema&amp;rdquo; anywhere within your source code:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://scalamolecule.org/img/boilerplate/definition-file.jpg&#34; alt=&#34;&#34; /&gt;
-&lt;/p&gt;
-
-&lt;h3 id=&#34;telling-sbt:fdd0f32a8956014c694267605f409cb7&#34;&gt;Telling sbt&lt;/h3&gt;
-
-&lt;p&gt;In the project build file we then tell sbt where such &amp;ldquo;schema&amp;rdquo; folders reside:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;settings = commonSettings ++ Seq(
-  definitionDirectories(
-    &amp;quot;examples/src/main/scala/molecule/examples/dayOfDatomic&amp;quot;,
-    &amp;quot;examples/src/main/scala/molecule/examples/mbrainz&amp;quot;,
-    &amp;quot;examples/src/main/scala/molecule/examples/seattle&amp;quot;
-  )
-)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;We can add several locations with the &lt;code&gt;definitionDirectories&lt;/code&gt; method which will tell sbt where to look for our schema definition files.&lt;/p&gt;
-
-&lt;h3 id=&#34;files-generated:fdd0f32a8956014c694267605f409cb7&#34;&gt;Files generated&lt;/h3&gt;
-
-&lt;p&gt;Running &lt;code&gt;sbt compile&lt;/code&gt; in your project root will then generate some source code files in the &lt;code&gt;src_managed&lt;/code&gt; directory (inside the target directory):&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://scalamolecule.org/img/boilerplate/generated-files.jpg&#34; alt=&#34;&#34; /&gt;
-&lt;/p&gt;
-
-&lt;h3 id=&#34;boilerplate-dsl-files:fdd0f32a8956014c694267605f409cb7&#34;&gt;Boilerplate dsl files&lt;/h3&gt;
-
-&lt;p&gt;Molecule creates a &lt;code&gt;dsl&lt;/code&gt; folder having a subfolder - or &amp;ldquo;definition directory&amp;rdquo; - for each schema definition file (could be more than one).&lt;/p&gt;
-
-&lt;p&gt;Within each definition directory we&amp;rsquo;ll find a file generated for each namespace defined (&lt;code&gt;Community.scala&lt;/code&gt; etc).&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;http://scalamolecule.org/manual/schema/boilerplate&#34;&gt;More on the boilerplate dsl files&amp;hellip;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;schema-file:fdd0f32a8956014c694267605f409cb7&#34;&gt;Schema file&lt;/h3&gt;
-
-&lt;p&gt;Molecule places the generated Datomic schema file &lt;code&gt;SeattleSchema&lt;/code&gt; in the same package as &lt;code&gt;SeattleDefinition&lt;/code&gt; so that they&amp;rsquo;ll turn up beside each other in our IDE package view:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://scalamolecule.org/img/boilerplate/project-files.png&#34; alt=&#34;&#34; /&gt;
-&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;http://scalamolecule.org/manual/schema/datomic&#34;&gt;More on the Datomic schema&amp;hellip;&lt;/a&gt;&lt;/p&gt;
 </description>
     </item>
     

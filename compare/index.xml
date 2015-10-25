@@ -555,6 +555,14 @@ List(
 &lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.age.name.e.get map { case (age, name, id) =&amp;gt; (age, s&amp;quot;$name ($id)&amp;quot; }
 &lt;/code&gt;&lt;/pre&gt;
 
+&lt;p&gt;Actually, Molecule treats attributes as mandatory values whereas Select-attributes in a SQL query could be Null values (if allowed). Molecule can also ask for optional values too if a &lt;code&gt;$&lt;/code&gt; sign is appended to an attribute name:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.age.firstName.middleName$.lastName.e.get map { 
+  case (age, firstName, Some(middleName), lastName, id) =&amp;gt; (age, s&amp;quot;$firstName $middleName $lastName ($id)&amp;quot; 
+  case (age, firstName, None, lastName, id)             =&amp;gt; (age, s&amp;quot;$firstName $lastName ($id)&amp;quot; 
+}
+&lt;/code&gt;&lt;/pre&gt;
+
 &lt;h4 id=&#34;where:d1babb582138b02a13547d2c6eb6df72&#34;&gt;WHERE&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;sql&amp;quot;select * from PERSON where AGE &amp;gt;= 18 AND NAME = &#39;C. Vogt&#39;&amp;quot;.as[Person].list

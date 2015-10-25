@@ -93,7 +93,9 @@ or
 
 &lt;p&gt;As you see we start our molecule from some Namespace and then build on Attribute by Attribute.&lt;/p&gt;
 
-&lt;h3 id=&#34;all-attributes-looked-for:8fd4bc5e57a8b030c7141267f15a6e67&#34;&gt;All Attributes looked for&lt;/h3&gt;
+&lt;h3 id=&#34;3-ways-of-getting-data:8fd4bc5e57a8b030c7141267f15a6e67&#34;&gt;3 ways of getting data&lt;/h3&gt;
+
+&lt;h4 id=&#34;1-mandatory-attributes:8fd4bc5e57a8b030c7141267f15a6e67&#34;&gt;1. Mandatory Attributes&lt;/h4&gt;
 
 &lt;p&gt;When we use a molecule to query the Datomic database we ask for entities having all our Attributes associated with them.&lt;/p&gt;
 
@@ -106,9 +108,9 @@ or
 
 &lt;p&gt;Basically we look for &lt;strong&gt;matches&lt;/strong&gt; to our molecule data structure.&lt;/p&gt;
 
-&lt;h3 id=&#34;underscore-omits-values:8fd4bc5e57a8b030c7141267f15a6e67&#34;&gt;Underscore omits values&lt;/h3&gt;
+&lt;h4 id=&#34;2-mandatory-un-fetched-attributes-with-suffix:8fd4bc5e57a8b030c7141267f15a6e67&#34;&gt;2. Mandatory un-fetched Attributes with &lt;code&gt;_&lt;/code&gt; suffix&lt;/h4&gt;
 
-&lt;p&gt;Sometimes we want to grap entities that we &lt;em&gt;know&lt;/em&gt; have certain attributes, but without returning those values. If for instance we wanted to find all names of Persons that have an age attribute set but we don&amp;rsquo;t need to return those age values, then we can add an underscore &lt;code&gt;_&lt;/code&gt; after the &lt;code&gt;age&lt;/code&gt; Attribute so that it becomes &lt;code&gt;age_&lt;/code&gt;:&lt;/p&gt;
+&lt;p&gt;Sometimes we want to grap entities that we &lt;em&gt;know&lt;/em&gt; have certain attributes, but without returning those values. If for instance we wanted to find all names of Persons that have an age attribute set but we don&amp;rsquo;t need to return those age values, then we can add an underscore &lt;code&gt;_&lt;/code&gt; after the &lt;code&gt;age&lt;/code&gt; Attribute:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val names = Person.name.age_.get
 &lt;/code&gt;&lt;/pre&gt;
@@ -121,6 +123,15 @@ val names  : List[String]        = Person.name.age_.get
 
 &lt;p&gt;This way we can switch on and off individual attributes from the result set without affecting the data structures we look for.&lt;/p&gt;
 
+&lt;h4 id=&#34;3-optional-attributes-with-suffix-like-null-values:8fd4bc5e57a8b030c7141267f15a6e67&#34;&gt;3. Optional Attributes with &lt;code&gt;$&lt;/code&gt; suffix (like Null values)&lt;/h4&gt;
+
+&lt;p&gt;If an attribute value is only sometimes set, we can ask for it&amp;rsquo;s optional value by adding a dollar sign &lt;code&gt;$&lt;/code&gt; after the attribute:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val names: List[(String, Option[String], String)] = Person.firstName.middleName$.lastName.get
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;That way we can get all person names with or without middleNames. As you can see from the return type, the middle name is wrapped in an `Option.&lt;/p&gt;
+
 &lt;h3 id=&#34;tuples-or-hlists-returned:8fd4bc5e57a8b030c7141267f15a6e67&#34;&gt;Tuples or HLists returned&lt;/h3&gt;
 
 &lt;p&gt;Molecule returns all result sets as either tuples of values (with &lt;code&gt;get&lt;/code&gt;) or Shapeless HLists (with &lt;code&gt;hl&lt;/code&gt;).&lt;/p&gt;
@@ -129,11 +140,11 @@ val names  : List[String]        = Person.name.age_.get
 val persons: List[String :: Int :: HNil] = Person.name.age.hl
 &lt;/code&gt;&lt;/pre&gt;
 
+&lt;p&gt;At the moment the HList implementation is not as full as the tuple implementation. It seems as though tuples does the job very well.&lt;/p&gt;
+
 &lt;h3 id=&#34;molecule-max-size:8fd4bc5e57a8b030c7141267f15a6e67&#34;&gt;Molecule max size&lt;/h3&gt;
 
-&lt;p&gt;The size of molecules are limited to Scala&amp;rsquo;s limit size of 22 for tuples. Since molecules only look for attributes having a value it seems unlikely that we need to surpass this upper limit except in very special cases.&lt;/p&gt;
-
-&lt;p&gt;Once the entities matching our qriteria are found we can use those entities to find additional optional attribute values.&lt;/p&gt;
+&lt;p&gt;The size of molecules are limited to Scala&amp;rsquo;s arity limit of 22 for tuples.&lt;/p&gt;
 </description>
     </item>
     

@@ -205,6 +205,15 @@ val persons: Seq[String :: Int :: HNil] = Person.name.age.hl
 &lt;li&gt;Run tests and poke around&amp;hellip;&lt;/li&gt;
 &lt;/ol&gt;
 
+&lt;h3 id=&#34;molecule-in-your-own-project:ffcff61ab3a11ef1d50900901a24ec54&#34;&gt;Molecule in your own project&lt;/h3&gt;
+
+&lt;p&gt;Add Molecule dependency to your project&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;&amp;quot;org.scalamolecule&amp;quot; %% &amp;quot;molecule&amp;quot; % &amp;quot;0.4.0&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;(See more on setup &lt;a href=&#34;http://scalamolecule.org/manual/database-setup&#34;&gt;here&lt;/a&gt;)&lt;/p&gt;
+
 &lt;h3 id=&#34;read-more:ffcff61ab3a11ef1d50900901a24ec54&#34;&gt;Read more&lt;/h3&gt;
 
 &lt;ul&gt;
@@ -361,18 +370,18 @@ Entity  Attribute  Value  Transaction/time
 
 &lt;h3 id=&#34;dependency-in-your-project:2cc0b07f42930e4520820be1fe66f913&#34;&gt;Dependency in your project&lt;/h3&gt;
 
-&lt;p&gt;Molecule 0.3.0 for Scala 2.11.6 is available at &lt;a href=&#34;https://oss.sonatype.org/content/repositories/releases/com/scalamolecule/molecule_2.11/&#34;&gt;Sonatype&lt;/a&gt; so that you can add a dependency in your sbt file:&lt;/p&gt;
+&lt;p&gt;Molecule 0.4.0 for Scala 2.11.7 is available at &lt;a href=&#34;https://oss.sonatype.org/content/repositories/releases/com/scalamolecule/molecule_2.11/&#34;&gt;Sonatype&lt;/a&gt; so that you can add a dependency in your sbt file:&lt;/p&gt;
 
-&lt;p&gt;&lt;code&gt;&amp;quot;org.scalamolecule&amp;quot; % &amp;quot;molecule_2.11&amp;quot; % &amp;quot;0.3.0&amp;quot;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;quot;org.scalamolecule&amp;quot; % &amp;quot;molecule_2.11&amp;quot; % &amp;quot;0.4.0&amp;quot;&lt;/code&gt;&lt;/p&gt;
 
-&lt;p&gt;Since Molecule generates boilerplate code from your definitions it also needs to have the &lt;code&gt;MoleculeBoilerplate.scala&lt;/code&gt; file in your project folder. Please have a look at how the sbt build file of the Molecule project itself puts things together and simply copy that to your own project:&lt;/p&gt;
+&lt;p&gt;Since Molecule generates boilerplate code from your definitions it also needs to have the &lt;code&gt;MoleculeBoilerplate.scala&lt;/code&gt; file in your project folder. Add a copy of this file to your own project before compiling with sbt:&lt;/p&gt;
 
 &lt;ol&gt;
 &lt;li&gt;Setup your sbt build file [as in Molecule][moleculesbt]:
 
 &lt;ul&gt;
 &lt;li&gt;Add library dependency&lt;br&gt;
-&lt;code&gt;&amp;quot;org.scalamolecule&amp;quot; % &amp;quot;molecule_2.11&amp;quot; % &amp;quot;0.3.0&amp;quot;&lt;/code&gt;&lt;/li&gt;
+&lt;code&gt;&amp;quot;org.scalamolecule&amp;quot; % &amp;quot;molecule_2.11&amp;quot; % &amp;quot;0.4.0&amp;quot;&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;List directories where you have your &lt;a href=&#34;http://scalamolecule.org/manual/database-setup&#34;&gt;definition file(s)&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;li&gt;Define your domain schema in a &lt;a href=&#34;http://scalamolecule.org/manual/schema-definition&#34;&gt;schema definition file&lt;/a&gt;&lt;/li&gt;
