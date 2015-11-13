@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Homes on Molecule</title>
-    <link>http://scalamolecule.org/home/</link>
+    <link>http://localhost:1313/home/</link>
     <description>Recent content in Homes on Molecule</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     
     
     <lastBuildDate>Fri, 02 Jan 2015 22:06:44 CET</lastBuildDate>
-    <atom:link href="http://scalamolecule.org/home/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/home/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Home</title>
-      <link>http://scalamolecule.org/home/front/</link>
+      <link>http://localhost:1313/home/front/</link>
       <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
       
-      <guid>http://scalamolecule.org/home/front/</guid>
+      <guid>http://localhost:1313/home/front/</guid>
       <description>
 
 &lt;h1 id=&#34;molecule:ffcff61ab3a11ef1d50900901a24ec54&#34;&gt;Molecule&lt;/h1&gt;
@@ -121,9 +121,9 @@
             &lt;div class=&#34;carousel-caption&#34;&gt;                   
                 &lt;h3 id=&#34;more-up-the-sleeve:ffcff61ab3a11ef1d50900901a24ec54&#34;&gt;More..&lt;/h3&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/home/introduction&#34;&gt;Introduction&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/tutorials/seattle&#34;&gt;Seattle Tutorial&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/home/setup&#34;&gt;Setup&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/home/introduction&#34;&gt;Introduction&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/tutorials/seattle&#34;&gt;Seattle Tutorial&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/home/setup&#34;&gt;Setup&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
             &lt;/div&gt;
         &lt;/div&gt;
@@ -212,15 +212,15 @@ val persons: Seq[String :: Int :: HNil] = Person.name.age.hl
 &lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;&amp;quot;org.scalamolecule&amp;quot; %% &amp;quot;molecule&amp;quot; % &amp;quot;0.4.1&amp;quot;
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;(See more on setup &lt;a href=&#34;http://scalamolecule.org/manual/database-setup&#34;&gt;here&lt;/a&gt;)&lt;/p&gt;
+&lt;p&gt;(See more on setup &lt;a href=&#34;http://localhost:1313/manual/database-setup&#34;&gt;here&lt;/a&gt;)&lt;/p&gt;
 
 &lt;h3 id=&#34;read-more:ffcff61ab3a11ef1d50900901a24ec54&#34;&gt;Read more&lt;/h3&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/home/introduction&#34;&gt;Introduction&lt;/a&gt; to Datomic/Molecule&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/manual/database-setup&#34;&gt;Setup Database&lt;/a&gt;: initiate a Datomic database and create a database schema with Molecule&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/manual/populate-database&#34;&gt;Populate Database&lt;/a&gt;: populate a Datomic database with Molecule&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/tutorials/seattle&#34;&gt;Molecule Seattle tutorial&lt;/a&gt; examples of using Molecule (based on the
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/home/introduction&#34;&gt;Introduction&lt;/a&gt; to Datomic/Molecule&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/manual/database-setup&#34;&gt;Setup Database&lt;/a&gt;: initiate a Datomic database and create a database schema with Molecule&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/manual/populate-database&#34;&gt;Populate Database&lt;/a&gt;: populate a Datomic database with Molecule&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/tutorials/seattle&#34;&gt;Molecule Seattle tutorial&lt;/a&gt; examples of using Molecule (based on the
 &lt;a href=&#34;http://docs.datomic.com/tutorial.html&#34;&gt;Datomic Seattle tutorial&lt;/a&gt;)&lt;/li&gt;
 &lt;/ul&gt;
 
@@ -238,10 +238,10 @@ val persons: Seq[String :: Int :: HNil] = Person.name.age.hl
     
     <item>
       <title>Introduction</title>
-      <link>http://scalamolecule.org/home/introduction/</link>
+      <link>http://localhost:1313/home/introduction/</link>
       <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
       
-      <guid>http://scalamolecule.org/home/introduction/</guid>
+      <guid>http://localhost:1313/home/introduction/</guid>
       <description>
 
 &lt;h1 id=&#34;molecule-introduction:2767292a573dc549b9b4297b701af3ab&#34;&gt;Molecule introduction&lt;/h1&gt;
@@ -318,32 +318,32 @@ Entity  Attribute  Value  Transaction/time
 
 &lt;p&gt;&lt;code&gt;attributes&lt;/code&gt; are organized in &lt;code&gt;namespaces&lt;/code&gt; to group related qualities of our domain:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://scalamolecule.org/img/DatomicElements1.png&#34; alt=&#34;&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/img/DatomicElements1.png&#34; alt=&#34;&#34; /&gt;
 &lt;/p&gt;
 
 &lt;h3 id=&#34;entity-row-in-an-sql-table:2767292a573dc549b9b4297b701af3ab&#34;&gt;Entity != row in an sql Table&lt;/h3&gt;
 
 &lt;p&gt;An &lt;code&gt;entity&lt;/code&gt; can have &lt;em&gt;any&lt;/em&gt; &lt;code&gt;attribute&lt;/code&gt; from &lt;em&gt;any&lt;/em&gt; &lt;code&gt;namespace&lt;/code&gt; associated to it:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://scalamolecule.org/img/DatomicElements2.png&#34; alt=&#34;&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/img/DatomicElements2.png&#34; alt=&#34;&#34; /&gt;
 &lt;/p&gt;
 
 &lt;p&gt;An entity is therefore not like a row in a table but rather a &amp;ldquo;cross-cutting&amp;rdquo; thing that we can freely associate any attribute value to. Note how &amp;ldquo;attrB1&amp;rdquo; in this example is not associated to entity1.&lt;/p&gt;
 
 &lt;h3 id=&#34;further-reading:2767292a573dc549b9b4297b701af3ab&#34;&gt;Further reading&amp;hellip;&lt;/h3&gt;
 
-&lt;p&gt;Go straight to the &lt;a href=&#34;http://scalamolecule.org/tutorials/seattle&#34;&gt;Molecule Seattle tutorial&lt;/a&gt; to see a wide range of
+&lt;p&gt;Go straight to the &lt;a href=&#34;http://localhost:1313/tutorials/seattle&#34;&gt;Molecule Seattle tutorial&lt;/a&gt; to see a wide range of
  queries that Molecule can express, or check out first how we use Molecule to
- &lt;a href=&#34;http://scalamolecule.org/manual/setup&#34;&gt;setup the database&lt;/a&gt; and &lt;a href=&#34;http://scalamolecule.org/manual/insert&#34;&gt;populated it with data&lt;/a&gt;.&lt;/p&gt;
+ &lt;a href=&#34;http://localhost:1313/manual/setup&#34;&gt;setup the database&lt;/a&gt; and &lt;a href=&#34;http://localhost:1313/manual/insert&#34;&gt;populated it with data&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Setup</title>
-      <link>http://scalamolecule.org/home/setup/</link>
+      <link>http://localhost:1313/home/setup/</link>
       <pubDate>Wed, 14 May 2014 02:13:50 UTC</pubDate>
       
-      <guid>http://scalamolecule.org/home/setup/</guid>
+      <guid>http://localhost:1313/home/setup/</guid>
       <description>
 
 &lt;h1 id=&#34;setup-molecule:2cc0b07f42930e4520820be1fe66f913&#34;&gt;Setup Molecule&lt;/h1&gt;
@@ -396,17 +396,17 @@ Entity  Attribute  Value  Transaction/time
     
     <item>
       <title>About</title>
-      <link>http://scalamolecule.org/home/about/</link>
+      <link>http://localhost:1313/home/about/</link>
       <pubDate>Wed, 14 May 2014 02:13:50 UTC</pubDate>
       
-      <guid>http://scalamolecule.org/home/about/</guid>
+      <guid>http://localhost:1313/home/about/</guid>
       <description>
 
 &lt;h1 id=&#34;about:6083a88ee3411b0d17ce02d738f69d47&#34;&gt;About&lt;/h1&gt;
 
 &lt;p&gt;Molecule is created by Marc Grue (bass player in the Gothenburg Symphony orchestra and a dedicated Scala programmer).&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://scalamolecule.org/img/mg.jpg&#34; alt=&#34;&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/img/mg.jpg&#34; alt=&#34;&#34; /&gt;
 &lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&#34;https://github.com/scalamolecule/molecule/pulls&#34;&gt;Pull requests&lt;/a&gt; are welcome and you can ask questions in the &lt;a href=&#34;https://groups.google.com/forum/#!forum/molecule-dsl&#34;&gt;Molecule forum&lt;/a&gt;.&lt;/p&gt;
