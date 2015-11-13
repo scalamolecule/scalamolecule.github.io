@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Molecule</title>
-    <link>http://localhost:1313/</link>
+    <link>http://scalamolecule.org/</link>
     <description>Recent content on Molecule</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     
     
     <lastBuildDate>Fri, 02 Jan 2015 22:06:44 CET</lastBuildDate>
-    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://scalamolecule.org/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Manual</title>
-      <link>http://localhost:1313/manual/overview/</link>
+      <link>http://scalamolecule.org/manual/overview/</link>
       <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
       
-      <guid>http://localhost:1313/manual/overview/</guid>
+      <guid>http://scalamolecule.org/manual/overview/</guid>
       <description>
 
 &lt;h1 id=&#34;molecule-manual:68f80267fa3a50980dbb745a782b8dca&#34;&gt;Molecule manual&lt;/h1&gt;
@@ -29,26 +29,26 @@ or
 &lt;a href=&#34;https://github.com/scalamolecule/molecule/tree/master/examples/src/test/scala/molecule/examples&#34;&gt;examples&lt;/a&gt;&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/manual/schema&#34;&gt;Schema&lt;/a&gt; - Overview of schema creation
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/manual/schema&#34;&gt;Schema&lt;/a&gt; - Overview of schema creation
 
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/manual/schema/files&#34;&gt;Files&lt;/a&gt; - Schema file organization&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/manual/schema/definition&#34;&gt;Definition&lt;/a&gt; - Schema definition types and options&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/manual/schema/modelling&#34;&gt;Modelling&lt;/a&gt; - Some modelling advice&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/manual/schema/boilerplate&#34;&gt;Boilerplate&lt;/a&gt; - Boilerplate generated from schema&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/manual/schema/datomic-schema&#34;&gt;Datomic&lt;/a&gt; - Datomic schema transaction data generated&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/manual/schema/files&#34;&gt;Files&lt;/a&gt; - Schema file organization&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/manual/schema/definition&#34;&gt;Definition&lt;/a&gt; - Schema definition types and options&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/manual/schema/modelling&#34;&gt;Modelling&lt;/a&gt; - Some modelling advice&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/manual/schema/boilerplate&#34;&gt;Boilerplate&lt;/a&gt; - Boilerplate generated from schema&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/manual/schema/datomic-schema&#34;&gt;Datomic&lt;/a&gt; - Datomic schema transaction data generated&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/manual/setup&#34;&gt;Setup&lt;/a&gt; - Before your first molecule&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/manual/insert&#34;&gt;Insert&lt;/a&gt; - Data-molecule, Insert-molecule, Insert-molecule as template&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/manual/update&#34;&gt;Update/retract&lt;/a&gt; - Updates/retraction/re-assertions explained&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/manual/query&#34;&gt;Query&lt;/a&gt; - Overview of basic query tools
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/manual/setup&#34;&gt;Setup&lt;/a&gt; - Before your first molecule&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/manual/insert&#34;&gt;Insert&lt;/a&gt; - Data-molecule, Insert-molecule, Insert-molecule as template&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/manual/update&#34;&gt;Update/retract&lt;/a&gt; - Updates/retraction/re-assertions explained&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/manual/query&#34;&gt;Query&lt;/a&gt; - Overview of basic query tools
 
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/manual/query/builder&#34;&gt;Builder&lt;/a&gt; - Explict and tacet attribute values&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/manual/query/types&#34;&gt;Types&lt;/a&gt; - Inferred types from all molecules&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/manual/query/expressions&#34;&gt;Expressions&lt;/a&gt; - Equality, OR, Negation, Comparison, Fulltext search&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/manual/query/aggregates&#34;&gt;Aggregates&lt;/a&gt; - Min, max, count, countDistinct, sum, avg, median, variance, stddev, random, sample&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/manual/query/parameterize&#34;&gt;Parameterize&lt;/a&gt; - Cached Input-molecules for optimized queries&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/manual/query/builder&#34;&gt;Builder&lt;/a&gt; - Explict and tacet attribute values&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/manual/query/types&#34;&gt;Types&lt;/a&gt; - Inferred types from all molecules&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/manual/query/expressions&#34;&gt;Expressions&lt;/a&gt; - Equality, OR, Negation, Comparison, Fulltext search&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/manual/query/aggregates&#34;&gt;Aggregates&lt;/a&gt; - Min, max, count, countDistinct, sum, avg, median, variance, stddev, random, sample&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/manual/query/parameterize&#34;&gt;Parameterize&lt;/a&gt; - Cached Input-molecules for optimized queries&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
@@ -74,10 +74,10 @@ or
     
     <item>
       <title>Tutorials</title>
-      <link>http://localhost:1313/tutorials/overview/</link>
+      <link>http://scalamolecule.org/tutorials/overview/</link>
       <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
       
-      <guid>http://localhost:1313/tutorials/overview/</guid>
+      <guid>http://scalamolecule.org/tutorials/overview/</guid>
       <description>
 
 &lt;h1 id=&#34;molecule-tutorials:68f80267fa3a50980dbb745a782b8dca&#34;&gt;Molecule tutorials&lt;/h1&gt;
@@ -85,18 +85,18 @@ or
 &lt;p&gt;As we see more tutorials on Molecule we&amp;rsquo;ll collect them here:&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/tutorials/seattle&#34;&gt;Seattle tutorial&lt;/a&gt; - all-round introduction to using Molecule:
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/tutorials/seattle&#34;&gt;Seattle tutorial&lt;/a&gt; - all-round introduction to using Molecule:
 
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/tutorials/seattle/#0:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Basic introduction to Molecule&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/tutorials/seattle/#1:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Queries with attributes&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/tutorials/seattle/#4:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Relationships across references&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/tutorials/seattle/#5:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Parameterized molecules for caching queries&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/tutorials/seattle/#6:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Functions and fulltext search in queries&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/tutorials/seattle/#8:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Querying with rules - logical OR&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/tutorials/seattle/#9:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Working with time&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/tutorials/seattle/#10:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Inserting data&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/tutorials/seattle/#11:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Updating/deleting data&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/tutorials/seattle/#0:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Basic introduction to Molecule&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/tutorials/seattle/#1:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Queries with attributes&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/tutorials/seattle/#4:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Relationships across references&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/tutorials/seattle/#5:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Parameterized molecules for caching queries&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/tutorials/seattle/#6:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Functions and fulltext search in queries&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/tutorials/seattle/#8:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Querying with rules - logical OR&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/tutorials/seattle/#9:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Working with time&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/tutorials/seattle/#10:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Inserting data&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/tutorials/seattle/#11:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Updating/deleting data&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
@@ -114,33 +114,11 @@ or
     </item>
     
     <item>
-      <title>Community</title>
-      <link>http://localhost:1313/community/overview/</link>
-      <pubDate>Wed, 14 May 2014 02:13:50 UTC</pubDate>
-      
-      <guid>http://localhost:1313/community/overview/</guid>
-      <description>
-
-&lt;h1 id=&#34;community:68f80267fa3a50980dbb745a782b8dca&#34;&gt;Community&lt;/h1&gt;
-
-&lt;p&gt;The &lt;a href=&#34;https://groups.google.com/forum/#!forum/molecule-dsl&#34;&gt;Molecule google list&lt;/a&gt; is open to questions and discussions about Molecule and other Scala-based Datomic resources.&lt;/p&gt;
-
-&lt;h3 id=&#34;resources:68f80267fa3a50980dbb745a782b8dca&#34;&gt;Resources&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/scalamolecule/molecule/issues&#34;&gt;Issues&lt;/a&gt; - please feel free to raise issues/report bugs or make pull requests&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://datomic.com&#34;&gt;Datomic&lt;/a&gt; website&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/pellucidanalytics/datomisca&#34;&gt;Datomisca&lt;/a&gt;, a Scala API for Datomic&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-    </item>
-    
-    <item>
       <title>Compare</title>
-      <link>http://localhost:1313/compare/overview/</link>
+      <link>http://scalamolecule.org/compare/overview/</link>
       <pubDate>Wed, 14 May 2014 02:13:50 UTC</pubDate>
       
-      <guid>http://localhost:1313/compare/overview/</guid>
+      <guid>http://scalamolecule.org/compare/overview/</guid>
       <description>
 
 &lt;h1 id=&#34;other-databases-vs-molecule:68f80267fa3a50980dbb745a782b8dca&#34;&gt;Other databases vs. Molecule&lt;/h1&gt;
@@ -185,11 +163,11 @@ val songs = Song.e.artist(id).get
 &lt;p&gt;Over time we&amp;rsquo;ll compare Molecule with as many database systems as possible. Those not linked yet below are on our wish list:&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/compare/datomic&#34;&gt;Datomic&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/compare/sql&#34;&gt;SQL&lt;/a&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/compare/datomic&#34;&gt;Datomic&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/compare/sql&#34;&gt;SQL&lt;/a&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/compare/sql/slick&#34;&gt;Slick&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/compare/sql/slick&#34;&gt;Slick&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Squeryl&lt;/li&gt;
 &lt;li&gt;Sqltyped tutorial&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
@@ -210,11 +188,33 @@ val songs = Song.e.artist(id).get
     </item>
     
     <item>
-      <title>Developer</title>
-      <link>http://localhost:1313/developer/overview/</link>
+      <title>Community</title>
+      <link>http://scalamolecule.org/community/overview/</link>
       <pubDate>Wed, 14 May 2014 02:13:50 UTC</pubDate>
       
-      <guid>http://localhost:1313/developer/overview/</guid>
+      <guid>http://scalamolecule.org/community/overview/</guid>
+      <description>
+
+&lt;h1 id=&#34;community:68f80267fa3a50980dbb745a782b8dca&#34;&gt;Community&lt;/h1&gt;
+
+&lt;p&gt;The &lt;a href=&#34;https://groups.google.com/forum/#!forum/molecule-dsl&#34;&gt;Molecule google list&lt;/a&gt; is open to questions and discussions about Molecule and other Scala-based Datomic resources.&lt;/p&gt;
+
+&lt;h3 id=&#34;resources:68f80267fa3a50980dbb745a782b8dca&#34;&gt;Resources&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/scalamolecule/molecule/issues&#34;&gt;Issues&lt;/a&gt; - please feel free to raise issues/report bugs or make pull requests&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://datomic.com&#34;&gt;Datomic&lt;/a&gt; website&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/pellucidanalytics/datomisca&#34;&gt;Datomisca&lt;/a&gt;, a Scala API for Datomic&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Developer</title>
+      <link>http://scalamolecule.org/developer/overview/</link>
+      <pubDate>Wed, 14 May 2014 02:13:50 UTC</pubDate>
+      
+      <guid>http://scalamolecule.org/developer/overview/</guid>
       <description>
 
 &lt;h1 id=&#34;developer:68f80267fa3a50980dbb745a782b8dca&#34;&gt;Developer&lt;/h1&gt;
@@ -258,8 +258,8 @@ m(firstName ~ lastName ~ age) // all fields of a `Person` trait...
 &lt;p&gt;we have enough information about type, cardinality and options to generate the following artifacts:&lt;/p&gt;
 
 &lt;ol&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/developer/txdata&#34;&gt;Schema transaction data&lt;/a&gt; (in a Datomic format)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/developer/boilerplate&#34;&gt;Scala code&lt;/a&gt; to build molecules&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/developer/txdata&#34;&gt;Schema transaction data&lt;/a&gt; (in a Datomic format)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/developer/boilerplate&#34;&gt;Scala code&lt;/a&gt; to build molecules&lt;/li&gt;
 &lt;/ol&gt;
 
 &lt;h3 id=&#34;scala-macro-transformations:68f80267fa3a50980dbb745a782b8dca&#34;&gt;Scala macro transformations&lt;/h3&gt;
@@ -299,16 +299,16 @@ m(firstName ~ lastName ~ age) // all fields of a `Person` trait...
 
 &lt;p&gt;Since we create our molecules from our self-generated boilerplate code our macros have full knowledge about the possible constructs we can expect. We are therefore in full control of the entire &amp;ldquo;eco-system&amp;rdquo; from molecule to Datomic query. Non-valid molecules simply won&amp;rsquo;t compile. And we can infer all type information from our molecules.&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&#34;http://localhost:1313/developer/transformation&#34;&gt;Read more about the macro transformations&amp;hellip;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://scalamolecule.org/developer/transformation&#34;&gt;Read more about the macro transformations&amp;hellip;&lt;/a&gt;&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Home</title>
-      <link>http://localhost:1313/home/front/</link>
+      <link>http://scalamolecule.org/home/front/</link>
       <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
       
-      <guid>http://localhost:1313/home/front/</guid>
+      <guid>http://scalamolecule.org/home/front/</guid>
       <description>
 
 &lt;h1 id=&#34;molecule:ffcff61ab3a11ef1d50900901a24ec54&#34;&gt;Molecule&lt;/h1&gt;
@@ -413,9 +413,9 @@ m(firstName ~ lastName ~ age) // all fields of a `Person` trait...
             &lt;div class=&#34;carousel-caption&#34;&gt;                   
                 &lt;h3 id=&#34;more-up-the-sleeve:ffcff61ab3a11ef1d50900901a24ec54&#34;&gt;More..&lt;/h3&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/home/introduction&#34;&gt;Introduction&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/tutorials/seattle&#34;&gt;Seattle Tutorial&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/home/setup&#34;&gt;Setup&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/home/introduction&#34;&gt;Introduction&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/tutorials/seattle&#34;&gt;Seattle Tutorial&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/home/setup&#34;&gt;Setup&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
             &lt;/div&gt;
         &lt;/div&gt;
@@ -501,18 +501,18 @@ val persons: Seq[String :: Int :: HNil] = Person.name.age.hl
 
 &lt;p&gt;Add Molecule dependency to your project&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;&amp;quot;org.scalamolecule&amp;quot; %% &amp;quot;molecule&amp;quot; % &amp;quot;0.4.1&amp;quot;
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;&amp;quot;org.scalamolecule&amp;quot; %% &amp;quot;molecule&amp;quot; % &amp;quot;0.4.2&amp;quot;
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;(See more on setup &lt;a href=&#34;http://localhost:1313/manual/database-setup&#34;&gt;here&lt;/a&gt;)&lt;/p&gt;
+&lt;p&gt;(See more on setup &lt;a href=&#34;http://scalamolecule.org/manual/database-setup&#34;&gt;here&lt;/a&gt;)&lt;/p&gt;
 
 &lt;h3 id=&#34;read-more:ffcff61ab3a11ef1d50900901a24ec54&#34;&gt;Read more&lt;/h3&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/home/introduction&#34;&gt;Introduction&lt;/a&gt; to Datomic/Molecule&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/manual/database-setup&#34;&gt;Setup Database&lt;/a&gt;: initiate a Datomic database and create a database schema with Molecule&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/manual/populate-database&#34;&gt;Populate Database&lt;/a&gt;: populate a Datomic database with Molecule&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/tutorials/seattle&#34;&gt;Molecule Seattle tutorial&lt;/a&gt; examples of using Molecule (based on the
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/home/introduction&#34;&gt;Introduction&lt;/a&gt; to Datomic/Molecule&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/manual/database-setup&#34;&gt;Setup Database&lt;/a&gt;: initiate a Datomic database and create a database schema with Molecule&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/manual/populate-database&#34;&gt;Populate Database&lt;/a&gt;: populate a Datomic database with Molecule&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/tutorials/seattle&#34;&gt;Molecule Seattle tutorial&lt;/a&gt; examples of using Molecule (based on the
 &lt;a href=&#34;http://docs.datomic.com/tutorial.html&#34;&gt;Datomic Seattle tutorial&lt;/a&gt;)&lt;/li&gt;
 &lt;/ul&gt;
 
@@ -530,10 +530,10 @@ val persons: Seq[String :: Int :: HNil] = Person.name.age.hl
     
     <item>
       <title>Builder</title>
-      <link>http://localhost:1313/manual/query/builder/</link>
+      <link>http://scalamolecule.org/manual/query/builder/</link>
       <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
       
-      <guid>http://localhost:1313/manual/query/builder/</guid>
+      <guid>http://scalamolecule.org/manual/query/builder/</guid>
       <description>
 
 &lt;h1 id=&#34;attribute-builder-pattern:8fd4bc5e57a8b030c7141267f15a6e67&#34;&gt;Attribute builder pattern&lt;/h1&gt;
@@ -606,17 +606,17 @@ val persons: List[String :: Int :: HNil] = Person.name.age.hl
     
     <item>
       <title>Files</title>
-      <link>http://localhost:1313/manual/schema/files/</link>
+      <link>http://scalamolecule.org/manual/schema/files/</link>
       <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
       
-      <guid>http://localhost:1313/manual/schema/files/</guid>
+      <guid>http://scalamolecule.org/manual/schema/files/</guid>
       <description>
 
 &lt;h1 id=&#34;molecule-files:fdd0f32a8956014c694267605f409cb7&#34;&gt;Molecule files&lt;/h1&gt;
 
 &lt;p&gt;Your Molecule schema definition file should be in a folder named &amp;ldquo;schema&amp;rdquo; anywhere within your source code:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/img/boilerplate/definition-file.jpg&#34; alt=&#34;&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;http://scalamolecule.org/img/boilerplate/definition-file.jpg&#34; alt=&#34;&#34; /&gt;
 &lt;/p&gt;
 
 &lt;h3 id=&#34;telling-sbt:fdd0f32a8956014c694267605f409cb7&#34;&gt;Telling sbt&lt;/h3&gt;
@@ -638,7 +638,7 @@ val persons: List[String :: Int :: HNil] = Person.name.age.hl
 
 &lt;p&gt;Running &lt;code&gt;sbt compile&lt;/code&gt; in your project root will then generate some source code files in the &lt;code&gt;src_managed&lt;/code&gt; directory (inside the target directory):&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/img/boilerplate/generated-files.jpg&#34; alt=&#34;&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;http://scalamolecule.org/img/boilerplate/generated-files.jpg&#34; alt=&#34;&#34; /&gt;
 &lt;/p&gt;
 
 &lt;h3 id=&#34;boilerplate-dsl-files:fdd0f32a8956014c694267605f409cb7&#34;&gt;Boilerplate dsl files&lt;/h3&gt;
@@ -647,25 +647,25 @@ val persons: List[String :: Int :: HNil] = Person.name.age.hl
 
 &lt;p&gt;Within each definition directory we&amp;rsquo;ll find a file generated for each namespace defined (&lt;code&gt;Community.scala&lt;/code&gt; etc).&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&#34;http://localhost:1313/manual/schema/boilerplate&#34;&gt;More on the boilerplate dsl files&amp;hellip;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://scalamolecule.org/manual/schema/boilerplate&#34;&gt;More on the boilerplate dsl files&amp;hellip;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;schema-file:fdd0f32a8956014c694267605f409cb7&#34;&gt;Schema file&lt;/h3&gt;
 
 &lt;p&gt;Molecule places the generated Datomic schema file &lt;code&gt;SeattleSchema&lt;/code&gt; in the same package as &lt;code&gt;SeattleDefinition&lt;/code&gt; so that they&amp;rsquo;ll turn up beside each other in our IDE package view:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/img/boilerplate/project-files.png&#34; alt=&#34;&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;http://scalamolecule.org/img/boilerplate/project-files.png&#34; alt=&#34;&#34; /&gt;
 &lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&#34;http://localhost:1313/manual/schema/datomic&#34;&gt;More on the Datomic schema&amp;hellip;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://scalamolecule.org/manual/schema/datomic&#34;&gt;More on the Datomic schema&amp;hellip;&lt;/a&gt;&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Schema</title>
-      <link>http://localhost:1313/manual/schema/</link>
+      <link>http://scalamolecule.org/manual/schema/</link>
       <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
       
-      <guid>http://localhost:1313/manual/schema/</guid>
+      <guid>http://scalamolecule.org/manual/schema/</guid>
       <description>
 
 &lt;h1 id=&#34;molecule-schema:e608d9ac6a0d5e2b6db229b78a3e65b4&#34;&gt;Molecule schema&lt;/h1&gt;
@@ -710,7 +710,7 @@ object SeattleDefinition {
 
 &lt;p&gt;Model your own domain structures with similar schemas and save each definition in a file in a &amp;ldquo;schema&amp;rdquo; folder anywhere within your project.&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&#34;http://localhost:1313/manual/&#34;&gt;Read more&amp;hellip;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://scalamolecule.org/manual/&#34;&gt;Read more&amp;hellip;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;2-tell-sbt:e608d9ac6a0d5e2b6db229b78a3e65b4&#34;&gt;2. Tell sbt&lt;/h3&gt;
 
@@ -725,22 +725,22 @@ object SeattleDefinition {
 )
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;a href=&#34;http://localhost:1313/manual/&#34;&gt;Read more&amp;hellip;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://scalamolecule.org/manual/&#34;&gt;Read more&amp;hellip;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;3-compile-generate-boilerplate-code:e608d9ac6a0d5e2b6db229b78a3e65b4&#34;&gt;3. Compile (generate boilerplate code)&lt;/h3&gt;
 
 &lt;p&gt;&lt;code&gt;sbt compile&lt;/code&gt; your project, wait for your domain-customized boilerplate code to be generated - and you&amp;rsquo;re ready to make intuitive molecule queries!&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&#34;http://localhost:1313/manual/&#34;&gt;Read more&amp;hellip;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://scalamolecule.org/manual/&#34;&gt;Read more&amp;hellip;&lt;/a&gt;&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Seattle</title>
-      <link>http://localhost:1313/tutorials/seattle/</link>
+      <link>http://scalamolecule.org/tutorials/seattle/</link>
       <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
       
-      <guid>http://localhost:1313/tutorials/seattle/</guid>
+      <guid>http://scalamolecule.org/tutorials/seattle/</guid>
       <description>
 
 &lt;h1 id=&#34;contents:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Molecule Seattle tutorial&lt;/h1&gt;
@@ -766,7 +766,7 @@ how Molecule works.&lt;/em&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;0:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;&lt;a href=&#34;#contents:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;☝︎&lt;/a&gt; Introduction&lt;/h2&gt;
 
-&lt;p&gt;After &lt;a href=&#34;http://localhost:1313/manual/database-setup&#34;&gt;setting up the database&lt;/a&gt; and &lt;a href=&#34;http://localhost:1313/manual/populate-database&#34;&gt;populating it with data&lt;/a&gt; we can
+&lt;p&gt;After &lt;a href=&#34;http://scalamolecule.org/manual/database-setup&#34;&gt;setting up the database&lt;/a&gt; and &lt;a href=&#34;http://scalamolecule.org/manual/populate-database&#34;&gt;populating it with data&lt;/a&gt; we can
 start making queries. We make queries by building &amp;ldquo;molecules&amp;rdquo; which are
 chains of attributes put together with the builder pattern. We can imagine
 this as a 3-dimensional data structure of atoms bound together in various
@@ -1626,16 +1626,16 @@ values as they existed at specific points in time, we can retrieve
 retracted data by looking in the past. In other words, the data
 isn&amp;rsquo;t really gone. If we want data to really be gone after we
 retract it, we have to disable history for the specific attribute,
-as described in &lt;a href=&#34;http://localhost:1313/manual/database-setup&#34;&gt;Database setup&lt;/a&gt;.&lt;/p&gt;
+as described in &lt;a href=&#34;http://scalamolecule.org/manual/database-setup&#34;&gt;Database setup&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Datomic</title>
-      <link>http://localhost:1313/compare/datomic/</link>
+      <link>http://scalamolecule.org/compare/datomic/</link>
       <pubDate>Wed, 14 May 2014 02:13:50 UTC</pubDate>
       
-      <guid>http://localhost:1313/compare/datomic/</guid>
+      <guid>http://scalamolecule.org/compare/datomic/</guid>
       <description>
 
 &lt;h1 id=&#34;compare-with-datomic-datalog:fce8223ee4fefc246edc14cd715d3099&#34;&gt;Compare with Datomic/Datalog&lt;/h1&gt;
@@ -2067,15 +2067,15 @@ List(
     
     <item>
       <title>Tx data</title>
-      <link>http://localhost:1313/developer/txdata/</link>
+      <link>http://scalamolecule.org/developer/txdata/</link>
       <pubDate>Wed, 14 May 2014 02:13:50 UTC</pubDate>
       
-      <guid>http://localhost:1313/developer/txdata/</guid>
+      <guid>http://scalamolecule.org/developer/txdata/</guid>
       <description>
 
 &lt;h1 id=&#34;schema-transaction-data:cd2a84f3e0b729702691d1980ae83981&#34;&gt;Schema transaction data&lt;/h1&gt;
 
-&lt;p&gt;A &lt;a href=&#34;http://localhost:1313/schema/definition&#34;&gt;Schema definition file&lt;/a&gt; like&lt;/p&gt;
+&lt;p&gt;A &lt;a href=&#34;http://scalamolecule.org/schema/definition&#34;&gt;Schema definition file&lt;/a&gt; like&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;object SeattleDefinition {
   trait Community {
@@ -2120,18 +2120,18 @@ List(
 &lt;p&gt;To avoid having to write this code manually, the &lt;a href=&#34;https://github.com/scalamolecule/molecule/blob/master/project/MoleculeBoilerplate.scala&#34;&gt;MoleculeBoilerplate&lt;/a&gt; file generates this for us based on our schema definition. It has to be in our &lt;a href=&#34;https://github.com/scalamolecule/molecule/tree/master/project&#34;&gt;project folder&lt;/a&gt; for sbt to use it to generate our boilerplate code when we run &lt;code&gt;sbt compile&lt;/code&gt;.&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/manual/schema/files&#34;&gt;File organization&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/manual/schema/definition&#34;&gt;Types and options&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/manual/schema/files&#34;&gt;File organization&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/manual/schema/definition&#34;&gt;Types and options&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
     </item>
     
     <item>
       <title>Introduction</title>
-      <link>http://localhost:1313/home/introduction/</link>
+      <link>http://scalamolecule.org/home/introduction/</link>
       <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
       
-      <guid>http://localhost:1313/home/introduction/</guid>
+      <guid>http://scalamolecule.org/home/introduction/</guid>
       <description>
 
 &lt;h1 id=&#34;molecule-introduction:2767292a573dc549b9b4297b701af3ab&#34;&gt;Molecule introduction&lt;/h1&gt;
@@ -2208,32 +2208,32 @@ Entity  Attribute  Value  Transaction/time
 
 &lt;p&gt;&lt;code&gt;attributes&lt;/code&gt; are organized in &lt;code&gt;namespaces&lt;/code&gt; to group related qualities of our domain:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/img/DatomicElements1.png&#34; alt=&#34;&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;http://scalamolecule.org/img/DatomicElements1.png&#34; alt=&#34;&#34; /&gt;
 &lt;/p&gt;
 
 &lt;h3 id=&#34;entity-row-in-an-sql-table:2767292a573dc549b9b4297b701af3ab&#34;&gt;Entity != row in an sql Table&lt;/h3&gt;
 
 &lt;p&gt;An &lt;code&gt;entity&lt;/code&gt; can have &lt;em&gt;any&lt;/em&gt; &lt;code&gt;attribute&lt;/code&gt; from &lt;em&gt;any&lt;/em&gt; &lt;code&gt;namespace&lt;/code&gt; associated to it:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/img/DatomicElements2.png&#34; alt=&#34;&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;http://scalamolecule.org/img/DatomicElements2.png&#34; alt=&#34;&#34; /&gt;
 &lt;/p&gt;
 
 &lt;p&gt;An entity is therefore not like a row in a table but rather a &amp;ldquo;cross-cutting&amp;rdquo; thing that we can freely associate any attribute value to. Note how &amp;ldquo;attrB1&amp;rdquo; in this example is not associated to entity1.&lt;/p&gt;
 
 &lt;h3 id=&#34;further-reading:2767292a573dc549b9b4297b701af3ab&#34;&gt;Further reading&amp;hellip;&lt;/h3&gt;
 
-&lt;p&gt;Go straight to the &lt;a href=&#34;http://localhost:1313/tutorials/seattle&#34;&gt;Molecule Seattle tutorial&lt;/a&gt; to see a wide range of
+&lt;p&gt;Go straight to the &lt;a href=&#34;http://scalamolecule.org/tutorials/seattle&#34;&gt;Molecule Seattle tutorial&lt;/a&gt; to see a wide range of
  queries that Molecule can express, or check out first how we use Molecule to
- &lt;a href=&#34;http://localhost:1313/manual/setup&#34;&gt;setup the database&lt;/a&gt; and &lt;a href=&#34;http://localhost:1313/manual/insert&#34;&gt;populated it with data&lt;/a&gt;.&lt;/p&gt;
+ &lt;a href=&#34;http://scalamolecule.org/manual/setup&#34;&gt;setup the database&lt;/a&gt; and &lt;a href=&#34;http://scalamolecule.org/manual/insert&#34;&gt;populated it with data&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Types</title>
-      <link>http://localhost:1313/manual/query/types/</link>
+      <link>http://scalamolecule.org/manual/query/types/</link>
       <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
       
-      <guid>http://localhost:1313/manual/query/types/</guid>
+      <guid>http://scalamolecule.org/manual/query/types/</guid>
       <description>
 
 &lt;h1 id=&#34;attribute-types:3d59665407ad3f08f6bcaef4686926f7&#34;&gt;Attribute types&lt;/h1&gt;
@@ -2254,7 +2254,7 @@ URI                 Set[URI]
 enum: String        enums: Set[String]              
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;Attribute are defined in your &lt;a href=&#34;http://localhost:1313/manual/schema/definition/&#34;&gt;schema&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Attribute are defined in your &lt;a href=&#34;http://scalamolecule.org/manual/schema/definition/&#34;&gt;schema&lt;/a&gt;.&lt;/p&gt;
 
 &lt;h3 id=&#34;types-inferred:3d59665407ad3f08f6bcaef4686926f7&#34;&gt;Types inferred&lt;/h3&gt;
 
@@ -2278,10 +2278,10 @@ enum: String        enums: Set[String]
     
     <item>
       <title>Attributes</title>
-      <link>http://localhost:1313/manual/schema/attributes/</link>
+      <link>http://scalamolecule.org/manual/schema/attributes/</link>
       <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
       
-      <guid>http://localhost:1313/manual/schema/attributes/</guid>
+      <guid>http://scalamolecule.org/manual/schema/attributes/</guid>
       <description>
 
 &lt;h1 id=&#34;define-attributes-in-a-schema:199f4b06fef5a61f833f209ac24fd4c2&#34;&gt;Define Attributes in a Schema&lt;/h1&gt;

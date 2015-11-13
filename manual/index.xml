@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Manuals on Molecule</title>
-    <link>http://localhost:1313/manual/</link>
+    <link>http://scalamolecule.org/manual/</link>
     <description>Recent content in Manuals on Molecule</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     
     
     <lastBuildDate>Fri, 02 Jan 2015 22:06:44 CET</lastBuildDate>
-    <atom:link href="http://localhost:1313/manual/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://scalamolecule.org/manual/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Manual</title>
-      <link>http://localhost:1313/manual/overview/</link>
+      <link>http://scalamolecule.org/manual/overview/</link>
       <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
       
-      <guid>http://localhost:1313/manual/overview/</guid>
+      <guid>http://scalamolecule.org/manual/overview/</guid>
       <description>
 
 &lt;h1 id=&#34;molecule-manual:68f80267fa3a50980dbb745a782b8dca&#34;&gt;Molecule manual&lt;/h1&gt;
@@ -29,26 +29,26 @@ or
 &lt;a href=&#34;https://github.com/scalamolecule/molecule/tree/master/examples/src/test/scala/molecule/examples&#34;&gt;examples&lt;/a&gt;&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/manual/schema&#34;&gt;Schema&lt;/a&gt; - Overview of schema creation
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/manual/schema&#34;&gt;Schema&lt;/a&gt; - Overview of schema creation
 
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/manual/schema/files&#34;&gt;Files&lt;/a&gt; - Schema file organization&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/manual/schema/definition&#34;&gt;Definition&lt;/a&gt; - Schema definition types and options&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/manual/schema/modelling&#34;&gt;Modelling&lt;/a&gt; - Some modelling advice&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/manual/schema/boilerplate&#34;&gt;Boilerplate&lt;/a&gt; - Boilerplate generated from schema&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/manual/schema/datomic-schema&#34;&gt;Datomic&lt;/a&gt; - Datomic schema transaction data generated&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/manual/schema/files&#34;&gt;Files&lt;/a&gt; - Schema file organization&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/manual/schema/definition&#34;&gt;Definition&lt;/a&gt; - Schema definition types and options&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/manual/schema/modelling&#34;&gt;Modelling&lt;/a&gt; - Some modelling advice&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/manual/schema/boilerplate&#34;&gt;Boilerplate&lt;/a&gt; - Boilerplate generated from schema&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/manual/schema/datomic-schema&#34;&gt;Datomic&lt;/a&gt; - Datomic schema transaction data generated&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/manual/setup&#34;&gt;Setup&lt;/a&gt; - Before your first molecule&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/manual/insert&#34;&gt;Insert&lt;/a&gt; - Data-molecule, Insert-molecule, Insert-molecule as template&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/manual/update&#34;&gt;Update/retract&lt;/a&gt; - Updates/retraction/re-assertions explained&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/manual/query&#34;&gt;Query&lt;/a&gt; - Overview of basic query tools
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/manual/setup&#34;&gt;Setup&lt;/a&gt; - Before your first molecule&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/manual/insert&#34;&gt;Insert&lt;/a&gt; - Data-molecule, Insert-molecule, Insert-molecule as template&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/manual/update&#34;&gt;Update/retract&lt;/a&gt; - Updates/retraction/re-assertions explained&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/manual/query&#34;&gt;Query&lt;/a&gt; - Overview of basic query tools
 
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/manual/query/builder&#34;&gt;Builder&lt;/a&gt; - Explict and tacet attribute values&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/manual/query/types&#34;&gt;Types&lt;/a&gt; - Inferred types from all molecules&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/manual/query/expressions&#34;&gt;Expressions&lt;/a&gt; - Equality, OR, Negation, Comparison, Fulltext search&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/manual/query/aggregates&#34;&gt;Aggregates&lt;/a&gt; - Min, max, count, countDistinct, sum, avg, median, variance, stddev, random, sample&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/manual/query/parameterize&#34;&gt;Parameterize&lt;/a&gt; - Cached Input-molecules for optimized queries&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/manual/query/builder&#34;&gt;Builder&lt;/a&gt; - Explict and tacet attribute values&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/manual/query/types&#34;&gt;Types&lt;/a&gt; - Inferred types from all molecules&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/manual/query/expressions&#34;&gt;Expressions&lt;/a&gt; - Equality, OR, Negation, Comparison, Fulltext search&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/manual/query/aggregates&#34;&gt;Aggregates&lt;/a&gt; - Min, max, count, countDistinct, sum, avg, median, variance, stddev, random, sample&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/manual/query/parameterize&#34;&gt;Parameterize&lt;/a&gt; - Cached Input-molecules for optimized queries&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
@@ -74,10 +74,10 @@ or
     
     <item>
       <title>Builder</title>
-      <link>http://localhost:1313/manual/query/builder/</link>
+      <link>http://scalamolecule.org/manual/query/builder/</link>
       <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
       
-      <guid>http://localhost:1313/manual/query/builder/</guid>
+      <guid>http://scalamolecule.org/manual/query/builder/</guid>
       <description>
 
 &lt;h1 id=&#34;attribute-builder-pattern:8fd4bc5e57a8b030c7141267f15a6e67&#34;&gt;Attribute builder pattern&lt;/h1&gt;
@@ -150,17 +150,17 @@ val persons: List[String :: Int :: HNil] = Person.name.age.hl
     
     <item>
       <title>Files</title>
-      <link>http://localhost:1313/manual/schema/files/</link>
+      <link>http://scalamolecule.org/manual/schema/files/</link>
       <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
       
-      <guid>http://localhost:1313/manual/schema/files/</guid>
+      <guid>http://scalamolecule.org/manual/schema/files/</guid>
       <description>
 
 &lt;h1 id=&#34;molecule-files:fdd0f32a8956014c694267605f409cb7&#34;&gt;Molecule files&lt;/h1&gt;
 
 &lt;p&gt;Your Molecule schema definition file should be in a folder named &amp;ldquo;schema&amp;rdquo; anywhere within your source code:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/img/boilerplate/definition-file.jpg&#34; alt=&#34;&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;http://scalamolecule.org/img/boilerplate/definition-file.jpg&#34; alt=&#34;&#34; /&gt;
 &lt;/p&gt;
 
 &lt;h3 id=&#34;telling-sbt:fdd0f32a8956014c694267605f409cb7&#34;&gt;Telling sbt&lt;/h3&gt;
@@ -182,7 +182,7 @@ val persons: List[String :: Int :: HNil] = Person.name.age.hl
 
 &lt;p&gt;Running &lt;code&gt;sbt compile&lt;/code&gt; in your project root will then generate some source code files in the &lt;code&gt;src_managed&lt;/code&gt; directory (inside the target directory):&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/img/boilerplate/generated-files.jpg&#34; alt=&#34;&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;http://scalamolecule.org/img/boilerplate/generated-files.jpg&#34; alt=&#34;&#34; /&gt;
 &lt;/p&gt;
 
 &lt;h3 id=&#34;boilerplate-dsl-files:fdd0f32a8956014c694267605f409cb7&#34;&gt;Boilerplate dsl files&lt;/h3&gt;
@@ -191,25 +191,25 @@ val persons: List[String :: Int :: HNil] = Person.name.age.hl
 
 &lt;p&gt;Within each definition directory we&amp;rsquo;ll find a file generated for each namespace defined (&lt;code&gt;Community.scala&lt;/code&gt; etc).&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&#34;http://localhost:1313/manual/schema/boilerplate&#34;&gt;More on the boilerplate dsl files&amp;hellip;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://scalamolecule.org/manual/schema/boilerplate&#34;&gt;More on the boilerplate dsl files&amp;hellip;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;schema-file:fdd0f32a8956014c694267605f409cb7&#34;&gt;Schema file&lt;/h3&gt;
 
 &lt;p&gt;Molecule places the generated Datomic schema file &lt;code&gt;SeattleSchema&lt;/code&gt; in the same package as &lt;code&gt;SeattleDefinition&lt;/code&gt; so that they&amp;rsquo;ll turn up beside each other in our IDE package view:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/img/boilerplate/project-files.png&#34; alt=&#34;&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;http://scalamolecule.org/img/boilerplate/project-files.png&#34; alt=&#34;&#34; /&gt;
 &lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&#34;http://localhost:1313/manual/schema/datomic&#34;&gt;More on the Datomic schema&amp;hellip;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://scalamolecule.org/manual/schema/datomic&#34;&gt;More on the Datomic schema&amp;hellip;&lt;/a&gt;&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Schema</title>
-      <link>http://localhost:1313/manual/schema/</link>
+      <link>http://scalamolecule.org/manual/schema/</link>
       <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
       
-      <guid>http://localhost:1313/manual/schema/</guid>
+      <guid>http://scalamolecule.org/manual/schema/</guid>
       <description>
 
 &lt;h1 id=&#34;molecule-schema:e608d9ac6a0d5e2b6db229b78a3e65b4&#34;&gt;Molecule schema&lt;/h1&gt;
@@ -254,7 +254,7 @@ object SeattleDefinition {
 
 &lt;p&gt;Model your own domain structures with similar schemas and save each definition in a file in a &amp;ldquo;schema&amp;rdquo; folder anywhere within your project.&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&#34;http://localhost:1313/manual/&#34;&gt;Read more&amp;hellip;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://scalamolecule.org/manual/&#34;&gt;Read more&amp;hellip;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;2-tell-sbt:e608d9ac6a0d5e2b6db229b78a3e65b4&#34;&gt;2. Tell sbt&lt;/h3&gt;
 
@@ -269,22 +269,22 @@ object SeattleDefinition {
 )
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;a href=&#34;http://localhost:1313/manual/&#34;&gt;Read more&amp;hellip;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://scalamolecule.org/manual/&#34;&gt;Read more&amp;hellip;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;3-compile-generate-boilerplate-code:e608d9ac6a0d5e2b6db229b78a3e65b4&#34;&gt;3. Compile (generate boilerplate code)&lt;/h3&gt;
 
 &lt;p&gt;&lt;code&gt;sbt compile&lt;/code&gt; your project, wait for your domain-customized boilerplate code to be generated - and you&amp;rsquo;re ready to make intuitive molecule queries!&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&#34;http://localhost:1313/manual/&#34;&gt;Read more&amp;hellip;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://scalamolecule.org/manual/&#34;&gt;Read more&amp;hellip;&lt;/a&gt;&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Attributes</title>
-      <link>http://localhost:1313/manual/schema/attributes/</link>
+      <link>http://scalamolecule.org/manual/schema/attributes/</link>
       <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
       
-      <guid>http://localhost:1313/manual/schema/attributes/</guid>
+      <guid>http://scalamolecule.org/manual/schema/attributes/</guid>
       <description>
 
 &lt;h1 id=&#34;define-attributes-in-a-schema:199f4b06fef5a61f833f209ac24fd4c2&#34;&gt;Define Attributes in a Schema&lt;/h1&gt;
@@ -422,10 +422,10 @@ one[&amp;lt;Ref-namespace&amp;gt;]    many[&amp;lt;Ref-namespace&amp;gt;]
     
     <item>
       <title>Setup</title>
-      <link>http://localhost:1313/manual/setup/</link>
+      <link>http://scalamolecule.org/manual/setup/</link>
       <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
       
-      <guid>http://localhost:1313/manual/setup/</guid>
+      <guid>http://scalamolecule.org/manual/setup/</guid>
       <description>
 
 &lt;h1 id=&#34;database-setup:2cc0b07f42930e4520820be1fe66f913&#34;&gt;Database setup&lt;/h1&gt;
@@ -454,10 +454,10 @@ molecules can later issue queries against it.&lt;/p&gt;
     
     <item>
       <title>Types</title>
-      <link>http://localhost:1313/manual/query/types/</link>
+      <link>http://scalamolecule.org/manual/query/types/</link>
       <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
       
-      <guid>http://localhost:1313/manual/query/types/</guid>
+      <guid>http://scalamolecule.org/manual/query/types/</guid>
       <description>
 
 &lt;h1 id=&#34;attribute-types:3d59665407ad3f08f6bcaef4686926f7&#34;&gt;Attribute types&lt;/h1&gt;
@@ -478,7 +478,7 @@ URI                 Set[URI]
 enum: String        enums: Set[String]              
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;Attribute are defined in your &lt;a href=&#34;http://localhost:1313/manual/schema/definition/&#34;&gt;schema&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Attribute are defined in your &lt;a href=&#34;http://scalamolecule.org/manual/schema/definition/&#34;&gt;schema&lt;/a&gt;.&lt;/p&gt;
 
 &lt;h3 id=&#34;types-inferred:3d59665407ad3f08f6bcaef4686926f7&#34;&gt;Types inferred&lt;/h3&gt;
 
@@ -502,10 +502,10 @@ enum: String        enums: Set[String]
     
     <item>
       <title>Partitions</title>
-      <link>http://localhost:1313/manual/schema/partitions/</link>
+      <link>http://scalamolecule.org/manual/schema/partitions/</link>
       <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
       
-      <guid>http://localhost:1313/manual/schema/partitions/</guid>
+      <guid>http://scalamolecule.org/manual/schema/partitions/</guid>
       <description>
 
 &lt;h1 id=&#34;defining-partitions-in-a-schema:3da45a63ba6890cac32f00daf0df937b&#34;&gt;Defining Partitions in a Schema&lt;/h1&gt;
@@ -554,10 +554,10 @@ object PartitionTestDefinition {
     
     <item>
       <title>Expressions</title>
-      <link>http://localhost:1313/manual/query/expressions/</link>
+      <link>http://scalamolecule.org/manual/query/expressions/</link>
       <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
       
-      <guid>http://localhost:1313/manual/query/expressions/</guid>
+      <guid>http://scalamolecule.org/manual/query/expressions/</guid>
       <description>
 
 &lt;h1 id=&#34;expressions:ccf7e9e64ce1a51aa79e6eb1314d9467&#34;&gt;Expressions&lt;/h1&gt;
@@ -663,10 +663,10 @@ Person.age.!=(youngAge or goodAge)
     
     <item>
       <title>Insert</title>
-      <link>http://localhost:1313/manual/insert/</link>
+      <link>http://scalamolecule.org/manual/insert/</link>
       <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
       
-      <guid>http://localhost:1313/manual/insert/</guid>
+      <guid>http://scalamolecule.org/manual/insert/</guid>
       <description>
 
 &lt;h1 id=&#34;insert-data:5d2f56cd52c8a21b161ac814c57bbeef&#34;&gt;Insert data&lt;/h1&gt;
@@ -762,10 +762,10 @@ woudn&amp;rsquo;t compile and our IDE will infer that and warn us of an invalid 
     
     <item>
       <title>Aggregates</title>
-      <link>http://localhost:1313/manual/query/aggregates/</link>
+      <link>http://scalamolecule.org/manual/query/aggregates/</link>
       <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
       
-      <guid>http://localhost:1313/manual/query/aggregates/</guid>
+      <guid>http://scalamolecule.org/manual/query/aggregates/</guid>
       <description>
 
 &lt;h1 id=&#34;aggregates:de7f9909aae9c5ac545867cc473806f6&#34;&gt;Aggregates&lt;/h1&gt;
@@ -854,10 +854,10 @@ Person.age(max) // highest age
     
     <item>
       <title>Update/retract</title>
-      <link>http://localhost:1313/manual/update/</link>
+      <link>http://scalamolecule.org/manual/update/</link>
       <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
       
-      <guid>http://localhost:1313/manual/update/</guid>
+      <guid>http://scalamolecule.org/manual/update/</guid>
       <description>
 
 &lt;h1 id=&#34;update-retract-data:02280df5f63dd13cb1a7e40384d029f1&#34;&gt;Update/retract data&lt;/h1&gt;
@@ -948,10 +948,10 @@ Community(belltownId).category(&amp;quot;news&amp;quot; -&amp;gt; &amp;quot;Cool
     
     <item>
       <title>Parameterize</title>
-      <link>http://localhost:1313/manual/query/parameterize/</link>
+      <link>http://scalamolecule.org/manual/query/parameterize/</link>
       <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
       
-      <guid>http://localhost:1313/manual/query/parameterize/</guid>
+      <guid>http://scalamolecule.org/manual/query/parameterize/</guid>
       <description>
 
 &lt;h1 id=&#34;parameterized-input-molecules:913d405893862d6b41d1b084193fb4f6&#34;&gt;Parameterized Input-molecules&lt;/h1&gt;
@@ -1001,21 +1001,21 @@ val americanBabies = americansYoungerThan(1).get
     
     <item>
       <title>Query</title>
-      <link>http://localhost:1313/manual/query/</link>
+      <link>http://scalamolecule.org/manual/query/</link>
       <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
       
-      <guid>http://localhost:1313/manual/query/</guid>
+      <guid>http://scalamolecule.org/manual/query/</guid>
       <description>
 
 &lt;h1 id=&#34;molecule-queries:f7a7255cb61c59dcad3a015980d2faca&#34;&gt;Molecule Queries&lt;/h1&gt;
 
-&lt;p&gt;&lt;a href=&#34;http://localhost:1313/manual/query/builder&#34;&gt;Build molecules&lt;/a&gt; with the builder pattern&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://scalamolecule.org/manual/query/builder&#34;&gt;Build molecules&lt;/a&gt; with the builder pattern&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.name.age.gender  // require values
 Person.name.age_.gender // require but omit values (&amp;quot;tacet values&amp;quot;)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;a href=&#34;http://localhost:1313/manual/query/types&#34;&gt;Types&lt;/a&gt; - all types inferred by IDE&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://scalamolecule.org/manual/query/types&#34;&gt;Types&lt;/a&gt; - all types inferred by IDE&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val name   : String      = Person.name.one
 val age    : Int         = Person.age.one
@@ -1023,7 +1023,7 @@ val hobbies: Set[String] = Person.hobbies.one // cardinality-many
 val gender : String      = Person.gender.one  // enum values
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;a href=&#34;http://localhost:1313/manual/query/expressions&#34;&gt;Expressions&lt;/a&gt; - filter attribute values with expressions&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://scalamolecule.org/manual/query/expressions&#34;&gt;Expressions&lt;/a&gt; - filter attribute values with expressions&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.age(42)               // equal value
 Person.age.!=(42)            // negate values
@@ -1034,19 +1034,19 @@ Person.age.&amp;gt;=(42)            // compare values
 Person.name.contains(&amp;quot;John&amp;quot;) // fulltext search
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;a href=&#34;http://localhost:1313/manual/query/aggregates&#34;&gt;Aggregates&lt;/a&gt; - aggregate attribute values&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://scalamolecule.org/manual/query/aggregates&#34;&gt;Aggregates&lt;/a&gt; - aggregate attribute values&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.age(min) 
 Person.age(max) 
 // rand, sample, count, countDistinct, sum, avg, median, variance, stddev
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;a href=&#34;http://localhost:1313/manual/query/or-logic&#34;&gt;OR-logic&lt;/a&gt; - apply OR logic to collect alternative values&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://scalamolecule.org/manual/query/or-logic&#34;&gt;OR-logic&lt;/a&gt; - apply OR logic to collect alternative values&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.name(&amp;quot;John&amp;quot; or &amp;quot;Jonas&amp;quot;)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;a href=&#34;http://localhost:1313/manual/query/parameterize&#34;&gt;Parameterize&lt;/a&gt; - re-use molecules and let Datomic cache queries and optimize performance&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://scalamolecule.org/manual/query/parameterize&#34;&gt;Parameterize&lt;/a&gt; - re-use molecules and let Datomic cache queries and optimize performance&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val person = Person.name(?).age(?)
 
@@ -1055,7 +1055,7 @@ val Johan  = person(&amp;quot;John&amp;quot;, 33).one
 val Lisa   = person(&amp;quot;Lisa&amp;quot;, 27).one
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;a href=&#34;http://localhost:1313/manual/query/relationships&#34;&gt;Relationships&lt;/a&gt; - Connect namespaces with relationships&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://scalamolecule.org/manual/query/relationships&#34;&gt;Relationships&lt;/a&gt; - Connect namespaces with relationships&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.name.City.name.Country.name
 &lt;/code&gt;&lt;/pre&gt;
@@ -1064,10 +1064,10 @@ val Lisa   = person(&amp;quot;Lisa&amp;quot;, 27).one
     
     <item>
       <title>Relationships</title>
-      <link>http://localhost:1313/manual/query/relationships/</link>
+      <link>http://scalamolecule.org/manual/query/relationships/</link>
       <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
       
-      <guid>http://localhost:1313/manual/query/relationships/</guid>
+      <guid>http://scalamolecule.org/manual/query/relationships/</guid>
       <description>
 
 &lt;h1 id=&#34;relationships:c826c531212d0a54ebca2cc2d2da67b7&#34;&gt;Relationships&lt;/h1&gt;
