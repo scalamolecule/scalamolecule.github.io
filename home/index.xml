@@ -370,7 +370,7 @@ Entity  Attribute  Value  Transaction/time
 
 &lt;h3 id=&#34;dependency-in-your-project:2cc0b07f42930e4520820be1fe66f913&#34;&gt;Dependency in your project&lt;/h3&gt;
 
-&lt;p&gt;Molecule 0.6.1 for Scala 2.11.7 is available at &lt;a href=&#34;https://oss.sonatype.org/content/repositories/releases/com/scalamolecule/molecule_2.11/&#34;&gt;Sonatype&lt;/a&gt; so that you can add a dependency in your sbt file:&lt;/p&gt;
+&lt;p&gt;Molecule 0.6.1 for Scala 2.11.7 is available at &lt;a href=&#34;https://oss.sonatype.org/content/repositories/releases/org/scalamolecule/molecule_2.11/&#34;&gt;Sonatype&lt;/a&gt; so that you can add a dependency in your sbt file:&lt;/p&gt;
 
 &lt;p&gt;&lt;code&gt;&amp;quot;org.scalamolecule&amp;quot; % &amp;quot;molecule_2.11&amp;quot; % &amp;quot;0.6.1&amp;quot;&lt;/code&gt;&lt;/p&gt;
 
