@@ -2229,6 +2229,54 @@ Entity  Attribute  Value  Transaction/time
     </item>
     
     <item>
+      <title>Types</title>
+      <link>http://scalamolecule.org/manual/query/types/</link>
+      <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
+      
+      <guid>http://scalamolecule.org/manual/query/types/</guid>
+      <description>
+
+&lt;h1 id=&#34;attribute-types:3d59665407ad3f08f6bcaef4686926f7&#34;&gt;Attribute types&lt;/h1&gt;
+
+&lt;p&gt;Molecule Attributes can have the following types:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Cardinality one     Cardinality many     Mapped Cardinality many    
+---------------     ----------------     -----------------------
+String              Set[String]          Map[String, String]
+Int                 Set[Int]             Map[String, Int]
+Long                Set[Long]            Map[String, Long]
+Float               Set[Float]           Map[String, Float]
+Double              Set[Double]          Map[String, Double]
+Boolean             Set[Boolean]         Map[String, Boolean]
+Date                Set[Date]            Map[String, Date]
+UUID                Set[UUID]            Map[String, UUID]
+URI                 Set[URI]             Map[String, URI]
+enum: String        enums: Set[String]   
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Attribute are defined in your &lt;a href=&#34;http://scalamolecule.org/manual/schema/definition/&#34;&gt;schema&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&#34;types-inferred:3d59665407ad3f08f6bcaef4686926f7&#34;&gt;Types inferred&lt;/h3&gt;
+
+&lt;p&gt;Types are inferred so that you can determine the result signature of a molecule&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val persons: List[(String, Int)] = Person.name.age.get
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;cardinality-one-many:3d59665407ad3f08f6bcaef4686926f7&#34;&gt;Cardinality one/many&lt;/h3&gt;
+
+&lt;p&gt;Attributes defined as cardinality-many will return sets of values. A Person could for instance have a &lt;code&gt;hobbies&lt;/code&gt; cardinality-many Attribute defined and thus return sets of hobby values:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val engaged: List[(String, Set[String])] = Person.name.hobbies.get
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;enums:3d59665407ad3f08f6bcaef4686926f7&#34;&gt;Enums&lt;/h3&gt;
+
+&lt;p&gt;Enum values are predefined values that an Attribute can have. They are defined in your schema. Cardinality one enums can have one enum value and cardinality many can have a set of unique enum values for each entity.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Attributes</title>
       <link>http://scalamolecule.org/manual/schema/attributes/</link>
       <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
@@ -2366,54 +2414,6 @@ one[&amp;lt;Ref-namespace&amp;gt;]    many[&amp;lt;Ref-namespace&amp;gt;]
 &lt;p&gt;Datomic indexes the values of all attributes having an option except for the &lt;code&gt;doc&lt;/code&gt; and &lt;code&gt;noHistory&lt;/code&gt; options.&lt;/p&gt;
 
 &lt;p&gt;As you saw, we added &lt;code&gt;fulltextSearch&lt;/code&gt; and &lt;code&gt;uniqueIdentity&lt;/code&gt; to some of the attributes in the Seattle definition above. Molecule&amp;rsquo;s schema definition DSL let&amp;rsquo;s you only choose allowed options for any attribute type.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Types</title>
-      <link>http://scalamolecule.org/manual/query/types/</link>
-      <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
-      
-      <guid>http://scalamolecule.org/manual/query/types/</guid>
-      <description>
-
-&lt;h1 id=&#34;attribute-types:3d59665407ad3f08f6bcaef4686926f7&#34;&gt;Attribute types&lt;/h1&gt;
-
-&lt;p&gt;Molecule Attributes can have the following types:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;Cardinality one     Cardinality many     Mapped Cardinality many    
----------------     ----------------     -----------------------
-String              Set[String]          Map[String, String]
-Int                 Set[Int]             Map[String, Int]
-Long                Set[Long]            Map[String, Long]
-Float               Set[Float]           Map[String, Float]
-Double              Set[Double]          Map[String, Double]
-Boolean             Set[Boolean]         Map[String, Boolean]
-Date                Set[Date]            Map[String, Date]
-UUID                Set[UUID]            Map[String, UUID]
-URI                 Set[URI]             Map[String, URI]
-enum: String        enums: Set[String]   
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Attribute are defined in your &lt;a href=&#34;http://scalamolecule.org/manual/schema/definition/&#34;&gt;schema&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h3 id=&#34;types-inferred:3d59665407ad3f08f6bcaef4686926f7&#34;&gt;Types inferred&lt;/h3&gt;
-
-&lt;p&gt;Types are inferred so that you can determine the result signature of a molecule&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val persons: List[(String, Int)] = Person.name.age.get
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;cardinality-one-many:3d59665407ad3f08f6bcaef4686926f7&#34;&gt;Cardinality one/many&lt;/h3&gt;
-
-&lt;p&gt;Attributes defined as cardinality-many will return sets of values. A Person could for instance have a &lt;code&gt;hobbies&lt;/code&gt; cardinality-many Attribute defined and thus return sets of hobby values:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val engaged: List[(String, Set[String])] = Person.name.hobbies.get
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;enums:3d59665407ad3f08f6bcaef4686926f7&#34;&gt;Enums&lt;/h3&gt;
-
-&lt;p&gt;Enum values are predefined values that an Attribute can have. They are defined in your schema. Cardinality one enums can have one enum value and cardinality many can have a set of unique enum values for each entity.&lt;/p&gt;
 </description>
     </item>
     
