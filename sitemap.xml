@@ -18,12 +18,12 @@
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/community/overview/</loc>
+    <loc>http://scalamolecule.org/compare/overview/</loc>
     <lastmod>2014-05-14T02:13:50+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/compare/overview/</loc>
+    <loc>http://scalamolecule.org/community/overview/</loc>
     <lastmod>2014-05-14T02:13:50+00:00</lastmod>
   </url>
   
@@ -93,12 +93,12 @@
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/compare/sql/</loc>
+    <loc>http://scalamolecule.org/developer/boilerplate/</loc>
     <lastmod>2014-05-14T02:13:50+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/developer/boilerplate/</loc>
+    <loc>http://scalamolecule.org/compare/sql/</loc>
     <lastmod>2014-05-14T02:13:50+00:00</lastmod>
   </url>
   
@@ -138,12 +138,12 @@
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/manual/query/relationships/</loc>
+    <loc>http://scalamolecule.org/manual/query/parameterize/</loc>
     <lastmod>2015-01-02T22:06:44+01:00</lastmod>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/manual/query/parameterize/</loc>
+    <loc>http://scalamolecule.org/manual/query/relationships/</loc>
     <lastmod>2015-01-02T22:06:44+01:00</lastmod>
   </url>
   

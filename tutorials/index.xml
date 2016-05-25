@@ -83,7 +83,7 @@ how Molecule works.&lt;/em&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;0:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;&lt;a href=&#34;#contents:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;☝︎&lt;/a&gt; Introduction&lt;/h2&gt;
 
-&lt;p&gt;After &lt;a href=&#34;http://scalamolecule.org/manual/database-setup&#34;&gt;setting up the database&lt;/a&gt; and &lt;a href=&#34;http://scalamolecule.org/manual/populate-database&#34;&gt;populating it with data&lt;/a&gt; we can
+&lt;p&gt;After &lt;a href=&#34;http://scalamolecule.org/manual/setup&#34;&gt;setting up the database&lt;/a&gt; and &lt;a href=&#34;http://scalamolecule.org/manual/populate-database&#34;&gt;populating it with data&lt;/a&gt; we can
 start making queries. We make queries by building &amp;ldquo;molecules&amp;rdquo; which are
 chains of attributes put together with the builder pattern. We can imagine
 this as a 3-dimensional data structure of atoms bound together in various
@@ -943,7 +943,7 @@ values as they existed at specific points in time, we can retrieve
 retracted data by looking in the past. In other words, the data
 isn&amp;rsquo;t really gone. If we want data to really be gone after we
 retract it, we have to disable history for the specific attribute,
-as described in &lt;a href=&#34;http://scalamolecule.org/manual/database-setup&#34;&gt;Database setup&lt;/a&gt;.&lt;/p&gt;
+as described in &lt;a href=&#34;http://scalamolecule.org/manual/setup&#34;&gt;Database setup&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>
     

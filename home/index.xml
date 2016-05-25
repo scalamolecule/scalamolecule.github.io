@@ -212,14 +212,14 @@ val persons: Seq[String :: Int :: HNil] = Person.name.age.hl
 &lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;&amp;quot;org.scalamolecule&amp;quot; %% &amp;quot;molecule&amp;quot; % &amp;quot;0.6.1&amp;quot;
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;(See more on setup &lt;a href=&#34;http://scalamolecule.org/manual/database-setup&#34;&gt;here&lt;/a&gt;)&lt;/p&gt;
+&lt;p&gt;(See more on setup &lt;a href=&#34;http://scalamolecule.org/manual/setup&#34;&gt;here&lt;/a&gt;)&lt;/p&gt;
 
 &lt;h3 id=&#34;read-more:ffcff61ab3a11ef1d50900901a24ec54&#34;&gt;Read more&lt;/h3&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/home/introduction&#34;&gt;Introduction&lt;/a&gt; to Datomic/Molecule&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/manual/database-setup&#34;&gt;Setup Database&lt;/a&gt;: initiate a Datomic database and create a database schema with Molecule&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/manual/populate-database&#34;&gt;Populate Database&lt;/a&gt;: populate a Datomic database with Molecule&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/manual/setup&#34;&gt;Setup Database&lt;/a&gt;: initiate a Datomic database and create a database schema with Molecule&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/manual/insert&#34;&gt;Populate Database&lt;/a&gt;: populate a Datomic database with Molecule&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/tutorials/seattle&#34;&gt;Molecule Seattle tutorial&lt;/a&gt; examples of using Molecule (based on the
 &lt;a href=&#34;http://docs.datomic.com/tutorial.html&#34;&gt;Datomic Seattle tutorial&lt;/a&gt;)&lt;/li&gt;
 &lt;/ul&gt;
@@ -382,12 +382,12 @@ Entity  Attribute  Value  Transaction/time
 &lt;ul&gt;
 &lt;li&gt;Add library dependency&lt;br&gt;
 &lt;code&gt;&amp;quot;org.scalamolecule&amp;quot; % &amp;quot;molecule_2.11&amp;quot; % &amp;quot;0.6.1&amp;quot;&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;List directories where you have your &lt;a href=&#34;http://scalamolecule.org/manual/database-setup&#34;&gt;definition file(s)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;List directories where you have your &lt;a href=&#34;http://scalamolecule.org/manual/setup&#34;&gt;definition file(s)&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;li&gt;Define your domain schema in a &lt;a href=&#34;http://scalamolecule.org/manual/schema-definition&#34;&gt;schema definition file&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;sbt compile&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;Open in your IDE&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/manual/database-setup&#34;&gt;Setup your database&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/manual/setup&#34;&gt;Setup your database&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/manual/populate-database&#34;&gt;Populate your database&lt;/a&gt; with data&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/tutorials/seattle&#34;&gt;Make molecule queries&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
