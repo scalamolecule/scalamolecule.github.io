@@ -167,13 +167,13 @@ val persons: List[String :: Int :: HNil] = Person.name.age.hl
 
 &lt;p&gt;In the project build file we then tell sbt where such &amp;ldquo;schema&amp;rdquo; folders reside:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;settings = commonSettings ++ Seq(
-  definitionDirectories(
-    &amp;quot;examples/src/main/scala/molecule/examples/dayOfDatomic&amp;quot;,
-    &amp;quot;examples/src/main/scala/molecule/examples/mbrainz&amp;quot;,
-    &amp;quot;examples/src/main/scala/molecule/examples/seattle&amp;quot;
-  )
-)
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;// Add schema definition directories
+.settings(Seq(definitionDirectories(
+  &amp;quot;examples/src/main/scala/molecule/examples/dayOfDatomic&amp;quot;,
+  &amp;quot;examples/src/main/scala/molecule/examples/seattle&amp;quot;,
+  &amp;quot;examples/src/main/scala/molecule/examples/mbrainz&amp;quot;,
+  &amp;quot;examples/src/main/scala/molecule/examples/graph&amp;quot;
+)))
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;We can add several locations with the &lt;code&gt;definitionDirectories&lt;/code&gt; method which will tell sbt where to look for our schema definition files.&lt;/p&gt;
@@ -233,18 +233,18 @@ object SeattleDefinition {
     val name         = oneString.fullTextSearch
     val url          = oneString
     val category     = manyString.fullTextSearch
-    val orgtype      = oneEnum(&#39;community, &#39;commercial, &#39;nonprofit)
-    val `type`       = oneEnum(&#39;email_list, &#39;twitter, &#39;facebook_page)
+    val orgtype      = oneEnum(&#39;community, &#39;commercial, &#39;nonprofit, &#39;personal)
+    val `type`       = oneEnum(&#39;email_list, &#39;twitter, &#39;facebook_page) // + more...
     val neighborhood = one[Neighborhood]
   }
 
   trait Neighborhood {
-    val name     = oneString.fullTextSearch.uniqueIdentity
+    val name     = oneString
     val district = one[District]
   }
 
   trait District {
-    val name   = oneString.fullTextSearch.uniqueIdentity
+    val name   = oneString
     val region = oneEnum(&#39;n, &#39;ne, &#39;e, &#39;se, &#39;s, &#39;sw, &#39;w, &#39;nw)
   }
 }
@@ -258,18 +258,20 @@ object SeattleDefinition {
 
 &lt;h3 id=&#34;2-tell-sbt:e608d9ac6a0d5e2b6db229b78a3e65b4&#34;&gt;2. Tell sbt&lt;/h3&gt;
 
-&lt;p&gt;Tell sbt where to find your &amp;ldquo;schema&amp;rdquo; folders containing definition files:&lt;/p&gt;
+&lt;p&gt;In your sbt build file you add the paths to the directories containing your schema definition files (like the one shown above):&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;settings = commonSettings ++ Seq(
-  definitionDirectories(
-    &amp;quot;examples/src/main/scala/molecule/examples/dayOfDatomic&amp;quot;,
-    &amp;quot;examples/src/main/scala/molecule/examples/seattle&amp;quot;,
-    &amp;quot;examples/src/main/scala/molecule/examples/mbrainz&amp;quot;
-  )
-)
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;// Add schema definition directories
+.settings(Seq(definitionDirectories(
+  &amp;quot;examples/src/main/scala/molecule/examples/dayOfDatomic&amp;quot;,
+  &amp;quot;examples/src/main/scala/molecule/examples/seattle&amp;quot;,
+  &amp;quot;examples/src/main/scala/molecule/examples/mbrainz&amp;quot;,
+  &amp;quot;examples/src/main/scala/molecule/examples/graph&amp;quot;
+)))
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;&lt;a href=&#34;http://scalamolecule.org/manual/schema/files&#34;&gt;Read more&amp;hellip;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Have a look in the &lt;a href=&#34;https://github.com/scalamolecule/molecule-demo/blob/master/build.sbt#L30-L33&#34;&gt;build file&lt;/a&gt; of the molecule-demo project of how things are organized&amp;hellip;&lt;/p&gt;
 
 &lt;h3 id=&#34;3-compile-generate-boilerplate-code:e608d9ac6a0d5e2b6db229b78a3e65b4&#34;&gt;3. Compile (generate boilerplate code)&lt;/h3&gt;
 
@@ -302,18 +304,18 @@ object SeattleDefinition {
     val name         = oneString.fullTextSearch
     val url          = oneString
     val category     = manyString.fullTextSearch
-    val orgtype      = oneEnum(&#39;community, &#39;commercial, &#39;nonprofit)
-    val `type`       = oneEnum(&#39;email_list, &#39;twitter, &#39;facebook_page)
+    val orgtype      = oneEnum(&#39;community, &#39;commercial, &#39;nonprofit, &#39;personal)
+    val `type`       = oneEnum(&#39;email_list, &#39;twitter, &#39;facebook_page) // + more...
     val neighborhood = one[Neighborhood]
   }
 
   trait Neighborhood {
-    val name     = oneString.fullTextSearch.uniqueIdentity
+    val name     = oneString
     val district = one[District]
   }
 
   trait District {
-    val name   = oneString.fullTextSearch.uniqueIdentity
+    val name   = oneString
     val region = oneEnum(&#39;n, &#39;ne, &#39;e, &#39;se, &#39;s, &#39;sw, &#39;w, &#39;nw)
   }
 }

@@ -127,18 +127,18 @@ object SeattleDefinition {
     val name         = oneString.fullTextSearch
     val url          = oneString
     val category     = manyString.fullTextSearch
-    val orgtype      = oneEnum('community, 'commercial, 'nonprofit)
-    val `type`       = oneEnum('email_list, 'twitter, 'facebook_page)
+    val orgtype      = oneEnum('community, 'commercial, 'nonprofit, 'personal)
+    val `type`       = oneEnum('email_list, 'twitter, 'facebook_page) // + more...
     val neighborhood = one[Neighborhood]
   }
 
   trait Neighborhood {
-    val name     = oneString.fullTextSearch.uniqueIdentity
+    val name     = oneString
     val district = one[District]
   }
 
   trait District {
-    val name   = oneString.fullTextSearch.uniqueIdentity
+    val name   = oneString
     val region = oneEnum('n, 'ne, 'e, 'se, 's, 'sw, 'w, 'nw)
   }
 }
@@ -152,18 +152,20 @@ object SeattleDefinition {
 
 <h3 id="2-tell-sbt:e608d9ac6a0d5e2b6db229b78a3e65b4">2. Tell sbt</h3>
 
-<p>Tell sbt where to find your &ldquo;schema&rdquo; folders containing definition files:</p>
+<p>In your sbt build file you add the paths to the directories containing your schema definition files (like the one shown above):</p>
 
-<pre><code class="language-scala">settings = commonSettings ++ Seq(
-  definitionDirectories(
-    &quot;examples/src/main/scala/molecule/examples/dayOfDatomic&quot;,
-    &quot;examples/src/main/scala/molecule/examples/seattle&quot;,
-    &quot;examples/src/main/scala/molecule/examples/mbrainz&quot;
-  )
-)
+<pre><code class="language-scala">// Add schema definition directories
+.settings(Seq(definitionDirectories(
+  &quot;examples/src/main/scala/molecule/examples/dayOfDatomic&quot;,
+  &quot;examples/src/main/scala/molecule/examples/seattle&quot;,
+  &quot;examples/src/main/scala/molecule/examples/mbrainz&quot;,
+  &quot;examples/src/main/scala/molecule/examples/graph&quot;
+)))
 </code></pre>
 
 <p><a href="/manual/schema/files">Read more&hellip;</a></p>
+
+<p>Have a look in the <a href="https://github.com/scalamolecule/molecule-demo/blob/master/build.sbt#L30-L33">build file</a> of the molecule-demo project of how things are organized&hellip;</p>
 
 <h3 id="3-compile-generate-boilerplate-code:e608d9ac6a0d5e2b6db229b78a3e65b4">3. Compile (generate boilerplate code)</h3>
 

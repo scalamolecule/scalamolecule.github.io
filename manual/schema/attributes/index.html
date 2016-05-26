@@ -121,18 +121,18 @@ object SeattleDefinition {
     val name         = oneString.fullTextSearch
     val url          = oneString
     val category     = manyString.fullTextSearch
-    val orgtype      = oneEnum('community, 'commercial, 'nonprofit)
-    val `type`       = oneEnum('email_list, 'twitter, 'facebook_page)
+    val orgtype      = oneEnum('community, 'commercial, 'nonprofit, 'personal)
+    val `type`       = oneEnum('email_list, 'twitter, 'facebook_page) // + more...
     val neighborhood = one[Neighborhood]
   }
 
   trait Neighborhood {
-    val name     = oneString.fullTextSearch.uniqueIdentity
+    val name     = oneString
     val district = one[District]
   }
 
   trait District {
-    val name   = oneString.fullTextSearch.uniqueIdentity
+    val name   = oneString
     val region = oneEnum('n, 'ne, 'e, 'se, 's, 'sw, 'w, 'nw)
   }
 }

@@ -117,13 +117,13 @@
 
 <p>In the project build file we then tell sbt where such &ldquo;schema&rdquo; folders reside:</p>
 
-<pre><code class="language-scala">settings = commonSettings ++ Seq(
-  definitionDirectories(
-    &quot;examples/src/main/scala/molecule/examples/dayOfDatomic&quot;,
-    &quot;examples/src/main/scala/molecule/examples/mbrainz&quot;,
-    &quot;examples/src/main/scala/molecule/examples/seattle&quot;
-  )
-)
+<pre><code class="language-scala">// Add schema definition directories
+.settings(Seq(definitionDirectories(
+  &quot;examples/src/main/scala/molecule/examples/dayOfDatomic&quot;,
+  &quot;examples/src/main/scala/molecule/examples/seattle&quot;,
+  &quot;examples/src/main/scala/molecule/examples/mbrainz&quot;,
+  &quot;examples/src/main/scala/molecule/examples/graph&quot;
+)))
 </code></pre>
 
 <p>We can add several locations with the <code>definitionDirectories</code> method which will tell sbt where to look for our schema definition files.</p>
