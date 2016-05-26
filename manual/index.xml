@@ -214,7 +214,7 @@ val persons: List[String :: Int :: HNil] = Person.name.age.hl
 
 &lt;h1 id=&#34;molecule-schema:e608d9ac6a0d5e2b6db229b78a3e65b4&#34;&gt;Molecule schema&lt;/h1&gt;
 
-&lt;p&gt;A Molecule Schema defines what attributes you&amp;rsquo;ll have available to build molecules.&lt;/p&gt;
+&lt;p&gt;A Molecule Schema file defines what attributes you&amp;rsquo;ll have available to build molecules.&lt;/p&gt;
 
 &lt;p&gt;Prepare your domain in 3 steps to use Molecule:&lt;/p&gt;
 
