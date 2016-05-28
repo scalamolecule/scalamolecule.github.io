@@ -501,7 +501,7 @@ val persons: Seq[String :: Int :: HNil] = Person.name.age.hl
 
 &lt;p&gt;Add Molecule dependency to your project&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;&amp;quot;org.scalamolecule&amp;quot; %% &amp;quot;molecule&amp;quot; % &amp;quot;0.6.1&amp;quot;
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;&amp;quot;org.scalamolecule&amp;quot; %% &amp;quot;molecule&amp;quot; % &amp;quot;0.6.2&amp;quot;
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;(See more on setup &lt;a href=&#34;http://scalamolecule.org/manual/setup&#34;&gt;here&lt;/a&gt;)&lt;/p&gt;
