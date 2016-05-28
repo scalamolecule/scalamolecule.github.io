@@ -605,62 +605,6 @@ val persons: List[String :: Int :: HNil] = Person.name.age.hl
     </item>
     
     <item>
-      <title>Files</title>
-      <link>http://scalamolecule.org/manual/schema/files/</link>
-      <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
-      
-      <guid>http://scalamolecule.org/manual/schema/files/</guid>
-      <description>
-
-&lt;h1 id=&#34;molecule-files:fdd0f32a8956014c694267605f409cb7&#34;&gt;Molecule files&lt;/h1&gt;
-
-&lt;p&gt;Your Molecule schema definition file should be in a folder named &amp;ldquo;schema&amp;rdquo; anywhere within your source code:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://scalamolecule.org/img/boilerplate/definition-file.jpg&#34; alt=&#34;&#34; /&gt;
-&lt;/p&gt;
-
-&lt;h3 id=&#34;telling-sbt:fdd0f32a8956014c694267605f409cb7&#34;&gt;Telling sbt&lt;/h3&gt;
-
-&lt;p&gt;In the project build file we then tell sbt where such &amp;ldquo;schema&amp;rdquo; folders reside:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;// Add schema definition directories
-.settings(Seq(definitionDirectories(
-  &amp;quot;examples/src/main/scala/molecule/examples/dayOfDatomic&amp;quot;,
-  &amp;quot;examples/src/main/scala/molecule/examples/seattle&amp;quot;,
-  &amp;quot;examples/src/main/scala/molecule/examples/mbrainz&amp;quot;,
-  &amp;quot;examples/src/main/scala/molecule/examples/graph&amp;quot;
-)))
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;We can add several locations with the &lt;code&gt;definitionDirectories&lt;/code&gt; method which will tell sbt where to look for our schema definition files.&lt;/p&gt;
-
-&lt;h3 id=&#34;files-generated:fdd0f32a8956014c694267605f409cb7&#34;&gt;Files generated&lt;/h3&gt;
-
-&lt;p&gt;Running &lt;code&gt;sbt compile&lt;/code&gt; in your project root will then generate some source code files in the &lt;code&gt;src_managed&lt;/code&gt; directory (inside the target directory):&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://scalamolecule.org/img/boilerplate/generated-files.jpg&#34; alt=&#34;&#34; /&gt;
-&lt;/p&gt;
-
-&lt;h3 id=&#34;boilerplate-dsl-files:fdd0f32a8956014c694267605f409cb7&#34;&gt;Boilerplate dsl files&lt;/h3&gt;
-
-&lt;p&gt;Molecule creates a &lt;code&gt;dsl&lt;/code&gt; folder having a subfolder - or &amp;ldquo;definition directory&amp;rdquo; - for each schema definition file (could be more than one).&lt;/p&gt;
-
-&lt;p&gt;Within each definition directory we&amp;rsquo;ll find a file generated for each namespace defined (&lt;code&gt;Community.scala&lt;/code&gt; etc).&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;http://scalamolecule.org/manual/schema/boilerplate&#34;&gt;More on the boilerplate dsl files&amp;hellip;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;schema-file:fdd0f32a8956014c694267605f409cb7&#34;&gt;Schema file&lt;/h3&gt;
-
-&lt;p&gt;Molecule places the generated Datomic schema file &lt;code&gt;SeattleSchema&lt;/code&gt; in the same package as &lt;code&gt;SeattleDefinition&lt;/code&gt; so that they&amp;rsquo;ll turn up beside each other in our IDE package view:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://scalamolecule.org/img/boilerplate/project-files.png&#34; alt=&#34;&#34; /&gt;
-&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;http://scalamolecule.org/manual/schema/datomic&#34;&gt;More on the Datomic schema&amp;hellip;&lt;/a&gt;&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
       <title>Schema</title>
       <link>http://scalamolecule.org/manual/schema/</link>
       <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
@@ -732,6 +676,62 @@ object SeattleDefinition {
 &lt;p&gt;&lt;code&gt;sbt compile&lt;/code&gt; your project, wait for your domain-customized boilerplate code to be generated - and you&amp;rsquo;re ready to make intuitive molecule queries!&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&#34;http://scalamolecule.org/manual/schema/files&#34;&gt;Read more&amp;hellip;&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Files</title>
+      <link>http://scalamolecule.org/manual/schema/files/</link>
+      <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
+      
+      <guid>http://scalamolecule.org/manual/schema/files/</guid>
+      <description>
+
+&lt;h1 id=&#34;molecule-files:fdd0f32a8956014c694267605f409cb7&#34;&gt;Molecule files&lt;/h1&gt;
+
+&lt;p&gt;Your Molecule schema definition file should be in a folder named &amp;ldquo;schema&amp;rdquo; anywhere within your source code:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://scalamolecule.org/img/boilerplate/definition-file.jpg&#34; alt=&#34;&#34; /&gt;
+&lt;/p&gt;
+
+&lt;h3 id=&#34;telling-sbt:fdd0f32a8956014c694267605f409cb7&#34;&gt;Telling sbt&lt;/h3&gt;
+
+&lt;p&gt;In the project build file we then tell sbt where such &amp;ldquo;schema&amp;rdquo; folders reside:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;// Add schema definition directories
+.settings(Seq(definitionDirectories(
+  &amp;quot;examples/src/main/scala/molecule/examples/dayOfDatomic&amp;quot;,
+  &amp;quot;examples/src/main/scala/molecule/examples/seattle&amp;quot;,
+  &amp;quot;examples/src/main/scala/molecule/examples/mbrainz&amp;quot;,
+  &amp;quot;examples/src/main/scala/molecule/examples/graph&amp;quot;
+)))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We can add several locations with the &lt;code&gt;definitionDirectories&lt;/code&gt; method which will tell sbt where to look for our schema definition files.&lt;/p&gt;
+
+&lt;h3 id=&#34;files-generated:fdd0f32a8956014c694267605f409cb7&#34;&gt;Files generated&lt;/h3&gt;
+
+&lt;p&gt;Running &lt;code&gt;sbt compile&lt;/code&gt; in your project root will then generate some source code files in the &lt;code&gt;src_managed&lt;/code&gt; directory (inside the target directory):&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://scalamolecule.org/img/boilerplate/generated-files.jpg&#34; alt=&#34;&#34; /&gt;
+&lt;/p&gt;
+
+&lt;h3 id=&#34;boilerplate-dsl-files:fdd0f32a8956014c694267605f409cb7&#34;&gt;Boilerplate dsl files&lt;/h3&gt;
+
+&lt;p&gt;Molecule creates a &lt;code&gt;dsl&lt;/code&gt; folder having a subfolder - or &amp;ldquo;definition directory&amp;rdquo; - for each schema definition file (could be more than one).&lt;/p&gt;
+
+&lt;p&gt;Within each definition directory we&amp;rsquo;ll find a file generated for each namespace defined (&lt;code&gt;Community.scala&lt;/code&gt; etc).&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://scalamolecule.org/manual/schema/boilerplate&#34;&gt;More on the boilerplate dsl files&amp;hellip;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;schema-file:fdd0f32a8956014c694267605f409cb7&#34;&gt;Schema file&lt;/h3&gt;
+
+&lt;p&gt;Molecule places the generated Datomic schema file &lt;code&gt;SeattleSchema&lt;/code&gt; in the same package as &lt;code&gt;SeattleDefinition&lt;/code&gt; so that they&amp;rsquo;ll turn up beside each other in our IDE package view:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://scalamolecule.org/img/boilerplate/project-files.png&#34; alt=&#34;&#34; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://scalamolecule.org/manual/schema/datomic&#34;&gt;More on the Datomic schema&amp;hellip;&lt;/a&gt;&lt;/p&gt;
 </description>
     </item>
     
