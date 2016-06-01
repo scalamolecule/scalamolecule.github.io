@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Developers on Molecule</title>
-    <link>http://scalamolecule.org/developer/</link>
+    <link>http://localhost:1313/developer/</link>
     <description>Recent content in Developers on Molecule</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     
     
     <lastBuildDate>Wed, 14 May 2014 02:13:50 UTC</lastBuildDate>
-    <atom:link href="http://scalamolecule.org/developer/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/developer/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Developer</title>
-      <link>http://scalamolecule.org/developer/overview/</link>
+      <link>http://localhost:1313/developer/overview/</link>
       <pubDate>Wed, 14 May 2014 02:13:50 UTC</pubDate>
       
-      <guid>http://scalamolecule.org/developer/overview/</guid>
+      <guid>http://localhost:1313/developer/overview/</guid>
       <description>
 
 &lt;h1 id=&#34;developer:68f80267fa3a50980dbb745a782b8dca&#34;&gt;Developer&lt;/h1&gt;
@@ -39,7 +39,7 @@ m(firstName ~ lastName ~ age) // all fields of a `Person` trait...
 
 &lt;h3 id=&#34;builder-pattern:68f80267fa3a50980dbb745a782b8dca&#34;&gt;Builder pattern&lt;/h3&gt;
 
-&lt;p&gt;Instead we settled on using the builder pattern&lt;/p&gt;
+&lt;p&gt;Instead we settled on using the builder pattern with &lt;code&gt;.&lt;/code&gt;s&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.firstName.lastName.age
 &lt;/code&gt;&lt;/pre&gt;
@@ -60,8 +60,8 @@ m(firstName ~ lastName ~ age) // all fields of a `Person` trait...
 &lt;p&gt;we have enough information about type, cardinality and options to generate the following artifacts:&lt;/p&gt;
 
 &lt;ol&gt;
-&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/developer/txdata&#34;&gt;Schema transaction data&lt;/a&gt; (in a Datomic format)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/developer/boilerplate&#34;&gt;Scala code&lt;/a&gt; to build molecules&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/developer/txdata&#34;&gt;Schema transaction data&lt;/a&gt; (in a Datomic format)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/developer/boilerplate&#34;&gt;Scala code&lt;/a&gt; to build molecules&lt;/li&gt;
 &lt;/ol&gt;
 
 &lt;h3 id=&#34;scala-macro-transformations:68f80267fa3a50980dbb745a782b8dca&#34;&gt;Scala macro transformations&lt;/h3&gt;
@@ -101,21 +101,21 @@ m(firstName ~ lastName ~ age) // all fields of a `Person` trait...
 
 &lt;p&gt;Since we create our molecules from our self-generated boilerplate code our macros have full knowledge about the possible constructs we can expect. We are therefore in full control of the entire &amp;ldquo;eco-system&amp;rdquo; from molecule to Datomic query. Non-valid molecules simply won&amp;rsquo;t compile. And we can infer all type information from our molecules.&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&#34;http://scalamolecule.org/developer/transformation&#34;&gt;Read more about the macro transformations&amp;hellip;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://localhost:1313/developer/transformation&#34;&gt;Read more about the macro transformations&amp;hellip;&lt;/a&gt;&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Tx data</title>
-      <link>http://scalamolecule.org/developer/txdata/</link>
+      <link>http://localhost:1313/developer/txdata/</link>
       <pubDate>Wed, 14 May 2014 02:13:50 UTC</pubDate>
       
-      <guid>http://scalamolecule.org/developer/txdata/</guid>
+      <guid>http://localhost:1313/developer/txdata/</guid>
       <description>
 
 &lt;h1 id=&#34;schema-transaction-data:cd2a84f3e0b729702691d1980ae83981&#34;&gt;Schema transaction data&lt;/h1&gt;
 
-&lt;p&gt;A &lt;a href=&#34;http://scalamolecule.org/schema/definition&#34;&gt;Schema definition file&lt;/a&gt; like&lt;/p&gt;
+&lt;p&gt;A &lt;a href=&#34;http://localhost:1313/manual/schema/attributes&#34;&gt;Schema definition file&lt;/a&gt; like&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;object SeattleDefinition {
   trait Community {
@@ -157,21 +157,20 @@ m(firstName ~ lastName ~ age) // all fields of a `Person` trait...
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;To avoid having to write this code manually, the &lt;a href=&#34;https://github.com/scalamolecule/molecule/blob/master/project/MoleculeBoilerplate.scala&#34;&gt;MoleculeBoilerplate&lt;/a&gt; file generates this for us based on our schema definition. It has to be in our &lt;a href=&#34;https://github.com/scalamolecule/molecule/tree/master/project&#34;&gt;project folder&lt;/a&gt; for sbt to use it to generate our boilerplate code when we run &lt;code&gt;sbt compile&lt;/code&gt;.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/manual/schema/files&#34;&gt;File organization&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/manual/schema/definition&#34;&gt;Types and options&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
+&lt;p&gt;To avoid having to write this code manually, the
+&lt;a href=&#34;https://github.com/scalamolecule/molecule/blob/master/project/MoleculeBoilerplate.scala&#34;&gt;MoleculeBoilerplate&lt;/a&gt;
+file generates this for us based on our schema definition. It has to be in our
+&lt;a href=&#34;https://github.com/scalamolecule/molecule/tree/master/project&#34;&gt;project folder&lt;/a&gt; for sbt to use it to generate
+our boilerplate code when we run &lt;code&gt;sbt compile&lt;/code&gt;.&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Boilerplate</title>
-      <link>http://scalamolecule.org/developer/boilerplate/</link>
+      <link>http://localhost:1313/developer/boilerplate/</link>
       <pubDate>Wed, 14 May 2014 02:13:50 UTC</pubDate>
       
-      <guid>http://scalamolecule.org/developer/boilerplate/</guid>
+      <guid>http://localhost:1313/developer/boilerplate/</guid>
       <description>
 
 &lt;h1 id=&#34;boilerplate-code-generation:36a3cc328100a137a125b621a816413d&#34;&gt;Boilerplate code generation&lt;/h1&gt;
@@ -252,10 +251,10 @@ trait Community_2[A, B] extends Community with Out_2[Community_2, Community_3, C
     
     <item>
       <title>Transformation</title>
-      <link>http://scalamolecule.org/developer/transformation/</link>
+      <link>http://localhost:1313/developer/transformation/</link>
       <pubDate>Wed, 14 May 2014 02:13:50 UTC</pubDate>
       
-      <guid>http://scalamolecule.org/developer/transformation/</guid>
+      <guid>http://localhost:1313/developer/transformation/</guid>
       <description>
 
 &lt;h1 id=&#34;macro-transformation:596edf0adf55e6ba8eb0683b47bc2db2&#34;&gt;Macro transformation&lt;/h1&gt;
@@ -283,7 +282,7 @@ trait Community_2[A, B] extends Community with Out_2[Community_2, Community_3, C
 )
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;This simple &lt;a href=&#34;https://github.com/scalamolecule/molecule/blob/master/core/src/main/scala/molecule/ast/model.scala#L26-L33&#34;&gt;Model AST&lt;/a&gt; has shown to cover a surprising wide spectre of queries.&lt;/p&gt;
+&lt;p&gt;This simple &lt;a href=&#34;https://github.com/scalamolecule/molecule/blob/master/core/src/main/scala/molecule/ast/model.scala&#34;&gt;Model AST&lt;/a&gt; has shown to cover a surprising wide spectre of queries.&lt;/p&gt;
 
 &lt;h3 id=&#34;3-query-ast:596edf0adf55e6ba8eb0683b47bc2db2&#34;&gt;3. Query AST&lt;/h3&gt;
 
@@ -341,7 +340,7 @@ List(
 
 &lt;p&gt;All 3 transformations happen at compile time and therefore have no impact on the runtime performance.&lt;/p&gt;
 
-&lt;p&gt;See more examples of &lt;a href=&#34;https://github.com/scalamolecule/molecule/blob/master/examples/src/test/scala/molecule/examples/seattle/SeattleTransformationTests.scala#L11&#34;&gt;transformation of the Seattle molecules&lt;/a&gt;&amp;hellip;&lt;/p&gt;
+&lt;p&gt;See more examples of &lt;a href=&#34;https://github.com/scalamolecule/molecule/blob/master/examples/src/test/scala/molecule/examples/seattle/SeattleTransformationTests.scala&#34;&gt;transformation of the Seattle molecules&lt;/a&gt;&amp;hellip;&lt;/p&gt;
 </description>
     </item>
     

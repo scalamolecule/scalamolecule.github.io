@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tutorials on Molecule</title>
-    <link>http://scalamolecule.org/tutorials/</link>
+    <link>http://localhost:1313/tutorials/</link>
     <description>Recent content in Tutorials on Molecule</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     
     
     <lastBuildDate>Fri, 02 Jan 2015 22:06:44 CET</lastBuildDate>
-    <atom:link href="http://scalamolecule.org/tutorials/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tutorials/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Tutorials</title>
-      <link>http://scalamolecule.org/tutorials/overview/</link>
+      <link>http://localhost:1313/tutorials/overview/</link>
       <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
       
-      <guid>http://scalamolecule.org/tutorials/overview/</guid>
+      <guid>http://localhost:1313/tutorials/overview/</guid>
       <description>
 
 &lt;h1 id=&#34;molecule-tutorials:68f80267fa3a50980dbb745a782b8dca&#34;&gt;Molecule tutorials&lt;/h1&gt;
@@ -24,18 +24,18 @@
 &lt;p&gt;As we see more tutorials on Molecule we&amp;rsquo;ll collect them here:&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/tutorials/seattle&#34;&gt;Seattle tutorial&lt;/a&gt; - all-round introduction to using Molecule:
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/tutorials/seattle&#34;&gt;Seattle tutorial&lt;/a&gt; - all-round introduction to using Molecule:
 
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/tutorials/seattle/#0:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Basic introduction to Molecule&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/tutorials/seattle/#1:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Queries with attributes&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/tutorials/seattle/#4:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Relationships across references&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/tutorials/seattle/#5:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Parameterized molecules for caching queries&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/tutorials/seattle/#6:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Functions and fulltext search in queries&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/tutorials/seattle/#8:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Querying with rules - logical OR&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/tutorials/seattle/#9:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Working with time&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/tutorials/seattle/#10:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Inserting data&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/tutorials/seattle/#11:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Updating/deleting data&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/tutorials/seattle/#0:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Basic introduction to Molecule&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/tutorials/seattle/#1:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Queries with attributes&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/tutorials/seattle/#4:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Relationships across references&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/tutorials/seattle/#5:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Parameterized molecules for caching queries&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/tutorials/seattle/#6:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Functions and fulltext search in queries&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/tutorials/seattle/#8:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Querying with rules - logical OR&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/tutorials/seattle/#9:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Working with time&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/tutorials/seattle/#10:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Inserting data&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/tutorials/seattle/#11:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Updating/deleting data&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
@@ -54,10 +54,10 @@
     
     <item>
       <title>Seattle</title>
-      <link>http://scalamolecule.org/tutorials/seattle/</link>
+      <link>http://localhost:1313/tutorials/seattle/</link>
       <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
       
-      <guid>http://scalamolecule.org/tutorials/seattle/</guid>
+      <guid>http://localhost:1313/tutorials/seattle/</guid>
       <description>
 
 &lt;h1 id=&#34;contents:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Molecule Seattle tutorial&lt;/h1&gt;
@@ -83,7 +83,7 @@ how Molecule works.&lt;/em&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;0:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;&lt;a href=&#34;#contents:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;☝︎&lt;/a&gt; Introduction&lt;/h2&gt;
 
-&lt;p&gt;After &lt;a href=&#34;http://scalamolecule.org/manual/setup&#34;&gt;setting up the database&lt;/a&gt; and &lt;a href=&#34;http://scalamolecule.org/manual/populate-database&#34;&gt;populating it with data&lt;/a&gt; we can
+&lt;p&gt;After &lt;a href=&#34;http://localhost:1313/manual/setup&#34;&gt;setting up the database&lt;/a&gt; and &lt;a href=&#34;http://localhost:1313/manual/populate-database&#34;&gt;populating it with data&lt;/a&gt; we can
 start making queries. We make queries by building &amp;ldquo;molecules&amp;rdquo; which are
 chains of attributes put together with the builder pattern. We can imagine
 this as a 3-dimensional data structure of atoms bound together in various
@@ -216,17 +216,6 @@ values back.&lt;/p&gt;
   (&amp;quot;KOMO Communities - Wallingford&amp;quot;, &amp;quot;http://wallingford.komonews.com&amp;quot;),
   (&amp;quot;Aurora Seattle&amp;quot;, &amp;quot;http://www.auroraseattle.com/&amp;quot;))
 &lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Or we can choose to get the same data back with the &lt;code&gt;hl&lt;/code&gt; method as Shapeless
-HLists where each element has its own type.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Community.name.url.hl(3) === List(
-  &amp;quot;Broadview Community Council&amp;quot; :: &amp;quot;http://groups.google.com/group/broadview-community-council&amp;quot; :: HNil,
-  &amp;quot;KOMO Communities - Wallingford&amp;quot; :: &amp;quot;http://wallingford.komonews.com&amp;quot; :: HNil,
-  &amp;quot;Aurora Seattle&amp;quot; :: &amp;quot;http://www.auroraseattle.com/&amp;quot; :: HNil)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;This gives us access to a wide range of &lt;a href=&#34;https://github.com/milessabin/shapeless/blob/master/core/src/test/scala/shapeless/hlist.scala&#34;&gt;useful functions of HLists&lt;/a&gt;.&lt;/p&gt;
 
 &lt;h2 id=&#34;3:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;&lt;a href=&#34;#contents:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;☝︎&lt;/a&gt; Querying &lt;em&gt;by&lt;/em&gt; attribute values&lt;/h2&gt;
 
@@ -796,18 +785,6 @@ to define it as an Input-Molecule:&lt;/p&gt;
 
 &lt;p&gt;All values are type checked against the expected type of each attribute!&lt;/p&gt;
 
-&lt;p&gt;We can also supply the input data as an HList&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;insertCommunity(
-  &amp;quot;CCC&amp;quot; :: &amp;quot;url C&amp;quot; :: &amp;quot;twitter&amp;quot; :: &amp;quot;personal&amp;quot; :: Set(&amp;quot;some&amp;quot;, &amp;quot;cat C&amp;quot;) :: 
-    &amp;quot;neighborhood C&amp;quot; :: 
-    &amp;quot;district C&amp;quot; :: &amp;quot;ne&amp;quot; :: HNil
-).eids === List(17592186045899L, 17592186045900L, 17592186045901L)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Again each element of the HList has to be of the expected
-corresponding attribute type.&lt;/p&gt;
-
 &lt;h3 id=&#34;insert-molecule-multiple-data-tuples:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Insert-Molecule + multiple data tuples&lt;/h3&gt;
 
 &lt;p&gt;With our insert-molecule at hand we can insert large numbers
@@ -835,19 +812,27 @@ insertCommunity(newCommunitiesData) === List(
 
 &lt;p&gt;This approach gives us a clean way of populating a database
 where we can supply raw data from any source easily as long
-as we can format it as a list of tuples/HLists of values each matching
+as we can format it as a list of tuples of values each matching
 our template molecule.&lt;/p&gt;
 
 &lt;p&gt;We use an insert-molecule also when we initially &lt;a href=&#34;https://github.com/scalamolecule/blob/master/examples/src/test/scala/examples/seattle/SeattleSpec.scala#L43&#34;&gt;populate
 the Seattle database&lt;/a&gt;.&lt;/p&gt;
 
-&lt;h3 id=&#34;missing-attribute-values-null-values:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Missing attribute values (Null values)&lt;/h3&gt;
+&lt;h3 id=&#34;optional-attribute-values:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Optional attribute values&lt;/h3&gt;
 
-&lt;p&gt;We might have some &amp;ldquo;rows&amp;rdquo; (tuples) of imported data with a
-missing attribute value. If for instance some row has no orgtype
-value in the data set, we can just use a &lt;code&gt;null&lt;/code&gt; placeholder:&lt;/p&gt;
+&lt;p&gt;We might have a data set with some optional attribute values. We can append a &lt;code&gt;$&lt;/code&gt; to
+such attribute names to tell Molecule that this is an optional value:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;(&amp;quot;community4&amp;quot;, &amp;quot;url2&amp;quot;, &amp;quot;blog&amp;quot;, null, Set(&amp;quot;cat3&amp;quot;, &amp;quot;cat1&amp;quot;), &amp;quot;NbhName4&amp;quot;, &amp;quot;DistName4&amp;quot;, &amp;quot;ne&amp;quot;)
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val insertCommunity = m(
+  Community.name.url.`type`.orgtype$.category
+    .Neighborhood.name
+    .District.name.region
+) insert
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If for instance some row has no orgtype we can use &lt;code&gt;None&lt;/code&gt; (and likewise &lt;code&gt;Some(&amp;lt;value&amp;gt;)&lt;/code&gt;):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;(&amp;quot;community4&amp;quot;, &amp;quot;url2&amp;quot;, &amp;quot;blog&amp;quot;, None, Set(&amp;quot;cat3&amp;quot;, &amp;quot;cat1&amp;quot;), &amp;quot;NbhName4&amp;quot;, &amp;quot;DistName4&amp;quot;, &amp;quot;ne&amp;quot;)
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;In an sql table we would &amp;ldquo;insert a null value&amp;rdquo; for such column.
@@ -943,7 +928,7 @@ values as they existed at specific points in time, we can retrieve
 retracted data by looking in the past. In other words, the data
 isn&amp;rsquo;t really gone. If we want data to really be gone after we
 retract it, we have to disable history for the specific attribute,
-as described in &lt;a href=&#34;http://scalamolecule.org/manual/setup&#34;&gt;Database setup&lt;/a&gt;.&lt;/p&gt;
+as described in &lt;a href=&#34;http://localhost:1313/manual/setup&#34;&gt;Database setup&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>
     
