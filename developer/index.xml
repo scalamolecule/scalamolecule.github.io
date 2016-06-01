@@ -106,36 +106,47 @@ m(firstName ~ lastName ~ age) // all fields of a `Person` trait...
     </item>
     
     <item>
-      <title>Tx data</title>
-      <link>http://scalamolecule.org/developer/txdata/</link>
+      <title>Schema transaction</title>
+      <link>http://scalamolecule.org/developer/schema-transaction/</link>
       <pubDate>Wed, 14 May 2014 02:13:50 UTC</pubDate>
       
-      <guid>http://scalamolecule.org/developer/txdata/</guid>
+      <guid>http://scalamolecule.org/developer/schema-transaction/</guid>
       <description>
 
-&lt;h1 id=&#34;schema-transaction-data:cd2a84f3e0b729702691d1980ae83981&#34;&gt;Schema transaction data&lt;/h1&gt;
+&lt;h1 id=&#34;schema-transaction:ad55bccf37fdd3dc9a19f824754d7f64&#34;&gt;Schema transaction&lt;/h1&gt;
 
-&lt;p&gt;A &lt;a href=&#34;http://scalamolecule.org/manual/schema/attributes&#34;&gt;Schema definition file&lt;/a&gt; like&lt;/p&gt;
+&lt;p&gt;In &lt;a href=&#34;http://scalamolecule.org/manual/schema/attributes&#34;&gt;Schema definition files&lt;/a&gt; like the
+&lt;a href=&#34;https://github.com/scalamolecule/molecule/blob/master/examples/src/main/scala/molecule/examples/seattle/schema/SeattleDefinition.scala&#34;&gt;Seattle example definition&lt;/a&gt;&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;object SeattleDefinition {
   trait Community {
     val name = oneString.fullTextSearch
+    // more attributes...
   }
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;defines&lt;/p&gt;
+&lt;p&gt;we define a number of namespaces each containing some attributes that can be of various types as we saw in
+&lt;a href=&#34;http://www.scalamolecule.org/manual/schema/attributes/&#34;&gt;Define Attributes in a Schema&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Above we see the
+definition of a &lt;code&gt;name&lt;/code&gt; attribute of the &lt;code&gt;Community&lt;/code&gt; namespace that gives us the following information:&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;name (&amp;ldquo;name&amp;rdquo;)&lt;/li&gt;
+&lt;li&gt;name of the attribute (&amp;ldquo;name&amp;rdquo;)&lt;/li&gt;
 &lt;li&gt;cardinality (&amp;ldquo;one&amp;rdquo;)&lt;/li&gt;
 &lt;li&gt;type (String)&lt;/li&gt;
 &lt;li&gt;options (fullTextSearch)&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;of a &lt;code&gt;name&lt;/code&gt; attribute in the &lt;code&gt;Community&lt;/code&gt; namespace.&lt;/p&gt;
+&lt;h3 id=&#34;schema-transaction-data:ad55bccf37fdd3dc9a19f824754d7f64&#34;&gt;Schema transaction data&lt;/h3&gt;
 
-&lt;p&gt;This is enough information to generate the necessary code to transact the schema in Datomic:&lt;/p&gt;
+&lt;p&gt;In order to transact our desired Datomic schema, Molecule transforms our schema definition file to
+basically a &lt;code&gt;java.util.List&lt;/code&gt; containing a &lt;code&gt;java.util.Map&lt;/code&gt;
+of information for each attribute that we want.&lt;/p&gt;
+
+&lt;p&gt;Our &lt;code&gt;name&lt;/code&gt; attribute
+for instance requires the following map of information to be transacted in Datomic:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;object SeattleSchema extends Transaction {
   
@@ -157,11 +168,47 @@ m(firstName ~ lastName ~ age) // all fields of a `Person` trait...
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;To avoid having to write this code manually, the
-&lt;a href=&#34;https://github.com/scalamolecule/molecule/blob/master/project/MoleculeBoilerplate.scala&#34;&gt;MoleculeBoilerplate&lt;/a&gt;
-file generates this for us based on our schema definition. It has to be in our
-&lt;a href=&#34;https://github.com/scalamolecule/molecule/tree/master/project&#34;&gt;project folder&lt;/a&gt; for sbt to use it to generate
-our boilerplate code when we run &lt;code&gt;sbt compile&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;If you look closely, you&amp;rsquo;ll see that the &lt;code&gt;Community&lt;/code&gt; namespace information is present in the
+value of the first pair in the map, namely&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;&amp;quot;:db/ident&amp;quot;, &amp;quot;:community/name&amp;quot;,
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The rest of the lines are pretty self-describing except from the last two that create and save the
+internal id of the attribute in Datomic. &lt;a href=&#34;http://docs.datomic.com/schema.html&#34;&gt;Datomic schemas&lt;/a&gt; are
+literally a set of datoms that have been transacted as any other data!&lt;/p&gt;
+
+&lt;h3 id=&#34;partition-transaction-data:ad55bccf37fdd3dc9a19f824754d7f64&#34;&gt;Partition transaction data&lt;/h3&gt;
+
+&lt;p&gt;Partition transaction data looks almost like attribute transaction data:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;lazy val partitions = Util.list(
+
+Util.map(&amp;quot;:db/ident&amp;quot;             , &amp;quot;:gen&amp;quot;,
+         &amp;quot;:db/id&amp;quot;                , Peer.tempid(&amp;quot;:db.part/db&amp;quot;),
+         &amp;quot;:db.install/_partition&amp;quot;, &amp;quot;:db.part/db&amp;quot;),
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&amp;hellip; except that the information is now installed internally in Datomic as partition data instead of as attribute data.&lt;/p&gt;
+
+&lt;p&gt;Partition examples:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/scalamolecule/molecule/blob/master/coretest/src/main/scala/molecule/part/schema/PartitionTestDefinition.scala&#34;&gt;partitioned schema definition&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/scalamolecule/molecule/blob/master/coretest/src/main/scala/molecule/part/schema/PartitionTestDefinition.scala&#34;&gt;partition tests&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;transacting-partitions-and-schema:ad55bccf37fdd3dc9a19f824754d7f64&#34;&gt;Transacting Partitions and Schema&lt;/h3&gt;
+
+&lt;p&gt;Now we can simply pass the generated raw transaction data to Datomic in order to create our partitions/schema:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val uri = &amp;quot;datomic:mem://your-db-name&amp;quot;
+val conn = datomic.Peer.connect(uri)
+conn.transact(SeattleSchema.partitions)
+conn.transact(SeattleSchema.namespaces)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And voilá, the Datomic partitions and schema are created!&lt;/p&gt;
 </description>
     </item>
     

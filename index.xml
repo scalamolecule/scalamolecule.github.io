@@ -551,73 +551,6 @@ that takes an entity id and then retrieve further attribute values for that enti
     </item>
     
     <item>
-      <title>Schema</title>
-      <link>http://scalamolecule.org/manual/schema/</link>
-      <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
-      
-      <guid>http://scalamolecule.org/manual/schema/</guid>
-      <description>
-
-&lt;h1 id=&#34;molecule-schema:e608d9ac6a0d5e2b6db229b78a3e65b4&#34;&gt;Molecule schema&lt;/h1&gt;
-
-&lt;p&gt;Prepare your domain in 3 steps to use Molecule:&lt;/p&gt;
-
-&lt;h3 id=&#34;1-define-schema:e608d9ac6a0d5e2b6db229b78a3e65b4&#34;&gt;1. Define Schema&lt;/h3&gt;
-
-&lt;p&gt;A Molecule Schema file defines what attributes you&amp;rsquo;ll have available to build molecules.&lt;/p&gt;
-
-&lt;p&gt;Attributes having something in common are defined as fields in a namespace trait and we list all namespace traits in a Definition trait.&lt;/p&gt;
-
-&lt;p&gt;Shortened example from the &lt;a href=&#34;http://docs.datomic.com/tutorial.html&#34;&gt;Datomic Seattle tutorial&lt;/a&gt;:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;@InOut(3, 8)
-object SeattleDefinition {
-
-  trait Community {
-    val name         = oneString.fullTextSearch
-    val url          = oneString
-    val category     = manyString.fullTextSearch
-    val orgtype      = oneEnum(&#39;community, &#39;commercial, &#39;nonprofit, &#39;personal)
-    val `type`       = oneEnum(&#39;email_list, &#39;twitter, &#39;facebook_page) // + more...
-    val neighborhood = one[Neighborhood]
-  }
-
-  trait Neighborhood {
-    val name     = oneString
-    val district = one[District]
-  }
-
-  trait District {
-    val name   = oneString
-    val region = oneEnum(&#39;n, &#39;ne, &#39;e, &#39;se, &#39;s, &#39;sw, &#39;w, &#39;nw)
-  }
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Here we have a &lt;code&gt;Community&lt;/code&gt;, &lt;code&gt;Neighborhood&lt;/code&gt; and &lt;code&gt;District&lt;/code&gt; namespace each defining some attributes of various types.&lt;/p&gt;
-
-&lt;p&gt;Model your own domain structures with similar schemas and save each definition in a file in a &amp;ldquo;schema&amp;rdquo; folder anywhere within your project.&lt;/p&gt;
-
-&lt;h3 id=&#34;2-tell-sbt:e608d9ac6a0d5e2b6db229b78a3e65b4&#34;&gt;2. Tell sbt&lt;/h3&gt;
-
-&lt;p&gt;In your sbt build file you add the paths to one or more of your domains. Each of those domain directories should have one or more &lt;code&gt;schema&lt;/code&gt; directories containing your schema definition files (like the one shown above):&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;.settings(Seq(definitionDirectories(
-  &amp;quot;molecule/examples/seattle&amp;quot;,
-)))
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Have a look in the &lt;a href=&#34;https://github.com/scalamolecule/molecule-demo/blob/master/build.sbt&#34;&gt;build file&lt;/a&gt; of the molecule-demo project of how things are organized&amp;hellip;&lt;/p&gt;
-
-&lt;h3 id=&#34;3-compile-generate-boilerplate-code:e608d9ac6a0d5e2b6db229b78a3e65b4&#34;&gt;3. Compile (generate boilerplate code)&lt;/h3&gt;
-
-&lt;p&gt;&lt;code&gt;sbt compile&lt;/code&gt; your project, wait for your domain-customized boilerplate code to be generated - and you&amp;rsquo;re ready to make intuitive molecule queries!&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;http://scalamolecule.org/manual/schema/files&#34;&gt;Read more&amp;hellip;&lt;/a&gt;&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
       <title>Files</title>
       <link>http://scalamolecule.org/manual/schema/files/</link>
       <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
@@ -685,6 +618,73 @@ Community.name.get(3) === List(
 &lt;p&gt;&lt;a href=&#34;http://scalamolecule.org/manual/schema/boilerplate&#34;&gt;More on the boilerplate dsl files&amp;hellip;&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&#34;http://scalamolecule.org/manual/schema/datomic-schema&#34;&gt;More on the Datomic schema&amp;hellip;&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Schema</title>
+      <link>http://scalamolecule.org/manual/schema/</link>
+      <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
+      
+      <guid>http://scalamolecule.org/manual/schema/</guid>
+      <description>
+
+&lt;h1 id=&#34;molecule-schema:e608d9ac6a0d5e2b6db229b78a3e65b4&#34;&gt;Molecule schema&lt;/h1&gt;
+
+&lt;p&gt;Prepare your domain in 3 steps to use Molecule:&lt;/p&gt;
+
+&lt;h3 id=&#34;1-define-schema:e608d9ac6a0d5e2b6db229b78a3e65b4&#34;&gt;1. Define Schema&lt;/h3&gt;
+
+&lt;p&gt;A Molecule Schema file defines what attributes you&amp;rsquo;ll have available to build molecules.&lt;/p&gt;
+
+&lt;p&gt;Attributes having something in common are defined as fields in a namespace trait and we list all namespace traits in a Definition trait.&lt;/p&gt;
+
+&lt;p&gt;Shortened example from the &lt;a href=&#34;http://docs.datomic.com/tutorial.html&#34;&gt;Datomic Seattle tutorial&lt;/a&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;@InOut(3, 8)
+object SeattleDefinition {
+
+  trait Community {
+    val name         = oneString.fullTextSearch
+    val url          = oneString
+    val category     = manyString.fullTextSearch
+    val orgtype      = oneEnum(&#39;community, &#39;commercial, &#39;nonprofit, &#39;personal)
+    val `type`       = oneEnum(&#39;email_list, &#39;twitter, &#39;facebook_page) // + more...
+    val neighborhood = one[Neighborhood]
+  }
+
+  trait Neighborhood {
+    val name     = oneString
+    val district = one[District]
+  }
+
+  trait District {
+    val name   = oneString
+    val region = oneEnum(&#39;n, &#39;ne, &#39;e, &#39;se, &#39;s, &#39;sw, &#39;w, &#39;nw)
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Here we have a &lt;code&gt;Community&lt;/code&gt;, &lt;code&gt;Neighborhood&lt;/code&gt; and &lt;code&gt;District&lt;/code&gt; namespace each defining some attributes of various types.&lt;/p&gt;
+
+&lt;p&gt;Model your own domain structures with similar schemas and save each definition in a file in a &amp;ldquo;schema&amp;rdquo; folder anywhere within your project.&lt;/p&gt;
+
+&lt;h3 id=&#34;2-tell-sbt:e608d9ac6a0d5e2b6db229b78a3e65b4&#34;&gt;2. Tell sbt&lt;/h3&gt;
+
+&lt;p&gt;In your sbt build file you add the paths to one or more of your domains. Each of those domain directories should have one or more &lt;code&gt;schema&lt;/code&gt; directories containing your schema definition files (like the one shown above):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;.settings(Seq(definitionDirectories(
+  &amp;quot;molecule/examples/seattle&amp;quot;,
+)))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Have a look in the &lt;a href=&#34;https://github.com/scalamolecule/molecule-demo/blob/master/build.sbt&#34;&gt;build file&lt;/a&gt; of the molecule-demo project of how things are organized&amp;hellip;&lt;/p&gt;
+
+&lt;h3 id=&#34;3-compile-generate-boilerplate-code:e608d9ac6a0d5e2b6db229b78a3e65b4&#34;&gt;3. Compile (generate boilerplate code)&lt;/h3&gt;
+
+&lt;p&gt;&lt;code&gt;sbt compile&lt;/code&gt; your project, wait for your domain-customized boilerplate code to be generated - and you&amp;rsquo;re ready to make intuitive molecule queries!&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://scalamolecule.org/manual/schema/files&#34;&gt;Read more&amp;hellip;&lt;/a&gt;&lt;/p&gt;
 </description>
     </item>
     
@@ -2004,36 +2004,47 @@ List(
     </item>
     
     <item>
-      <title>Tx data</title>
-      <link>http://scalamolecule.org/developer/txdata/</link>
+      <title>Schema transaction</title>
+      <link>http://scalamolecule.org/developer/schema-transaction/</link>
       <pubDate>Wed, 14 May 2014 02:13:50 UTC</pubDate>
       
-      <guid>http://scalamolecule.org/developer/txdata/</guid>
+      <guid>http://scalamolecule.org/developer/schema-transaction/</guid>
       <description>
 
-&lt;h1 id=&#34;schema-transaction-data:cd2a84f3e0b729702691d1980ae83981&#34;&gt;Schema transaction data&lt;/h1&gt;
+&lt;h1 id=&#34;schema-transaction:ad55bccf37fdd3dc9a19f824754d7f64&#34;&gt;Schema transaction&lt;/h1&gt;
 
-&lt;p&gt;A &lt;a href=&#34;http://scalamolecule.org/manual/schema/attributes&#34;&gt;Schema definition file&lt;/a&gt; like&lt;/p&gt;
+&lt;p&gt;In &lt;a href=&#34;http://scalamolecule.org/manual/schema/attributes&#34;&gt;Schema definition files&lt;/a&gt; like the
+&lt;a href=&#34;https://github.com/scalamolecule/molecule/blob/master/examples/src/main/scala/molecule/examples/seattle/schema/SeattleDefinition.scala&#34;&gt;Seattle example definition&lt;/a&gt;&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;object SeattleDefinition {
   trait Community {
     val name = oneString.fullTextSearch
+    // more attributes...
   }
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;defines&lt;/p&gt;
+&lt;p&gt;we define a number of namespaces each containing some attributes that can be of various types as we saw in
+&lt;a href=&#34;http://www.scalamolecule.org/manual/schema/attributes/&#34;&gt;Define Attributes in a Schema&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Above we see the
+definition of a &lt;code&gt;name&lt;/code&gt; attribute of the &lt;code&gt;Community&lt;/code&gt; namespace that gives us the following information:&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;name (&amp;ldquo;name&amp;rdquo;)&lt;/li&gt;
+&lt;li&gt;name of the attribute (&amp;ldquo;name&amp;rdquo;)&lt;/li&gt;
 &lt;li&gt;cardinality (&amp;ldquo;one&amp;rdquo;)&lt;/li&gt;
 &lt;li&gt;type (String)&lt;/li&gt;
 &lt;li&gt;options (fullTextSearch)&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;of a &lt;code&gt;name&lt;/code&gt; attribute in the &lt;code&gt;Community&lt;/code&gt; namespace.&lt;/p&gt;
+&lt;h3 id=&#34;schema-transaction-data:ad55bccf37fdd3dc9a19f824754d7f64&#34;&gt;Schema transaction data&lt;/h3&gt;
 
-&lt;p&gt;This is enough information to generate the necessary code to transact the schema in Datomic:&lt;/p&gt;
+&lt;p&gt;In order to transact our desired Datomic schema, Molecule transforms our schema definition file to
+basically a &lt;code&gt;java.util.List&lt;/code&gt; containing a &lt;code&gt;java.util.Map&lt;/code&gt;
+of information for each attribute that we want.&lt;/p&gt;
+
+&lt;p&gt;Our &lt;code&gt;name&lt;/code&gt; attribute
+for instance requires the following map of information to be transacted in Datomic:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;object SeattleSchema extends Transaction {
   
@@ -2055,11 +2066,47 @@ List(
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;To avoid having to write this code manually, the
-&lt;a href=&#34;https://github.com/scalamolecule/molecule/blob/master/project/MoleculeBoilerplate.scala&#34;&gt;MoleculeBoilerplate&lt;/a&gt;
-file generates this for us based on our schema definition. It has to be in our
-&lt;a href=&#34;https://github.com/scalamolecule/molecule/tree/master/project&#34;&gt;project folder&lt;/a&gt; for sbt to use it to generate
-our boilerplate code when we run &lt;code&gt;sbt compile&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;If you look closely, you&amp;rsquo;ll see that the &lt;code&gt;Community&lt;/code&gt; namespace information is present in the
+value of the first pair in the map, namely&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;&amp;quot;:db/ident&amp;quot;, &amp;quot;:community/name&amp;quot;,
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The rest of the lines are pretty self-describing except from the last two that create and save the
+internal id of the attribute in Datomic. &lt;a href=&#34;http://docs.datomic.com/schema.html&#34;&gt;Datomic schemas&lt;/a&gt; are
+literally a set of datoms that have been transacted as any other data!&lt;/p&gt;
+
+&lt;h3 id=&#34;partition-transaction-data:ad55bccf37fdd3dc9a19f824754d7f64&#34;&gt;Partition transaction data&lt;/h3&gt;
+
+&lt;p&gt;Partition transaction data looks almost like attribute transaction data:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;lazy val partitions = Util.list(
+
+Util.map(&amp;quot;:db/ident&amp;quot;             , &amp;quot;:gen&amp;quot;,
+         &amp;quot;:db/id&amp;quot;                , Peer.tempid(&amp;quot;:db.part/db&amp;quot;),
+         &amp;quot;:db.install/_partition&amp;quot;, &amp;quot;:db.part/db&amp;quot;),
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&amp;hellip; except that the information is now installed internally in Datomic as partition data instead of as attribute data.&lt;/p&gt;
+
+&lt;p&gt;Partition examples:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/scalamolecule/molecule/blob/master/coretest/src/main/scala/molecule/part/schema/PartitionTestDefinition.scala&#34;&gt;partitioned schema definition&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/scalamolecule/molecule/blob/master/coretest/src/main/scala/molecule/part/schema/PartitionTestDefinition.scala&#34;&gt;partition tests&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;transacting-partitions-and-schema:ad55bccf37fdd3dc9a19f824754d7f64&#34;&gt;Transacting Partitions and Schema&lt;/h3&gt;
+
+&lt;p&gt;Now we can simply pass the generated raw transaction data to Datomic in order to create our partitions/schema:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val uri = &amp;quot;datomic:mem://your-db-name&amp;quot;
+val conn = datomic.Peer.connect(uri)
+conn.transact(SeattleSchema.partitions)
+conn.transact(SeattleSchema.namespaces)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And voilá, the Datomic partitions and schema are created!&lt;/p&gt;
 </description>
     </item>
     
@@ -2161,6 +2208,54 @@ Entity  Attribute  Value  Transaction/time
 &lt;p&gt;Go straight to the &lt;a href=&#34;http://scalamolecule.org/tutorials/seattle&#34;&gt;Molecule Seattle tutorial&lt;/a&gt; to see a wide range of
  queries that Molecule can express, or check out first how we use Molecule to
  &lt;a href=&#34;http://scalamolecule.org/manual/setup&#34;&gt;setup the database&lt;/a&gt; and &lt;a href=&#34;http://scalamolecule.org/manual/insert&#34;&gt;populated it with data&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Types</title>
+      <link>http://scalamolecule.org/manual/query/types/</link>
+      <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
+      
+      <guid>http://scalamolecule.org/manual/query/types/</guid>
+      <description>
+
+&lt;h1 id=&#34;attribute-types:3d59665407ad3f08f6bcaef4686926f7&#34;&gt;Attribute types&lt;/h1&gt;
+
+&lt;p&gt;Molecule Attributes can have the following types:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Cardinality one     Cardinality many     Mapped Cardinality many    
+---------------     ----------------     -----------------------
+String              Set[String]          Map[String, String]
+Int                 Set[Int]             Map[String, Int]
+Long                Set[Long]            Map[String, Long]
+Float               Set[Float]           Map[String, Float]
+Double              Set[Double]          Map[String, Double]
+Boolean             Set[Boolean]         Map[String, Boolean]
+Date                Set[Date]            Map[String, Date]
+UUID                Set[UUID]            Map[String, UUID]
+URI                 Set[URI]             Map[String, URI]
+enum: String        enums: Set[String]   
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Attribute are defined in your &lt;a href=&#34;http://scalamolecule.org/manual/schema/definition/&#34;&gt;schema&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&#34;types-inferred:3d59665407ad3f08f6bcaef4686926f7&#34;&gt;Types inferred&lt;/h3&gt;
+
+&lt;p&gt;Types are inferred so that you can determine the result signature of a molecule&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val persons: List[(String, Int)] = Person.name.age.get
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;cardinality-one-many:3d59665407ad3f08f6bcaef4686926f7&#34;&gt;Cardinality one/many&lt;/h3&gt;
+
+&lt;p&gt;Attributes defined as cardinality-many will return sets of values. A Person could for instance have a &lt;code&gt;hobbies&lt;/code&gt; cardinality-many Attribute defined and thus return sets of hobby values:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val engaged: List[(String, Set[String])] = Person.name.hobbies.get
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;enums:3d59665407ad3f08f6bcaef4686926f7&#34;&gt;Enums&lt;/h3&gt;
+
+&lt;p&gt;Enum values are predefined values that an Attribute can have. They are defined in your schema. Cardinality one enums can have one enum value and cardinality many can have a set of unique enum values for each entity.&lt;/p&gt;
 </description>
     </item>
     
@@ -2302,54 +2397,6 @@ one[&amp;lt;Ref-namespace&amp;gt;]    many[&amp;lt;Ref-namespace&amp;gt;]
 &lt;p&gt;Datomic indexes the values of all attributes having an option except for the &lt;code&gt;doc&lt;/code&gt; and &lt;code&gt;noHistory&lt;/code&gt; options.&lt;/p&gt;
 
 &lt;p&gt;As you saw, we added &lt;code&gt;fulltextSearch&lt;/code&gt; and &lt;code&gt;uniqueIdentity&lt;/code&gt; to some of the attributes in the Seattle definition above. Molecule&amp;rsquo;s schema definition DSL let&amp;rsquo;s you only choose allowed options for any attribute type.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Types</title>
-      <link>http://scalamolecule.org/manual/query/types/</link>
-      <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
-      
-      <guid>http://scalamolecule.org/manual/query/types/</guid>
-      <description>
-
-&lt;h1 id=&#34;attribute-types:3d59665407ad3f08f6bcaef4686926f7&#34;&gt;Attribute types&lt;/h1&gt;
-
-&lt;p&gt;Molecule Attributes can have the following types:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;Cardinality one     Cardinality many     Mapped Cardinality many    
----------------     ----------------     -----------------------
-String              Set[String]          Map[String, String]
-Int                 Set[Int]             Map[String, Int]
-Long                Set[Long]            Map[String, Long]
-Float               Set[Float]           Map[String, Float]
-Double              Set[Double]          Map[String, Double]
-Boolean             Set[Boolean]         Map[String, Boolean]
-Date                Set[Date]            Map[String, Date]
-UUID                Set[UUID]            Map[String, UUID]
-URI                 Set[URI]             Map[String, URI]
-enum: String        enums: Set[String]   
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Attribute are defined in your &lt;a href=&#34;http://scalamolecule.org/manual/schema/definition/&#34;&gt;schema&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h3 id=&#34;types-inferred:3d59665407ad3f08f6bcaef4686926f7&#34;&gt;Types inferred&lt;/h3&gt;
-
-&lt;p&gt;Types are inferred so that you can determine the result signature of a molecule&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val persons: List[(String, Int)] = Person.name.age.get
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;cardinality-one-many:3d59665407ad3f08f6bcaef4686926f7&#34;&gt;Cardinality one/many&lt;/h3&gt;
-
-&lt;p&gt;Attributes defined as cardinality-many will return sets of values. A Person could for instance have a &lt;code&gt;hobbies&lt;/code&gt; cardinality-many Attribute defined and thus return sets of hobby values:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val engaged: List[(String, Set[String])] = Person.name.hobbies.get
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;enums:3d59665407ad3f08f6bcaef4686926f7&#34;&gt;Enums&lt;/h3&gt;
-
-&lt;p&gt;Enum values are predefined values that an Attribute can have. They are defined in your schema. Cardinality one enums can have one enum value and cardinality many can have a set of unique enum values for each entity.&lt;/p&gt;
 </description>
     </item>
     

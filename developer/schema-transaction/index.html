@@ -4,7 +4,7 @@
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
   <link href='http://fonts.googleapis.com/css?family=Merriweather+Sans:400,300,300italic,400italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
-  <title>Types</title>
+  <title>Schema transaction</title>
   <link href="/css/bootstrap.min.css" rel="stylesheet">
   <link href="/css/highlight/styles/solarized_light.css" rel="stylesheet" />
   <link href="/css/style.css" rel="stylesheet">
@@ -49,7 +49,7 @@
             <li><a href="http://scalamolecule.org/tutorials/seattle/">Seattle</a></li>
         </ul>
       </li>
-      <li class="dropdown active">
+      <li class="dropdown ">
         <a data-toggle="dropdown" href="http://scalamolecule.org/manual/overview/" target="_top" onclick="javascript:top.location = 'http:\/\/scalamolecule.org\/manual\/overview\/';return true;">Manual</a>
           <ul class="dropdown-menu level1" role="menu" aria-labelledby="dropdownMenu">
             <li class="dropdown-submenu">
@@ -79,7 +79,7 @@
             </li>
         </ul>
       </li>
-      <li class="dropdown ">
+      <li class="dropdown active">
         <a data-toggle="dropdown" href="http://scalamolecule.org/developer/overview/" target="_top" onclick="javascript:top.location = 'http:\/\/scalamolecule.org\/developer\/overview\/';return true;">Developer</a>
           <ul class="dropdown-menu level1" role="menu" aria-labelledby="dropdownMenu">
             <li><a href="http://scalamolecule.org/developer/schema-transaction/">Schema transaction</a></li>
@@ -106,43 +106,102 @@
 <div class="col-sm-10 column" style="padding-left:8px;">
 	
 
-<h1 id="attribute-types:3d59665407ad3f08f6bcaef4686926f7">Attribute types</h1>
+<h1 id="schema-transaction:ad55bccf37fdd3dc9a19f824754d7f64">Schema transaction</h1>
 
-<p>Molecule Attributes can have the following types:</p>
+<p>In <a href="/manual/schema/attributes">Schema definition files</a> like the
+<a href="https://github.com/scalamolecule/molecule/blob/master/examples/src/main/scala/molecule/examples/seattle/schema/SeattleDefinition.scala">Seattle example definition</a></p>
 
-<pre><code>Cardinality one     Cardinality many     Mapped Cardinality many    
----------------     ----------------     -----------------------
-String              Set[String]          Map[String, String]
-Int                 Set[Int]             Map[String, Int]
-Long                Set[Long]            Map[String, Long]
-Float               Set[Float]           Map[String, Float]
-Double              Set[Double]          Map[String, Double]
-Boolean             Set[Boolean]         Map[String, Boolean]
-Date                Set[Date]            Map[String, Date]
-UUID                Set[UUID]            Map[String, UUID]
-URI                 Set[URI]             Map[String, URI]
-enum: String        enums: Set[String]   
+<pre><code class="language-scala">object SeattleDefinition {
+  trait Community {
+    val name = oneString.fullTextSearch
+    // more attributes...
+  }
+}
 </code></pre>
 
-<p>Attribute are defined in your <a href="/manual/schema/definition/">schema</a>.</p>
+<p>we define a number of namespaces each containing some attributes that can be of various types as we saw in
+<a href="http://www.scalamolecule.org/manual/schema/attributes/">Define Attributes in a Schema</a>.</p>
 
-<h3 id="types-inferred:3d59665407ad3f08f6bcaef4686926f7">Types inferred</h3>
+<p>Above we see the
+definition of a <code>name</code> attribute of the <code>Community</code> namespace that gives us the following information:</p>
 
-<p>Types are inferred so that you can determine the result signature of a molecule</p>
+<ul>
+<li>name of the attribute (&ldquo;name&rdquo;)</li>
+<li>cardinality (&ldquo;one&rdquo;)</li>
+<li>type (String)</li>
+<li>options (fullTextSearch)</li>
+</ul>
 
-<pre><code class="language-scala">val persons: List[(String, Int)] = Person.name.age.get
+<h3 id="schema-transaction-data:ad55bccf37fdd3dc9a19f824754d7f64">Schema transaction data</h3>
+
+<p>In order to transact our desired Datomic schema, Molecule transforms our schema definition file to
+basically a <code>java.util.List</code> containing a <code>java.util.Map</code>
+of information for each attribute that we want.</p>
+
+<p>Our <code>name</code> attribute
+for instance requires the following map of information to be transacted in Datomic:</p>
+
+<pre><code class="language-scala">object SeattleSchema extends Transaction {
+  
+  lazy val partitions = Util.list()
+
+  lazy val namespaces = Util.list(
+    
+    // Community --------------------------------------------------------
+
+    Util.map(&quot;:db/ident&quot;             , &quot;:community/name&quot;,
+             &quot;:db/valueType&quot;         , &quot;:db.type/string&quot;,
+             &quot;:db/cardinality&quot;       , &quot;:db.cardinality/one&quot;,
+             &quot;:db/fulltext&quot;          , true.asInstanceOf[Object],
+             &quot;:db/index&quot;             , true.asInstanceOf[Object],
+             &quot;:db/id&quot;                , Peer.tempid(&quot;:db.part/db&quot;),
+             &quot;:db.install/_attribute&quot;, &quot;:db.part/db&quot;),
+             
+    // etc...
+}
 </code></pre>
 
-<h3 id="cardinality-one-many:3d59665407ad3f08f6bcaef4686926f7">Cardinality one/many</h3>
+<p>If you look closely, you&rsquo;ll see that the <code>Community</code> namespace information is present in the
+value of the first pair in the map, namely</p>
 
-<p>Attributes defined as cardinality-many will return sets of values. A Person could for instance have a <code>hobbies</code> cardinality-many Attribute defined and thus return sets of hobby values:</p>
-
-<pre><code class="language-scala">val engaged: List[(String, Set[String])] = Person.name.hobbies.get
+<pre><code class="language-scala">&quot;:db/ident&quot;, &quot;:community/name&quot;,
 </code></pre>
 
-<h3 id="enums:3d59665407ad3f08f6bcaef4686926f7">Enums</h3>
+<p>The rest of the lines are pretty self-describing except from the last two that create and save the
+internal id of the attribute in Datomic. <a href="http://docs.datomic.com/schema.html">Datomic schemas</a> are
+literally a set of datoms that have been transacted as any other data!</p>
 
-<p>Enum values are predefined values that an Attribute can have. They are defined in your schema. Cardinality one enums can have one enum value and cardinality many can have a set of unique enum values for each entity.</p>
+<h3 id="partition-transaction-data:ad55bccf37fdd3dc9a19f824754d7f64">Partition transaction data</h3>
+
+<p>Partition transaction data looks almost like attribute transaction data:</p>
+
+<pre><code class="language-scala">lazy val partitions = Util.list(
+
+Util.map(&quot;:db/ident&quot;             , &quot;:gen&quot;,
+         &quot;:db/id&quot;                , Peer.tempid(&quot;:db.part/db&quot;),
+         &quot;:db.install/_partition&quot;, &quot;:db.part/db&quot;),
+</code></pre>
+
+<p>&hellip; except that the information is now installed internally in Datomic as partition data instead of as attribute data.</p>
+
+<p>Partition examples:</p>
+
+<ul>
+<li><a href="https://github.com/scalamolecule/molecule/blob/master/coretest/src/main/scala/molecule/part/schema/PartitionTestDefinition.scala">partitioned schema definition</a></li>
+<li><a href="https://github.com/scalamolecule/molecule/blob/master/coretest/src/main/scala/molecule/part/schema/PartitionTestDefinition.scala">partition tests</a></li>
+</ul>
+
+<h3 id="transacting-partitions-and-schema:ad55bccf37fdd3dc9a19f824754d7f64">Transacting Partitions and Schema</h3>
+
+<p>Now we can simply pass the generated raw transaction data to Datomic in order to create our partitions/schema:</p>
+
+<pre><code class="language-scala">val uri = &quot;datomic:mem://your-db-name&quot;
+val conn = datomic.Peer.connect(uri)
+conn.transact(SeattleSchema.partitions)
+conn.transact(SeattleSchema.namespaces)
+</code></pre>
+
+<p>And voilá, the Datomic partitions and schema are created!</p>
 
 </div>
 
@@ -153,86 +212,22 @@ enum: String        enums: Set[String]
         
           
             
-              <li><a href="http://scalamolecule.org/manual/overview/">Manual</a></li>
+              <li><a href="http://scalamolecule.org/developer/overview/">Developer</a></li>
               
             
           
             
-              <li><a href="http://scalamolecule.org/manual/schema/">Schema</a></li>
-              
-                <ul style="padding-left:25px;">
-                  
-                  <li><a href="http://scalamolecule.org/manual/schema/files/">Files</a></li>
-                  
-                
-                  
-                  <li><a href="http://scalamolecule.org/manual/schema/attributes/">Attributes</a></li>
-                  
-                
-                  
-                  <li><a href="http://scalamolecule.org/manual/schema/partitions/">Partitions</a></li>
-                  
-                
-                  
-                  <li><a href="http://scalamolecule.org/manual/schema/modelling/">Modelling</a></li>
-                  
-                
-                  
-                  <li><a href="http://scalamolecule.org/manual/schema/boilerplate/">Boilerplate</a></li>
-                  
-                
-                  
-                  <li><a href="http://scalamolecule.org/manual/schema/datomic-schema/">Datomic</a></li>
-                  
-                
-                </ul>
+              <li class="active" style="padding: 2px 9px;"><b>Schema transaction</b></li>
               
             
           
             
-              <li><a href="http://scalamolecule.org/manual/setup/">Setup</a></li>
+              <li><a href="http://scalamolecule.org/developer/boilerplate/">Boilerplate</a></li>
               
             
           
             
-              <li><a href="http://scalamolecule.org/manual/insert/">Insert</a></li>
-              
-            
-          
-            
-              <li><a href="http://scalamolecule.org/manual/update/">Update/retract</a></li>
-              
-            
-          
-            
-              <li><a href="http://scalamolecule.org/manual/query/">Query</a></li>
-              
-                <ul style="padding-left:25px;">
-                  
-                  <li><a href="http://scalamolecule.org/manual/query/builder/">Builder</a></li>
-                  
-                
-                  
-                  <li class="active"><b>Types</b></li>
-                  
-                
-                  
-                  <li><a href="http://scalamolecule.org/manual/query/expressions/">Expressions</a></li>
-                  
-                
-                  
-                  <li><a href="http://scalamolecule.org/manual/query/aggregates/">Aggregates</a></li>
-                  
-                
-                  
-                  <li><a href="http://scalamolecule.org/manual/query/parameterize/">Parameterize</a></li>
-                  
-                
-                  
-                  <li><a href="http://scalamolecule.org/manual/query/relationships/">Relationships</a></li>
-                  
-                
-                </ul>
+              <li><a href="http://scalamolecule.org/developer/transformation/">Transformation</a></li>
               
             
           
