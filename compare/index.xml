@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Compares on Molecule</title>
-    <link>http://localhost:1313/compare/</link>
+    <link>http://scalamolecule.org/compare/</link>
     <description>Recent content in Compares on Molecule</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     
     
     <lastBuildDate>Wed, 14 May 2014 02:13:50 UTC</lastBuildDate>
-    <atom:link href="http://localhost:1313/compare/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://scalamolecule.org/compare/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Compare</title>
-      <link>http://localhost:1313/compare/overview/</link>
+      <link>http://scalamolecule.org/compare/overview/</link>
       <pubDate>Wed, 14 May 2014 02:13:50 UTC</pubDate>
       
-      <guid>http://localhost:1313/compare/overview/</guid>
+      <guid>http://scalamolecule.org/compare/overview/</guid>
       <description>
 
 &lt;h1 id=&#34;other-databases-vs-molecule:68f80267fa3a50980dbb745a782b8dca&#34;&gt;Other databases vs. Molecule&lt;/h1&gt;
@@ -61,11 +61,11 @@ val songs = Song.e.artist(id).get
 &lt;p&gt;Over time we&amp;rsquo;ll compare Molecule with as many database systems as possible. Those not linked yet below are on our wish list:&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/compare/datomic&#34;&gt;Datomic&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/compare/sql&#34;&gt;SQL&lt;/a&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/compare/datomic&#34;&gt;Datomic&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/compare/sql&#34;&gt;SQL&lt;/a&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://localhost:1313/compare/sql/slick&#34;&gt;Slick&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/compare/sql/slick&#34;&gt;Slick&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Squeryl&lt;/li&gt;
 &lt;li&gt;Sqltyped tutorial&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
@@ -87,10 +87,10 @@ val songs = Song.e.artist(id).get
     
     <item>
       <title>Datomic</title>
-      <link>http://localhost:1313/compare/datomic/</link>
+      <link>http://scalamolecule.org/compare/datomic/</link>
       <pubDate>Wed, 14 May 2014 02:13:50 UTC</pubDate>
       
-      <guid>http://localhost:1313/compare/datomic/</guid>
+      <guid>http://scalamolecule.org/compare/datomic/</guid>
       <description>
 
 &lt;h1 id=&#34;compare-with-datomic-datalog:fce8223ee4fefc246edc14cd715d3099&#34;&gt;Compare with Datomic/Datalog&lt;/h1&gt;
@@ -522,10 +522,10 @@ List(
     
     <item>
       <title>SQL</title>
-      <link>http://localhost:1313/compare/sql/</link>
+      <link>http://scalamolecule.org/compare/sql/</link>
       <pubDate>Wed, 14 May 2014 02:13:50 UTC</pubDate>
       
-      <guid>http://localhost:1313/compare/sql/</guid>
+      <guid>http://scalamolecule.org/compare/sql/</guid>
       <description>
 
 &lt;h1 id=&#34;sql-vs-molecule-examples:d1babb582138b02a13547d2c6eb6df72&#34;&gt;SQL vs. Molecule examples&lt;/h1&gt;
@@ -730,10 +730,10 @@ Person(odersky).name(&amp;quot;M. Odersky&amp;quot;).age(54321).update
     
     <item>
       <title>Slick</title>
-      <link>http://localhost:1313/compare/sql/slick/</link>
+      <link>http://scalamolecule.org/compare/sql/slick/</link>
       <pubDate>Wed, 14 May 2014 02:13:50 UTC</pubDate>
       
-      <guid>http://localhost:1313/compare/sql/slick/</guid>
+      <guid>http://scalamolecule.org/compare/sql/slick/</guid>
       <description>
 
 &lt;h1 id=&#34;slick-vs-molecule-examples:ce7ebdb2cbbacd766a8940138f40260d&#34;&gt;Slick vs. Molecule examples&lt;/h1&gt;
