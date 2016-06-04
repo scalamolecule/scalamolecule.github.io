@@ -28,7 +28,6 @@
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/scalamolecule/molecule/issues&#34;&gt;Issues&lt;/a&gt; - please feel free to raise issues/report bugs or make pull requests&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;http://datomic.com&#34;&gt;Datomic&lt;/a&gt; website&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/pellucidanalytics/datomisca&#34;&gt;Datomisca&lt;/a&gt;, a Scala API for Datomic&lt;/li&gt;
 &lt;/ul&gt;
 </description>
     </item>

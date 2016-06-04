@@ -27,7 +27,6 @@
           <ul class="dropdown-menu level1" role="menu" aria-labelledby="dropdownMenu">
             <li><a href="http://scalamolecule.org/home/front/">Home</a></li>
             <li><a href="http://scalamolecule.org/home/introduction/">Introduction</a></li>
-            <li><a href="http://scalamolecule.org/home/setup/">Setup</a></li>
             <li><a href="http://scalamolecule.org/home/about/">About</a></li>
         </ul>
       </li>
@@ -52,25 +51,20 @@
       <li class="dropdown ">
         <a data-toggle="dropdown" href="http://scalamolecule.org/manual/overview/" target="_top" onclick="javascript:top.location = 'http:\/\/scalamolecule.org\/manual\/overview\/';return true;">Manual</a>
           <ul class="dropdown-menu level1" role="menu" aria-labelledby="dropdownMenu">
+            <li><a href="http://scalamolecule.org/manual/getting-started/">Getting started</a></li>
             <li class="dropdown-submenu">
               <a href="http://scalamolecule.org/manual/schema/">Schema</a>
               <ul class="dropdown-menu">
-                <li><a href="http://scalamolecule.org/manual/schema/files/">Files</a></li>
-                <li><a href="http://scalamolecule.org/manual/schema/attributes/">Attributes</a></li>
-                <li><a href="http://scalamolecule.org/manual/schema/partitions/">Partitions</a></li>
-                <li><a href="http://scalamolecule.org/manual/schema/modelling/">Modelling</a></li>
-                <li><a href="http://scalamolecule.org/manual/schema/boilerplate/">Boilerplate</a></li>
-                <li><a href="http://scalamolecule.org/manual/schema/datomic-schema/">Datomic</a></li>
+                <li><a href="http://scalamolecule.org/manual/schema/transaction/">Transaction</a></li>
               </ul>
             </li>
-            <li><a href="http://scalamolecule.org/manual/setup/">Setup</a></li>
             <li><a href="http://scalamolecule.org/manual/insert/">Insert</a></li>
             <li><a href="http://scalamolecule.org/manual/update/">Update/retract</a></li>
             <li class="dropdown-submenu">
               <a href="http://scalamolecule.org/manual/query/">Query</a>
               <ul class="dropdown-menu">
                 <li><a href="http://scalamolecule.org/manual/query/builder/">Builder</a></li>
-                <li><a href="http://scalamolecule.org/manual/query/types/">Types</a></li>
+                <li><a href="http://scalamolecule.org/manual/query/mapped/">Mapped attributes</a></li>
                 <li><a href="http://scalamolecule.org/manual/query/expressions/">Expressions</a></li>
                 <li><a href="http://scalamolecule.org/manual/query/aggregates/">Aggregates</a></li>
                 <li><a href="http://scalamolecule.org/manual/query/parameterize/">Parameterize</a></li>
@@ -82,7 +76,6 @@
       <li class="dropdown active">
         <a data-toggle="dropdown" href="http://scalamolecule.org/developer/overview/" target="_top" onclick="javascript:top.location = 'http:\/\/scalamolecule.org\/developer\/overview\/';return true;">Developer</a>
           <ul class="dropdown-menu level1" role="menu" aria-labelledby="dropdownMenu">
-            <li><a href="http://scalamolecule.org/developer/schema-transaction/">Schema transaction</a></li>
             <li><a href="http://scalamolecule.org/developer/boilerplate/">Boilerplate</a></li>
             <li><a href="http://scalamolecule.org/developer/transformation/">Transformation</a></li>
         </ul>
@@ -110,7 +103,8 @@
 
 <p>The basic philosophy of Molecule is to think from the User&rsquo;s perspective towards a technical solution.</p>
 
-<p>The priority is always to make it as easy as possible for the end User to make Datomic queries, no matter how challenging on the Molecule backend.</p>
+<p>The priority is always to make it as easy as possible for the end User to make Datomic queries, no matter
+how challenging on the Molecule backend.</p>
 
 <p>When we asked</p>
 
@@ -135,21 +129,10 @@ m(firstName ~ lastName ~ age) // all fields of a `Person` trait...
 
 <h3 id="generated-boilerplate-code:68f80267fa3a50980dbb745a782b8dca">Generated boilerplate code</h3>
 
-<p>The builder pattern has shown a surprising strong capacity to express a wide range of query constructs. But it also requires an extensive amount of boilerplace code to work.</p>
+<p>The builder pattern has shown a surprising strong capacity to express a wide range of query constructs. But it also
+ requires an extensive amount of boilerplace code to work.</p>
 
 <p>We therefore generate all boilerplate code automatically when we compile our project with <code>sbt compile</code>.</p>
-
-<p>From a minimal definition of for instance an attribute</p>
-
-<pre><code class="language-scala">val name = oneString.fullTextSearch // maybe more options...
-</code></pre>
-
-<p>we have enough information about type, cardinality and options to generate the following artifacts:</p>
-
-<ol>
-<li><a href="/developer/txdata">Schema transaction data</a> (in a Datomic format)</li>
-<li><a href="/developer/boilerplate">Scala code</a> to build molecules</li>
-</ol>
 
 <h3 id="scala-macro-transformations:68f80267fa3a50980dbb745a782b8dca">Scala macro transformations</h3>
 
@@ -186,7 +169,9 @@ m(firstName ~ lastName ~ age) // all fields of a `Person` trait...
 
 <h3 id="closed-eco-system:68f80267fa3a50980dbb745a782b8dca">Closed eco-system</h3>
 
-<p>Since we create our molecules from our self-generated boilerplate code our macros have full knowledge about the possible constructs we can expect. We are therefore in full control of the entire &ldquo;eco-system&rdquo; from molecule to Datomic query. Non-valid molecules simply won&rsquo;t compile. And we can infer all type information from our molecules.</p>
+<p>Since we create our molecules from our self-generated boilerplate code our macros have full knowledge about the
+possible constructs we can expect. We are therefore in full control of the entire &ldquo;eco-system&rdquo; from molecule
+ to Datomic query. Non-valid molecules simply won&rsquo;t compile. And we can infer all type information from our molecules.</p>
 
 <p><a href="/developer/transformation">Read more about the macro transformations&hellip;</a></p>
 
@@ -200,11 +185,6 @@ m(firstName ~ lastName ~ age) // all fields of a `Person` trait...
           
             
               <li class="active" style="padding: 2px 9px;"><b>Developer</b></li>
-              
-            
-          
-            
-              <li><a href="http://scalamolecule.org/developer/schema-transaction/">Schema transaction</a></li>
               
             
           

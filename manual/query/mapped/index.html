@@ -4,7 +4,7 @@
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
   <link href='http://fonts.googleapis.com/css?family=Merriweather+Sans:400,300,300italic,400italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
-  <title>Compare</title>
+  <title>Mapped attributes</title>
   <link href="/css/bootstrap.min.css" rel="stylesheet">
   <link href="/css/highlight/styles/solarized_light.css" rel="stylesheet" />
   <link href="/css/style.css" rel="stylesheet">
@@ -30,7 +30,7 @@
             <li><a href="http://scalamolecule.org/home/about/">About</a></li>
         </ul>
       </li>
-      <li class="dropdown active">
+      <li class="dropdown ">
         <a data-toggle="dropdown" href="http://scalamolecule.org/compare/overview/" target="_top" onclick="javascript:top.location = 'http:\/\/scalamolecule.org\/compare\/overview\/';return true;">Compare</a>
           <ul class="dropdown-menu level1" role="menu" aria-labelledby="dropdownMenu">
             <li><a href="http://scalamolecule.org/compare/datomic/">Datomic</a></li>
@@ -48,7 +48,7 @@
             <li><a href="http://scalamolecule.org/tutorials/seattle/">Seattle</a></li>
         </ul>
       </li>
-      <li class="dropdown ">
+      <li class="dropdown active">
         <a data-toggle="dropdown" href="http://scalamolecule.org/manual/overview/" target="_top" onclick="javascript:top.location = 'http:\/\/scalamolecule.org\/manual\/overview\/';return true;">Manual</a>
           <ul class="dropdown-menu level1" role="menu" aria-labelledby="dropdownMenu">
             <li><a href="http://scalamolecule.org/manual/getting-started/">Getting started</a></li>
@@ -99,69 +99,47 @@
 <div class="col-sm-10 column" style="padding-left:8px;">
 	
 
-<h1 id="other-databases-vs-molecule:68f80267fa3a50980dbb745a782b8dca">Other databases vs. Molecule</h1>
+<h1 id="mapped-attributes:a97bd84cbba6263d9bc50859a818a594">Mapped Attributes</h1>
 
-<p>Every database/abstraction layer has its strengths and weaknesses and we&rsquo;ll try here to compare existing systems with Molecule with some examples of how they accomplish similar tasks.</p>
+<p>(See <a href="https://github.com/scalamolecule/molecule/tree/master/coretest/src/test/scala/molecule/attrMap">mapped tests</a>)</p>
 
-<h3 id="others-consume-molecule-declares-data-structures:68f80267fa3a50980dbb745a782b8dca">Others <em>consume</em>, Molecule <em>declares</em> data structures</h3>
+<p>Mapped values can be saved with mapped attributes in Molecule. It&rsquo;s a special Molecule construct that makes
+it easy to save for instance multi-lingual data without having to create language-variations of each attribute.
+But they can also be used for any other key-value indexed data.</p>
 
-<p>Many systems lets you define data objects matching your domain that are then <em>consumed</em> by the host language (Scala) in combination with DSLs.</p>
+<p>Say you want to save famous Persons names in multiple languages. Then you could use a mapString:</p>
 
-<p>If we take <a href="http://slick.typesafe.com/doc/3.0.0-M1/queries.html#joining-and-zipping">Slick</a> for instance we could say that it &ldquo;<em>consumes</em>&rdquo; the data objects <code>coffees</code> and <code>suppliers</code> in this Scala sequence comprehension:</p>
+<pre><code class="language-scala">// In definition file
+val name = mapString
+ 
+// Insert mapped data
+Person.id.name.insert(
+  1, 
+  Map(
+    &quot;en&quot; -&gt; &quot;Dmitri Shostakovich&quot;,
+    &quot;de&quot; -&gt; &quot;Dmitri Schostakowitsch&quot;,
+    &quot;fr&quot; -&gt; &quot;Dmitri Chostakovitch&quot;,
+    &quot;es&quot; -&gt; &quot;Dmitri Shostakóvich&quot;
+  )
+)
 
-<pre><code class="language-scala">// Slick
-val implCrossJoin = for {
-  c &lt;- coffees
-  s &lt;- suppliers
-} yield (c.name, s.name)
+// Retrieve mapped data
+Person.id.name.one === (1, 
+  Map(
+    &quot;en&quot; -&gt; &quot;Dmitri Shostakovich&quot;,
+    &quot;de&quot; -&gt; &quot;Dmitri Schostakowitsch&quot;,
+    &quot;fr&quot; -&gt; &quot;Dmitri Chostakovitch&quot;,
+    &quot;es&quot; -&gt; &quot;Dmitri Shostakóvich&quot;
+  )
+)
 </code></pre>
 
-<p>Whereas in Molecule, we only <em>declare</em> which attributes we are interested in. Molecule attributes <em>themselves</em> form the query - they are not <em>consumed</em> by an outer construct. That way, the domain terms directly form the query without additional keywords and constructs:</p>
+<p>Molecule concatenates the key and value of each pair to one of several values of an underlying cardinality-many attribute. When
+data is then retrieved Molecule splits the concatenated string into a typed pair. This all happens automatically and let&rsquo;s us focus
+ on their use in our code.</p>
 
-<pre><code class="language-scala">// Molecule
-val coffeeSupliers = Coffees.name.Suppliers.name.get
-</code></pre>
-
-<p>We get the exact same type-inferred result back, a <code>Seq[(String, String)]</code></p>
-
-<p><a href="http://squeryl.org/selects.html">Squeryl</a> also <em>consumes</em> data objects, now in a DSL construct:</p>
-
-<pre><code class="language-scala">// Squeryl
-def songs = from(MusicDb.songs)(s =&gt; where(s.artistId === id) select(s))
-</code></pre>
-
-<p>In Molecule we don&rsquo;t need to use keywords like <code>from</code>, <code>where</code> and <code>select</code> (apart from the final <code>get</code> method). We instead get song entities (<code>e</code>) filtered by Artist by simply applying a required value directly to the <code>artist</code> attribute:</p>
-
-<pre><code class="language-scala">// Molecule
-val songs = Song.e.artist(id).get
-</code></pre>
-
-<h3 id="more-databases-to-compare:68f80267fa3a50980dbb745a782b8dca">More databases to compare&hellip;</h3>
-
-<p>Over time we&rsquo;ll compare Molecule with as many database systems as possible. Those not linked yet below are on our wish list:</p>
-
-<ul>
-<li><a href="/compare/datomic">Datomic</a></li>
-<li><a href="/compare/sql">SQL</a>
-
-<ul>
-<li><a href="/compare/sql/slick">Slick</a></li>
-<li>Squeryl</li>
-<li>Sqltyped tutorial</li>
-</ul></li>
-<li>Mongodb
-
-<ul>
-<li>Native</li>
-<li>Rogue</li>
-</ul></li>
-<li>Titan</li>
-<li>Neo4j</li>
-<li>Gremlin</li>
-<li>More&hellip;?</li>
-</ul>
-
-<p>If you want to translate one into Molecule, please feel free to submit a pull request or bring up ideas.</p>
+<p>There&rsquo;s a broad range of ways we can query mapped attributes and you can see a lot of examples of their use in
+the <a href="https://github.com/scalamolecule/molecule/tree/master/coretest/src/test/scala/molecule/attrMap"><code>attrMap</code> test cases</a>&hellip;</p>
 
 </div>
 
@@ -172,21 +150,63 @@ val songs = Song.e.artist(id).get
         
           
             
-              <li class="active" style="padding: 2px 9px;"><b>Compare</b></li>
+              <li><a href="http://scalamolecule.org/manual/overview/">Manual</a></li>
               
             
           
             
-              <li><a href="http://scalamolecule.org/compare/datomic/">Datomic</a></li>
+              <li><a href="http://scalamolecule.org/manual/getting-started/">Getting started</a></li>
               
             
           
             
-              <li><a href="http://scalamolecule.org/compare/sql/">SQL</a></li>
+              <li><a href="http://scalamolecule.org/manual/schema/">Schema</a></li>
               
                 <ul style="padding-left:25px;">
                   
-                  <li><a href="http://scalamolecule.org/compare/sql/slick/">Slick</a></li>
+                  <li><a href="http://scalamolecule.org/manual/schema/transaction/">Transaction</a></li>
+                  
+                
+                </ul>
+              
+            
+          
+            
+              <li><a href="http://scalamolecule.org/manual/insert/">Insert</a></li>
+              
+            
+          
+            
+              <li><a href="http://scalamolecule.org/manual/update/">Update/retract</a></li>
+              
+            
+          
+            
+              <li><a href="http://scalamolecule.org/manual/query/">Query</a></li>
+              
+                <ul style="padding-left:25px;">
+                  
+                  <li><a href="http://scalamolecule.org/manual/query/builder/">Builder</a></li>
+                  
+                
+                  
+                  <li class="active"><b>Mapped attributes</b></li>
+                  
+                
+                  
+                  <li><a href="http://scalamolecule.org/manual/query/expressions/">Expressions</a></li>
+                  
+                
+                  
+                  <li><a href="http://scalamolecule.org/manual/query/aggregates/">Aggregates</a></li>
+                  
+                
+                  
+                  <li><a href="http://scalamolecule.org/manual/query/parameterize/">Parameterize</a></li>
+                  
+                
+                  
+                  <li><a href="http://scalamolecule.org/manual/query/relationships/">Relationships</a></li>
                   
                 
                 </ul>

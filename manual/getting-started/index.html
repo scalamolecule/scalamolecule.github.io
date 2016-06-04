@@ -4,7 +4,7 @@
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
   <link href='http://fonts.googleapis.com/css?family=Merriweather+Sans:400,300,300italic,400italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
-  <title>Compare</title>
+  <title>Getting started</title>
   <link href="/css/bootstrap.min.css" rel="stylesheet">
   <link href="/css/highlight/styles/solarized_light.css" rel="stylesheet" />
   <link href="/css/style.css" rel="stylesheet">
@@ -30,7 +30,7 @@
             <li><a href="http://scalamolecule.org/home/about/">About</a></li>
         </ul>
       </li>
-      <li class="dropdown active">
+      <li class="dropdown ">
         <a data-toggle="dropdown" href="http://scalamolecule.org/compare/overview/" target="_top" onclick="javascript:top.location = 'http:\/\/scalamolecule.org\/compare\/overview\/';return true;">Compare</a>
           <ul class="dropdown-menu level1" role="menu" aria-labelledby="dropdownMenu">
             <li><a href="http://scalamolecule.org/compare/datomic/">Datomic</a></li>
@@ -48,7 +48,7 @@
             <li><a href="http://scalamolecule.org/tutorials/seattle/">Seattle</a></li>
         </ul>
       </li>
-      <li class="dropdown ">
+      <li class="dropdown active">
         <a data-toggle="dropdown" href="http://scalamolecule.org/manual/overview/" target="_top" onclick="javascript:top.location = 'http:\/\/scalamolecule.org\/manual\/overview\/';return true;">Manual</a>
           <ul class="dropdown-menu level1" role="menu" aria-labelledby="dropdownMenu">
             <li><a href="http://scalamolecule.org/manual/getting-started/">Getting started</a></li>
@@ -99,69 +99,132 @@
 <div class="col-sm-10 column" style="padding-left:8px;">
 	
 
-<h1 id="other-databases-vs-molecule:68f80267fa3a50980dbb745a782b8dca">Other databases vs. Molecule</h1>
+<h1 id="getting-started-with-molecule:b6885e1f85551f51a4707c402f8200a3">Getting started with Molecule</h1>
 
-<p>Every database/abstraction layer has its strengths and weaknesses and we&rsquo;ll try here to compare existing systems with Molecule with some examples of how they accomplish similar tasks.</p>
+<p>To use Molecule we need to define our database schema in a <a href="/manual/schema">Schema definition</a> file and then tell
+sbt about it. When compiling our project from the command line, all necessary boilerplate code is
+then automatically generated.</p>
 
-<h3 id="others-consume-molecule-declares-data-structures:68f80267fa3a50980dbb745a782b8dca">Others <em>consume</em>, Molecule <em>declares</em> data structures</h3>
+<h2 id="1-sbt-build-settings:b6885e1f85551f51a4707c402f8200a3">1. SBT build settings</h2>
 
-<p>Many systems lets you define data objects matching your domain that are then <em>consumed</em> by the host language (Scala) in combination with DSLs.</p>
+<p>For sbt 0.13.6+ add sbt-molecule as a dependency in <code>project/buildinfo.sbt</code>:</p>
 
-<p>If we take <a href="http://slick.typesafe.com/doc/3.0.0-M1/queries.html#joining-and-zipping">Slick</a> for instance we could say that it &ldquo;<em>consumes</em>&rdquo; the data objects <code>coffees</code> and <code>suppliers</code> in this Scala sequence comprehension:</p>
-
-<pre><code class="language-scala">// Slick
-val implCrossJoin = for {
-  c &lt;- coffees
-  s &lt;- suppliers
-} yield (c.name, s.name)
+<pre><code class="language-scala">addSbtPlugin(&quot;org.scalamolecule&quot; % &quot;sbt-molecule&quot; % &quot;0.1.0&quot;)
 </code></pre>
 
-<p>Whereas in Molecule, we only <em>declare</em> which attributes we are interested in. Molecule attributes <em>themselves</em> form the query - they are not <em>consumed</em> by an outer construct. That way, the domain terms directly form the query without additional keywords and constructs:</p>
+<p>Add the following in your <code>build.sbt</code>:</p>
 
-<pre><code class="language-scala">// Molecule
-val coffeeSupliers = Coffees.name.Suppliers.name.get
+<pre><code class="language-scala">lazy val yourProject = project.in(file(&quot;demo&quot;))
+  .enablePlugins(MoleculePlugin)
+  .settings(
+    resolvers ++= Seq(
+      &quot;datomic&quot; at &quot;http://files.datomic.com/maven&quot;,
+      &quot;clojars&quot; at &quot;http://clojars.org/repo&quot;,
+      Resolver.sonatypeRepo(&quot;releases&quot;),
+      &quot;Scalaz Bintray Repo&quot; at &quot;http://dl.bintray.com/scalaz/releases&quot;
+    ),
+    libraryDependencies ++= Seq(
+      &quot;org.scalamolecule&quot; %% &quot;molecule&quot; % &quot;0.7.0&quot;,
+      &quot;com.datomic&quot; % &quot;datomic-free&quot; % &quot;0.9.5359&quot;
+    ),
+    moleculeSchemas := Seq(&quot;demo&quot;) // paths to your schema definition files...
+  )
 </code></pre>
 
-<p>We get the exact same type-inferred result back, a <code>Seq[(String, String)]</code></p>
+<p>Molecule 0.7.0 for Scala 2.11.8 is available at
+<a href="https://oss.sonatype.org/content/repositories/releases/org/scalamolecule/molecule_2.11/">Sonatype</a>.</p>
 
-<p><a href="http://squeryl.org/selects.html">Squeryl</a> also <em>consumes</em> data objects, now in a DSL construct:</p>
+<h1 id="2-paths-to-schema-definition-files:b6885e1f85551f51a4707c402f8200a3">2. Paths to Schema definition files</h1>
 
-<pre><code class="language-scala">// Squeryl
-def songs = from(MusicDb.songs)(s =&gt; where(s.artistId === id) select(s))
+<p>We use the <code>moleculeSchemas</code> sbt settings key to tell sbt where we have our Schema definition files.</p>
+
+<p>A <a href="/manual/schema">Schema definition</a> file contains a plain Scala object where you define
+partitions/namespaces/attributes of your Datomic database. The MoleculePlugin uses the information
+defined there to create all the boilerplate code needed to use Molecule in your code.</p>
+
+<p>You can have a single or several Schema definition files in a project. Each definition file defines a single database.
+This is useful if you for instance want to experiment with various database designs during development.</p>
+
+<p>Schema definiton files should reside in directories named <code>schema</code> anywhere in your source code.</p>
+
+<p>Use the <code>moleculeSchemas</code> sbt settings key to list the directories in your project source
+code that contains your <code>schema</code> directories.</p>
+
+<p>Say you have a project <code>demo</code> and a single Schema definition file <code>YourDomainDefinition.scala</code>
+defining your database:</p>
+
+<p><img src="/img/dirs1.png" alt="" />
+</p>
+
+<p>Then you simply add <code>moleculeSchemas := Seq(&quot;demo&quot;)</code> as we saw above.</p>
+
+<p>In the main Molecule project&rsquo;s examples module we have several Schema definition files:</p>
+
+<p><img src="/img/dirs2.png" alt="" />
+</p>
+
+<p>And we then list the paths to those like this in our <code>build.sbt</code>:</p>
+
+<pre><code class="language-scala">moleculeSchemas := Seq(
+  &quot;molecule/examples/dayOfDatomic&quot;,
+  &quot;molecule/examples/graph&quot;,
+  &quot;molecule/examples/mbrainz&quot;,
+  &quot;molecule/examples/seattle&quot;
+)
 </code></pre>
 
-<p>In Molecule we don&rsquo;t need to use keywords like <code>from</code>, <code>where</code> and <code>select</code> (apart from the final <code>get</code> method). We instead get song entities (<code>e</code>) filtered by Artist by simply applying a required value directly to the <code>artist</code> attribute:</p>
+<h2 id="3-compile:b6885e1f85551f51a4707c402f8200a3">3. Compile</h2>
 
-<pre><code class="language-scala">// Molecule
-val songs = Song.e.artist(id).get
+<p>Now that you have created a schema definition file and told sbt about where to find it, you can compile
+your project from the terminal</p>
+
+<pre><code>&gt; cd yourProjectRoot
+&gt; sbt compile
 </code></pre>
 
-<h3 id="more-databases-to-compare:68f80267fa3a50980dbb745a782b8dca">More databases to compare&hellip;</h3>
+<p>The MoleculePlugin will now automatically as part of the compilation process do 5 things:</p>
 
-<p>Over time we&rsquo;ll compare Molecule with as many database systems as possible. Those not linked yet below are on our wish list:</p>
+<ol>
+<li>Generate Molecule boilerplate dsl source code files (in the <code>src_managed</code> directory in target)</li>
+<li>Generate a schema file with the necessary code to transact the Datomic schema<br /></li>
+<li>Compile the generated code</li>
+<li>Package both the source code and compiled classes into two <code>jar</code>s and place them in the <code>lib</code> directory of your module</li>
+<li>Remove the generated source code and compiled classes</li>
+</ol>
+
+<p>The MoleculePlugin create the <code>jars</code> so that you can use the boilerplate code without having to recompile any
+generated boilerplate code each time you recompile your project. In our demo example two jars are created:</p>
+
+<p><img src="/img/jars.png" alt="" />
+</p>
+
+<h2 id="4-use-molecule:b6885e1f85551f51a4707c402f8200a3">4. Use Molecule</h2>
+
+<p>The MoleculePlugin has now created all the necessary boilerplate code so that we can start using Molecule. We can
+create a fresh in-memory Datomic database by supplying the generated Schema transaction code in <code>YourDomainSchema</code>
+(from the example above):</p>
+
+<pre><code class="language-scala">import molecule._
+implicit val conn = recreateDbFrom(demo.schema.YourDomainSchema)
+</code></pre>
+
+<p>With the implicit Datomic connection available we can start making molecules:</p>
+
+<pre><code class="language-scala">import demo.dsl.yourDomain._
+
+// Insert data
+Person.name(&quot;John&quot;).age(26).gender(&quot;male&quot;).add
+
+// Retrieve data
+val (person, age, gender) = Person.name.age.gender.one
+</code></pre>
+
+<h4 id="read-more:b6885e1f85551f51a4707c402f8200a3">Read more</h4>
 
 <ul>
-<li><a href="/compare/datomic">Datomic</a></li>
-<li><a href="/compare/sql">SQL</a>
-
-<ul>
-<li><a href="/compare/sql/slick">Slick</a></li>
-<li>Squeryl</li>
-<li>Sqltyped tutorial</li>
-</ul></li>
-<li>Mongodb
-
-<ul>
-<li>Native</li>
-<li>Rogue</li>
-</ul></li>
-<li>Titan</li>
-<li>Neo4j</li>
-<li>Gremlin</li>
-<li>More&hellip;?</li>
+<li><a href="/manual/schema">Schema definition</a></li>
+<li><a href="/manual/schema/transaction">Create Datomic database</a></li>
 </ul>
-
-<p>If you want to translate one into Molecule, please feel free to submit a pull request or bring up ideas.</p>
 
 </div>
 
@@ -172,21 +235,63 @@ val songs = Song.e.artist(id).get
         
           
             
-              <li class="active" style="padding: 2px 9px;"><b>Compare</b></li>
+              <li><a href="http://scalamolecule.org/manual/overview/">Manual</a></li>
               
             
           
             
-              <li><a href="http://scalamolecule.org/compare/datomic/">Datomic</a></li>
+              <li class="active" style="padding: 2px 9px;"><b>Getting started</b></li>
               
             
           
             
-              <li><a href="http://scalamolecule.org/compare/sql/">SQL</a></li>
+              <li><a href="http://scalamolecule.org/manual/schema/">Schema</a></li>
               
                 <ul style="padding-left:25px;">
                   
-                  <li><a href="http://scalamolecule.org/compare/sql/slick/">Slick</a></li>
+                  <li><a href="http://scalamolecule.org/manual/schema/transaction/">Transaction</a></li>
+                  
+                
+                </ul>
+              
+            
+          
+            
+              <li><a href="http://scalamolecule.org/manual/insert/">Insert</a></li>
+              
+            
+          
+            
+              <li><a href="http://scalamolecule.org/manual/update/">Update/retract</a></li>
+              
+            
+          
+            
+              <li><a href="http://scalamolecule.org/manual/query/">Query</a></li>
+              
+                <ul style="padding-left:25px;">
+                  
+                  <li><a href="http://scalamolecule.org/manual/query/builder/">Builder</a></li>
+                  
+                
+                  
+                  <li><a href="http://scalamolecule.org/manual/query/mapped/">Mapped attributes</a></li>
+                  
+                
+                  
+                  <li><a href="http://scalamolecule.org/manual/query/expressions/">Expressions</a></li>
+                  
+                
+                  
+                  <li><a href="http://scalamolecule.org/manual/query/aggregates/">Aggregates</a></li>
+                  
+                
+                  
+                  <li><a href="http://scalamolecule.org/manual/query/parameterize/">Parameterize</a></li>
+                  
+                
+                  
+                  <li><a href="http://scalamolecule.org/manual/query/relationships/">Relationships</a></li>
                   
                 
                 </ul>

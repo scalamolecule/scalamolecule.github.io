@@ -137,7 +137,8 @@
     &lt;/a&gt;
 &lt;/div&gt;
 
-&lt;p&gt;Molecule is a Scala meta-DSL that translates &amp;ldquo;molecules&amp;rdquo; of your domain attributes to Datalog queries for &lt;a href=&#34;http://www.datomic.com&#34;&gt;Datomic&lt;/a&gt; - the database of immutable facts.&lt;/p&gt;
+&lt;p&gt;Molecule is a Scala meta-DSL that translates &amp;ldquo;molecules&amp;rdquo; of your domain attributes to Datalog queries
+for &lt;a href=&#34;http://www.datomic.com&#34;&gt;Datomic&lt;/a&gt; - the database of immutable facts.&lt;/p&gt;
 
 &lt;h3 id=&#34;how-does-it-work:ffcff61ab3a11ef1d50900901a24ec54&#34;&gt;How does it work?&lt;/h3&gt;
 
@@ -147,7 +148,9 @@
     &lt;/div&gt;
     &lt;div class=&#34;section&#34;&gt;
         &lt;h4 id=&#34;define-schema-once:ffcff61ab3a11ef1d50900901a24ec54&#34;&gt;Define schema (once)&lt;/h4&gt;
-        &lt;p&gt;Our domain could have a &lt;code&gt;Person&lt;/code&gt; with attributes &lt;code&gt;name&lt;/code&gt; and &lt;code&gt;age&lt;/code&gt; having a relationship to an &lt;code&gt;Address&lt;/code&gt; so we define a schema for our domain:&lt;/p&gt;
+        &lt;p&gt;Our domain could have a &lt;code&gt;Person&lt;/code&gt; with attributes 
+        &lt;code&gt;name&lt;/code&gt; and &lt;code&gt;age&lt;/code&gt; having a relationship to an 
+        &lt;code&gt;Address&lt;/code&gt; so we define a schema for our domain:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;trait Person {
   val name    = oneString
@@ -159,7 +162,6 @@ trait Address {
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-        &lt;p&gt;When we run &lt;code&gt;sbt compile&lt;/code&gt; Molecule uses our schema as a template to generate some boilerplate code so that we can compose intuitive and powerful query molecules. This step is only done once in the beginning (or when you need to change the schema).&lt;/p&gt;
     &lt;/div&gt;
 &lt;/div&gt;
 
@@ -168,17 +170,15 @@ trait Address {
         &lt;div class=&#34;sequence-step&#34;&gt;2&lt;/div&gt;
     &lt;/div&gt;
     &lt;div class=&#34;section&#34;&gt;
-        &lt;h4 id=&#34;make-molecules:ffcff61ab3a11ef1d50900901a24ec54&#34;&gt;Make molecules&lt;/h4&gt;
-        &lt;p&gt;Now we can make Molecule queries &lt;em&gt;with the words of our domain&lt;/em&gt; as we saw above:&lt;/p&gt;
+        &lt;h4 id=&#34;compile-once:ffcff61ab3a11ef1d50900901a24ec54&#34;&gt;Compile (once)&lt;/h4&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.name.age.Address.street.get
-Person.name(&amp;quot;Lisa&amp;quot;).age.get
-Person.name(&amp;quot;Lisa&amp;quot;).age.&amp;lt;(18).get
-Person.name(&amp;quot;Lisa&amp;quot; or &amp;quot;Linda&amp;quot;).age.Address.street.contains(&amp;quot;5th&amp;quot;).get
-// etc..        
+&lt;pre&gt;&lt;code&gt;&gt; cd yourProjectRoot
+&gt; sbt compile
 &lt;/code&gt;&lt;/pre&gt;
 
-        &lt;p&gt;The implicit macro &lt;code&gt;get&lt;/code&gt; turns our molecule into a valid Datalog query at compile time. So there&#39;s no runtime overhead. 
+        &lt;p&gt;Molecule uses our schema as a template to 
+        generate some boilerplate code so that we can compose intuitive and powerful 
+        query molecules. This step is only needed when we create or change our schema.&lt;/p&gt;
     &lt;/div&gt;
 &lt;/div&gt;
 
@@ -187,9 +187,28 @@ Person.name(&amp;quot;Lisa&amp;quot; or &amp;quot;Linda&amp;quot;).age.Address.s
         &lt;div class=&#34;sequence-step&#34;&gt;3&lt;/div&gt;
     &lt;/div&gt;
     &lt;div class=&#34;section&#34;&gt;
-        &lt;h4 id=&#34;run-queries:ffcff61ab3a11ef1d50900901a24ec54&#34;&gt;Run queries&lt;/h4&gt;
-        &lt;p&gt;The generated Datalog queries are executed against Datomic and we can get our type-inferred result sets back from Datomic as tuples:&lt;/p&gt;
-        &lt;pre&gt;&lt;code&gt;val persons: Seq[(String, Int)] = Person.name.age.get&lt;/code&gt;&lt;/pre&gt;
+        &lt;h4 id=&#34;use-molecules:ffcff61ab3a11ef1d50900901a24ec54&#34;&gt;Use molecules&lt;/h4&gt;
+        &lt;p&gt;Now we can insert data with molecules:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.name.age.Address.street insert List(
+  (&#34;Lisa&#34;, 20, &#34;Broadway&#34;),
+  (&#34;John&#34;, 22, &#34;Fifth Avenue&#34;)
+)
+&lt;/code&gt;&lt;/pre&gt;
+
+        &lt;p&gt;And retrieve data:&lt;/p&gt;
+        
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.name.age.Address.street.get === List(
+  (&#34;Lisa&#34;, 20, &#34;Broadway&#34;),
+  (&#34;John&#34;, 22, &#34;Fifth Avenue&#34;)
+)     
+&lt;/code&gt;&lt;/pre&gt;
+
+        &lt;p&gt;The implicit macros &lt;code&gt;insert&lt;/code&gt; and &lt;code&gt;get&lt;/code&gt; turns our molecules
+         into type-safe Datalog inserts and queries at compile time. So there&#39;s no runtime overhead.&lt;/p&gt; 
+        
+        
+        
     &lt;/div&gt;
 &lt;/div&gt;
 
@@ -203,12 +222,9 @@ Person.name(&amp;quot;Lisa&amp;quot; or &amp;quot;Linda&amp;quot;).age.Address.s
 &lt;li&gt;Run app - and build new molecules&amp;hellip;&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h3 id=&#34;molecule-in-your-own-project:ffcff61ab3a11ef1d50900901a24ec54&#34;&gt;Molecule in your own project&lt;/h3&gt;
+&lt;h3 id=&#34;next:ffcff61ab3a11ef1d50900901a24ec54&#34;&gt;Next&lt;/h3&gt;
 
-&lt;p&gt;Add Molecule dependency to your project&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;&amp;quot;org.scalamolecule&amp;quot; %% &amp;quot;molecule&amp;quot; % &amp;quot;0.6.3&amp;quot;
-&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;a href=&#34;http://scalamolecule.org/manual/getting-started&#34;&gt;Get started&amp;hellip;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;read-more:ffcff61ab3a11ef1d50900901a24ec54&#34;&gt;Read more&lt;/h3&gt;
 
@@ -320,62 +336,6 @@ Entity  Attribute  Value  Transaction/time
 &lt;p&gt;Go straight to the &lt;a href=&#34;http://scalamolecule.org/tutorials/seattle&#34;&gt;Molecule Seattle tutorial&lt;/a&gt; to see a wide range of
  queries that Molecule can express, or check out first how we use Molecule to
  &lt;a href=&#34;http://scalamolecule.org/manual/setup&#34;&gt;setup the database&lt;/a&gt; and &lt;a href=&#34;http://scalamolecule.org/manual/insert&#34;&gt;populated it with data&lt;/a&gt;.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Setup</title>
-      <link>http://scalamolecule.org/home/setup/</link>
-      <pubDate>Wed, 14 May 2014 02:13:50 UTC</pubDate>
-      
-      <guid>http://scalamolecule.org/home/setup/</guid>
-      <description>
-
-&lt;h1 id=&#34;setup-molecule:2cc0b07f42930e4520820be1fe66f913&#34;&gt;Setup Molecule&lt;/h1&gt;
-
-&lt;h3 id=&#34;download-the-molecule-library-with-all-tests:2cc0b07f42930e4520820be1fe66f913&#34;&gt;Download the Molecule library with all tests&lt;/h3&gt;
-
-&lt;ol&gt;
-&lt;li&gt;&lt;code&gt;git clone https://github.com/scalamolecule/molecule.git&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;cd molecule&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;sbt compile&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Open in your IDE&lt;/li&gt;
-&lt;li&gt;Run tests and poke around&amp;hellip;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h3 id=&#34;or-try-the-demo-project:2cc0b07f42930e4520820be1fe66f913&#34;&gt;Or try the demo project&amp;hellip;&lt;/h3&gt;
-
-&lt;ol&gt;
-&lt;li&gt;&lt;code&gt;git clone https://github.com/scalamolecule/molecule-demo.git&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;cd molecule-demo&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;sbt compile&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Open in your IDE&lt;/li&gt;
-&lt;li&gt;Run tests and poke around&amp;hellip;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h3 id=&#34;dependency-in-your-project:2cc0b07f42930e4520820be1fe66f913&#34;&gt;Dependency in your project&lt;/h3&gt;
-
-&lt;p&gt;Molecule 0.6.3 for Scala 2.11.8 is available at &lt;a href=&#34;https://oss.sonatype.org/content/repositories/releases/org/scalamolecule/molecule_2.11/&#34;&gt;Sonatype&lt;/a&gt; so that you can add a dependency in your sbt file:&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;&amp;quot;org.scalamolecule&amp;quot; % &amp;quot;molecule_2.11&amp;quot; % &amp;quot;0.6.3&amp;quot;&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;Since Molecule generates boilerplate code from your definitions it also needs to have the &lt;code&gt;MoleculeBoilerplate.scala&lt;/code&gt; file in your project folder. Add a copy of this file to your own project before compiling with sbt:&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;Setup your sbt build file [as in Molecule][moleculesbt]:
-
-&lt;ul&gt;
-&lt;li&gt;Add library dependency&lt;br&gt;
-&lt;code&gt;&amp;quot;org.scalamolecule&amp;quot; % &amp;quot;molecule_2.11&amp;quot; % &amp;quot;0.6.3&amp;quot;&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;List directories where you have your &lt;a href=&#34;http://scalamolecule.org/manual/setup&#34;&gt;definition file(s)&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;Define your domain schema in a &lt;a href=&#34;http://scalamolecule.org/manual/schema-definition&#34;&gt;schema definition file&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;sbt compile&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Open in your IDE&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/manual/setup&#34;&gt;Setup your database&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/manual/populate-database&#34;&gt;Populate your database&lt;/a&gt; with data&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/tutorials/seattle&#34;&gt;Make molecule queries&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;
 </description>
     </item>
     

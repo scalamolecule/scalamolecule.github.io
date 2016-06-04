@@ -23,7 +23,8 @@
 
 &lt;p&gt;The basic philosophy of Molecule is to think from the User&amp;rsquo;s perspective towards a technical solution.&lt;/p&gt;
 
-&lt;p&gt;The priority is always to make it as easy as possible for the end User to make Datomic queries, no matter how challenging on the Molecule backend.&lt;/p&gt;
+&lt;p&gt;The priority is always to make it as easy as possible for the end User to make Datomic queries, no matter
+how challenging on the Molecule backend.&lt;/p&gt;
 
 &lt;p&gt;When we asked&lt;/p&gt;
 
@@ -48,21 +49,10 @@ m(firstName ~ lastName ~ age) // all fields of a `Person` trait...
 
 &lt;h3 id=&#34;generated-boilerplate-code:68f80267fa3a50980dbb745a782b8dca&#34;&gt;Generated boilerplate code&lt;/h3&gt;
 
-&lt;p&gt;The builder pattern has shown a surprising strong capacity to express a wide range of query constructs. But it also requires an extensive amount of boilerplace code to work.&lt;/p&gt;
+&lt;p&gt;The builder pattern has shown a surprising strong capacity to express a wide range of query constructs. But it also
+ requires an extensive amount of boilerplace code to work.&lt;/p&gt;
 
 &lt;p&gt;We therefore generate all boilerplate code automatically when we compile our project with &lt;code&gt;sbt compile&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;From a minimal definition of for instance an attribute&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val name = oneString.fullTextSearch // maybe more options...
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;we have enough information about type, cardinality and options to generate the following artifacts:&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/developer/txdata&#34;&gt;Schema transaction data&lt;/a&gt; (in a Datomic format)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/developer/boilerplate&#34;&gt;Scala code&lt;/a&gt; to build molecules&lt;/li&gt;
-&lt;/ol&gt;
 
 &lt;h3 id=&#34;scala-macro-transformations:68f80267fa3a50980dbb745a782b8dca&#34;&gt;Scala macro transformations&lt;/h3&gt;
 
@@ -99,116 +89,11 @@ m(firstName ~ lastName ~ age) // all fields of a `Person` trait...
 
 &lt;h3 id=&#34;closed-eco-system:68f80267fa3a50980dbb745a782b8dca&#34;&gt;Closed eco-system&lt;/h3&gt;
 
-&lt;p&gt;Since we create our molecules from our self-generated boilerplate code our macros have full knowledge about the possible constructs we can expect. We are therefore in full control of the entire &amp;ldquo;eco-system&amp;rdquo; from molecule to Datomic query. Non-valid molecules simply won&amp;rsquo;t compile. And we can infer all type information from our molecules.&lt;/p&gt;
+&lt;p&gt;Since we create our molecules from our self-generated boilerplate code our macros have full knowledge about the
+possible constructs we can expect. We are therefore in full control of the entire &amp;ldquo;eco-system&amp;rdquo; from molecule
+ to Datomic query. Non-valid molecules simply won&amp;rsquo;t compile. And we can infer all type information from our molecules.&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&#34;http://scalamolecule.org/developer/transformation&#34;&gt;Read more about the macro transformations&amp;hellip;&lt;/a&gt;&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Schema transaction</title>
-      <link>http://scalamolecule.org/developer/schema-transaction/</link>
-      <pubDate>Wed, 14 May 2014 02:13:50 UTC</pubDate>
-      
-      <guid>http://scalamolecule.org/developer/schema-transaction/</guid>
-      <description>
-
-&lt;h1 id=&#34;schema-transaction:ad55bccf37fdd3dc9a19f824754d7f64&#34;&gt;Schema transaction&lt;/h1&gt;
-
-&lt;p&gt;In &lt;a href=&#34;http://scalamolecule.org/manual/schema/attributes&#34;&gt;Schema definition files&lt;/a&gt; like the
-&lt;a href=&#34;https://github.com/scalamolecule/molecule/blob/master/examples/src/main/scala/molecule/examples/seattle/schema/SeattleDefinition.scala&#34;&gt;Seattle example definition&lt;/a&gt;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;object SeattleDefinition {
-  trait Community {
-    val name = oneString.fullTextSearch
-    // more attributes...
-  }
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;we define a number of namespaces each containing some attributes that can be of various types as we saw in
-&lt;a href=&#34;http://www.scalamolecule.org/manual/schema/attributes/&#34;&gt;Define Attributes in a Schema&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;Above we see the
-definition of a &lt;code&gt;name&lt;/code&gt; attribute of the &lt;code&gt;Community&lt;/code&gt; namespace that gives us the following information:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;name of the attribute (&amp;ldquo;name&amp;rdquo;)&lt;/li&gt;
-&lt;li&gt;cardinality (&amp;ldquo;one&amp;rdquo;)&lt;/li&gt;
-&lt;li&gt;type (String)&lt;/li&gt;
-&lt;li&gt;options (fullTextSearch)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&#34;schema-transaction-data:ad55bccf37fdd3dc9a19f824754d7f64&#34;&gt;Schema transaction data&lt;/h3&gt;
-
-&lt;p&gt;In order to transact our desired Datomic schema, Molecule transforms our schema definition file to
-basically a &lt;code&gt;java.util.List&lt;/code&gt; containing a &lt;code&gt;java.util.Map&lt;/code&gt;
-of information for each attribute that we want.&lt;/p&gt;
-
-&lt;p&gt;Our &lt;code&gt;name&lt;/code&gt; attribute
-for instance requires the following map of information to be transacted in Datomic:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;object SeattleSchema extends Transaction {
-  
-  lazy val partitions = Util.list()
-
-  lazy val namespaces = Util.list(
-    
-    // Community --------------------------------------------------------
-
-    Util.map(&amp;quot;:db/ident&amp;quot;             , &amp;quot;:community/name&amp;quot;,
-             &amp;quot;:db/valueType&amp;quot;         , &amp;quot;:db.type/string&amp;quot;,
-             &amp;quot;:db/cardinality&amp;quot;       , &amp;quot;:db.cardinality/one&amp;quot;,
-             &amp;quot;:db/fulltext&amp;quot;          , true.asInstanceOf[Object],
-             &amp;quot;:db/index&amp;quot;             , true.asInstanceOf[Object],
-             &amp;quot;:db/id&amp;quot;                , Peer.tempid(&amp;quot;:db.part/db&amp;quot;),
-             &amp;quot;:db.install/_attribute&amp;quot;, &amp;quot;:db.part/db&amp;quot;),
-             
-    // etc...
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;If you look closely, you&amp;rsquo;ll see that the &lt;code&gt;Community&lt;/code&gt; namespace information is present in the
-value of the first pair in the map, namely&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;&amp;quot;:db/ident&amp;quot;, &amp;quot;:community/name&amp;quot;,
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;The rest of the lines are pretty self-describing except from the last two that create and save the
-internal id of the attribute in Datomic. &lt;a href=&#34;http://docs.datomic.com/schema.html&#34;&gt;Datomic schemas&lt;/a&gt; are
-literally a set of datoms that have been transacted as any other data!&lt;/p&gt;
-
-&lt;h3 id=&#34;partition-transaction-data:ad55bccf37fdd3dc9a19f824754d7f64&#34;&gt;Partition transaction data&lt;/h3&gt;
-
-&lt;p&gt;Partition transaction data looks almost like attribute transaction data:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;lazy val partitions = Util.list(
-
-Util.map(&amp;quot;:db/ident&amp;quot;             , &amp;quot;:gen&amp;quot;,
-         &amp;quot;:db/id&amp;quot;                , Peer.tempid(&amp;quot;:db.part/db&amp;quot;),
-         &amp;quot;:db.install/_partition&amp;quot;, &amp;quot;:db.part/db&amp;quot;),
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&amp;hellip; except that the information is now installed internally in Datomic as partition data instead of as attribute data.&lt;/p&gt;
-
-&lt;p&gt;Partition examples:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/scalamolecule/molecule/blob/master/coretest/src/main/scala/molecule/part/schema/PartitionTestDefinition.scala&#34;&gt;partitioned schema definition&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/scalamolecule/molecule/blob/master/coretest/src/main/scala/molecule/part/schema/PartitionTestDefinition.scala&#34;&gt;partition tests&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&#34;transacting-partitions-and-schema:ad55bccf37fdd3dc9a19f824754d7f64&#34;&gt;Transacting Partitions and Schema&lt;/h3&gt;
-
-&lt;p&gt;Now we can simply pass the generated raw transaction data to Datomic in order to create our partitions/schema:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val uri = &amp;quot;datomic:mem://your-db-name&amp;quot;
-val conn = datomic.Peer.connect(uri)
-conn.transact(SeattleSchema.partitions)
-conn.transact(SeattleSchema.namespaces)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;And voilá, the Datomic partitions and schema are created!&lt;/p&gt;
 </description>
     </item>
     
@@ -260,39 +145,49 @@ trait Community_2[A, B] extends Community with Out_2[Community_2, Community_3, C
 
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;The type information passed on from each step of building a molecule enables our IDE to infer the type of our molecule and suggest possible further building blocks.&lt;/p&gt;
+&lt;p&gt;The type information passed on from each step of building a molecule enables our IDE to infer the type of our molecule
+and suggest possible further building blocks.&lt;/p&gt;
 
 &lt;h3 id=&#34;input-molecules:36a3cc328100a137a125b621a816413d&#34;&gt;Input molecules&lt;/h3&gt;
 
-&lt;p&gt;The &lt;code&gt;Community_In_1_0&lt;/code&gt; is a trait that the builder jumps to if we make en input molecule like &lt;code&gt;Community.name(?)&lt;/code&gt;. From there on Molecule knows that we expect to receive an input for the placeholder &lt;code&gt;?&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;The &lt;code&gt;Community_In_1_0&lt;/code&gt; is a trait that the builder jumps to if we make en input molecule like &lt;code&gt;Community.name(?)&lt;/code&gt;.
+From there on Molecule knows that we expect to receive an input for the placeholder &lt;code&gt;?&lt;/code&gt;.&lt;/p&gt;
 
 &lt;h3 id=&#34;arity:36a3cc328100a137a125b621a816413d&#34;&gt;Arity&lt;/h3&gt;
 
-&lt;p&gt;The annotation &lt;code&gt;@InOut(3,8)&lt;/code&gt; on the schema trait tells molecule how long molecules we expect to create. This is to not always generate the possible arity of 22 which causes a significant chunk of boilerplate code!&lt;/p&gt;
+&lt;p&gt;The annotation &lt;code&gt;@InOut(3,8)&lt;/code&gt; on the schema trait tells molecule how long molecules we expect to create. This is to
+not always generate the possible arity of 22 which causes a significant chunk of boilerplate code!&lt;/p&gt;
 
-&lt;p&gt;We also have to remember that this is not a limitation of &lt;em&gt;how many attribute values&lt;/em&gt; we can find but rather a limitation of how many &lt;em&gt;where clauses&lt;/em&gt; we can have since each added attribute to our molecules generates it&amp;rsquo;s corresponding where clause. In that respect it seems a very seldom necessity to have 22 where clauses!&lt;/p&gt;
+&lt;p&gt;We also have to remember that this is not a limitation of &lt;em&gt;how many attribute values&lt;/em&gt; we can find but rather a
+limitation of how many &lt;em&gt;where clauses&lt;/em&gt; we can have since each added attribute to our molecules generates it&amp;rsquo;s
+corresponding where clause. In that respect it seems a very seldom necessity to have 22 where clauses!&lt;/p&gt;
 
 &lt;h3 id=&#34;entity-api:36a3cc328100a137a125b621a816413d&#34;&gt;Entity API&lt;/h3&gt;
 
-&lt;p&gt;A way to gather additional/optional values from a query is to use the entity API by applying an attribute name to an entity id from the query:&lt;/p&gt;
+&lt;p&gt;A way to gather additional/optional values from a query is to use the entity API by applying an attribute name
+to an entity id from the query:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;communityId(&amp;quot;:community/url&amp;quot;) === Some(&amp;quot;http://eastballard.com/&amp;quot;)
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;This gives us an optional value back if an attribute value has been asserted for this entity.&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&#34;https://github.com/scalamolecule/molecule/blob/master/examples/src/test/scala/molecule/examples/seattle/SeattleTests.scala#L24-L52&#34;&gt;See full entity api example&amp;hellip;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/scalamolecule/molecule/blob/master/examples/src/test/scala/molecule/examples/seattle/SeattleTests.scala#L24-L52&#34;&gt;See entity api example&lt;/a&gt; and
+&lt;a href=&#34;https://github.com/scalamolecule/molecule/blob/master/coretest/src/test/scala/molecule/EntityAPI.scala&#34;&gt;tests&lt;/a&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;tacet-attributes:36a3cc328100a137a125b621a816413d&#34;&gt;Tacet attributes&lt;/h3&gt;
 
-&lt;p&gt;The &lt;code&gt;name_&lt;/code&gt; attributes are &amp;ldquo;tacet&amp;rdquo; attributes that cause a :where clause in the query but doesn&amp;rsquo;t return any data (no variable in the :find section of the produced query). This is to be able to skip returning data of attributes that we for instance apply a constant value to&lt;/p&gt;
+&lt;p&gt;The &lt;code&gt;name_&lt;/code&gt; attributes are &amp;ldquo;tacet&amp;rdquo; attributes that cause a :where clause in the query but doesn&amp;rsquo;t return any data
+(no variable in the :find section of the produced query). This is to be able to skip returning data of attributes
+that we for instance apply a constant value to&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.name.age_(28).get // no need to return age values (all 28)
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;h3 id=&#34;type-inferring:36a3cc328100a137a125b621a816413d&#34;&gt;Type inferring&lt;/h3&gt;
 
-&lt;p&gt;The end user doesn&amp;rsquo;t have to know about any of the generated boilerplate code since the IDE will take care of inferring and suggesting the possible types to proceed with.&lt;/p&gt;
+&lt;p&gt;The end user doesn&amp;rsquo;t have to know about any of the generated boilerplate code since the IDE will take care of
+inferring and suggesting the possible types to proceed with.&lt;/p&gt;
 </description>
     </item>
     

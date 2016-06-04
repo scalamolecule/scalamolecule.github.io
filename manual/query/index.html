@@ -27,7 +27,6 @@
           <ul class="dropdown-menu level1" role="menu" aria-labelledby="dropdownMenu">
             <li><a href="http://scalamolecule.org/home/front/">Home</a></li>
             <li><a href="http://scalamolecule.org/home/introduction/">Introduction</a></li>
-            <li><a href="http://scalamolecule.org/home/setup/">Setup</a></li>
             <li><a href="http://scalamolecule.org/home/about/">About</a></li>
         </ul>
       </li>
@@ -52,25 +51,20 @@
       <li class="dropdown active">
         <a data-toggle="dropdown" href="http://scalamolecule.org/manual/overview/" target="_top" onclick="javascript:top.location = 'http:\/\/scalamolecule.org\/manual\/overview\/';return true;">Manual</a>
           <ul class="dropdown-menu level1" role="menu" aria-labelledby="dropdownMenu">
+            <li><a href="http://scalamolecule.org/manual/getting-started/">Getting started</a></li>
             <li class="dropdown-submenu">
               <a href="http://scalamolecule.org/manual/schema/">Schema</a>
               <ul class="dropdown-menu">
-                <li><a href="http://scalamolecule.org/manual/schema/files/">Files</a></li>
-                <li><a href="http://scalamolecule.org/manual/schema/attributes/">Attributes</a></li>
-                <li><a href="http://scalamolecule.org/manual/schema/partitions/">Partitions</a></li>
-                <li><a href="http://scalamolecule.org/manual/schema/modelling/">Modelling</a></li>
-                <li><a href="http://scalamolecule.org/manual/schema/boilerplate/">Boilerplate</a></li>
-                <li><a href="http://scalamolecule.org/manual/schema/datomic-schema/">Datomic</a></li>
+                <li><a href="http://scalamolecule.org/manual/schema/transaction/">Transaction</a></li>
               </ul>
             </li>
-            <li><a href="http://scalamolecule.org/manual/setup/">Setup</a></li>
             <li><a href="http://scalamolecule.org/manual/insert/">Insert</a></li>
             <li><a href="http://scalamolecule.org/manual/update/">Update/retract</a></li>
             <li class="dropdown-submenu">
               <a href="http://scalamolecule.org/manual/query/">Query</a>
               <ul class="dropdown-menu">
                 <li><a href="http://scalamolecule.org/manual/query/builder/">Builder</a></li>
-                <li><a href="http://scalamolecule.org/manual/query/types/">Types</a></li>
+                <li><a href="http://scalamolecule.org/manual/query/mapped/">Mapped attributes</a></li>
                 <li><a href="http://scalamolecule.org/manual/query/expressions/">Expressions</a></li>
                 <li><a href="http://scalamolecule.org/manual/query/aggregates/">Aggregates</a></li>
                 <li><a href="http://scalamolecule.org/manual/query/parameterize/">Parameterize</a></li>
@@ -82,7 +76,6 @@
       <li class="dropdown ">
         <a data-toggle="dropdown" href="http://scalamolecule.org/developer/overview/" target="_top" onclick="javascript:top.location = 'http:\/\/scalamolecule.org\/developer\/overview\/';return true;">Developer</a>
           <ul class="dropdown-menu level1" role="menu" aria-labelledby="dropdownMenu">
-            <li><a href="http://scalamolecule.org/developer/schema-transaction/">Schema transaction</a></li>
             <li><a href="http://scalamolecule.org/developer/boilerplate/">Boilerplate</a></li>
             <li><a href="http://scalamolecule.org/developer/transformation/">Transformation</a></li>
         </ul>
@@ -108,44 +101,50 @@
 
 <h1 id="molecule-queries:f7a7255cb61c59dcad3a015980d2faca">Molecule Queries</h1>
 
-<p><a href="/manual/query/builder">Build molecules</a> with the builder pattern</p>
+<p><a href="/manual/query/builder">Building molecules</a> with the builder pattern
+(<a href="https://github.com/scalamolecule/molecule/blob/master/coretest/src/test/scala/molecule/Attribute.scala">tests</a>)</p>
 
 <pre><code class="language-scala">Person.name.age.gender  // require values
 Person.name.age_.gender // require but omit values (&quot;tacet values&quot;)
 </code></pre>
 
-<p><a href="/manual/query/types">Types</a> - all types inferred by IDE</p>
+<p><a href="/manual/query/mapped">Maped values</a> - mapped attribute values
+(<a href="https://github.com/scalamolecule/molecule/tree/master/coretest/src/test/scala/molecule/attrMap">tests</a>)</p>
 
-<pre><code class="language-scala">val name   : String      = Person.name.one
-val age    : Int         = Person.age.one
-val hobbies: Set[String] = Person.hobbies.one // cardinality-many
-val gender : String      = Person.gender.one  // enum values
+<pre><code class="language-scala">Person.id.name.one === (
+  1, 
+  Map(
+    &quot;en&quot; -&gt; &quot;Dmitri Shostakovich&quot;,
+    &quot;de&quot; -&gt; &quot;Dmitri Schostakowitsch&quot;,
+    &quot;fr&quot; -&gt; &quot;Dmitri Chostakovitch&quot;,
+    &quot;es&quot; -&gt; &quot;Dmitri Shostakóvich&quot;
+  )
+)
 </code></pre>
 
-<p><a href="/manual/query/expressions">Expressions</a> - filter attribute values with expressions</p>
+<p><a href="/manual/query/expressions">Expressions</a> - filter attribute values with expressions
+(<a href="https://github.com/scalamolecule/molecule/tree/master/coretest/src/test/scala/molecule/expression">tests</a>)</p>
 
-<pre><code class="language-scala">Person.age(42)               // equal value
-Person.age.!=(42)            // negate values
-Person.age.&lt;(42)             // compare values
-Person.age.&gt;(42)             // compare values
-Person.age.&lt;=(42)            // compare values
-Person.age.&gt;=(42)            // compare values
-Person.name.contains(&quot;John&quot;) // fulltext search
+<pre><code class="language-scala">Person.age(42)                  // equal value
+Person.age.!=(42)               // negate values
+Person.age.&lt;(42)                // compare values
+Person.age.&gt;(42)                // compare values
+Person.age.&lt;=(42)               // compare values
+Person.age.&gt;=(42)               // compare values
+Person.name.contains(&quot;John&quot;)    // fulltext search
+Person.name(&quot;John&quot; or &quot;Jonas&quot;)  // OR-logic
 </code></pre>
 
-<p><a href="/manual/query/aggregates">Aggregates</a> - aggregate attribute values</p>
+<p><a href="/manual/query/aggregates">Aggregates</a> - aggregate attribute values
+(<a href="https://github.com/scalamolecule/molecule/blob/master/examples/src/test/scala/molecule/examples/dayOfDatomic/Aggregates.scala">tests</a>)</p>
 
 <pre><code class="language-scala">Person.age(min) 
 Person.age(max) 
 // rand, sample, count, countDistinct, sum, avg, median, variance, stddev
 </code></pre>
 
-<p><a href="/manual/query/or-logic">OR-logic</a> - apply OR logic to collect alternative values</p>
-
-<pre><code class="language-scala">Person.name(&quot;John&quot; or &quot;Jonas&quot;)
-</code></pre>
-
-<p><a href="/manual/query/parameterize">Parameterize</a> - re-use molecules and let Datomic cache queries and optimize performance</p>
+<p><a href="/manual/query/parameterize">Parameterize</a> - re-use molecules and let Datomic cache queries and optimize performance
+(<a href="https://github.com/scalamolecule/molecule/blob/master/coretest/src/test/scala/molecule/Input.scala">tests</a>)</p>
 
 <pre><code class="language-scala">val person = Person.name(?).age(?)
 
@@ -154,7 +153,8 @@ val Johan  = person(&quot;John&quot;, 33).one
 val Lisa   = person(&quot;Lisa&quot;, 27).one
 </code></pre>
 
-<p><a href="/manual/query/relationships">Relationships</a> - Connect namespaces with relationships</p>
+<p><a href="/manual/query/relationships">Relationships</a> - Connect namespaces with relationships (<a href="https://github.com/scalamolecule/molecule/blob/master/coretest/src/test/scala/molecule/Relations.scala">relationship tests</a>
+and <a href="https://github.com/scalamolecule/molecule/blob/master/coretest/src/test/scala/molecule/SelfJoin.scala">self-join tests</a>)</p>
 
 <pre><code class="language-scala">Person.name.City.name.Country.name
 </code></pre>
@@ -173,39 +173,19 @@ val Lisa   = person(&quot;Lisa&quot;, 27).one
             
           
             
-              <li><a href="http://scalamolecule.org/manual/schema/">Schema</a></li>
-              
-                <ul style="padding-left:25px;">
-                  
-                  <li><a href="http://scalamolecule.org/manual/schema/files/">Files</a></li>
-                  
-                
-                  
-                  <li><a href="http://scalamolecule.org/manual/schema/attributes/">Attributes</a></li>
-                  
-                
-                  
-                  <li><a href="http://scalamolecule.org/manual/schema/partitions/">Partitions</a></li>
-                  
-                
-                  
-                  <li><a href="http://scalamolecule.org/manual/schema/modelling/">Modelling</a></li>
-                  
-                
-                  
-                  <li><a href="http://scalamolecule.org/manual/schema/boilerplate/">Boilerplate</a></li>
-                  
-                
-                  
-                  <li><a href="http://scalamolecule.org/manual/schema/datomic-schema/">Datomic</a></li>
-                  
-                
-                </ul>
+              <li><a href="http://scalamolecule.org/manual/getting-started/">Getting started</a></li>
               
             
           
             
-              <li><a href="http://scalamolecule.org/manual/setup/">Setup</a></li>
+              <li><a href="http://scalamolecule.org/manual/schema/">Schema</a></li>
+              
+                <ul style="padding-left:25px;">
+                  
+                  <li><a href="http://scalamolecule.org/manual/schema/transaction/">Transaction</a></li>
+                  
+                
+                </ul>
               
             
           
@@ -224,7 +204,7 @@ val Lisa   = person(&quot;Lisa&quot;, 27).one
               
                 <ul style="padding-left:25px;">
                   <li><a href="http://scalamolecule.org/manual/query/builder/">Builder</a></li>
-                  <li><a href="http://scalamolecule.org/manual/query/types/">Types</a></li>
+                  <li><a href="http://scalamolecule.org/manual/query/mapped/">Mapped attributes</a></li>
                   <li><a href="http://scalamolecule.org/manual/query/expressions/">Expressions</a></li>
                   <li><a href="http://scalamolecule.org/manual/query/aggregates/">Aggregates</a></li>
                   <li><a href="http://scalamolecule.org/manual/query/parameterize/">Parameterize</a></li>

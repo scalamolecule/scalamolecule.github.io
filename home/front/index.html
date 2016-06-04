@@ -27,7 +27,6 @@
           <ul class="dropdown-menu level1" role="menu" aria-labelledby="dropdownMenu">
             <li><a href="http://scalamolecule.org/home/front/">Home</a></li>
             <li><a href="http://scalamolecule.org/home/introduction/">Introduction</a></li>
-            <li><a href="http://scalamolecule.org/home/setup/">Setup</a></li>
             <li><a href="http://scalamolecule.org/home/about/">About</a></li>
         </ul>
       </li>
@@ -52,25 +51,20 @@
       <li class="dropdown ">
         <a data-toggle="dropdown" href="http://scalamolecule.org/manual/overview/" target="_top" onclick="javascript:top.location = 'http:\/\/scalamolecule.org\/manual\/overview\/';return true;">Manual</a>
           <ul class="dropdown-menu level1" role="menu" aria-labelledby="dropdownMenu">
+            <li><a href="http://scalamolecule.org/manual/getting-started/">Getting started</a></li>
             <li class="dropdown-submenu">
               <a href="http://scalamolecule.org/manual/schema/">Schema</a>
               <ul class="dropdown-menu">
-                <li><a href="http://scalamolecule.org/manual/schema/files/">Files</a></li>
-                <li><a href="http://scalamolecule.org/manual/schema/attributes/">Attributes</a></li>
-                <li><a href="http://scalamolecule.org/manual/schema/partitions/">Partitions</a></li>
-                <li><a href="http://scalamolecule.org/manual/schema/modelling/">Modelling</a></li>
-                <li><a href="http://scalamolecule.org/manual/schema/boilerplate/">Boilerplate</a></li>
-                <li><a href="http://scalamolecule.org/manual/schema/datomic-schema/">Datomic</a></li>
+                <li><a href="http://scalamolecule.org/manual/schema/transaction/">Transaction</a></li>
               </ul>
             </li>
-            <li><a href="http://scalamolecule.org/manual/setup/">Setup</a></li>
             <li><a href="http://scalamolecule.org/manual/insert/">Insert</a></li>
             <li><a href="http://scalamolecule.org/manual/update/">Update/retract</a></li>
             <li class="dropdown-submenu">
               <a href="http://scalamolecule.org/manual/query/">Query</a>
               <ul class="dropdown-menu">
                 <li><a href="http://scalamolecule.org/manual/query/builder/">Builder</a></li>
-                <li><a href="http://scalamolecule.org/manual/query/types/">Types</a></li>
+                <li><a href="http://scalamolecule.org/manual/query/mapped/">Mapped attributes</a></li>
                 <li><a href="http://scalamolecule.org/manual/query/expressions/">Expressions</a></li>
                 <li><a href="http://scalamolecule.org/manual/query/aggregates/">Aggregates</a></li>
                 <li><a href="http://scalamolecule.org/manual/query/parameterize/">Parameterize</a></li>
@@ -82,7 +76,6 @@
       <li class="dropdown ">
         <a data-toggle="dropdown" href="http://scalamolecule.org/developer/overview/" target="_top" onclick="javascript:top.location = 'http:\/\/scalamolecule.org\/developer\/overview\/';return true;">Developer</a>
           <ul class="dropdown-menu level1" role="menu" aria-labelledby="dropdownMenu">
-            <li><a href="http://scalamolecule.org/developer/schema-transaction/">Schema transaction</a></li>
             <li><a href="http://scalamolecule.org/developer/boilerplate/">Boilerplate</a></li>
             <li><a href="http://scalamolecule.org/developer/transformation/">Transformation</a></li>
         </ul>
@@ -224,7 +217,8 @@
     </a>
 </div>
 
-<p>Molecule is a Scala meta-DSL that translates &ldquo;molecules&rdquo; of your domain attributes to Datalog queries for <a href="http://www.datomic.com">Datomic</a> - the database of immutable facts.</p>
+<p>Molecule is a Scala meta-DSL that translates &ldquo;molecules&rdquo; of your domain attributes to Datalog queries
+for <a href="http://www.datomic.com">Datomic</a> - the database of immutable facts.</p>
 
 <h3 id="how-does-it-work:ffcff61ab3a11ef1d50900901a24ec54">How does it work?</h3>
 
@@ -234,7 +228,9 @@
     </div>
     <div class="section">
         <h4 id="define-schema-once:ffcff61ab3a11ef1d50900901a24ec54">Define schema (once)</h4>
-        <p>Our domain could have a <code>Person</code> with attributes <code>name</code> and <code>age</code> having a relationship to an <code>Address</code> so we define a schema for our domain:</p>
+        <p>Our domain could have a <code>Person</code> with attributes 
+        <code>name</code> and <code>age</code> having a relationship to an 
+        <code>Address</code> so we define a schema for our domain:</p>
 
 <pre><code>trait Person {
   val name    = oneString
@@ -246,7 +242,6 @@ trait Address {
 }
 </code></pre>
 
-        <p>When we run <code>sbt compile</code> Molecule uses our schema as a template to generate some boilerplate code so that we can compose intuitive and powerful query molecules. This step is only done once in the beginning (or when you need to change the schema).</p>
     </div>
 </div>
 
@@ -255,17 +250,15 @@ trait Address {
         <div class="sequence-step">2</div>
     </div>
     <div class="section">
-        <h4 id="make-molecules:ffcff61ab3a11ef1d50900901a24ec54">Make molecules</h4>
-        <p>Now we can make Molecule queries <em>with the words of our domain</em> as we saw above:</p>
+        <h4 id="compile-once:ffcff61ab3a11ef1d50900901a24ec54">Compile (once)</h4>
 
-<pre><code class="language-scala">Person.name.age.Address.street.get
-Person.name(&quot;Lisa&quot;).age.get
-Person.name(&quot;Lisa&quot;).age.&lt;(18).get
-Person.name(&quot;Lisa&quot; or &quot;Linda&quot;).age.Address.street.contains(&quot;5th&quot;).get
-// etc..        
+<pre><code>> cd yourProjectRoot
+> sbt compile
 </code></pre>
 
-        <p>The implicit macro <code>get</code> turns our molecule into a valid Datalog query at compile time. So there's no runtime overhead. 
+        <p>Molecule uses our schema as a template to 
+        generate some boilerplate code so that we can compose intuitive and powerful 
+        query molecules. This step is only needed when we create or change our schema.</p>
     </div>
 </div>
 
@@ -274,9 +267,28 @@ Person.name(&quot;Lisa&quot; or &quot;Linda&quot;).age.Address.street.contains(&
         <div class="sequence-step">3</div>
     </div>
     <div class="section">
-        <h4 id="run-queries:ffcff61ab3a11ef1d50900901a24ec54">Run queries</h4>
-        <p>The generated Datalog queries are executed against Datomic and we can get our type-inferred result sets back from Datomic as tuples:</p>
-        <pre><code>val persons: Seq[(String, Int)] = Person.name.age.get</code></pre>
+        <h4 id="use-molecules:ffcff61ab3a11ef1d50900901a24ec54">Use molecules</h4>
+        <p>Now we can insert data with molecules:</p>
+
+<pre><code class="language-scala">Person.name.age.Address.street insert List(
+  ("Lisa", 20, "Broadway"),
+  ("John", 22, "Fifth Avenue")
+)
+</code></pre>
+
+        <p>And retrieve data:</p>
+        
+<pre><code class="language-scala">Person.name.age.Address.street.get === List(
+  ("Lisa", 20, "Broadway"),
+  ("John", 22, "Fifth Avenue")
+)     
+</code></pre>
+
+        <p>The implicit macros <code>insert</code> and <code>get</code> turns our molecules
+         into type-safe Datalog inserts and queries at compile time. So there's no runtime overhead.</p> 
+        
+        
+        
     </div>
 </div>
 
@@ -290,12 +302,9 @@ Person.name(&quot;Lisa&quot; or &quot;Linda&quot;).age.Address.street.contains(&
 <li>Run app - and build new molecules&hellip;</li>
 </ol>
 
-<h3 id="molecule-in-your-own-project:ffcff61ab3a11ef1d50900901a24ec54">Molecule in your own project</h3>
+<h3 id="next:ffcff61ab3a11ef1d50900901a24ec54">Next</h3>
 
-<p>Add Molecule dependency to your project</p>
-
-<pre><code class="language-scala">&quot;org.scalamolecule&quot; %% &quot;molecule&quot; % &quot;0.6.3&quot;
-</code></pre>
+<p><a href="/manual/getting-started">Get started&hellip;</a></p>
 
 <h3 id="read-more:ffcff61ab3a11ef1d50900901a24ec54">Read more</h3>
 
@@ -322,11 +331,6 @@ Person.name(&quot;Lisa&quot; or &quot;Linda&quot;).age.Address.street.contains(&
           
             
               <li><a href="http://scalamolecule.org/home/introduction/">Introduction</a></li>
-              
-            
-          
-            
-              <li><a href="http://scalamolecule.org/home/setup/">Setup</a></li>
               
             
           
