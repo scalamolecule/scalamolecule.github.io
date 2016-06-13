@@ -4,7 +4,7 @@
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
   <link href='http://fonts.googleapis.com/css?family=Merriweather+Sans:400,300,300italic,400italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
-  <title>Expressions</title>
+  <title>Tx meta data</title>
   <link href="/css/bootstrap.min.css" rel="stylesheet">
   <link href="/css/highlight/styles/solarized_light.css" rel="stylesheet" />
   <link href="/css/style.css" rel="stylesheet">
@@ -101,105 +101,163 @@
 <div class="col-sm-10 column" style="padding-left:8px;">
 	
 
-<h1 id="expressions:ccf7e9e64ce1a51aa79e6eb1314d9467">Expressions</h1>
+<h1 id="transaction-meta-data:8a55762a4668cbf851db116d659c13a7">Transaction meta data</h1>
 
-<p>(See <a href="https://github.com/scalamolecule/molecule/tree/master/coretest/src/test/scala/molecule/expression">expression tests</a>)</p>
+<p>Transaction data in Datomic is basically a list of facts/datoms being asserted or retracted. If we take the
+<a href="https://github.com/scalamolecule/molecule/blob/master/examples/src/test/scala/molecule/examples/dayOfDatomic/Aggregates.scala">Provenance</a>
+example we could add two Story entities each with two datoms (<code>title</code> and <code>url</code>) with this molecule:</p>
 
-<h3 id="equality:ccf7e9e64ce1a51aa79e6eb1314d9467">Equality</h3>
-
-<p>We can apply values to Attributes in order to filter the data structures we are looking for. We could for instance look for names of female persons:</p>
-
-<pre><code class="language-scala">Person.age.apply(42)
+<pre><code class="language-scala">Story.title.url insert List(
+  (&quot;ElastiCache in 6 minutes&quot;, &quot;blog.com/elasticache-in-5-minutes.html&quot;),
+  (&quot;Keep Chocolate Love Atomic&quot;, &quot;blog.com/atomic-chocolate.html&quot;)
+)
 </code></pre>
 
-<p>or simply</p>
+<p>Molecule translate this to a transaction list of 4 datoms:</p>
 
-<pre><code class="language-scala">Person.age(42)
+<pre><code>List(
+  //  operation            entity id               attribute             value  
+  List(:db/add,  #db/id[:db.part/user -1000001],  :story/title,  ElastiCache in 6 minutes              ),
+  List(:db/add,  #db/id[:db.part/user -1000001],  :story/url  ,  blog.com/elasticache-in-5-minutes.html),
+  List(:db/add,  #db/id[:db.part/user -1000002],  :story/title,  Keep Chocolate Love Atomic            ),
+  List(:db/add,  #db/id[:db.part/user -1000002],  :story/url  ,  blog.com/atomic-chocolate.html        )
+)
 </code></pre>
 
-<h3 id="or-logic:ccf7e9e64ce1a51aa79e6eb1314d9467">OR-logic</h3>
+<p>Each Datom has 4 - and soon 5 - pieces of information:</p>
 
-<p>We can apply OR-logic to find a selection of alternatives</p>
+<ul>
+<li>Operation (add/retract)</li>
+<li>Entity id</li>
+<li>Attribute</li>
+<li>Value</li>
+<li>Tx (not there yet&hellip;)</li>
+</ul>
 
-<pre><code class="language-scala">Person.age(40 or 41 or 42)
-// .. same as
-Person.age(40, 41, 42)
-// .. same as
-Person.age(List(40, 41, 42))
+<p>Molecule simply passes our list to be transacted by Datomic. Datomic then creates a transaction entity and makes
+ the association between all the datoms and this transaction id (the Tx part).</p>
+
+<h2 id="annotating-a-transaction:8a55762a4668cbf851db116d659c13a7">&ldquo;Annotating&rdquo; a transaction</h2>
+
+<p>If we want to &ldquo;annotate&rdquo; a transaction with some meta data like &ldquo;who did it?&rdquo; or &ldquo;what use case?&rdquo; etc, we could
+simply add two more datoms to our list with this meta data. We don&rsquo;t want to repeatedly add the meta data with
+all the rows of data, so we use the special <code>tx_</code> attribute that is available to all molecules and apply another
+Molecule populated with our meta data. So now our &ldquo;tx-annotated&rdquo; molecule looks like this:</p>
+
+<pre><code class="language-scala">Story.title.url.tx_(MetaData.user_(stu).usecase_(&quot;AddStories&quot;)) insert List(
+  (&quot;ElastiCache in 6 minutes&quot;, &quot;blog.com/elasticache-in-5-minutes.html&quot;),
+  (&quot;Keep Chocolate Love Atomic&quot;, &quot;blog.com/atomic-chocolate.html&quot;)
+)
 </code></pre>
 
-<h3 id="negation:ccf7e9e64ce1a51aa79e6eb1314d9467">Negation</h3>
+<p>The insert data now includes two more datoms that are saved as part of the transaction entity:</p>
 
-<p>We can exclude a certain attribute value</p>
-
-<pre><code class="language-scala">Person.age.!=(42)
-// or
-Person.age.not(42)
+<pre><code>List(
+  //  operation            entity id               attribute             value  
+  List(:db/add,  #db/id[:db.part/user -1000001],  :story/title,      ElastiCache in 6 minutes              ),
+  List(:db/add,  #db/id[:db.part/user -1000001],  :story/url  ,      blog.com/elasticache-in-5-minutes.html),
+  List(:db/add,  #db/id[:db.part/user -1000002],  :story/title,      Keep Chocolate Love Atomic            ),
+  List(:db/add,  #db/id[:db.part/user -1000002],  :story/url  ,      blog.com/atomic-chocolate.html        ),
+  List(:db/add,  #db/id[:db.part/tx -1000049],    :metaData/user   , 17592186045423                        ),
+  List(:db/add,  #db/id[:db.part/tx -1000049],    :metaData/usecase, AddStories                            )
+)
 </code></pre>
 
-<p>With negations we can again apply multiple values as alternatives</p>
+<h2 id="querying-transaction-meta-data:8a55762a4668cbf851db116d659c13a7">Querying transaction meta data</h2>
 
-<pre><code class="language-scala">Person.age.!=(40 or 41 or 42)
-Person.age.!=(40, 41, 42)
-Person.age.!=(List(40, 41, 42))
+<p>Now we can find stories based on our transaction meta data knowledge:</p>
+
+<pre><code class="language-scala">// Stories that Stu added (first meta information used)
+Story.title.tx_(MetaData.user_(stu)).get === List(
+  &quot;Keep Chocolate Love Atomic&quot;,
+  &quot;ElastiCache in 6 minutes&quot;
+)
+
+// Stories that were added with the AddStories use case (second meta information used)
+Story.title.tx_(MetaData.usecase_(&quot;AddStories&quot;)).get === List(
+  &quot;Keep Chocolate Love Atomic&quot;,
+  &quot;ElastiCache in 6 minutes&quot;
+)
+
+// Stories that Stu added with the AddStories use case (both meta data used)
+Story.title.tx_(MetaData.user_(stu).usecase_(&quot;AddStories&quot;)).get === List(
+  &quot;Keep Chocolate Love Atomic&quot;,
+  &quot;ElastiCache in 6 minutes&quot;
+)
+
+// Stories and transactions where Stu added stories (`tx` is returned)
+Story.title.tx(MetaData.user_(stu).usecase_(&quot;AddStories&quot;)).get === List(
+  (&quot;ElastiCache in 6 minutes&quot;, stuTxId),
+  (&quot;Keep Chocolate Love Atomic&quot;, stuTxId)
+)
+
+// Stories and names of who added them (Note that we can have referenced meta data!)
+Story.title.tx_(MetaData.User.firstName.lastName).get === List(
+  (&quot;ElastiCache in 6 minutes&quot;, &quot;Stu&quot;, &quot;Halloway&quot;),
+  (&quot;Keep Chocolate Love Atomic&quot;, &quot;Stu&quot;, &quot;Halloway&quot;)
+)
+
+// Stories added by a user named &quot;Stu&quot;
+Story.title.tx_(MetaData.User.firstName_(&quot;Stu&quot;)).get === List(
+  &quot;ElastiCache in 6 minutes&quot;,
+  &quot;Keep Chocolate Love Atomic&quot;
+)
+
+// Stories added by a user with email &quot;stuarthalloway@datomic.com&quot;
+Story.title.tx_(MetaData.User.email_(&quot;stuarthalloway@datomic.com&quot;)).get === List(
+  &quot;ElastiCache in 6 minutes&quot;,
+  &quot;Keep Chocolate Love Atomic&quot;
+)
+
+// Count of stories added by a user with email &quot;stuarthalloway@datomic.com&quot;
+Story.title(count).tx_(MetaData.User.email_(&quot;stuarthalloway@datomic.com&quot;)).one === 2
+
+// Emails of users who added stories
+Story.title_.tx_(MetaData.usecase_(&quot;AddStories&quot;).User.email).get === List(
+  &quot;stuarthalloway@datomic.com&quot;
+)
 </code></pre>
 
-<h3 id="comparison:ccf7e9e64ce1a51aa79e6eb1314d9467">Comparison</h3>
+<h2 id="transaction-history:8a55762a4668cbf851db116d659c13a7">Transaction history</h2>
 
-<p>We can filer attribute values that satisfy comparison expressions:</p>
+<p>We can also annotate updates like this:</p>
 
-<pre><code class="language-scala">Person.age.&lt;(42)
-Person.age.&gt;(42)
-Person.age.&lt;=(42)
-Person.age.&gt;=(42)
+<pre><code class="language-scala">Story(elasticacheStory).title(&quot;ElastiCache in 5 minutes&quot;)
+  .tx_(MetaData.user(ed).usecase_(&quot;UpdateStory&quot;)).update
 </code></pre>
 
-<p>Comparison of all types are performed with java&rsquo;s <code>compareTo</code> method. Text strings can for instance also be sorted by a letter:</p>
+<p>We can then use the <code>history</code> of the database in combination with out meta data to follow who
+created/updated:</p>
 
-<pre><code class="language-scala">Community.name.&lt;(&quot;C&quot;).get(3) === List(
-  &quot;ArtsWest&quot;, &quot;All About South Park&quot;, &quot;Ballard Neighbor Connection&quot;)
+<pre><code class="language-scala">Story.url_(ecURL).title.op.tx_(MetaData.usecase.User.firstName).history.get.reverse === List(
+  (&quot;ElastiCache in 6 minutes&quot;, true, &quot;AddStories&quot;, &quot;Stu&quot;),  // Stu adds the story
+  (&quot;ElastiCache in 6 minutes&quot;, false, &quot;UpdateStory&quot;, &quot;Ed&quot;), // retraction automatically added by Datomic
+  (&quot;ElastiCache in 5 minutes&quot;, true, &quot;UpdateStory&quot;, &quot;Ed&quot;)   // Ed's update of the title
+)
 </code></pre>
 
-<h3 id="fulltext-search:ccf7e9e64ce1a51aa79e6eb1314d9467">Fulltext search</h3>
+<p>When a new fact is asserted for a cardinality-one attribute that already has a value, Datomic
+automatically makes an extra datom with a retraction (<code>op false</code>) to &ldquo;cancel&rdquo; the old value and
+then adds our assertion datom.</p>
 
-<p>If we add the <code>fullTextSearch</code> option to a String attribute definition Datomic will index the text strings saved so that we can do fulltext searches accross all values. We could for instance search for Community names containing the word &ldquo;Town&rdquo; in their name:</p>
+<p>The current database is the latest snapshot of the history, so the ElastiCache now has the correct
+title. We can therefore see if stories have been edited:</p>
 
-<pre><code class="language-scala">Community.name.contains(&quot;Town&quot;)
+<pre><code class="language-scala">// Stories with latest use case meta date
+Story.title.tx_(MetaData.usecase).get === List(
+  (&quot;Keep Chocolate Love Atomic&quot;, &quot;AddStories&quot;),
+  (&quot;ElastiCache in 5 minutes&quot;, &quot;UpdateStory&quot;)
+)
 </code></pre>
 
-<p>Note that only full words are considered, so &ldquo;Tow&rdquo; won&rsquo;t match. Also the following common words are not considered:</p>
+<p>And we can even look for data without certain transaction meta data</p>
 
-<pre><code>&quot;a&quot;, &quot;an&quot;, &quot;and&quot;, &quot;are&quot;, &quot;as&quot;, &quot;at&quot;, &quot;be&quot;, &quot;but&quot;, &quot;by&quot;,
-&quot;for&quot;, &quot;if&quot;, &quot;in&quot;, &quot;into&quot;, &quot;is&quot;, &quot;it&quot;,
-&quot;no&quot;, &quot;not&quot;, &quot;of&quot;, &quot;on&quot;, &quot;or&quot;, &quot;such&quot;,
-&quot;that&quot;, &quot;the&quot;, &quot;their&quot;, &quot;then&quot;, &quot;there&quot;, &quot;these&quot;,
-&quot;they&quot;, &quot;this&quot;, &quot;to&quot;, &quot;was&quot;, &quot;will&quot;, &quot;with&quot;
-</code></pre>
-
-<h3 id="we-can-use-variables-too:ccf7e9e64ce1a51aa79e6eb1314d9467">We can use variables too</h3>
-
-<p>Even though Molecule introspects molecule constructions at compile time we can still use (runtime) variables for our expressions</p>
-
-<pre><code class="language-scala">val youngAge = 25
-val goodAge = 42
-Person.age(goodAge)
-Person.age.&gt;(goodAge)
-Person.age.&lt;=(goodAge)
-Person.age.&gt;=(goodAge)
-Person.age.!=(goodAge)
-Person.age.!=(youngAge or goodAge)
-</code></pre>
-
-<p>Technically, Molecule saves the TermName of the variable for later resolution at runtime so that we can freely use variables in our expressions.</p>
-
-<pre><code class="language-scala">val ages = List(youngAge, goodAge)
-Person.age(goodAge)
-Person.age.&gt;(goodAge)
-Person.age.&lt;=(goodAge)
-Person.age.&gt;=(goodAge)
-Person.age.!=(goodAge)
-Person.age.!=(youngAge or goodAge)
-// etc...
+<pre><code class="language-scala">// Stories without use case meta data
+Story.title.tx_(MetaData.usecase_(nil)).get === List(
+  &quot;Clojure Rationale&quot;,
+  &quot;Beating the Averages&quot;,
+  &quot;Teach Yourself Programming in Ten Years&quot;
+)
 </code></pre>
 
 </div>
@@ -255,7 +313,7 @@ Person.age.!=(youngAge or goodAge)
                   
                 
                   
-                  <li class="active"><b>Expressions</b></li>
+                  <li><a href="http://scalamolecule.org/manual/query/expressions/">Expressions</a></li>
                   
                 
                   
@@ -271,7 +329,7 @@ Person.age.!=(youngAge or goodAge)
                   
                 
                   
-                  <li><a href="http://scalamolecule.org/manual/query/txMetaData/">Tx meta data</a></li>
+                  <li class="active"><b>Tx meta data</b></li>
                   
                 
                   

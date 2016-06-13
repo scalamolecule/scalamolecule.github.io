@@ -69,6 +69,8 @@
                 <li><a href="http://scalamolecule.org/manual/query/aggregates/">Aggregates</a></li>
                 <li><a href="http://scalamolecule.org/manual/query/parameterize/">Parameterize</a></li>
                 <li><a href="http://scalamolecule.org/manual/query/relationships/">Relationships</a></li>
+                <li><a href="http://scalamolecule.org/manual/query/txMetaData/">Tx meta data</a></li>
+                <li><a href="http://scalamolecule.org/manual/query/composites/">Composites</a></li>
               </ul>
             </li>
         </ul>
@@ -124,14 +126,14 @@ then automatically generated.</p>
       &quot;Scalaz Bintray Repo&quot; at &quot;http://dl.bintray.com/scalaz/releases&quot;
     ),
     libraryDependencies ++= Seq(
-      &quot;org.scalamolecule&quot; %% &quot;molecule&quot; % &quot;0.7.0&quot;,
-      &quot;com.datomic&quot; % &quot;datomic-free&quot; % &quot;0.9.5359&quot;
+      &quot;org.scalamolecule&quot; %% &quot;molecule&quot; % &quot;0.8.0&quot;,
+      &quot;com.datomic&quot; % &quot;datomic-free&quot; % &quot;0.9.5372&quot;
     ),
     moleculeSchemas := Seq(&quot;demo&quot;) // paths to your schema definition files...
   )
 </code></pre>
 
-<p>Molecule 0.7.0 for Scala 2.11.8 is available at
+<p>Molecule 0.8.0 for Scala 2.11.8 is available at
 <a href="https://oss.sonatype.org/content/repositories/releases/org/scalamolecule/molecule_2.11/">Sonatype</a>.</p>
 
 <h1 id="2-paths-to-schema-definition-files:b6885e1f85551f51a4707c402f8200a3">2. Paths to Schema definition files</h1>
@@ -292,6 +294,14 @@ val (person, age, gender) = Person.name.age.gender.one
                 
                   
                   <li><a href="http://scalamolecule.org/manual/query/relationships/">Relationships</a></li>
+                  
+                
+                  
+                  <li><a href="http://scalamolecule.org/manual/query/txMetaData/">Tx meta data</a></li>
+                  
+                
+                  
+                  <li><a href="http://scalamolecule.org/manual/query/composites/">Composites</a></li>
                   
                 
                 </ul>

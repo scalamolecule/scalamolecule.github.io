@@ -4,7 +4,7 @@
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
   <link href='http://fonts.googleapis.com/css?family=Merriweather+Sans:400,300,300italic,400italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
-  <title>Expressions</title>
+  <title>Composites</title>
   <link href="/css/bootstrap.min.css" rel="stylesheet">
   <link href="/css/highlight/styles/solarized_light.css" rel="stylesheet" />
   <link href="/css/style.css" rel="stylesheet">
@@ -101,106 +101,91 @@
 <div class="col-sm-10 column" style="padding-left:8px;">
 	
 
-<h1 id="expressions:ccf7e9e64ce1a51aa79e6eb1314d9467">Expressions</h1>
+<h1 id="composites:b9a0ee3a99915056cd907050a6fe3554">Composites</h1>
 
-<p>(See <a href="https://github.com/scalamolecule/molecule/tree/master/coretest/src/test/scala/molecule/expression">expression tests</a>)</p>
+<p><br></p>
 
-<h3 id="equality:ccf7e9e64ce1a51aa79e6eb1314d9467">Equality</h3>
+<p><img src="/img/DatomicElements2.png" alt="" />
+</p>
 
-<p>We can apply values to Attributes in order to filter the data structures we are looking for. We could for instance look for names of female persons:</p>
+<p><em>Entities can have attributes from <strong>any</strong> namespace</em></p>
 
-<pre><code class="language-scala">Person.age.apply(42)
+<h2 id="composite-inserts:b9a0ee3a99915056cd907050a6fe3554">Composite inserts</h2>
+
+<p>A core feature of Datomic is that any attribute value can be associated with an entity. This allow us
+to &ldquo;compose&rdquo; entities with attribute values from un-related namespaces.</p>
+
+<p>Say for instance if we want to tag various part of our domain. It would be tedious and counter-intuitive
+to have references between every single namespace to a tag namespace. Tags are not an intrinsic value of most
+entities and are therefore better modelled in isolation.</p>
+
+<p>Molecule allow us to make &ldquo;composites&rdquo; that will type-safely bring tag data together with any entity. We could
+for instance create 2 Article entities each with 2 tags:</p>
+
+<pre><code class="language-scala">insert(
+  Article.name.author ~ Tag.name.weight
+)(
+  ((&quot;Battle of Waterloo&quot;, &quot;Ben Bridge&quot;), (&quot;serious&quot;, 5)),
+  ((&quot;Best jokes ever&quot;, &quot;John Cleese&quot;), (&quot;fun&quot;, 3))
+)()
 </code></pre>
 
-<p>or simply</p>
+<p>The <code>~</code> method merges the involved sub-molecules (could be up to 22!) into one composite model where all
+sub-molecules share the entity id. Here we just created two entities each with 4 values of the 4 attributes.
+No need to make a reference from Articles to Tags or vice versa. The relationship is established through
+the shared entity id.</p>
 
-<pre><code class="language-scala">Person.age(42)
+<p>We could add tags to any other part of our domain - and even some transaction meta data:</p>
+
+<pre><code class="language-scala">insert(
+  Review.title.text ~ Tag.name.weight
+)(
+  ((&quot;Okay&quot;, &quot;Well, maybe&quot;), (&quot;noise&quot;, 1)),
+  ((&quot;Excellent&quot;, &quot;Go buy it!&quot;), (&quot;serious&quot;, 4))
+)(
+  MetaData.submitter_(&quot;Brenda Johnson&quot;).usecase_(&quot;AddReviews&quot;)
+)
 </code></pre>
 
-<h3 id="or-logic:ccf7e9e64ce1a51aa79e6eb1314d9467">OR-logic</h3>
+<p>Note that each &ldquo;row&rdquo; of data is a tuple with 2 tuples of type-checked data matching the 2 sub-molecules.</p>
 
-<p>We can apply OR-logic to find a selection of alternatives</p>
+<h2 id="composite-queries:b9a0ee3a99915056cd907050a6fe3554">Composite queries</h2>
 
-<pre><code class="language-scala">Person.age(40 or 41 or 42)
-// .. same as
-Person.age(40, 41, 42)
-// .. same as
-Person.age(List(40, 41, 42))
+<p>Use any part of the composite data to filter out what we are looking for:</p>
+
+<pre><code class="language-scala">// All articles
+m(Article.name.author ~ Tag.name.weight).get === List(
+  ((&quot;Battle of Waterloo&quot;, &quot;Ben Bridge&quot;), (&quot;serious&quot;, 5)),
+  ((&quot;Best jokes ever&quot;, &quot;John Cleese&quot;), (&quot;fun&quot;, 3))
+)
+
+// Fun articles by John Cleese
+m(Article.name.author(&quot;John Cleese&quot;) ~ Tag.name_(&quot;fun&quot;)).get === List(
+  ((&quot;Best jokes ever&quot;, &quot;John Cleese&quot;))
+)
+
+// Important articles
+m(Article.name.author ~ Tag.weight.&gt;=(4)).get === List(
+  ((&quot;Battle of Waterloo&quot;, &quot;Ben Bridge&quot;), 5)
+)
 </code></pre>
 
-<h3 id="negation:ccf7e9e64ce1a51aa79e6eb1314d9467">Negation</h3>
+<p>And we could even combine our filtering with transaction meta data</p>
 
-<p>We can exclude a certain attribute value</p>
-
-<pre><code class="language-scala">Person.age.!=(42)
-// or
-Person.age.not(42)
+<pre><code class="language-scala">// Important articles submitted by Brenda Johnson
+m(Article.name.author ~ Tag.weight.&gt;=(4).tx_(MetaData.submitter_(&quot;Brenda Johnson&quot;))).get === List(
+  ((&quot;Battle of Waterloo&quot;, &quot;Ben Bridge&quot;), 5)
+)
 </code></pre>
 
-<p>With negations we can again apply multiple values as alternatives</p>
+<h2 id="arity-22-molecules:b9a0ee3a99915056cd907050a6fe3554">Arity 22+ molecules</h2>
 
-<pre><code class="language-scala">Person.age.!=(40 or 41 or 42)
-Person.age.!=(40, 41, 42)
-Person.age.!=(List(40, 41, 42))
-</code></pre>
+<p>Since composites are composed of up to 22 sub-molecules we could potentially insert and retrieve
+mega composite molecules with up to 22 x 22 = 484 attributes, although the compiler probably wouldn&rsquo;t
+be too happy about that.</p>
 
-<h3 id="comparison:ccf7e9e64ce1a51aa79e6eb1314d9467">Comparison</h3>
-
-<p>We can filer attribute values that satisfy comparison expressions:</p>
-
-<pre><code class="language-scala">Person.age.&lt;(42)
-Person.age.&gt;(42)
-Person.age.&lt;=(42)
-Person.age.&gt;=(42)
-</code></pre>
-
-<p>Comparison of all types are performed with java&rsquo;s <code>compareTo</code> method. Text strings can for instance also be sorted by a letter:</p>
-
-<pre><code class="language-scala">Community.name.&lt;(&quot;C&quot;).get(3) === List(
-  &quot;ArtsWest&quot;, &quot;All About South Park&quot;, &quot;Ballard Neighbor Connection&quot;)
-</code></pre>
-
-<h3 id="fulltext-search:ccf7e9e64ce1a51aa79e6eb1314d9467">Fulltext search</h3>
-
-<p>If we add the <code>fullTextSearch</code> option to a String attribute definition Datomic will index the text strings saved so that we can do fulltext searches accross all values. We could for instance search for Community names containing the word &ldquo;Town&rdquo; in their name:</p>
-
-<pre><code class="language-scala">Community.name.contains(&quot;Town&quot;)
-</code></pre>
-
-<p>Note that only full words are considered, so &ldquo;Tow&rdquo; won&rsquo;t match. Also the following common words are not considered:</p>
-
-<pre><code>&quot;a&quot;, &quot;an&quot;, &quot;and&quot;, &quot;are&quot;, &quot;as&quot;, &quot;at&quot;, &quot;be&quot;, &quot;but&quot;, &quot;by&quot;,
-&quot;for&quot;, &quot;if&quot;, &quot;in&quot;, &quot;into&quot;, &quot;is&quot;, &quot;it&quot;,
-&quot;no&quot;, &quot;not&quot;, &quot;of&quot;, &quot;on&quot;, &quot;or&quot;, &quot;such&quot;,
-&quot;that&quot;, &quot;the&quot;, &quot;their&quot;, &quot;then&quot;, &quot;there&quot;, &quot;these&quot;,
-&quot;they&quot;, &quot;this&quot;, &quot;to&quot;, &quot;was&quot;, &quot;will&quot;, &quot;with&quot;
-</code></pre>
-
-<h3 id="we-can-use-variables-too:ccf7e9e64ce1a51aa79e6eb1314d9467">We can use variables too</h3>
-
-<p>Even though Molecule introspects molecule constructions at compile time we can still use (runtime) variables for our expressions</p>
-
-<pre><code class="language-scala">val youngAge = 25
-val goodAge = 42
-Person.age(goodAge)
-Person.age.&gt;(goodAge)
-Person.age.&lt;=(goodAge)
-Person.age.&gt;=(goodAge)
-Person.age.!=(goodAge)
-Person.age.!=(youngAge or goodAge)
-</code></pre>
-
-<p>Technically, Molecule saves the TermName of the variable for later resolution at runtime so that we can freely use variables in our expressions.</p>
-
-<pre><code class="language-scala">val ages = List(youngAge, goodAge)
-Person.age(goodAge)
-Person.age.&gt;(goodAge)
-Person.age.&lt;=(goodAge)
-Person.age.&gt;=(goodAge)
-Person.age.!=(goodAge)
-Person.age.!=(youngAge or goodAge)
-// etc...
-</code></pre>
+<p>Compile time for molecules longer than about 14-16 attributes long tend to increase sharply, so simply
+splitting up long molecules in 2 or more sub-molecules easily keeps compilation fast.</p>
 
 </div>
 
@@ -255,7 +240,7 @@ Person.age.!=(youngAge or goodAge)
                   
                 
                   
-                  <li class="active"><b>Expressions</b></li>
+                  <li><a href="http://scalamolecule.org/manual/query/expressions/">Expressions</a></li>
                   
                 
                   
@@ -275,7 +260,7 @@ Person.age.!=(youngAge or goodAge)
                   
                 
                   
-                  <li><a href="http://scalamolecule.org/manual/query/composites/">Composites</a></li>
+                  <li class="active"><b>Composites</b></li>
                   
                 
                 </ul>

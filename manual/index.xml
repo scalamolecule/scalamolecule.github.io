@@ -176,14 +176,14 @@ then automatically generated.&lt;/p&gt;
       &amp;quot;Scalaz Bintray Repo&amp;quot; at &amp;quot;http://dl.bintray.com/scalaz/releases&amp;quot;
     ),
     libraryDependencies ++= Seq(
-      &amp;quot;org.scalamolecule&amp;quot; %% &amp;quot;molecule&amp;quot; % &amp;quot;0.7.0&amp;quot;,
-      &amp;quot;com.datomic&amp;quot; % &amp;quot;datomic-free&amp;quot; % &amp;quot;0.9.5359&amp;quot;
+      &amp;quot;org.scalamolecule&amp;quot; %% &amp;quot;molecule&amp;quot; % &amp;quot;0.8.0&amp;quot;,
+      &amp;quot;com.datomic&amp;quot; % &amp;quot;datomic-free&amp;quot; % &amp;quot;0.9.5372&amp;quot;
     ),
     moleculeSchemas := Seq(&amp;quot;demo&amp;quot;) // paths to your schema definition files...
   )
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;Molecule 0.7.0 for Scala 2.11.8 is available at
+&lt;p&gt;Molecule 0.8.0 for Scala 2.11.8 is available at
 &lt;a href=&#34;https://oss.sonatype.org/content/repositories/releases/org/scalamolecule/molecule_2.11/&#34;&gt;Sonatype&lt;/a&gt;.&lt;/p&gt;
 
 &lt;h1 id=&#34;2-paths-to-schema-definition-files:b6885e1f85551f51a4707c402f8200a3&#34;&gt;2. Paths to Schema definition files&lt;/h1&gt;
@@ -1015,6 +1015,66 @@ woudn&amp;rsquo;t compile and our IDE will infer that and warn us of an invalid 
     </item>
     
     <item>
+      <title>Parameterize</title>
+      <link>http://scalamolecule.org/manual/query/parameterize/</link>
+      <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
+      
+      <guid>http://scalamolecule.org/manual/query/parameterize/</guid>
+      <description>
+
+&lt;h1 id=&#34;parameterized-input-molecules:913d405893862d6b41d1b084193fb4f6&#34;&gt;Parameterized Input-molecules&lt;/h1&gt;
+
+&lt;p&gt;(See &lt;a href=&#34;https://github.com/scalamolecule/molecule/blob/master/coretest/src/test/scala/molecule/Input.scala&#34;&gt;parameterize tests&lt;/a&gt;)&lt;/p&gt;
+
+&lt;p&gt;Basically we can parameterize any molecule. Instead of a value we apply the placeholder &lt;code&gt;?&lt;/code&gt; as a value.
+This signals to Molecule that we intend to supply a value later as input.&lt;/p&gt;
+
+&lt;p&gt;By assigning parameterized &amp;ldquo;Input-molecules&amp;rdquo; to variables we can re-use those variables to query for
+similar data structures where only some data part varies:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;// 1 input parameter
+val person = m(Person.name(?))
+
+val john = person(&amp;quot;John&amp;quot;).one
+val lisa = person(&amp;quot;Lisa&amp;quot;).one
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Of course more complex molecules would benefit even more from this approach.&lt;/p&gt;
+
+&lt;h3 id=&#34;datomic-cache-and-optimization:913d405893862d6b41d1b084193fb4f6&#34;&gt;Datomic cache and optimization&lt;/h3&gt;
+
+&lt;p&gt;Datomic will cache and optimize the queries from such Input-molecules. This gives us an additional
+reason to use them.&lt;/p&gt;
+
+&lt;h3 id=&#34;parameterized-expressions:913d405893862d6b41d1b084193fb4f6&#34;&gt;Parameterized expressions&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val personName  = m(Person.name.(?))
+val johnOrLisas = personName(&amp;quot;John&amp;quot; or &amp;quot;Lisa&amp;quot;).get // OR
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;multiple-parameters:913d405893862d6b41d1b084193fb4f6&#34;&gt;Multiple parameters&lt;/h3&gt;
+
+&lt;p&gt;Molecules can have up to 3 &lt;code&gt;?&lt;/code&gt; placeholder parameters. Since we can apply expressions and logic to
+them it seems likely that this will satisfy the majority of all parameterized queires.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val person      = m(Person.name(?).age(?))
+val john        = person(&amp;quot;John&amp;quot; and 42).one // AND
+val johnOrJonas = person((&amp;quot;John&amp;quot; and 42) or (&amp;quot;Jonas&amp;quot; and 38)).get // AND/OR
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;mix-parameterized-and-static-expressions:913d405893862d6b41d1b084193fb4f6&#34;&gt;Mix parameterized and static expressions&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val americansYoungerThan = m(Person.name.age.&amp;lt;(?).Country.name(&amp;quot;USA&amp;quot;))
+val americanKids         = americansYoungerThan(13).get
+val americanBabies       = americansYoungerThan(1).get
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;For more examples, please see the
+&lt;a href=&#34;https://github.com/scalamolecule/molecule/blob/master/examples/src/test/scala/molecule/examples/seattle/SeattleTests.scala&#34;&gt;Seattle examples&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Update/retract</title>
       <link>http://scalamolecule.org/manual/update/</link>
       <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
@@ -1105,66 +1165,6 @@ Community(belltownId).category(&amp;quot;news&amp;quot; -&amp;gt; &amp;quot;Cool
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Simple as that.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Parameterize</title>
-      <link>http://scalamolecule.org/manual/query/parameterize/</link>
-      <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
-      
-      <guid>http://scalamolecule.org/manual/query/parameterize/</guid>
-      <description>
-
-&lt;h1 id=&#34;parameterized-input-molecules:913d405893862d6b41d1b084193fb4f6&#34;&gt;Parameterized Input-molecules&lt;/h1&gt;
-
-&lt;p&gt;(See &lt;a href=&#34;https://github.com/scalamolecule/molecule/blob/master/coretest/src/test/scala/molecule/Input.scala&#34;&gt;parameterize tests&lt;/a&gt;)&lt;/p&gt;
-
-&lt;p&gt;Basically we can parameterize any molecule. Instead of a value we apply the placeholder &lt;code&gt;?&lt;/code&gt; as a value.
-This signals to Molecule that we intend to supply a value later as input.&lt;/p&gt;
-
-&lt;p&gt;By assigning parameterized &amp;ldquo;Input-molecules&amp;rdquo; to variables we can re-use those variables to query for
-similar data structures where only some data part varies:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;// 1 input parameter
-val person = m(Person.name(?))
-
-val john = person(&amp;quot;John&amp;quot;).one
-val lisa = person(&amp;quot;Lisa&amp;quot;).one
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Of course more complex molecules would benefit even more from this approach.&lt;/p&gt;
-
-&lt;h3 id=&#34;datomic-cache-and-optimization:913d405893862d6b41d1b084193fb4f6&#34;&gt;Datomic cache and optimization&lt;/h3&gt;
-
-&lt;p&gt;Datomic will cache and optimize the queries from such Input-molecules. This gives us an additional
-reason to use them.&lt;/p&gt;
-
-&lt;h3 id=&#34;parameterized-expressions:913d405893862d6b41d1b084193fb4f6&#34;&gt;Parameterized expressions&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val personName  = m(Person.name.(?))
-val johnOrLisas = personName(&amp;quot;John&amp;quot; or &amp;quot;Lisa&amp;quot;).get // OR
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;multiple-parameters:913d405893862d6b41d1b084193fb4f6&#34;&gt;Multiple parameters&lt;/h3&gt;
-
-&lt;p&gt;Molecules can have up to 3 &lt;code&gt;?&lt;/code&gt; placeholder parameters. Since we can apply expressions and logic to
-them it seems likely that this will satisfy the majority of all parameterized queires.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val person      = m(Person.name(?).age(?))
-val john        = person(&amp;quot;John&amp;quot; and 42).one // AND
-val johnOrJonas = person((&amp;quot;John&amp;quot; and 42) or (&amp;quot;Jonas&amp;quot; and 38)).get // AND/OR
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;mix-parameterized-and-static-expressions:913d405893862d6b41d1b084193fb4f6&#34;&gt;Mix parameterized and static expressions&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val americansYoungerThan = m(Person.name.age.&amp;lt;(?).Country.name(&amp;quot;USA&amp;quot;))
-val americanKids         = americansYoungerThan(13).get
-val americanBabies       = americansYoungerThan(1).get
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;For more examples, please see the
-&lt;a href=&#34;https://github.com/scalamolecule/molecule/blob/master/examples/src/test/scala/molecule/examples/seattle/SeattleTests.scala&#34;&gt;Seattle examples&lt;/a&gt;&lt;/p&gt;
 </description>
     </item>
     
@@ -1304,6 +1304,271 @@ and &lt;a href=&#34;https://github.com/scalamolecule/molecule/blob/master/corete
 )
 // etc...
 &lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Tx meta data</title>
+      <link>http://scalamolecule.org/manual/query/txMetaData/</link>
+      <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
+      
+      <guid>http://scalamolecule.org/manual/query/txMetaData/</guid>
+      <description>
+
+&lt;h1 id=&#34;transaction-meta-data:8a55762a4668cbf851db116d659c13a7&#34;&gt;Transaction meta data&lt;/h1&gt;
+
+&lt;p&gt;Transaction data in Datomic is basically a list of facts/datoms being asserted or retracted. If we take the
+&lt;a href=&#34;https://github.com/scalamolecule/molecule/blob/master/examples/src/test/scala/molecule/examples/dayOfDatomic/Aggregates.scala&#34;&gt;Provenance&lt;/a&gt;
+example we could add two Story entities each with two datoms (&lt;code&gt;title&lt;/code&gt; and &lt;code&gt;url&lt;/code&gt;) with this molecule:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Story.title.url insert List(
+  (&amp;quot;ElastiCache in 6 minutes&amp;quot;, &amp;quot;blog.com/elasticache-in-5-minutes.html&amp;quot;),
+  (&amp;quot;Keep Chocolate Love Atomic&amp;quot;, &amp;quot;blog.com/atomic-chocolate.html&amp;quot;)
+)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Molecule translate this to a transaction list of 4 datoms:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;List(
+  //  operation            entity id               attribute             value  
+  List(:db/add,  #db/id[:db.part/user -1000001],  :story/title,  ElastiCache in 6 minutes              ),
+  List(:db/add,  #db/id[:db.part/user -1000001],  :story/url  ,  blog.com/elasticache-in-5-minutes.html),
+  List(:db/add,  #db/id[:db.part/user -1000002],  :story/title,  Keep Chocolate Love Atomic            ),
+  List(:db/add,  #db/id[:db.part/user -1000002],  :story/url  ,  blog.com/atomic-chocolate.html        )
+)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Each Datom has 4 - and soon 5 - pieces of information:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Operation (add/retract)&lt;/li&gt;
+&lt;li&gt;Entity id&lt;/li&gt;
+&lt;li&gt;Attribute&lt;/li&gt;
+&lt;li&gt;Value&lt;/li&gt;
+&lt;li&gt;Tx (not there yet&amp;hellip;)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Molecule simply passes our list to be transacted by Datomic. Datomic then creates a transaction entity and makes
+ the association between all the datoms and this transaction id (the Tx part).&lt;/p&gt;
+
+&lt;h2 id=&#34;annotating-a-transaction:8a55762a4668cbf851db116d659c13a7&#34;&gt;&amp;ldquo;Annotating&amp;rdquo; a transaction&lt;/h2&gt;
+
+&lt;p&gt;If we want to &amp;ldquo;annotate&amp;rdquo; a transaction with some meta data like &amp;ldquo;who did it?&amp;rdquo; or &amp;ldquo;what use case?&amp;rdquo; etc, we could
+simply add two more datoms to our list with this meta data. We don&amp;rsquo;t want to repeatedly add the meta data with
+all the rows of data, so we use the special &lt;code&gt;tx_&lt;/code&gt; attribute that is available to all molecules and apply another
+Molecule populated with our meta data. So now our &amp;ldquo;tx-annotated&amp;rdquo; molecule looks like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Story.title.url.tx_(MetaData.user_(stu).usecase_(&amp;quot;AddStories&amp;quot;)) insert List(
+  (&amp;quot;ElastiCache in 6 minutes&amp;quot;, &amp;quot;blog.com/elasticache-in-5-minutes.html&amp;quot;),
+  (&amp;quot;Keep Chocolate Love Atomic&amp;quot;, &amp;quot;blog.com/atomic-chocolate.html&amp;quot;)
+)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The insert data now includes two more datoms that are saved as part of the transaction entity:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;List(
+  //  operation            entity id               attribute             value  
+  List(:db/add,  #db/id[:db.part/user -1000001],  :story/title,      ElastiCache in 6 minutes              ),
+  List(:db/add,  #db/id[:db.part/user -1000001],  :story/url  ,      blog.com/elasticache-in-5-minutes.html),
+  List(:db/add,  #db/id[:db.part/user -1000002],  :story/title,      Keep Chocolate Love Atomic            ),
+  List(:db/add,  #db/id[:db.part/user -1000002],  :story/url  ,      blog.com/atomic-chocolate.html        ),
+  List(:db/add,  #db/id[:db.part/tx -1000049],    :metaData/user   , 17592186045423                        ),
+  List(:db/add,  #db/id[:db.part/tx -1000049],    :metaData/usecase, AddStories                            )
+)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;querying-transaction-meta-data:8a55762a4668cbf851db116d659c13a7&#34;&gt;Querying transaction meta data&lt;/h2&gt;
+
+&lt;p&gt;Now we can find stories based on our transaction meta data knowledge:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;// Stories that Stu added (first meta information used)
+Story.title.tx_(MetaData.user_(stu)).get === List(
+  &amp;quot;Keep Chocolate Love Atomic&amp;quot;,
+  &amp;quot;ElastiCache in 6 minutes&amp;quot;
+)
+
+// Stories that were added with the AddStories use case (second meta information used)
+Story.title.tx_(MetaData.usecase_(&amp;quot;AddStories&amp;quot;)).get === List(
+  &amp;quot;Keep Chocolate Love Atomic&amp;quot;,
+  &amp;quot;ElastiCache in 6 minutes&amp;quot;
+)
+
+// Stories that Stu added with the AddStories use case (both meta data used)
+Story.title.tx_(MetaData.user_(stu).usecase_(&amp;quot;AddStories&amp;quot;)).get === List(
+  &amp;quot;Keep Chocolate Love Atomic&amp;quot;,
+  &amp;quot;ElastiCache in 6 minutes&amp;quot;
+)
+
+// Stories and transactions where Stu added stories (`tx` is returned)
+Story.title.tx(MetaData.user_(stu).usecase_(&amp;quot;AddStories&amp;quot;)).get === List(
+  (&amp;quot;ElastiCache in 6 minutes&amp;quot;, stuTxId),
+  (&amp;quot;Keep Chocolate Love Atomic&amp;quot;, stuTxId)
+)
+
+// Stories and names of who added them (Note that we can have referenced meta data!)
+Story.title.tx_(MetaData.User.firstName.lastName).get === List(
+  (&amp;quot;ElastiCache in 6 minutes&amp;quot;, &amp;quot;Stu&amp;quot;, &amp;quot;Halloway&amp;quot;),
+  (&amp;quot;Keep Chocolate Love Atomic&amp;quot;, &amp;quot;Stu&amp;quot;, &amp;quot;Halloway&amp;quot;)
+)
+
+// Stories added by a user named &amp;quot;Stu&amp;quot;
+Story.title.tx_(MetaData.User.firstName_(&amp;quot;Stu&amp;quot;)).get === List(
+  &amp;quot;ElastiCache in 6 minutes&amp;quot;,
+  &amp;quot;Keep Chocolate Love Atomic&amp;quot;
+)
+
+// Stories added by a user with email &amp;quot;stuarthalloway@datomic.com&amp;quot;
+Story.title.tx_(MetaData.User.email_(&amp;quot;stuarthalloway@datomic.com&amp;quot;)).get === List(
+  &amp;quot;ElastiCache in 6 minutes&amp;quot;,
+  &amp;quot;Keep Chocolate Love Atomic&amp;quot;
+)
+
+// Count of stories added by a user with email &amp;quot;stuarthalloway@datomic.com&amp;quot;
+Story.title(count).tx_(MetaData.User.email_(&amp;quot;stuarthalloway@datomic.com&amp;quot;)).one === 2
+
+// Emails of users who added stories
+Story.title_.tx_(MetaData.usecase_(&amp;quot;AddStories&amp;quot;).User.email).get === List(
+  &amp;quot;stuarthalloway@datomic.com&amp;quot;
+)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;transaction-history:8a55762a4668cbf851db116d659c13a7&#34;&gt;Transaction history&lt;/h2&gt;
+
+&lt;p&gt;We can also annotate updates like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Story(elasticacheStory).title(&amp;quot;ElastiCache in 5 minutes&amp;quot;)
+  .tx_(MetaData.user(ed).usecase_(&amp;quot;UpdateStory&amp;quot;)).update
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We can then use the &lt;code&gt;history&lt;/code&gt; of the database in combination with out meta data to follow who
+created/updated:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Story.url_(ecURL).title.op.tx_(MetaData.usecase.User.firstName).history.get.reverse === List(
+  (&amp;quot;ElastiCache in 6 minutes&amp;quot;, true, &amp;quot;AddStories&amp;quot;, &amp;quot;Stu&amp;quot;),  // Stu adds the story
+  (&amp;quot;ElastiCache in 6 minutes&amp;quot;, false, &amp;quot;UpdateStory&amp;quot;, &amp;quot;Ed&amp;quot;), // retraction automatically added by Datomic
+  (&amp;quot;ElastiCache in 5 minutes&amp;quot;, true, &amp;quot;UpdateStory&amp;quot;, &amp;quot;Ed&amp;quot;)   // Ed&#39;s update of the title
+)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;When a new fact is asserted for a cardinality-one attribute that already has a value, Datomic
+automatically makes an extra datom with a retraction (&lt;code&gt;op false&lt;/code&gt;) to &amp;ldquo;cancel&amp;rdquo; the old value and
+then adds our assertion datom.&lt;/p&gt;
+
+&lt;p&gt;The current database is the latest snapshot of the history, so the ElastiCache now has the correct
+title. We can therefore see if stories have been edited:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;// Stories with latest use case meta date
+Story.title.tx_(MetaData.usecase).get === List(
+  (&amp;quot;Keep Chocolate Love Atomic&amp;quot;, &amp;quot;AddStories&amp;quot;),
+  (&amp;quot;ElastiCache in 5 minutes&amp;quot;, &amp;quot;UpdateStory&amp;quot;)
+)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And we can even look for data without certain transaction meta data&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;// Stories without use case meta data
+Story.title.tx_(MetaData.usecase_(nil)).get === List(
+  &amp;quot;Clojure Rationale&amp;quot;,
+  &amp;quot;Beating the Averages&amp;quot;,
+  &amp;quot;Teach Yourself Programming in Ten Years&amp;quot;
+)
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Composites</title>
+      <link>http://scalamolecule.org/manual/query/composites/</link>
+      <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
+      
+      <guid>http://scalamolecule.org/manual/query/composites/</guid>
+      <description>
+
+&lt;h1 id=&#34;composites:b9a0ee3a99915056cd907050a6fe3554&#34;&gt;Composites&lt;/h1&gt;
+
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://scalamolecule.org/img/DatomicElements2.png&#34; alt=&#34;&#34; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Entities can have attributes from &lt;strong&gt;any&lt;/strong&gt; namespace&lt;/em&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;composite-inserts:b9a0ee3a99915056cd907050a6fe3554&#34;&gt;Composite inserts&lt;/h2&gt;
+
+&lt;p&gt;A core feature of Datomic is that any attribute value can be associated with an entity. This allow us
+to &amp;ldquo;compose&amp;rdquo; entities with attribute values from un-related namespaces.&lt;/p&gt;
+
+&lt;p&gt;Say for instance if we want to tag various part of our domain. It would be tedious and counter-intuitive
+to have references between every single namespace to a tag namespace. Tags are not an intrinsic value of most
+entities and are therefore better modelled in isolation.&lt;/p&gt;
+
+&lt;p&gt;Molecule allow us to make &amp;ldquo;composites&amp;rdquo; that will type-safely bring tag data together with any entity. We could
+for instance create 2 Article entities each with 2 tags:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;insert(
+  Article.name.author ~ Tag.name.weight
+)(
+  ((&amp;quot;Battle of Waterloo&amp;quot;, &amp;quot;Ben Bridge&amp;quot;), (&amp;quot;serious&amp;quot;, 5)),
+  ((&amp;quot;Best jokes ever&amp;quot;, &amp;quot;John Cleese&amp;quot;), (&amp;quot;fun&amp;quot;, 3))
+)()
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The &lt;code&gt;~&lt;/code&gt; method merges the involved sub-molecules (could be up to 22!) into one composite model where all
+sub-molecules share the entity id. Here we just created two entities each with 4 values of the 4 attributes.
+No need to make a reference from Articles to Tags or vice versa. The relationship is established through
+the shared entity id.&lt;/p&gt;
+
+&lt;p&gt;We could add tags to any other part of our domain - and even some transaction meta data:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;insert(
+  Review.title.text ~ Tag.name.weight
+)(
+  ((&amp;quot;Okay&amp;quot;, &amp;quot;Well, maybe&amp;quot;), (&amp;quot;noise&amp;quot;, 1)),
+  ((&amp;quot;Excellent&amp;quot;, &amp;quot;Go buy it!&amp;quot;), (&amp;quot;serious&amp;quot;, 4))
+)(
+  MetaData.submitter_(&amp;quot;Brenda Johnson&amp;quot;).usecase_(&amp;quot;AddReviews&amp;quot;)
+)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Note that each &amp;ldquo;row&amp;rdquo; of data is a tuple with 2 tuples of type-checked data matching the 2 sub-molecules.&lt;/p&gt;
+
+&lt;h2 id=&#34;composite-queries:b9a0ee3a99915056cd907050a6fe3554&#34;&gt;Composite queries&lt;/h2&gt;
+
+&lt;p&gt;Use any part of the composite data to filter out what we are looking for:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;// All articles
+m(Article.name.author ~ Tag.name.weight).get === List(
+  ((&amp;quot;Battle of Waterloo&amp;quot;, &amp;quot;Ben Bridge&amp;quot;), (&amp;quot;serious&amp;quot;, 5)),
+  ((&amp;quot;Best jokes ever&amp;quot;, &amp;quot;John Cleese&amp;quot;), (&amp;quot;fun&amp;quot;, 3))
+)
+
+// Fun articles by John Cleese
+m(Article.name.author(&amp;quot;John Cleese&amp;quot;) ~ Tag.name_(&amp;quot;fun&amp;quot;)).get === List(
+  ((&amp;quot;Best jokes ever&amp;quot;, &amp;quot;John Cleese&amp;quot;))
+)
+
+// Important articles
+m(Article.name.author ~ Tag.weight.&amp;gt;=(4)).get === List(
+  ((&amp;quot;Battle of Waterloo&amp;quot;, &amp;quot;Ben Bridge&amp;quot;), 5)
+)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And we could even combine our filtering with transaction meta data&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;// Important articles submitted by Brenda Johnson
+m(Article.name.author ~ Tag.weight.&amp;gt;=(4).tx_(MetaData.submitter_(&amp;quot;Brenda Johnson&amp;quot;))).get === List(
+  ((&amp;quot;Battle of Waterloo&amp;quot;, &amp;quot;Ben Bridge&amp;quot;), 5)
+)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;arity-22-molecules:b9a0ee3a99915056cd907050a6fe3554&#34;&gt;Arity 22+ molecules&lt;/h2&gt;
+
+&lt;p&gt;Since composites are composed of up to 22 sub-molecules we could potentially insert and retrieve
+mega composite molecules with up to 22 x 22 = 484 attributes, although the compiler probably wouldn&amp;rsquo;t
+be too happy about that.&lt;/p&gt;
+
+&lt;p&gt;Compile time for molecules longer than about 14-16 attributes long tend to increase sharply, so simply
+splitting up long molecules in 2 or more sub-molecules easily keeps compilation fast.&lt;/p&gt;
 </description>
     </item>
     
