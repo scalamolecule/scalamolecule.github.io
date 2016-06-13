@@ -1318,7 +1318,7 @@ and &lt;a href=&#34;https://github.com/scalamolecule/molecule/blob/master/corete
 &lt;h1 id=&#34;transaction-meta-data:8a55762a4668cbf851db116d659c13a7&#34;&gt;Transaction meta data&lt;/h1&gt;
 
 &lt;p&gt;Transaction data in Datomic is basically a list of facts/datoms being asserted or retracted. If we take the
-&lt;a href=&#34;https://github.com/scalamolecule/molecule/blob/master/examples/src/test/scala/molecule/examples/dayOfDatomic/Aggregates.scala&#34;&gt;Provenance&lt;/a&gt;
+&lt;a href=&#34;https://github.com/scalamolecule/molecule/blob/master/examples/src/test/scala/molecule/examples/dayOfDatomic/Provenance.scala&#34;&gt;Provenance&lt;/a&gt;
 example we could add two Story entities each with two datoms (&lt;code&gt;title&lt;/code&gt; and &lt;code&gt;url&lt;/code&gt;) with this molecule:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Story.title.url insert List(
@@ -1473,6 +1473,8 @@ Story.title.tx_(MetaData.usecase_(nil)).get === List(
   &amp;quot;Teach Yourself Programming in Ten Years&amp;quot;
 )
 &lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;See also &lt;a href=&#34;https://github.com/scalamolecule/molecule/blob/master/coretest/src/test/scala/molecule/transaction/TransactionMetaData.scala&#34;&gt;core tests&amp;hellip;&lt;/a&gt;&lt;/p&gt;
 </description>
     </item>
     
@@ -1569,6 +1571,8 @@ be too happy about that.&lt;/p&gt;
 
 &lt;p&gt;Compile time for molecules longer than about 14-16 attributes long tend to increase sharply, so simply
 splitting up long molecules in 2 or more sub-molecules easily keeps compilation fast.&lt;/p&gt;
+
+&lt;p&gt;See &lt;a href=&#34;https://github.com/scalamolecule/molecule/blob/master/coretest/src/test/scala/molecule/ref/Composite.scala&#34;&gt;Composite tests&amp;hellip;&lt;/a&gt;&lt;/p&gt;
 </description>
     </item>
     

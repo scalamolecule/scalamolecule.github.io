@@ -104,7 +104,7 @@
 <h1 id="transaction-meta-data:8a55762a4668cbf851db116d659c13a7">Transaction meta data</h1>
 
 <p>Transaction data in Datomic is basically a list of facts/datoms being asserted or retracted. If we take the
-<a href="https://github.com/scalamolecule/molecule/blob/master/examples/src/test/scala/molecule/examples/dayOfDatomic/Aggregates.scala">Provenance</a>
+<a href="https://github.com/scalamolecule/molecule/blob/master/examples/src/test/scala/molecule/examples/dayOfDatomic/Provenance.scala">Provenance</a>
 example we could add two Story entities each with two datoms (<code>title</code> and <code>url</code>) with this molecule:</p>
 
 <pre><code class="language-scala">Story.title.url insert List(
@@ -259,6 +259,8 @@ Story.title.tx_(MetaData.usecase_(nil)).get === List(
   &quot;Teach Yourself Programming in Ten Years&quot;
 )
 </code></pre>
+
+<p>See also <a href="https://github.com/scalamolecule/molecule/blob/master/coretest/src/test/scala/molecule/transaction/TransactionMetaData.scala">core tests&hellip;</a></p>
 
 </div>
 
