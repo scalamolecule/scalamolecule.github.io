@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Developers on Molecule</title>
-    <link>http://scalamolecule.org/developer/</link>
+    <link>http://localhost:1313/developer/</link>
     <description>Recent content in Developers on Molecule</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     
     
     <lastBuildDate>Wed, 14 May 2014 02:13:50 UTC</lastBuildDate>
-    <atom:link href="http://scalamolecule.org/developer/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/developer/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Developer</title>
-      <link>http://scalamolecule.org/developer/overview/</link>
+      <link>http://localhost:1313/developer/overview/</link>
       <pubDate>Wed, 14 May 2014 02:13:50 UTC</pubDate>
       
-      <guid>http://scalamolecule.org/developer/overview/</guid>
+      <guid>http://localhost:1313/developer/overview/</guid>
       <description>
 
 &lt;h1 id=&#34;developer:68f80267fa3a50980dbb745a782b8dca&#34;&gt;Developer&lt;/h1&gt;
@@ -93,16 +93,16 @@ m(firstName ~ lastName ~ age) // all fields of a `Person` trait...
 possible constructs we can expect. We are therefore in full control of the entire &amp;ldquo;eco-system&amp;rdquo; from molecule
  to Datomic query. Non-valid molecules simply won&amp;rsquo;t compile. And we can infer all type information from our molecules.&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&#34;http://scalamolecule.org/developer/transformation&#34;&gt;Read more about the macro transformations&amp;hellip;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://localhost:1313/developer/transformation&#34;&gt;Read more about the macro transformations&amp;hellip;&lt;/a&gt;&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Boilerplate</title>
-      <link>http://scalamolecule.org/developer/boilerplate/</link>
+      <link>http://localhost:1313/developer/boilerplate/</link>
       <pubDate>Wed, 14 May 2014 02:13:50 UTC</pubDate>
       
-      <guid>http://scalamolecule.org/developer/boilerplate/</guid>
+      <guid>http://localhost:1313/developer/boilerplate/</guid>
       <description>
 
 &lt;h1 id=&#34;boilerplate-code-generation:36a3cc328100a137a125b621a816413d&#34;&gt;Boilerplate code generation&lt;/h1&gt;
@@ -193,10 +193,10 @@ inferring and suggesting the possible types to proceed with.&lt;/p&gt;
     
     <item>
       <title>Transformation</title>
-      <link>http://scalamolecule.org/developer/transformation/</link>
+      <link>http://localhost:1313/developer/transformation/</link>
       <pubDate>Wed, 14 May 2014 02:13:50 UTC</pubDate>
       
-      <guid>http://scalamolecule.org/developer/transformation/</guid>
+      <guid>http://localhost:1313/developer/transformation/</guid>
       <description>
 
 &lt;h1 id=&#34;macro-transformation:596edf0adf55e6ba8eb0683b47bc2db2&#34;&gt;Macro transformation&lt;/h1&gt;
