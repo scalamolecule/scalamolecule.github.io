@@ -1319,8 +1319,6 @@ and &lt;a href=&#34;https://github.com/scalamolecule/molecule/blob/master/corete
 
 &lt;p&gt;(See &lt;a href=&#34;https://github.com/scalamolecule/molecule/blob/master/coretest/src/test/scala/molecule/bidirectional/&#34;&gt;bidirectional tests&lt;/a&gt;)&lt;/p&gt;
 
-&lt;p&gt;Molecule&lt;/p&gt;
-
 &lt;h3 id=&#34;unidirectional-reference-limitations:202abaea8dbead8f4e14657c1559cf69&#34;&gt;Unidirectional reference limitations&lt;/h3&gt;
 
 &lt;p&gt;Normal Datomic references are unidirectional. If we add a friend reference from Ann to Ben&lt;/p&gt;
