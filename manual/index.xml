@@ -1396,9 +1396,13 @@ reference from each namespace to the other:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;trait Person {
   val buddies = manyBi[Animal.buddies.type]
+  
+  val name = oneString
 }
 trait Animal {
   val buddies = manyBi[Person.buddies.type]
+  
+  val name = oneString
 }
 &lt;/code&gt;&lt;/pre&gt;
 
@@ -1417,6 +1421,8 @@ and we model that as a bidirectional cardinality-one reference:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;trait Person {
   val pet = oneBi[Animal.master.type]
+  
+  val name = oneString
 }
 trait Animal {
   val master = oneBi[Person.pet.type]
@@ -1452,6 +1458,8 @@ having a &lt;code&gt;weight&lt;/code&gt; property:&lt;/p&gt;
 trait Person {
   // A ==&amp;gt; edge -- a
   val knows = manyBiEdge[Knows.person.type]
+  
+  val name = oneString
 }
 
 // Property edge
@@ -1488,7 +1496,9 @@ namespaces:&lt;/p&gt;
 trait Person {
   // Ref to edge
   // A ==&amp;gt; edge -- a
-  val knows = manyBiEdge[Knows.person.type]
+  val closeTo = manyBiEdge[CloseTo.animal.type]
+  
+  val name = oneString
 }
 
 // Property edge
@@ -1510,6 +1520,8 @@ trait Animal {
   // Ref to edge
   // a -- edge &amp;lt;== B
   val closeTo  = manyBiEdge[CloseTo.person.type]
+  
+  val name = oneString
 }
 &lt;/code&gt;&lt;/pre&gt;
 
