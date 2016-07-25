@@ -1495,7 +1495,7 @@ namespaces:&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;// Entity A
 trait Person {
   // Ref to edge
-  // A ==&amp;gt; edge -- a
+  // A ==&amp;gt; edge -- b
   val closeTo = manyBiEdge[CloseTo.animal.type]
   
   val name = oneString
