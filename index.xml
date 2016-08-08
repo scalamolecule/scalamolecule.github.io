@@ -2471,6 +2471,192 @@ definition DSL let&amp;rsquo;s you only choose allowed options for any attribute
     </item>
     
     <item>
+      <title>Slick</title>
+      <link>http://scalamolecule.org/compare/sql/slick/</link>
+      <pubDate>Wed, 14 May 2014 02:13:50 UTC</pubDate>
+      
+      <guid>http://scalamolecule.org/compare/sql/slick/</guid>
+      <description>
+
+&lt;h1 id=&#34;slick-vs-molecule-examples:ce7ebdb2cbbacd766a8940138f40260d&#34;&gt;Slick vs. Molecule examples&lt;/h1&gt;
+
+&lt;p&gt;Using examples from &lt;a href=&#34;http://slick.typesafe.com/doc/3.0.0-M1/sql-to-slick.html#sql-vs-slick-examples&#34;&gt;Slick&lt;/a&gt;:&lt;/p&gt;
+
+&lt;h4 id=&#34;select-all-table-values:ce7ebdb2cbbacd766a8940138f40260d&#34;&gt;Select all table values&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;// Slick
+people.run
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;In molecule we would declare each attribute we are interested in also to infer the exact return type&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;// Molecule
+Person.name.age.get
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;select-certain-columns:ce7ebdb2cbbacd766a8940138f40260d&#34;&gt;Select certain columns&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;people.map(p =&amp;gt; (p.age, p.name ++ &amp;quot; (&amp;quot; ++ p.id.asColumnOf[String] ++ &amp;quot;)&amp;quot;)).run
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;With Molecule we would concatenate &lt;code&gt;name&lt;/code&gt; and &lt;code&gt;id&lt;/code&gt; with the returned result set:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.age.name.e.get map { case (age, name, id) =&amp;gt; (age, s&amp;quot;$name ($id)&amp;quot; }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;filter-where:ce7ebdb2cbbacd766a8940138f40260d&#34;&gt;filter / WHERE&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;people.filter(p =&amp;gt; p.age &amp;gt;= 18 &amp;amp;&amp;amp; p.name === &amp;quot;C. Vogt&amp;quot;).run
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Molecule filter values by applying a required value to an attribute or supply a value to compare against (&lt;code&gt;&amp;gt;=(18)&lt;/code&gt;):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.age.&amp;gt;=(18).name(&amp;quot;C. Vogt&amp;quot;).get
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;(Again we would define which attribute values we want to return)&lt;/p&gt;
+
+&lt;h4 id=&#34;sortby-order-by:ce7ebdb2cbbacd766a8940138f40260d&#34;&gt;sortBy / ORDER BY&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;people.sortBy(p =&amp;gt; (p.age.asc, p.name)).run
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Ordering is applied on the result set:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.age.name.get sortBy(_._1)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;aggregations:ce7ebdb2cbbacd766a8940138f40260d&#34;&gt;Aggregations&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;people.map(_.age).max.run
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Aggregate functions like &lt;code&gt;max&lt;/code&gt; are all applied as a keyword value to an attribute.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.age(max).get
+
+// or get a range of top values
+Person.age(max(3)).get
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We can aggregate values also with the counterpart &lt;code&gt;min&lt;/code&gt; or get a random value with &lt;code&gt;rand&lt;/code&gt;. Or perform aggregate calculations with &lt;code&gt;count&lt;/code&gt;, &lt;code&gt;countDistinct&lt;/code&gt;, &lt;code&gt;sum&lt;/code&gt;, &lt;code&gt;avg&lt;/code&gt;, &lt;code&gt;median&lt;/code&gt;, &lt;code&gt;variance&lt;/code&gt; and &lt;code&gt;stddev&lt;/code&gt; which are all built functions in Datomic.&lt;/p&gt;
+
+&lt;h4 id=&#34;groupby-group-by:ce7ebdb2cbbacd766a8940138f40260d&#34;&gt;groupBy / GROUP BY&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;people.groupBy(p =&amp;gt; p.addressId)
+       .map{ case (addressId, group) =&amp;gt; (addressId, group.map(_.age).avg) }
+       .list
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Molecule automatically group by attributes not having an aggregate expression. In this case the query will group by &lt;code&gt;address&lt;/code&gt; and calculate the average &lt;code&gt;age&lt;/code&gt; for persons living there.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.address.age(avg).get
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;groupby-filter-having:ce7ebdb2cbbacd766a8940138f40260d&#34;&gt;groupBy+filter / HAVING&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;people.groupBy(p =&amp;gt; p.addressId)
+       .map{ case (addressId, group) =&amp;gt; (addressId, group.map(_.age).avg) }
+       .filter{ case (addressId, avgAge) =&amp;gt; avgAge &amp;gt; 50 }
+       .map(_._1)
+       .run
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.address.age(avg).get.filter(_._2 &amp;gt; 50)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;implicit-join:ce7ebdb2cbbacd766a8940138f40260d&#34;&gt;Implicit join&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;people.flatMap(p =&amp;gt;
+  addresses.filter(a =&amp;gt; p.addressId === a.id)
+           .map(a =&amp;gt; (p.name, a.city))
+).run
+
+// or equivalent for-expression:
+(for(p &amp;lt;- people;
+     a &amp;lt;- addresses if p.addressId === a.id
+ ) yield (p.name, a.city)
+).run
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.name.Address.city.get
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;explicit-join:ce7ebdb2cbbacd766a8940138f40260d&#34;&gt;Explicit join&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;(people join addresses on (_.addressId === _.id))
+  .map{ case (p, a) =&amp;gt; (p.name, a.city) }.run
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.name.Address.city.get
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;left-right-outer-join:ce7ebdb2cbbacd766a8940138f40260d&#34;&gt;left/right/outer join&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;(addresses joinLeft people on (_.id === _.addressId))
+  .map{ case (a, p) =&amp;gt; (p.map(_.name), a.city) }.run
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;// TODO
+Person.name(maybe).Address.city.get
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;subquery:ce7ebdb2cbbacd766a8940138f40260d&#34;&gt;Subquery&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val address_ids = addresses.filter(_.city === &amp;quot;New York City&amp;quot;).map(_.id)
+people.filter(_.id in address_ids).run // &amp;lt;- run as one query
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.age.name.Address.city_(&amp;quot;New York City&amp;quot;).get
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;insert:ce7ebdb2cbbacd766a8940138f40260d&#34;&gt;insert&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;people.map(p =&amp;gt; (p.name, p.age, p.addressId))
+       .insert((&amp;quot;M Odersky&amp;quot;,12345,1))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.name(&amp;quot;M Odersky&amp;quot;).age(12345).address(1).add
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;update:ce7ebdb2cbbacd766a8940138f40260d&#34;&gt;update&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;people.filter(_.name === &amp;quot;M Odersky&amp;quot;)
+       .map(p =&amp;gt; (p.name,p.age))
+       .update((&amp;quot;M. Odersky&amp;quot;,54321))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val odersky = Person.name(&amp;quot;M Odersky&amp;quot;).get.id
+Person(odersky).name(&amp;quot;M. Odersky&amp;quot;).age(54321).update
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;delete:ce7ebdb2cbbacd766a8940138f40260d&#34;&gt;delete&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;people.filter(p =&amp;gt; p.name === &amp;quot;M. Odersky&amp;quot;)
+       .delete
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.name(&amp;quot;M. Odersky&amp;quot;).get.id.delete
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;case:ce7ebdb2cbbacd766a8940138f40260d&#34;&gt;case&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;people.map(p =&amp;gt;
+  Case
+    If(p.addressId === 1) Then &amp;quot;A&amp;quot;
+    If(p.addressId === 2) Then &amp;quot;B&amp;quot;
+).list
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.Address.e(1 or 2).get map {
+  case 1 =&amp;gt; &amp;quot;A&amp;quot;
+  case 2 =&amp;gt; &amp;quot;B&amp;quot;
+}
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
       <title>SQL</title>
       <link>http://scalamolecule.org/compare/sql/</link>
       <pubDate>Wed, 14 May 2014 02:13:50 UTC</pubDate>
@@ -2668,192 +2854,6 @@ Person(odersky).name(&amp;quot;M. Odersky&amp;quot;).age(54321).update
     end
   from PERSON P
 &amp;quot;&amp;quot;&amp;quot;.as[Option[String]].list
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.Address.e(1 or 2).get map {
-  case 1 =&amp;gt; &amp;quot;A&amp;quot;
-  case 2 =&amp;gt; &amp;quot;B&amp;quot;
-}
-&lt;/code&gt;&lt;/pre&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Slick</title>
-      <link>http://scalamolecule.org/compare/sql/slick/</link>
-      <pubDate>Wed, 14 May 2014 02:13:50 UTC</pubDate>
-      
-      <guid>http://scalamolecule.org/compare/sql/slick/</guid>
-      <description>
-
-&lt;h1 id=&#34;slick-vs-molecule-examples:ce7ebdb2cbbacd766a8940138f40260d&#34;&gt;Slick vs. Molecule examples&lt;/h1&gt;
-
-&lt;p&gt;Using examples from &lt;a href=&#34;http://slick.typesafe.com/doc/3.0.0-M1/sql-to-slick.html#sql-vs-slick-examples&#34;&gt;Slick&lt;/a&gt;:&lt;/p&gt;
-
-&lt;h4 id=&#34;select-all-table-values:ce7ebdb2cbbacd766a8940138f40260d&#34;&gt;Select all table values&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code&gt;// Slick
-people.run
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;In molecule we would declare each attribute we are interested in also to infer the exact return type&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;// Molecule
-Person.name.age.get
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h4 id=&#34;select-certain-columns:ce7ebdb2cbbacd766a8940138f40260d&#34;&gt;Select certain columns&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code&gt;people.map(p =&amp;gt; (p.age, p.name ++ &amp;quot; (&amp;quot; ++ p.id.asColumnOf[String] ++ &amp;quot;)&amp;quot;)).run
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;With Molecule we would concatenate &lt;code&gt;name&lt;/code&gt; and &lt;code&gt;id&lt;/code&gt; with the returned result set:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.age.name.e.get map { case (age, name, id) =&amp;gt; (age, s&amp;quot;$name ($id)&amp;quot; }
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h4 id=&#34;filter-where:ce7ebdb2cbbacd766a8940138f40260d&#34;&gt;filter / WHERE&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;people.filter(p =&amp;gt; p.age &amp;gt;= 18 &amp;amp;&amp;amp; p.name === &amp;quot;C. Vogt&amp;quot;).run
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Molecule filter values by applying a required value to an attribute or supply a value to compare against (&lt;code&gt;&amp;gt;=(18)&lt;/code&gt;):&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.age.&amp;gt;=(18).name(&amp;quot;C. Vogt&amp;quot;).get
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;(Again we would define which attribute values we want to return)&lt;/p&gt;
-
-&lt;h4 id=&#34;sortby-order-by:ce7ebdb2cbbacd766a8940138f40260d&#34;&gt;sortBy / ORDER BY&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;people.sortBy(p =&amp;gt; (p.age.asc, p.name)).run
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Ordering is applied on the result set:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.age.name.get sortBy(_._1)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h4 id=&#34;aggregations:ce7ebdb2cbbacd766a8940138f40260d&#34;&gt;Aggregations&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;people.map(_.age).max.run
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Aggregate functions like &lt;code&gt;max&lt;/code&gt; are all applied as a keyword value to an attribute.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.age(max).get
-
-// or get a range of top values
-Person.age(max(3)).get
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;We can aggregate values also with the counterpart &lt;code&gt;min&lt;/code&gt; or get a random value with &lt;code&gt;rand&lt;/code&gt;. Or perform aggregate calculations with &lt;code&gt;count&lt;/code&gt;, &lt;code&gt;countDistinct&lt;/code&gt;, &lt;code&gt;sum&lt;/code&gt;, &lt;code&gt;avg&lt;/code&gt;, &lt;code&gt;median&lt;/code&gt;, &lt;code&gt;variance&lt;/code&gt; and &lt;code&gt;stddev&lt;/code&gt; which are all built functions in Datomic.&lt;/p&gt;
-
-&lt;h4 id=&#34;groupby-group-by:ce7ebdb2cbbacd766a8940138f40260d&#34;&gt;groupBy / GROUP BY&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;people.groupBy(p =&amp;gt; p.addressId)
-       .map{ case (addressId, group) =&amp;gt; (addressId, group.map(_.age).avg) }
-       .list
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Molecule automatically group by attributes not having an aggregate expression. In this case the query will group by &lt;code&gt;address&lt;/code&gt; and calculate the average &lt;code&gt;age&lt;/code&gt; for persons living there.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.address.age(avg).get
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h4 id=&#34;groupby-filter-having:ce7ebdb2cbbacd766a8940138f40260d&#34;&gt;groupBy+filter / HAVING&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;people.groupBy(p =&amp;gt; p.addressId)
-       .map{ case (addressId, group) =&amp;gt; (addressId, group.map(_.age).avg) }
-       .filter{ case (addressId, avgAge) =&amp;gt; avgAge &amp;gt; 50 }
-       .map(_._1)
-       .run
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.address.age(avg).get.filter(_._2 &amp;gt; 50)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h4 id=&#34;implicit-join:ce7ebdb2cbbacd766a8940138f40260d&#34;&gt;Implicit join&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;people.flatMap(p =&amp;gt;
-  addresses.filter(a =&amp;gt; p.addressId === a.id)
-           .map(a =&amp;gt; (p.name, a.city))
-).run
-
-// or equivalent for-expression:
-(for(p &amp;lt;- people;
-     a &amp;lt;- addresses if p.addressId === a.id
- ) yield (p.name, a.city)
-).run
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.name.Address.city.get
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h4 id=&#34;explicit-join:ce7ebdb2cbbacd766a8940138f40260d&#34;&gt;Explicit join&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;(people join addresses on (_.addressId === _.id))
-  .map{ case (p, a) =&amp;gt; (p.name, a.city) }.run
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.name.Address.city.get
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h4 id=&#34;left-right-outer-join:ce7ebdb2cbbacd766a8940138f40260d&#34;&gt;left/right/outer join&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;(addresses joinLeft people on (_.id === _.addressId))
-  .map{ case (a, p) =&amp;gt; (p.map(_.name), a.city) }.run
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;// TODO
-Person.name(maybe).Address.city.get
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h4 id=&#34;subquery:ce7ebdb2cbbacd766a8940138f40260d&#34;&gt;Subquery&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val address_ids = addresses.filter(_.city === &amp;quot;New York City&amp;quot;).map(_.id)
-people.filter(_.id in address_ids).run // &amp;lt;- run as one query
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.age.name.Address.city_(&amp;quot;New York City&amp;quot;).get
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h4 id=&#34;insert:ce7ebdb2cbbacd766a8940138f40260d&#34;&gt;insert&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;people.map(p =&amp;gt; (p.name, p.age, p.addressId))
-       .insert((&amp;quot;M Odersky&amp;quot;,12345,1))
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.name(&amp;quot;M Odersky&amp;quot;).age(12345).address(1).add
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h4 id=&#34;update:ce7ebdb2cbbacd766a8940138f40260d&#34;&gt;update&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;people.filter(_.name === &amp;quot;M Odersky&amp;quot;)
-       .map(p =&amp;gt; (p.name,p.age))
-       .update((&amp;quot;M. Odersky&amp;quot;,54321))
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val odersky = Person.name(&amp;quot;M Odersky&amp;quot;).get.id
-Person(odersky).name(&amp;quot;M. Odersky&amp;quot;).age(54321).update
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h4 id=&#34;delete:ce7ebdb2cbbacd766a8940138f40260d&#34;&gt;delete&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;people.filter(p =&amp;gt; p.name === &amp;quot;M. Odersky&amp;quot;)
-       .delete
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.name(&amp;quot;M. Odersky&amp;quot;).get.id.delete
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h4 id=&#34;case:ce7ebdb2cbbacd766a8940138f40260d&#34;&gt;case&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;people.map(p =&amp;gt;
-  Case
-    If(p.addressId === 1) Then &amp;quot;A&amp;quot;
-    If(p.addressId === 2) Then &amp;quot;B&amp;quot;
-).list
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.Address.e(1 or 2).get map {
