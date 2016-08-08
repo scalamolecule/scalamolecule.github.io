@@ -260,6 +260,233 @@ possible constructs we can expect. We are therefore in full control of the entir
     </item>
     
     <item>
+      <title>Home</title>
+      <link>http://scalamolecule.org/home/front/</link>
+      <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
+      
+      <guid>http://scalamolecule.org/home/front/</guid>
+      <description>
+
+&lt;h1 id=&#34;molecule:ffcff61ab3a11ef1d50900901a24ec54&#34;&gt;Molecule&lt;/h1&gt;
+
+&lt;h4 id=&#34;write-powerful-datomic-queries-with-the-words-of-your-domain:ffcff61ab3a11ef1d50900901a24ec54&#34;&gt;&lt;em&gt;Write powerful &lt;a href=&#34;http://www.datomic.com&#34;&gt;Datomic&lt;/a&gt; queries with the words of your domain:&lt;/em&gt;&lt;/h4&gt;
+
+&lt;div id=&#34;myCarousel&#34; class=&#34;carousel slide&#34; data-interval=&#34;9000&#34; data-ride=&#34;carousel&#34;&gt;
+    &lt;!-- Carousel indicators --&gt;
+    &lt;ol class=&#34;carousel-indicators&#34;&gt;
+        &lt;li data-target=&#34;#myCarousel&#34; data-slide-to=&#34;0&#34; class=&#34;active&#34;&gt;&lt;/li&gt;
+        &lt;li data-target=&#34;#myCarousel&#34; data-slide-to=&#34;1&#34;&gt;&lt;/li&gt;
+        &lt;li data-target=&#34;#myCarousel&#34; data-slide-to=&#34;2&#34;&gt;&lt;/li&gt;
+        &lt;li data-target=&#34;#myCarousel&#34; data-slide-to=&#34;3&#34;&gt;&lt;/li&gt;
+        &lt;li data-target=&#34;#myCarousel&#34; data-slide-to=&#34;4&#34;&gt;&lt;/li&gt;
+        &lt;li data-target=&#34;#myCarousel&#34; data-slide-to=&#34;5&#34;&gt;&lt;/li&gt;
+        &lt;li data-target=&#34;#myCarousel&#34; data-slide-to=&#34;6&#34;&gt;&lt;/li&gt;
+        &lt;li data-target=&#34;#myCarousel&#34; data-slide-to=&#34;7&#34;&gt;&lt;/li&gt;
+    &lt;/ol&gt;   
+   &lt;!-- Carousel items --&gt;
+    &lt;div class=&#34;carousel-inner&#34;&gt;
+        &lt;div class=&#34;active item&#34;&gt;
+            &lt;div class=&#34;carousel-caption&#34;&gt;
+              &lt;h3&gt;Type-inferred Queries&lt;/h3&gt;
+&lt;p&gt;Build query molecules with your domain attributes&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val persons: Seq[(String, Int)] = Person.name.age.get      
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;em&gt;&amp;ldquo;Name and age of Persons&amp;rdquo;&lt;/em&gt;&lt;/p&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;   
+        &lt;div class=&#34;item&#34;&gt;
+            &lt;div class=&#34;carousel-caption&#34;&gt;                      
+                &lt;h3&gt;Relationships&lt;/h3&gt;
+&lt;p&gt;Pick attributes across namespaces&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.name.age.Address.street.Country.name.get      
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;em&gt;&amp;ldquo;Name, age, street and country of residence&amp;rdquo;&lt;/em&gt;&lt;/p&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class=&#34;item&#34;&gt;
+            &lt;div class=&#34;carousel-caption&#34;&gt;                   
+                &lt;h3 id=&#34;conditional-values:ffcff61ab3a11ef1d50900901a24ec54&#34;&gt;Conditional values&lt;/h3&gt;
+
+&lt;p&gt;Apply required values for certain attributes&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.name(&amp;quot;Johnson&amp;quot;).age.Address.City.name(&amp;quot;New York&amp;quot;).get      
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;em&gt;&amp;ldquo;Age of Johnsons in New York&amp;rdquo; - name, age and city returned&lt;/em&gt;&lt;/p&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class=&#34;item&#34;&gt;
+            &lt;div class=&#34;carousel-caption&#34;&gt;                   
+                &lt;h3 id=&#34;control-output:ffcff61ab3a11ef1d50900901a24ec54&#34;&gt;Control output&lt;/h3&gt;
+
+&lt;p&gt;Add an underscore to omit an attribute from the result set:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.name_(&amp;quot;Johnson&amp;quot;).age.Address.City.name_(&amp;quot;New York&amp;quot;).get      
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;em&gt;&amp;ldquo;Age of Johnsons in New York&amp;rdquo; - only ages returned&lt;/em&gt;&lt;/p&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class=&#34;item&#34;&gt;
+            &lt;div class=&#34;carousel-caption&#34;&gt;                   
+                &lt;h3 id=&#34;logic-and-ranges:ffcff61ab3a11ef1d50900901a24ec54&#34;&gt;Logic and ranges&lt;/h3&gt;
+
+&lt;p&gt;Apply logical options and ranges&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.name(&amp;quot;Dean&amp;quot; or &amp;quot;Johnson&amp;quot;).age.&amp;lt;(25).Address.Country.iso2(&amp;quot;US&amp;quot;).get      
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;em&gt;&amp;ldquo;Young Dean and Johnsons in the US&amp;rdquo;&lt;/em&gt;&lt;/p&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class=&#34;item&#34;&gt;
+            &lt;div class=&#34;carousel-caption&#34;&gt;                   
+                &lt;h3 id=&#34;insert-multi-level-data:ffcff61ab3a11ef1d50900901a24ec54&#34;&gt;Insert multi-level data&lt;/h3&gt;
+
+&lt;p&gt;Insert data for multiple namespace levels in one go:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.name(&amp;quot;Johnson&amp;quot;).age(35).Address.street(&amp;quot;5th&amp;quot;).City.name(&amp;quot;New York&amp;quot;).add
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;em&gt;&amp;ldquo;Add a 35-year-old Johnson living on 5th street in New York&amp;rdquo;&lt;/em&gt;&lt;/p&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class=&#34;item&#34;&gt;
+            &lt;div class=&#34;carousel-caption&#34;&gt;                   
+                &lt;h3 id=&#34;upsert-data:ffcff61ab3a11ef1d50900901a24ec54&#34;&gt;Upsert data&lt;/h3&gt;
+
+&lt;p&gt;Add new facts&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person(johnsonId).Address.street(&amp;quot;Broadway&amp;quot;).update
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;em&gt;&amp;ldquo;Johnson now lives on Broadway&amp;rdquo;&lt;/em&gt;&lt;/p&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class=&#34;item&#34;&gt;
+            &lt;div class=&#34;carousel-caption&#34;&gt;                   
+                &lt;h3 id=&#34;more-up-the-sleeve:ffcff61ab3a11ef1d50900901a24ec54&#34;&gt;More..&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/home/introduction&#34;&gt;Introduction&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/tutorials/seattle&#34;&gt;Seattle Tutorial&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/home/setup&#34;&gt;Setup&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;!-- Carousel nav --&gt;
+    &lt;a class=&#34;carousel-control left&#34; href=&#34;#myCarousel&#34; data-slide=&#34;prev&#34;&gt;
+        &lt;span class=&#34;glyphicon glyphicon-chevron-left&#34;&gt;&lt;/span&gt;
+    &lt;/a&gt;
+    &lt;a class=&#34;carousel-control right&#34; href=&#34;#myCarousel&#34; data-slide=&#34;next&#34;&gt;
+        &lt;span class=&#34;glyphicon glyphicon-chevron-right&#34;&gt;&lt;/span&gt;
+    &lt;/a&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Molecule is a Scala meta-DSL that translates &amp;ldquo;molecules&amp;rdquo; of your domain attributes to Datalog queries
+for &lt;a href=&#34;http://www.datomic.com&#34;&gt;Datomic&lt;/a&gt; - the database of immutable facts.&lt;/p&gt;
+
+&lt;h3 id=&#34;how-does-it-work:ffcff61ab3a11ef1d50900901a24ec54&#34;&gt;How does it work?&lt;/h3&gt;
+
+&lt;div class=&#34;sequence-block&#34;&gt;
+    &lt;div class=&#34;bullet-block&#34;&gt;
+        &lt;div class=&#34;sequence-step&#34;&gt;1&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&#34;section&#34;&gt;
+        &lt;h4 id=&#34;define-schema-once:ffcff61ab3a11ef1d50900901a24ec54&#34;&gt;Define schema (once)&lt;/h4&gt;
+        &lt;p&gt;Our domain could have a &lt;code&gt;Person&lt;/code&gt; with attributes 
+        &lt;code&gt;name&lt;/code&gt; and &lt;code&gt;age&lt;/code&gt; having a relationship to an 
+        &lt;code&gt;Address&lt;/code&gt; so we define a schema for our domain:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;trait Person {
+  val name    = oneString
+  val age     = oneInt
+  val address = one[Address]
+}
+trait Address {
+  val street = oneString
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class=&#34;sequence-block&#34;&gt;
+    &lt;div class=&#34;bullet-block&#34;&gt;
+        &lt;div class=&#34;sequence-step&#34;&gt;2&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&#34;section&#34;&gt;
+        &lt;h4 id=&#34;compile-once:ffcff61ab3a11ef1d50900901a24ec54&#34;&gt;Compile (once)&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;&gt; cd yourProjectRoot
+&gt; sbt compile
+&lt;/code&gt;&lt;/pre&gt;
+
+        &lt;p&gt;Molecule uses our schema as a template to 
+        generate some boilerplate code so that we can compose intuitive and powerful 
+        query molecules. This step is only needed when we create or change our schema.&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class=&#34;sequence-block&#34;&gt;
+    &lt;div class=&#34;bullet-block&#34;&gt;
+        &lt;div class=&#34;sequence-step&#34;&gt;3&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&#34;section&#34;&gt;
+        &lt;h4 id=&#34;use-molecules:ffcff61ab3a11ef1d50900901a24ec54&#34;&gt;Use molecules&lt;/h4&gt;
+        &lt;p&gt;Now we can insert data with molecules:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.name.age.Address.street insert List(
+  (&#34;Lisa&#34;, 20, &#34;Broadway&#34;),
+  (&#34;John&#34;, 22, &#34;Fifth Avenue&#34;)
+)
+&lt;/code&gt;&lt;/pre&gt;
+
+        &lt;p&gt;And retrieve data:&lt;/p&gt;
+        
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.name.age.Address.street.get === List(
+  (&#34;Lisa&#34;, 20, &#34;Broadway&#34;),
+  (&#34;John&#34;, 22, &#34;Fifth Avenue&#34;)
+)     
+&lt;/code&gt;&lt;/pre&gt;
+
+        &lt;p&gt;The implicit macros &lt;code&gt;insert&lt;/code&gt; and &lt;code&gt;get&lt;/code&gt; turns our molecules
+         into type-safe Datalog inserts and queries at compile time. So there&#39;s no runtime overhead.&lt;/p&gt; 
+        
+        
+        
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&#34;try-demo:ffcff61ab3a11ef1d50900901a24ec54&#34;&gt;Try demo&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;git clone https://github.com/scalamolecule/molecule-demo.git&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;cd molecule-demo&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;sbt compile&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Open in your IDE&lt;/li&gt;
+&lt;li&gt;Run app - and build new molecules&amp;hellip;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&#34;next:ffcff61ab3a11ef1d50900901a24ec54&#34;&gt;Next&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://scalamolecule.org/manual/getting-started&#34;&gt;Get started&amp;hellip;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;read-more:ffcff61ab3a11ef1d50900901a24ec54&#34;&gt;Read more&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/home/introduction&#34;&gt;Introduction&lt;/a&gt; to Datomic/Molecule&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/manual/setup&#34;&gt;Setup Database&lt;/a&gt;: initiate a Datomic database and create a database schema with Molecule&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/manual/insert&#34;&gt;Populate Database&lt;/a&gt;: populate a Datomic database with Molecule&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/tutorials/seattle&#34;&gt;Molecule Seattle tutorial&lt;/a&gt; examples of using Molecule (based on the
+&lt;a href=&#34;http://docs.datomic.com/tutorial.html&#34;&gt;Datomic Seattle tutorial&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Getting started</title>
       <link>http://scalamolecule.org/manual/getting-started/</link>
       <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
@@ -499,233 +726,6 @@ Ns.x.y.z.insert(eid, 23, 24, 25)
 // Use entity id to continue adding more values
 val next3values = Ns.x.y.z.insert(eid, 23, 24, 25)
 &lt;/code&gt;&lt;/pre&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Home</title>
-      <link>http://scalamolecule.org/home/front/</link>
-      <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
-      
-      <guid>http://scalamolecule.org/home/front/</guid>
-      <description>
-
-&lt;h1 id=&#34;molecule:ffcff61ab3a11ef1d50900901a24ec54&#34;&gt;Molecule&lt;/h1&gt;
-
-&lt;h4 id=&#34;write-powerful-datomic-queries-with-the-words-of-your-domain:ffcff61ab3a11ef1d50900901a24ec54&#34;&gt;&lt;em&gt;Write powerful &lt;a href=&#34;http://www.datomic.com&#34;&gt;Datomic&lt;/a&gt; queries with the words of your domain:&lt;/em&gt;&lt;/h4&gt;
-
-&lt;div id=&#34;myCarousel&#34; class=&#34;carousel slide&#34; data-interval=&#34;9000&#34; data-ride=&#34;carousel&#34;&gt;
-    &lt;!-- Carousel indicators --&gt;
-    &lt;ol class=&#34;carousel-indicators&#34;&gt;
-        &lt;li data-target=&#34;#myCarousel&#34; data-slide-to=&#34;0&#34; class=&#34;active&#34;&gt;&lt;/li&gt;
-        &lt;li data-target=&#34;#myCarousel&#34; data-slide-to=&#34;1&#34;&gt;&lt;/li&gt;
-        &lt;li data-target=&#34;#myCarousel&#34; data-slide-to=&#34;2&#34;&gt;&lt;/li&gt;
-        &lt;li data-target=&#34;#myCarousel&#34; data-slide-to=&#34;3&#34;&gt;&lt;/li&gt;
-        &lt;li data-target=&#34;#myCarousel&#34; data-slide-to=&#34;4&#34;&gt;&lt;/li&gt;
-        &lt;li data-target=&#34;#myCarousel&#34; data-slide-to=&#34;5&#34;&gt;&lt;/li&gt;
-        &lt;li data-target=&#34;#myCarousel&#34; data-slide-to=&#34;6&#34;&gt;&lt;/li&gt;
-        &lt;li data-target=&#34;#myCarousel&#34; data-slide-to=&#34;7&#34;&gt;&lt;/li&gt;
-    &lt;/ol&gt;   
-   &lt;!-- Carousel items --&gt;
-    &lt;div class=&#34;carousel-inner&#34;&gt;
-        &lt;div class=&#34;active item&#34;&gt;
-            &lt;div class=&#34;carousel-caption&#34;&gt;
-              &lt;h3&gt;Type-inferred Queries&lt;/h3&gt;
-&lt;p&gt;Build query molecules with your domain attributes&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val persons: Seq[(String, Int)] = Person.name.age.get      
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;em&gt;&amp;ldquo;Name and age of Persons&amp;rdquo;&lt;/em&gt;&lt;/p&gt;
-            &lt;/div&gt;
-        &lt;/div&gt;   
-        &lt;div class=&#34;item&#34;&gt;
-            &lt;div class=&#34;carousel-caption&#34;&gt;                      
-                &lt;h3&gt;Relationships&lt;/h3&gt;
-&lt;p&gt;Pick attributes across namespaces&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.name.age.Address.street.Country.name.get      
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;em&gt;&amp;ldquo;Name, age, street and country of residence&amp;rdquo;&lt;/em&gt;&lt;/p&gt;
-            &lt;/div&gt;
-        &lt;/div&gt;
-        &lt;div class=&#34;item&#34;&gt;
-            &lt;div class=&#34;carousel-caption&#34;&gt;                   
-                &lt;h3 id=&#34;conditional-values:ffcff61ab3a11ef1d50900901a24ec54&#34;&gt;Conditional values&lt;/h3&gt;
-
-&lt;p&gt;Apply required values for certain attributes&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.name(&amp;quot;Johnson&amp;quot;).age.Address.City.name(&amp;quot;New York&amp;quot;).get      
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;em&gt;&amp;ldquo;Age of Johnsons in New York&amp;rdquo; - name, age and city returned&lt;/em&gt;&lt;/p&gt;
-            &lt;/div&gt;
-        &lt;/div&gt;
-        &lt;div class=&#34;item&#34;&gt;
-            &lt;div class=&#34;carousel-caption&#34;&gt;                   
-                &lt;h3 id=&#34;control-output:ffcff61ab3a11ef1d50900901a24ec54&#34;&gt;Control output&lt;/h3&gt;
-
-&lt;p&gt;Add an underscore to omit an attribute from the result set:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.name_(&amp;quot;Johnson&amp;quot;).age.Address.City.name_(&amp;quot;New York&amp;quot;).get      
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;em&gt;&amp;ldquo;Age of Johnsons in New York&amp;rdquo; - only ages returned&lt;/em&gt;&lt;/p&gt;
-            &lt;/div&gt;
-        &lt;/div&gt;
-        &lt;div class=&#34;item&#34;&gt;
-            &lt;div class=&#34;carousel-caption&#34;&gt;                   
-                &lt;h3 id=&#34;logic-and-ranges:ffcff61ab3a11ef1d50900901a24ec54&#34;&gt;Logic and ranges&lt;/h3&gt;
-
-&lt;p&gt;Apply logical options and ranges&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.name(&amp;quot;Dean&amp;quot; or &amp;quot;Johnson&amp;quot;).age.&amp;lt;(25).Address.Country.iso2(&amp;quot;US&amp;quot;).get      
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;em&gt;&amp;ldquo;Young Dean and Johnsons in the US&amp;rdquo;&lt;/em&gt;&lt;/p&gt;
-            &lt;/div&gt;
-        &lt;/div&gt;
-        &lt;div class=&#34;item&#34;&gt;
-            &lt;div class=&#34;carousel-caption&#34;&gt;                   
-                &lt;h3 id=&#34;insert-multi-level-data:ffcff61ab3a11ef1d50900901a24ec54&#34;&gt;Insert multi-level data&lt;/h3&gt;
-
-&lt;p&gt;Insert data for multiple namespace levels in one go:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.name(&amp;quot;Johnson&amp;quot;).age(35).Address.street(&amp;quot;5th&amp;quot;).City.name(&amp;quot;New York&amp;quot;).add
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;em&gt;&amp;ldquo;Add a 35-year-old Johnson living on 5th street in New York&amp;rdquo;&lt;/em&gt;&lt;/p&gt;
-            &lt;/div&gt;
-        &lt;/div&gt;
-        &lt;div class=&#34;item&#34;&gt;
-            &lt;div class=&#34;carousel-caption&#34;&gt;                   
-                &lt;h3 id=&#34;upsert-data:ffcff61ab3a11ef1d50900901a24ec54&#34;&gt;Upsert data&lt;/h3&gt;
-
-&lt;p&gt;Add new facts&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person(johnsonId).Address.street(&amp;quot;Broadway&amp;quot;).update
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;em&gt;&amp;ldquo;Johnson now lives on Broadway&amp;rdquo;&lt;/em&gt;&lt;/p&gt;
-            &lt;/div&gt;
-        &lt;/div&gt;
-        &lt;div class=&#34;item&#34;&gt;
-            &lt;div class=&#34;carousel-caption&#34;&gt;                   
-                &lt;h3 id=&#34;more-up-the-sleeve:ffcff61ab3a11ef1d50900901a24ec54&#34;&gt;More..&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/home/introduction&#34;&gt;Introduction&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/tutorials/seattle&#34;&gt;Seattle Tutorial&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/home/setup&#34;&gt;Setup&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-            &lt;/div&gt;
-        &lt;/div&gt;
-    &lt;/div&gt;
-    &lt;!-- Carousel nav --&gt;
-    &lt;a class=&#34;carousel-control left&#34; href=&#34;#myCarousel&#34; data-slide=&#34;prev&#34;&gt;
-        &lt;span class=&#34;glyphicon glyphicon-chevron-left&#34;&gt;&lt;/span&gt;
-    &lt;/a&gt;
-    &lt;a class=&#34;carousel-control right&#34; href=&#34;#myCarousel&#34; data-slide=&#34;next&#34;&gt;
-        &lt;span class=&#34;glyphicon glyphicon-chevron-right&#34;&gt;&lt;/span&gt;
-    &lt;/a&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Molecule is a Scala meta-DSL that translates &amp;ldquo;molecules&amp;rdquo; of your domain attributes to Datalog queries
-for &lt;a href=&#34;http://www.datomic.com&#34;&gt;Datomic&lt;/a&gt; - the database of immutable facts.&lt;/p&gt;
-
-&lt;h3 id=&#34;how-does-it-work:ffcff61ab3a11ef1d50900901a24ec54&#34;&gt;How does it work?&lt;/h3&gt;
-
-&lt;div class=&#34;sequence-block&#34;&gt;
-    &lt;div class=&#34;bullet-block&#34;&gt;
-        &lt;div class=&#34;sequence-step&#34;&gt;1&lt;/div&gt;
-    &lt;/div&gt;
-    &lt;div class=&#34;section&#34;&gt;
-        &lt;h4 id=&#34;define-schema-once:ffcff61ab3a11ef1d50900901a24ec54&#34;&gt;Define schema (once)&lt;/h4&gt;
-        &lt;p&gt;Our domain could have a &lt;code&gt;Person&lt;/code&gt; with attributes 
-        &lt;code&gt;name&lt;/code&gt; and &lt;code&gt;age&lt;/code&gt; having a relationship to an 
-        &lt;code&gt;Address&lt;/code&gt; so we define a schema for our domain:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;trait Person {
-  val name    = oneString
-  val age     = oneInt
-  val address = one[Address]
-}
-trait Address {
-  val street = oneString
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-    &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div class=&#34;sequence-block&#34;&gt;
-    &lt;div class=&#34;bullet-block&#34;&gt;
-        &lt;div class=&#34;sequence-step&#34;&gt;2&lt;/div&gt;
-    &lt;/div&gt;
-    &lt;div class=&#34;section&#34;&gt;
-        &lt;h4 id=&#34;compile-once:ffcff61ab3a11ef1d50900901a24ec54&#34;&gt;Compile (once)&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code&gt;&gt; cd yourProjectRoot
-&gt; sbt compile
-&lt;/code&gt;&lt;/pre&gt;
-
-        &lt;p&gt;Molecule uses our schema as a template to 
-        generate some boilerplate code so that we can compose intuitive and powerful 
-        query molecules. This step is only needed when we create or change our schema.&lt;/p&gt;
-    &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div class=&#34;sequence-block&#34;&gt;
-    &lt;div class=&#34;bullet-block&#34;&gt;
-        &lt;div class=&#34;sequence-step&#34;&gt;3&lt;/div&gt;
-    &lt;/div&gt;
-    &lt;div class=&#34;section&#34;&gt;
-        &lt;h4 id=&#34;use-molecules:ffcff61ab3a11ef1d50900901a24ec54&#34;&gt;Use molecules&lt;/h4&gt;
-        &lt;p&gt;Now we can insert data with molecules:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.name.age.Address.street insert List(
-  (&#34;Lisa&#34;, 20, &#34;Broadway&#34;),
-  (&#34;John&#34;, 22, &#34;Fifth Avenue&#34;)
-)
-&lt;/code&gt;&lt;/pre&gt;
-
-        &lt;p&gt;And retrieve data:&lt;/p&gt;
-        
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.name.age.Address.street.get === List(
-  (&#34;Lisa&#34;, 20, &#34;Broadway&#34;),
-  (&#34;John&#34;, 22, &#34;Fifth Avenue&#34;)
-)     
-&lt;/code&gt;&lt;/pre&gt;
-
-        &lt;p&gt;The implicit macros &lt;code&gt;insert&lt;/code&gt; and &lt;code&gt;get&lt;/code&gt; turns our molecules
-         into type-safe Datalog inserts and queries at compile time. So there&#39;s no runtime overhead.&lt;/p&gt; 
-        
-        
-        
-    &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;h3 id=&#34;try-demo:ffcff61ab3a11ef1d50900901a24ec54&#34;&gt;Try demo&lt;/h3&gt;
-
-&lt;ol&gt;
-&lt;li&gt;&lt;code&gt;git clone https://github.com/scalamolecule/molecule-demo.git&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;cd molecule-demo&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;sbt compile&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Open in your IDE&lt;/li&gt;
-&lt;li&gt;Run app - and build new molecules&amp;hellip;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h3 id=&#34;next:ffcff61ab3a11ef1d50900901a24ec54&#34;&gt;Next&lt;/h3&gt;
-
-&lt;p&gt;&lt;a href=&#34;http://scalamolecule.org/manual/getting-started&#34;&gt;Get started&amp;hellip;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;read-more:ffcff61ab3a11ef1d50900901a24ec54&#34;&gt;Read more&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/home/introduction&#34;&gt;Introduction&lt;/a&gt; to Datomic/Molecule&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/manual/setup&#34;&gt;Setup Database&lt;/a&gt;: initiate a Datomic database and create a database schema with Molecule&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/manual/insert&#34;&gt;Populate Database&lt;/a&gt;: populate a Datomic database with Molecule&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/tutorials/seattle&#34;&gt;Molecule Seattle tutorial&lt;/a&gt; examples of using Molecule (based on the
-&lt;a href=&#34;http://docs.datomic.com/tutorial.html&#34;&gt;Datomic Seattle tutorial&lt;/a&gt;)&lt;/li&gt;
-&lt;/ul&gt;
 </description>
     </item>
     
@@ -2471,214 +2471,6 @@ definition DSL let&amp;rsquo;s you only choose allowed options for any attribute
     </item>
     
     <item>
-      <title>SQL</title>
-      <link>http://scalamolecule.org/compare/sql/</link>
-      <pubDate>Wed, 14 May 2014 02:13:50 UTC</pubDate>
-      
-      <guid>http://scalamolecule.org/compare/sql/</guid>
-      <description>
-
-&lt;h1 id=&#34;sql-vs-molecule-examples:d1babb582138b02a13547d2c6eb6df72&#34;&gt;SQL vs. Molecule examples&lt;/h1&gt;
-
-&lt;p&gt;We&amp;rsquo;ll make a similar comparison to SQL as &lt;a href=&#34;http://slick.typesafe.com/doc/3.0.0-M1/sql-to-slick.html#sql-vs-slick-examples&#34;&gt;Slick&lt;/a&gt; does:&lt;/p&gt;
-
-&lt;h4 id=&#34;select:d1babb582138b02a13547d2c6eb6df72&#34;&gt;SELECT *&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code&gt;sql&amp;quot;select * from PERSON&amp;quot;.as[Person].list
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;In molecule we would declare each attribute we are interested in also to infer the exact return type&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val persons: Seq[(String, Int)] = Person.name.age.get
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h4 id=&#34;select-1:d1babb582138b02a13547d2c6eb6df72&#34;&gt;SELECT&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code&gt;sql&amp;quot;&amp;quot;&amp;quot;
-  select AGE, concat(concat(concat(NAME,&#39; (&#39;),ID),&#39;)&#39;)
-  from PERSON
-&amp;quot;&amp;quot;&amp;quot;.as[(Int,String)].list
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;With Molecule we would concatenate &lt;code&gt;name&lt;/code&gt; and &lt;code&gt;id&lt;/code&gt; with the returned result set:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.age.name.e.get map { case (age, name, id) =&amp;gt; (age, s&amp;quot;$name ($id)&amp;quot; }
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Actually, Molecule treats attributes as mandatory values whereas Select-attributes in a SQL query could be Null values (if allowed). Molecule can also ask for optional values too if a &lt;code&gt;$&lt;/code&gt; sign is appended to an attribute name:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.age.firstName.middleName$.lastName.e.get map { 
-  case (age, firstName, Some(middleName), lastName, id) =&amp;gt; (age, s&amp;quot;$firstName $middleName $lastName ($id)&amp;quot; 
-  case (age, firstName, None, lastName, id)             =&amp;gt; (age, s&amp;quot;$firstName $lastName ($id)&amp;quot; 
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h4 id=&#34;where:d1babb582138b02a13547d2c6eb6df72&#34;&gt;WHERE&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;sql&amp;quot;select * from PERSON where AGE &amp;gt;= 18 AND NAME = &#39;C. Vogt&#39;&amp;quot;.as[Person].list
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Molecule filter values by applying a required value to an attribute or supply a value to compare against (&lt;code&gt;&amp;gt;=(18)&lt;/code&gt;):&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.age.&amp;gt;=(18).name(&amp;quot;C. Vogt&amp;quot;).get
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;(Again we would define which attribute values we want to return)&lt;/p&gt;
-
-&lt;h4 id=&#34;order-by:d1babb582138b02a13547d2c6eb6df72&#34;&gt;ORDER BY&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;sql&amp;quot;select * from PERSON order by AGE asc, NAME&amp;quot;.as[Person].list
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Ordering is applied on the result set:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.age.name.get.sortBy(_._1)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h4 id=&#34;aggregations:d1babb582138b02a13547d2c6eb6df72&#34;&gt;Aggregations&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;sql&amp;quot;select max(AGE) from PERSON&amp;quot;.as[Option[Int]].first
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Aggregate functions like &lt;code&gt;max&lt;/code&gt; are all applied as a keyword value to an attribute.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.age(max).get
-// or get a range of top values
-Person.age(max(3)).get
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;We can aggregate values also with the counterpart &lt;code&gt;min&lt;/code&gt; or get a random value with &lt;code&gt;rand&lt;/code&gt;. Or perform aggregate calculations with &lt;code&gt;count&lt;/code&gt;, &lt;code&gt;countDistinct&lt;/code&gt;, &lt;code&gt;sum&lt;/code&gt;, &lt;code&gt;avg&lt;/code&gt;, &lt;code&gt;median&lt;/code&gt;, &lt;code&gt;variance&lt;/code&gt; and &lt;code&gt;stddev&lt;/code&gt; which are all built functions in Datomic.&lt;/p&gt;
-
-&lt;h4 id=&#34;group-by:d1babb582138b02a13547d2c6eb6df72&#34;&gt;GROUP BY&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;sql&amp;quot;&amp;quot;&amp;quot;
-  select ADDRESS_ID, AVG(AGE)
-  from PERSON
-  group by ADDRESS_ID
-&amp;quot;&amp;quot;&amp;quot;.as[(Int,Option[Int])].list
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Molecule automatically group by attributes not having an aggregate expression. In this case the query will group by &lt;code&gt;address&lt;/code&gt; and calculate the average &lt;code&gt;age&lt;/code&gt; for persons living there.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.address.age(avg).get
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h4 id=&#34;having:d1babb582138b02a13547d2c6eb6df72&#34;&gt;HAVING&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;sql&amp;quot;&amp;quot;&amp;quot;
-  select ADDRESS_ID
-  from PERSON
-  group by ADDRESS_ID
-  having avg(AGE) &amp;gt; 50
-&amp;quot;&amp;quot;&amp;quot;.as[Int].list
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.address.age(avg).get.filter(_._2 &amp;gt; 50)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h4 id=&#34;implicit-join:d1babb582138b02a13547d2c6eb6df72&#34;&gt;Implicit join&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;sql&amp;quot;&amp;quot;&amp;quot;
-  select P.NAME, A.CITY
-  from PERSON P, ADDRESS A
-  where P.ADDRESS_ID = A.id
-&amp;quot;&amp;quot;&amp;quot;.as[(String,String)].list
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.name.Address.city.get
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h4 id=&#34;explicit-join:d1babb582138b02a13547d2c6eb6df72&#34;&gt;Explicit join&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;sql&amp;quot;&amp;quot;&amp;quot;
-  select P.NAME, A.CITY
-  from PERSON P
-  join ADDRESS A on P.ADDRESS_ID = A.id
-&amp;quot;&amp;quot;&amp;quot;.as[(String,String)].list
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.name.Address.city.get
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h4 id=&#34;left-right-outer-join:d1babb582138b02a13547d2c6eb6df72&#34;&gt;left/right/outer join&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;sql&amp;quot;&amp;quot;&amp;quot;
-  select P.NAME,A.CITY
-  from ADDRESS A
-  left join PERSON P on P.ADDRESS_ID = A.id
-&amp;quot;&amp;quot;&amp;quot;.as[(Option[String],String)].list
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;// TODO
-Person.name(maybe).Address.city.get
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h4 id=&#34;subquery:d1babb582138b02a13547d2c6eb6df72&#34;&gt;Subquery&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;sql&amp;quot;&amp;quot;&amp;quot;
-  select *
-  from PERSON P
-  where P.ADDRESS_ID in (select ID
-                 from ADDRESS
-                 where CITY = &#39;New York City&#39;)
-&amp;quot;&amp;quot;&amp;quot;.as[Person].list
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.age.name.Address.city_(&amp;quot;New York City&amp;quot;).get
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h4 id=&#34;insert:d1babb582138b02a13547d2c6eb6df72&#34;&gt;INSERT&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;sqlu&amp;quot;&amp;quot;&amp;quot;
-  insert into PERSON (NAME, AGE, ADDRESS_ID) values (&#39;M Odersky&#39;, 12345, 1)
-&amp;quot;&amp;quot;&amp;quot;.first
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.name(&amp;quot;M Odersky&amp;quot;).age(12345).address(1).add
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h4 id=&#34;update:d1babb582138b02a13547d2c6eb6df72&#34;&gt;UPDATE&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;sqlu&amp;quot;&amp;quot;&amp;quot;
-  update PERSON set NAME=&#39;M. Odersky&#39;, AGE=54321 where NAME=&#39;M Odersky&#39;
-&amp;quot;&amp;quot;&amp;quot;.first
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val odersky = Person.name(&amp;quot;M Odersky&amp;quot;).get.id
-Person(odersky).name(&amp;quot;M. Odersky&amp;quot;).age(54321).update
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h4 id=&#34;delete:d1babb582138b02a13547d2c6eb6df72&#34;&gt;DELETE&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;sqlu&amp;quot;&amp;quot;&amp;quot;
-  delete PERSON where NAME=&#39;M. Odersky&#39;
-&amp;quot;&amp;quot;&amp;quot;.first
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.name(&amp;quot;M. Odersky&amp;quot;).get.id.delete
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h4 id=&#34;case:d1babb582138b02a13547d2c6eb6df72&#34;&gt;CASE&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;sql&amp;quot;&amp;quot;&amp;quot;
-  select
-    case 
-      when ADDRESS_ID = 1 then &#39;A&#39;
-      when ADDRESS_ID = 2 then &#39;B&#39;
-    end
-  from PERSON P
-&amp;quot;&amp;quot;&amp;quot;.as[Option[String]].list
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.Address.e(1 or 2).get map {
-  case 1 =&amp;gt; &amp;quot;A&amp;quot;
-  case 2 =&amp;gt; &amp;quot;B&amp;quot;
-}
-&lt;/code&gt;&lt;/pre&gt;
-</description>
-    </item>
-    
-    <item>
       <title>Slick</title>
       <link>http://scalamolecule.org/compare/sql/slick/</link>
       <pubDate>Wed, 14 May 2014 02:13:50 UTC</pubDate>
@@ -2861,6 +2653,100 @@ Person(odersky).name(&amp;quot;M. Odersky&amp;quot;).age(54321).update
   case 2 =&amp;gt; &amp;quot;B&amp;quot;
 }
 &lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Boilerplate</title>
+      <link>http://scalamolecule.org/developer/boilerplate/</link>
+      <pubDate>Wed, 14 May 2014 02:13:50 UTC</pubDate>
+      
+      <guid>http://scalamolecule.org/developer/boilerplate/</guid>
+      <description>
+
+&lt;h1 id=&#34;boilerplate-code-generation:36a3cc328100a137a125b621a816413d&#34;&gt;Boilerplate code generation&lt;/h1&gt;
+
+&lt;p&gt;An attribute definition like&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;@InOut(3, 8)
+trait SeattleDefinition {
+  trait Community {
+    val name = oneString.fullTextSearch
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;would generate the following boilerplate code&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;object Community extends Community_0 {
+  def apply(e: Long): Community_0 = ???
+}
+
+trait Community {
+  class name [Ns, In] extends OneString [Ns, In] with FulltextSearch[Ns, In] with Indexed
+}
+
+trait Community_0 extends Community with Out_0[Community_0, Community_1, Community_In_1_0, Community_In_1_1] {
+  lazy val name : name[Community_1[String], Community_In_1_1[String, String]] with Community_1[String] = 
+    new name[Community_1[String], Community_In_1_1[String, String]] with Community_1[String] { 
+      override val _kw = &amp;quot;:community/name&amp;quot; 
+    }
+  lazy val name_ : name[Community_0, Community_In_1_0[String]] with Community_0 = ???
+}
+         
+trait Community_1[A] extends Community with Out_1[Community_1, Community_2, Community_In_1_1, Community_In_1_2, A] {
+  lazy val name  : name[Community_2[A, String], Community_In_1_2[String, A, String]] with Community_2[A, String] = ???
+  lazy val name_ : name[Community_1[A], Community_In_1_1[String, A]] with Community_1[A] = ???
+}
+         
+trait Community_2[A, B] extends Community with Out_2[Community_2, Community_3, Community_In_1_2, Community_In_1_3, A, B] {
+  // etc up to arity 8...
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The type information passed on from each step of building a molecule enables our IDE to infer the type of our molecule
+and suggest possible further building blocks.&lt;/p&gt;
+
+&lt;h3 id=&#34;input-molecules:36a3cc328100a137a125b621a816413d&#34;&gt;Input molecules&lt;/h3&gt;
+
+&lt;p&gt;The &lt;code&gt;Community_In_1_0&lt;/code&gt; is a trait that the builder jumps to if we make en input molecule like &lt;code&gt;Community.name(?)&lt;/code&gt;.
+From there on Molecule knows that we expect to receive an input for the placeholder &lt;code&gt;?&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h3 id=&#34;arity:36a3cc328100a137a125b621a816413d&#34;&gt;Arity&lt;/h3&gt;
+
+&lt;p&gt;The annotation &lt;code&gt;@InOut(3,8)&lt;/code&gt; on the schema trait tells molecule how long molecules we expect to create. This is to
+not always generate the possible arity of 22 which causes a significant chunk of boilerplate code!&lt;/p&gt;
+
+&lt;p&gt;We also have to remember that this is not a limitation of &lt;em&gt;how many attribute values&lt;/em&gt; we can find but rather a
+limitation of how many &lt;em&gt;where clauses&lt;/em&gt; we can have since each added attribute to our molecules generates it&amp;rsquo;s
+corresponding where clause. In that respect it seems a very seldom necessity to have 22 where clauses!&lt;/p&gt;
+
+&lt;h3 id=&#34;entity-api:36a3cc328100a137a125b621a816413d&#34;&gt;Entity API&lt;/h3&gt;
+
+&lt;p&gt;A way to gather additional/optional values from a query is to use the entity API by applying an attribute name
+to an entity id from the query:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;communityId(&amp;quot;:community/url&amp;quot;) === Some(&amp;quot;http://eastballard.com/&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This gives us an optional value back if an attribute value has been asserted for this entity.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/scalamolecule/molecule/blob/master/examples/src/test/scala/molecule/examples/seattle/SeattleTests.scala#L24-L52&#34;&gt;See entity api example&lt;/a&gt; and
+&lt;a href=&#34;https://github.com/scalamolecule/molecule/blob/master/coretest/src/test/scala/molecule/EntityAPI.scala&#34;&gt;tests&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;tacet-attributes:36a3cc328100a137a125b621a816413d&#34;&gt;Tacet attributes&lt;/h3&gt;
+
+&lt;p&gt;The &lt;code&gt;name_&lt;/code&gt; attributes are &amp;ldquo;tacet&amp;rdquo; attributes that cause a :where clause in the query but doesn&amp;rsquo;t return any data
+(no variable in the :find section of the produced query). This is to be able to skip returning data of attributes
+that we for instance apply a constant value to&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.name.age_(28).get // no need to return age values (all 28)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;type-inferring:36a3cc328100a137a125b621a816413d&#34;&gt;Type inferring&lt;/h3&gt;
+
+&lt;p&gt;The end user doesn&amp;rsquo;t have to know about any of the generated boilerplate code since the IDE will take care of
+inferring and suggesting the possible types to proceed with.&lt;/p&gt;
 </description>
     </item>
     

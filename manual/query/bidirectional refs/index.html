@@ -169,7 +169,7 @@ between same-kinds: Persons.</p>
 </code></pre>
 
 <p>where the relationship goes in both directions but only between two persons. If Ann is spouse to Ben, then Ben
-is also spouse to Ann and we want to be able to get query that information uniformly in both directions:</p>
+is also spouse to Ann and we want to be able to query that information uniformly in both directions:</p>
 
 <pre><code class="language-scala"> Person.name_(&quot;Ann&quot;).Spouse.name.get === List(&quot;Ben&quot;)
  Person.name_(&quot;Ben&quot;).Spouse.name.get === List(&quot;Ann&quot;)
@@ -177,15 +177,18 @@ is also spouse to Ann and we want to be able to get query that information unifo
 
 <h3 id="a-b:202abaea8dbead8f4e14657c1559cf69">A &lt;&mdash;&gt; B</h3>
 
-<p>In a zoo we could (admittedly a bit contrively) say that the caretakers are buddies with the animals thay take care of,
-and reversely the caretakers would be &ldquo;buddies&rdquo; for the animals. We define such bidirectional relationship with a
+<p>In a zoo we could (admittedly a bit contrively) say that the caretakers are buddies with the animals they take care of,
+and reversely the caretakers would be &ldquo;buddies&rdquo; of the animals. We define such bidirectional relationship with a
 reference from each namespace to the other:</p>
 
-<pre><code class="language-scala">trait Person {
+<pre><code class="language-scala">object Person extends Person
+trait Person {
   val buddies = manyBi[Animal.buddies.type]
   
   val name = oneString
 }
+
+object Animal extends Animal
 trait Animal {
   val buddies = manyBi[Person.buddies.type]
   
@@ -193,10 +196,10 @@ trait Animal {
 }
 </code></pre>
 
-<p>Each <code>manyBi</code> reference definitions takes a type parameter that points back to the other definition. This is so that
+<p>Each <code>manyBi</code> reference definition takes a type parameter that points back to the other definition. This is so that
  Molecule can keep track of the references back and forth.</p>
 
-<p>As with friends we can now query uniformly no matter from which end the data was entered:</p>
+<p>As with friends we can now query uniformly no matter from which end the reference was entered:</p>
 
 <pre><code class="language-scala"> Person.name_(&quot;Joe&quot;).Buddies.name.get === List(&quot;Leo&quot;, &quot;Gus&quot;)
  Animal.name_(&quot;Leo&quot;).Buddies.name.get === List(&quot;Joe&quot;)
@@ -206,11 +209,14 @@ trait Animal {
 <p>An interesting aspect is that we can give the reference attributes different names on each end. Say Persons have 1 Pet
 and we model that as a bidirectional cardinality-one reference:</p>
 
-<pre><code class="language-scala">trait Person {
+<pre><code class="language-scala">object Person extends Person
+trait Person {
   val pet = oneBi[Animal.master.type]
   
   val name = oneString
 }
+
+object Animal extends Animal
 trait Animal {
   val master = oneBi[Person.pet.type]
 }
@@ -234,7 +240,7 @@ between two vertices/entities has some property values attached to it. Molecule 
 and a (property edge) entity, and then between this property edge entity and another entity.</p>
 
 <p>This is actually what we do all the time with references except that they are normally unidirectional! In order to make them bidirectional
-Molecule offers a conveniant solution:</p>
+Molecule offers a convenient solution:</p>
 
 <h3 id="a-edge-properties-a:202abaea8dbead8f4e14657c1559cf69">A &lt;&mdash;&gt; Edge.properties&hellip; &lt;&mdash;&gt; A</h3>
 
@@ -242,6 +248,7 @@ Molecule offers a conveniant solution:</p>
 having a <code>weight</code> property:</p>
 
 <pre><code class="language-scala">// Entity
+object Person extends Person
 trait Person {
   // A ==&gt; edge -- a
   val knows = manyBiEdge[Knows.person.type]
@@ -250,6 +257,7 @@ trait Person {
 }
 
 // Property edge
+object Knows extends Knows
 trait Knows {
   // a --- edge ==&gt; a
   val person: AnyRef = target[Person.knows.type]
@@ -280,6 +288,7 @@ Person.name_(&quot;Joe&quot;).Knows.*(Knows.weight.Person.name).one === List((8,
 namespaces:</p>
 
 <pre><code class="language-scala">// Entity A
+object Person extends Person
 trait Person {
   // Ref to edge
   // A ==&gt; edge -- b
@@ -289,6 +298,7 @@ trait Person {
 }
 
 // Property edge
+object CloseTo extends CloseTo
 trait CloseTo {
   // Ref to Person
   // a &lt;== edge --- b
@@ -303,6 +313,7 @@ trait CloseTo {
 }
 
 // Entity B
+object Animal extends Animal
 trait Animal {
   // Ref to edge
   // a -- edge &lt;== B
@@ -342,7 +353,7 @@ Ben &lt;-- Ann // reverse ref
     &lt;-- benLovesAnn (7) &lt;--       // reverse edge
 </code></pre>
 
-<p>Since Molecule is a closed eco-system it can manage this redundancy with 100% control in a logically controlled way. The advantages
+<p>Since Molecule is a closed eco-system it can manage this redundancy with 100% control in a logical controlled way. The advantages
 of uniform queries should easily outweigh the impact of a bit of additional information for the reverse references</p>
 
 <h3 id="more-exampes:202abaea8dbead8f4e14657c1559cf69">More exampes&hellip;</h3>
