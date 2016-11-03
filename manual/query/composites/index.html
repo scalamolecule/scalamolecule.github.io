@@ -124,7 +124,7 @@ entities and are therefore better modelled in isolation.</p>
 for instance create 2 Article entities each with 2 tags:</p>
 
 <pre><code class="language-scala">insert(
-  Article.name.author ~ Tag.name.weight
+  Article.name.author, Tag.name.weight
 )(
   ((&quot;Battle of Waterloo&quot;, &quot;Ben Bridge&quot;), (&quot;serious&quot;, 5)),
   ((&quot;Best jokes ever&quot;, &quot;John Cleese&quot;), (&quot;fun&quot;, 3))
@@ -139,7 +139,7 @@ the shared entity id.</p>
 <p>We could add tags to any other part of our domain - and even some transaction meta data:</p>
 
 <pre><code class="language-scala">insert(
-  Review.title.text ~ Tag.name.weight
+  Review.title.text, Tag.name.weight
 )(
   ((&quot;Okay&quot;, &quot;Well, maybe&quot;), (&quot;noise&quot;, 1)),
   ((&quot;Excellent&quot;, &quot;Go buy it!&quot;), (&quot;serious&quot;, 4))
