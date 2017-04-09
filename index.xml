@@ -487,6 +487,150 @@ trait Address {
     </item>
     
     <item>
+      <title>Getting started</title>
+      <link>http://scalamolecule.org/manual/getting-started/</link>
+      <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
+      
+      <guid>http://scalamolecule.org/manual/getting-started/</guid>
+      <description>
+
+&lt;h1 id=&#34;getting-started-with-molecule:b6885e1f85551f51a4707c402f8200a3&#34;&gt;Getting started with Molecule&lt;/h1&gt;
+
+&lt;p&gt;To use Molecule we need to define our database schema in a &lt;a href=&#34;http://scalamolecule.org/manual/schema&#34;&gt;Schema definition&lt;/a&gt; file and then tell
+sbt about it. When compiling our project from the command line, all necessary boilerplate code is
+then automatically generated.&lt;/p&gt;
+
+&lt;h2 id=&#34;1-sbt-build-settings:b6885e1f85551f51a4707c402f8200a3&#34;&gt;1. SBT build settings&lt;/h2&gt;
+
+&lt;p&gt;Add the following to your build files:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;project/build.properties&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;sbt.version=0.13.13
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;project/buildinfo.sbt&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;addSbtPlugin(&amp;quot;org.scalamolecule&amp;quot; % &amp;quot;sbt-molecule&amp;quot; % &amp;quot;0.3.1&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;build.sbt&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;lazy val yourProject = project.in(file(&amp;quot;demo&amp;quot;))
+  .enablePlugins(MoleculePlugin)
+  .settings(
+    resolvers ++= Seq(
+      &amp;quot;datomic&amp;quot; at &amp;quot;http://files.datomic.com/maven&amp;quot;,
+      &amp;quot;clojars&amp;quot; at &amp;quot;http://clojars.org/repo&amp;quot;,
+      Resolver.sonatypeRepo(&amp;quot;releases&amp;quot;),
+      &amp;quot;Scalaz Bintray Repo&amp;quot; at &amp;quot;http://dl.bintray.com/scalaz/releases&amp;quot;
+    ),
+    libraryDependencies ++= Seq(
+      &amp;quot;org.scalamolecule&amp;quot; %% &amp;quot;molecule&amp;quot; % &amp;quot;0.10.1&amp;quot;,
+      &amp;quot;com.datomic&amp;quot; % &amp;quot;datomic-free&amp;quot; % &amp;quot;0.9.5561&amp;quot;
+    ),
+    moleculeSchemas := Seq(&amp;quot;demo&amp;quot;) // paths to your schema definition files...
+  )
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Molecule 0.10.1 for Scala 2.12.1 is available at
+&lt;a href=&#34;https://oss.sonatype.org/content/repositories/releases/org/scalamolecule/molecule_2.12/&#34;&gt;Sonatype&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h1 id=&#34;2-paths-to-schema-definition-files:b6885e1f85551f51a4707c402f8200a3&#34;&gt;2. Paths to Schema definition files&lt;/h1&gt;
+
+&lt;p&gt;We use the &lt;code&gt;moleculeSchemas&lt;/code&gt; sbt settings key to tell sbt where we have our Schema definition files.&lt;/p&gt;
+
+&lt;p&gt;A &lt;a href=&#34;http://scalamolecule.org/manual/schema&#34;&gt;Schema definition&lt;/a&gt; file contains a plain Scala object where you define
+partitions/namespaces/attributes of your Datomic database. The MoleculePlugin uses the information
+defined there to create all the boilerplate code needed to use Molecule in your code.&lt;/p&gt;
+
+&lt;p&gt;You can have a single or several Schema definition files in a project. Each definition file defines a single database.
+This is useful if you for instance want to experiment with various database designs during development.&lt;/p&gt;
+
+&lt;p&gt;Schema definiton files should reside in directories named &lt;code&gt;schema&lt;/code&gt; anywhere in your source code.&lt;/p&gt;
+
+&lt;p&gt;Use the &lt;code&gt;moleculeSchemas&lt;/code&gt; sbt settings key to list the directories in your project source
+code that contains your &lt;code&gt;schema&lt;/code&gt; directories.&lt;/p&gt;
+
+&lt;p&gt;Say you have a project &lt;code&gt;demo&lt;/code&gt; and a single Schema definition file &lt;code&gt;YourDomainDefinition.scala&lt;/code&gt;
+defining your database:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://scalamolecule.org/img/dirs1.png&#34; alt=&#34;&#34; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Then you simply add &lt;code&gt;moleculeSchemas := Seq(&amp;quot;demo&amp;quot;)&lt;/code&gt; as we saw above.&lt;/p&gt;
+
+&lt;p&gt;In the main Molecule project&amp;rsquo;s examples module we have several Schema definition files:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://scalamolecule.org/img/dirs2.png&#34; alt=&#34;&#34; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;And we then list the paths to those like this in our &lt;code&gt;build.sbt&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;moleculeSchemas := Seq(
+  &amp;quot;molecule/examples/dayOfDatomic&amp;quot;,
+  &amp;quot;molecule/examples/graph&amp;quot;,
+  &amp;quot;molecule/examples/mbrainz&amp;quot;,
+  &amp;quot;molecule/examples/seattle&amp;quot;
+)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;3-compile:b6885e1f85551f51a4707c402f8200a3&#34;&gt;3. Compile&lt;/h2&gt;
+
+&lt;p&gt;Now that you have created a schema definition file and told sbt about where to find it, you can compile
+your project from the terminal&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;gt; cd yourProjectRoot
+&amp;gt; sbt compile
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The MoleculePlugin will now automatically as part of the compilation process do 5 things:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Generate Molecule boilerplate dsl source code files (in the &lt;code&gt;src_managed&lt;/code&gt; directory in target)&lt;/li&gt;
+&lt;li&gt;Generate a schema file with the necessary code to transact the Datomic schema&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;Compile the generated code&lt;/li&gt;
+&lt;li&gt;Package both the source code and compiled classes into two &lt;code&gt;jar&lt;/code&gt;s and place them in the &lt;code&gt;lib&lt;/code&gt; directory of your module&lt;/li&gt;
+&lt;li&gt;Remove the generated source code and compiled classes&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;The MoleculePlugin create the &lt;code&gt;jars&lt;/code&gt; so that you can use the boilerplate code without having to recompile any
+generated boilerplate code each time you recompile your project. In our demo example two jars are created:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://scalamolecule.org/img/jars.png&#34; alt=&#34;&#34; /&gt;
+&lt;/p&gt;
+
+&lt;h2 id=&#34;4-use-molecule:b6885e1f85551f51a4707c402f8200a3&#34;&gt;4. Use Molecule&lt;/h2&gt;
+
+&lt;p&gt;The MoleculePlugin has now created all the necessary boilerplate code so that we can start using Molecule. We can
+create a fresh in-memory Datomic database by supplying the generated Schema transaction code in &lt;code&gt;YourDomainSchema&lt;/code&gt;
+(from the example above):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;import molecule._
+implicit val conn = recreateDbFrom(demo.schema.YourDomainSchema)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;With the implicit Datomic connection available we can start making molecules:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;import demo.dsl.yourDomain._
+
+// Insert data
+Person.name(&amp;quot;John&amp;quot;).age(26).gender(&amp;quot;male&amp;quot;).add
+
+// Retrieve data
+val (person, age, gender) = Person.name.age.gender.one
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;read-more:b6885e1f85551f51a4707c402f8200a3&#34;&gt;Read more&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/manual/schema&#34;&gt;Schema definition&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/manual/schema/transaction&#34;&gt;Create Datomic database&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Builder</title>
       <link>http://scalamolecule.org/manual/query/builder/</link>
       <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
@@ -589,143 +733,6 @@ Ns.x.y.z.insert(eid, 23, 24, 25)
 // Use entity id to continue adding more values
 val next3values = Ns.x.y.z.insert(eid, 23, 24, 25)
 &lt;/code&gt;&lt;/pre&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Getting started</title>
-      <link>http://scalamolecule.org/manual/getting-started/</link>
-      <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
-      
-      <guid>http://scalamolecule.org/manual/getting-started/</guid>
-      <description>
-
-&lt;h1 id=&#34;getting-started-with-molecule:b6885e1f85551f51a4707c402f8200a3&#34;&gt;Getting started with Molecule&lt;/h1&gt;
-
-&lt;p&gt;To use Molecule we need to define our database schema in a &lt;a href=&#34;http://scalamolecule.org/manual/schema&#34;&gt;Schema definition&lt;/a&gt; file and then tell
-sbt about it. When compiling our project from the command line, all necessary boilerplate code is
-then automatically generated.&lt;/p&gt;
-
-&lt;h2 id=&#34;1-sbt-build-settings:b6885e1f85551f51a4707c402f8200a3&#34;&gt;1. SBT build settings&lt;/h2&gt;
-
-&lt;p&gt;For sbt 0.13.6+ add sbt-molecule as a dependency in &lt;code&gt;project/buildinfo.sbt&lt;/code&gt;:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;addSbtPlugin(&amp;quot;org.scalamolecule&amp;quot; % &amp;quot;sbt-molecule&amp;quot; % &amp;quot;0.3.0&amp;quot;)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Add the following in your &lt;code&gt;build.sbt&lt;/code&gt;:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;lazy val yourProject = project.in(file(&amp;quot;demo&amp;quot;))
-  .enablePlugins(MoleculePlugin)
-  .settings(
-    resolvers ++= Seq(
-      &amp;quot;datomic&amp;quot; at &amp;quot;http://files.datomic.com/maven&amp;quot;,
-      &amp;quot;clojars&amp;quot; at &amp;quot;http://clojars.org/repo&amp;quot;,
-      Resolver.sonatypeRepo(&amp;quot;releases&amp;quot;),
-      &amp;quot;Scalaz Bintray Repo&amp;quot; at &amp;quot;http://dl.bintray.com/scalaz/releases&amp;quot;
-    ),
-    libraryDependencies ++= Seq(
-      &amp;quot;org.scalamolecule&amp;quot; %% &amp;quot;molecule&amp;quot; % &amp;quot;0.10.0&amp;quot;,
-      &amp;quot;com.datomic&amp;quot; % &amp;quot;datomic-free&amp;quot; % &amp;quot;0.9.5404&amp;quot;
-    ),
-    moleculeSchemas := Seq(&amp;quot;demo&amp;quot;) // paths to your schema definition files...
-  )
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Molecule 0.10.0 for Scala 2.11.8 is available at
-&lt;a href=&#34;https://oss.sonatype.org/content/repositories/releases/org/scalamolecule/molecule_2.11/&#34;&gt;Sonatype&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h1 id=&#34;2-paths-to-schema-definition-files:b6885e1f85551f51a4707c402f8200a3&#34;&gt;2. Paths to Schema definition files&lt;/h1&gt;
-
-&lt;p&gt;We use the &lt;code&gt;moleculeSchemas&lt;/code&gt; sbt settings key to tell sbt where we have our Schema definition files.&lt;/p&gt;
-
-&lt;p&gt;A &lt;a href=&#34;http://scalamolecule.org/manual/schema&#34;&gt;Schema definition&lt;/a&gt; file contains a plain Scala object where you define
-partitions/namespaces/attributes of your Datomic database. The MoleculePlugin uses the information
-defined there to create all the boilerplate code needed to use Molecule in your code.&lt;/p&gt;
-
-&lt;p&gt;You can have a single or several Schema definition files in a project. Each definition file defines a single database.
-This is useful if you for instance want to experiment with various database designs during development.&lt;/p&gt;
-
-&lt;p&gt;Schema definiton files should reside in directories named &lt;code&gt;schema&lt;/code&gt; anywhere in your source code.&lt;/p&gt;
-
-&lt;p&gt;Use the &lt;code&gt;moleculeSchemas&lt;/code&gt; sbt settings key to list the directories in your project source
-code that contains your &lt;code&gt;schema&lt;/code&gt; directories.&lt;/p&gt;
-
-&lt;p&gt;Say you have a project &lt;code&gt;demo&lt;/code&gt; and a single Schema definition file &lt;code&gt;YourDomainDefinition.scala&lt;/code&gt;
-defining your database:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://scalamolecule.org/img/dirs1.png&#34; alt=&#34;&#34; /&gt;
-&lt;/p&gt;
-
-&lt;p&gt;Then you simply add &lt;code&gt;moleculeSchemas := Seq(&amp;quot;demo&amp;quot;)&lt;/code&gt; as we saw above.&lt;/p&gt;
-
-&lt;p&gt;In the main Molecule project&amp;rsquo;s examples module we have several Schema definition files:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://scalamolecule.org/img/dirs2.png&#34; alt=&#34;&#34; /&gt;
-&lt;/p&gt;
-
-&lt;p&gt;And we then list the paths to those like this in our &lt;code&gt;build.sbt&lt;/code&gt;:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;moleculeSchemas := Seq(
-  &amp;quot;molecule/examples/dayOfDatomic&amp;quot;,
-  &amp;quot;molecule/examples/graph&amp;quot;,
-  &amp;quot;molecule/examples/mbrainz&amp;quot;,
-  &amp;quot;molecule/examples/seattle&amp;quot;
-)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;3-compile:b6885e1f85551f51a4707c402f8200a3&#34;&gt;3. Compile&lt;/h2&gt;
-
-&lt;p&gt;Now that you have created a schema definition file and told sbt about where to find it, you can compile
-your project from the terminal&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;&amp;gt; cd yourProjectRoot
-&amp;gt; sbt compile
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;The MoleculePlugin will now automatically as part of the compilation process do 5 things:&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;Generate Molecule boilerplate dsl source code files (in the &lt;code&gt;src_managed&lt;/code&gt; directory in target)&lt;/li&gt;
-&lt;li&gt;Generate a schema file with the necessary code to transact the Datomic schema&lt;br /&gt;&lt;/li&gt;
-&lt;li&gt;Compile the generated code&lt;/li&gt;
-&lt;li&gt;Package both the source code and compiled classes into two &lt;code&gt;jar&lt;/code&gt;s and place them in the &lt;code&gt;lib&lt;/code&gt; directory of your module&lt;/li&gt;
-&lt;li&gt;Remove the generated source code and compiled classes&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;The MoleculePlugin create the &lt;code&gt;jars&lt;/code&gt; so that you can use the boilerplate code without having to recompile any
-generated boilerplate code each time you recompile your project. In our demo example two jars are created:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://scalamolecule.org/img/jars.png&#34; alt=&#34;&#34; /&gt;
-&lt;/p&gt;
-
-&lt;h2 id=&#34;4-use-molecule:b6885e1f85551f51a4707c402f8200a3&#34;&gt;4. Use Molecule&lt;/h2&gt;
-
-&lt;p&gt;The MoleculePlugin has now created all the necessary boilerplate code so that we can start using Molecule. We can
-create a fresh in-memory Datomic database by supplying the generated Schema transaction code in &lt;code&gt;YourDomainSchema&lt;/code&gt;
-(from the example above):&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;import molecule._
-implicit val conn = recreateDbFrom(demo.schema.YourDomainSchema)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;With the implicit Datomic connection available we can start making molecules:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;import demo.dsl.yourDomain._
-
-// Insert data
-Person.name(&amp;quot;John&amp;quot;).age(26).gender(&amp;quot;male&amp;quot;).add
-
-// Retrieve data
-val (person, age, gender) = Person.name.age.gender.one
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h4 id=&#34;read-more:b6885e1f85551f51a4707c402f8200a3&#34;&gt;Read more&lt;/h4&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/manual/schema&#34;&gt;Schema definition&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/manual/schema/transaction&#34;&gt;Create Datomic database&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
 </description>
     </item>
     
@@ -2065,7 +2072,7 @@ List(
 
 &lt;p&gt;An implicit macro method &lt;code&gt;get&lt;/code&gt; will at compile time translate our molecule to a Datalog query. And at runtime it will get executed against Datomic to retrieve a type-inferred result set of tuples:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val persons: Seq[(String, Int)]         = Person.name.age.get
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val persons: Seq[(String, Int)] = Person.name.age.get
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;The attributes of our domain directly form our molecules. Furthermore the compiler prevents us from making any invalid queries since all molecules are type-infered already in our IDE.&lt;/p&gt;

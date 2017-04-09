@@ -259,7 +259,7 @@ trait Address {
 
 &lt;p&gt;An implicit macro method &lt;code&gt;get&lt;/code&gt; will at compile time translate our molecule to a Datalog query. And at runtime it will get executed against Datomic to retrieve a type-inferred result set of tuples:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val persons: Seq[(String, Int)]         = Person.name.age.get
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val persons: Seq[(String, Int)] = Person.name.age.get
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;The attributes of our domain directly form our molecules. Furthermore the compiler prevents us from making any invalid queries since all molecules are type-infered already in our IDE.&lt;/p&gt;

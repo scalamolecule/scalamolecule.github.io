@@ -110,12 +110,19 @@ then automatically generated.</p>
 
 <h2 id="1-sbt-build-settings:b6885e1f85551f51a4707c402f8200a3">1. SBT build settings</h2>
 
-<p>For sbt 0.13.6+ add sbt-molecule as a dependency in <code>project/buildinfo.sbt</code>:</p>
+<p>Add the following to your build files:</p>
 
-<pre><code class="language-scala">addSbtPlugin(&quot;org.scalamolecule&quot; % &quot;sbt-molecule&quot; % &quot;0.3.0&quot;)
+<p><code>project/build.properties</code>:</p>
+
+<pre><code class="language-scala">sbt.version=0.13.13
 </code></pre>
 
-<p>Add the following in your <code>build.sbt</code>:</p>
+<p><code>project/buildinfo.sbt</code>:</p>
+
+<pre><code class="language-scala">addSbtPlugin(&quot;org.scalamolecule&quot; % &quot;sbt-molecule&quot; % &quot;0.3.1&quot;)
+</code></pre>
+
+<p><code>build.sbt</code>:</p>
 
 <pre><code class="language-scala">lazy val yourProject = project.in(file(&quot;demo&quot;))
   .enablePlugins(MoleculePlugin)
@@ -127,15 +134,15 @@ then automatically generated.</p>
       &quot;Scalaz Bintray Repo&quot; at &quot;http://dl.bintray.com/scalaz/releases&quot;
     ),
     libraryDependencies ++= Seq(
-      &quot;org.scalamolecule&quot; %% &quot;molecule&quot; % &quot;0.10.0&quot;,
-      &quot;com.datomic&quot; % &quot;datomic-free&quot; % &quot;0.9.5404&quot;
+      &quot;org.scalamolecule&quot; %% &quot;molecule&quot; % &quot;0.10.1&quot;,
+      &quot;com.datomic&quot; % &quot;datomic-free&quot; % &quot;0.9.5561&quot;
     ),
     moleculeSchemas := Seq(&quot;demo&quot;) // paths to your schema definition files...
   )
 </code></pre>
 
-<p>Molecule 0.10.0 for Scala 2.11.8 is available at
-<a href="https://oss.sonatype.org/content/repositories/releases/org/scalamolecule/molecule_2.11/">Sonatype</a>.</p>
+<p>Molecule 0.10.1 for Scala 2.12.1 is available at
+<a href="https://oss.sonatype.org/content/repositories/releases/org/scalamolecule/molecule_2.12/">Sonatype</a>.</p>
 
 <h1 id="2-paths-to-schema-definition-files:b6885e1f85551f51a4707c402f8200a3">2. Paths to Schema definition files</h1>
 
