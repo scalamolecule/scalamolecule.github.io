@@ -168,7 +168,7 @@ then automatically generated.&lt;/p&gt;
 
 &lt;p&gt;&lt;code&gt;project/buildinfo.sbt&lt;/code&gt;:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;addSbtPlugin(&amp;quot;org.scalamolecule&amp;quot; % &amp;quot;sbt-molecule&amp;quot; % &amp;quot;0.3.1&amp;quot;)
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;addSbtPlugin(&amp;quot;org.scalamolecule&amp;quot; % &amp;quot;sbt-molecule&amp;quot; % &amp;quot;0.3.2&amp;quot;)
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;&lt;code&gt;build.sbt&lt;/code&gt;:&lt;/p&gt;
@@ -183,14 +183,14 @@ then automatically generated.&lt;/p&gt;
       &amp;quot;Scalaz Bintray Repo&amp;quot; at &amp;quot;http://dl.bintray.com/scalaz/releases&amp;quot;
     ),
     libraryDependencies ++= Seq(
-      &amp;quot;org.scalamolecule&amp;quot; %% &amp;quot;molecule&amp;quot; % &amp;quot;0.10.1&amp;quot;,
+      &amp;quot;org.scalamolecule&amp;quot; %% &amp;quot;molecule&amp;quot; % &amp;quot;0.10.2&amp;quot;,
       &amp;quot;com.datomic&amp;quot; % &amp;quot;datomic-free&amp;quot; % &amp;quot;0.9.5561&amp;quot;
     ),
     moleculeSchemas := Seq(&amp;quot;demo&amp;quot;) // paths to your schema definition files...
   )
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;Molecule 0.10.1 for Scala 2.12.1 is available at
+&lt;p&gt;Molecule 0.10.2 for Scala 2.12.1 is available at
 &lt;a href=&#34;https://oss.sonatype.org/content/repositories/releases/org/scalamolecule/molecule_2.12/&#34;&gt;Sonatype&lt;/a&gt;.&lt;/p&gt;
 
 &lt;h1 id=&#34;2-paths-to-schema-definition-files:b6885e1f85551f51a4707c402f8200a3&#34;&gt;2. Paths to Schema definition files&lt;/h1&gt;
@@ -912,12 +912,12 @@ Person.age(max) // highest age
 
 &lt;h4 id=&#34;rand-n:de7f9909aae9c5ac545867cc473806f6&#34;&gt;rand(n)&lt;/h4&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.age(max(3)) // 3 random persons (with potential for duplicates!)
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.age(rand(3)) // 3 random persons (with potential for duplicates!)
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;h4 id=&#34;sample-n:de7f9909aae9c5ac545867cc473806f6&#34;&gt;sample(n)&lt;/h4&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.age(max(3)) // 3 sample persons (without duplicates!)
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.age(sample(3)) // 3 sample persons (without duplicates!)
 &lt;/code&gt;&lt;/pre&gt;
 </description>
     </item>
