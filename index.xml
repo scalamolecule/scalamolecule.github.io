@@ -112,80 +112,6 @@ and/or &lt;a href=&#34;https://github.com/scalamolecule/molecule/issues&#34;&gt;
     </item>
     
     <item>
-      <title>Compare</title>
-      <link>http://scalamolecule.org/compare/overview/</link>
-      <pubDate>Wed, 14 May 2014 02:13:50 UTC</pubDate>
-      
-      <guid>http://scalamolecule.org/compare/overview/</guid>
-      <description>
-
-&lt;h1 id=&#34;other-databases-vs-molecule:68f80267fa3a50980dbb745a782b8dca&#34;&gt;Other databases vs. Molecule&lt;/h1&gt;
-
-&lt;p&gt;Every database/abstraction layer has its strengths and weaknesses and we&amp;rsquo;ll try here to compare existing systems with Molecule with some examples of how they accomplish similar tasks.&lt;/p&gt;
-
-&lt;h3 id=&#34;others-consume-molecule-declares-data-structures:68f80267fa3a50980dbb745a782b8dca&#34;&gt;Others &lt;em&gt;consume&lt;/em&gt;, Molecule &lt;em&gt;declares&lt;/em&gt; data structures&lt;/h3&gt;
-
-&lt;p&gt;Many systems lets you define data objects matching your domain that are then &lt;em&gt;consumed&lt;/em&gt; by the host language (Scala) in combination with DSLs.&lt;/p&gt;
-
-&lt;p&gt;If we take &lt;a href=&#34;http://slick.typesafe.com/doc/3.0.0-M1/queries.html#joining-and-zipping&#34;&gt;Slick&lt;/a&gt; for instance we could say that it &amp;ldquo;&lt;em&gt;consumes&lt;/em&gt;&amp;rdquo; the data objects &lt;code&gt;coffees&lt;/code&gt; and &lt;code&gt;suppliers&lt;/code&gt; in this Scala sequence comprehension:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;// Slick
-val implCrossJoin = for {
-  c &amp;lt;- coffees
-  s &amp;lt;- suppliers
-} yield (c.name, s.name)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Whereas in Molecule, we only &lt;em&gt;declare&lt;/em&gt; which attributes we are interested in. Molecule attributes &lt;em&gt;themselves&lt;/em&gt; form the query - they are not &lt;em&gt;consumed&lt;/em&gt; by an outer construct. That way, the domain terms directly form the query without additional keywords and constructs:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;// Molecule
-val coffeeSupliers = Coffees.name.Suppliers.name.get
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;We get the exact same type-inferred result back, a &lt;code&gt;Iterable[(String, String)]&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;http://squeryl.org/selects.html&#34;&gt;Squeryl&lt;/a&gt; also &lt;em&gt;consumes&lt;/em&gt; data objects, now in a DSL construct:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;// Squeryl
-def songs = from(MusicDb.songs)(s =&amp;gt; where(s.artistId === id) select(s))
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;In Molecule we don&amp;rsquo;t need to use keywords like &lt;code&gt;from&lt;/code&gt;, &lt;code&gt;where&lt;/code&gt; and &lt;code&gt;select&lt;/code&gt; (apart from the final &lt;code&gt;get&lt;/code&gt; method). We instead get song entities (&lt;code&gt;e&lt;/code&gt;) filtered by Artist by simply applying a required value directly to the &lt;code&gt;artist&lt;/code&gt; attribute:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;// Molecule
-val songs = Song.e.artist(id).get
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;more-databases-to-compare:68f80267fa3a50980dbb745a782b8dca&#34;&gt;More databases to compare&amp;hellip;&lt;/h3&gt;
-
-&lt;p&gt;Over time we&amp;rsquo;ll compare Molecule with as many database systems as possible. Those not linked yet below are on our wish list:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/compare/datomic&#34;&gt;Datomic&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/compare/sql&#34;&gt;SQL&lt;/a&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/compare/sql/slick&#34;&gt;Slick&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Squeryl&lt;/li&gt;
-&lt;li&gt;Sqltyped tutorial&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;Mongodb
-
-&lt;ul&gt;
-&lt;li&gt;Native&lt;/li&gt;
-&lt;li&gt;Rogue&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;Titan&lt;/li&gt;
-&lt;li&gt;Neo4j&lt;/li&gt;
-&lt;li&gt;Gremlin&lt;/li&gt;
-&lt;li&gt;More&amp;hellip;?&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;If you want to translate one into Molecule, please feel free to submit a pull request or bring up ideas.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
       <title>Community</title>
       <link>http://scalamolecule.org/community/overview/</link>
       <pubDate>Wed, 14 May 2014 02:13:50 UTC</pubDate>
@@ -289,6 +215,80 @@ possible constructs we can expect. We are therefore in full control of the entir
  to Datomic query. Non-valid molecules simply won&amp;rsquo;t compile. And we can infer all type information from our molecules.&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&#34;http://scalamolecule.org/developer/transformation&#34;&gt;Read more about the macro transformations&amp;hellip;&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Compare</title>
+      <link>http://scalamolecule.org/compare/overview/</link>
+      <pubDate>Wed, 14 May 2014 02:13:50 UTC</pubDate>
+      
+      <guid>http://scalamolecule.org/compare/overview/</guid>
+      <description>
+
+&lt;h1 id=&#34;other-databases-vs-molecule:68f80267fa3a50980dbb745a782b8dca&#34;&gt;Other databases vs. Molecule&lt;/h1&gt;
+
+&lt;p&gt;Every database/abstraction layer has its strengths and weaknesses and we&amp;rsquo;ll try here to compare existing systems with Molecule with some examples of how they accomplish similar tasks.&lt;/p&gt;
+
+&lt;h3 id=&#34;others-consume-molecule-declares-data-structures:68f80267fa3a50980dbb745a782b8dca&#34;&gt;Others &lt;em&gt;consume&lt;/em&gt;, Molecule &lt;em&gt;declares&lt;/em&gt; data structures&lt;/h3&gt;
+
+&lt;p&gt;Many systems lets you define data objects matching your domain that are then &lt;em&gt;consumed&lt;/em&gt; by the host language (Scala) in combination with DSLs.&lt;/p&gt;
+
+&lt;p&gt;If we take &lt;a href=&#34;http://slick.typesafe.com/doc/3.0.0-M1/queries.html#joining-and-zipping&#34;&gt;Slick&lt;/a&gt; for instance we could say that it &amp;ldquo;&lt;em&gt;consumes&lt;/em&gt;&amp;rdquo; the data objects &lt;code&gt;coffees&lt;/code&gt; and &lt;code&gt;suppliers&lt;/code&gt; in this Scala sequence comprehension:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;// Slick
+val implCrossJoin = for {
+  c &amp;lt;- coffees
+  s &amp;lt;- suppliers
+} yield (c.name, s.name)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Whereas in Molecule, we only &lt;em&gt;declare&lt;/em&gt; which attributes we are interested in. Molecule attributes &lt;em&gt;themselves&lt;/em&gt; form the query - they are not &lt;em&gt;consumed&lt;/em&gt; by an outer construct. That way, the domain terms directly form the query without additional keywords and constructs:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;// Molecule
+val coffeeSupliers = Coffees.name.Suppliers.name.get
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We get the exact same type-inferred result back, a &lt;code&gt;Iterable[(String, String)]&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://squeryl.org/selects.html&#34;&gt;Squeryl&lt;/a&gt; also &lt;em&gt;consumes&lt;/em&gt; data objects, now in a DSL construct:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;// Squeryl
+def songs = from(MusicDb.songs)(s =&amp;gt; where(s.artistId === id) select(s))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;In Molecule we don&amp;rsquo;t need to use keywords like &lt;code&gt;from&lt;/code&gt;, &lt;code&gt;where&lt;/code&gt; and &lt;code&gt;select&lt;/code&gt; (apart from the final &lt;code&gt;get&lt;/code&gt; method). We instead get song entities (&lt;code&gt;e&lt;/code&gt;) filtered by Artist by simply applying a required value directly to the &lt;code&gt;artist&lt;/code&gt; attribute:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;// Molecule
+val songs = Song.e.artist(id).get
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;more-databases-to-compare:68f80267fa3a50980dbb745a782b8dca&#34;&gt;More databases to compare&amp;hellip;&lt;/h3&gt;
+
+&lt;p&gt;Over time we&amp;rsquo;ll compare Molecule with as many database systems as possible. Those not linked yet below are on our wish list:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/compare/datomic&#34;&gt;Datomic&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/compare/sql&#34;&gt;SQL&lt;/a&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/compare/sql/slick&#34;&gt;Slick&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Squeryl&lt;/li&gt;
+&lt;li&gt;Sqltyped tutorial&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Mongodb
+
+&lt;ul&gt;
+&lt;li&gt;Native&lt;/li&gt;
+&lt;li&gt;Rogue&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Titan&lt;/li&gt;
+&lt;li&gt;Neo4j&lt;/li&gt;
+&lt;li&gt;Gremlin&lt;/li&gt;
+&lt;li&gt;More&amp;hellip;?&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;If you want to translate one into Molecule, please feel free to submit a pull request or bring up ideas.&lt;/p&gt;
 </description>
     </item>
     
