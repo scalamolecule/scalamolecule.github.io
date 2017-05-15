@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Manuals on Molecule</title>
-    <link>http://scalamolecule.org/manual/</link>
+    <link>http://localhost:1313/manual/</link>
     <description>Recent content in Manuals on Molecule</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     
     
     <lastBuildDate>Fri, 02 Jan 2015 22:06:44 CET</lastBuildDate>
-    <atom:link href="http://scalamolecule.org/manual/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/manual/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Manual</title>
-      <link>http://scalamolecule.org/manual/overview/</link>
+      <link>http://localhost:1313/manual/overview/</link>
       <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
       
-      <guid>http://scalamolecule.org/manual/overview/</guid>
+      <guid>http://localhost:1313/manual/overview/</guid>
       <description>
 
 &lt;h1 id=&#34;molecule-manual:68f80267fa3a50980dbb745a782b8dca&#34;&gt;Molecule manual&lt;/h1&gt;
@@ -39,15 +39,15 @@ and/or &lt;a href=&#34;https://github.com/scalamolecule/molecule/issues&#34;&gt;
     
     <item>
       <title>Builder</title>
-      <link>http://scalamolecule.org/manual/query/builder/</link>
+      <link>http://localhost:1313/manual/query/builder/</link>
       <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
       
-      <guid>http://scalamolecule.org/manual/query/builder/</guid>
+      <guid>http://localhost:1313/manual/query/builder/</guid>
       <description>
 
 &lt;h1 id=&#34;attribute-builder-pattern:8fd4bc5e57a8b030c7141267f15a6e67&#34;&gt;Attribute builder pattern&lt;/h1&gt;
 
-&lt;p&gt;(See &lt;a href=&#34;https://github.com/scalamolecule/molecule/blob/master/coretest/src/test/scala/molecule/Attribute.scala&#34;&gt;attribute tests&lt;/a&gt;)&lt;/p&gt;
+&lt;p&gt;(See &lt;a href=&#34;https://github.com/scalamolecule/molecule/blob/master/coretest/src/test/scala/molecule/attr/Attribute.scala&#34;&gt;attribute tests&lt;/a&gt;)&lt;/p&gt;
 
 &lt;p&gt;When we have defined a schema, Molecule generates the necessary boilerplate code so that we can build &amp;ldquo;molecular data
  structures&amp;rdquo; by building sequences of Attributes separated with dots (the &amp;ldquo;builder pattern&amp;rdquo;).&lt;/p&gt;
@@ -92,8 +92,8 @@ We call the un-returning attributes &amp;ldquo;tacet attributes&amp;rdquo; (musi
 &lt;p&gt;This will return names of person entities having both a name and age Attribute set. Note how the age values are no
 longer returned from the type signatures:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val persons: List[(String, Int)] = Person.name.age.get
-val names  : List[String]        = Person.name.age_.get
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val persons: Iterable[(String, Int)] = Person.name.age.get
+val names  : Iterable[String]        = Person.name.age_.get
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;This way we can switch on and off individual attributes from the result set without affecting the data structures
@@ -103,7 +103,7 @@ we look for.&lt;/p&gt;
 
 &lt;p&gt;If an attribute value is only sometimes set, we can ask for it&amp;rsquo;s optional value by adding a dollar sign &lt;code&gt;$&lt;/code&gt; after the attribute:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val names: List[(String, Option[String], String)] = Person.firstName.middleName$.lastName.get
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val names: Iterable[(String, Option[String], String)] = Person.firstName.middleName$.lastName.get
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;That way we can get all person names with or without middleNames. As you can see from the return type, the middle
@@ -113,7 +113,7 @@ name is wrapped in an &lt;code&gt;Option&lt;/code&gt;.&lt;/p&gt;
 
 &lt;p&gt;Molecule returns all result sets as tuples of values (with &lt;code&gt;get&lt;/code&gt;).&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val persons: List[(String, Int)] = Person.name.age.get
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val persons: Iterable[(String, Int)] = Person.name.age.get
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;h2 id=&#34;molecule-max-size:8fd4bc5e57a8b030c7141267f15a6e67&#34;&gt;Molecule max size&lt;/h2&gt;
@@ -145,15 +145,15 @@ val next3values = Ns.x.y.z.insert(eid, 23, 24, 25)
     
     <item>
       <title>Getting started</title>
-      <link>http://scalamolecule.org/manual/getting-started/</link>
+      <link>http://localhost:1313/manual/getting-started/</link>
       <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
       
-      <guid>http://scalamolecule.org/manual/getting-started/</guid>
+      <guid>http://localhost:1313/manual/getting-started/</guid>
       <description>
 
 &lt;h1 id=&#34;getting-started-with-molecule:b6885e1f85551f51a4707c402f8200a3&#34;&gt;Getting started with Molecule&lt;/h1&gt;
 
-&lt;p&gt;To use Molecule we need to define our database schema in a &lt;a href=&#34;http://scalamolecule.org/manual/schema&#34;&gt;Schema definition&lt;/a&gt; file and then tell
+&lt;p&gt;To use Molecule we need to define our database schema in a &lt;a href=&#34;http://localhost:1313/manual/schema&#34;&gt;Schema definition&lt;/a&gt; file and then tell
 sbt about it. When compiling our project from the command line, all necessary boilerplate code is
 then automatically generated.&lt;/p&gt;
 
@@ -168,7 +168,7 @@ then automatically generated.&lt;/p&gt;
 
 &lt;p&gt;&lt;code&gt;project/buildinfo.sbt&lt;/code&gt;:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;addSbtPlugin(&amp;quot;org.scalamolecule&amp;quot; % &amp;quot;sbt-molecule&amp;quot; % &amp;quot;0.3.2&amp;quot;)
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;addSbtPlugin(&amp;quot;org.scalamolecule&amp;quot; % &amp;quot;sbt-molecule&amp;quot; % &amp;quot;0.3.3&amp;quot;)
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;&lt;code&gt;build.sbt&lt;/code&gt;:&lt;/p&gt;
@@ -179,25 +179,24 @@ then automatically generated.&lt;/p&gt;
     resolvers ++= Seq(
       &amp;quot;datomic&amp;quot; at &amp;quot;http://files.datomic.com/maven&amp;quot;,
       &amp;quot;clojars&amp;quot; at &amp;quot;http://clojars.org/repo&amp;quot;,
-      Resolver.sonatypeRepo(&amp;quot;releases&amp;quot;),
-      &amp;quot;Scalaz Bintray Repo&amp;quot; at &amp;quot;http://dl.bintray.com/scalaz/releases&amp;quot;
+      Resolver.sonatypeRepo(&amp;quot;releases&amp;quot;)
     ),
     libraryDependencies ++= Seq(
-      &amp;quot;org.scalamolecule&amp;quot; %% &amp;quot;molecule&amp;quot; % &amp;quot;0.10.2&amp;quot;,
+      &amp;quot;org.scalamolecule&amp;quot; %% &amp;quot;molecule&amp;quot; % &amp;quot;0.11.0&amp;quot;,
       &amp;quot;com.datomic&amp;quot; % &amp;quot;datomic-free&amp;quot; % &amp;quot;0.9.5561&amp;quot;
     ),
     moleculeSchemas := Seq(&amp;quot;demo&amp;quot;) // paths to your schema definition files...
   )
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;Molecule 0.10.2 for Scala 2.12.1 is available at
+&lt;p&gt;Molecule 0.11.0 for Scala 2.12.1 is available at
 &lt;a href=&#34;https://oss.sonatype.org/content/repositories/releases/org/scalamolecule/molecule_2.12/&#34;&gt;Sonatype&lt;/a&gt;.&lt;/p&gt;
 
 &lt;h1 id=&#34;2-paths-to-schema-definition-files:b6885e1f85551f51a4707c402f8200a3&#34;&gt;2. Paths to Schema definition files&lt;/h1&gt;
 
 &lt;p&gt;We use the &lt;code&gt;moleculeSchemas&lt;/code&gt; sbt settings key to tell sbt where we have our Schema definition files.&lt;/p&gt;
 
-&lt;p&gt;A &lt;a href=&#34;http://scalamolecule.org/manual/schema&#34;&gt;Schema definition&lt;/a&gt; file contains a plain Scala object where you define
+&lt;p&gt;A &lt;a href=&#34;http://localhost:1313/manual/schema&#34;&gt;Schema definition&lt;/a&gt; file contains a plain Scala object where you define
 partitions/namespaces/attributes of your Datomic database. The MoleculePlugin uses the information
 defined there to create all the boilerplate code needed to use Molecule in your code.&lt;/p&gt;
 
@@ -212,14 +211,14 @@ code that contains your &lt;code&gt;schema&lt;/code&gt; directories.&lt;/p&gt;
 &lt;p&gt;Say you have a project &lt;code&gt;demo&lt;/code&gt; and a single Schema definition file &lt;code&gt;YourDomainDefinition.scala&lt;/code&gt;
 defining your database:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://scalamolecule.org/img/dirs1.png&#34; alt=&#34;&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/img/dirs1.png&#34; alt=&#34;&#34; /&gt;
 &lt;/p&gt;
 
 &lt;p&gt;Then you simply add &lt;code&gt;moleculeSchemas := Seq(&amp;quot;demo&amp;quot;)&lt;/code&gt; as we saw above.&lt;/p&gt;
 
 &lt;p&gt;In the main Molecule project&amp;rsquo;s examples module we have several Schema definition files:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://scalamolecule.org/img/dirs2.png&#34; alt=&#34;&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/img/dirs2.png&#34; alt=&#34;&#34; /&gt;
 &lt;/p&gt;
 
 &lt;p&gt;And we then list the paths to those like this in our &lt;code&gt;build.sbt&lt;/code&gt;:&lt;/p&gt;
@@ -254,7 +253,7 @@ your project from the terminal&lt;/p&gt;
 &lt;p&gt;The MoleculePlugin create the &lt;code&gt;jars&lt;/code&gt; so that you can use the boilerplate code without having to recompile any
 generated boilerplate code each time you recompile your project. In our demo example two jars are created:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://scalamolecule.org/img/jars.png&#34; alt=&#34;&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/img/jars.png&#34; alt=&#34;&#34; /&gt;
 &lt;/p&gt;
 
 &lt;h2 id=&#34;4-use-molecule:b6885e1f85551f51a4707c402f8200a3&#34;&gt;4. Use Molecule&lt;/h2&gt;
@@ -272,27 +271,27 @@ implicit val conn = recreateDbFrom(demo.schema.YourDomainSchema)
 &lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;import demo.dsl.yourDomain._
 
 // Insert data
-Person.name(&amp;quot;John&amp;quot;).age(26).gender(&amp;quot;male&amp;quot;).add
+Person.name(&amp;quot;John&amp;quot;).age(26).gender(&amp;quot;male&amp;quot;).save
 
 // Retrieve data
-val (person, age, gender) = Person.name.age.gender.one
+val (person, age, gender) = Person.name.age.gender.get.head
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;h4 id=&#34;read-more:b6885e1f85551f51a4707c402f8200a3&#34;&gt;Read more&lt;/h4&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/manual/schema&#34;&gt;Schema definition&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/manual/schema/transaction&#34;&gt;Create Datomic database&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/manual/schema&#34;&gt;Schema definition&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/manual/schema/transaction&#34;&gt;Create Datomic database&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
     </item>
     
     <item>
       <title>Mapped attributes</title>
-      <link>http://scalamolecule.org/manual/query/mapped/</link>
+      <link>http://localhost:1313/manual/query/mapped/</link>
       <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
       
-      <guid>http://scalamolecule.org/manual/query/mapped/</guid>
+      <guid>http://localhost:1313/manual/query/mapped/</guid>
       <description>
 
 &lt;h1 id=&#34;mapped-attributes:a97bd84cbba6263d9bc50859a818a594&#34;&gt;Mapped Attributes&lt;/h1&gt;
@@ -341,10 +340,10 @@ the &lt;a href=&#34;https://github.com/scalamolecule/molecule/tree/master/corete
     
     <item>
       <title>Schema</title>
-      <link>http://scalamolecule.org/manual/schema/</link>
+      <link>http://localhost:1313/manual/schema/</link>
       <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
       
-      <guid>http://scalamolecule.org/manual/schema/</guid>
+      <guid>http://localhost:1313/manual/schema/</guid>
       <description>
 
 &lt;h1 id=&#34;schema:e608d9ac6a0d5e2b6db229b78a3e65b4&#34;&gt;Schema&lt;/h1&gt;
@@ -359,7 +358,10 @@ your molecules.&lt;/p&gt;
 
 &lt;p&gt;Let&amp;rsquo;s look at the schema definition of the Seattle example:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;@InOut(3, 8)
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;package yourpackage
+import molecule.schema.definition._  // import schema definition DSL
+
+@InOut(3, 8)
 object SeattleDefinition {
 
   trait Community {
@@ -389,7 +391,7 @@ named ending in &amp;ldquo;Definition&amp;rdquo; in order for the MoleculePlugin
 &lt;h3 id=&#34;molecule-arity:e608d9ac6a0d5e2b6db229b78a3e65b4&#34;&gt;Molecule arity&lt;/h3&gt;
 
 &lt;p&gt;The &lt;code&gt;@InOut(3, 8)&lt;/code&gt; arity annotation instructs Molecule to generate boilerplate code with the ability to create
-molecules with up to 8 attributes including up to 3 &lt;a href=&#34;http://scalamolecule.org/manual/query/parameterize&#34;&gt;input attributes&lt;/a&gt;.&lt;/p&gt;
+molecules with up to 8 attributes including up to 3 &lt;a href=&#34;http://localhost:1313/manual/query/parameterize&#34;&gt;input attributes&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;When developing your schema you might just set the first arity annotation variable for input attributes to &lt;code&gt;0&lt;/code&gt; and
 then later when your schema is stabilizing add the ability to make input molecules by setting it to 1, 2 or 3 (the maximum).
@@ -401,7 +403,7 @@ optimization since using input values in Datalog queries allow Datomic to cache 
  not to generate more boilerplate code than necessary. The maximum arity is 22, the same as for tuples.&lt;/p&gt;
 
 &lt;p&gt;If you at some point need to make molecules with more than 22 attributes
-  you can insert/query in two steps as described &lt;a href=&#34;http://scalamolecule.org/manual/query/builder&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+  you can insert/query in two steps as described &lt;a href=&#34;http://localhost:1313/manual/query/builder&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
 
 &lt;h3 id=&#34;namespaces:e608d9ac6a0d5e2b6db229b78a3e65b4&#34;&gt;Namespaces&lt;/h3&gt;
 
@@ -409,7 +411,7 @@ optimization since using input values in Datalog queries allow Datomic to cache 
 define the &lt;code&gt;&amp;lt;namespace&amp;gt;&lt;/code&gt; part with the name of the trait, like &lt;code&gt;Community&lt;/code&gt; in the Seattle
 example above. In this way Molecule can construct the full name of the &lt;code&gt;community/category&lt;/code&gt; attribute etc.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://scalamolecule.org/img/DatomicElements1.png&#34; alt=&#34;Schema&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/img/DatomicElements1.png&#34; alt=&#34;Schema&#34; /&gt;
 &lt;/p&gt;
 
 &lt;p&gt;We might as well have defined a list of attributes manually adding a namespace
@@ -429,7 +431,7 @@ val neighborhoodName
 a table having columns (attributes). But this is not the case. An
 entity in Datomic can associate values of attributes &lt;em&gt;from any namespace&lt;/em&gt;:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://scalamolecule.org/img/DatomicElements2.png&#34; alt=&#34;&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/img/DatomicElements2.png&#34; alt=&#34;&#34; /&gt;
 &lt;/p&gt;
 
 &lt;p&gt;So, when we build a molecule&lt;/p&gt;
@@ -511,28 +513,28 @@ prepended to the namespaces it contains.&lt;/p&gt;
 
 &lt;p&gt;We can define the following types of attributes:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;Cardinality one          Cardinality many              Mapped cardinality many
--------------------      -------------------------     --------------------------------
-oneString : String       manyString : Set[String]      mapString : Map[String, String]
-oneInt    : Int          manyInt    : Set[Int]         mapInt    : Map[String, Int]
-oneLong   : Long         manyLong   : Set[Long]        mapLong   : Map[String, Long]
-oneFloat  : Float        manyFloat  : Set[Float]       mapFloat  : Map[String, Float]
-oneDouble : Double       manyDouble : Set[Double]      mapDouble : Map[String, Double]
-oneBoolean: Boolean      manyBoolean: Set[Boolean]     mapBoolean: Map[String, Boolean]
-oneDate   : Date         manyDate   : Set[Date]        mapDate   : Map[String, Date]
-oneUUID   : UUID         manyUUID   : Set[UUID]        mapUUID   : Map[String, UUID]
-oneURI    : URI          manyURI    : Set[URI]         mapURI    : Map[String, URI]
-oneEnum   : String       manyEnum   : Set[String]
+&lt;pre&gt;&lt;code&gt;Cardinality one              Cardinality many                 Mapped cardinality many
+-------------------          -------------------------        --------------------------------
+oneString     : String       manyString    : Set[String]      mapString     : Map[String, String]
+oneInt        : Int          manyInt       : Set[Int]         mapInt        : Map[String, Int]
+oneLong       : Long         manyLong      : Set[Long]        mapLong       : Map[String, Long]
+oneFloat      : Float        manyFloat     : Set[Float]       mapFloat      : Map[String, Float]
+oneDouble     : Double       manyDouble    : Set[Double]      mapDouble     : Map[String, Double]
+oneBigInt     : BigInt       manyBigInt    : Set[BigInt]      mapBigInt     : Map[String, BigInt]
+oneBigDecimal : BigDecimal   manyBigDecimal: Set[BigDecimal]  mapBigDecimal : Map[String, BigDecimal]
+oneBoolean    : Boolean      manyBoolean   : Set[Boolean]     mapBoolean    : Map[String, Boolean]
+oneDate       : Date         manyDate      : Set[Date]        mapDate       : Map[String, Date]
+oneUUID       : UUID         manyUUID      : Set[UUID]        mapUUID       : Map[String, UUID]
+oneURI        : URI          manyURI       : Set[URI]         mapURI        : Map[String, URI]
+oneEnum       : String       manyEnum      : Set[String]
 &lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Datomic also has types &lt;code&gt;BigInt&lt;/code&gt; and &lt;code&gt;Bytes&lt;/code&gt; and those could later be implemented in Molecule if there&amp;rsquo;s a need for those types.&lt;/p&gt;
 
 &lt;p&gt;Cardinality-one attributes can have one value per entity.&lt;/p&gt;
 
 &lt;p&gt;Cardinality-many attributes can have a &lt;em&gt;Set of unique values&lt;/em&gt; per entity. Often we choose instead to model many-values as a
 many-reference to another entity that could have more than one attribute.&lt;/p&gt;
 
-&lt;p&gt;Mapped cardinality many attributes are a special Molecule variation based on cardinality-many attributes. Read more &lt;a href=&#34;http://scalamolecule.org/manual/query/mapped&#34;&gt;here&lt;/a&gt;&amp;hellip;&lt;/p&gt;
+&lt;p&gt;Mapped cardinality many attributes are a special Molecule variation based on cardinality-many attributes. Read more &lt;a href=&#34;http://localhost:1313/manual/query/mapped&#34;&gt;here&lt;/a&gt;&amp;hellip;&lt;/p&gt;
 
 &lt;h3 id=&#34;reference-types:e608d9ac6a0d5e2b6db229b78a3e65b4&#34;&gt;Reference types&lt;/h3&gt;
 
@@ -608,16 +610,16 @@ definition DSL let&amp;rsquo;s you only choose allowed options for any attribute
 
 &lt;h3 id=&#34;next:e608d9ac6a0d5e2b6db229b78a3e65b4&#34;&gt;Next&lt;/h3&gt;
 
-&lt;p&gt;&lt;a href=&#34;http://scalamolecule.org/manual/schema/transaction&#34;&gt;Create database&lt;/a&gt;&amp;hellip;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://localhost:1313/manual/schema/transaction&#34;&gt;Create database&lt;/a&gt;&amp;hellip;&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Expressions</title>
-      <link>http://scalamolecule.org/manual/query/expressions/</link>
+      <link>http://localhost:1313/manual/query/expressions/</link>
       <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
       
-      <guid>http://scalamolecule.org/manual/query/expressions/</guid>
+      <guid>http://localhost:1313/manual/query/expressions/</guid>
       <description>
 
 &lt;h1 id=&#34;expressions:ccf7e9e64ce1a51aa79e6eb1314d9467&#34;&gt;Expressions&lt;/h1&gt;
@@ -725,10 +727,10 @@ Person.age.!=(youngAge or goodAge)
     
     <item>
       <title>Transaction</title>
-      <link>http://scalamolecule.org/manual/schema/transaction/</link>
+      <link>http://localhost:1313/manual/schema/transaction/</link>
       <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
       
-      <guid>http://scalamolecule.org/manual/schema/transaction/</guid>
+      <guid>http://localhost:1313/manual/schema/transaction/</guid>
       <description>
 
 &lt;h1 id=&#34;schema-transaction:2e47673b0e2fecf4f97d6b00d496cdc9&#34;&gt;Schema transaction&lt;/h1&gt;
@@ -737,7 +739,7 @@ Person.age.!=(youngAge or goodAge)
 
 &lt;h2 id=&#34;schema-transaction-data:2e47673b0e2fecf4f97d6b00d496cdc9&#34;&gt;Schema transaction data&lt;/h2&gt;
 
-&lt;p&gt;Molecule transforms our &lt;a href=&#34;http://scalamolecule.org/manual/schema&#34;&gt;Schema definition file&lt;/a&gt; to
+&lt;p&gt;Molecule transforms our &lt;a href=&#34;http://localhost:1313/manual/schema&#34;&gt;Schema definition file&lt;/a&gt; to
 basically a &lt;code&gt;java.util.List&lt;/code&gt; containing a &lt;code&gt;java.util.Map&lt;/code&gt; of schema transaction data for each attribute defined.
 Our &lt;code&gt;name&lt;/code&gt; and &lt;code&gt;url&lt;/code&gt; attributes for instance requires the following map of information to be transacted in Datomic:&lt;/p&gt;
 
@@ -830,10 +832,10 @@ molecules for the loaded domain.&lt;/p&gt;
     
     <item>
       <title>Aggregates</title>
-      <link>http://scalamolecule.org/manual/query/aggregates/</link>
+      <link>http://localhost:1313/manual/query/aggregates/</link>
       <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
       
-      <guid>http://scalamolecule.org/manual/query/aggregates/</guid>
+      <guid>http://localhost:1313/manual/query/aggregates/</guid>
       <description>
 
 &lt;h1 id=&#34;aggregates:de7f9909aae9c5ac545867cc473806f6&#34;&gt;Aggregates&lt;/h1&gt;
@@ -924,10 +926,10 @@ Person.age(max) // highest age
     
     <item>
       <title>Insert</title>
-      <link>http://scalamolecule.org/manual/insert/</link>
+      <link>http://localhost:1313/manual/insert/</link>
       <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
       
-      <guid>http://scalamolecule.org/manual/insert/</guid>
+      <guid>http://localhost:1313/manual/insert/</guid>
       <description>
 
 &lt;h1 id=&#34;insert-data:5d2f56cd52c8a21b161ac814c57bbeef&#34;&gt;Insert data&lt;/h1&gt;
@@ -937,7 +939,7 @@ Person.age(max) // highest age
 &lt;h3 id=&#34;1-data-molecule:5d2f56cd52c8a21b161ac814c57bbeef&#34;&gt;1. Data-molecule&lt;/h3&gt;
 
 &lt;p&gt;We can insert data by populating a molecule with data by applying a value to each
-attribute and then simply &lt;code&gt;add&lt;/code&gt; it. Molecule makes sure
+attribute and then simply &lt;code&gt;save&lt;/code&gt; it. Molecule makes sure
 that each attribute only accepts values of the expected type.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Community.insert
@@ -947,7 +949,7 @@ that each attribute only accepts values of the expected type.&lt;/p&gt;
   .orgtype(&amp;quot;personal&amp;quot;)
   .category(&amp;quot;my&amp;quot;, &amp;quot;favorites&amp;quot;) // many cardinality allows multiple values
   .Neighborhood.name(&amp;quot;myNeighborhood&amp;quot;)
-  .District.name(&amp;quot;myDistrict&amp;quot;).region(&amp;quot;nw&amp;quot;).add
+  .District.name(&amp;quot;myDistrict&amp;quot;).region(&amp;quot;nw&amp;quot;).save
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Note also how we easily insert data across several namespaces in one go!&lt;/p&gt;
@@ -1023,15 +1025,15 @@ woudn&amp;rsquo;t compile and our IDE will infer that and warn us of an invalid 
     
     <item>
       <title>Parameterize</title>
-      <link>http://scalamolecule.org/manual/query/parameterize/</link>
+      <link>http://localhost:1313/manual/query/parameterize/</link>
       <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
       
-      <guid>http://scalamolecule.org/manual/query/parameterize/</guid>
+      <guid>http://localhost:1313/manual/query/parameterize/</guid>
       <description>
 
 &lt;h1 id=&#34;parameterized-input-molecules:913d405893862d6b41d1b084193fb4f6&#34;&gt;Parameterized Input-molecules&lt;/h1&gt;
 
-&lt;p&gt;(See &lt;a href=&#34;https://github.com/scalamolecule/molecule/blob/master/coretest/src/test/scala/molecule/Input.scala&#34;&gt;parameterize tests&lt;/a&gt;)&lt;/p&gt;
+&lt;p&gt;(See &lt;a href=&#34;https://github.com/scalamolecule/molecule/blob/master/coretest/src/test/scala/molecule/attr/Input.scala&#34;&gt;parameterize tests&lt;/a&gt;)&lt;/p&gt;
 
 &lt;p&gt;Basically we can parameterize any molecule. Instead of a value we apply the placeholder &lt;code&gt;?&lt;/code&gt; as a value.
 This signals to Molecule that we intend to supply a value later as input.&lt;/p&gt;
@@ -1042,8 +1044,8 @@ similar data structures where only some data part varies:&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;// 1 input parameter
 val person = m(Person.name(?))
 
-val john = person(&amp;quot;John&amp;quot;).one
-val lisa = person(&amp;quot;Lisa&amp;quot;).one
+val john = person(&amp;quot;John&amp;quot;).get.head
+val lisa = person(&amp;quot;Lisa&amp;quot;).get.head
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Of course more complex molecules would benefit even more from this approach.&lt;/p&gt;
@@ -1065,7 +1067,7 @@ val johnOrLisas = personName(&amp;quot;John&amp;quot; or &amp;quot;Lisa&amp;quot
 them it seems likely that this will satisfy the majority of all parameterized queires.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val person      = m(Person.name(?).age(?))
-val john        = person(&amp;quot;John&amp;quot; and 42).one // AND
+val john        = person(&amp;quot;John&amp;quot; and 42).get.head // AND
 val johnOrJonas = person((&amp;quot;John&amp;quot; and 42) or (&amp;quot;Jonas&amp;quot; and 38)).get // AND/OR
 &lt;/code&gt;&lt;/pre&gt;
 
@@ -1083,10 +1085,10 @@ val americanBabies       = americansYoungerThan(1).get
     
     <item>
       <title>Update/retract</title>
-      <link>http://scalamolecule.org/manual/update/</link>
+      <link>http://localhost:1313/manual/update/</link>
       <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
       
-      <guid>http://scalamolecule.org/manual/update/</guid>
+      <guid>http://localhost:1313/manual/update/</guid>
       <description>
 
 &lt;h1 id=&#34;update-retract-data:02280df5f63dd13cb1a7e40384d029f1&#34;&gt;Update/retract data&lt;/h1&gt;
@@ -1109,7 +1111,7 @@ val americanBabies       = americansYoungerThan(1).get
 &lt;p&gt;We need an entity id to update data.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;// Grap entity id of the Belltown community
-val belltownId = Community.e.name_(&amp;quot;belltown&amp;quot;).one
+val belltownId = Community.e.name_(&amp;quot;belltown&amp;quot;).get.head
 
 // Update name of the Belltown entity
 Community(belltownId).name(&amp;quot;Belltown 2&amp;quot;).update
@@ -1171,28 +1173,28 @@ Community(belltownId).category(&amp;quot;news&amp;quot; -&amp;gt; &amp;quot;Cool
 &lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;belltownId.retract
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;Simple as that.&lt;/p&gt;
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Query</title>
-      <link>http://scalamolecule.org/manual/query/</link>
+      <link>http://localhost:1313/manual/query/</link>
       <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
       
-      <guid>http://scalamolecule.org/manual/query/</guid>
+      <guid>http://localhost:1313/manual/query/</guid>
       <description>
 
 &lt;h1 id=&#34;molecule-queries:f7a7255cb61c59dcad3a015980d2faca&#34;&gt;Molecule Queries&lt;/h1&gt;
 
-&lt;p&gt;&lt;a href=&#34;http://scalamolecule.org/manual/query/builder&#34;&gt;Building molecules&lt;/a&gt; with the builder pattern
-(&lt;a href=&#34;https://github.com/scalamolecule/molecule/blob/master/coretest/src/test/scala/molecule/Attribute.scala&#34;&gt;tests&lt;/a&gt;)&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://localhost:1313/manual/query/builder&#34;&gt;Building molecules&lt;/a&gt; with the builder pattern
+(&lt;a href=&#34;https://github.com/scalamolecule/molecule/blob/master/coretest/src/test/scala/molecule/attr/Attribute.scala&#34;&gt;tests&lt;/a&gt;)&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.name.age.gender  // require values
 Person.name.age_.gender // require but omit values (&amp;quot;tacet values&amp;quot;)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;a href=&#34;http://scalamolecule.org/manual/query/mapped&#34;&gt;Maped values&lt;/a&gt; - mapped attribute values
+&lt;p&gt;&lt;a href=&#34;http://localhost:1313/manual/query/mapped&#34;&gt;Maped values&lt;/a&gt; - mapped attribute values
 (&lt;a href=&#34;https://github.com/scalamolecule/molecule/tree/master/coretest/src/test/scala/molecule/attrMap&#34;&gt;tests&lt;/a&gt;)&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.id.name.one === (
@@ -1206,7 +1208,7 @@ Person.name.age_.gender // require but omit values (&amp;quot;tacet values&amp;q
 )
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;a href=&#34;http://scalamolecule.org/manual/query/expressions&#34;&gt;Expressions&lt;/a&gt; - filter attribute values with expressions
+&lt;p&gt;&lt;a href=&#34;http://localhost:1313/manual/query/expressions&#34;&gt;Expressions&lt;/a&gt; - filter attribute values with expressions
 (&lt;a href=&#34;https://github.com/scalamolecule/molecule/tree/master/coretest/src/test/scala/molecule/expression&#34;&gt;tests&lt;/a&gt;)&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.age(42)                  // equal value
@@ -1219,7 +1221,7 @@ Person.name.contains(&amp;quot;John&amp;quot;)    // fulltext search
 Person.name(&amp;quot;John&amp;quot; or &amp;quot;Jonas&amp;quot;)  // OR-logic
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;a href=&#34;http://scalamolecule.org/manual/query/aggregates&#34;&gt;Aggregates&lt;/a&gt; - aggregate attribute values
+&lt;p&gt;&lt;a href=&#34;http://localhost:1313/manual/query/aggregates&#34;&gt;Aggregates&lt;/a&gt; - aggregate attribute values
 (&lt;a href=&#34;https://github.com/scalamolecule/molecule/blob/master/examples/src/test/scala/molecule/examples/dayOfDatomic/Aggregates.scala&#34;&gt;tests&lt;/a&gt;)&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.age(min) 
@@ -1227,8 +1229,8 @@ Person.age(max)
 // rand, sample, count, countDistinct, sum, avg, median, variance, stddev
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;a href=&#34;http://scalamolecule.org/manual/query/parameterize&#34;&gt;Parameterize&lt;/a&gt; - re-use molecules and let Datomic cache queries and optimize performance
-(&lt;a href=&#34;https://github.com/scalamolecule/molecule/blob/master/coretest/src/test/scala/molecule/Input.scala&#34;&gt;tests&lt;/a&gt;)&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://localhost:1313/manual/query/parameterize&#34;&gt;Parameterize&lt;/a&gt; - re-use molecules and let Datomic cache queries and optimize performance
+(&lt;a href=&#34;https://github.com/scalamolecule/molecule/blob/master/coretest/src/test/scala/molecule/attr/Input.scala&#34;&gt;tests&lt;/a&gt;)&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val person = Person.name(?).age(?)
 
@@ -1237,8 +1239,8 @@ val Johan  = person(&amp;quot;John&amp;quot;, 33).one
 val Lisa   = person(&amp;quot;Lisa&amp;quot;, 27).one
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;a href=&#34;http://scalamolecule.org/manual/query/relationships&#34;&gt;Relationships&lt;/a&gt; - Connect namespaces with relationships (&lt;a href=&#34;https://github.com/scalamolecule/molecule/blob/master/coretest/src/test/scala/molecule/Relations.scala&#34;&gt;relationship tests&lt;/a&gt;
-and &lt;a href=&#34;https://github.com/scalamolecule/molecule/blob/master/coretest/src/test/scala/molecule/SelfJoin.scala&#34;&gt;self-join tests&lt;/a&gt;)&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://localhost:1313/manual/query/relationships&#34;&gt;Relationships&lt;/a&gt; - Connect namespaces with
+(&lt;a href=&#34;https://github.com/scalamolecule/molecule/blob/master/coretest/src/test/scala/molecule/ref&#34;&gt;tests&lt;/a&gt;)&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.name.City.name.Country.name
 &lt;/code&gt;&lt;/pre&gt;
@@ -1247,16 +1249,15 @@ and &lt;a href=&#34;https://github.com/scalamolecule/molecule/blob/master/corete
     
     <item>
       <title>Relationships</title>
-      <link>http://scalamolecule.org/manual/query/relationships/</link>
+      <link>http://localhost:1313/manual/query/relationships/</link>
       <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
       
-      <guid>http://scalamolecule.org/manual/query/relationships/</guid>
+      <guid>http://localhost:1313/manual/query/relationships/</guid>
       <description>
 
 &lt;h1 id=&#34;relationships:c826c531212d0a54ebca2cc2d2da67b7&#34;&gt;Relationships&lt;/h1&gt;
 
-&lt;p&gt;(See &lt;a href=&#34;https://github.com/scalamolecule/molecule/blob/master/coretest/src/test/scala/molecule/Relations.scala&#34;&gt;relationship tests&lt;/a&gt;
-and &lt;a href=&#34;https://github.com/scalamolecule/molecule/blob/master/coretest/src/test/scala/molecule/SelfJoin.scala&#34;&gt;self-join tests&lt;/a&gt;)&lt;/p&gt;
+&lt;p&gt;(See &lt;a href=&#34;https://github.com/scalamolecule/molecule/blob/master/coretest/src/test/scala/molecule/ref&#34;&gt;relationship tests&lt;/a&gt;)&lt;/p&gt;
 
 &lt;p&gt;Relationships are modelled in Molecule as &amp;ldquo;references between namespaces&amp;rdquo;.&lt;/p&gt;
 
@@ -1316,10 +1317,10 @@ and &lt;a href=&#34;https://github.com/scalamolecule/molecule/blob/master/corete
     
     <item>
       <title>Bidirectional refs</title>
-      <link>http://scalamolecule.org/manual/query/bidirectional%20refs/</link>
+      <link>http://localhost:1313/manual/query/bidirectional%20refs/</link>
       <pubDate>Sun, 24 Jul 2016 22:06:44 &#43;0100</pubDate>
       
-      <guid>http://scalamolecule.org/manual/query/bidirectional%20refs/</guid>
+      <guid>http://localhost:1313/manual/query/bidirectional%20refs/</guid>
       <description>
 
 &lt;h1 id=&#34;bidirectional-references:202abaea8dbead8f4e14657c1559cf69&#34;&gt;Bidirectional references&lt;/h1&gt;
@@ -1497,9 +1498,9 @@ edge namespace we define the reference back with the &lt;code&gt;target&lt;/code
 
 &lt;p&gt;And uniformly retrieve that information from any end:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.name_(&amp;quot;Ann&amp;quot;).Knows.*(Knows.weight.Person.name).one === List((7, &amp;quot;Ben&amp;quot;), (8, &amp;quot;Joe&amp;quot;))
-Person.name_(&amp;quot;Ben&amp;quot;).Knows.*(Knows.weight.Person.name).one === List((7, &amp;quot;Ann&amp;quot;))
-Person.name_(&amp;quot;Joe&amp;quot;).Knows.*(Knows.weight.Person.name).one === List((8, &amp;quot;Ann&amp;quot;))
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.name_(&amp;quot;Ann&amp;quot;).Knows.*(Knows.weight.Person.name).get.head === List((7, &amp;quot;Ben&amp;quot;), (8, &amp;quot;Joe&amp;quot;))
+Person.name_(&amp;quot;Ben&amp;quot;).Knows.*(Knows.weight.Person.name).get.head === List((7, &amp;quot;Ann&amp;quot;))
+Person.name_(&amp;quot;Joe&amp;quot;).Knows.*(Knows.weight.Person.name).get.head === List((8, &amp;quot;Ann&amp;quot;))
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;h3 id=&#34;a-edge-properties-b:202abaea8dbead8f4e14657c1559cf69&#34;&gt;A &amp;lt;&amp;mdash;&amp;gt; Edge.properties&amp;hellip; &amp;lt;&amp;mdash;&amp;gt; B&lt;/h3&gt;
@@ -1551,11 +1552,11 @@ trait Animal {
 &lt;p&gt;We can now uniformly retrieve the weighed friendship information from any end:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;// Querying from Person
-Person.name_(&amp;quot;Joe&amp;quot;).CloseTo.*(CloseTo.weight.Animal.name).one === List((7, &amp;quot;Gus&amp;quot;), (8, &amp;quot;Leo&amp;quot;))
+Person.name_(&amp;quot;Joe&amp;quot;).CloseTo.*(CloseTo.weight.Animal.name).get.head === List((7, &amp;quot;Gus&amp;quot;), (8, &amp;quot;Leo&amp;quot;))
 
 // Querying from Animal
-Animal.name_(&amp;quot;Gus&amp;quot;).CloseTo.*(CloseTo.weight.Person.name).one === List((7, &amp;quot;Joe&amp;quot;))
-Animal.name_(&amp;quot;Leo&amp;quot;).CloseTo.*(CloseTo.weight.Person.name).one === List((8, &amp;quot;Joe&amp;quot;))
+Animal.name_(&amp;quot;Gus&amp;quot;).CloseTo.*(CloseTo.weight.Person.name).get.head === List((7, &amp;quot;Joe&amp;quot;))
+Animal.name_(&amp;quot;Leo&amp;quot;).CloseTo.*(CloseTo.weight.Person.name).get.head === List((8, &amp;quot;Joe&amp;quot;))
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;h3 id=&#34;how-it-works:202abaea8dbead8f4e14657c1559cf69&#34;&gt;How it works&lt;/h3&gt;
@@ -1585,10 +1586,10 @@ of uniform queries should easily outweigh the impact of a bit of additional info
     
     <item>
       <title>Tx meta data</title>
-      <link>http://scalamolecule.org/manual/query/txMetaData/</link>
+      <link>http://localhost:1313/manual/query/txMetaData/</link>
       <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
       
-      <guid>http://scalamolecule.org/manual/query/txMetaData/</guid>
+      <guid>http://localhost:1313/manual/query/txMetaData/</guid>
       <description>
 
 &lt;h1 id=&#34;transaction-meta-data:8a55762a4668cbf851db116d659c13a7&#34;&gt;Transaction meta data&lt;/h1&gt;
@@ -1617,11 +1618,11 @@ example we could add two Story entities each with two datoms (&lt;code&gt;title&
 &lt;p&gt;Each Datom has 4 - and soon 5 - pieces of information:&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;Operation (add/retract)&lt;/li&gt;
 &lt;li&gt;Entity id&lt;/li&gt;
 &lt;li&gt;Attribute&lt;/li&gt;
 &lt;li&gt;Value&lt;/li&gt;
-&lt;li&gt;Tx (not there yet&amp;hellip;)&lt;/li&gt;
+&lt;li&gt;Tx&lt;/li&gt;
+&lt;li&gt;Operation (add/retract)&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;Molecule simply passes our list to be transacted by Datomic. Datomic then creates a transaction entity and makes
@@ -1700,7 +1701,7 @@ Story.title.tx_(MetaData.User.email_(&amp;quot;stuarthalloway@datomic.com&amp;qu
 )
 
 // Count of stories added by a user with email &amp;quot;stuarthalloway@datomic.com&amp;quot;
-Story.title(count).tx_(MetaData.User.email_(&amp;quot;stuarthalloway@datomic.com&amp;quot;)).one === 2
+Story.title(count).tx_(MetaData.User.email_(&amp;quot;stuarthalloway@datomic.com&amp;quot;)).get.head === 2
 
 // Emails of users who added stories
 Story.title_.tx_(MetaData.usecase_(&amp;quot;AddStories&amp;quot;).User.email).get === List(

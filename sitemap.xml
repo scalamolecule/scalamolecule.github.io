@@ -2,153 +2,168 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://scalamolecule.org/</loc>
+    <loc>http://localhost:1313/</loc>
     <lastmod>2015-01-02T22:06:44+01:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/manual/overview/</loc>
+    <loc>http://localhost:1313/learn/overview/</loc>
     <lastmod>2015-01-02T22:06:44+01:00</lastmod>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/tutorials/overview/</loc>
+    <loc>http://localhost:1313/learn/videos/</loc>
     <lastmod>2015-01-02T22:06:44+01:00</lastmod>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/community/overview/</loc>
+    <loc>http://localhost:1313/learn/tutorials/</loc>
+    <lastmod>2015-01-02T22:06:44+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://localhost:1313/manual/overview/</loc>
+    <lastmod>2015-01-02T22:06:44+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://localhost:1313/community/overview/</loc>
     <lastmod>2014-05-14T02:13:50+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/compare/overview/</loc>
+    <loc>http://localhost:1313/compare/overview/</loc>
     <lastmod>2014-05-14T02:13:50+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/developer/overview/</loc>
+    <loc>http://localhost:1313/developer/overview/</loc>
     <lastmod>2014-05-14T02:13:50+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/home/front/</loc>
+    <loc>http://localhost:1313/home/front/</loc>
     <lastmod>2015-01-02T22:06:44+01:00</lastmod>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/manual/getting-started/</loc>
+    <loc>http://localhost:1313/manual/getting-started/</loc>
     <lastmod>2015-01-02T22:06:44+01:00</lastmod>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/manual/query/builder/</loc>
+    <loc>http://localhost:1313/learn/tutorials/seattle/</loc>
     <lastmod>2015-01-02T22:06:44+01:00</lastmod>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/tutorials/seattle/</loc>
+    <loc>http://localhost:1313/manual/query/builder/</loc>
     <lastmod>2015-01-02T22:06:44+01:00</lastmod>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/compare/datomic/</loc>
+    <loc>http://localhost:1313/compare/datomic/</loc>
     <lastmod>2014-05-14T02:13:50+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/home/introduction/</loc>
+    <loc>http://localhost:1313/home/introduction/</loc>
     <lastmod>2015-01-02T22:06:44+01:00</lastmod>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/manual/query/mapped/</loc>
+    <loc>http://localhost:1313/learn/videos/2017-04-25_Marc_Grue/</loc>
     <lastmod>2015-01-02T22:06:44+01:00</lastmod>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/manual/schema/</loc>
+    <loc>http://localhost:1313/manual/query/mapped/</loc>
     <lastmod>2015-01-02T22:06:44+01:00</lastmod>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/compare/sql/slick/</loc>
+    <loc>http://localhost:1313/manual/schema/</loc>
+    <lastmod>2015-01-02T22:06:44+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://localhost:1313/compare/sql/slick/</loc>
     <lastmod>2014-05-14T02:13:50+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/developer/boilerplate/</loc>
+    <loc>http://localhost:1313/compare/sql/</loc>
     <lastmod>2014-05-14T02:13:50+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/compare/sql/</loc>
+    <loc>http://localhost:1313/developer/boilerplate/</loc>
     <lastmod>2014-05-14T02:13:50+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/manual/query/expressions/</loc>
+    <loc>http://localhost:1313/manual/query/expressions/</loc>
     <lastmod>2015-01-02T22:06:44+01:00</lastmod>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/manual/schema/transaction/</loc>
+    <loc>http://localhost:1313/manual/schema/transaction/</loc>
     <lastmod>2015-01-02T22:06:44+01:00</lastmod>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/developer/transformation/</loc>
+    <loc>http://localhost:1313/developer/transformation/</loc>
     <lastmod>2014-05-14T02:13:50+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/manual/insert/</loc>
+    <loc>http://localhost:1313/manual/insert/</loc>
     <lastmod>2015-01-02T22:06:44+01:00</lastmod>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/manual/query/aggregates/</loc>
+    <loc>http://localhost:1313/manual/query/aggregates/</loc>
     <lastmod>2015-01-02T22:06:44+01:00</lastmod>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/manual/query/parameterize/</loc>
+    <loc>http://localhost:1313/manual/query/parameterize/</loc>
     <lastmod>2015-01-02T22:06:44+01:00</lastmod>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/manual/update/</loc>
+    <loc>http://localhost:1313/manual/update/</loc>
     <lastmod>2015-01-02T22:06:44+01:00</lastmod>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/manual/query/relationships/</loc>
+    <loc>http://localhost:1313/manual/query/relationships/</loc>
     <lastmod>2015-01-02T22:06:44+01:00</lastmod>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/manual/query/</loc>
+    <loc>http://localhost:1313/manual/query/</loc>
     <lastmod>2015-01-02T22:06:44+01:00</lastmod>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/manual/query/bidirectional%20refs/</loc>
+    <loc>http://localhost:1313/manual/query/bidirectional%20refs/</loc>
     <lastmod>2016-07-24T22:06:44+01:00</lastmod>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/manual/query/txMetaData/</loc>
+    <loc>http://localhost:1313/manual/query/txMetaData/</loc>
     <lastmod>2015-01-02T22:06:44+01:00</lastmod>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/manual/query/composites/</loc>
+    <loc>http://localhost:1313/manual/query/composites/</loc>
     <lastmod>2015-01-02T22:06:44+01:00</lastmod>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/home/about/</loc>
+    <loc>http://localhost:1313/home/about/</loc>
     <lastmod>2014-05-14T02:13:50+00:00</lastmod>
   </url>
   

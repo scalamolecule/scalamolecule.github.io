@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Compares on Molecule</title>
-    <link>http://scalamolecule.org/compare/</link>
+    <link>http://localhost:1313/compare/</link>
     <description>Recent content in Compares on Molecule</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     
     
     <lastBuildDate>Wed, 14 May 2014 02:13:50 UTC</lastBuildDate>
-    <atom:link href="http://scalamolecule.org/compare/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/compare/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Compare</title>
-      <link>http://scalamolecule.org/compare/overview/</link>
+      <link>http://localhost:1313/compare/overview/</link>
       <pubDate>Wed, 14 May 2014 02:13:50 UTC</pubDate>
       
-      <guid>http://scalamolecule.org/compare/overview/</guid>
+      <guid>http://localhost:1313/compare/overview/</guid>
       <description>
 
 &lt;h1 id=&#34;other-databases-vs-molecule:68f80267fa3a50980dbb745a782b8dca&#34;&gt;Other databases vs. Molecule&lt;/h1&gt;
@@ -42,7 +42,7 @@ val implCrossJoin = for {
 val coffeeSupliers = Coffees.name.Suppliers.name.get
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;We get the exact same type-inferred result back, a &lt;code&gt;Seq[(String, String)]&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;We get the exact same type-inferred result back, a &lt;code&gt;Iterable[(String, String)]&lt;/code&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&#34;http://squeryl.org/selects.html&#34;&gt;Squeryl&lt;/a&gt; also &lt;em&gt;consumes&lt;/em&gt; data objects, now in a DSL construct:&lt;/p&gt;
 
@@ -61,11 +61,11 @@ val songs = Song.e.artist(id).get
 &lt;p&gt;Over time we&amp;rsquo;ll compare Molecule with as many database systems as possible. Those not linked yet below are on our wish list:&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/compare/datomic&#34;&gt;Datomic&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/compare/sql&#34;&gt;SQL&lt;/a&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/compare/datomic&#34;&gt;Datomic&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/compare/sql&#34;&gt;SQL&lt;/a&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/compare/sql/slick&#34;&gt;Slick&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/compare/sql/slick&#34;&gt;Slick&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Squeryl&lt;/li&gt;
 &lt;li&gt;Sqltyped tutorial&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
@@ -87,10 +87,10 @@ val songs = Song.e.artist(id).get
     
     <item>
       <title>Datomic</title>
-      <link>http://scalamolecule.org/compare/datomic/</link>
+      <link>http://localhost:1313/compare/datomic/</link>
       <pubDate>Wed, 14 May 2014 02:13:50 UTC</pubDate>
       
-      <guid>http://scalamolecule.org/compare/datomic/</guid>
+      <guid>http://localhost:1313/compare/datomic/</guid>
       <description>
 
 &lt;h1 id=&#34;compare-with-datomic-datalog:fce8223ee4fefc246edc14cd715d3099&#34;&gt;Compare with Datomic/Datalog&lt;/h1&gt;
@@ -392,7 +392,7 @@ List(
   .orgtype(&amp;quot;personal&amp;quot;)
   .category(&amp;quot;my&amp;quot;, &amp;quot;favorites&amp;quot;)
   .Neighborhood.name(&amp;quot;myNeighborhood&amp;quot;)
-  .District.name(&amp;quot;myDistrict&amp;quot;).region(&amp;quot;nw&amp;quot;).add
+  .District.name(&amp;quot;myDistrict&amp;quot;).region(&amp;quot;nw&amp;quot;).save
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Multiple entities:&lt;/p&gt;
@@ -522,10 +522,10 @@ List(
     
     <item>
       <title>SQL</title>
-      <link>http://scalamolecule.org/compare/sql/</link>
+      <link>http://localhost:1313/compare/sql/</link>
       <pubDate>Wed, 14 May 2014 02:13:50 UTC</pubDate>
       
-      <guid>http://scalamolecule.org/compare/sql/</guid>
+      <guid>http://localhost:1313/compare/sql/</guid>
       <description>
 
 &lt;h1 id=&#34;sql-vs-molecule-examples:d1babb582138b02a13547d2c6eb6df72&#34;&gt;SQL vs. Molecule examples&lt;/h1&gt;
@@ -539,7 +539,7 @@ List(
 
 &lt;p&gt;In molecule we would declare each attribute we are interested in also to infer the exact return type&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val persons: Seq[(String, Int)] = Person.name.age.get
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val persons: Iterable[(String, Int)] = Person.name.age.get
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;h4 id=&#34;select-1:d1babb582138b02a13547d2c6eb6df72&#34;&gt;SELECT&lt;/h4&gt;
@@ -582,7 +582,7 @@ List(
 
 &lt;p&gt;Ordering is applied on the result set:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.age.name.get.sortBy(_._1)
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.age.name.get.toSeq.sortBy(_._1)
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;h4 id=&#34;aggregations:d1babb582138b02a13547d2c6eb6df72&#34;&gt;Aggregations&lt;/h4&gt;
@@ -623,7 +623,7 @@ Person.age(max(3)).get
 &amp;quot;&amp;quot;&amp;quot;.as[Int].list
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.address.age(avg).get.filter(_._2 &amp;gt; 50)
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.address.age(avg).get.toSeq.filter(_._2 &amp;gt; 50)
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;h4 id=&#34;implicit-join:d1babb582138b02a13547d2c6eb6df72&#34;&gt;Implicit join&lt;/h4&gt;
@@ -659,8 +659,8 @@ Person.age(max(3)).get
 &amp;quot;&amp;quot;&amp;quot;.as[(Option[String],String)].list
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;// TODO
-Person.name(maybe).Address.city.get
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;// Add `$` to attribute name to get optional values
+val persons: Iterable[(Option[String], String)] = Person.name$.Address.city.get
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;h4 id=&#34;subquery:d1babb582138b02a13547d2c6eb6df72&#34;&gt;Subquery&lt;/h4&gt;
@@ -684,7 +684,7 @@ Person.name(maybe).Address.city.get
 &amp;quot;&amp;quot;&amp;quot;.first
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.name(&amp;quot;M Odersky&amp;quot;).age(12345).address(1).add
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.name(&amp;quot;M Odersky&amp;quot;).age(12345).address(1).save
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;h4 id=&#34;update:d1babb582138b02a13547d2c6eb6df72&#34;&gt;UPDATE&lt;/h4&gt;
@@ -694,8 +694,10 @@ Person.name(maybe).Address.city.get
 &amp;quot;&amp;quot;&amp;quot;.first
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val odersky = Person.name(&amp;quot;M Odersky&amp;quot;).get.id
-Person(odersky).name(&amp;quot;M. Odersky&amp;quot;).age(54321).update
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;// Find entity id with generic Molecule attribute `e`
+// Omit `name` value by adding underscore `_` to attribute name   
+val oderskyId = Person.e.name_(&amp;quot;M Odersky&amp;quot;).get.head
+Person(oderskyId).name(&amp;quot;M. Odersky&amp;quot;).age(54321).update
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;h4 id=&#34;delete:d1babb582138b02a13547d2c6eb6df72&#34;&gt;DELETE&lt;/h4&gt;
@@ -705,7 +707,8 @@ Person(odersky).name(&amp;quot;M. Odersky&amp;quot;).age(54321).update
 &amp;quot;&amp;quot;&amp;quot;.first
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.name(&amp;quot;M. Odersky&amp;quot;).get.id.delete
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;// Retract entity
+Person.e.name_(&amp;quot;M. Odersky&amp;quot;).get.head.retract
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;h4 id=&#34;case:d1babb582138b02a13547d2c6eb6df72&#34;&gt;CASE&lt;/h4&gt;
@@ -720,7 +723,7 @@ Person(odersky).name(&amp;quot;M. Odersky&amp;quot;).age(54321).update
 &amp;quot;&amp;quot;&amp;quot;.as[Option[String]].list
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.Address.e(1 or 2).get map {
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.address(1 or 2).get map {
   case 1 =&amp;gt; &amp;quot;A&amp;quot;
   case 2 =&amp;gt; &amp;quot;B&amp;quot;
 }
@@ -730,10 +733,10 @@ Person(odersky).name(&amp;quot;M. Odersky&amp;quot;).age(54321).update
     
     <item>
       <title>Slick</title>
-      <link>http://scalamolecule.org/compare/sql/slick/</link>
+      <link>http://localhost:1313/compare/sql/slick/</link>
       <pubDate>Wed, 14 May 2014 02:13:50 UTC</pubDate>
       
-      <guid>http://scalamolecule.org/compare/sql/slick/</guid>
+      <guid>http://localhost:1313/compare/sql/slick/</guid>
       <description>
 
 &lt;h1 id=&#34;slick-vs-molecule-examples:ce7ebdb2cbbacd766a8940138f40260d&#34;&gt;Slick vs. Molecule examples&lt;/h1&gt;
@@ -779,9 +782,9 @@ Person.name.age.get
 &lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;people.sortBy(p =&amp;gt; (p.age.asc, p.name)).run
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;Ordering is applied on the result set:&lt;/p&gt;
+&lt;p&gt;Ordering is applied on the result set in the application code:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.age.name.get sortBy(_._1)
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.age.name.get.toSeq sortBy(_._1)
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;h4 id=&#34;aggregations:ce7ebdb2cbbacd766a8940138f40260d&#34;&gt;Aggregations&lt;/h4&gt;
@@ -855,8 +858,8 @@ Person.age(max(3)).get
   .map{ case (a, p) =&amp;gt; (p.map(_.name), a.city) }.run
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;// TODO
-Person.name(maybe).Address.city.get
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;// Add `$` to attribute name to get optional values
+Person.name$.Address.city.get
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;h4 id=&#34;subquery:ce7ebdb2cbbacd766a8940138f40260d&#34;&gt;Subquery&lt;/h4&gt;
@@ -874,7 +877,7 @@ people.filter(_.id in address_ids).run // &amp;lt;- run as one query
        .insert((&amp;quot;M Odersky&amp;quot;,12345,1))
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.name(&amp;quot;M Odersky&amp;quot;).age(12345).address(1).add
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.name(&amp;quot;M Odersky&amp;quot;).age(12345).address(1).save
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;h4 id=&#34;update:ce7ebdb2cbbacd766a8940138f40260d&#34;&gt;update&lt;/h4&gt;
@@ -884,8 +887,10 @@ people.filter(_.id in address_ids).run // &amp;lt;- run as one query
        .update((&amp;quot;M. Odersky&amp;quot;,54321))
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val odersky = Person.name(&amp;quot;M Odersky&amp;quot;).get.id
-Person(odersky).name(&amp;quot;M. Odersky&amp;quot;).age(54321).update
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;// Find entity id with generic Molecule attribute `e`
+// Omit `name` value by adding underscore `_` to attribute name   
+val oderskyId = Person.e.name_(&amp;quot;M Odersky&amp;quot;).get.head
+Person(oderskyId).name(&amp;quot;M. Odersky&amp;quot;).age(54321).update
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;h4 id=&#34;delete:ce7ebdb2cbbacd766a8940138f40260d&#34;&gt;delete&lt;/h4&gt;
@@ -894,7 +899,7 @@ Person(odersky).name(&amp;quot;M. Odersky&amp;quot;).age(54321).update
        .delete
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.name(&amp;quot;M. Odersky&amp;quot;).get.id.delete
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.e.name_(&amp;quot;M. Odersky&amp;quot;).get.head.retract
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;h4 id=&#34;case:ce7ebdb2cbbacd766a8940138f40260d&#34;&gt;case&lt;/h4&gt;
@@ -906,7 +911,7 @@ Person(odersky).name(&amp;quot;M. Odersky&amp;quot;).age(54321).update
 ).list
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.Address.e(1 or 2).get map {
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.address(1 or 2).get map {
   case 1 =&amp;gt; &amp;quot;A&amp;quot;
   case 2 =&amp;gt; &amp;quot;B&amp;quot;
 }

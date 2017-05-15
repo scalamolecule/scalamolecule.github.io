@@ -45,8 +45,9 @@
       <li class="dropdown active">
         <a data-toggle="dropdown" href="http://localhost:1313/tutorials/overview/" target="_top" onclick="javascript:top.location = 'http:\/\/localhost:1313\/tutorials\/overview\/';return true;">Tutorials</a>
           <ul class="dropdown-menu level1" role="menu" aria-labelledby="dropdownMenu">
-            <li><a href="http://localhost:1313/tutorials/presentation/">Presentation</a></li>
+            <li><a href="http://localhost:1313/tutorials/presentation1/">Presentation</a></li>
             <li><a href="http://localhost:1313/tutorials/seattle/">Seattle</a></li>
+            <li><a href="http://localhost:1313/tutorials/videos/">Videos</a></li>
         </ul>
       </li>
       <li class="dropdown ">
@@ -105,16 +106,926 @@
 
 <h1 id="molecule-presentation-sample-code-snippets:82edc323b2fe0e0e86215b27014d533e">Molecule presentation sample code snippets</h1>
 
-<pre><code class="language-scala">101.touch === Map(
-  &quot;:db/id&quot; -&gt; 17592186045422L,
-  &quot;:order/lineItems&quot; -&gt; List(
-    Map(&quot;:db/id&quot; -&gt; 17592186045423L, &quot;:lineItem/price&quot; -&gt; 48.0, &quot;:lineItem/product&quot; -&gt;
-      Map(&quot;:db/id&quot; -&gt; 17592186045419L, &quot;:product/description&quot; -&gt; &quot;Expensive Chocolate&quot;), &quot;:lineItem/quantity&quot; -&gt; 1),
-    Map(&quot;:db/id&quot; -&gt; 17592186045424L, &quot;:lineItem/price&quot; -&gt; 38.0, &quot;:lineItem/product&quot; -&gt;
-      Map(&quot;:db/id&quot; -&gt; 17592186045420L, &quot;:product/description&quot; -&gt; &quot;Cheap Whisky&quot;), &quot;:lineItem/quantity&quot; -&gt; 2)))
+<pre><code class="language-scala">Person.id.nameMap.get.head === (101, Map(
+    &quot;en&quot; -&gt; &quot;Dmitri Shostakovich&quot;,
+    &quot;de&quot; -&gt; &quot;Dmitri Schostakowitsch&quot;,
+    &quot;fr&quot; -&gt; &quot;Dmitri Chostakovitch&quot;
+  ))
+  
+// By key
+Person.nameMapK(&quot;fr&quot;).get.head === &quot;Dmitri Chostakovitch&quot;
+
+// By value
+Person.id.nameMap_(&quot;Dmitri Chostakovitch&quot;).get.head === 101
+Person.id.nameMap_(&quot;.*Shosta.*&quot;).get.head === 101
+
+// By key and value
+Person.id.nameMap_(&quot;en&quot; -&gt; &quot;Dmitri Shostakovich&quot;).get.head === 101
+Person.id.nameMap_(&quot;en&quot;)(&quot;.*Shosta.*&quot;).get.head === 101
 </code></pre>
 
-<pre><code class="language-scala">101.touch === Map(
+<pre><code class="language-scala">Person.id.nameMap.get.head === (101, Map(
+    &quot;en&quot; -&gt; &quot;Dmitri Shostakovich&quot;,
+    &quot;de&quot; -&gt; &quot;Dmitri Schostakowitsch&quot;,
+    &quot;fr&quot; -&gt; &quot;Dmitri Chostakovitch&quot;
+  ))
+  
+// By key
+Person.nameMapK(&quot;fr&quot;).get.head === &quot;Dmitri Chostakovitch&quot;
+
+// By value
+Person.id.nameMap_(&quot;Dmitri Chostakovitch&quot;).get.head === 101
+Person.id.nameMap_(&quot;.*Shosta.*&quot;).get.head === 101
+</code></pre>
+
+<pre><code class="language-scala">Person.id.nameMap.get.head === (101, Map(
+    &quot;en&quot; -&gt; &quot;Dmitri Shostakovich&quot;,
+    &quot;de&quot; -&gt; &quot;Dmitri Schostakowitsch&quot;,
+    &quot;fr&quot; -&gt; &quot;Dmitri Chostakovitch&quot;
+  ))
+  
+// By key
+Person.nameMapK(&quot;fr&quot;).get.head === &quot;Dmitri Chostakovitch&quot;
+</code></pre>
+
+<pre><code class="language-scala">Person.id.nameMap.get.head === (101, Map(
+    &quot;en&quot; -&gt; &quot;Dmitri Shostakovich&quot;,
+    &quot;de&quot; -&gt; &quot;Dmitri Schostakowitsch&quot;,
+    &quot;fr&quot; -&gt; &quot;Dmitri Chostakovitch&quot;
+  ))
+  
+// By key
+Person.nameMapK(&quot;fr&quot;).get.head === &quot;Dmitri Chostakovitch&quot;
+Person.nameMapK(&quot;fr|en&quot;).get.head === &quot;Dmitri Chostakovitch&quot;
+</code></pre>
+
+<pre><code class="language-scala">Person.name
+  .Home.street.city._Person
+  .Work.street.city.get.head === (
+  &quot;Fred&quot;, 
+  &quot;Baker st. 7&quot;, &quot;Boston&quot;, 
+  &quot;Downtown 1&quot;, &quot;Boston&quot;
+)
+</code></pre>
+
+<pre><code class="language-scala">Person.name
+  .Home.street.city._Person
+  .Cottage.street.city._Person
+  .Work.street.city.get.head === (
+  &quot;Fred&quot;, 
+  &quot;Baker st. 7&quot;, &quot;Boston&quot;, 
+  &quot;Mountain way 32&quot;, &quot;Woods town&quot;, 
+  &quot;Downtown 1&quot;, &quot;Boston&quot;
+)
+</code></pre>
+
+<pre><code class="language-scala">Person.name.Home.street.city.get.head === (
+  &quot;Fred&quot;, &quot;Baker St. 7&quot;, &quot;Boston&quot;
+)
+</code></pre>
+
+<pre><code class="language-scala">Person.name.age.get  // &quot;We need an M2 with a 'get' method!&quot;
+</code></pre>
+
+<pre><code class="language-scala">Person.name.age
+</code></pre>
+
+<pre><code class="language-scala">Person.name.age  // extends M2[String, Int])
+</code></pre>
+
+<pre><code class="language-scala">m(Person.name.age).get     ...or...       Person.name.age.get
+</code></pre>
+
+<pre><code class="language-scala">implicit def m[A, B](dsl: M2[A, B]): Molecule2[A, B] = macro from2attr[A, B]
+</code></pre>
+
+<pre><code class="language-scala">implicit def m[A, B](dsl: M2[A, B]): Molecule2[A, B] = macro from2attr[A, B]
+
+// Macro implementation (simplified)
+def from2attr[A, B](dsl: M2[A, B]): Molecule2[A, B] = {
+  val query = ??? // todo
+  q&quot;&quot;&quot;
+    new Molecule2[A, B] {
+      def get: Iterable[(A, B)] = datomic.Peer.q(${query}, conn.db).asScala.map(
+        _.asScala match {
+          case Seq(a, b) =&gt; (a.asInstanceOf[A], b.asInstanceOf[B])
+        }
+      )
+    }
+  &quot;&quot;&quot;
+}
+</code></pre>
+
+<pre><code class="language-scala">
+
+// Macro implementation (simplified)
+def from2attr[A, B](dsl: M2[A, B]): Molecule2[A, B] = {
+  val query = ??? // todo
+  q&quot;&quot;&quot;
+    new Molecule2[A, B] {
+      def get: Iterable[(A, B)] = datomic.Peer.q(${query}, conn.db).asScala.map(
+        _.asScala match {
+          case Seq(a, b) =&gt; (a.asInstanceOf[A], b.asInstanceOf[B])
+        }
+      )
+    }
+  &quot;&quot;&quot;
+}
+</code></pre>
+
+<pre><code class="language-scala">
+
+
+
+  val query = ??? // todo
+  q&quot;&quot;&quot;
+    new Molecule2[A, B] {
+      def get: Iterable[(A, B)] = datomic.Peer.q(${query}, conn.db).asScala.map(
+        _.asScala match {
+          case Seq(a, b) =&gt; (a.asInstanceOf[A], b.asInstanceOf[B])
+        }
+      )
+    }
+  &quot;&quot;&quot;
+
+</code></pre>
+
+<pre><code class="language-scala">
+
+
+
+
+  q&quot;&quot;&quot;
+    new Molecule2[A, B] {
+      def get: Iterable[(A, B)] = datomic.Peer.q(${query}, conn.db).asScala.map(
+        _.asScala match {
+          case Seq(a, b) =&gt; (a.asInstanceOf[A], b.asInstanceOf[B])
+        }
+      )
+    }
+  &quot;&quot;&quot;
+
+</code></pre>
+
+<pre><code class="language-scala">implicit def m[A, B](dsl: M2[A, B]): Molecule2[A, B] = macro from2attr[A, B]
+
+def from2attr[A: c.WeakTypeTag, B: c.WeakTypeTag]
+    (c: Context)
+    (dsl: c.Expr[M2[A, B]])
+: c.Expr[Molecule2[A, B]] = {
+  val query = ???
+  c.Expr(
+    q&quot;&quot;&quot;
+      new Molecule2[${c.weakTypeOf[A]}, ${c.weakTypeOf[B]}] {
+        def get = datomic.Peer.q(${query}, conn.db).asScala.map( _.asScala match {
+            case Seq(a, b) =&gt;
+              (a.asInstanceOf[${c.weakTypeOf[A]}], b.asInstanceOf[${c.weakTypeOf[B]}])
+          }
+        )
+      }
+    &quot;&quot;&quot;
+  )
+}
+</code></pre>
+
+<pre><code class="language-scala">val (email, oldPassw) = User(eid).email.passw.get.head
+</code></pre>
+
+<pre><code class="language-scala">val encryptedNewPassw = encrypt(newPassw)
+User(eid).passw(encryptedNewPassw).save
+</code></pre>
+
+<pre><code class="language-scala">// Actions
+val saveJohn      = Person.str(&quot;John&quot;).int(44).saveTx
+val insertMembers = Person.str.int insertTx List((&quot;Lisa&quot;, 23), (&quot;Pete&quot;, 24))
+val updateFred    = Person(fred).int(43).updateTx
+
+val base     = m(Person.name.age)
+val expected = List(
+  (&quot;Fred&quot;, 43), // Updated
+  (&quot;John&quot;, 44), // Saved
+  (&quot;Lisa&quot;, 23), // Inserted
+  (&quot;Pete&quot;, 24)  // Inserted
+)
+
+// Test: Order of actions doesn't affect outcome
+base.getWith(saveJohn, insertMembers, updateFred) === expected
+base.getWith(saveJohn, updateFred, insertMembers) === expected
+base.getWith(insertMembers, saveJohn, updateFred) === expected
+base.getWith(insertMembers, updateFred, saveJohn) === expected
+base.getWith(updateFred, saveJohn, insertMembers) === expected
+base.getWith(updateFred, insertMembers, saveJohn) === expected
+</code></pre>
+
+<pre><code class="language-scala">// Actions
+val saveJohn      = Person.str(&quot;John&quot;).int(44).saveTx
+val insertMembers = Person.str.int insertTx List((&quot;Lisa&quot;, 23), (&quot;Pete&quot;, 24))
+val updateFred    = Person(fred).int(43).updateTx
+
+val base     = m(Person.name.age)
+val expected = List(
+  (&quot;Fred&quot;, 43), // Updated
+  (&quot;John&quot;, 44), // Saved
+  (&quot;Lisa&quot;, 23), // Inserted
+  (&quot;Pete&quot;, 24)  // Inserted
+)
+
+// Test: Order of actions doesn't affect outcome
+base.getWith(saveJohn, insertMembers, updateFred).get.toSeq.sorted === expected
+base.getWith(saveJohn, updateFred, insertMembers).get.toSeq.sorted === expected
+base.getWith(insertMembers, saveJohn, updateFred).get.toSeq.sorted === expected
+base.getWith(insertMembers, updateFred, saveJohn).get.toSeq.sorted === expected
+base.getWith(updateFred, saveJohn, insertMembers).get.toSeq.sorted === expected
+base.getWith(updateFred, insertMembers, saveJohn).get.toSeq.sorted === expected
+</code></pre>
+
+<pre><code class="language-scala">val fred = Person.name(&quot;Fred&quot;).age(42).save.eid
+Person.name.age.get === List((&quot;Fred&quot;, 42))
+
+Person.name.age.getWith(
+  Person.name(&quot;John&quot;).age(44).saveTx,
+  Person.name.age insertTx List(
+    (&quot;Lisa&quot;, 23),
+    (&quot;Pete&quot;, 24)
+  ),
+  Person(fred).age(43).updateTx
+) === List(
+  (&quot;Fred&quot;, 43), // Updated
+  (&quot;John&quot;, 44), // Saved
+  (&quot;Lisa&quot;, 23), // Inserted
+  (&quot;Pete&quot;, 24)  // Inserted
+)
+
+// Nothing changed
+Person.name.age.get === List((&quot;Fred&quot;, 42))
+</code></pre>
+
+<pre><code class="language-scala">val fred = Person.name(&quot;Fred&quot;).age(42).save.eid
+Person.name.age.get === List((&quot;Fred&quot;, 42))
+
+Person.name.age.getWith(
+  Person.name.age insertTx List(
+    (&quot;Lisa&quot;, 23),
+    (&quot;Pete&quot;, 24)
+  )
+) === List(
+  (&quot;Fred&quot;, 42), // unchanged
+  (&quot;Lisa&quot;, 23), // inserted
+  (&quot;Pete&quot;, 24)  // inserted
+)
+
+// Nothing changed
+Person.name.age.get === List((&quot;Fred&quot;, 42))
+</code></pre>
+
+<pre><code class="language-scala">val fred = Person.name(&quot;Fred&quot;).age(42).save.eid
+Person.name.age.get === List((&quot;Fred&quot;, 42))
+
+Person.name.age.getWith(
+  Person.name(&quot;John&quot;).age(44).saveTx
+) === List(
+  (&quot;Fred&quot;, 42), // unchanged
+  (&quot;John&quot;, 44)  // new saved
+)
+
+// Nothing changed
+Person.name.age.get === List((&quot;Fred&quot;, 42))
+</code></pre>
+
+<pre><code class="language-scala">val fred = Person.name(&quot;Fred&quot;).age(42).save.eid
+Person.name.age.get === List((&quot;Fred&quot;, 42))
+
+Person.name.age.getWith(
+  Person(fred).age(43).updateTx
+) === List(
+  (&quot;Fred&quot;, 43) // updated
+)
+
+// Nothing changed
+Person.name.age.get === List((&quot;Fred&quot;, 42))
+</code></pre>
+
+<pre><code>List(
+  [:db/add, 17592186045445, :ns/int, 43]
+)
+List(
+    [:db/add, #db/id[:db.part/user -1000112], :ns/str, John], 
+    [:db/add, #db/id[:db.part/user -1000112], :ns/int, 44]
+)
+List(
+    [:db/add, #db/id[:db.part/user -1000113], :ns/str, Lisa], 
+    [:db/add, #db/id[:db.part/user -1000113], :ns/int, 23], 
+    [:db/add, #db/id[:db.part/user -1000114], :ns/str, Pete], 
+    [:db/add, #db/id[:db.part/user -1000114], :ns/int, 24]
+)
+List(
+    [:db/add, 17592186045445, :ns/int, 43]
+)
+</code></pre>
+
+<pre><code>List(
+  [:db/add, 17592186045445, :ns/int, 43]
+)
+</code></pre>
+
+<pre><code class="language-scala">val fred = Person.name(&quot;Fred&quot;).age(42).save.eid
+Person.name.age.get === List((&quot;Fred&quot;, 42))
+
+Person.name.age.getWith ( // previously `imagine`
+  // Manipulate some data...
+) === List(
+  // Expected result?
+)
+
+// Nothing changed
+Person.name.age.get === List((&quot;Fred&quot;, 42))
+</code></pre>
+
+<pre><code class="language-scala">val tx1 = Person.likes(&quot;pizza&quot;).save
+val tx2 = Person.likes(&quot;pasta&quot;).save
+val tx3 = Person.likes(&quot;sushi&quot;).save
+val tx4 = Person.likes(&quot;burger&quot;).save
+
+// Values since tx2 (tx2 itself excluded)
+// (previously `since(tx2).get`)
+Person.likes.getSince(tx2) === List(&quot;sushi&quot;, &quot;burger&quot;)  
+</code></pre>
+
+<pre><code class="language-scala">Person.name.likes.op.txInstant
+  .tx_(Audit.user.uc).getHistory === List(
+  (&quot;Fred&quot;, &quot;pizza&quot;, true, &quot;2017-04-25 13:52:07&quot;, &quot;Lisa&quot;, &quot;survey&quot;),
+  (&quot;Fred&quot;, &quot;pizza&quot;, false, &quot;2017-04-26 18:35:41&quot;, &quot;Peter&quot;, &quot;interview&quot;),
+  (&quot;Fred&quot;, &quot;pasta&quot;, true, &quot;2017-04-26 18:35:41&quot;, &quot;Peter&quot;, &quot;interview&quot;)
+)
+
+Person.name.likes.op.txInstant
+  .tx_(Audit.user_(&quot;Peter&quot;).uc_(&quot;interview&quot;)).getHistory === List(
+  (&quot;Fred&quot;, &quot;pizza&quot;, false, &quot;2017-04-26 18:35:41&quot;),
+  (&quot;Fred&quot;, &quot;pasta&quot;, true, &quot;2017-04-26 18:35:41&quot;)
+)
+
+Person.name.likes_(&quot;pizza&quot;).op_(false).txInstant
+  .tx_(Audit.uc_(&quot;interview&quot;)).getHistory === List( // previosuly `history.get`
+  (&quot;Fred&quot;, &quot;2017-04-26 18:35:41&quot;)
+)
+</code></pre>
+
+<pre><code class="language-scala">Person.name.likes.op.txInstant
+  .tx_(Audit.user.uc).getHistory === List(
+  (&quot;Fred&quot;, &quot;pizza&quot;, true, &quot;2017-04-25 13:52:07&quot;, &quot;Lisa&quot;, &quot;survey&quot;),
+  (&quot;Fred&quot;, &quot;pizza&quot;, false, &quot;2017-04-26 18:35:41&quot;, &quot;Peter&quot;, &quot;interview&quot;),
+  (&quot;Fred&quot;, &quot;pasta&quot;, true, &quot;2017-04-26 18:35:41&quot;, &quot;Peter&quot;, &quot;interview&quot;)
+)
+
+Person.name.likes.op.txInstant
+  .tx_(Audit.user_(&quot;Peter&quot;).uc_(&quot;interview&quot;)).getHistory === List(
+  (&quot;Fred&quot;, &quot;pizza&quot;, false, &quot;2017-04-26 18:35:41&quot;),
+  (&quot;Fred&quot;, &quot;pasta&quot;, true, &quot;2017-04-26 18:35:41&quot;)
+)
+</code></pre>
+
+<pre><code class="language-scala">Person.name.likes.op.txInstant
+  .tx_(Audit.user.uc).getHistory === List(
+  (&quot;Fred&quot;, &quot;pizza&quot;, true, &quot;2017-04-25 13:52:07&quot;, &quot;Lisa&quot;, &quot;survey&quot;),
+  (&quot;Fred&quot;, &quot;pizza&quot;, false, &quot;2017-04-26 18:35:41&quot;, &quot;Peter&quot;, &quot;interview&quot;),
+  (&quot;Fred&quot;, &quot;pasta&quot;, true, &quot;2017-04-26 18:35:41&quot;, &quot;Peter&quot;, &quot;interview&quot;)
+)
+</code></pre>
+
+<pre><code class="language-scala">Person(fred).likes.op
+  .tx_(Audit.user.uc).getHistory === List(
+  (&quot;pizza&quot;, true),
+  (&quot;pizza&quot;, false),
+  (&quot;pasta&quot;, true)
+)
+
+Person.name.likes.op_(false).txInstant
+  .tx_(Audit.user.uc).getHistory === List(
+  (&quot;Fred&quot;, &quot;pizza&quot;, &quot;2017-04-26 18:35:41&quot;, &quot;Peter&quot;, &quot;interview&quot;)
+)
+</code></pre>
+
+<pre><code class="language-scala">Person(fred).likes.op.getHistory === List(
+  (&quot;pizza&quot;, true),
+  (&quot;pizza&quot;, false),
+  (&quot;pasta&quot;, true)
+)
+
+Person(fred).likes.getHistory === List(&quot;pizza&quot;, &quot;pasta&quot;)
+
+Person(fred).likes.op_(false).getHistory === List(&quot;pizza&quot;)
+
+Person.name.likes.op_(false).txInstant.getHistory === List(
+  (&quot;Fred&quot;, &quot;pizza&quot;, &quot;2017-04-26 18:35:41&quot;)
+)
+</code></pre>
+
+<pre><code class="language-scala">Person(fred).likes.op.getHistory === List(
+  (&quot;pizza&quot;, true),
+  (&quot;pizza&quot;, false),
+  (&quot;pasta&quot;, true)
+)
+
+Person(fred).likes.getHistory === List(&quot;pizza&quot;, &quot;pasta&quot;)
+
+Person(fred).likes.op_(false).getHistory === List(&quot;pizza&quot;)
+</code></pre>
+
+<pre><code class="language-scala">Person(fred).likes.op.getHistory === List(
+  (&quot;pizza&quot;, true),
+  (&quot;pizza&quot;, false),
+  (&quot;pasta&quot;, true)
+)
+
+Person(fred).likes.getHistory === List(&quot;pizza&quot;, &quot;pasta&quot;)
+</code></pre>
+
+<pre><code class="language-scala">Person(fred).likes.op.getHistory === List( // previously `history.get`
+  (&quot;pizza&quot;, true),
+  (&quot;pizza&quot;, false),
+  (&quot;pasta&quot;, true)
+)
+</code></pre>
+
+<pre><code class="language-scala">val result = Person.name(&quot;Fred&quot;).likes(&quot;pizza&quot;).save
+val fred   = result.eid
+val t1     = result.t
+Person(fred).likes.get.head === &quot;pizza&quot;
+
+val t2 = Person(fred).likes(&quot;pasta&quot;).update.t
+Person(fred).likes.get.head === &quot;pasta&quot;
+
+Person(fred).likes.getAsOf(t1).head === &quot;pizza&quot; // previously `asOf(t1).get`
+Person(fred).likes.getAsOf(t2).head === &quot;pasta&quot;
+</code></pre>
+
+<pre><code class="language-scala`">val result = Person.name(&quot;Fred&quot;).likes(&quot;pizza&quot;).save
+val fred   = result.eid
+val t1     = result.t
+Person(fred).likes.get.head === &quot;pizza&quot;
+
+val t2 = Person(fred).likes(&quot;pasta&quot;).update.t
+Person(fred).likes.get.head === &quot;pasta&quot;
+</code></pre>
+
+<pre><code class="language-scala">val result = Person.name(&quot;Fred&quot;).likes(&quot;pizza&quot;).save
+val fred   = result.eid
+val t1     = result.t
+Person(fred).likes.get.head === &quot;pizza&quot;
+</code></pre>
+
+<pre><code class="language-scala">Person.likes.tx_(Audit.user_(&quot;Lisa&quot;).uc_(&quot;survey&quot;)).get === List(&quot;pizza&quot;)
+</code></pre>
+
+<pre><code class="language-scala">Person.name.tx_(Audit.uc_(&quot;survey&quot;)).get === List(&quot;Fred&quot;)
+</code></pre>
+
+<pre><code class="language-scala">Person(e5).name.txInstant.tx(Audit.user.uc).get === List( 
+  (&quot;Fred&quot;, &quot;Tue Apr 26 18:35:41 CEST 2017&quot;, &quot;Lisa&quot;, &quot;survey&quot;))
+</code></pre>
+
+<pre><code class="language-scala">Person(e5).name.tx(Audit.user.uc).get === List(
+  (&quot;Fred&quot;, &quot;Lisa&quot;, &quot;survey&quot;))
+</code></pre>
+
+<pre><code class="language-scala">Person(e5).name.tx(Audit.user.uc).get === List((&quot;Fred&quot;, &quot;Lisa&quot;, &quot;survey&quot;))
+</code></pre>
+
+<pre><code class="language-scala">Person.name(&quot;Fred&quot;).likes(&quot;pizza&quot;)
+  .tx_(Audit.user_(&quot;Lisa&quot;).uc_(&quot;survey&quot;)).save
+</code></pre>
+
+<pre><code class="language-scala">trait Audit {
+  val user   = oneString
+  val usecase = oneString
+}
+</code></pre>
+
+<pre><code class="language-scala">Person(e5).name_.txInstant.get.head === date1
+Person(e5).name_.tx.get.head === t4
+</code></pre>
+
+<pre><code class="language-scala">Person(e5).name_.txInstant.get.head === date1  // Tue Apr 26 18:35:41
+</code></pre>
+
+<pre><code class="language-scala">Person(e5).name_.tx.get.head === tx4  // 13194139534340L
+</code></pre>
+
+<pre><code class="language-scala">val e5 = Person.name(&quot;Fred&quot;).likes(&quot;pizza&quot;).save.eid
+</code></pre>
+
+<pre><code class="language-scala">Person.name(&quot;Fred&quot;).likes(&quot;pizza&quot;).save
+</code></pre>
+
+<pre><code class="language-scala">// Property graph
+Person.name_(&quot;Ann&quot;).Knows.weight.Person.name.get === List((7, &quot;Ben&quot;))
+Person.name_(&quot;Ben&quot;).Knows.weight.Person.name.get === List((7, &quot;Ann&quot;))
+</code></pre>
+
+<pre><code class="language-scala">Person.name.Knows.*(Knows.weight.Person.name).insert(
+  &quot;Ann&quot;, List((7, &quot;Ben&quot;), (8, &quot;Joe&quot;)))
+
+Person.name_(&quot;Ann&quot;).Knows.weight.Person.name.get === 
+  List((7, &quot;Ben&quot;), (8, &quot;Joe&quot;))
+
+Person.name_(&quot;Ben&quot;).Knows.weight.Person.name.get === 
+  List((7, &quot;Ann&quot;))
+
+Person.name_(&quot;Joe&quot;).Knows.weight.Person.name.get === 
+  List((8, &quot;Ann&quot;))
+</code></pre>
+
+<pre><code class="language-scala">// Entity
+object Person extends Person
+trait Person {
+  val knows = 
+    manyBiEdge[Knows.person.type]
+  
+  val name = oneString
+}
+
+// Property edge
+object Knows extends Knows
+trait Knows {
+  val person = 
+    target[Person.knows.type]
+  
+  // Property
+  val weight = oneInt
+}
+</code></pre>
+
+<pre><code class="language-scala">// Entity
+object Person extends Person
+trait Person {
+  // A ==&gt; edge -- a
+  val knows = manyBiEdge[Knows.person.type]
+  
+  val name = oneString
+}
+
+// Property edge
+object Knows extends Knows
+trait Knows {
+  // a --- edge ==&gt; a
+  val person: AnyRef = target[Person.knows.type]
+  
+  // Property
+  val weight = oneInt
+}
+</code></pre>
+
+<pre><code class="language-scala">// Graph
+Person.name(&quot;Ann&quot;).Friends.name(&quot;Ben&quot;).save
+Person.name(&quot;Ben&quot;).Friends.name(&quot;Joe&quot;).save
+
+Person.name_(&quot;Ann&quot;).Friends.Friends.name.not(&quot;Ann&quot;).get === List(&quot;Joe&quot;)
+Person.name_(&quot;Joe&quot;).Friends.Friends.name.not(&quot;Joe&quot;).get === List(&quot;Ann&quot;)
+</code></pre>
+
+<pre><code class="language-scala">// Graph
+Person.name(&quot;Ann&quot;).Friends.name(&quot;Ben&quot;).save
+Person.name(&quot;Ben&quot;).Friends.name(&quot;Joe&quot;).save
+
+//                    Ben   Ann/Joe
+Person.name_(&quot;Ann&quot;).Friends.Friends.name.get === List(&quot;Ann&quot;, &quot;Joe&quot;)
+</code></pre>
+
+<pre><code class="language-scala">Person.name(&quot;Ann&quot;).Friends.name(&quot;Ben&quot;).save
+
+Person.name_(&quot;Ann&quot;).Friends.name.get === List(&quot;Ben&quot;)
+Person.name_(&quot;Ben&quot;).Friends.name.get === List(&quot;Ann&quot;)
+
+Ann --&gt; Ben
+Ben &lt;-- Ann // reverse ref
+</code></pre>
+
+<pre><code class="language-scala">trait Person {
+  val name    = oneString
+  val friends = manyBi[Person]
+}
+</code></pre>
+
+<pre><code class="language-scala">Person.name.Friends.name_(&quot;Ben&quot;).get === List(&quot;Ann&quot;)
+</code></pre>
+
+<pre><code class="language-scala">Person.name_(&quot;Ben&quot;).Friends.name.get === List()
+</code></pre>
+
+<pre><code class="language-scala">Person.name_(&quot;Ann&quot;).Friends.name.get === List(&quot;Ben&quot;)
+</code></pre>
+
+<pre><code class="language-scala">Person.name(&quot;Ann&quot;).Friends.name(&quot;Ben&quot;).save
+
+Person.name_(&quot;Ann&quot;).Friends.name.get === List(&quot;Ben&quot;)
+Person.name_(&quot;Ben&quot;).Friends.name.get === List()
+
+Person.name.Friends.name_(&quot;Ben&quot;).get === List(&quot;Ann&quot;)
+</code></pre>
+
+<pre><code class="language-scala">Person.name(&quot;Ann&quot;).Friends.name(&quot;Ben&quot;).save
+
+Person.name_(&quot;Ann&quot;).Friends.name.get === List(&quot;Ben&quot;)
+Person.name_(&quot;Ben&quot;).Friends.name.get === List()
+</code></pre>
+
+<pre><code class="language-scala">Person.name(&quot;Ann&quot;).Friends.name(&quot;Ben&quot;).save
+
+Person.name_(&quot;Ann&quot;).Friends.name.get === List(&quot;Ben&quot;)
+</code></pre>
+
+<pre><code class="language-scala">trait Person {
+  val name    = oneString
+  val friends = many[Person]
+}
+</code></pre>
+
+<pre><code class="language-scala">trait Person {
+  // A ==&gt; a
+  val spouse  = oneBi[Person]
+  val friends = manyBi[Person]
+
+  // A ==&gt; b
+  val pet     = oneBi[Animal.master.type]
+  val buddies = manyBi[Animal.buddies.type]
+
+  // A ==&gt; edge -- a
+  val loves = oneBiEdge[Loves.person.type]
+  val knows = manyBiEdge[Knows.person.type]
+
+  // A ==&gt; edge -- b
+  val favorite = oneBiEdge[Favorite.animal.type]
+  val closeTo  = manyBiEdge[CloseTo.animal.type]
+
+  val name = oneString
+}
+</code></pre>
+
+<pre><code class="language-scala">// Mix input, static expressions and relationships...
+val americansYoungerThan = m(Person.id.age_.&lt;(?).Country.name_(&quot;USA&quot;))
+val americanKids         = americansYoungerThan(13).get
+val americanBabies       = americansYoungerThan(1).get
+</code></pre>
+
+<pre><code class="language-scala">// Multiple input parameters + logic
+val person = m(Person.id.name_(?).age_(?))
+
+// AND
+val john42 = person(&quot;John&quot; and 42).get.head
+
+// AND/OR
+val john42orJonas38  = person((&quot;John&quot; and 42) or (&quot;Jonas&quot; and 38)).get 
+val john42orJonas38b = person((&quot;John&quot;, 42), (&quot;Jonas&quot;, 38)).get
+</code></pre>
+
+<pre><code class="language-scala">// Mix input, static expressions and relationships...
+val americansYoungerThan = m(Person.id.age_.&lt;(?).Country.name_(&quot;USA&quot;))
+val americanKids         = americansYoungerThan(13).get
+val americanBabies       = americansYoungerThan(1).get
+</code></pre>
+
+<pre><code class="language-scala">// Multiple input parameters + logic
+val person = m(Person.id.name_(?).age_(?))
+
+// AND
+val john42 = person(&quot;John&quot; and 42).get.head
+</code></pre>
+
+<pre><code class="language-scala">// 1 input parameter
+val person = m(Person.id.name_(?))
+
+val john     = person(&quot;John&quot;).get.head
+val students = person(allStudentNames).get.head
+</code></pre>
+
+<pre><code class="language-scala">val persons = datomic.Peer.q(
+  &quot;&quot;&quot;
+    |[:find ?id
+    | :in $ ?names
+    | :where
+    |   [?e :person/name ?names]]
+  &quot;&quot;&quot;.stripMargin, conn.db, &quot;John&quot;)
+</code></pre>
+
+<pre><code class="language-scala">fredId.retract
+
+Person.name(&quot;Fred&quot;).get.size === 0 
+</code></pre>
+
+<pre><code class="language-scala">Person.id.nameMap.insert(
+  101,
+  Map(
+    &quot;en&quot; -&gt; &quot;Dmitri Shostakovich&quot;,
+    &quot;de&quot; -&gt; &quot;Dmitri Schostakowitsch&quot;,
+    &quot;fr&quot; -&gt; &quot;Dmitri Chostakovitch&quot;,
+    &quot;es&quot; -&gt; &quot;Dmitri Shostakóvich&quot;
+  )
+)
+</code></pre>
+
+<pre><code class="language-scala">trait Person {
+  val id      = oneInt
+  val nameMap = mapString
+}
+</code></pre>
+
+<pre><code class="language-scala">fredId.retract
+
+Person.name(&quot;Fred&quot;).get.size === 0 
+</code></pre>
+
+<pre><code class="language-scala">Person(bob).hobbies.add(&quot;stars&quot;).update
+Person(bob).hobbies.get.head === Set(&quot;golf&quot;, &quot;cars&quot;, &quot;stars&quot;)
+
+Person(bob).hobbies.replace(&quot;cars&quot; -&gt; &quot;trains&quot;).update
+Person(bob).hobbies.get.head === Set(&quot;golf&quot;, &quot;trains&quot;, &quot;stars&quot;)
+
+Person(bob).hobbies.remove(&quot;golf&quot;).update
+Person(bob).hobbies.get.head === Set(&quot;trains&quot;, &quot;stars&quot;)
+
+Person(bob).hobbies(&quot;skiing&quot;, &quot;stamps&quot;).update
+Person(bob).hobbies.get.head === Set(&quot;skiing&quot;, &quot;stamps&quot;)
+
+Person(bob).hobbies().update
+Person(bob).hobbies.get.head === Set()
+</code></pre>
+
+<pre><code class="language-scala">// Assert new fact
+Person(fred).likes(&quot;pasta&quot;).update
+Person(fred).likes$.get.head === Some(&quot;pasta&quot;)
+
+// Retract old fact
+Person(fred).likes().update
+Person(fred).likes$.get.head === None
+</code></pre>
+
+<pre><code class="language-scala">// Assert new fact
+Person(fred).likes(&quot;pasta&quot;).update
+Person(fred).likes$.get.head === Some(&quot;pasta&quot;)
+</code></pre>
+
+<pre><code class="language-scala">Person(fred).likes(&quot;pasta&quot;).update
+Person(fred).likes$.get.head === Some(&quot;pasta&quot;)
+</code></pre>
+
+<pre><code class="language-scala">// Re-use insert molecules
+val insertPerson = Person.name.likes$.age.insert
+val fredId = insertPerson(&quot;Fred&quot;, Some(&quot;pizza&quot;), 38).eid 
+</code></pre>
+
+<pre><code class="language-scala">Person.name.age.likes$ insert List(
+  (&quot;Fred&quot;, 38, Some(&quot;pizza&quot;)),
+  (&quot;Lisa&quot;, 7, None),
+  (&quot;Ben&quot;, 5, Some(&quot;pizza&quot;))
+)
+
+// Re-use insert-molecules
+val insertPerson = Person.name.age.likes$.insert
+val fred = insertPerson(&quot;Fred&quot;, 38, Some(&quot;pizza&quot;)).eid
+val ben  = insertPerson(&quot;Lisa&quot;, 7, None).eid
+</code></pre>
+
+<pre><code class="language-scala">Person.name.likes$.age insert List(
+  (&quot;Fred&quot;, Some(&quot;pizza&quot;), 38),
+  (&quot;Lisa&quot;, None, 7),
+  (&quot;Ben&quot;, Some(&quot;pizza&quot;), 5)
+)
+</code></pre>
+
+<pre><code class="language-scala">Person
+  .name(&quot;Fred&quot;)
+  .age(38)
+  .likes(&quot;pizza&quot;).save
+</code></pre>
+
+<pre><code class="language-scala">Person.name.age.likes$.get === List(
+  (&quot;Fred&quot;, 38, Some(&quot;pizza&quot;)),
+  (&quot;Lisa&quot;, 7, None),
+  (&quot;Ben&quot;, 5, Some(&quot;pizza&quot;))
+)
+</code></pre>
+
+<pre><code class="language-scala">Person.name.age.likes$ insert List(
+  (&quot;Fred&quot;, 38, Some(&quot;pizza&quot;)),
+  (&quot;Lisa&quot;, 7, None),
+  (&quot;Ben&quot;, 5, Some(&quot;pizza&quot;))
+)
+</code></pre>
+
+<pre><code class="language-scala">// Save 1 molecule
+Person.name(&quot;Fred&quot;).likes(&quot;pizza&quot;).age(38).save
+
+// Insert
+Person.name.likes$.age insert List(
+  (&quot;Fred&quot;, Some(&quot;pizza&quot;), 38),
+  (&quot;Lisa&quot;, None, 7),
+  (&quot;Ben&quot;, Some(&quot;pizza&quot;), 5)
+)
+</code></pre>
+
+<pre><code class="language-scala">Person.name(&quot;Fred&quot;).likes(&quot;pizza&quot;).age(38).save
+</code></pre>
+
+<pre><code class="language-scala">m(Person.name.likes.age ~ Site.cat.status ~ Loc.tag).get === List(
+  ((&quot;Fred&quot;, &quot;pizza&quot;, 38), (&quot;customer&quot;, &quot;good&quot;), &quot;city&quot;)
+)
+</code></pre>
+
+<pre><code class="language-scala">m(Person.name.likes.age ~ Site.cat.status).get === List(
+  ((&quot;Fred&quot;, &quot;pizza&quot;, 38), (&quot;customer&quot;, &quot;good&quot;))
+)
+</code></pre>
+
+<pre><code class="language-scala">m(Person.name.likes.age ~ Site.cat).get === List(
+  ((&quot;Fred&quot;, &quot;pizza&quot;, 38), &quot;customer&quot;)
+)
+</code></pre>
+
+<pre><code class="language-scala">m(Person.name.likes.age ~ Site.cat).get === List(
+  ((&quot;Fred&quot;, &quot;pizza&quot;, 38), &quot;customer&quot;)
+)
+
+val ((name, likes, age), cat) = m(Person.name.likes.age ~ Site.cat).get.head
+</code></pre>
+
+<pre><code class="language-scala">Person.name.likes.age ~ Site.cat
+</code></pre>
+
+<pre><code class="language-scala">object YourDomainDefinition {
+  trait Person {
+    val name  = oneString
+    val likes = oneString
+    val age   = oneInt
+  }
+  trait Site {
+    val cat    = oneString
+    val status = oneString
+  }
+}
+</code></pre>
+
+<pre><code class="language-scala">Person.name.likes.age.Site.cat
+</code></pre>
+
+<pre><code class="language-scala">object YourDomainDefinition {
+  trait Person {
+    val name  = oneString
+    val likes = oneString
+    val age   = oneInt
+    val site  = one[Site] // Not intrinsic!
+  }
+  trait Site {
+    val cat    = oneString
+    val status = oneString
+  }
+}
+</code></pre>
+
+<pre><code class="language-scala">Person.name.likes.age.Site.cat
+</code></pre>
+
+<pre><code class="language-scala">object YourDomainDefinition {
+  trait Person {
+    val name  = oneString
+    val likes = oneString
+    val age   = oneInt
+    val site  = one[Site]
+  }
+  trait Site {
+    val cat    = oneString
+    val status = oneString
+  }
+}
+</code></pre>
+
+<pre><code class="language-scala">Person.name.likes.age .. ? .. Site.cat
+</code></pre>
+
+<pre><code class="language-scala">object YourDomainDefinition {
+  trait Person {
+    val name  = oneString
+    val likes = oneString
+    val age   = oneInt
+  }
+  trait Site {
+    val cat    = oneString
+    val status = oneString
+  }
+}
+</code></pre>
+
+<pre><code class="language-scala">fredId.touch === Map( // Map[String, Any]
+  &quot;:db/id&quot; -&gt; 101L,
+  &quot;:person/name&quot; -&gt; &quot;Fred&quot;,
+  &quot;:person/likes&quot; -&gt; &quot;pizza&quot;,
+  &quot;:person/age&quot;	-&gt; 38,
+  &quot;:site/cat&quot; -&gt; &quot;customer&quot;
+)
+
+val siteCat_? : Option[String] = fredId[String](&quot;:site/cat&quot;)
+</code></pre>
+
+<pre><code class="language-scala">fredId.touch === Map(
   &quot;:db/id&quot; -&gt; 101L,
   &quot;:person/name&quot; -&gt; &quot;Fred&quot;,
   &quot;:person/likes&quot; -&gt; &quot;pizza&quot;,
@@ -136,6 +1047,48 @@
           (&quot;best&quot;, &quot;2c&quot;, List(&quot;test&quot;))))
       ))
     )
+</code></pre>
+
+<pre><code class="language-scala">// Touch entity facts hierarchy recursively
+orderId.touch === Map(
+  &quot;:db/id&quot; -&gt; 101L,
+  &quot;:order/lineItems&quot; -&gt; List(
+    Map(
+      &quot;:db/id&quot; -&gt; 102L, 
+      &quot;:lineItem/qty&quot; -&gt; 3, 
+      &quot;:lineItem/product&quot; -&gt; &quot;Milk&quot;,
+      &quot;:lineItem/price&quot; -&gt; 12.0),
+    Map(
+      &quot;:db/id&quot; -&gt; 103L, 
+      &quot;:lineItem/qty&quot; -&gt; 2, 
+      &quot;:lineItem/product&quot; -&gt; &quot;Coffee&quot;,
+      &quot;:lineItem/price&quot; -&gt; 46.0)))
+
+// Optional typed attribute value
+fredId[String](&quot;:person/likes&quot;) === Some(&quot;pizza&quot;)
+</code></pre>
+
+<pre><code class="language-scala">// Nested molecule
+m(Order.id.Items * LineItem.qty.product.price).get === List(
+  (1, List(
+    (3, &quot;Milk&quot;, 12.0), 
+    (2, &quot;Coffee&quot;, 46.0)))
+)
+
+// Entity api - .touch
+101.touch === Map(
+  &quot;:db/id&quot; -&gt; 101L,
+  &quot;:order/lineItems&quot; -&gt; List(
+    Map(
+      &quot;:db/id&quot; -&gt; 102L, 
+      &quot;:lineItem/qty&quot; -&gt; 3, 
+      &quot;:lineItem/product&quot; -&gt; &quot;Milk&quot;,
+      &quot;:lineItem/price&quot; -&gt; 12.0),
+    Map(
+      &quot;:db/id&quot; -&gt; 103L, 
+      &quot;:lineItem/qty&quot; -&gt; 2, 
+      &quot;:lineItem/product&quot; -&gt; &quot;Coffee&quot;,
+      &quot;:lineItem/price&quot; -&gt; 46.0)))
 </code></pre>
 
 <pre><code class="language-scala">// Adjacent facts
@@ -193,26 +1146,6 @@ Order.id.Items.qty.product.price.get === List(
 }
 </code></pre>
 
-<pre><code class="language-scala">Person.name
-  .Home.street.city._Person
-  .Work.street.city.one === (
-  &quot;Fred&quot;, 
-  &quot;Baker st. 7&quot;, &quot;Boston&quot;, 
-  &quot;Downtown 1&quot;, &quot;Boston&quot;
-)
-</code></pre>
-
-<pre><code class="language-scala">Person.name
-  .Home.street.city._Person
-  .Cottage.street.city._Person
-  .Work.street.city.one === (
-  &quot;Fred&quot;, 
-  &quot;Baker st. 7&quot;, &quot;Boston&quot;, 
-  &quot;Mountain way 32&quot;, &quot;Woods town&quot;, 
-  &quot;Downtown 1&quot;, &quot;Boston&quot;
-)
-</code></pre>
-
 <pre><code class="language-scala">Person.name.Home.street.city. ..??
 </code></pre>
 
@@ -250,7 +1183,7 @@ Person.name.Work.street.city
 <pre><code class="language-scala">Person.name.Home.street.city
 </code></pre>
 
-<pre><code class="language-scala">Person.name.Home.street.city.one === (
+<pre><code class="language-scala">Person.name.Home.street.city.get.head === (
   &quot;Fred&quot;, &quot;Baker St. 7&quot;, &quot;Boston&quot;
 )
 </code></pre>
@@ -269,21 +1202,21 @@ Person.name.age(Seq(5, 6, 7)).get === List(
 )
 </code></pre>
 
-<pre><code class="language-scala">Person.age(min).one           === 5 
-Person.age(max).one           === 38 
-Person.age(sum).one           === 50 
-Person.age(count).one         === 3 
-Person.age(countDistinct).one === 3 
-Person.age(avg).one           === 16.66666667
-Person.age(median).one        === 7 
-Person.age(variance).one      === 228.2222222222222 
-Person.age(stddev).one        === 15.107025591499546
+<pre><code class="language-scala">Person.age(min).get.head           === 5 
+Person.age(max).get.head           === 38 
+Person.age(sum).get.head           === 50 
+Person.age(count).get.head         === 3 
+Person.age(countDistinct).get.head === 3 
+Person.age(avg).get.head           === 16.66666667
+Person.age(median).get.head        === 7 
+Person.age(variance).get.head      === 228.2222222222 
+Person.age(stddev).get.head        === 15.107025591499
  
-Person.age(distinct).one  === Vector(5, 7, 38) 
-Person.age(min(2)).one    === Vector(5, 7) 
-Person.age(max(2)).one    === Vector(38, 7) 
-Person.age(rand(2)).one   === Stream(5, ?) 
-Person.age(sample(2)).one === Vector(7, 38) 
+Person.age(distinct).get.head  === Vector(5, 7, 38) 
+Person.age(min(2)).get.head    === Vector(5, 7) 
+Person.age(max(2)).get.head    === Vector(38, 7) 
+Person.age(rand(2)).get.head   === Stream(5, ?) 
+Person.age(sample(2)).get.head === Vector(7, 38) 
 </code></pre>
 
 <pre><code class="language-scala">Person.name.age.&gt;(7).get === List(
@@ -353,12 +1286,12 @@ Person.name.contains(&quot;Be&quot;).get === List()
 )
 </code></pre>
 
-<pre><code class="language-scala">Person.name.get: Seq[String] === List(
+<pre><code class="language-scala">Person.name.get: Iterable[String] === List(
   &quot;Fred&quot;, &quot;Lisa&quot;, &quot;Ben&quot;
 )
 </code></pre>
 
-<pre><code class="language-scala">Person.name.age.get: Seq[(String, Int)] === List(
+<pre><code class="language-scala">Person.name.age.get: Iterable[(String, Int)] === List(
   (&quot;Fred&quot;, 38),
   (&quot;Lisa&quot;, 7),
   (&quot;Ben&quot;, 5)
@@ -369,273 +1302,6 @@ Person.name.contains(&quot;Be&quot;).get === List()
   (&quot;Fred&quot;, 38, &quot;pizza&quot;),
   (&quot;Ben&quot;, 5, &quot;pizza&quot;)
 )
-</code></pre>
-
-<pre><code class="language-scala">Person.name.age.likes_.get === List(
-  (&quot;Fred&quot;, 38),
-  (&quot;Ben&quot;, 5)
-)
-</code></pre>
-
-<pre><code class="language-scala">Person.name.age.likes$.get === List(
-  (&quot;Fred&quot;, 38, Some(&quot;pizza&quot;)),
-  (&quot;Lisa&quot;, 7, None),
-  (&quot;Ben&quot;, 5, Some(&quot;pizza&quot;))
-)
-</code></pre>
-
-<pre><code class="language-scala">Person.e(101).name.likes.age.get === List(
-  (101, &quot;Fred&quot;, &quot;pizza&quot;, 38)
-)
-</code></pre>
-
-<pre><code class="language-scala">Person.name.age
-</code></pre>
-
-<pre><code class="language-scala">val persons: Seq[(String, Option[String])] = Person.name.age_.likes$.get
-</code></pre>
-
-<pre><code class="language-scala">Person.name.age.get
-</code></pre>
-
-<pre><code class="language-scala">Person.name(&quot;Fred&quot;).age(39).saveD
-</code></pre>
-
-<pre><code class="language-scala">Person.name.age.updateD
-</code></pre>
-
-<pre><code class="language-scala">Person.name.age extends M2[String, Int]
-</code></pre>
-
-<pre><code class="language-scala">object oneString
-object oneInt
-...
-</code></pre>
-
-<pre><code class="language-scala">object YourDomainDefinition {
-  trait Person {
-    val name = oneString
-    val age  = oneInt
-  }
-}
-</code></pre>
-
-<pre><code class="language-scala">trait M1[A] {
-  def get: Seq[A] = ???
-}
-trait M2[A, B] {
-  def get: Seq[(A, B)] = ???
-}
-
-object Person {
-  val name : Person1[String] = ???
-  val age  : Person1[Int]    = ???
-}
-class Person1[A] extends M1[A] {
-  val name : Person2[A, String] = ???
-  val age  : Person2[A, Int]    = ???
-}
-class Person2[A, B] extends M2[A, B]
-</code></pre>
-
-<pre><code class="language-scala">implicit def m[A, B](dsl: M2[A, B]): Molecule2[String, Int] = macro from2attr[A, B]
-</code></pre>
-
-<pre><code class="language-scala">implicit def m[A, B](dsl: M2[A, B]): Molecule2[A, B] = macro from2attr[A, B]
-
-// Macro implementation (simplified)
-def from2attr[A, B](dsl: M2[A, B]): Molecule2[A, B] = {
-  val query = ??? // todo
-  q&quot;&quot;&quot;
-    new Molecule2[A, B] {
-      def get: Seq[(A, B)] = datomic.Peer.q(${query}, conn.db).asScala.toSeq.map(
-        _.asScala match {
-          case Seq(a, b) =&gt; (a.asInstanceOf[A], b.asInstanceOf[B])
-        }
-      )
-    }
-  &quot;&quot;&quot;
-}
-</code></pre>
-
-<pre><code class="language-scala">// Macro implementation (simplified)
-def from2attr[A, B](dsl: M2[A, B]): Molecule2[A, B] = {
-
-  def traverse(dsl: Tree, elements: Seq[Attr] = Nil): Seq[Attr] = dsl match {
-    case q&quot;$prev.$attr&quot; =&gt; traverse(prev) :+ Attr(attr.ns, attr.name, attr.tpe, attr.card)
-    case q&quot;$ns&quot;         =&gt; elements
-  }
-  val query = traverse(dsl.tree).toQueryString
-  
-  q&quot;&quot;&quot;
-    new Molecule2[A, B] {
-      def get: Seq[(A, B)] = datomic.Peer.q(${query}, conn.db).asScala.toSeq.map(
-        _.asScala match {
-          case Seq(a, b) =&gt; (a.asInstanceOf[A], b.asInstanceOf[B])
-        }
-      )
-    }
-  &quot;&quot;&quot;
-}
-</code></pre>
-
-<h2 id="1-output-molecule-saved:82edc323b2fe0e0e86215b27014d533e">1 ## output.Molecule.saveD</h2>
-
-<p>========================================================================
-Model(
-  Atom(person,name,String,1,Eq(List(Fred)),None,List(),List())</p>
-
-<h2 id="atom-person-age-long-1-eq-list-39-none-list-list:82edc323b2fe0e0e86215b27014d533e">Atom(person,age,Long,1,Eq(List(39)),None,List(),List()))</h2>
-
-<p>List(
-  :db/add   &lsquo;tempId                          :person/name    Values(Eq(List(Fred)),None)</p>
-
-<h2 id="db-add-e-person-age-values-eq-list-39-none:82edc323b2fe0e0e86215b27014d533e">:db/add   &lsquo;e                               :person/age     Values(Eq(List(39)),None))</h2>
-
-<p>List(
-  :db/add   #db/id[:db.part/user -1000008]   :person/name    Fred</p>
-
-<h1 id="db-add-db-id-db-part-user-1000008-person-age-39:82edc323b2fe0e0e86215b27014d533e">:db/add   #db/id[:db.part/user -1000008]   :person/age     39)</h1>
-
-<pre><code class="language-scala">implicit def m[A, B](dsl: M2[A, B]): Molecule2[A, B] = 
-  macro from2attr[A, B]
-
-def from2attr[A: c.WeakTypeTag, B: c.WeakTypeTag]
-    (c: Context)
-    (dsl: c.Expr[M2[A, B]])
-: c.Expr[Molecule2[A, B]] = {
-  import c.universe._
-  c.Expr(
-    q&quot;&quot;&quot;
-      new Molecule2[${c.weakTypeOf[A]}, ${c.weakTypeOf[B]}] {
-        def get = ??? // query + casting...
-      }
-    &quot;&quot;&quot;
-  )
-}
-</code></pre>
-
-<pre><code class="language-scala">implicit def m[A, B](dsl: M2[A, B]): Molecule2[A, B] = macro from2attr[A, B]
-
-def from2attr[A: c.WeakTypeTag, B: c.WeakTypeTag]
-    (c: Context)
-    (dsl: c.Expr[M2[A, B]])
-: c.Expr[Molecule2[A, B]] = {
-  val query = ???
-  c.Expr(
-    q&quot;&quot;&quot;
-      new Molecule2[${c.weakTypeOf[A]}, ${c.weakTypeOf[B]}] {
-        def get = datomic.Peer.q(${query}, conn.db).asScala.toSeq.map( _.asScala match {
-            case Seq(a, b) =&gt;
-              (a.asInstanceOf[${c.weakTypeOf[A]}], b.asInstanceOf[${c.weakTypeOf[B]}])
-          }
-        )
-      }
-    &quot;&quot;&quot;
-  )
-}
-</code></pre>
-
-<pre><code class="language-scala">Person.name.age
-</code></pre>
-
-<pre><code class="language-scala">val persons = Person.name.age.get
-</code></pre>
-
-<pre><code class="language-scala">val persons = datomic.Peer.q(
-  &quot;&quot;&quot;
-    |[:find ?name ?age
-    | :where
-    |   [?e :person/name ?name]
-    |   [?e :person/age ?age]]
-  &quot;&quot;&quot;.stripMargin, conn.db)
-</code></pre>
-
-<pre><code class="language-scala">val persons: Seq[(String, Int)] = Person.name.age.get
-</code></pre>
-
-<pre><code class="language-scala">val persons: java.util.Collection[java.util.List[Object]] = datomic.Peer.q(
-  &quot;&quot;&quot;
-    |[:find ?name ?age
-    | :where
-    |   [?e :person/name ?name]
-    |   [?e :person/age ?age]]
-  &quot;&quot;&quot;.stripMargin, conn.db)
-</code></pre>
-
-<pre><code class="language-scala">val persons: Seq[(String, Int)] = datomic.Peer.q(
-  &quot;&quot;&quot;
-    |[:find ?name ?age
-    | :where
-    |   [?e :person/name ?name]
-    |   [?e :person/age ?age]]
-  &quot;&quot;&quot;.stripMargin, conn.db
-).asScala.toSeq.map(_.asScala match {
-    case Seq(name, age) =&gt;
-      (name.asInstanceOf[String], age.asInstanceOf[Long].toInt)
-  }
-)
-</code></pre>
-
-<pre><code class="language-scala">val personsMolecule: Molecule2[String, Int] = m(Person.name.age)
-</code></pre>
-
-<pre><code class="language-scala">new Molecule2[String, Int] {
-  def get: Seq[(String, Int)] = datomic.Peer.q(
-    &quot;&quot;&quot;
-      |[:find ?name ?age
-      | :where
-      |   [?e :person/name ?name]
-      |   [?e :person/age ?age]]
-    &quot;&quot;&quot;.stripMargin, conn.db
-  ).asScala.toSeq.map( _.asScala match {
-    case Seq(name, age) =&gt; 
-      (name.asInstanceOf[String], age.asInstanceOf[Long].toInt)
-    }
-  )
-</code></pre>
-
-<pre><code class="language-scala">val personM: Molecule2[String, Int] = m(Person.name.age)
-val persons: Seq[(String, Int)] = personM.get
-</code></pre>
-
-<pre><code class="language-scala">// compile-time
-val personMolecule: Molecule2[String, Int] = m(Person.name.age)
-
-// runtime
-val persons: Seq[(String, Int)] = personMolecule.get
-</code></pre>
-
-<pre><code class="language-scala">implicit def m[A, B](dsl: M2[A, B]) = macro MakeMolecule.from2attr[A, B]
-
-// compile-time
-val personMolecule: Molecule2[String, Int] = m(Person.name.age)
-
-// runtime
-val persons: Seq[(String, Int)] = personMolecule.get
-
-// compile-time + runtime
-val persons: Seq[(String, Int)] = Person.name.age.get
-</code></pre>
-
-<pre><code class="language-scala">// implicit def macro
-implicit def m[A, B](dsl: M2[A, B]) = macro MakeMolecule.from2attr[A, B]
-
-// compile-time + runtime
-val persons: Seq[(String, Int)] = Person.name.age.get
-</code></pre>
-
-<pre><code class="language-scala">// implicit def macro
-implicit def m[A, B](dsl: M2[A, B]): Molecule2[String, Int] = macro from2attr[A, B]
-
-// compile-time
-val personMolecule: Molecule2[String, Int] = m(Person.name.age)
-
-// runtime
-val persons: Seq[(String, Int)] = personMolecule.get
-
-// compile-time + runtime
-val persons: Seq[(String, Int)] = Person.name.age.get
 </code></pre>
 
 <hr />
@@ -649,7 +1315,7 @@ val persons: Seq[(String, Int)] = Person.name.age.get
         
           
             
-              <li class="active" style="padding: 2px 9px;"><b>Presentation</b></li>
+              <li><a href="http://localhost:1313/tutorials/presentation1/">Presentation</a></li>
               
             
           
@@ -660,6 +1326,11 @@ val persons: Seq[(String, Int)] = Person.name.age.get
           
             
               <li><a href="http://localhost:1313/tutorials/seattle/">Seattle</a></li>
+              
+            
+          
+            
+              <li><a href="http://localhost:1313/tutorials/videos/">Videos</a></li>
               
             
           
