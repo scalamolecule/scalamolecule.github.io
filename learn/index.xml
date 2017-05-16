@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Learns on Molecule</title>
-    <link>http://scalamolecule.org/learn/</link>
+    <link>http://localhost:1313/learn/</link>
     <description>Recent content in Learns on Molecule</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     
     
     <lastBuildDate>Fri, 02 Jan 2015 22:06:44 CET</lastBuildDate>
-    <atom:link href="http://scalamolecule.org/learn/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/learn/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Learn</title>
-      <link>http://scalamolecule.org/learn/overview/</link>
+      <link>http://localhost:1313/learn/overview/</link>
       <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
       
-      <guid>http://scalamolecule.org/learn/overview/</guid>
+      <guid>http://localhost:1313/learn/overview/</guid>
       <description>
 
 &lt;h1 id=&#34;molecule-learning-resources:68f80267fa3a50980dbb745a782b8dca&#34;&gt;Molecule learning resources&lt;/h1&gt;
@@ -24,19 +24,19 @@
 &lt;h3 id=&#34;tutorials:68f80267fa3a50980dbb745a782b8dca&#34;&gt;Tutorials&lt;/h3&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/learn/tutorials/seattle&#34;&gt;Seattle tutorial&lt;/a&gt; - all-round introduction to using Molecule&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/learn/tutorials/seattle&#34;&gt;Seattle tutorial&lt;/a&gt; - all-round introduction to using Molecule&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h3 id=&#34;videos:68f80267fa3a50980dbb745a782b8dca&#34;&gt;Videos&lt;/h3&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/learn/videos/2017-04-25_Marc_Grue&#34;&gt;Scala Meetup presentation 2017-04-25 by Marc Grue&lt;/a&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/learn/videos/2017-04-25_Marc_Grue&#34;&gt;Scala Meetup presentation 2017-04-25 by Marc Grue&lt;/a&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/learn/videos/2017-04-25_Marc_Grue#1:e8a80e11a9ea81b9e6071cec3c4864a9&#34;&gt;Part 1: Datomic data model&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/learn/videos/2017-04-25_Marc_Grue#2:e8a80e11a9ea81b9e6071cec3c4864a9&#34;&gt;Part 2: Building a DSL with Scala macros&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/learn/videos/2017-04-25_Marc_Grue#3:e8a80e11a9ea81b9e6071cec3c4864a9&#34;&gt;Part 3: Tour of Molecule features&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/learn/videos/2017-04-25_Marc_Grue#4:e8a80e11a9ea81b9e6071cec3c4864a9&#34;&gt;Part 4: Molecule domain modelling&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/learn/videos/2017-04-25_Marc_Grue#1:e8a80e11a9ea81b9e6071cec3c4864a9&#34;&gt;Part 1: Datomic data model&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/learn/videos/2017-04-25_Marc_Grue#2:e8a80e11a9ea81b9e6071cec3c4864a9&#34;&gt;Part 2: Building a DSL with Scala macros&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/learn/videos/2017-04-25_Marc_Grue#3:e8a80e11a9ea81b9e6071cec3c4864a9&#34;&gt;Part 3: Tour of Molecule features&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/learn/videos/2017-04-25_Marc_Grue#4:e8a80e11a9ea81b9e6071cec3c4864a9&#34;&gt;Part 4: Molecule domain modelling&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
@@ -44,10 +44,10 @@
     
     <item>
       <title>Tutorials</title>
-      <link>http://scalamolecule.org/learn/tutorials/</link>
+      <link>http://localhost:1313/learn/tutorials/</link>
       <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
       
-      <guid>http://scalamolecule.org/learn/tutorials/</guid>
+      <guid>http://localhost:1313/learn/tutorials/</guid>
       <description>
 
 &lt;h1 id=&#34;molecule-tutorials:2f9666f86bd8527efa1103fc382863ca&#34;&gt;Molecule tutorials&lt;/h1&gt;
@@ -55,17 +55,17 @@
 &lt;h3 id=&#34;tutorials:2f9666f86bd8527efa1103fc382863ca&#34;&gt;Tutorials&lt;/h3&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/learn/tutorials/seattle&#34;&gt;Seattle tutorial&lt;/a&gt; - all-round introduction to using Molecule&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/learn/tutorials/seattle&#34;&gt;Seattle tutorial&lt;/a&gt; - all-round introduction to using Molecule&lt;/li&gt;
 &lt;/ul&gt;
 </description>
     </item>
     
     <item>
       <title>Videos</title>
-      <link>http://scalamolecule.org/learn/videos/</link>
+      <link>http://localhost:1313/learn/videos/</link>
       <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
       
-      <guid>http://scalamolecule.org/learn/videos/</guid>
+      <guid>http://localhost:1313/learn/videos/</guid>
       <description>
 
 &lt;h1 id=&#34;molecule-tutorials:a45b24697a235d080c581c0ce5a9b90b&#34;&gt;Molecule tutorials&lt;/h1&gt;
@@ -73,13 +73,13 @@
 &lt;h3 id=&#34;videos:a45b24697a235d080c581c0ce5a9b90b&#34;&gt;Videos&lt;/h3&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/learn/videos/2017-04-25_Marc_Grue&#34;&gt;Scala Meetup presentation 2017-04-25 by Marc Grue&lt;/a&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/learn/videos/2017-04-25_Marc_Grue&#34;&gt;Scala Meetup presentation 2017-04-25 by Marc Grue&lt;/a&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/learn/videos/2017-04-25_Marc_Grue#1:e8a80e11a9ea81b9e6071cec3c4864a9&#34;&gt;Part 1: Datomic data model&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/learn/videos/2017-04-25_Marc_Grue#2:e8a80e11a9ea81b9e6071cec3c4864a9&#34;&gt;Part 2: Building a DSL with Scala macros&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/learn/videos/2017-04-25_Marc_Grue#3:e8a80e11a9ea81b9e6071cec3c4864a9&#34;&gt;Part 3: Tour of Molecule features&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/learn/videos/2017-04-25_Marc_Grue#4:e8a80e11a9ea81b9e6071cec3c4864a9&#34;&gt;Part 4: Molecule domain modelling&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/learn/videos/2017-04-25_Marc_Grue#1:e8a80e11a9ea81b9e6071cec3c4864a9&#34;&gt;Part 1: Datomic data model&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/learn/videos/2017-04-25_Marc_Grue#2:e8a80e11a9ea81b9e6071cec3c4864a9&#34;&gt;Part 2: Building a DSL with Scala macros&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/learn/videos/2017-04-25_Marc_Grue#3:e8a80e11a9ea81b9e6071cec3c4864a9&#34;&gt;Part 3: Tour of Molecule features&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/learn/videos/2017-04-25_Marc_Grue#4:e8a80e11a9ea81b9e6071cec3c4864a9&#34;&gt;Part 4: Molecule domain modelling&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
@@ -87,10 +87,10 @@
     
     <item>
       <title>Seattle</title>
-      <link>http://scalamolecule.org/learn/tutorials/seattle/</link>
+      <link>http://localhost:1313/learn/tutorials/seattle/</link>
       <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
       
-      <guid>http://scalamolecule.org/learn/tutorials/seattle/</guid>
+      <guid>http://localhost:1313/learn/tutorials/seattle/</guid>
       <description>
 
 &lt;h1 id=&#34;contents:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Molecule Seattle tutorial&lt;/h1&gt;
@@ -116,7 +116,7 @@ how Molecule works.&lt;/em&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;0:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;&lt;a href=&#34;#contents:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;☝︎&lt;/a&gt; Introduction&lt;/h2&gt;
 
-&lt;p&gt;After &lt;a href=&#34;http://scalamolecule.org/manual/getting-started/&#34;&gt;setting up the database&lt;/a&gt; and &lt;a href=&#34;http://scalamolecule.org/manual/insert/&#34;&gt;populating it with data&lt;/a&gt; we can
+&lt;p&gt;After &lt;a href=&#34;http://localhost:1313/manual/getting-started/&#34;&gt;setting up the database&lt;/a&gt; and &lt;a href=&#34;http://localhost:1313/manual/insert/&#34;&gt;populating it with data&lt;/a&gt; we can
 start making queries. We make queries by building &amp;ldquo;molecules&amp;rdquo; which are
 chains of attributes put together with the builder pattern. We can imagine
 this as a 3-dimensional data structure of atoms bound together in various
@@ -968,16 +968,16 @@ values as they existed at specific points in time, we can retrieve
 retracted data by looking in the past. In other words, the data
 isn&amp;rsquo;t really gone. If we want data to really be gone after we
 retract it, we have to disable history for the specific attribute,
-as described in &lt;a href=&#34;http://scalamolecule.org/manual/getting-started/&#34;&gt;Database setup&lt;/a&gt;.&lt;/p&gt;
+as described in &lt;a href=&#34;http://localhost:1313/manual/getting-started/&#34;&gt;Database setup&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Molecule presentation</title>
-      <link>http://scalamolecule.org/learn/videos/2017-04-25_Marc_Grue/</link>
+      <link>http://localhost:1313/learn/videos/2017-04-25_Marc_Grue/</link>
       <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
       
-      <guid>http://scalamolecule.org/learn/videos/2017-04-25_Marc_Grue/</guid>
+      <guid>http://localhost:1313/learn/videos/2017-04-25_Marc_Grue/</guid>
       <description>
 
 &lt;h1 id=&#34;contents:e8a80e11a9ea81b9e6071cec3c4864a9&#34;&gt;Molecule video presentation&lt;/h1&gt;
