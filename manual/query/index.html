@@ -125,7 +125,7 @@ Person.name.age_.gender // require but omit values (&quot;tacet values&quot;)
 <p><a href="/manual/query/mapped">Maped values</a> - mapped attribute values
 (<a href="https://github.com/scalamolecule/molecule/tree/master/coretest/src/test/scala/molecule/attrMap">tests</a>)</p>
 
-<pre><code class="language-scala">Person.id.name.one === (
+<pre><code class="language-scala">Person.id.name.get.head === (
   1, 
   Map(
     &quot;en&quot; -&gt; &quot;Dmitri Shostakovich&quot;,
@@ -163,8 +163,8 @@ Person.age(max)
 <pre><code class="language-scala">val person = Person.name(?).age(?)
 
 // Re-use `person`
-val Johan  = person(&quot;John&quot;, 33).one
-val Lisa   = person(&quot;Lisa&quot;, 27).one
+val Johan  = person(&quot;John&quot;, 33).get.head
+val Lisa   = person(&quot;Lisa&quot;, 27).get.head
 </code></pre>
 
 <p><a href="/manual/query/relationships">Relationships</a> - Connect namespaces with

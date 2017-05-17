@@ -319,7 +319,7 @@ Person.id.name.insert(
 )
 
 // Retrieve mapped data
-Person.id.name.one === (1, 
+Person.id.name.get.head=== (1, 
   Map(
     &amp;quot;en&amp;quot; -&amp;gt; &amp;quot;Dmitri Shostakovich&amp;quot;,
     &amp;quot;de&amp;quot; -&amp;gt; &amp;quot;Dmitri Schostakowitsch&amp;quot;,
@@ -348,13 +348,13 @@ the &lt;a href=&#34;https://github.com/scalamolecule/molecule/tree/master/corete
 
 &lt;h1 id=&#34;schema:e608d9ac6a0d5e2b6db229b78a3e65b4&#34;&gt;Schema&lt;/h1&gt;
 
-&lt;p&gt;A &lt;a href=&#34;http://docs.datomic.com/schema.html&#34;&gt;Datomic &lt;code&gt;schema&lt;/code&gt;&lt;/a&gt; defines the set of possible &lt;code&gt;attributes&lt;/code&gt; that we can use.&lt;/p&gt;
+&lt;p&gt;A &lt;a href=&#34;http://docs.datomic.com/schema.html&#34;&gt;Datomic schema&lt;/a&gt; defines the set of possible attributes that we can use.&lt;/p&gt;
 
 &lt;h2 id=&#34;schema-definition-file:e608d9ac6a0d5e2b6db229b78a3e65b4&#34;&gt;Schema definition file&lt;/h2&gt;
 
 &lt;p&gt;Molecule provides an intuitive and type-safe dsl to model your schema in a Schema definition file.
-After each change you make in this file you need to &lt;code&gt;sbt compile&lt;/code&gt; to use your updated schema with
-your molecules.&lt;/p&gt;
+After each change you make in this file you need to compile your project with &lt;code&gt;sbt compile&lt;/code&gt; so that the
+sbt-plugin can create a Molecule DSL from your definitons.&lt;/p&gt;
 
 &lt;p&gt;Let&amp;rsquo;s look at the schema definition of the Seattle example:&lt;/p&gt;
 
@@ -386,7 +386,7 @@ object SeattleDefinition {
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;The outer object &lt;code&gt;SeattleDefinition&lt;/code&gt; encapsulates our schema definition. All such objects have to have a
-named ending in &amp;ldquo;Definition&amp;rdquo; in order for the MoleculePlugin to be able to find it.&lt;/p&gt;
+named ending in &amp;ldquo;Definition&amp;rdquo; in order for the sbt-MoleculePlugin to be able to find it.&lt;/p&gt;
 
 &lt;h3 id=&#34;molecule-arity:e608d9ac6a0d5e2b6db229b78a3e65b4&#34;&gt;Molecule arity&lt;/h3&gt;
 
@@ -441,12 +441,11 @@ entity in Datomic can associate values of attributes &lt;em&gt;from any namespac
 
 &lt;p&gt;we &lt;em&gt;shouldn&amp;rsquo;t&lt;/em&gt; think of it like a&lt;/p&gt;
 
-&lt;p&gt;&amp;ldquo;&lt;code&gt;Community&lt;/code&gt; table with &lt;code&gt;name&lt;/code&gt; field with a join to &lt;code&gt;Neighborhood&lt;/code&gt; table with a &lt;code&gt;name&lt;/code&gt; field set to &amp;ldquo;Tough&amp;rdquo; (wrong!)&lt;/p&gt;
+&lt;p&gt;&amp;ldquo;&lt;code&gt;Community&lt;/code&gt; table with &lt;code&gt;name&lt;/code&gt; field with a join to &lt;code&gt;Neighborhood&lt;/code&gt; table with a &lt;code&gt;name&lt;/code&gt; field set to &amp;lsquo;Tough&amp;rsquo;&amp;rdquo; (wrong!)&lt;/p&gt;
 
 &lt;p&gt;but rather think it as&lt;/p&gt;
 
-&lt;p&gt;&amp;ldquo;&lt;strong&gt;&lt;em&gt;entities&lt;/em&gt;&lt;/strong&gt; with a &lt;code&gt;communityName&lt;/code&gt; attribute and a reference to an entity having a &lt;code&gt;neighborhoodName&lt;/code&gt; value equalling
-&amp;ldquo;Tough&amp;rdquo;&lt;/p&gt;
+&lt;p&gt;&amp;ldquo;&lt;strong&gt;&lt;em&gt;Entities&lt;/em&gt;&lt;/strong&gt; with a &lt;code&gt;communityName&lt;/code&gt; attribute having a reference to an entity with a &lt;code&gt;neighborhoodName&lt;/code&gt; value &amp;lsquo;Tough&amp;rsquo;&amp;rdquo;&lt;/p&gt;
 
 &lt;h3 id=&#34;partitions:e608d9ac6a0d5e2b6db229b78a3e65b4&#34;&gt;Partitions&lt;/h3&gt;
 
@@ -1197,7 +1196,7 @@ Person.name.age_.gender // require but omit values (&amp;quot;tacet values&amp;q
 &lt;p&gt;&lt;a href=&#34;http://scalamolecule.org/manual/query/mapped&#34;&gt;Maped values&lt;/a&gt; - mapped attribute values
 (&lt;a href=&#34;https://github.com/scalamolecule/molecule/tree/master/coretest/src/test/scala/molecule/attrMap&#34;&gt;tests&lt;/a&gt;)&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.id.name.one === (
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.id.name.get.head === (
   1, 
   Map(
     &amp;quot;en&amp;quot; -&amp;gt; &amp;quot;Dmitri Shostakovich&amp;quot;,
@@ -1235,8 +1234,8 @@ Person.age(max)
 &lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val person = Person.name(?).age(?)
 
 // Re-use `person`
-val Johan  = person(&amp;quot;John&amp;quot;, 33).one
-val Lisa   = person(&amp;quot;Lisa&amp;quot;, 27).one
+val Johan  = person(&amp;quot;John&amp;quot;, 33).get.head
+val Lisa   = person(&amp;quot;Lisa&amp;quot;, 27).get.head
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;&lt;a href=&#34;http://scalamolecule.org/manual/query/relationships&#34;&gt;Relationships&lt;/a&gt; - Connect namespaces with

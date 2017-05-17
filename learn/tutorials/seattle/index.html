@@ -309,7 +309,7 @@ Community.name.type_(tw).get(3) === List(
 <p>Retrieving values of many-attributes like <code>category</code> gives us sets
 of values back</p>
 
-<pre><code class="language-scala">Community.name_(&quot;belltown&quot;).category.one === Set(&quot;events&quot;, &quot;news&quot;)
+<pre><code class="language-scala">Community.name_(&quot;belltown&quot;).category.get.head === Set(&quot;events&quot;, &quot;news&quot;)
 </code></pre>
 
 <p>Since we often want a single result back, Molecule supplies a <code>one</code> convenience method that calls <code>get.head</code>.</p>

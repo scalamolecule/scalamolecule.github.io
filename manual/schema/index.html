@@ -115,13 +115,13 @@
 
 <h1 id="schema:e608d9ac6a0d5e2b6db229b78a3e65b4">Schema</h1>
 
-<p>A <a href="http://docs.datomic.com/schema.html">Datomic <code>schema</code></a> defines the set of possible <code>attributes</code> that we can use.</p>
+<p>A <a href="http://docs.datomic.com/schema.html">Datomic schema</a> defines the set of possible attributes that we can use.</p>
 
 <h2 id="schema-definition-file:e608d9ac6a0d5e2b6db229b78a3e65b4">Schema definition file</h2>
 
 <p>Molecule provides an intuitive and type-safe dsl to model your schema in a Schema definition file.
-After each change you make in this file you need to <code>sbt compile</code> to use your updated schema with
-your molecules.</p>
+After each change you make in this file you need to compile your project with <code>sbt compile</code> so that the
+sbt-plugin can create a Molecule DSL from your definitons.</p>
 
 <p>Let&rsquo;s look at the schema definition of the Seattle example:</p>
 
@@ -153,7 +153,7 @@ object SeattleDefinition {
 </code></pre>
 
 <p>The outer object <code>SeattleDefinition</code> encapsulates our schema definition. All such objects have to have a
-named ending in &ldquo;Definition&rdquo; in order for the MoleculePlugin to be able to find it.</p>
+named ending in &ldquo;Definition&rdquo; in order for the sbt-MoleculePlugin to be able to find it.</p>
 
 <h3 id="molecule-arity:e608d9ac6a0d5e2b6db229b78a3e65b4">Molecule arity</h3>
 
@@ -208,12 +208,11 @@ entity in Datomic can associate values of attributes <em>from any namespace</em>
 
 <p>we <em>shouldn&rsquo;t</em> think of it like a</p>
 
-<p>&ldquo;<code>Community</code> table with <code>name</code> field with a join to <code>Neighborhood</code> table with a <code>name</code> field set to &ldquo;Tough&rdquo; (wrong!)</p>
+<p>&ldquo;<code>Community</code> table with <code>name</code> field with a join to <code>Neighborhood</code> table with a <code>name</code> field set to &lsquo;Tough&rsquo;&rdquo; (wrong!)</p>
 
 <p>but rather think it as</p>
 
-<p>&ldquo;<strong><em>entities</em></strong> with a <code>communityName</code> attribute and a reference to an entity having a <code>neighborhoodName</code> value equalling
-&ldquo;Tough&rdquo;</p>
+<p>&ldquo;<strong><em>Entities</em></strong> with a <code>communityName</code> attribute having a reference to an entity with a <code>neighborhoodName</code> value &lsquo;Tough&rsquo;&rdquo;</p>
 
 <h3 id="partitions:e608d9ac6a0d5e2b6db229b78a3e65b4">Partitions</h3>
 
