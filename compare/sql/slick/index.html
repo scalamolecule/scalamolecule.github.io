@@ -16,91 +16,131 @@
   <link href="" rel="alternate" type="application/rss+xml" title="Molecule" />
 </head>
 <body>
-<br>
-<div class="container">
-  <div class="col-md-12 column" style="padding-left:0px; ">
-    <div class="col-md-12 column" style="padding-left:0px;height:30px;">
+<div class="wrapper">
+<div class="container" style="padding-top:20px">
+  <div class="col-md-12 column" style="padding-left:0px; margin-bottom:15px">
+    <div class="col-md-12 column" style="padding-left:0px;height:50px;">
 
     <ul class="nav nav-pills">
-      <li class="dropdown ">
-        <a data-toggle="dropdown" href="http://scalamolecule.org/home/front/" target="_top" onclick="javascript:top.location = 'http:\/\/scalamolecule.org\/home\/front\/';return true;">Molecule</a>
-          <ul class="dropdown-menu level1" role="menu" aria-labelledby="dropdownMenu">
-            <li><a href="http://scalamolecule.org/home/front/">Home</a></li>
-            <li><a href="http://scalamolecule.org/home/introduction/">Introduction</a></li>
-            <li><a href="http://scalamolecule.org/home/about/">About</a></li>
-        </ul>
-      </li>
+      <li><a href="/" style="padding-left: 6px; padding-right: 13px; vertical-align: top; margin-top: 0px;"><img src="/img/logo/MoleculeLogo600.png" alt="" width="200"></a></li>
+      
       <li class="dropdown active">
-        <a data-toggle="dropdown" href="http://scalamolecule.org/compare/overview/" target="_top" onclick="javascript:top.location = 'http:\/\/scalamolecule.org\/compare\/overview\/';return true;">Compare</a>
+        <a data-toggle="dropdown" href="/compare/" target="_top" onclick="javascript:top.location = '\/compare\/';return true;">Compare</a>
           <ul class="dropdown-menu level1" role="menu" aria-labelledby="dropdownMenu">
-            <li><a href="http://scalamolecule.org/compare/datomic/">Datomic</a></li>
+            <li><a href="/compare/datomic/">Datomic</a></li>
             <li class="dropdown-submenu">
-              <a href="http://scalamolecule.org/compare/sql/">SQL</a>
+              <a href="/compare/sql/">SQL</a>
               <ul class="dropdown-menu">
-                <li><a href="http://scalamolecule.org/compare/sql/slick/">Slick</a></li>
+                <li><a href="/compare/sql/slick/">Slick</a></li>
+              </ul>
+            </li>
+            <li><a href="/compare/gremlin/">Gremlin</a></li>
+        </ul>
+      </li>
+      <li class="dropdown ">
+        <a data-toggle="dropdown" href="/resources/" target="_top" onclick="javascript:top.location = '\/resources\/';return true;">Resources</a>
+          <ul class="dropdown-menu level1" role="menu" aria-labelledby="dropdownMenu">
+            <li class="dropdown-submenu">
+              <a href="/resources/tutorials/">Tutorials</a>
+              <ul class="dropdown-menu">
+                <li><a href="/resources/tutorials/seattle/">Seattle</a></li>
+              </ul>
+            </li>
+            <li class="dropdown-submenu">
+              <a href="/resources/videos/">Videos</a>
+              <ul class="dropdown-menu">
+                <li><a href="/resources/videos/2017-04-25_marc_grue/">Molecule presentation</a></li>
               </ul>
             </li>
         </ul>
       </li>
       <li class="dropdown ">
-        <a data-toggle="dropdown" href="http://scalamolecule.org/learn/overview/" target="_top" onclick="javascript:top.location = 'http:\/\/scalamolecule.org\/learn\/overview\/';return true;">Learn</a>
+        <a data-toggle="dropdown" href="/documentation/" target="_top" onclick="javascript:top.location = '\/documentation\/';return true;">Documentation</a>
           <ul class="dropdown-menu level1" role="menu" aria-labelledby="dropdownMenu">
             <li class="dropdown-submenu">
-              <a href="http://scalamolecule.org/learn/tutorials/">Tutorials</a>
+              <a href="/documentation/getting-started/">Getting started</a>
               <ul class="dropdown-menu">
-                <li><a href="http://scalamolecule.org/learn/tutorials/seattle/">Seattle</a></li>
+                <li><a href="/documentation/getting-started/introduction/">Introduction</a></li>
+                <li><a href="/documentation/getting-started/quickstart/">Demo quickstart</a></li>
+                <li><a href="/documentation/getting-started/project-setup/">Project setup</a></li>
               </ul>
             </li>
             <li class="dropdown-submenu">
-              <a href="http://scalamolecule.org/learn/videos/">Videos</a>
+              <a href="/documentation/schema/">Schema</a>
               <ul class="dropdown-menu">
-                <li><a href="http://scalamolecule.org/learn/videos/2017-04-25_Marc_Grue/">Molecule presentation</a></li>
+                <li><a href="/documentation/schema/transaction/">Transaction</a></li>
+              </ul>
+            </li>
+            <li class="dropdown-submenu">
+              <a href="/documentation/attributes/">Attributes</a>
+              <ul class="dropdown-menu">
+                <li><a href="/documentation/attributes/basics/">Basics</a></li>
+                <li><a href="/documentation/attributes/modes/">Mandatory/Tacet/Optional</a></li>
+                <li><a href="/documentation/attributes/mapped/">Map attributes</a></li>
+                <li><a href="/documentation/attributes/expressions/">Expressions</a></li>
+                <li><a href="/documentation/attributes/aggregates/">Aggregates</a></li>
+                <li><a href="/documentation/attributes/parameterized/">Parameterized</a></li>
+              </ul>
+            </li>
+            <li><a href="/documentation/entities/">Entities</a></li>
+            <li class="dropdown-submenu">
+              <a href="/documentation/relationships/">Relationships</a>
+              <ul class="dropdown-menu">
+                <li><a href="/documentation/relationships/card-one/">Cardinality one</a></li>
+                <li><a href="/documentation/relationships/card-many/">Cardinality many</a></li>
+                <li><a href="/documentation/relationships/nested/">Nested</a></li>
+                <li><a href="/documentation/relationships/composites/">Composites</a></li>
+              </ul>
+            </li>
+            <li class="dropdown-submenu">
+              <a href="/documentation/crud/">CRUD</a>
+              <ul class="dropdown-menu">
+                <li><a href="/documentation/crud/save/">Save</a></li>
+                <li><a href="/documentation/crud/insert/">Insert</a></li>
+                <li><a href="/documentation/crud/get/">Get</a></li>
+                <li><a href="/documentation/crud/update/">Update</a></li>
+                <li><a href="/documentation/crud/retract/">Retract</a></li>
+              </ul>
+            </li>
+            <li class="dropdown-submenu">
+              <a href="/documentation/transactions/">Transactions</a>
+              <ul class="dropdown-menu">
+                <li><a href="/documentation/transactions/tx-data/">Tx data</a></li>
+                <li><a href="/documentation/transactions/tx-meta-data/">Tx meta data</a></li>
+              </ul>
+            </li>
+            <li class="dropdown-submenu">
+              <a href="/documentation/time/">Time</a>
+              <ul class="dropdown-menu">
+                <li><a href="/documentation/time/asof/">AsOf</a></li>
+                <li><a href="/documentation/time/since/">Since</a></li>
+              </ul>
+            </li>
+            <li class="dropdown-submenu">
+              <a href="/documentation/graphs/">Graphs</a>
+              <ul class="dropdown-menu">
+                <li><a href="/documentation/graphs/self/">Self</a></li>
+                <li><a href="/documentation/graphs/other/">Other</a></li>
+                <li><a href="/documentation/graphs/edge-self/">Edge self</a></li>
+                <li><a href="/documentation/graphs/edge-other/">Edge other</a></li>
               </ul>
             </li>
         </ul>
       </li>
       <li class="dropdown ">
-        <a data-toggle="dropdown" href="http://scalamolecule.org/manual/overview/" target="_top" onclick="javascript:top.location = 'http:\/\/scalamolecule.org\/manual\/overview\/';return true;">Manual</a>
+        <a data-toggle="dropdown" href="/developer/" target="_top" onclick="javascript:top.location = '\/developer\/';return true;">Developer</a>
           <ul class="dropdown-menu level1" role="menu" aria-labelledby="dropdownMenu">
-            <li><a href="http://scalamolecule.org/manual/getting-started/">Getting started</a></li>
-            <li class="dropdown-submenu">
-              <a href="http://scalamolecule.org/manual/schema/">Schema</a>
-              <ul class="dropdown-menu">
-                <li><a href="http://scalamolecule.org/manual/schema/transaction/">Transaction</a></li>
-              </ul>
-            </li>
-            <li><a href="http://scalamolecule.org/manual/insert/">Insert</a></li>
-            <li><a href="http://scalamolecule.org/manual/update/">Update/retract</a></li>
-            <li class="dropdown-submenu">
-              <a href="http://scalamolecule.org/manual/query/">Query</a>
-              <ul class="dropdown-menu">
-                <li><a href="http://scalamolecule.org/manual/query/builder/">Builder</a></li>
-                <li><a href="http://scalamolecule.org/manual/query/mapped/">Mapped attributes</a></li>
-                <li><a href="http://scalamolecule.org/manual/query/expressions/">Expressions</a></li>
-                <li><a href="http://scalamolecule.org/manual/query/aggregates/">Aggregates</a></li>
-                <li><a href="http://scalamolecule.org/manual/query/parameterize/">Parameterize</a></li>
-                <li><a href="http://scalamolecule.org/manual/query/relationships/">Relationships</a></li>
-                <li><a href="http://scalamolecule.org/manual/query/bidirectional%20refs/">Bidirectional refs</a></li>
-                <li><a href="http://scalamolecule.org/manual/query/txMetaData/">Tx meta data</a></li>
-                <li><a href="http://scalamolecule.org/manual/query/composites/">Composites</a></li>
-              </ul>
-            </li>
+            <li><a href="/developer/boilerplate/">Boilerplate</a></li>
+            <li><a href="/developer/transformation/">Transformation</a></li>
         </ul>
       </li>
       <li class="dropdown ">
-        <a data-toggle="dropdown" href="http://scalamolecule.org/developer/overview/" target="_top" onclick="javascript:top.location = 'http:\/\/scalamolecule.org\/developer\/overview\/';return true;">Developer</a>
-          <ul class="dropdown-menu level1" role="menu" aria-labelledby="dropdownMenu">
-            <li><a href="http://scalamolecule.org/developer/boilerplate/">Boilerplate</a></li>
-            <li><a href="http://scalamolecule.org/developer/transformation/">Transformation</a></li>
-        </ul>
-      </li>
-      <li class="dropdown ">
-        <a data-toggle="dropdown" href="http://scalamolecule.org/community/overview/" target="_top" onclick="javascript:top.location = 'http:\/\/scalamolecule.org\/community\/overview\/';return true;">Community</a>
+        <a data-toggle="dropdown" href="/community/" target="_top" onclick="javascript:top.location = '\/community\/';return true;">Community</a>
           <ul class="dropdown-menu level1" role="menu" aria-labelledby="dropdownMenu">
         </ul>
       </li>
       <li>
-        <div  style="padding-left:14px;padding-top:3px;height:24px;float:right;">
+        <div  style="padding-left:14px;padding-top:19px;height:24px;float:right;">
             <a href="https://github.com/scalamolecule/molecule" class="github-button" data-icon="octicon-star">Github</a>
             
           </div>
@@ -113,11 +153,11 @@
 <div class="col-sm-10 column" style="padding-left:8px;">
 	
 
-<h1 id="slick-vs-molecule-examples:ce7ebdb2cbbacd766a8940138f40260d">Slick vs. Molecule examples</h1>
+<h1 id="slick-vs-molecule-examples">Slick vs. Molecule examples</h1>
 
 <p>Using examples from <a href="http://slick.typesafe.com/doc/3.0.0-M1/sql-to-slick.html#sql-vs-slick-examples">Slick</a>:</p>
 
-<h4 id="select-all-table-values:ce7ebdb2cbbacd766a8940138f40260d">Select all table values</h4>
+<h4 id="select-all-table-values">Select all table values</h4>
 
 <pre><code>// Slick
 people.run
@@ -129,7 +169,7 @@ people.run
 Person.name.age.get
 </code></pre>
 
-<h4 id="select-certain-columns:ce7ebdb2cbbacd766a8940138f40260d">Select certain columns</h4>
+<h4 id="select-certain-columns">Select certain columns</h4>
 
 <pre><code>people.map(p =&gt; (p.age, p.name ++ &quot; (&quot; ++ p.id.asColumnOf[String] ++ &quot;)&quot;)).run
 </code></pre>
@@ -139,7 +179,7 @@ Person.name.age.get
 <pre><code class="language-scala">Person.age.name.e.get map { case (age, name, id) =&gt; (age, s&quot;$name ($id)&quot; }
 </code></pre>
 
-<h4 id="filter-where:ce7ebdb2cbbacd766a8940138f40260d">filter / WHERE</h4>
+<h4 id="filter-where">filter / WHERE</h4>
 
 <pre><code class="language-scala">people.filter(p =&gt; p.age &gt;= 18 &amp;&amp; p.name === &quot;C. Vogt&quot;).run
 </code></pre>
@@ -151,7 +191,7 @@ Person.name.age.get
 
 <p>(Again we would define which attribute values we want to return)</p>
 
-<h4 id="sortby-order-by:ce7ebdb2cbbacd766a8940138f40260d">sortBy / ORDER BY</h4>
+<h4 id="sortby-order-by">sortBy / ORDER BY</h4>
 
 <pre><code class="language-scala">people.sortBy(p =&gt; (p.age.asc, p.name)).run
 </code></pre>
@@ -161,7 +201,7 @@ Person.name.age.get
 <pre><code class="language-scala">Person.age.name.get.toSeq sortBy(_._1)
 </code></pre>
 
-<h4 id="aggregations:ce7ebdb2cbbacd766a8940138f40260d">Aggregations</h4>
+<h4 id="aggregations">Aggregations</h4>
 
 <pre><code class="language-scala">people.map(_.age).max.run
 </code></pre>
@@ -176,7 +216,7 @@ Person.age(max(3)).get
 
 <p>We can aggregate values also with the counterpart <code>min</code> or get a random value with <code>rand</code>. Or perform aggregate calculations with <code>count</code>, <code>countDistinct</code>, <code>sum</code>, <code>avg</code>, <code>median</code>, <code>variance</code> and <code>stddev</code> which are all built functions in Datomic.</p>
 
-<h4 id="groupby-group-by:ce7ebdb2cbbacd766a8940138f40260d">groupBy / GROUP BY</h4>
+<h4 id="groupby-group-by">groupBy / GROUP BY</h4>
 
 <pre><code class="language-scala">people.groupBy(p =&gt; p.addressId)
        .map{ case (addressId, group) =&gt; (addressId, group.map(_.age).avg) }
@@ -188,7 +228,7 @@ Person.age(max(3)).get
 <pre><code class="language-scala">Person.address.age(avg).get
 </code></pre>
 
-<h4 id="groupby-filter-having:ce7ebdb2cbbacd766a8940138f40260d">groupBy+filter / HAVING</h4>
+<h4 id="groupby-filter-having">groupBy+filter / HAVING</h4>
 
 <pre><code class="language-scala">people.groupBy(p =&gt; p.addressId)
        .map{ case (addressId, group) =&gt; (addressId, group.map(_.age).avg) }
@@ -200,7 +240,7 @@ Person.age(max(3)).get
 <pre><code class="language-scala">Person.address.age(avg).get.filter(_._2 &gt; 50)
 </code></pre>
 
-<h4 id="implicit-join:ce7ebdb2cbbacd766a8940138f40260d">Implicit join</h4>
+<h4 id="implicit-join">Implicit join</h4>
 
 <pre><code class="language-scala">people.flatMap(p =&gt;
   addresses.filter(a =&gt; p.addressId === a.id)
@@ -217,7 +257,7 @@ Person.age(max(3)).get
 <pre><code class="language-scala">Person.name.Address.city.get
 </code></pre>
 
-<h4 id="explicit-join:ce7ebdb2cbbacd766a8940138f40260d">Explicit join</h4>
+<h4 id="explicit-join">Explicit join</h4>
 
 <pre><code class="language-scala">(people join addresses on (_.addressId === _.id))
   .map{ case (p, a) =&gt; (p.name, a.city) }.run
@@ -226,7 +266,7 @@ Person.age(max(3)).get
 <pre><code class="language-scala">Person.name.Address.city.get
 </code></pre>
 
-<h4 id="left-right-outer-join:ce7ebdb2cbbacd766a8940138f40260d">left/right/outer join</h4>
+<h4 id="left-right-outer-join">left/right/outer join</h4>
 
 <pre><code class="language-scala">(addresses joinLeft people on (_.id === _.addressId))
   .map{ case (a, p) =&gt; (p.map(_.name), a.city) }.run
@@ -236,7 +276,7 @@ Person.age(max(3)).get
 Person.name$.Address.city.get
 </code></pre>
 
-<h4 id="subquery:ce7ebdb2cbbacd766a8940138f40260d">Subquery</h4>
+<h4 id="subquery">Subquery</h4>
 
 <pre><code class="language-scala">val address_ids = addresses.filter(_.city === &quot;New York City&quot;).map(_.id)
 people.filter(_.id in address_ids).run // &lt;- run as one query
@@ -245,7 +285,7 @@ people.filter(_.id in address_ids).run // &lt;- run as one query
 <pre><code class="language-scala">Person.age.name.Address.city_(&quot;New York City&quot;).get
 </code></pre>
 
-<h4 id="insert:ce7ebdb2cbbacd766a8940138f40260d">insert</h4>
+<h4 id="insert">insert</h4>
 
 <pre><code class="language-scala">people.map(p =&gt; (p.name, p.age, p.addressId))
        .insert((&quot;M Odersky&quot;,12345,1))
@@ -254,7 +294,7 @@ people.filter(_.id in address_ids).run // &lt;- run as one query
 <pre><code class="language-scala">Person.name(&quot;M Odersky&quot;).age(12345).address(1).save
 </code></pre>
 
-<h4 id="update:ce7ebdb2cbbacd766a8940138f40260d">update</h4>
+<h4 id="update">update</h4>
 
 <pre><code class="language-scala">people.filter(_.name === &quot;M Odersky&quot;)
        .map(p =&gt; (p.name,p.age))
@@ -267,7 +307,7 @@ val oderskyId = Person.e.name_(&quot;M Odersky&quot;).get.head
 Person(oderskyId).name(&quot;M. Odersky&quot;).age(54321).update
 </code></pre>
 
-<h4 id="delete:ce7ebdb2cbbacd766a8940138f40260d">delete</h4>
+<h4 id="delete">delete</h4>
 
 <pre><code class="language-scala">people.filter(p =&gt; p.name === &quot;M. Odersky&quot;)
        .delete
@@ -276,7 +316,7 @@ Person(oderskyId).name(&quot;M. Odersky&quot;).age(54321).update
 <pre><code class="language-scala">Person.e.name_(&quot;M. Odersky&quot;).get.head.retract
 </code></pre>
 
-<h4 id="case:ce7ebdb2cbbacd766a8940138f40260d">case</h4>
+<h4 id="case">case</h4>
 
 <pre><code class="language-scala">people.map(p =&gt;
   Case
@@ -293,44 +333,64 @@ Person(oderskyId).name(&quot;M. Odersky&quot;).age(54321).update
 
 </div>
 
-<div class="col-sm-2 column" style="padding-left:20px;padding-top:22px">
-  <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix">
-    <ul class="bs-docs-sidenav">
+<div class="col-sm-2 column" style="padding-left:20px;padding-top:22px;padding-right: 0px;">
+  <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm ">
+  <ul class="bs-docs-sidenav">
+    
       
         
           
-            
-              <li><a href="http://scalamolecule.org/compare/overview/">Compare</a></li>
-              
+            <li><a href="/compare/">Compare</a></li>
             
           
-            
-              <li><a href="http://scalamolecule.org/compare/datomic/">Datomic</a></li>
-              
+        
+          
+            <li><a href="/compare/datomic/">Datomic</a></li>
             
           
+        
+          
+            <li><a href="/compare/sql/">SQL</a></li>
             
-              <li><a href="http://scalamolecule.org/compare/sql/">SQL</a></li>
-              
-                <ul class="level2">
-                  
-                  <li class="active"><b>Slick</b></li>
-                  
+              <ul class="level2">
                 
-                </ul>
+                <li class="active"><b>Slick</b></li>
+                
               
+              </ul>
+            
+          
+        
+          
+            <li><a href="/compare/gremlin/">Gremlin</a></li>
             
           
         
       
-    </ul>
-  </nav>
+    
+  </ul>
+</nav>
 </div>
 
      
   </div> 
 </div> 
+<div class="push"></div>
+</div> 
 
+<footer class="bs-docs-footer">
+
+  <div class="container">
+    <ul class="bs-docs-footer-links">
+      <li style="vertical-align: top; margin-top: 0px;"><a href="/front/"><img src="/img/logo/MoleculeLogo200.png" alt=""></a></li>
+      <li><a href="https://github.com/scalamolecule/molecule">GitHub</a></li>
+      <li><a href="https://groups.google.com/forum/#!forum/molecule-dsl">Forum</a></li>
+      <li><a href="/about/">About</a></li>
+      <li><a href="/credits/">Credits</a></li>
+    </ul>
+    <p> Created by Marc Grue. Licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0" target="_blank" rel="license">Apache License 2.0</a></p>
+  </div>
+</footer>
 
 
 <script type="text/javascript" src="/js/jquery-1.11.2.min.js"></script>
@@ -359,7 +419,6 @@ Person(oderskyId).name(&quot;M. Odersky&quot;).age(54321).update
 
   ga('create', 'UA-2787756-3', 'auto');
   ga('send', 'pageview');
-
 </script>
     
 </body>

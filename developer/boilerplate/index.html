@@ -16,91 +16,131 @@
   <link href="" rel="alternate" type="application/rss+xml" title="Molecule" />
 </head>
 <body>
-<br>
-<div class="container">
-  <div class="col-md-12 column" style="padding-left:0px; ">
-    <div class="col-md-12 column" style="padding-left:0px;height:30px;">
+<div class="wrapper">
+<div class="container" style="padding-top:20px">
+  <div class="col-md-12 column" style="padding-left:0px; margin-bottom:15px">
+    <div class="col-md-12 column" style="padding-left:0px;height:50px;">
 
     <ul class="nav nav-pills">
+      <li><a href="/" style="padding-left: 6px; padding-right: 13px; vertical-align: top; margin-top: 0px;"><img src="/img/logo/MoleculeLogo600.png" alt="" width="200"></a></li>
+      
       <li class="dropdown ">
-        <a data-toggle="dropdown" href="http://scalamolecule.org/home/front/" target="_top" onclick="javascript:top.location = 'http:\/\/scalamolecule.org\/home\/front\/';return true;">Molecule</a>
+        <a data-toggle="dropdown" href="/compare/" target="_top" onclick="javascript:top.location = '\/compare\/';return true;">Compare</a>
           <ul class="dropdown-menu level1" role="menu" aria-labelledby="dropdownMenu">
-            <li><a href="http://scalamolecule.org/home/front/">Home</a></li>
-            <li><a href="http://scalamolecule.org/home/introduction/">Introduction</a></li>
-            <li><a href="http://scalamolecule.org/home/about/">About</a></li>
+            <li><a href="/compare/datomic/">Datomic</a></li>
+            <li class="dropdown-submenu">
+              <a href="/compare/sql/">SQL</a>
+              <ul class="dropdown-menu">
+                <li><a href="/compare/sql/slick/">Slick</a></li>
+              </ul>
+            </li>
+            <li><a href="/compare/gremlin/">Gremlin</a></li>
         </ul>
       </li>
       <li class="dropdown ">
-        <a data-toggle="dropdown" href="http://scalamolecule.org/compare/overview/" target="_top" onclick="javascript:top.location = 'http:\/\/scalamolecule.org\/compare\/overview\/';return true;">Compare</a>
-          <ul class="dropdown-menu level1" role="menu" aria-labelledby="dropdownMenu">
-            <li><a href="http://scalamolecule.org/compare/datomic/">Datomic</a></li>
-            <li class="dropdown-submenu">
-              <a href="http://scalamolecule.org/compare/sql/">SQL</a>
-              <ul class="dropdown-menu">
-                <li><a href="http://scalamolecule.org/compare/sql/slick/">Slick</a></li>
-              </ul>
-            </li>
-        </ul>
-      </li>
-      <li class="dropdown ">
-        <a data-toggle="dropdown" href="http://scalamolecule.org/learn/overview/" target="_top" onclick="javascript:top.location = 'http:\/\/scalamolecule.org\/learn\/overview\/';return true;">Learn</a>
+        <a data-toggle="dropdown" href="/resources/" target="_top" onclick="javascript:top.location = '\/resources\/';return true;">Resources</a>
           <ul class="dropdown-menu level1" role="menu" aria-labelledby="dropdownMenu">
             <li class="dropdown-submenu">
-              <a href="http://scalamolecule.org/learn/tutorials/">Tutorials</a>
+              <a href="/resources/tutorials/">Tutorials</a>
               <ul class="dropdown-menu">
-                <li><a href="http://scalamolecule.org/learn/tutorials/seattle/">Seattle</a></li>
+                <li><a href="/resources/tutorials/seattle/">Seattle</a></li>
               </ul>
             </li>
             <li class="dropdown-submenu">
-              <a href="http://scalamolecule.org/learn/videos/">Videos</a>
+              <a href="/resources/videos/">Videos</a>
               <ul class="dropdown-menu">
-                <li><a href="http://scalamolecule.org/learn/videos/2017-04-25_Marc_Grue/">Molecule presentation</a></li>
+                <li><a href="/resources/videos/2017-04-25_marc_grue/">Molecule presentation</a></li>
               </ul>
             </li>
         </ul>
       </li>
       <li class="dropdown ">
-        <a data-toggle="dropdown" href="http://scalamolecule.org/manual/overview/" target="_top" onclick="javascript:top.location = 'http:\/\/scalamolecule.org\/manual\/overview\/';return true;">Manual</a>
+        <a data-toggle="dropdown" href="/documentation/" target="_top" onclick="javascript:top.location = '\/documentation\/';return true;">Documentation</a>
           <ul class="dropdown-menu level1" role="menu" aria-labelledby="dropdownMenu">
-            <li><a href="http://scalamolecule.org/manual/getting-started/">Getting started</a></li>
             <li class="dropdown-submenu">
-              <a href="http://scalamolecule.org/manual/schema/">Schema</a>
+              <a href="/documentation/getting-started/">Getting started</a>
               <ul class="dropdown-menu">
-                <li><a href="http://scalamolecule.org/manual/schema/transaction/">Transaction</a></li>
+                <li><a href="/documentation/getting-started/introduction/">Introduction</a></li>
+                <li><a href="/documentation/getting-started/quickstart/">Demo quickstart</a></li>
+                <li><a href="/documentation/getting-started/project-setup/">Project setup</a></li>
               </ul>
             </li>
-            <li><a href="http://scalamolecule.org/manual/insert/">Insert</a></li>
-            <li><a href="http://scalamolecule.org/manual/update/">Update/retract</a></li>
             <li class="dropdown-submenu">
-              <a href="http://scalamolecule.org/manual/query/">Query</a>
+              <a href="/documentation/schema/">Schema</a>
               <ul class="dropdown-menu">
-                <li><a href="http://scalamolecule.org/manual/query/builder/">Builder</a></li>
-                <li><a href="http://scalamolecule.org/manual/query/mapped/">Mapped attributes</a></li>
-                <li><a href="http://scalamolecule.org/manual/query/expressions/">Expressions</a></li>
-                <li><a href="http://scalamolecule.org/manual/query/aggregates/">Aggregates</a></li>
-                <li><a href="http://scalamolecule.org/manual/query/parameterize/">Parameterize</a></li>
-                <li><a href="http://scalamolecule.org/manual/query/relationships/">Relationships</a></li>
-                <li><a href="http://scalamolecule.org/manual/query/bidirectional%20refs/">Bidirectional refs</a></li>
-                <li><a href="http://scalamolecule.org/manual/query/txMetaData/">Tx meta data</a></li>
-                <li><a href="http://scalamolecule.org/manual/query/composites/">Composites</a></li>
+                <li><a href="/documentation/schema/transaction/">Transaction</a></li>
+              </ul>
+            </li>
+            <li class="dropdown-submenu">
+              <a href="/documentation/attributes/">Attributes</a>
+              <ul class="dropdown-menu">
+                <li><a href="/documentation/attributes/basics/">Basics</a></li>
+                <li><a href="/documentation/attributes/modes/">Mandatory/Tacet/Optional</a></li>
+                <li><a href="/documentation/attributes/mapped/">Map attributes</a></li>
+                <li><a href="/documentation/attributes/expressions/">Expressions</a></li>
+                <li><a href="/documentation/attributes/aggregates/">Aggregates</a></li>
+                <li><a href="/documentation/attributes/parameterized/">Parameterized</a></li>
+              </ul>
+            </li>
+            <li><a href="/documentation/entities/">Entities</a></li>
+            <li class="dropdown-submenu">
+              <a href="/documentation/relationships/">Relationships</a>
+              <ul class="dropdown-menu">
+                <li><a href="/documentation/relationships/card-one/">Cardinality one</a></li>
+                <li><a href="/documentation/relationships/card-many/">Cardinality many</a></li>
+                <li><a href="/documentation/relationships/nested/">Nested</a></li>
+                <li><a href="/documentation/relationships/composites/">Composites</a></li>
+              </ul>
+            </li>
+            <li class="dropdown-submenu">
+              <a href="/documentation/crud/">CRUD</a>
+              <ul class="dropdown-menu">
+                <li><a href="/documentation/crud/save/">Save</a></li>
+                <li><a href="/documentation/crud/insert/">Insert</a></li>
+                <li><a href="/documentation/crud/get/">Get</a></li>
+                <li><a href="/documentation/crud/update/">Update</a></li>
+                <li><a href="/documentation/crud/retract/">Retract</a></li>
+              </ul>
+            </li>
+            <li class="dropdown-submenu">
+              <a href="/documentation/transactions/">Transactions</a>
+              <ul class="dropdown-menu">
+                <li><a href="/documentation/transactions/tx-data/">Tx data</a></li>
+                <li><a href="/documentation/transactions/tx-meta-data/">Tx meta data</a></li>
+              </ul>
+            </li>
+            <li class="dropdown-submenu">
+              <a href="/documentation/time/">Time</a>
+              <ul class="dropdown-menu">
+                <li><a href="/documentation/time/asof/">AsOf</a></li>
+                <li><a href="/documentation/time/since/">Since</a></li>
+              </ul>
+            </li>
+            <li class="dropdown-submenu">
+              <a href="/documentation/graphs/">Graphs</a>
+              <ul class="dropdown-menu">
+                <li><a href="/documentation/graphs/self/">Self</a></li>
+                <li><a href="/documentation/graphs/other/">Other</a></li>
+                <li><a href="/documentation/graphs/edge-self/">Edge self</a></li>
+                <li><a href="/documentation/graphs/edge-other/">Edge other</a></li>
               </ul>
             </li>
         </ul>
       </li>
       <li class="dropdown active">
-        <a data-toggle="dropdown" href="http://scalamolecule.org/developer/overview/" target="_top" onclick="javascript:top.location = 'http:\/\/scalamolecule.org\/developer\/overview\/';return true;">Developer</a>
+        <a data-toggle="dropdown" href="/developer/" target="_top" onclick="javascript:top.location = '\/developer\/';return true;">Developer</a>
           <ul class="dropdown-menu level1" role="menu" aria-labelledby="dropdownMenu">
-            <li><a href="http://scalamolecule.org/developer/boilerplate/">Boilerplate</a></li>
-            <li><a href="http://scalamolecule.org/developer/transformation/">Transformation</a></li>
+            <li><a href="/developer/boilerplate/">Boilerplate</a></li>
+            <li><a href="/developer/transformation/">Transformation</a></li>
         </ul>
       </li>
       <li class="dropdown ">
-        <a data-toggle="dropdown" href="http://scalamolecule.org/community/overview/" target="_top" onclick="javascript:top.location = 'http:\/\/scalamolecule.org\/community\/overview\/';return true;">Community</a>
+        <a data-toggle="dropdown" href="/community/" target="_top" onclick="javascript:top.location = '\/community\/';return true;">Community</a>
           <ul class="dropdown-menu level1" role="menu" aria-labelledby="dropdownMenu">
         </ul>
       </li>
       <li>
-        <div  style="padding-left:14px;padding-top:3px;height:24px;float:right;">
+        <div  style="padding-left:14px;padding-top:19px;height:24px;float:right;">
             <a href="https://github.com/scalamolecule/molecule" class="github-button" data-icon="octicon-star">Github</a>
             
           </div>
@@ -113,7 +153,7 @@
 <div class="col-sm-10 column" style="padding-left:8px;">
 	
 
-<h1 id="boilerplate-code-generation:36a3cc328100a137a125b621a816413d">Boilerplate code generation</h1>
+<h1 id="boilerplate-code-generation">Boilerplate code generation</h1>
 
 <p>An attribute definition like</p>
 
@@ -156,12 +196,12 @@ trait Community_2[A, B] extends Community with Out_2[Community_2, Community_3, C
 <p>The type information passed on from each step of building a molecule enables our IDE to infer the type of our molecule
 and suggest possible further building blocks.</p>
 
-<h3 id="input-molecules:36a3cc328100a137a125b621a816413d">Input molecules</h3>
+<h3 id="input-molecules">Input molecules</h3>
 
 <p>The <code>Community_In_1_0</code> is a trait that the builder jumps to if we make en input molecule like <code>Community.name(?)</code>.
 From there on Molecule knows that we expect to receive an input for the placeholder <code>?</code>.</p>
 
-<h3 id="arity:36a3cc328100a137a125b621a816413d">Arity</h3>
+<h3 id="arity">Arity</h3>
 
 <p>The annotation <code>@InOut(3,8)</code> on the schema trait tells molecule how long molecules we expect to create. This is to
 not always generate the possible arity of 22 which causes a significant chunk of boilerplate code!</p>
@@ -170,7 +210,7 @@ not always generate the possible arity of 22 which causes a significant chunk of
 limitation of how many <em>where clauses</em> we can have since each added attribute to our molecules generates it&rsquo;s
 corresponding where clause. In that respect it seems a very seldom necessity to have 22 where clauses!</p>
 
-<h3 id="entity-api:36a3cc328100a137a125b621a816413d">Entity API</h3>
+<h3 id="entity-api">Entity API</h3>
 
 <p>A way to gather additional/optional values from a query is to use the entity API by applying an attribute name
 to an entity id from the query:</p>
@@ -182,7 +222,7 @@ to an entity id from the query:</p>
 
 <p><a href="https://github.com/scalamolecule/molecule/blob/master/examples/src/test/scala/molecule/examples/seattle/SeattleTests.scala#L24-L52">See entity api example</a></p>
 
-<h3 id="tacet-attributes:36a3cc328100a137a125b621a816413d">Tacet attributes</h3>
+<h3 id="tacet-attributes">Tacet attributes</h3>
 
 <p>The <code>name_</code> attributes are &ldquo;tacet&rdquo; attributes that cause a :where clause in the query but doesn&rsquo;t return any data
 (no variable in the :find section of the produced query). This is to be able to skip returning data of attributes
@@ -191,44 +231,59 @@ that we for instance apply a constant value to</p>
 <pre><code class="language-scala">Person.name.age_(28).get // no need to return age values (all 28)
 </code></pre>
 
-<h3 id="type-inferring:36a3cc328100a137a125b621a816413d">Type inferring</h3>
+<h3 id="type-inferring">Type inferring</h3>
 
 <p>The end user doesn&rsquo;t have to know about any of the generated boilerplate code since the IDE will take care of
 inferring and suggesting the possible types to proceed with.</p>
 
 </div>
 
-<div class="col-sm-2 column" style="padding-left:20px;padding-top:22px">
-  <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix">
-    <ul class="bs-docs-sidenav">
+<div class="col-sm-2 column" style="padding-left:20px;padding-top:22px;padding-right: 0px;">
+  <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm ">
+  <ul class="bs-docs-sidenav">
+    
       
         
           
-            
-              <li><a href="http://scalamolecule.org/developer/overview/">Developer</a></li>
-              
+            <li><a href="/developer/">Developer</a></li>
             
           
-            
-              <li class="active"><b>Boilerplate</b></li>
-              
+        
+          
+            <li class="active"><b>Boilerplate</b></li>
             
           
-            
-              <li><a href="http://scalamolecule.org/developer/transformation/">Transformation</a></li>
-              
+        
+          
+            <li><a href="/developer/transformation/">Transformation</a></li>
             
           
         
       
-    </ul>
-  </nav>
+    
+  </ul>
+</nav>
 </div>
 
      
   </div> 
 </div> 
+<div class="push"></div>
+</div> 
 
+<footer class="bs-docs-footer">
+
+  <div class="container">
+    <ul class="bs-docs-footer-links">
+      <li style="vertical-align: top; margin-top: 0px;"><a href="/front/"><img src="/img/logo/MoleculeLogo200.png" alt=""></a></li>
+      <li><a href="https://github.com/scalamolecule/molecule">GitHub</a></li>
+      <li><a href="https://groups.google.com/forum/#!forum/molecule-dsl">Forum</a></li>
+      <li><a href="/about/">About</a></li>
+      <li><a href="/credits/">Credits</a></li>
+    </ul>
+    <p> Created by Marc Grue. Licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0" target="_blank" rel="license">Apache License 2.0</a></p>
+  </div>
+</footer>
 
 
 <script type="text/javascript" src="/js/jquery-1.11.2.min.js"></script>
@@ -257,7 +312,6 @@ inferring and suggesting the possible types to proceed with.</p>
 
   ga('create', 'UA-2787756-3', 'auto');
   ga('send', 'pageview');
-
 </script>
     
 </body>

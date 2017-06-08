@@ -1,2566 +1,449 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Molecule</title>
+    <title>Home on Molecule</title>
     <link>http://scalamolecule.org/</link>
-    <description>Recent content on Molecule</description>
+    <description>Recent content in Home on Molecule</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
+    <lastBuildDate>Fri, 02 Jan 2015 22:06:44 +0100</lastBuildDate>
     
+	<atom:link href="http://scalamolecule.org/index.xml" rel="self" type="application/rss+xml" />
     
-    <lastBuildDate>Fri, 02 Jan 2015 22:06:44 CET</lastBuildDate>
-    <atom:link href="http://scalamolecule.org/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
-      <title>Learn</title>
-      <link>http://scalamolecule.org/learn/overview/</link>
-      <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
+      <title>Cardinality one</title>
+      <link>http://scalamolecule.org/documentation/relationships/card-one/</link>
+      <pubDate>Sun, 24 Jul 2016 22:06:44 +0100</pubDate>
       
-      <guid>http://scalamolecule.org/learn/overview/</guid>
-      <description>
-
-&lt;h1 id=&#34;molecule-learning-resources:68f80267fa3a50980dbb745a782b8dca&#34;&gt;Molecule learning resources&lt;/h1&gt;
-
-&lt;h3 id=&#34;tutorials:68f80267fa3a50980dbb745a782b8dca&#34;&gt;Tutorials&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/learn/tutorials/seattle&#34;&gt;Seattle tutorial&lt;/a&gt; - all-round introduction to using Molecule&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&#34;videos:68f80267fa3a50980dbb745a782b8dca&#34;&gt;Videos&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/learn/videos/2017-04-25_Marc_Grue&#34;&gt;Scala Meetup presentation 2017-04-25 by Marc Grue&lt;/a&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/learn/videos/2017-04-25_Marc_Grue#1:e8a80e11a9ea81b9e6071cec3c4864a9&#34;&gt;Part 1: Datomic data model&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/learn/videos/2017-04-25_Marc_Grue#2:e8a80e11a9ea81b9e6071cec3c4864a9&#34;&gt;Part 2: Building a DSL with Scala macros&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/learn/videos/2017-04-25_Marc_Grue#3:e8a80e11a9ea81b9e6071cec3c4864a9&#34;&gt;Part 3: Tour of Molecule features&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/learn/videos/2017-04-25_Marc_Grue#4:e8a80e11a9ea81b9e6071cec3c4864a9&#34;&gt;Part 4: Molecule domain modelling&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
+      <guid>http://scalamolecule.org/documentation/relationships/card-one/</guid>
+      <description>One-to-one relationships One-to-One A Person could have a cardinality-one reference to City having a cardinality-one reference to a Country:
+Person.name.City.name.Country.name  Strictly speaking we have an entity with an asserted :person/name attribute value with a reference to another entity with an asserted :city/name attribute value etc. But in practice we simply talk about &amp;ldquo;namespace A has a relationship/reference to namespace B&amp;rdquo;.
+A namespace is not like an SQL Table but rather organizes some attributes by a meaningful name - it&amp;rsquo;s, well, a namespace.</description>
     </item>
     
     <item>
-      <title>Tutorials</title>
-      <link>http://scalamolecule.org/learn/tutorials/</link>
-      <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
+      <title>Self</title>
+      <link>http://scalamolecule.org/documentation/graphs/self/</link>
+      <pubDate>Sun, 24 Jul 2016 22:06:44 +0100</pubDate>
       
-      <guid>http://scalamolecule.org/learn/tutorials/</guid>
-      <description>
-
-&lt;h1 id=&#34;molecule-tutorials:2f9666f86bd8527efa1103fc382863ca&#34;&gt;Molecule tutorials&lt;/h1&gt;
-
-&lt;h3 id=&#34;tutorials:2f9666f86bd8527efa1103fc382863ca&#34;&gt;Tutorials&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/learn/tutorials/seattle&#34;&gt;Seattle tutorial&lt;/a&gt; - all-round introduction to using Molecule&lt;/li&gt;
-&lt;/ul&gt;
-</description>
+      <guid>http://scalamolecule.org/documentation/graphs/self/</guid>
+      <description>Bidirectional references (See bidirectional tests)
+Unidirectional reference limitations Normal Datomic references are unidirectional. If we add a friend reference from Ann to Ben
+Person.name(&amp;quot;Ann&amp;quot;).Friends.name(&amp;quot;Ben&amp;quot;).save  Then we can naturally query to get friends of Ann
+Person.name_(&amp;quot;Ann&amp;quot;).Friends.name.get === List(&amp;quot;Ben&amp;quot;)  But what if we want to find friends of Ben? This will give us nothing since our reference only went from Ann to Ben:
+Person.name_(&amp;quot;Ben&amp;quot;).Friends.name.get === List()  Instead we would have to think backwards to get the back reference &amp;ldquo;who referenced Ben?</description>
     </item>
     
     <item>
-      <title>Videos</title>
-      <link>http://scalamolecule.org/learn/videos/</link>
-      <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
+      <title>AsOf</title>
+      <link>http://scalamolecule.org/documentation/time/asof/</link>
+      <pubDate>Fri, 02 Jan 2015 22:06:44 +0100</pubDate>
       
-      <guid>http://scalamolecule.org/learn/videos/</guid>
-      <description>
-
-&lt;h1 id=&#34;molecule-tutorials:a45b24697a235d080c581c0ce5a9b90b&#34;&gt;Molecule tutorials&lt;/h1&gt;
-
-&lt;h3 id=&#34;videos:a45b24697a235d080c581c0ce5a9b90b&#34;&gt;Videos&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/learn/videos/2017-04-25_Marc_Grue&#34;&gt;Scala Meetup presentation 2017-04-25 by Marc Grue&lt;/a&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/learn/videos/2017-04-25_Marc_Grue#1:e8a80e11a9ea81b9e6071cec3c4864a9&#34;&gt;Part 1: Datomic data model&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/learn/videos/2017-04-25_Marc_Grue#2:e8a80e11a9ea81b9e6071cec3c4864a9&#34;&gt;Part 2: Building a DSL with Scala macros&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/learn/videos/2017-04-25_Marc_Grue#3:e8a80e11a9ea81b9e6071cec3c4864a9&#34;&gt;Part 3: Tour of Molecule features&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/learn/videos/2017-04-25_Marc_Grue#4:e8a80e11a9ea81b9e6071cec3c4864a9&#34;&gt;Part 4: Molecule domain modelling&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
+      <guid>http://scalamolecule.org/documentation/time/asof/</guid>
+      <description> As of </description>
     </item>
     
     <item>
-      <title>Manual</title>
-      <link>http://scalamolecule.org/manual/overview/</link>
-      <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
+      <title>Basics</title>
+      <link>http://scalamolecule.org/documentation/attributes/basics/</link>
+      <pubDate>Fri, 02 Jan 2015 22:06:44 +0100</pubDate>
       
-      <guid>http://scalamolecule.org/manual/overview/</guid>
-      <description>
-
-&lt;h1 id=&#34;molecule-manual:68f80267fa3a50980dbb745a782b8dca&#34;&gt;Molecule manual&lt;/h1&gt;
-
-&lt;p&gt;This is a light-weight manual for Molecule.&lt;/p&gt;
-
-&lt;p&gt;Please choose a subject in the menu on the right&amp;hellip;&lt;/p&gt;
-
-&lt;p&gt;For more in-depth examples see
-&lt;a href=&#34;https://github.com/scalamolecule/molecule/tree/master/coretest/src/test/scala/molecule&#34;&gt;core tests&lt;/a&gt;
-or
-&lt;a href=&#34;https://github.com/scalamolecule/molecule/tree/master/examples/src/test/scala/molecule/examples&#34;&gt;examples&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;suggestions:68f80267fa3a50980dbb745a782b8dca&#34;&gt;Suggestions&lt;/h3&gt;
-
-&lt;p&gt;You&amp;rsquo;re welcome to raise &lt;a href=&#34;https://github.com/scalamolecule/molecule-docs/issues&#34;&gt;documentation issues&lt;/a&gt;
-and/or &lt;a href=&#34;https://github.com/scalamolecule/molecule/issues&#34;&gt;Molecule code isues&lt;/a&gt;.&lt;/p&gt;
-</description>
+      <guid>http://scalamolecule.org/documentation/attributes/basics/</guid>
+      <description>Attribute builder pattern (See attribute tests)
+When we have defined a schema, Molecule generates the necessary boilerplate code so that we can build &amp;ldquo;molecular data structures&amp;rdquo; by building sequences of Attributes separated with dots (the &amp;ldquo;builder pattern&amp;rdquo;).
+We could for instance build a molecule representing the data structure of Persons with name, age and gender Attributes:
+Person.name.age.gender // etc  The fundamental building blocks are Namespaces like Person and Attributes like name, age and gender.</description>
     </item>
     
     <item>
-      <title>Compare</title>
-      <link>http://scalamolecule.org/compare/overview/</link>
-      <pubDate>Wed, 14 May 2014 02:13:50 UTC</pubDate>
+      <title>Introduction</title>
+      <link>http://scalamolecule.org/documentation/getting-started/introduction/</link>
+      <pubDate>Fri, 02 Jan 2015 22:06:44 +0100</pubDate>
       
-      <guid>http://scalamolecule.org/compare/overview/</guid>
-      <description>
-
-&lt;h1 id=&#34;other-databases-vs-molecule:68f80267fa3a50980dbb745a782b8dca&#34;&gt;Other databases vs. Molecule&lt;/h1&gt;
-
-&lt;p&gt;Every database/abstraction layer has its strengths and weaknesses and we&amp;rsquo;ll try here to compare existing systems with Molecule with some examples of how they accomplish similar tasks.&lt;/p&gt;
-
-&lt;h3 id=&#34;others-consume-molecule-declares-data-structures:68f80267fa3a50980dbb745a782b8dca&#34;&gt;Others &lt;em&gt;consume&lt;/em&gt;, Molecule &lt;em&gt;declares&lt;/em&gt; data structures&lt;/h3&gt;
-
-&lt;p&gt;Many systems lets you define data objects matching your domain that are then &lt;em&gt;consumed&lt;/em&gt; by the host language (Scala) in combination with DSLs.&lt;/p&gt;
-
-&lt;p&gt;If we take &lt;a href=&#34;http://slick.typesafe.com/doc/3.0.0-M1/queries.html#joining-and-zipping&#34;&gt;Slick&lt;/a&gt; for instance we could say that it &amp;ldquo;&lt;em&gt;consumes&lt;/em&gt;&amp;rdquo; the data objects &lt;code&gt;coffees&lt;/code&gt; and &lt;code&gt;suppliers&lt;/code&gt; in this Scala sequence comprehension:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;// Slick
-val implCrossJoin = for {
-  c &amp;lt;- coffees
-  s &amp;lt;- suppliers
-} yield (c.name, s.name)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Whereas in Molecule, we only &lt;em&gt;declare&lt;/em&gt; which attributes we are interested in. Molecule attributes &lt;em&gt;themselves&lt;/em&gt; form the query - they are not &lt;em&gt;consumed&lt;/em&gt; by an outer construct. That way, the domain terms directly form the query without additional keywords and constructs:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;// Molecule
-val coffeeSupliers = Coffees.name.Suppliers.name.get
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;We get the exact same type-inferred result back, a &lt;code&gt;Iterable[(String, String)]&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;http://squeryl.org/selects.html&#34;&gt;Squeryl&lt;/a&gt; also &lt;em&gt;consumes&lt;/em&gt; data objects, now in a DSL construct:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;// Squeryl
-def songs = from(MusicDb.songs)(s =&amp;gt; where(s.artistId === id) select(s))
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;In Molecule we don&amp;rsquo;t need to use keywords like &lt;code&gt;from&lt;/code&gt;, &lt;code&gt;where&lt;/code&gt; and &lt;code&gt;select&lt;/code&gt; (apart from the final &lt;code&gt;get&lt;/code&gt; method). We instead get song entities (&lt;code&gt;e&lt;/code&gt;) filtered by Artist by simply applying a required value directly to the &lt;code&gt;artist&lt;/code&gt; attribute:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;// Molecule
-val songs = Song.e.artist(id).get
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;more-databases-to-compare:68f80267fa3a50980dbb745a782b8dca&#34;&gt;More databases to compare&amp;hellip;&lt;/h3&gt;
-
-&lt;p&gt;Over time we&amp;rsquo;ll compare Molecule with as many database systems as possible. Those not linked yet below are on our wish list:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/compare/datomic&#34;&gt;Datomic&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/compare/sql&#34;&gt;SQL&lt;/a&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/compare/sql/slick&#34;&gt;Slick&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Squeryl&lt;/li&gt;
-&lt;li&gt;Sqltyped tutorial&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;Mongodb
-
-&lt;ul&gt;
-&lt;li&gt;Native&lt;/li&gt;
-&lt;li&gt;Rogue&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;Titan&lt;/li&gt;
-&lt;li&gt;Neo4j&lt;/li&gt;
-&lt;li&gt;Gremlin&lt;/li&gt;
-&lt;li&gt;More&amp;hellip;?&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;If you want to translate one into Molecule, please feel free to submit a pull request or bring up ideas.&lt;/p&gt;
-</description>
+      <guid>http://scalamolecule.org/documentation/getting-started/introduction/</guid>
+      <description>Molecule introduction Molecule let&amp;rsquo;s you model and query your domain data structures directly with the words of your domain.
+Query Describing our domain with Attributes grouped in Namespaces allow us to for instance find Persons in our Datomic database by composing molecules attribute by attribute with the builder pattern:
+val personMolecule = m(Person.name.age)  An implicit macro method get will at compile time translate our molecule to a Datalog query.</description>
     </item>
     
     <item>
-      <title>Community</title>
-      <link>http://scalamolecule.org/community/overview/</link>
-      <pubDate>Wed, 14 May 2014 02:13:50 UTC</pubDate>
+      <title>Save</title>
+      <link>http://scalamolecule.org/documentation/crud/save/</link>
+      <pubDate>Fri, 02 Jan 2015 22:06:44 +0100</pubDate>
       
-      <guid>http://scalamolecule.org/community/overview/</guid>
-      <description>
-
-&lt;h1 id=&#34;community:68f80267fa3a50980dbb745a782b8dca&#34;&gt;Community&lt;/h1&gt;
-
-&lt;p&gt;The &lt;a href=&#34;https://groups.google.com/forum/#!forum/molecule-dsl&#34;&gt;Molecule google list&lt;/a&gt; is open to questions and discussions about Molecule and other Scala-based Datomic resources.&lt;/p&gt;
-
-&lt;h3 id=&#34;resources:68f80267fa3a50980dbb745a782b8dca&#34;&gt;Resources&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/scalamolecule/molecule/issues&#34;&gt;Issues&lt;/a&gt; - please feel free to raise issues/report bugs or make pull requests&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://datomic.com&#34;&gt;Datomic&lt;/a&gt; website&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Developer</title>
-      <link>http://scalamolecule.org/developer/overview/</link>
-      <pubDate>Wed, 14 May 2014 02:13:50 UTC</pubDate>
-      
-      <guid>http://scalamolecule.org/developer/overview/</guid>
-      <description>
-
-&lt;h1 id=&#34;developer:68f80267fa3a50980dbb745a782b8dca&#34;&gt;Developer&lt;/h1&gt;
-
-&lt;p&gt;The basic philosophy of Molecule is to think from the User&amp;rsquo;s perspective towards a technical solution.&lt;/p&gt;
-
-&lt;p&gt;The priority is always to make it as easy as possible for the end User to make Datomic queries, no matter
-how challenging on the Molecule backend.&lt;/p&gt;
-
-&lt;p&gt;When we asked&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;&amp;ldquo;how can I most intuitively and with most minimal code query for persons?&amp;rdquo;&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;we first tried something like this&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;import Person._
-m(firstName ~ lastName ~ age) // all fields of a `Person` trait...
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;But it quickly became un-intuitive with relations, expressions etc.&lt;/p&gt;
-
-&lt;h3 id=&#34;builder-pattern:68f80267fa3a50980dbb745a782b8dca&#34;&gt;Builder pattern&lt;/h3&gt;
-
-&lt;p&gt;Instead we settled on using the builder pattern with &lt;code&gt;.&lt;/code&gt;s&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.firstName.lastName.age
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;We can&amp;rsquo;t think of a more minimal Scala representation of &amp;ldquo;finding persons&amp;rdquo;.&lt;/p&gt;
-
-&lt;h3 id=&#34;generated-boilerplate-code:68f80267fa3a50980dbb745a782b8dca&#34;&gt;Generated boilerplate code&lt;/h3&gt;
-
-&lt;p&gt;The builder pattern has shown a surprising strong capacity to express a wide range of query constructs. But it also
- requires an extensive amount of boilerplace code to work.&lt;/p&gt;
-
-&lt;p&gt;We therefore generate all boilerplate code automatically when we compile our project with &lt;code&gt;sbt compile&lt;/code&gt;.&lt;/p&gt;
-
-&lt;h3 id=&#34;scala-macro-transformations:68f80267fa3a50980dbb745a782b8dca&#34;&gt;Scala macro transformations&lt;/h3&gt;
-
-&lt;p&gt;Our generated boilerplate code allow us to build molecules attribute by attribute:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val molecule = m(Person.name.age)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;The &lt;code&gt;m&lt;/code&gt;olecule method transforms our source code &lt;em&gt;at compile time&lt;/em&gt; through a series of states:&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;Source code&lt;/li&gt;
-&lt;li&gt;Model AST&lt;/li&gt;
-&lt;li&gt;Query AST&lt;/li&gt;
-&lt;li&gt;Datomic query string&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;The end result is simply a Datomic query string:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;&amp;quot;[:find ?b ?c :where [?a :person/name ?b] [?a :person/age ?c]]&amp;quot;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Since the query is created at compile time it&amp;rsquo;s all ready to fetch our data &lt;em&gt;at runtime&lt;/em&gt; with no performance impact:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val data = personsMolecule.get
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Given implicit conversions we could even unify the two steps:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val persons = Person.name.age.get
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;The query would still be created at compile time and fetching data at runtime.&lt;/p&gt;
-
-&lt;h3 id=&#34;closed-eco-system:68f80267fa3a50980dbb745a782b8dca&#34;&gt;Closed eco-system&lt;/h3&gt;
-
-&lt;p&gt;Since we create our molecules from our self-generated boilerplate code our macros have full knowledge about the
-possible constructs we can expect. We are therefore in full control of the entire &amp;ldquo;eco-system&amp;rdquo; from molecule
- to Datomic query. Non-valid molecules simply won&amp;rsquo;t compile. And we can infer all type information from our molecules.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;http://scalamolecule.org/developer/transformation&#34;&gt;Read more about the macro transformations&amp;hellip;&lt;/a&gt;&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Home</title>
-      <link>http://scalamolecule.org/home/front/</link>
-      <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
-      
-      <guid>http://scalamolecule.org/home/front/</guid>
-      <description>
-
-&lt;p&gt;&lt;br&gt;
-&lt;img src=&#34;http://scalamolecule.org/img/logo/MoleculeLogo697.png&#34; alt=&#34;&#34; /&gt;
-&lt;/p&gt;
-
-&lt;h4 id=&#34;write-powerful-datomic-queries-in-scala-with-the-words-of-your-domain:ffcff61ab3a11ef1d50900901a24ec54&#34;&gt;&lt;em&gt;Write powerful &lt;a href=&#34;http://www.datomic.com&#34;&gt;Datomic&lt;/a&gt; queries in Scala with the words of your domain:&lt;/em&gt;&lt;/h4&gt;
-
-&lt;div id=&#34;myCarousel&#34; class=&#34;carousel slide&#34; data-interval=&#34;9000&#34; data-ride=&#34;carousel&#34;&gt;
-    &lt;!-- Carousel indicators --&gt;
-    &lt;ol class=&#34;carousel-indicators&#34;&gt;
-        &lt;li data-target=&#34;#myCarousel&#34; data-slide-to=&#34;0&#34; class=&#34;active&#34;&gt;&lt;/li&gt;
-        &lt;li data-target=&#34;#myCarousel&#34; data-slide-to=&#34;1&#34;&gt;&lt;/li&gt;
-        &lt;li data-target=&#34;#myCarousel&#34; data-slide-to=&#34;2&#34;&gt;&lt;/li&gt;
-        &lt;li data-target=&#34;#myCarousel&#34; data-slide-to=&#34;3&#34;&gt;&lt;/li&gt;
-        &lt;li data-target=&#34;#myCarousel&#34; data-slide-to=&#34;4&#34;&gt;&lt;/li&gt;
-        &lt;li data-target=&#34;#myCarousel&#34; data-slide-to=&#34;5&#34;&gt;&lt;/li&gt;
-        &lt;li data-target=&#34;#myCarousel&#34; data-slide-to=&#34;6&#34;&gt;&lt;/li&gt;
-        &lt;li data-target=&#34;#myCarousel&#34; data-slide-to=&#34;7&#34;&gt;&lt;/li&gt;
-    &lt;/ol&gt;   
-   &lt;!-- Carousel items --&gt;
-    &lt;div class=&#34;carousel-inner&#34;&gt;
-        &lt;div class=&#34;active item&#34;&gt;
-            &lt;div class=&#34;carousel-caption&#34;&gt;
-              &lt;h3&gt;Type-inferred Queries&lt;/h3&gt;
-&lt;p&gt;Build query molecules with your domain attributes&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val persons: Iterable[(String, Int)] = Person.name.age.get      
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;em&gt;&amp;ldquo;Name and age of Persons&amp;rdquo;&lt;/em&gt;&lt;/p&gt;
-            &lt;/div&gt;
-        &lt;/div&gt;   
-        &lt;div class=&#34;item&#34;&gt;
-            &lt;div class=&#34;carousel-caption&#34;&gt;                      
-                &lt;h3&gt;Relationships&lt;/h3&gt;
-&lt;p&gt;Pick attributes across namespaces&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.name.age.Address.street.Country.name.get      
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;em&gt;&amp;ldquo;Name, age, street and country of residence&amp;rdquo;&lt;/em&gt;&lt;/p&gt;
-            &lt;/div&gt;
-        &lt;/div&gt;
-        &lt;div class=&#34;item&#34;&gt;
-            &lt;div class=&#34;carousel-caption&#34;&gt;                   
-                &lt;h3 id=&#34;conditional-values:ffcff61ab3a11ef1d50900901a24ec54&#34;&gt;Conditional values&lt;/h3&gt;
-
-&lt;p&gt;Apply required values for certain attributes&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.name(&amp;quot;Johnson&amp;quot;).age.Address.City.name(&amp;quot;New York&amp;quot;).get      
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;em&gt;&amp;ldquo;Age of Johnsons in New York&amp;rdquo; - name, age and city returned&lt;/em&gt;&lt;/p&gt;
-            &lt;/div&gt;
-        &lt;/div&gt;
-        &lt;div class=&#34;item&#34;&gt;
-            &lt;div class=&#34;carousel-caption&#34;&gt;                   
-                &lt;h3 id=&#34;control-output:ffcff61ab3a11ef1d50900901a24ec54&#34;&gt;Control output&lt;/h3&gt;
-
-&lt;p&gt;Add an underscore to omit an attribute from the result set:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.name_(&amp;quot;Johnson&amp;quot;).age.Address.City.name_(&amp;quot;New York&amp;quot;).get      
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;em&gt;&amp;ldquo;Age of Johnsons in New York&amp;rdquo; - only ages returned&lt;/em&gt;&lt;/p&gt;
-            &lt;/div&gt;
-        &lt;/div&gt;
-        &lt;div class=&#34;item&#34;&gt;
-            &lt;div class=&#34;carousel-caption&#34;&gt;                   
-                &lt;h3 id=&#34;logic-and-ranges:ffcff61ab3a11ef1d50900901a24ec54&#34;&gt;Logic and ranges&lt;/h3&gt;
-
-&lt;p&gt;Apply logical options and ranges&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.name(&amp;quot;Dean&amp;quot; or &amp;quot;Johnson&amp;quot;).age.&amp;lt;(25).Address.Country.iso2(&amp;quot;US&amp;quot;).get      
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;em&gt;&amp;ldquo;Young Dean and Johnsons in the US&amp;rdquo;&lt;/em&gt;&lt;/p&gt;
-            &lt;/div&gt;
-        &lt;/div&gt;
-        &lt;div class=&#34;item&#34;&gt;
-            &lt;div class=&#34;carousel-caption&#34;&gt;                   
-                &lt;h3 id=&#34;insert-multi-level-data:ffcff61ab3a11ef1d50900901a24ec54&#34;&gt;Insert multi-level data&lt;/h3&gt;
-
-&lt;p&gt;Insert data for multiple namespace levels in one go:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.name(&amp;quot;Johnson&amp;quot;).age(35).Address.street(&amp;quot;5th&amp;quot;).City.name(&amp;quot;New York&amp;quot;).add
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;em&gt;&amp;ldquo;Add a 35-year-old Johnson living on 5th street in New York&amp;rdquo;&lt;/em&gt;&lt;/p&gt;
-            &lt;/div&gt;
-        &lt;/div&gt;
-        &lt;div class=&#34;item&#34;&gt;
-            &lt;div class=&#34;carousel-caption&#34;&gt;                   
-                &lt;h3 id=&#34;upsert-data:ffcff61ab3a11ef1d50900901a24ec54&#34;&gt;Upsert data&lt;/h3&gt;
-
-&lt;p&gt;Add new facts&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person(johnsonId).Address.street(&amp;quot;Broadway&amp;quot;).update
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;em&gt;&amp;ldquo;Johnson now lives on Broadway&amp;rdquo;&lt;/em&gt;&lt;/p&gt;
-            &lt;/div&gt;
-        &lt;/div&gt;
-        &lt;div class=&#34;item&#34;&gt;
-            &lt;div class=&#34;carousel-caption&#34;&gt;                   
-                &lt;h3 id=&#34;more-up-the-sleeve:ffcff61ab3a11ef1d50900901a24ec54&#34;&gt;More..&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/home/introduction&#34;&gt;Introduction&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/tutorials/seattle&#34;&gt;Seattle Tutorial&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/home/setup&#34;&gt;Setup&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-            &lt;/div&gt;
-        &lt;/div&gt;
-    &lt;/div&gt;
-    &lt;!-- Carousel nav --&gt;
-    &lt;a class=&#34;carousel-control left&#34; href=&#34;#myCarousel&#34; data-slide=&#34;prev&#34;&gt;
-        &lt;span class=&#34;glyphicon glyphicon-chevron-left&#34;&gt;&lt;/span&gt;
-    &lt;/a&gt;
-    &lt;a class=&#34;carousel-control right&#34; href=&#34;#myCarousel&#34; data-slide=&#34;next&#34;&gt;
-        &lt;span class=&#34;glyphicon glyphicon-chevron-right&#34;&gt;&lt;/span&gt;
-    &lt;/a&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Molecule is a Scala meta-DSL that translates &amp;ldquo;molecules&amp;rdquo; of your domain attributes to typed Datalog queries
-for &lt;a href=&#34;http://www.datomic.com&#34;&gt;Datomic&lt;/a&gt; - the database of immutable facts.&lt;/p&gt;
-
-&lt;h3 id=&#34;videos:ffcff61ab3a11ef1d50900901a24ec54&#34;&gt;Videos&lt;/h3&gt;
-
-&lt;p&gt;Marc Grue presents his Molecule library in 4 parts:&lt;/p&gt;
-
-&lt;div class=&#34;media&#34;&gt;
-  &lt;div class=&#34;media-left&#34;&gt;
-    &lt;a href=&#34;http://scalamolecule.org/learn/videos/2017-04-25_Marc_Grue&#34;&gt;
-      &lt;img class=&#34;media-object&#34; src=&#34;http://scalamolecule.org/img/presentation.jpg&#34; alt=&#34;...&#34;&gt;
-    &lt;/a&gt;
-  &lt;/div&gt;
-  &lt;div class=&#34;media-body&#34;&gt;
-      &lt;ol&gt;
-          &lt;li&gt;
-            &lt;a href=&#34;http://scalamolecule.org/learn/videos/2017-04-25_Marc_Grue#1:e8a80e11a9ea81b9e6071cec3c4864a9&#34;&gt;Datomic data model&lt;/a&gt;
-            &lt;p&gt;Introduction to the data model of Datomic that Molecule is based on.&lt;/p&gt;
-          &lt;/li&gt;
-          &lt;li&gt;
-            &lt;a href=&#34;http://scalamolecule.org/learn/videos/2017-04-25_Marc_Grue#2:e8a80e11a9ea81b9e6071cec3c4864a9&#34;&gt;Building a DSL with Scala macros&lt;/a&gt;
-            &lt;p&gt;A look behind the scenes of how Molecule is build.&lt;/p&gt;
-          &lt;/li&gt;
-          &lt;li&gt;
-            &lt;a href=&#34;http://scalamolecule.org/learn/videos/2017-04-25_Marc_Grue#3:e8a80e11a9ea81b9e6071cec3c4864a9&#34;&gt;Molecule tour&lt;/a&gt;
-            &lt;p&gt;A walk through of Molecule features.&lt;/p&gt;
-          &lt;/li&gt;
-          &lt;li&gt;
-            &lt;a href=&#34;http://scalamolecule.org/learn/videos/2017-04-25_Marc_Grue#4:e8a80e11a9ea81b9e6071cec3c4864a9&#34;&gt;Molecule domain modelling&lt;/a&gt;
-            &lt;p&gt;Using Molecule in your domain modelling.&lt;/p&gt;
-            &lt;br&gt;
-            &lt;a href=&#34;http://scalamolecule.org/learn/videos/2017-04-25_Marc_Grue&#34;&gt;More info&lt;/a&gt;
-          &lt;/li&gt;
-      &lt;/ol&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;br&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;how-does-it-work:ffcff61ab3a11ef1d50900901a24ec54&#34;&gt;How does it work?&lt;/h3&gt;
-
-&lt;div class=&#34;sequence-block&#34;&gt;
-    &lt;div class=&#34;bullet-block&#34;&gt;
-        &lt;div class=&#34;sequence-step&#34;&gt;1&lt;/div&gt;
-    &lt;/div&gt;
-    &lt;div class=&#34;section&#34;&gt;
-        &lt;h4 id=&#34;define-schema-once:ffcff61ab3a11ef1d50900901a24ec54&#34;&gt;Define schema (once)&lt;/h4&gt;
-        &lt;p&gt;Our domain could have a &lt;code&gt;Person&lt;/code&gt; with attributes 
-        &lt;code&gt;name&lt;/code&gt; and &lt;code&gt;age&lt;/code&gt; having a relationship to an 
-        &lt;code&gt;Address&lt;/code&gt; so we define a schema for our domain:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;trait Person {
-  val name    = oneString
-  val age     = oneInt
-  val address = one[Address]
-}
-trait Address {
-  val street = oneString
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-    &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div class=&#34;sequence-block&#34;&gt;
-    &lt;div class=&#34;bullet-block&#34;&gt;
-        &lt;div class=&#34;sequence-step&#34;&gt;2&lt;/div&gt;
-    &lt;/div&gt;
-    &lt;div class=&#34;section&#34;&gt;
-        &lt;h4 id=&#34;compile-once:ffcff61ab3a11ef1d50900901a24ec54&#34;&gt;Compile (once)&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code&gt;&gt; cd yourProjectRoot
-&gt; sbt compile
-&lt;/code&gt;&lt;/pre&gt;
-
-        &lt;p&gt;Molecule uses our schema as a template to 
-        generate some boilerplate code so that we can compose intuitive and powerful 
-        query molecules. This step is only needed when we create or change our schema.&lt;/p&gt;
-    &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div class=&#34;sequence-block&#34;&gt;
-    &lt;div class=&#34;bullet-block&#34;&gt;
-        &lt;div class=&#34;sequence-step&#34;&gt;3&lt;/div&gt;
-    &lt;/div&gt;
-    &lt;div class=&#34;section&#34;&gt;
-        &lt;h4 id=&#34;use-molecules:ffcff61ab3a11ef1d50900901a24ec54&#34;&gt;Use molecules&lt;/h4&gt;
-        &lt;p&gt;Now we can insert data with molecules:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.name.age.Address.street insert List(
-  (&#34;Lisa&#34;, 20, &#34;Broadway&#34;),
-  (&#34;John&#34;, 22, &#34;Fifth Avenue&#34;)
-)
-&lt;/code&gt;&lt;/pre&gt;
-
-        &lt;p&gt;And retrieve data:&lt;/p&gt;
-        
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.name.age.Address.street.get === List(
-  (&#34;Lisa&#34;, 20, &#34;Broadway&#34;),
-  (&#34;John&#34;, 22, &#34;Fifth Avenue&#34;)
-)     
-&lt;/code&gt;&lt;/pre&gt;
-
-        &lt;p&gt;The implicit macros &lt;code&gt;insert&lt;/code&gt; and &lt;code&gt;get&lt;/code&gt; turns our molecules
-         into type-safe Datalog inserts and queries at compile time. So there&#39;s no runtime overhead.&lt;/p&gt; 
-        
-        
-        
-    &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;h3 id=&#34;try-demo:ffcff61ab3a11ef1d50900901a24ec54&#34;&gt;Try demo&lt;/h3&gt;
-
-&lt;ol&gt;
-&lt;li&gt;&lt;code&gt;git clone https://github.com/scalamolecule/molecule-demo.git&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;cd molecule-demo&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;sbt compile&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Open in your IDE&lt;/li&gt;
-&lt;li&gt;Run app - and build new molecules&amp;hellip;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h3 id=&#34;next:ffcff61ab3a11ef1d50900901a24ec54&#34;&gt;Next&lt;/h3&gt;
-
-&lt;p&gt;&lt;a href=&#34;http://scalamolecule.org/manual/getting-started&#34;&gt;Get started&amp;hellip;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;read-more:ffcff61ab3a11ef1d50900901a24ec54&#34;&gt;Read more&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/home/introduction&#34;&gt;Introduction&lt;/a&gt; to Datomic/Molecule&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/manual/setup&#34;&gt;Setup Database&lt;/a&gt;: initiate a Datomic database and create a database schema with Molecule&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/manual/insert&#34;&gt;Populate Database&lt;/a&gt;: populate a Datomic database with Molecule&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/tutorials/seattle&#34;&gt;Molecule Seattle tutorial&lt;/a&gt; examples of using Molecule (based on the
-&lt;a href=&#34;http://docs.datomic.com/tutorial.html&#34;&gt;Datomic Seattle tutorial&lt;/a&gt;)&lt;/li&gt;
-&lt;/ul&gt;
-</description>
+      <guid>http://scalamolecule.org/documentation/crud/save/</guid>
+      <description>Save data We basically have 3 ways of entering data with Molecule:
+1. Data-molecule We can insert data by populating a molecule with data by applying a value to each attribute and then simply save it. Molecule makes sure that each attribute only accepts values of the expected type.
+Community .name(&amp;quot;AAA&amp;quot;) .url(&amp;quot;myUrl&amp;quot;) .`type`(&amp;quot;twitter&amp;quot;) .orgtype(&amp;quot;personal&amp;quot;) .category(&amp;quot;my&amp;quot;, &amp;quot;favorites&amp;quot;) // many cardinality allows multiple values .Neighborhood.name(&amp;quot;myNeighborhood&amp;quot;) .District.name(&amp;quot;myDistrict&amp;quot;).region(&amp;quot;nw&amp;quot;).save  Note also how we easily insert data across several namespaces in one go!</description>
     </item>
     
     <item>
       <title>Seattle</title>
-      <link>http://scalamolecule.org/learn/tutorials/seattle/</link>
-      <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
+      <link>http://scalamolecule.org/resources/tutorials/seattle/</link>
+      <pubDate>Fri, 02 Jan 2015 22:06:44 +0100</pubDate>
       
-      <guid>http://scalamolecule.org/learn/tutorials/seattle/</guid>
-      <description>
-
-&lt;h1 id=&#34;contents:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Molecule Seattle tutorial&lt;/h1&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;#1:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;A first query&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#2:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Querying &lt;em&gt;for&lt;/em&gt; an attribute&amp;rsquo;s value&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#3:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Querying &lt;em&gt;by&lt;/em&gt; attribute values&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#4:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Querying across references&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#5:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Parameterizing queries - input molecules&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#6:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Invoking functions in queries&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#7:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Querying with fulltext search&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#8:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Querying with rules - logical OR&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#9:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Working with time&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#10:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Insert data&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#11:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Update and/or delete data&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;em&gt;Credits: This tutorial is based on the original
-&lt;a href=&#34;https://web.archive.org/web/20161007085359/http://docs.datomic.com/tutorial.html&#34;&gt;Datomic Seattle tutorial&lt;/a&gt; (there is also a &lt;a href=&#34;http://docs.datomic.com/tutorial.html&#34;&gt;new tutorial&lt;/a&gt;)
-and some text passages have been quoted as-is or been slightly modified to describe
-how Molecule works.&lt;/em&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;0:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;&lt;a href=&#34;#contents:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;☝︎&lt;/a&gt; Introduction&lt;/h2&gt;
-
-&lt;p&gt;After &lt;a href=&#34;http://scalamolecule.org/manual/getting-started/&#34;&gt;setting up the database&lt;/a&gt; and &lt;a href=&#34;http://scalamolecule.org/manual/insert/&#34;&gt;populating it with data&lt;/a&gt; we can
-start making queries. We make queries by building &amp;ldquo;molecules&amp;rdquo; which are
-chains of attributes put together with the builder pattern. We can imagine
-this as a 3-dimensional data structure of atoms bound together in various
-patterns to build molecules&amp;hellip;&lt;/p&gt;
-
-&lt;h3 id=&#34;molecule-builder-pattern:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Molecule builder pattern&lt;/h3&gt;
-
-&lt;p&gt;The first thing you do with Molecule is to define your domain namespaces and attributes in a
-trait that defines namespaces with attributes for your domain:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;trait Community {
-  val name = oneString.fullTextSearch
-  val url  = oneString
-  ...
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;The &lt;code&gt;name&lt;/code&gt; field defines an attribute of type String with cardinality one. Adding the
-&lt;code&gt;fullTextSearch&lt;/code&gt; option will tell Datomic that we want to be able to make fulltext
-searches on the values of this attribute.&lt;/p&gt;
-
-&lt;p&gt;After defining the schema like this, we run &lt;code&gt;sbt compile&lt;/code&gt; and Molecule will generate some
-boilerplate traits that allow us to build molecules of our attributes:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val nameUrls = m(Community.name.url).get
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Since the &lt;code&gt;m&lt;/code&gt; method is implicit we can generally just write&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val nameUrls = Community.name.url.get
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;If you look at the generated namespace code you&amp;rsquo;ll see that it is a
-little more complex behind the scenes. That&amp;rsquo;s because we want our IDE
-to be able to infer the type of each attribute. If we for instance had
-an &lt;code&gt;age&lt;/code&gt; attribute of type &lt;code&gt;Int&lt;/code&gt; we could infer the return types of
-calling the &lt;code&gt;get&lt;/code&gt; method on a molecule. That would return
-a List of name/age tuples of type &lt;code&gt;Iterable[(String, Int)]&lt;/code&gt;:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val nameAges: Iterable[(String, Int)] = Community.name.age.get
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;A feature of Molecule is to omit the values of an attribute from the result set
-by adding an underscore to the attribute name:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val names: Iterable[String] = Community.name.age_.get
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;This is handy if we want to query for entities that we want to be sure have an age and
-where we at the same time don&amp;rsquo;t need the age returned.&lt;/p&gt;
-
-&lt;p&gt;Now let&amp;rsquo;s follow along the
-&lt;a href=&#34;https://web.archive.org/web/20161007085359/http://docs.datomic.com/tutorial.html&#34;&gt;Datomic Seattle tutorial&lt;/a&gt; and
-see how Molecule can perform the same queries.&lt;/p&gt;
-
-&lt;h2 id=&#34;1:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;&lt;a href=&#34;#contents:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;☝︎&lt;/a&gt; A first query&lt;/h2&gt;
-
-&lt;p&gt;To find communities we can make a &lt;code&gt;communities&lt;/code&gt; molecule looking for entities with Community name:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val communities = m(Community.name)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;With this molecule at hand we can get the community names:
-Or we can ask for the size of our returned data set:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;communities.get === // List of community names...
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;or we could check how many communities we have&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;communities.get.size === 150
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;If we want the entity ids of our communities we can add the generic attribute &lt;code&gt;e&lt;/code&gt; to our molecule.
-We might not be interested in the names but we want to make sure that we find entities having a name,
-so we add the &lt;code&gt;name&lt;/code&gt; attribute with an underscore (to omit it from the result set):&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Community.e.name_.get(3) === List(17592186045518L, 17592186045516L, 17592186045514L)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;contents-3d29aefa7257f22b89227d9f373cd5f9-getting-an-entity-s-attribute-values:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;&lt;a href=&#34;#contents:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;☝︎&lt;/a&gt; Getting an entity&amp;rsquo;s attribute values&lt;/h2&gt;
-
-&lt;p&gt;A way to get additional attribute values once we have an entity id is to &lt;code&gt;touch&lt;/code&gt; it:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val communityId = Community.e.name_.get.head
-
-// Use the community id to touch all the entity&#39;s attribute values
-communityId.touch === Map(
-  &amp;quot;:community/type&amp;quot; -&amp;gt; &amp;quot;:community.type/website&amp;quot;,
-  &amp;quot;:community/url&amp;quot; -&amp;gt; &amp;quot;http://www.greenlakecommunitycouncil.org/&amp;quot;,
-  &amp;quot;:community/category&amp;quot; -&amp;gt; List(&amp;quot;community council&amp;quot;),
-  &amp;quot;:community/orgtype&amp;quot; -&amp;gt; &amp;quot;:community.orgtype/community&amp;quot;,
-  &amp;quot;:db/id&amp;quot; -&amp;gt; 17592186045665L,
-  &amp;quot;:community/name&amp;quot; -&amp;gt; &amp;quot;Greenlake Community Council&amp;quot;,
-  &amp;quot;:community/neighborhood&amp;quot; -&amp;gt; Map(
-    &amp;quot;:db/id&amp;quot; -&amp;gt; 17592186045666L,
-    &amp;quot;:neighborhood/district&amp;quot; -&amp;gt; Map(
-      &amp;quot;:db/id&amp;quot; -&amp;gt; 17592186045667L,
-      &amp;quot;:district/name&amp;quot; -&amp;gt; &amp;quot;Northwest&amp;quot;,
-      &amp;quot;:district/region&amp;quot; -&amp;gt; &amp;quot;:district.region/sw&amp;quot;),
-    &amp;quot;:neighborhood/name&amp;quot; -&amp;gt; &amp;quot;Green Lake&amp;quot;))
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;We can also retrive attribute values one by one by simply applying an attribute name to the entity id:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;communityId(&amp;quot;:community/name&amp;quot;) === Some(&amp;quot;Greenlake Community Council&amp;quot;)
-communityId(&amp;quot;:community/url&amp;quot;) === Some(&amp;quot;http://www.greenlakecommunitycouncil.org/&amp;quot;)
-communityId(&amp;quot;:community/category&amp;quot;) === Some(Set(&amp;quot;community council&amp;quot;))
-communityId(&amp;quot;:community/emptyOrBogusAttribute&amp;quot;) === None
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;2:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;&lt;a href=&#34;#contents:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;☝︎&lt;/a&gt; Querying &lt;em&gt;for&lt;/em&gt; an attribute&amp;rsquo;s value&lt;/h2&gt;
-
-&lt;p&gt;After defining a molecule like &lt;code&gt;Community.name&lt;/code&gt; we can call the &lt;code&gt;get&lt;/code&gt;
-method on it to retrieve values that matches it. When there&amp;rsquo;s only one
-attribute defined in the molecule we&amp;rsquo;ll get a list of this attribute&amp;rsquo;s
-value back.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Community.name.get(3) === List(
-  &amp;quot;KOMO Communities - Ballard&amp;quot;,
-  &amp;quot;Ballard Blog&amp;quot;,
-  &amp;quot;Ballard Historical Society&amp;quot;)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;If our molecule defines two or more attributes we&amp;rsquo;ll get tuples of
-values back.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Community.name.url.get(3) === List(
-  (&amp;quot;Broadview Community Council&amp;quot;, &amp;quot;http://groups.google.com/group/broadview-community-council&amp;quot;),
-  (&amp;quot;KOMO Communities - Wallingford&amp;quot;, &amp;quot;http://wallingford.komonews.com&amp;quot;),
-  (&amp;quot;Aurora Seattle&amp;quot;, &amp;quot;http://www.auroraseattle.com/&amp;quot;))
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;3:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;&lt;a href=&#34;#contents:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;☝︎&lt;/a&gt; Querying &lt;em&gt;by&lt;/em&gt; attribute values&lt;/h2&gt;
-
-&lt;p&gt;When applying a value to an attribute we narrow the selection of
-entities that will match our molecule data structure. Let&amp;rsquo;s find communities
-of type &amp;ldquo;twitter&amp;rdquo;:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Community.name.`type`(&amp;quot;twitter&amp;quot;).get(3) === List(
-  (&amp;quot;Columbia Citizens&amp;quot;, &amp;quot;twitter&amp;quot;),
-  (&amp;quot;Discover SLU&amp;quot;, &amp;quot;twitter&amp;quot;),
-  (&amp;quot;Fremont Universe&amp;quot;, &amp;quot;twitter&amp;quot;))
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;(We use the back-ticks to avoid having Scala to think of &lt;code&gt;type&lt;/code&gt;
-as a Scala keyword)&lt;/p&gt;
-
-&lt;p&gt;Since the &lt;code&gt;type&lt;/code&gt; will always be &amp;ldquo;twitter&amp;rdquo; we could omit it from the result set
-by adding an underscore to the &lt;code&gt;type&lt;/code&gt; attribute (and we don&amp;rsquo;t need the back-ticks anymore).&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Community.name.type_(&amp;quot;twitter&amp;quot;).get(3) === List(
-  &amp;quot;Magnolia Voice&amp;quot;, &amp;quot;Columbia Citizens&amp;quot;, &amp;quot;Discover SLU&amp;quot;)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Notice that we get some different communities. We are not guaranteed a specific order
-of returned values and the first 3 values can therefore vary as we see here even though
-the molecules/queries are similar.&lt;/p&gt;
-
-&lt;p&gt;In most of our examples we supply static data like &amp;ldquo;twitter&amp;rdquo; but even
-though our molecules are created at compile time we can even supply
-data as variables like we would do with user input from forms etc.
-So we could as well write the following and get the same result.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val tw = &amp;quot;twitter&amp;quot;
-Community.name.type_(tw).get(3) === List(
-  &amp;quot;Magnolia Voice&amp;quot;, &amp;quot;Columbia Citizens&amp;quot;, &amp;quot;Discover SLU&amp;quot;)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Retrieving values of many-attributes like &lt;code&gt;category&lt;/code&gt; gives us sets
-of values back&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Community.name_(&amp;quot;belltown&amp;quot;).category.get.head === Set(&amp;quot;events&amp;quot;, &amp;quot;news&amp;quot;)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Since we often want a single result back, Molecule supplies a &lt;code&gt;one&lt;/code&gt; convenience method that calls &lt;code&gt;get.head&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;We can apply multiple values to many-attributes like &lt;code&gt;category&lt;/code&gt; and
-it will match entities having any of those values (OR-semantics).&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Community.name.category_(&amp;quot;news&amp;quot;, &amp;quot;arts&amp;quot;).get(3) === List(
-  &amp;quot;Beach Drive Blog&amp;quot;,
-  &amp;quot;KOMO Communities - Ballard&amp;quot;,
-  &amp;quot;Ballard Blog&amp;quot;)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;4:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;&lt;a href=&#34;#contents:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;☝︎&lt;/a&gt; Querying across references&lt;/h2&gt;
-
-&lt;p&gt;The sample data model includes three main entity types communities,
-neighborhoods and districts that are related to each other with references.
-Molecule lets you traverse those references by going from one namespace
-to the next. Let&amp;rsquo;s find communities in the noth-eastern region:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Community.name.Neighborhood.District.region_(&amp;quot;ne&amp;quot;).get(3) === List(
-  &amp;quot;Maple Leaf Community Council&amp;quot;,
-  &amp;quot;Hawthorne Hills Community Website&amp;quot;,
-  &amp;quot;KOMO Communities - View Ridge&amp;quot;)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Or comunity names and their region:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Community.name.Neighborhood.District.region.get(3) === List(
-  (&amp;quot;KOMO Communities - North Seattle&amp;quot;,&amp;quot;n&amp;quot;),
-  (&amp;quot;Morgan Junction Community Association&amp;quot;,&amp;quot;sw&amp;quot;),
-  (&amp;quot;Friends of Seward Park&amp;quot;,&amp;quot;se&amp;quot;))
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;5:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;&lt;a href=&#34;#contents:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;☝︎&lt;/a&gt; Parameterizing queries - input molecules&lt;/h2&gt;
-
-&lt;p&gt;When you apply values to molecules, the resulting query
-string is cached by Datomic. If you keep varying the string content,
-the cache is not effective. To take advantage of query caching it is
-recommended to make parameterized queries that can be cached once and
-used with varying input parameters.&lt;/p&gt;
-
-&lt;h3 id=&#34;single-input-value-for-an-attribute:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Single input value for an attribute&lt;/h3&gt;
-
-&lt;p&gt;Instead of applying the constant value &amp;ldquo;twitter&amp;rdquo; to a molecule
-&lt;code&gt;Community.type(&amp;quot;twitter&amp;quot;)&lt;/code&gt; we can use the &lt;code&gt;?&lt;/code&gt; input placeholder
-in an &amp;ldquo;input molecule&amp;rdquo; telling us that it waits for an input value.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val communitiesOfType = m(Community.name.type_(?))
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;When can then apply different input values to our input molecule:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val twitterCommunities = communitiesOfType(&amp;quot;twitter&amp;quot;)
-val facebookCommunities = communitiesOfType(&amp;quot;facebook_page&amp;quot;)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Those two molecules re-use the same cached query and just apply
-different input values. Now we can more efficiently get out results.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;twitterCommunities.get(3) === List(
-  &amp;quot;Magnolia Voice&amp;quot;, &amp;quot;Columbia Citizens&amp;quot;, &amp;quot;Discover SLU&amp;quot;)
-  
-facebookCommunities.get(3) === List(
-  &amp;quot;Magnolia Voice&amp;quot;, &amp;quot;Columbia Citizens&amp;quot;, &amp;quot;Discover SLU&amp;quot;)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;If we omit the underscore we can get the type too&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val communitiesWithType = m(Community.name.`type`(?))
-
-communitiesWithType(&amp;quot;twitter&amp;quot;).get(3) === List(
-  (&amp;quot;Discover SLU&amp;quot;, &amp;quot;twitter&amp;quot;),
-  (&amp;quot;Fremont Universe&amp;quot;, &amp;quot;twitter&amp;quot;),
-  (&amp;quot;Columbia Citizens&amp;quot;, &amp;quot;twitter&amp;quot;))
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;multiple-input-values-for-an-attribute-logical-or:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Multiple input values for an attribute - logical OR&lt;/h3&gt;
-
-&lt;p&gt;Find communities of type &amp;ldquo;facebook_page&amp;rdquo; OR &amp;ldquo;twitter&amp;rdquo;:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;communitiesWithType(&amp;quot;facebook_page&amp;quot; or &amp;quot;twitter&amp;quot;).get(3) === List(
-  (&amp;quot;Eastlake Community Council&amp;quot;, &amp;quot;facebook_page&amp;quot;),
-  (&amp;quot;Discover SLU&amp;quot;, &amp;quot;twitter&amp;quot;),
-  (&amp;quot;MyWallingford&amp;quot;, &amp;quot;facebook_page&amp;quot;))
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Alternative syntaxes where comma-separations act as logical OR:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;communitiesWithType(&amp;quot;facebook_page&amp;quot;, &amp;quot;twitter&amp;quot;)
-communitiesWithType(Seq(&amp;quot;facebook_page&amp;quot;, &amp;quot;twitter&amp;quot;))
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;tuple-of-input-values-for-multiple-attributes-logical-and:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Tuple of input values for multiple attributes - logical AND&lt;/h3&gt;
-
-&lt;p&gt;In addition to passing multiple values for a single attribute, you
-can pass a tuple of values for multiple attributes ensuring that both
-values are present.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val typeAndOrgtype = m(Community.name.type_(?).orgtype_(?))
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;With this input molecule we can find communities that are of &lt;code&gt;type&lt;/code&gt;
-&amp;ldquo;email_list&amp;rdquo; AND &lt;code&gt;orgtype&lt;/code&gt; &amp;ldquo;community&amp;rdquo;.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;typeAndOrgtype(&amp;quot;email_list&amp;quot; and &amp;quot;community&amp;quot;).get(3) === List(
-  &amp;quot;Ballard Moms&amp;quot;,
-  &amp;quot;Admiral Neighborhood Association&amp;quot;,
-  &amp;quot;15th Ave Community&amp;quot;)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;The order of arguments in the logical AND expression will correspond
-to the order of the input placeholders in the input molecule so that
-&amp;ldquo;email_list&amp;rdquo; corresponds to &lt;code&gt;type_(?)&lt;/code&gt; and &amp;ldquo;community&amp;rdquo; corresponds to
-&lt;code&gt;community_(?)&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;Arguments in expressions are also type-checked against the expected
-types of the corresponding attributes. Our IDE would infer that the
-&lt;code&gt;orgtype&lt;/code&gt; attribute doesn&amp;rsquo;t expect an &lt;code&gt;Int&lt;/code&gt; as the second argument if we
-were to pass the expression &amp;ldquo;email_list and 42&amp;rdquo;. This helps us avoid
-populating our database with unexpected data.&lt;/p&gt;
-
-&lt;p&gt;We can express logical AND expressions with a list of arguments too:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;// AND-semantics given an input molecule expecting 2 inputs!
-typeAndOrgtype(&amp;quot;email_list&amp;quot;, &amp;quot;community&amp;quot;)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Or we can pass a list of arguments. IMPORTANT: note how the semantics
-of a list of arguments change compared to the OR semantics that we
-saw with the single-input molecule above that had OR-semantics. When
-we have multiple inputs the semantics change to AND-semantics!&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;// AND-semantics given an input molecule expecting 2 inputs!
-typeAndOrgtype(Seq((&amp;quot;email_list&amp;quot;, &amp;quot;community&amp;quot;)))
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;multiple-tuples-of-input-values-for-multiple-attributes-logical-and-or:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Multiple tuples of input values for multiple attributes - logical AND/OR&lt;/h3&gt;
-
-&lt;p&gt;We can also ask for alternative tuples of data structures. Since the
-input values can then vary, we could ask our molecule to return the
-input values too.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val typeAndOrgtype2 = m(Community.name.`type`(?).orgtype(?))
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Now let&amp;rsquo;s ask for email-list communities OR commercial website
-communities. Note how this combines logical AND and OR.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;typeAndOrgtype2(
-  (&amp;quot;email_list&amp;quot; and &amp;quot;community&amp;quot;) or 
-  (&amp;quot;website&amp;quot; and &amp;quot;commercial&amp;quot;)
-).get(5) === List(
-  (&amp;quot;Fremont Arts Council&amp;quot;, &amp;quot;email_list&amp;quot;, &amp;quot;community&amp;quot;),
-  (&amp;quot;Greenwood Community Council Announcements&amp;quot;, &amp;quot;email_list&amp;quot;, &amp;quot;community&amp;quot;),
-  (&amp;quot;Broadview Community Council&amp;quot;, &amp;quot;email_list&amp;quot;, &amp;quot;community&amp;quot;),
-  (&amp;quot;Alki News&amp;quot;, &amp;quot;email_list&amp;quot;, &amp;quot;community&amp;quot;),
-  (&amp;quot;Beacon Hill Burglaries&amp;quot;, &amp;quot;email_list&amp;quot;, &amp;quot;community&amp;quot;))
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;As usual we can use alternative syntaxes as well. Here we group the
-AND expression arguments as tuple values. Comma-separations between
-the tuples act as logical OR.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;// ((a AND b) OR (c AND d))
-typeAndOrgtype2((&amp;quot;email_list&amp;quot;, &amp;quot;community&amp;quot;), (&amp;quot;website&amp;quot;, &amp;quot;commercial&amp;quot;))
-typeAndOrgtype2(Seq((&amp;quot;email_list&amp;quot;, &amp;quot;community&amp;quot;), (&amp;quot;website&amp;quot;, &amp;quot;commercial&amp;quot;)))
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;6:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;&lt;a href=&#34;#contents:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;☝︎&lt;/a&gt; Invoking functions in queries&lt;/h2&gt;
-
-&lt;p&gt;Datomic lets you invoke functions in queries. Molecule use this to
-apply comparison operations on attribute values. Here we can for
-instance find communities whose &lt;code&gt;name&lt;/code&gt; come before &amp;ldquo;C&amp;rdquo; in
-alphabetical order.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;m(Community.name &amp;lt; &amp;quot;C&amp;quot;).get(3) === List(
-  &amp;quot;Ballard Blog&amp;quot;, &amp;quot;Beach Drive Blog&amp;quot;, &amp;quot;Beacon Hill Blog&amp;quot;)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Note how we use the &lt;code&gt;m&lt;/code&gt; method here to allow the postfix notation
-(spaces around &lt;code&gt;&amp;lt;&lt;/code&gt;). Alternatively you can call the &lt;code&gt;&amp;lt;&lt;/code&gt; method
-explicitly if you prefer this syntax:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Community.name.&amp;lt;(&amp;quot;C&amp;quot;).get(3) === List(
-  &amp;quot;Ballard Blog&amp;quot;, &amp;quot;Beach Drive Blog&amp;quot;, &amp;quot;Beacon Hill Blog&amp;quot;)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;We can also parameterize the molecule.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val communitiesBefore = m(Community.name &amp;lt; ?)
-
-communitiesBefore(&amp;quot;C&amp;quot;).get(3) === List(
-  &amp;quot;Ballard Blog&amp;quot;, &amp;quot;Beach Drive Blog&amp;quot;, &amp;quot;Beacon Hill Blog&amp;quot;)
-  
-communitiesBefore(&amp;quot;A&amp;quot;).get(3) === List(&amp;quot;15th Ave Community&amp;quot;)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;7:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;&lt;a href=&#34;#contents:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;☝︎&lt;/a&gt; Querying with fulltext search&lt;/h2&gt;
-
-&lt;p&gt;Datomic supports fulltext searching. When you define an attribute
-of string value, you can indicate whether it should be indexed for
-fulltext search. For instance Community &lt;code&gt;name&lt;/code&gt; and &lt;code&gt;category&lt;/code&gt; have
-the fulltextSearch option defined in the Seattle schema. Let&amp;rsquo;s find
-communities with &amp;ldquo;Wallingford&amp;rdquo; in the name.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;(Community.name contains &amp;quot;Wallingford&amp;quot; take 3) === List(
-  &amp;quot;KOMO Communities - Wallingford&amp;quot;)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;And we can parameterize fulltext searches too:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val communitiesWith = m(Community.name contains ?)
-
-(communitiesWith(&amp;quot;Wallingford&amp;quot;) take 3) === List(
-  &amp;quot;KOMO Communities - Wallingford&amp;quot;)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;fulltext-search-on-many-cardinality-attributes:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Fulltext search on many-cardinality attributes&lt;/h3&gt;
-
-&lt;p&gt;The &lt;code&gt;category&lt;/code&gt; attribute can have several values so when we do a
-fulltext search on its values we&amp;rsquo;ll get back a set of its values
-that match our seed. We can also combine fulltext search with other
-constraints. Here we look for website communities with a &lt;code&gt;category&lt;/code&gt;
-containing the word &amp;ldquo;food&amp;rdquo;:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;m(Community.name.type_(&amp;quot;website&amp;quot;).category contains &amp;quot;food&amp;quot;).get(3) === List(
-  (&amp;quot;Community Harvest of Southwest Seattle&amp;quot;, Set(&amp;quot;sustainable food&amp;quot;)),
-  (&amp;quot;InBallard&amp;quot;, Set(&amp;quot;food&amp;quot;)))
-)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;And parameterized:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val typeAndCategory = m(Community.name.type_(?).category contains ?)
-
-typeAndCategory(&amp;quot;website&amp;quot;, Set(&amp;quot;food&amp;quot;)).get(3) === List(
-  (&amp;quot;Community Harvest of Southwest Seattle&amp;quot;, Set(&amp;quot;sustainable food&amp;quot;)),
-  (&amp;quot;InBallard&amp;quot;, Set(&amp;quot;food&amp;quot;)))
-)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Note how the values of the &lt;code&gt;category&lt;/code&gt; attribute are now returned
-since they can vary across the result set contrary to the &lt;code&gt;type&lt;/code&gt;
-attribute which is not since it will have the same value for all
-matches.&lt;/p&gt;
-
-&lt;h2 id=&#34;8:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;&lt;a href=&#34;#contents:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;☝︎&lt;/a&gt; Querying with rules - logical OR&lt;/h2&gt;
-
-&lt;p&gt;Datomic rules are named groups of Datomic clauses that can be
-plugged into Datomic queries. As a Molecule user you don&amp;rsquo;t need to
-know about rules since Molecule automatically translates your logic
-to Datomic rules.&lt;/p&gt;
-
-&lt;p&gt;We can for instance find social media communities with a
-logical OR expresion:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Community.name.type_(&amp;quot;twitter&amp;quot; or &amp;quot;facebook_page&amp;quot;).get(3) === List(
-  &amp;quot;Magnolia Voice&amp;quot;, &amp;quot;Columbia Citizens&amp;quot;, &amp;quot;Discover SLU&amp;quot;)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&amp;hellip; or find communities in the NE or SW regions.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Community.name.Neighborhood.District.region_(&amp;quot;ne&amp;quot; or &amp;quot;sw&amp;quot;).get(3) === List(
-  &amp;quot;Beach Drive Blog&amp;quot;, 
-  &amp;quot;KOMO Communities - Green Lake&amp;quot;, 
-  &amp;quot;Delridge Produce Cooperative&amp;quot;)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;And we can combine them to find social-media communities in
-southern regions.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val southernSocialMedia = List(
-  &amp;quot;Columbia Citizens&amp;quot;,
-  &amp;quot;Fauntleroy Community Association&amp;quot;,
-  &amp;quot;MyWallingford&amp;quot;,
-  &amp;quot;Blogging Georgetown&amp;quot;)
-
-Community.name.type_(&amp;quot;twitter&amp;quot; or &amp;quot;facebook_page&amp;quot;)
-  .Neighborhood
-  .District.region_(&amp;quot;sw&amp;quot; or &amp;quot;s&amp;quot; or &amp;quot;se&amp;quot;).get === southernSocialMedia
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Let&amp;rsquo;s parameterized the same query:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val typeAndRegion = m(Community.name.type_(?).Neighborhood.District.region_(?))
-
-typeAndRegion(
-  (&amp;quot;twitter&amp;quot; or &amp;quot;facebook_page&amp;quot;) and 
-  (&amp;quot;sw&amp;quot; or &amp;quot;s&amp;quot; or &amp;quot;se&amp;quot;)
-).get === southernSocialMedia
-
-// or
-typeAndRegion(
-  Seq(&amp;quot;twitter&amp;quot;, &amp;quot;facebook_page&amp;quot;), 
-  Seq(&amp;quot;sw&amp;quot;, &amp;quot;s&amp;quot;, &amp;quot;se&amp;quot;)
-).get === southernSocialMedia
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Note how this syntax for the ((a OR b) AND (c OR d)) expression
-is different from the syntax we had earlier in the section
-&amp;ldquo;Multiple tuples of input values for multiple attributes&amp;rdquo; where
-we had a ((a AND b) OR (c AND d)) expression.&lt;/p&gt;
-
-&lt;h2 id=&#34;9:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;&lt;a href=&#34;#contents:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;☝︎&lt;/a&gt; Working with time&lt;/h2&gt;
-
-&lt;p&gt;All of the query results shown in the previous two sections were
-based on the initial seed data we loaded into our database. The
-data hasn&amp;rsquo;t changed since then. In this section we&amp;rsquo;ll load some
-more data, and explain how to work with database values from
-different moments in time.&lt;/p&gt;
-
-&lt;h3 id=&#34;time-is-built-in:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Time is built in&lt;/h3&gt;
-
-&lt;p&gt;One of the key concepts in Datomic is that new facts don&amp;rsquo;t replace
-old facts. Instead, by default, the system keeps track of all the
-facts, forever. This makes it possible to look at the database as
-it was at a certain point in time, or at the changes since a certain
-point in time.&lt;/p&gt;
-
-&lt;p&gt;When you submit a transaction to a database, Datomic keeps track
-of the entities, attributes and values you add or retract. It also
-keeps track of the transaction itself. Transactions are entities
-in their own right, and you can write queries to find them.
-The system associates one attribute with each transaction entity,
-Db.txInstant, which records the time the transaction was processed.&lt;/p&gt;
-
-&lt;p&gt;Molecule has a &lt;code&gt;Db&lt;/code&gt; namespace with a &lt;code&gt;txInstant&lt;/code&gt; attribute that
-we can use to query for transactions instants (represented as
-java.util.Date instances) that has been created. We&amp;rsquo;ve only
-executed two transactions, but the earlier system executed a
-few as part of its bootstrapping process. We know, though, that
-our two are the most recent. The code below uses a &lt;code&gt;Db.txInstant&lt;/code&gt;
-molecule to retrieve transaction times, sort them into reverse
-chronological order, and store the most recent two as dataTxDate
-and schemaTxDate, when we added our data and our schema, respectively.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val txDates = Db.txInstant.get.toSeq.sorted.reverse
-val dataTxDate = txDates(0)
-val schemaTxDate = txDates(1)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;revisiting-the-past-getasof-pastdate:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Revisiting the past - &lt;code&gt;getAsOf(PastDate)&lt;/code&gt;&lt;/h3&gt;
-
-&lt;p&gt;Once we have the relevant transaction times, we can look at the
-database as of that point in time. To do this, we retrieve the
-current database value by calling the molecule method &lt;code&gt;getAsOf&lt;/code&gt;,
-passing in the Date we&amp;rsquo;re interested in. The &lt;code&gt;getAsOf&lt;/code&gt; method
-returns a new molecule based on the database value that is
-&amp;ldquo;rewound&amp;rdquo; back to the requested date.&lt;/p&gt;
-
-&lt;p&gt;An example will help make this clear. The code below gets the
-value of the database as of our schema transaction. Then it
-runs our very first query, which retrieves entities representing
-communities, and prints the size of the results. Because we&amp;rsquo;re
-using a database value from before we ran the transaction to
-load seed data, the size is 0.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;// Take all Community entities
-val communities = m(Community.e.name_)
-    
-communities.getAsOf(schemaTxDate).size === 0
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;If we do the same thing using the date of our seed data
-transaction, the query returns 150 results, because as of
-that moment, the seed data is there.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;communities.getAsOf(dataTxDate).size === 150
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;changes-since-a-date-getsince-comparedate:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Changes since a date - &lt;code&gt;getSince(compareDate)&lt;/code&gt;&lt;/h3&gt;
-
-&lt;p&gt;The &lt;code&gt;getAsOf&lt;/code&gt; method allows us to look at a database value
-containing data changes up to a specific point in time.
-There is another method &lt;code&gt;getSince&lt;/code&gt; that allows us to look at
-a database value containing data changes &lt;em&gt;since&lt;/em&gt; a specific
-point in time.&lt;/p&gt;
-
-&lt;p&gt;The code below gets the value of the database since our
-schema transaction and counts the number of communities.
-Because we&amp;rsquo;re using a database value containing changes
-made since we ran the transaction to load our schema -
-including the changes made when we loaded our seed data -
-the size is 150.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;communities.getSince(schemaTxDate).size === 150
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;If we do the same thing using the date of our seed data
-transaction, the query returns 0 results, because we haven&amp;rsquo;t
-added any communities since that time.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;communities.getSince(dataTxDate).size === 0
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;While we passed specific transaction dates to &lt;code&gt;getAsOf&lt;/code&gt;
-and &lt;code&gt;getSince&lt;/code&gt;, you can pass any date. The system find the
-closest relevant transaction and use that as the basis for
-filtering.&lt;/p&gt;
-
-&lt;p&gt;Keeping track of data over time is a very powerful feature.
-However, there may be some data you don&amp;rsquo;t want to keep old
-versions of. You can control whether old versions are kept
-on a per-attribute basis by adding &lt;code&gt;noHistory&lt;/code&gt; to your
-attribute definition when you create your schema. If you
-choose not to keep history for a given attribute and you
-look at a database as of a time before the most recent change
-to a given entity&amp;rsquo;s value for that attribute, you will not
-find any value for it.&lt;/p&gt;
-
-&lt;h3 id=&#34;imagining-the-future-getwith-testtxdata:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Imagining the future - &lt;code&gt;getWith(TestTxData)&lt;/code&gt;&lt;/h3&gt;
-
-&lt;p&gt;Revisiting the past is a very powerful feature. It&amp;rsquo;s also
-possible to imagine the future. The &lt;code&gt;getAsOf&lt;/code&gt; and &lt;code&gt;getSince&lt;/code&gt;
-methods work by removing data from the current database value.
-You can also &lt;em&gt;add&lt;/em&gt; data to a database value, using the
-Molecule method &lt;code&gt;getWith&lt;/code&gt;.
-The result is a database value that&amp;rsquo;s been modified without
-submitting a transaction and changing the data stored
-in the system. The modified database value can be used to
-execute queries, allowing you to perform &amp;ldquo;what if&amp;rdquo;
-calculations before committing to data changes.&lt;/p&gt;
-
-&lt;p&gt;When a &lt;code&gt;getWith(TestTxData)&lt;/code&gt; database object goes out of scope
-it is simply garbage collected. So we don&amp;rsquo;t need to do any tear
-down of some state as is common with normal database mockups.&lt;/p&gt;
-
-&lt;p&gt;We can explore this feature using a second seed data file
-provided with the sample application,
-&amp;ldquo;samples/seattle/seattle-data1.edn&amp;rdquo;. The code below reads
-it into a list.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val data_rdr2 = new FileReader(&amp;quot;examples/resources/seattle/seattle-data1a.dtm&amp;quot;)
-val newDataTx = Util.readAll(data_rdr2).get(0).asInstanceOf[java.util.List[Object]]
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Once we have this new data transaction, we can build a
-database value that includes it. To do that, we simply
-get the current database value (or one as of or since a
-point in time) and call &lt;code&gt;getWith&lt;/code&gt;, passing in the
-transaction data. &lt;code&gt;getWith&lt;/code&gt; returns a molecule based on
-the new value of the database after the new data is added.
-If we execute our community counting query against it,
-we get 258 results.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;// test db
-communities.getWith(newDataTx).get.size === 258
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;The actual data hasn&amp;rsquo;t changed yet, so if we query the
-current database value, we still get 150 results. We won&amp;rsquo;t
-see a change in the current database value until we submit
-the new transaction. After that, querying the current
-database value returns 258 results. Finally, if we get
-another database value containing data since our first
-seed data transaction ran, and query for communities we
-get 108 results, the number added by new data transaction.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;// existing db
-communities.get.size === 150
-
-// transact
-conn.transact(newDataTx)
-
-// updated db
-communities.get.size === 258
-
-// number of new transactions
-communities.getSince(dataTxDate).size === 108
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;10:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;&lt;a href=&#34;#contents:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;☝︎&lt;/a&gt; Insert data&lt;/h2&gt;
-
-&lt;p&gt;You can add data in two ways with Molecule:&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;Build a molecule with data and insert&lt;/li&gt;
-&lt;li&gt;Use a molecule template to insert matching data&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h3 id=&#34;data-molecule-with-values:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;&amp;ldquo;Data-molecule&amp;rdquo; with values&lt;/h3&gt;
-
-&lt;p&gt;To insert a single data structure you can populate a
-molecule with values and then &lt;code&gt;add&lt;/code&gt; it:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Community
-  .name(&amp;quot;AAA&amp;quot;)
-  .url(&amp;quot;myUrl&amp;quot;)
-  .`type`(&amp;quot;twitter&amp;quot;)
-  .orgtype(&amp;quot;personal&amp;quot;)
-  .category(&amp;quot;my&amp;quot;, &amp;quot;favorites&amp;quot;)
-  .Neighborhood.name(&amp;quot;myNeighborhood&amp;quot;)
-  .District.name(&amp;quot;myDistrict&amp;quot;).region(&amp;quot;nw&amp;quot;).save.eids === List(
-    17592186045891L, 17592186045892L, 17592186045893L)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Note how we can add values for referenced namespaces and multiple values for
-cardinality-many attributes like &lt;code&gt;category&lt;/code&gt; - all in one go!&lt;/p&gt;
-
-&lt;p&gt;Apart from the new Community entity two more entities are also added. Since
-neither &amp;ldquo;myNeighborhood&amp;rdquo; nor &amp;ldquo;myDistrict&amp;rdquo; exist they are created to so that
-we can reference them.&lt;/p&gt;
-
-&lt;p&gt;In Datomic there is no requirement that we add a &amp;ldquo;complete&amp;rdquo;
-set of namespace attributes to create an entity. For instance, we could add
-a community only with &lt;code&gt;Community.name(&amp;quot;My community&amp;quot;).add&lt;/code&gt;.&lt;/p&gt;
-
-&lt;h3 id=&#34;insert-molecule-matching-values:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;&amp;ldquo;Insert-molecule&amp;rdquo; + matching values&lt;/h3&gt;
-
-&lt;p&gt;A more efficient way to add larger sets of data is to define an
-&amp;ldquo;Insert-Molecule&amp;rdquo; that models the data structure we
-want to insert into the database. Note how we call the &lt;code&gt;insert&lt;/code&gt; method
-to define it as an Input-Molecule:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val insertCommunity = m(
-  Community.name.url.`type`.orgtype.category
-    .Neighborhood.name
-    .District.name.region
-) insert
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;We can then create a new Community by applying a matching set of attribute values:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;insertCommunity(
-  &amp;quot;BBB&amp;quot;, &amp;quot;url B&amp;quot;, &amp;quot;twitter&amp;quot;, &amp;quot;personal&amp;quot;, Set(&amp;quot;some&amp;quot;, &amp;quot;cat B&amp;quot;), 
-    &amp;quot;neighborhood B&amp;quot;, 
-    &amp;quot;district B&amp;quot;, &amp;quot;s&amp;quot;
-).eids === List(17592186045895L, 17592186045896L, 17592186045897L)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;As before, three entities are created here since we reference a new Neighborhood and District.&lt;/p&gt;
-
-&lt;p&gt;All values are type checked against the expected type of each attribute!&lt;/p&gt;
-
-&lt;h3 id=&#34;insert-molecule-multiple-data-tuples:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Insert-Molecule + multiple data tuples&lt;/h3&gt;
-
-&lt;p&gt;With our insert-molecule at hand we can insert large numbers
-of data tuples. As an example we can insert 3 communities and
-referenced neighborhoods/district/regions in one go:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val newCommunitiesData = List(
-  (&amp;quot;DDD Blogging Georgetown&amp;quot;, &amp;quot;http://www.blogginggeorgetown.com/&amp;quot;, 
-    &amp;quot;blog&amp;quot;, &amp;quot;commercial&amp;quot;, Set(&amp;quot;DD cat 1&amp;quot;, &amp;quot;DD cat 2&amp;quot;), 
-    &amp;quot;DD Georgetown&amp;quot;, &amp;quot;Greater Duwamish&amp;quot;, &amp;quot;s&amp;quot;),
-  (&amp;quot;DDD Interbay District Blog&amp;quot;, &amp;quot;http://interbayneighborhood.neighborlogs.com/&amp;quot;, 
-    &amp;quot;blog&amp;quot;, &amp;quot;community&amp;quot;, Set(&amp;quot;DD cat 3&amp;quot;), 
-    &amp;quot;DD Interbay&amp;quot;, &amp;quot;Magnolia/Queen Anne&amp;quot;, &amp;quot;w&amp;quot;),
-  (&amp;quot;DDD KOMO Communities - West Seattle&amp;quot;, &amp;quot;http://westseattle.komonews.com&amp;quot;, 
-    &amp;quot;blog&amp;quot;, &amp;quot;commercial&amp;quot;, Set(&amp;quot;DD cat 4&amp;quot;), 
-    &amp;quot;DD West Seattle&amp;quot;, &amp;quot;Southwest&amp;quot;, &amp;quot;sw&amp;quot;)
-)
-
-// Insert 3 new communities with 3 new neighborhoods
-insertCommunity(newCommunitiesData) === List(
-  17592186045909L, 17592186045910L, 17592186045911L,
-  17592186045912L, 17592186045913L, 17592186045914L,
-  17592186045915L, 17592186045916L, 17592186045917L)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;This approach gives us a clean way of populating a database
-where we can supply raw data from any source easily as long
-as we can format it as a list of tuples of values each matching
-our template molecule.&lt;/p&gt;
-
-&lt;p&gt;We use an insert-molecule also when we initially &lt;a href=&#34;https://github.com/scalamolecule/blob/master/examples/src/test/scala/examples/seattle/SeattleSpec.scala#L43&#34;&gt;populate
-the Seattle database&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h3 id=&#34;optional-attribute-values:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Optional attribute values&lt;/h3&gt;
-
-&lt;p&gt;We might have a data set with some optional attribute values. We can append a &lt;code&gt;$&lt;/code&gt; to
-such attribute names to tell Molecule that this is an optional value:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val insertCommunity = m(
-  Community.name.url.`type`.orgtype$.category
-    .Neighborhood.name
-    .District.name.region
-) insert
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;If for instance some row has no orgtype we can use &lt;code&gt;None&lt;/code&gt; (and likewise &lt;code&gt;Some(&amp;lt;value&amp;gt;)&lt;/code&gt;):&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;(&amp;quot;community4&amp;quot;, &amp;quot;url2&amp;quot;, &amp;quot;blog&amp;quot;, None, Set(&amp;quot;cat3&amp;quot;, &amp;quot;cat1&amp;quot;), &amp;quot;NbhName4&amp;quot;, &amp;quot;DistName4&amp;quot;, &amp;quot;ne&amp;quot;)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;In an sql table we would &amp;ldquo;insert a null value&amp;rdquo; for such column.
-But with Molecule/Datomic we just simply don&amp;rsquo;t assert any orgtype
-value for that entity at all! In other words: there is no orgtype
-fact to be asserted.&lt;/p&gt;
-
-&lt;h3 id=&#34;type-safety:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Type safety&lt;/h3&gt;
-
-&lt;p&gt;In this example we have only inserted text strings. But all input
-is type checked against the selectedattributes of the molecule which
-makes the insert operation type safe. We even infer the expected type
-so that our IDE will bark if it finds for instance an Integer
-somewhere in our input data:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;(&amp;quot;community2&amp;quot;, &amp;quot;url2&amp;quot;, &amp;quot;type2&amp;quot;, 42, Set(&amp;quot;cat3&amp;quot;, &amp;quot;cat1&amp;quot;), &amp;quot;NbhName2&amp;quot;, &amp;quot;DistName2&amp;quot;, &amp;quot;DistReg2&amp;quot;)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;A data set having the value &lt;code&gt;42&lt;/code&gt; as a value for the &lt;code&gt;orgtype&lt;/code&gt;
-attribute won&amp;rsquo;t compile and our IDE will infer that we have an invalid data set.&lt;/p&gt;
-
-&lt;h2 id=&#34;11:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;&lt;a href=&#34;#contents:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;☝︎&lt;/a&gt; Update and/or delete data&lt;/h2&gt;
-
-&lt;p&gt;To update data with Molecule, we first need the id of the entity
-that we want to update.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val belltown = Community.e.name_(&amp;quot;belltown&amp;quot;).get.head
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Then we can &amp;ldquo;replace&amp;rdquo; some attributes&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Community(belltown).name(&amp;quot;belltown 2&amp;quot;).url(&amp;quot;url 2&amp;quot;).update
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;What really happens is not a mutation of data since no
-data is ever deleted or over-written in Datomic. Instead a
-&lt;em&gt;new fact for the attribute is asserted&lt;/em&gt;. The new fact will
-turn up when queried for. But if we go back in time we can see
-the previous value at that point in time - many updates could
-have been performed over time, and all previous values are stored.&lt;/p&gt;
-
-&lt;h3 id=&#34;updating-cardinality-many-attributes:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Updating cardinality-many attributes&lt;/h3&gt;
-
-&lt;p&gt;When updating cardinality-many attributes we need to tell which
-of the values we want to update:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Community(belltown).category(&amp;quot;news&amp;quot; -&amp;gt; &amp;quot;Cool news&amp;quot;).update
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;This syntax causes Molecule to first retract the old value &amp;ldquo;news&amp;rdquo;
-and then assert/add the new value &amp;ldquo;Cool news&amp;rdquo;. Note that if the
-before-value doesn&amp;rsquo;t exist the new value will still be inserted,
-so you might be sure what the current value is by querying for it first.&lt;/p&gt;
-
-&lt;p&gt;We can even update several values of a cardinality-many attribute in one go:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Community(belltown).category(
-  &amp;quot;Cool news&amp;quot; -&amp;gt; &amp;quot;Super cool news&amp;quot;,
-  &amp;quot;events&amp;quot; -&amp;gt; &amp;quot;Super cool events&amp;quot;).update
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;adding-removing-values-of-cardinality-many-attributes:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Adding/removing values of cardinality-many attributes&lt;/h3&gt;
-
-&lt;p&gt;If we want to add or remove values of a cardinality-many attribute
-we can use the following mehtods:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;// add
-Community(belltown).category.add(&amp;quot;extra category&amp;quot;).update
-
-// remove
-Community(belltown).category.remove(&amp;quot;Super cool events&amp;quot;).update
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;delete-retract-values:3d29aefa7257f22b89227d9f373cd5f9&#34;&gt;Delete/retract values&lt;/h3&gt;
-
-&lt;p&gt;When you update a molecule you can apply an empty value &lt;code&gt;apply()&lt;/code&gt;
-or simply &lt;code&gt;()&lt;/code&gt; after an attribute name to delete/retract the
-attributes value(s). We can mix updates and retractions:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Community(belltown).name(&amp;quot;belltown 3&amp;quot;).url().category().update
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;code&gt;name&lt;/code&gt; gets the new value &amp;ldquo;belltown 3&amp;rdquo; and both the &lt;code&gt;url&lt;/code&gt; and
-&lt;code&gt;category&lt;/code&gt; attributes have their values retracted.&lt;/p&gt;
-
-&lt;p&gt;There are a couple of important things to know about retracting data.
-The first is that we must specify the value of the attribute being
-retracted. When applying the empty value, Molecule therefore first
-looks up the current value in order to be able to retract it.&lt;/p&gt;
-
-&lt;p&gt;The other thing to know is that, because we can access database
-values as they existed at specific points in time, we can retrieve
-retracted data by looking in the past. In other words, the data
-isn&amp;rsquo;t really gone. If we want data to really be gone after we
-retract it, we have to disable history for the specific attribute,
-as described in &lt;a href=&#34;http://scalamolecule.org/manual/getting-started/&#34;&gt;Database setup&lt;/a&gt;.&lt;/p&gt;
-</description>
+      <guid>http://scalamolecule.org/resources/tutorials/seattle/</guid>
+      <description>Molecule Seattle tutorial  A first query Querying for an attribute&amp;rsquo;s value Querying by attribute values Querying across references Parameterizing queries - input molecules Invoking functions in queries Querying with fulltext search Querying with rules - logical OR Working with time Insert data Update and/or delete data  Credits: This tutorial is based on the original Datomic Seattle tutorial (there is also a new tutorial) and some text passages have been quoted as-is or been slightly modified to describe how Molecule works.</description>
     </item>
     
     <item>
-      <title>Getting started</title>
-      <link>http://scalamolecule.org/manual/getting-started/</link>
-      <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
+      <title>Tx data</title>
+      <link>http://scalamolecule.org/documentation/transactions/tx-data/</link>
+      <pubDate>Fri, 02 Jan 2015 22:06:44 +0100</pubDate>
       
-      <guid>http://scalamolecule.org/manual/getting-started/</guid>
-      <description>
-
-&lt;h1 id=&#34;getting-started-with-molecule:b6885e1f85551f51a4707c402f8200a3&#34;&gt;Getting started with Molecule&lt;/h1&gt;
-
-&lt;p&gt;To use Molecule we need to define our database schema in a &lt;a href=&#34;http://scalamolecule.org/manual/schema&#34;&gt;Schema definition&lt;/a&gt; file and then tell
-sbt about it. When compiling our project from the command line, all necessary boilerplate code is
-then automatically generated.&lt;/p&gt;
-
-&lt;h2 id=&#34;1-sbt-build-settings:b6885e1f85551f51a4707c402f8200a3&#34;&gt;1. SBT build settings&lt;/h2&gt;
-
-&lt;p&gt;Add the following to your build files:&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;project/build.properties&lt;/code&gt;:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;sbt.version=0.13.13
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;code&gt;project/buildinfo.sbt&lt;/code&gt;:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;addSbtPlugin(&amp;quot;org.scalamolecule&amp;quot; % &amp;quot;sbt-molecule&amp;quot; % &amp;quot;0.3.3&amp;quot;)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;code&gt;build.sbt&lt;/code&gt;:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;lazy val yourProject = project.in(file(&amp;quot;demo&amp;quot;))
-  .enablePlugins(MoleculePlugin)
-  .settings(
-    resolvers ++= Seq(
-      &amp;quot;datomic&amp;quot; at &amp;quot;http://files.datomic.com/maven&amp;quot;,
-      &amp;quot;clojars&amp;quot; at &amp;quot;http://clojars.org/repo&amp;quot;,
-      Resolver.sonatypeRepo(&amp;quot;releases&amp;quot;)
-    ),
-    libraryDependencies ++= Seq(
-      &amp;quot;org.scalamolecule&amp;quot; %% &amp;quot;molecule&amp;quot; % &amp;quot;0.11.0&amp;quot;,
-      &amp;quot;com.datomic&amp;quot; % &amp;quot;datomic-free&amp;quot; % &amp;quot;0.9.5561&amp;quot;
-    ),
-    moleculeSchemas := Seq(&amp;quot;demo&amp;quot;) // paths to your schema definition files...
-  )
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Molecule 0.11.0 for Scala 2.12.1 is available at
-&lt;a href=&#34;https://oss.sonatype.org/content/repositories/releases/org/scalamolecule/molecule_2.12/&#34;&gt;Sonatype&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h1 id=&#34;2-paths-to-schema-definition-files:b6885e1f85551f51a4707c402f8200a3&#34;&gt;2. Paths to Schema definition files&lt;/h1&gt;
-
-&lt;p&gt;We use the &lt;code&gt;moleculeSchemas&lt;/code&gt; sbt settings key to tell sbt where we have our Schema definition files.&lt;/p&gt;
-
-&lt;p&gt;A &lt;a href=&#34;http://scalamolecule.org/manual/schema&#34;&gt;Schema definition&lt;/a&gt; file contains a plain Scala object where you define
-partitions/namespaces/attributes of your Datomic database. The MoleculePlugin uses the information
-defined there to create all the boilerplate code needed to use Molecule in your code.&lt;/p&gt;
-
-&lt;p&gt;You can have a single or several Schema definition files in a project. Each definition file defines a single database.
-This is useful if you for instance want to experiment with various database designs during development.&lt;/p&gt;
-
-&lt;p&gt;Schema definiton files should reside in directories named &lt;code&gt;schema&lt;/code&gt; anywhere in your source code.&lt;/p&gt;
-
-&lt;p&gt;Use the &lt;code&gt;moleculeSchemas&lt;/code&gt; sbt settings key to list the directories in your project source
-code that contains your &lt;code&gt;schema&lt;/code&gt; directories.&lt;/p&gt;
-
-&lt;p&gt;Say you have a project &lt;code&gt;demo&lt;/code&gt; and a single Schema definition file &lt;code&gt;YourDomainDefinition.scala&lt;/code&gt;
-defining your database:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://scalamolecule.org/img/dirs1.png&#34; alt=&#34;&#34; /&gt;
-&lt;/p&gt;
-
-&lt;p&gt;Then you simply add &lt;code&gt;moleculeSchemas := Seq(&amp;quot;demo&amp;quot;)&lt;/code&gt; as we saw above.&lt;/p&gt;
-
-&lt;p&gt;In the main Molecule project&amp;rsquo;s examples module we have several Schema definition files:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://scalamolecule.org/img/dirs2.png&#34; alt=&#34;&#34; /&gt;
-&lt;/p&gt;
-
-&lt;p&gt;And we then list the paths to those like this in our &lt;code&gt;build.sbt&lt;/code&gt;:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;moleculeSchemas := Seq(
-  &amp;quot;molecule/examples/dayOfDatomic&amp;quot;,
-  &amp;quot;molecule/examples/graph&amp;quot;,
-  &amp;quot;molecule/examples/mbrainz&amp;quot;,
-  &amp;quot;molecule/examples/seattle&amp;quot;
-)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;3-compile:b6885e1f85551f51a4707c402f8200a3&#34;&gt;3. Compile&lt;/h2&gt;
-
-&lt;p&gt;Now that you have created a schema definition file and told sbt about where to find it, you can compile
-your project from the terminal&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;&amp;gt; cd yourProjectRoot
-&amp;gt; sbt compile
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;The MoleculePlugin will now automatically as part of the compilation process do 5 things:&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;Generate Molecule boilerplate dsl source code files (in the &lt;code&gt;src_managed&lt;/code&gt; directory in target)&lt;/li&gt;
-&lt;li&gt;Generate a schema file with the necessary code to transact the Datomic schema&lt;br /&gt;&lt;/li&gt;
-&lt;li&gt;Compile the generated code&lt;/li&gt;
-&lt;li&gt;Package both the source code and compiled classes into two &lt;code&gt;jar&lt;/code&gt;s and place them in the &lt;code&gt;lib&lt;/code&gt; directory of your module&lt;/li&gt;
-&lt;li&gt;Remove the generated source code and compiled classes&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;The MoleculePlugin create the &lt;code&gt;jars&lt;/code&gt; so that you can use the boilerplate code without having to recompile any
-generated boilerplate code each time you recompile your project. In our demo example two jars are created:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://scalamolecule.org/img/jars.png&#34; alt=&#34;&#34; /&gt;
-&lt;/p&gt;
-
-&lt;h2 id=&#34;4-use-molecule:b6885e1f85551f51a4707c402f8200a3&#34;&gt;4. Use Molecule&lt;/h2&gt;
-
-&lt;p&gt;The MoleculePlugin has now created all the necessary boilerplate code so that we can start using Molecule. We can
-create a fresh in-memory Datomic database by supplying the generated Schema transaction code in &lt;code&gt;YourDomainSchema&lt;/code&gt;
-(from the example above):&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;import molecule._
-implicit val conn = recreateDbFrom(demo.schema.YourDomainSchema)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;With the implicit Datomic connection available we can start making molecules:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;import demo.dsl.yourDomain._
-
-// Insert data
-Person.name(&amp;quot;John&amp;quot;).age(26).gender(&amp;quot;male&amp;quot;).save
-
-// Retrieve data
-val (person, age, gender) = Person.name.age.gender.get.head
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h4 id=&#34;read-more:b6885e1f85551f51a4707c402f8200a3&#34;&gt;Read more&lt;/h4&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/manual/schema&#34;&gt;Schema definition&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://scalamolecule.org/manual/schema/transaction&#34;&gt;Create Datomic database&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Builder</title>
-      <link>http://scalamolecule.org/manual/query/builder/</link>
-      <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
-      
-      <guid>http://scalamolecule.org/manual/query/builder/</guid>
-      <description>
-
-&lt;h1 id=&#34;attribute-builder-pattern:8fd4bc5e57a8b030c7141267f15a6e67&#34;&gt;Attribute builder pattern&lt;/h1&gt;
-
-&lt;p&gt;(See &lt;a href=&#34;https://github.com/scalamolecule/molecule/blob/master/coretest/src/test/scala/molecule/attr/Attribute.scala&#34;&gt;attribute tests&lt;/a&gt;)&lt;/p&gt;
-
-&lt;p&gt;When we have defined a schema, Molecule generates the necessary boilerplate code so that we can build &amp;ldquo;molecular data
- structures&amp;rdquo; by building sequences of Attributes separated with dots (the &amp;ldquo;builder pattern&amp;rdquo;).&lt;/p&gt;
-
-&lt;p&gt;We could for instance build a molecule representing the data structure of Persons with name, age and gender Attributes:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.name.age.gender // etc
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;The fundamental building blocks are Namespaces like &lt;code&gt;Person&lt;/code&gt; and Attributes like &lt;code&gt;name&lt;/code&gt;, &lt;code&gt;age&lt;/code&gt; and &lt;code&gt;gender&lt;/code&gt;. Namespaces
- are simply prefixes to Attribute names to avoid name clashes and to group our Attributes in meaningful ways according to our domain.&lt;/p&gt;
-
-&lt;p&gt;As you see we start our molecule from some Namespace and then build on Attribute by Attribute.&lt;/p&gt;
-
-&lt;h2 id=&#34;3-ways-of-getting-data:8fd4bc5e57a8b030c7141267f15a6e67&#34;&gt;3 ways of getting data&lt;/h2&gt;
-
-&lt;h4 id=&#34;1-mandatory-attributes:8fd4bc5e57a8b030c7141267f15a6e67&#34;&gt;1. Mandatory Attributes&lt;/h4&gt;
-
-&lt;p&gt;When we use a molecule to query the Datomic database we ask for entities having all our Attributes associated with them.&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;Note that this is different from selecting rows from a sql table where you can also get null values back!&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;If for instance we have entities representing Persons in our data set that haven&amp;rsquo;t got any age Attribute associated
-with them then this query will &lt;em&gt;not&lt;/em&gt; return those entities:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val persons = Person.name.age.get
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Basically we look for &lt;strong&gt;matches&lt;/strong&gt; to our molecule data structure.&lt;/p&gt;
-
-&lt;h4 id=&#34;2-tacet-attributes-with-suffix:8fd4bc5e57a8b030c7141267f15a6e67&#34;&gt;2. Tacet Attributes with &lt;code&gt;_&lt;/code&gt; suffix&lt;/h4&gt;
-
-&lt;p&gt;Sometimes we want to grap entities that we &lt;em&gt;know&lt;/em&gt; have certain attributes, but without returning those values.
-We call the un-returning attributes &amp;ldquo;tacet attributes&amp;rdquo; (music term for &amp;ldquo;silent&amp;rdquo;).&lt;/p&gt;
-
-&lt;p&gt;If for instance we wanted to find all names of Persons that have an age attribute set but we don&amp;rsquo;t need to return those age
- values, then we can add an underscore &lt;code&gt;_&lt;/code&gt; after the &lt;code&gt;age&lt;/code&gt; Attribute:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val names = Person.name.age_.get
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;This will return names of person entities having both a name and age Attribute set. Note how the age values are no
-longer returned from the type signatures:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val persons: Iterable[(String, Int)] = Person.name.age.get
-val names  : Iterable[String]        = Person.name.age_.get
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;This way we can switch on and off individual attributes from the result set without affecting the data structures
-we look for.&lt;/p&gt;
-
-&lt;h4 id=&#34;3-optional-attributes-with-suffix-like-null-values:8fd4bc5e57a8b030c7141267f15a6e67&#34;&gt;3. Optional Attributes with &lt;code&gt;$&lt;/code&gt; suffix (like Null values)&lt;/h4&gt;
-
-&lt;p&gt;If an attribute value is only sometimes set, we can ask for it&amp;rsquo;s optional value by adding a dollar sign &lt;code&gt;$&lt;/code&gt; after the attribute:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val names: Iterable[(String, Option[String], String)] = Person.firstName.middleName$.lastName.get
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;That way we can get all person names with or without middleNames. As you can see from the return type, the middle
-name is wrapped in an &lt;code&gt;Option&lt;/code&gt;.&lt;/p&gt;
-
-&lt;h3 id=&#34;tuples-returned:8fd4bc5e57a8b030c7141267f15a6e67&#34;&gt;Tuples returned&lt;/h3&gt;
-
-&lt;p&gt;Molecule returns all result sets as tuples of values (with &lt;code&gt;get&lt;/code&gt;).&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val persons: Iterable[(String, Int)] = Person.name.age.get
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;molecule-max-size:8fd4bc5e57a8b030c7141267f15a6e67&#34;&gt;Molecule max size&lt;/h2&gt;
-
-&lt;p&gt;The size of molecules are limited to Scala&amp;rsquo;s arity limit of 22 for tuples. If you need to return more you can
-use an additional molecule that takes an entity id and then retrieve further attribute values for that entity.&lt;/p&gt;
-
-&lt;p&gt;If we need to insert/return more than 22 attribute values we can easily do this by using the entity id to
-work with further attributes/values:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;// Insert maximum of 22 facts and return the created entity id
-val eid = Ns.someId.b.c.d.e.f.g.h.i.j.k.l.m.n.o.p.q.r.s.t.u.v.insert(
-    1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22
-).eid
-
-// Use entity id to continue adding more values for the same entity
-Ns.x.y.z.insert(eid, 23, 24, 25)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Likewise we can retrieve more than 22 values in 2 steps&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val first22values = Ns.someId_(1).b.c.d.e.f.g.h.i.j.k.l.m.n.o.p.q.r.s.t.u.v.get
-
-// Use entity id to continue adding more values
-val next3values = Ns.x.y.z.insert(eid, 23, 24, 25)
-&lt;/code&gt;&lt;/pre&gt;
-</description>
+      <guid>http://scalamolecule.org/documentation/transactions/tx-data/</guid>
+      <description> Tx data </description>
     </item>
     
     <item>
       <title>Datomic</title>
       <link>http://scalamolecule.org/compare/datomic/</link>
-      <pubDate>Wed, 14 May 2014 02:13:50 UTC</pubDate>
+      <pubDate>Wed, 14 May 2014 02:13:50 +0000</pubDate>
       
       <guid>http://scalamolecule.org/compare/datomic/</guid>
-      <description>
-
-&lt;h1 id=&#34;compare-with-datomic-datalog:fce8223ee4fefc246edc14cd715d3099&#34;&gt;Compare with Datomic/Datalog&lt;/h1&gt;
-
-&lt;p&gt;Even though Molecule is adapting to Datomic we&amp;rsquo;ll have a look the other way around to see how Datomic compares to Molecule.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;https://github.com/scalamolecule/molecule/blob/master/examples/src/test/scala/molecule/examples/seattle/SeattleQueryTests.scala&#34;&gt;Follow along in the code&lt;/a&gt; from which we will pick a few examples based on the Seattle tutorial examples.&lt;/p&gt;
-
-&lt;h3 id=&#34;querying-for-attribute-values:fce8223ee4fefc246edc14cd715d3099&#34;&gt;Querying &lt;em&gt;for&lt;/em&gt; attribute values&lt;/h3&gt;
-
-&lt;p&gt;The most basic query is to ask for entities with some attribute values:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;// Datalog
-[:find  ?b ?c (distinct ?d)
- :where [?a :community/name ?b]
-        [?a :community/url ?c]
-        [?a :community/category ?d]]
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;In Molecule we simply use the namespace name and add the attribute names:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;// Molecule
-Community.name.url.category
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Datalog has a &lt;code&gt;:find&lt;/code&gt; and &lt;code&gt;:where&lt;/code&gt; section similar to &lt;code&gt;select&lt;/code&gt; and &lt;code&gt;where&lt;/code&gt; in the SQL world. The &lt;code&gt;:find&lt;/code&gt; section defines which values to return and the where section defines one or more clauses filtering the result set.&lt;/p&gt;
-
-&lt;p&gt;In this case we asked for the values of variable &lt;code&gt;?b&lt;/code&gt;, &lt;code&gt;?c&lt;/code&gt; and &lt;code&gt;?d&lt;/code&gt; each one bound in its where clause. With molecule we use the three attribute names all associated to the &lt;code&gt;Community&lt;/code&gt; namespace.&lt;/p&gt;
-
-&lt;h3 id=&#34;querying-by-attribute-values:fce8223ee4fefc246edc14cd715d3099&#34;&gt;Querying &lt;em&gt;by&lt;/em&gt; attribute values&lt;/h3&gt;
-
-&lt;p&gt;Let&amp;rsquo;s query by an enumerated value for the &lt;code&gt;type&lt;/code&gt; attribute:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;[:find  ?b
- :where [?a :community/name ?b]
-        [?a :community/type &amp;quot;:community.type/twitter&amp;quot;]]
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Community.name.type_(&amp;quot;twitter&amp;quot;)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Note how we add an underscore to the &lt;code&gt;type&lt;/code&gt; attribute to tell Molecule that we want to omit returning this value in the result set (since it will have the value &amp;ldquo;twitter&amp;rdquo; for all returned entities).&lt;/p&gt;
-
-&lt;p&gt;Since the &lt;code&gt;type&lt;/code&gt; attribute is defined as en enumeration Molecule checks the &amp;ldquo;twitter&amp;rdquo; value at &lt;em&gt;compile time&lt;/em&gt; against the defined enumeration values that we have definied in our schema for the &lt;code&gt;Community&lt;/code&gt; namespace to ensure that &amp;ldquo;twitter&amp;rdquo; is one of the enums. If it is not, our molecule won&amp;rsquo;t compile and we&amp;rsquo;ll get an error showing the available enum values.&lt;/p&gt;
-
-&lt;p&gt;For a many-cardinality attribute like &lt;code&gt;category&lt;/code&gt; Datalog applies logical OR with Datalog rules:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;[:find  ?b
- :in    $ %
- :where [?a :community/name ?b]
-        (rule1 ?a)]
-
-INPUTS:
-List(
-  1 datomic.db.Db@xxx
-  2 [[(rule1 ?a) [?a :community/category &amp;quot;news&amp;quot;]]
-     [(rule1 ?a) [?a :community/category &amp;quot;arts&amp;quot;]]]
-)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;In Molecule we can apply the two values either separated with &lt;code&gt;or&lt;/code&gt; or commas:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Community.name.category_(&amp;quot;news&amp;quot; or &amp;quot;arts&amp;quot;)
-
-// Same as
-Community.name.category_(&amp;quot;news&amp;quot;, &amp;quot;arts&amp;quot;)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;querying-across-references:fce8223ee4fefc246edc14cd715d3099&#34;&gt;Querying across references&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;[:find  ?b ?e2
- :where [?a :community/name ?b]
-        [?a :community/neighborhood ?c]
-        [?c :neighborhood/district ?d]
-        [?d :district/region ?e]
-        [?e :db/ident ?e1]
-        [(.getName ^clojure.lang.Keyword ?e1) ?e2]]
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Community.name.Neighborhood.District.region
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;parameterizing-queries:fce8223ee4fefc246edc14cd715d3099&#34;&gt;Parameterizing queries&lt;/h3&gt;
-
-&lt;p&gt;Community input molecule awaiting some type value&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;[:find  ?b ?c2
- :in    $ ?c
- :where [?a :community/name ?b]
-        [?a :community/type ?c]
-        [?c :db/ident ?c1]
-        [(.getName ^clojure.lang.Keyword ?c1) ?c2]]
-
-INPUTS:
-List(
-  1 datomic.db.Db@xxx
-  2 :community.type/twitter
-)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val communitiesOfType  = m(Community.name.type(?))
-val twitterCommunities = communitiesOfType(&amp;quot;twitter&amp;quot;)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Multiple input values for one attribute - logical OR&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;[:find  ?b ?c2
- :in    $ ?c
- :where [?a :community/name ?b]
-        [?a :community/type ?c]
-        [?c :db/ident ?c1]
-        [(.getName ^clojure.lang.Keyword ?c1) ?c2]]
-
-INPUTS:
-List(
-  1 datomic.db.Db@xxx
-  2 :community.type/twitter
-)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;m(Community.name.`type`(?)).apply(&amp;quot;facebook_page&amp;quot; or &amp;quot;twitter&amp;quot;)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Single tuple of input values for two attributes - logical AND&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;[:find  ?b
- :in    $ [[ ?c ?d ]]
- :where [?a :community/name ?b]
-        [?a :community/type ?c]
-        [?a :community/orgtype ?d]]
-
-INPUTS:
-List(
-  1 datomic.db.Db@xxx
-  2 [[:community.type/email_list, :community.orgtype/community]]
-)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;m(Community.name.type_(?).orgtype_(?))(&amp;quot;email_list&amp;quot; and &amp;quot;community&amp;quot;)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Multiple tuple of input values for two attributes - logical AND&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;[:find  ?b ?c2 ?d2
- :in    $ [[ ?c ?d ]]
- :where [?a :community/name ?b]
-        [?a :community/type ?c]
-        [?c :db/ident ?c1]
-        [(.getName ^clojure.lang.Keyword ?c1) ?c2]
-        [?a :community/orgtype ?d]
-        [?d :db/ident ?d1]
-        [(.getName ^clojure.lang.Keyword ?d1) ?d2]]
-
-INPUTS:
-List(
-  1 datomic.db.Db@xxx
-  2 [[:community.type/email_list, :community.orgtype/community], 
-     [:community.type/website, :community.orgtype/commercial]]
-)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;m(Community.name.`type`(?).orgtype(?))
-.apply(Seq((&amp;quot;email_list&amp;quot;, &amp;quot;community&amp;quot;), (&amp;quot;website&amp;quot;, &amp;quot;commercial&amp;quot;)))
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;invoking-functions-in-queries:fce8223ee4fefc246edc14cd715d3099&#34;&gt;Invoking functions in queries&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;[:find  ?b
- :where [?a :community/name ?b]
-        [(.compareTo ^String ?b &amp;quot;C&amp;quot;) ?b2]
-        [(&amp;lt; ?b2 0)]]
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Community.name.&amp;lt;(&amp;quot;C&amp;quot;)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;fulltext-search:fce8223ee4fefc246edc14cd715d3099&#34;&gt;Fulltext search&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;[:find  ?b
- :where [(fulltext $ :community/name &amp;quot;Wallingford&amp;quot;) [[ ?a ?b ]]]]
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Community.name.contains(&amp;quot;Wallingford&amp;quot;)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Fulltext search on many-attribute (&lt;code&gt;category&lt;/code&gt;)&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;[:find  ?b (distinct ?d)
- :where [?a :community/name ?b]
-        [?a :community/type &amp;quot;:community.type/website&amp;quot;]
-        [(fulltext $ :community/category &amp;quot;food&amp;quot;) [[ ?a ?d ]]]]
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Community.name.type_(&amp;quot;website&amp;quot;).category.contains(&amp;quot;food&amp;quot;)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;querying-with-rules-logical-or:fce8223ee4fefc246edc14cd715d3099&#34;&gt;Querying with rules (logical OR)&lt;/h3&gt;
-
-&lt;p&gt;Social media communities&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;[:find  ?b
- :in    $ %
- :where [?a :community/name ?b]
-        (rule1 ?a)]
-
-INPUTS:
-List(
-  1 datomic.db.Db@xxx
-  2 [[(rule1 ?a) [?a :community/type &amp;quot;:community.type/twitter&amp;quot;]]
-     [(rule1 ?a) [?a :community/type &amp;quot;:community.type/facebook_page&amp;quot;]]]
-)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Community.name.type_(&amp;quot;twitter&amp;quot; or &amp;quot;facebook_page&amp;quot;)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Social media communities in southern regions&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;[:find  ?b
- :in    $ %
- :where [?a :community/name ?b]
-        (rule1 ?a)
-        [?a :community/neighborhood ?d]
-        [?d :neighborhood/district ?e]
-        (rule2 ?e)]
-
-INPUTS:
-List(
-  1 datomic.db.Db@xxx
-  2 [[(rule1 ?a) [?a :community/type &amp;quot;:community.type/twitter&amp;quot;]]
-     [(rule1 ?a) [?a :community/type &amp;quot;:community.type/facebook_page&amp;quot;]]
-     [(rule2 ?e) [?e :district/region &amp;quot;:district.region/sw&amp;quot;]]
-     [(rule2 ?e) [?e :district/region &amp;quot;:district.region/s&amp;quot;]]
-     [(rule2 ?e) [?e :district/region &amp;quot;:district.region/se&amp;quot;]]]
-)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Community.name.type_(&amp;quot;twitter&amp;quot; or &amp;quot;facebook_page&amp;quot;)
-  .Neighborhood.District.region_(&amp;quot;sw&amp;quot; or &amp;quot;s&amp;quot; or &amp;quot;se&amp;quot;)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Parameterized&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;[:find  ?b
- :in    $ %
- :where [?a :community/name ?b]
-        [?a :community/type ?c]
-        [?a :community/neighborhood ?d]
-        [?d :neighborhood/district ?e]
-        [?e :district/region ?f]
-        (rule1 ?a)
-        (rule2 ?e)]
-
-INPUTS:
-List(
-  1 datomic.db.Db@xxx
-  2 [[(rule1 ?a) [?a :community/type &amp;quot;:community.type/twitter&amp;quot;]]
-     [(rule1 ?a) [?a :community/type &amp;quot;:community.type/facebook_page&amp;quot;]]
-     [(rule2 ?e) [?e :district/region &amp;quot;:district.region/sw&amp;quot;]]
-     [(rule2 ?e) [?e :district/region &amp;quot;:district.region/s&amp;quot;]]
-     [(rule2 ?e) [?e :district/region &amp;quot;:district.region/se&amp;quot;]]]
-)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;m(Community.name.type_(?).Neighborhood.District.region_(?))
-  .apply((&amp;quot;twitter&amp;quot; or &amp;quot;facebook_page&amp;quot;) and (&amp;quot;sw&amp;quot; or &amp;quot;s&amp;quot; or &amp;quot;se&amp;quot;)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;working-with-time:fce8223ee4fefc246edc14cd715d3099&#34;&gt;Working with time&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;[:find  ?b
- :where [?a :db/txInstant ?b]]
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Db.txInstant
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;inserting-data:fce8223ee4fefc246edc14cd715d3099&#34;&gt;Inserting data&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;List(
-  List(  :db/add,   #db/id[:db.part/user -1000001],   :community/name        ,   AAA                             )
-  List(  :db/add,   #db/id[:db.part/user -1000001],   :community/url         ,   myUrl                           )
-  List(  :db/add,   #db/id[:db.part/user -1000001],   :community/type        ,   :community.type/twitter         )
-  List(  :db/add,   #db/id[:db.part/user -1000001],   :community/orgtype     ,   :community.orgtype/personal     )
-  List(  :db/add,   #db/id[:db.part/user -1000001],   :community/category    ,   my                              )
-  List(  :db/add,   #db/id[:db.part/user -1000001],   :community/category    ,   favorites                       )
-  List(  :db/add,   #db/id[:db.part/user -1000001],   :community/neighborhood,   #db/id[:db.part/user -1000002]  )
-  List(  :db/add,   #db/id[:db.part/user -1000002],   :neighborhood/name     ,   myNeighborhood                  )
-  List(  :db/add,   #db/id[:db.part/user -1000002],   :neighborhood/district ,   #db/id[:db.part/user -1000003]  )
-  List(  :db/add,   #db/id[:db.part/user -1000003],   :district/name         ,   myDistrict                      )
-  List(  :db/add,   #db/id[:db.part/user -1000003],   :district/region       ,   :district.region/nw             )
-)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Community
-  .name(&amp;quot;AAA&amp;quot;)
-  .url(&amp;quot;myUrl&amp;quot;)
-  .`type`(&amp;quot;twitter&amp;quot;)
-  .orgtype(&amp;quot;personal&amp;quot;)
-  .category(&amp;quot;my&amp;quot;, &amp;quot;favorites&amp;quot;)
-  .Neighborhood.name(&amp;quot;myNeighborhood&amp;quot;)
-  .District.name(&amp;quot;myDistrict&amp;quot;).region(&amp;quot;nw&amp;quot;).save
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Multiple entities:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;List(
-  List(  :db/add,   #db/id[:db.part/user -1000001],   :community/name        ,   DDD Blogging Georgetown                        )
-  List(  :db/add,   #db/id[:db.part/user -1000001],   :community/url         ,   http://www.blogginggeorgetown.com/             )
-  List(  :db/add,   #db/id[:db.part/user -1000001],   :community/type        ,   :community.type/blog                           )
-  List(  :db/add,   #db/id[:db.part/user -1000001],   :community/orgtype     ,   :community.orgtype/commercial                  )
-  List(  :db/add,   #db/id[:db.part/user -1000001],   :community/category    ,   DD cat 1                                       )
-  List(  :db/add,   #db/id[:db.part/user -1000001],   :community/category    ,   DD cat 2                                       )
-  List(  :db/add,   #db/id[:db.part/user -1000001],   :community/neighborhood,   #db/id[:db.part/user -1000002]                 )
-  List(  :db/add,   #db/id[:db.part/user -1000002],   :neighborhood/name     ,   DD Georgetown                                  )
-  List(  :db/add,   #db/id[:db.part/user -1000002],   :neighborhood/district ,   #db/id[:db.part/user -1000003]                 )
-  List(  :db/add,   #db/id[:db.part/user -1000003],   :district/name         ,   Greater Duwamish                               )
-  List(  :db/add,   #db/id[:db.part/user -1000003],   :district/region       ,   :district.region/s                             )
-  
-  List(  :db/add,   #db/id[:db.part/user -1000004],   :community/name        ,   DDD Interbay District Blog                     )
-  List(  :db/add,   #db/id[:db.part/user -1000004],   :community/url         ,   http://interbayneighborhood.neighborlogs.com/  )
-  List(  :db/add,   #db/id[:db.part/user -1000004],   :community/type        ,   :community.type/blog                           )
-  List(  :db/add,   #db/id[:db.part/user -1000004],   :community/orgtype     ,   :community.orgtype/community                   )
-  List(  :db/add,   #db/id[:db.part/user -1000004],   :community/category    ,   DD cat 3                                       )
-  List(  :db/add,   #db/id[:db.part/user -1000004],   :community/neighborhood,   #db/id[:db.part/user -1000005]                 )
-  List(  :db/add,   #db/id[:db.part/user -1000005],   :neighborhood/name     ,   DD Interbay                                    )
-  List(  :db/add,   #db/id[:db.part/user -1000005],   :neighborhood/district ,   #db/id[:db.part/user -1000006]                 )
-  List(  :db/add,   #db/id[:db.part/user -1000006],   :district/name         ,   Magnolia/Queen Anne                            )
-  List(  :db/add,   #db/id[:db.part/user -1000006],   :district/region       ,   :district.region/w                             )
-)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Community.name.url.`type`.orgtype.category.Neighborhood.name.District.name.region insert List(
-  (&amp;quot;DDD Blogging Georgetown&amp;quot;, &amp;quot;http://www.blogginggeorgetown.com/&amp;quot;, &amp;quot;blog&amp;quot;, &amp;quot;commercial&amp;quot;, Set(&amp;quot;DD cat 1&amp;quot;, &amp;quot;DD cat 2&amp;quot;), &amp;quot;DD Georgetown&amp;quot;, &amp;quot;Greater Duwamish&amp;quot;, &amp;quot;s&amp;quot;),
-  (&amp;quot;DDD Interbay District Blog&amp;quot;, &amp;quot;http://interbayneighborhood.neighborlogs.com/&amp;quot;, &amp;quot;blog&amp;quot;, &amp;quot;community&amp;quot;, Set(&amp;quot;DD cat 3&amp;quot;), &amp;quot;DD Interbay&amp;quot;, &amp;quot;Magnolia/Queen Anne&amp;quot;, &amp;quot;w&amp;quot;)
-)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;updating-data:fce8223ee4fefc246edc14cd715d3099&#34;&gt;Updating data&lt;/h3&gt;
-
-&lt;p&gt;Updating one-attribute&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;List(
-  List(  :db/add,   17592186045649,   :community/name,   belltown 2  )
-  List(  :db/add,   17592186045649,   :community/url ,   url 2       )
-)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Community(belltownId).name(&amp;quot;belltown 2&amp;quot;).url(&amp;quot;url 2&amp;quot;).update
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Updating many-attribute&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;List(
-  List(  :db/retract,   17592186045649,   :community/category,   news       )
-  List(  :db/add    ,   17592186045649,   :community/category,   Cool news  )
-)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Community(belltownId).category(&amp;quot;news&amp;quot; -&amp;gt; &amp;quot;Cool news&amp;quot;).update
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Update multiple values of many-attribute&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;List(
-  List(  :db/retract,   17592186045649,   :community/category,   Cool news          )
-  List(  :db/add    ,   17592186045649,   :community/category,   Super cool news    )
-  List(  :db/retract,   17592186045649,   :community/category,   events             )
-  List(  :db/add    ,   17592186045649,   :community/category,   Super cool events  )
-)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Community(belltownId).category(
-  &amp;quot;Cool news&amp;quot; -&amp;gt; &amp;quot;Super cool news&amp;quot;,
-  &amp;quot;events&amp;quot; -&amp;gt; &amp;quot;Super cool events&amp;quot;
-).update
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Update multiple values of many-attribute&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;List(
-  List(  :db/retract,   17592186045649,   :community/category,   Cool news          )
-  List(  :db/add    ,   17592186045649,   :community/category,   Super cool news    )
-  List(  :db/retract,   17592186045649,   :community/category,   events             )
-  List(  :db/add    ,   17592186045649,   :community/category,   Super cool events  )
-)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Community(belltownId).category(
-  &amp;quot;Cool news&amp;quot; -&amp;gt; &amp;quot;Super cool news&amp;quot;,
-  &amp;quot;events&amp;quot; -&amp;gt; &amp;quot;Super cool events&amp;quot;
-).update
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Add a value to a many-attribute&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;List(
-  List(  :db/add,   17592186045649,   :community/category,   extra category  )
-)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Community(belltownId).category.add(&amp;quot;extra category&amp;quot;).update
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Remove value from a many-attribute&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;List(
-  List(  :db/retract,   17592186045649,   :community/category,   Super cool events  )
-)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Community(belltownId).category.remove(&amp;quot;Super cool events&amp;quot;).update
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Mixing updates and deletes&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;List(
-  List(  :db/add    ,   17592186045649,   :community/name    ,   belltown 3                      )
-  List(  :db/retract,   17592186045649,   :community/url     ,   http://www.belltownpeople.com/  )
-  List(  :db/retract,   17592186045649,   :community/category,   events                          )
-  List(  :db/retract,   17592186045649,   :community/category,   news                            )
-)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Community(belltownId).name(&amp;quot;belltown 3&amp;quot;).url().category().update
-&lt;/code&gt;&lt;/pre&gt;
-</description>
+      <description>Compare with Datomic/Datalog Even though Molecule is adapting to Datomic we&amp;rsquo;ll have a look the other way around to see how Datomic compares to Molecule.
+Follow along in the code from which we will pick a few examples based on the Seattle tutorial examples.
+Querying for attribute values The most basic query is to ask for entities with some attribute values:
+// Datalog [:find ?b ?c (distinct ?d) :where [?</description>
     </item>
     
     <item>
-      <title>Introduction</title>
-      <link>http://scalamolecule.org/home/introduction/</link>
-      <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
+      <title>Cardinality many</title>
+      <link>http://scalamolecule.org/documentation/relationships/card-many/</link>
+      <pubDate>Sun, 24 Jul 2016 22:06:44 +0100</pubDate>
       
-      <guid>http://scalamolecule.org/home/introduction/</guid>
-      <description>
-
-&lt;h1 id=&#34;molecule-introduction:2767292a573dc549b9b4297b701af3ab&#34;&gt;Molecule introduction&lt;/h1&gt;
-
-&lt;p&gt;Molecule let&amp;rsquo;s you model and query your domain data structures directly with the words of your domain.&lt;/p&gt;
-
-&lt;h3 id=&#34;query:2767292a573dc549b9b4297b701af3ab&#34;&gt;Query&lt;/h3&gt;
-
-&lt;p&gt;Describing our domain with Attributes grouped in Namespaces allow us to for instance find Persons in our Datomic database by composing molecules attribute by attribute with the builder pattern:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val personMolecule = m(Person.name.age)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;An implicit macro method &lt;code&gt;get&lt;/code&gt; will at compile time translate our molecule to a Datalog query. And at runtime it will get executed against Datomic to retrieve a type-inferred &lt;code&gt;Iterable&lt;/code&gt; of tuples:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val persons: Iterable[(String, Int)] = Person.name.age.get
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;The attributes of our domain directly form our molecules. Furthermore the compiler prevents us from making any invalid queries since all molecules are type-infered already in our IDE.&lt;/p&gt;
-
-&lt;h3 id=&#34;insert-and-update:2767292a573dc549b9b4297b701af3ab&#34;&gt;Insert and update&lt;/h3&gt;
-
-&lt;p&gt;We also insert and update data with molecules:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;// Insert and retrieve new entity id
-val lisaId = Person.name(&amp;quot;Lisa&amp;quot;).age(&amp;quot;27&amp;quot;).insert.eid
-
-// Update
-Person(lisaId).age(&amp;quot;28&amp;quot;).update
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;expressive-powers:2767292a573dc549b9b4297b701af3ab&#34;&gt;Expressive powers&lt;/h3&gt;
-
-&lt;p&gt;We can apply conditional values, ranges etc to our molecules to express more subtle data structures:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Community.name.`type`(&amp;quot;twitter&amp;quot; or &amp;quot;facebook_page&amp;quot;)
-  .Neighborhood.District.region(&amp;quot;sw&amp;quot; or &amp;quot;s&amp;quot; or &amp;quot;se&amp;quot;)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;which will find &amp;ldquo;names of twitter/facebook_page communities in neighborhoods of southern districts&amp;rdquo;.&lt;/p&gt;
-
-&lt;h2 id=&#34;datomic-and-molecule:2767292a573dc549b9b4297b701af3ab&#34;&gt;Datomic and Molecule&lt;/h2&gt;
-
-&lt;p&gt;Molecule is a domain-tailored abstraction layer on top of the Datomic database. It can therefore be good to know a little about Datomic in order to understand Molecule.&lt;/p&gt;
-
-&lt;h3 id=&#34;facts-datoms-with-time-built-in:2767292a573dc549b9b4297b701af3ab&#34;&gt;Facts/Datoms with time built in&lt;/h3&gt;
-
-&lt;p&gt;Instead of mapping objects to tables or documents, the core unit of data in Molecule is an atomic piece of information: an &lt;em&gt;attribute&lt;/em&gt;.&lt;/p&gt;
-
-&lt;p&gt;Attributes are composed to form &amp;ldquo;molecules&amp;rdquo; that describe unique and flexible data structures in endless combinations suiting your domain. Those are then translated to Datalog queries being executed against the underlying Datomic database.&lt;/p&gt;
-
-&lt;p&gt;An attribute in Datomic is part of a &lt;em&gt;fact&lt;/em&gt; or &lt;em&gt;Datom&lt;/em&gt; consisting of four elements:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt; John     likes    pizza      12:35:54
-   |        |        |           |
-Entity  Attribute  Value  Transaction/time
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;With Molecule we could model the fact like this:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person(johnId).likes(&amp;quot;pizza&amp;quot;).update
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;em&gt;likes&lt;/em&gt; is an &lt;code&gt;attribute&lt;/code&gt; with &lt;code&gt;value&lt;/code&gt; &lt;em&gt;pizza&lt;/em&gt;. It is &lt;strong&gt;asserted&lt;/strong&gt; that the &lt;code&gt;entity&lt;/code&gt; &lt;em&gt;johnId&lt;/em&gt; likes pizza at &lt;code&gt;transaction&lt;/code&gt; time 12:35:54. A timestamp is automatically set with all transactions. But if we need &amp;ldquo;domain time&amp;rdquo; we could add such attribute to the transaction as well, since this is simply a saved data structure in Datomic as our domain data.&lt;/p&gt;
-
-&lt;h3 id=&#34;immutable-data:2767292a573dc549b9b4297b701af3ab&#34;&gt;Immutable data&lt;/h3&gt;
-
-&lt;p&gt;Everytime a fact is asserted the old value of the attribute is &lt;em&gt;not deleted&lt;/em&gt;. A Datomic database is immutable. We can go back in time and see the values of an attribute &lt;em&gt;at any point in time&lt;/em&gt;. We could for instance see all our previous addresses if this was part of our domain model.&lt;/p&gt;
-
-&lt;p&gt;Also when we delete data, it&amp;rsquo;s actually not deleted, but &amp;ldquo;retracted&amp;rdquo;. Retracted data doesn&amp;rsquo;t show up when we are querying the current database. But if we look at the database at an earlier point in time we can see the data before it got retracted.&lt;/p&gt;
-
-&lt;h3 id=&#34;namespaces-and-attributes:2767292a573dc549b9b4297b701af3ab&#34;&gt;Namespaces and attributes&lt;/h3&gt;
-
-&lt;p&gt;&lt;code&gt;attributes&lt;/code&gt; are organized in &lt;code&gt;namespaces&lt;/code&gt; to group related qualities of our domain:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://scalamolecule.org/img/DatomicElements1.png&#34; alt=&#34;&#34; /&gt;
-&lt;/p&gt;
-
-&lt;h3 id=&#34;entity-row-in-an-sql-table:2767292a573dc549b9b4297b701af3ab&#34;&gt;Entity != row in an sql Table&lt;/h3&gt;
-
-&lt;p&gt;An &lt;code&gt;entity&lt;/code&gt; can have &lt;em&gt;any&lt;/em&gt; &lt;code&gt;attribute&lt;/code&gt; from &lt;em&gt;any&lt;/em&gt; &lt;code&gt;namespace&lt;/code&gt; associated to it:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://scalamolecule.org/img/DatomicElements2.png&#34; alt=&#34;&#34; /&gt;
-&lt;/p&gt;
-
-&lt;p&gt;An entity is therefore not like a row in a table but rather a &amp;ldquo;cross-cutting&amp;rdquo; thing that we can freely associate any attribute value to. Note how &amp;ldquo;attrB1&amp;rdquo; in this example is not associated to entity1.&lt;/p&gt;
-
-&lt;h3 id=&#34;further-reading:2767292a573dc549b9b4297b701af3ab&#34;&gt;Further reading&amp;hellip;&lt;/h3&gt;
-
-&lt;p&gt;Go straight to the &lt;a href=&#34;http://scalamolecule.org/tutorials/seattle&#34;&gt;Molecule Seattle tutorial&lt;/a&gt; to see a wide range of
- queries that Molecule can express, or check out first how we use Molecule to
- &lt;a href=&#34;http://scalamolecule.org/manual/setup&#34;&gt;setup the database&lt;/a&gt; and &lt;a href=&#34;http://scalamolecule.org/manual/insert&#34;&gt;populated it with data&lt;/a&gt;.&lt;/p&gt;
-</description>
+      <guid>http://scalamolecule.org/documentation/relationships/card-many/</guid>
+      <description>One-to-many relationships One-to-One A Person could have a cardinality-one reference to City having a cardinality-one reference to a Country:
+Person.name.City.name.Country.name  Strictly speaking we have an entity with an asserted :person/name attribute value with a reference to another entity with an asserted :city/name attribute value etc. But in practice we simply talk about &amp;ldquo;namespace A has a relationship/reference to namespace B&amp;rdquo;.
+A namespace is not like an SQL Table but rather organizes some attributes by a meaningful name - it&amp;rsquo;s, well, a namespace.</description>
+    </item>
+    
+    <item>
+      <title>Demo quickstart</title>
+      <link>http://scalamolecule.org/documentation/getting-started/quickstart/</link>
+      <pubDate>Fri, 02 Jan 2015 22:06:44 +0100</pubDate>
+      
+      <guid>http://scalamolecule.org/documentation/getting-started/quickstart/</guid>
+      <description>Setup your project with Molecule To use Molecule we need to define our database schema in a Schema definition file and then tell sbt about it. When compiling our project from the command line, all necessary boilerplate code is then automatically generated.
+1. SBT build settings Add the following to your build files:
+project/build.properties:
+sbt.version=0.13.13  project/buildinfo.sbt:
+addSbtPlugin(&amp;quot;org.scalamolecule&amp;quot; % &amp;quot;sbt-molecule&amp;quot; % &amp;quot;0.3.3&amp;quot;)  build.sbt:
+lazy val yourProject = project.in(file(&amp;quot;demo&amp;quot;)) .</description>
+    </item>
+    
+    <item>
+      <title>Insert</title>
+      <link>http://scalamolecule.org/documentation/crud/insert/</link>
+      <pubDate>Fri, 02 Jan 2015 22:06:44 +0100</pubDate>
+      
+      <guid>http://scalamolecule.org/documentation/crud/insert/</guid>
+      <description>Insert data We basically have 3 ways of entering data with Molecule:
+1. Data-molecule We can insert data by populating a molecule with data by applying a value to each attribute and then simply save it. Molecule makes sure that each attribute only accepts values of the expected type.
+Community.insert .name(&amp;quot;AAA&amp;quot;) .url(&amp;quot;myUrl&amp;quot;) .`type`(&amp;quot;twitter&amp;quot;) .orgtype(&amp;quot;personal&amp;quot;) .category(&amp;quot;my&amp;quot;, &amp;quot;favorites&amp;quot;) // many cardinality allows multiple values .Neighborhood.name(&amp;quot;myNeighborhood&amp;quot;) .District.name(&amp;quot;myDistrict&amp;quot;).region(&amp;quot;nw&amp;quot;).save  Note also how we easily insert data across several namespaces in one go!</description>
+    </item>
+    
+    <item>
+      <title>Mandatory/Tacet/Optional</title>
+      <link>http://scalamolecule.org/documentation/attributes/modes/</link>
+      <pubDate>Fri, 02 Jan 2015 22:06:44 +0100</pubDate>
+      
+      <guid>http://scalamolecule.org/documentation/attributes/modes/</guid>
+      <description>3 attribute modes 1. Mandatory attr When we use a molecule to query the Datomic database we ask for entities having all our Attributes associated with them.
+Note that this is different from selecting rows from a sql table where you can also get null values back!
+If for instance we have entities representing Persons in our data set that haven&amp;rsquo;t got any age Attribute associated with them then this query will not return those entities:</description>
     </item>
     
     <item>
       <title>Molecule presentation</title>
-      <link>http://scalamolecule.org/learn/videos/2017-04-25_Marc_Grue/</link>
-      <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
+      <link>http://scalamolecule.org/resources/videos/2017-04-25_marc_grue/</link>
+      <pubDate>Fri, 02 Jan 2015 22:06:44 +0100</pubDate>
       
-      <guid>http://scalamolecule.org/learn/videos/2017-04-25_Marc_Grue/</guid>
-      <description>
-
-&lt;h1 id=&#34;contents:e8a80e11a9ea81b9e6071cec3c4864a9&#34;&gt;Molecule video presentation&lt;/h1&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;#1:e8a80e11a9ea81b9e6071cec3c4864a9&#34;&gt;Part 1: Datomic data model&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#2:e8a80e11a9ea81b9e6071cec3c4864a9&#34;&gt;Part 2: Building a DSL with Scala macros&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#3:e8a80e11a9ea81b9e6071cec3c4864a9&#34;&gt;Part 3: Tour of Molecule features&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#4:e8a80e11a9ea81b9e6071cec3c4864a9&#34;&gt;Part 4: Molecule domain modelling&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Molecule presentation in 4 parts by creator Marc Grue at a &lt;a href=&#34;https://www.meetup.com/Scala-Geats/events/238648837/&#34;&gt;Scala MeetUp&lt;/a&gt;
-in Gothenburg 2017-04-25.&lt;/p&gt;
-
-&lt;p&gt;Attendees came with great suggestions for improvements that were incorporated in Molecule v0.11.
-Some of the &lt;a href=&#34;https://www.slideshare.net/marcgrue/molecule-scala-metadsl-for-datomic-75995679&#34;&gt;slides&lt;/a&gt;
-in the videos below are updated to show the new API of v0.11.&lt;/p&gt;
-
-&lt;h2 id=&#34;1:e8a80e11a9ea81b9e6071cec3c4864a9&#34;&gt;&lt;a href=&#34;#contents:e8a80e11a9ea81b9e6071cec3c4864a9&#34;&gt;☝︎&lt;/a&gt; Part 1: Datomic data model&lt;/h2&gt;
-
-&lt;div class=&#34;embed-responsive embed-responsive-16by9&#34;&gt;
-  &lt;iframe id=&#34;part1&#34; 
-    width=&#34;560&#34; 
-    height=&#34;315&#34; 
-    src=&#34;https://www.youtube.com/embed//JjX8DYvQRXQ?enablejsapi=1&#34;
-    frameborder=&#34;0&#34; 
-    allowfullscreen&gt;&lt;/iframe&gt;
-&lt;/div&gt;
-
-&lt;script type=&#34;text/javascript&#34;&gt;
-  var tag = document.createElement(&#39;script&#39;);
-  tag.id = &#39;iframe-demo&#39;;
-  tag.src = &#39;https://www.youtube.com/iframe_api&#39;;
-  var firstScriptTag = document.getElementsByTagName(&#39;script&#39;)[0];
-  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-  var player1;
-  var player2;
-  var player3;
-  var player4;
-  function onYouTubeIframeAPIReady() {
-    player1 = new YT.Player(&#39;part1&#39;, {
-        videoId: &#39;JjX8DYvQRXQ&#39;,
-        events: {}
-    });
-    player2 = new YT.Player(&#39;part2&#39;, {
-        videoId: &#39;bIhVAMd3-EU&#39;,
-        events: {}
-    });
-    player3 = new YT.Player(&#39;part3&#39;, {
-        videoId: &#39;dxMK3jxmzj4&#39;,
-        events: {}
-    });
-    player4 = new YT.Player(&#39;part4&#39;, {
-        videoId: &#39;Y0ttNN_JA1s&#39;,
-        events: {}
-    });
-  }
-&lt;/script&gt;
-
-&lt;div style=&#34;column-width: 15em;&#34;&gt;
-&lt;div class=&#34;unbreakable&#34;&gt;
-    &lt;h4&gt;Data model&lt;/h4&gt;
-    &lt;ul&gt;
-      &lt;li&gt;&lt;a onclick=&#34;player1.playVideo()&#34; href=&#34;#;void;&#34;&gt;Overview of talk&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a onclick=&#34;player1.seekTo(60).playVideo()&#34; href=&#34;#;void;&#34;&gt;Datomic overview&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a onclick=&#34;player1.seekTo(99).playVideo()&#34; href=&#34;#;void;&#34;&gt;Key-Value to Datom&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a onclick=&#34;player1.seekTo(301).playVideo()&#34; href=&#34;#;void;&#34;&gt;Schema definition&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a onclick=&#34;player1.seekTo(565).playVideo()&#34; href=&#34;#;void;&#34;&gt;Entity&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a onclick=&#34;player1.seekTo(688).playVideo()&#34; href=&#34;#;void;&#34;&gt;Relationships&lt;/a&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class=&#34;unbreakable&#34;&gt;
-    &lt;h4&gt;Mutable/Immutable&lt;/h4&gt;
-    &lt;ul&gt;
-      &lt;li&gt;&lt;a onclick=&#34;player1.seekTo(845).playVideo()&#34; href=&#34;#;void;&#34;&gt;Immutable facts&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a onclick=&#34;player1.seekTo(900).playVideo()&#34; href=&#34;#;void;&#34;&gt;Create/Assert&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a onclick=&#34;player1.seekTo(949).playVideo()&#34; href=&#34;#;void;&#34;&gt;Update/Retract-Assert&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a onclick=&#34;player1.seekTo(1045).playVideo()&#34; href=&#34;#;void;&#34;&gt;Delete/Retract&lt;/a&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class=&#34;unbreakable&#34;&gt;
-    &lt;h4&gt;Datomic queries&lt;/h4&gt;
-    &lt;ul&gt;
-      &lt;li&gt;&lt;a onclick=&#34;player1.seekTo(1107).playVideo()&#34; href=&#34;#;void;&#34;&gt;Query&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a onclick=&#34;player1.seekTo(1297).playVideo()&#34; href=&#34;#;void;&#34;&gt;asOf&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a onclick=&#34;player1.seekTo(1340).playVideo()&#34; href=&#34;#;void;&#34;&gt;history&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a onclick=&#34;player1.seekTo(1368).playVideo()&#34; href=&#34;#;void;&#34;&gt;since&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a onclick=&#34;player1.seekTo(1402).playVideo()&#34; href=&#34;#;void;&#34;&gt;with&lt;/a&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class=&#34;unbreakable&#34;&gt;
-    &lt;h4&gt;Datomic architecture&lt;/h4&gt;
-    &lt;ul&gt;
-      &lt;li&gt;&lt;a onclick=&#34;player1.seekTo(1543).playVideo()&#34; href=&#34;#;void;&#34;&gt;No db server&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a onclick=&#34;player1.seekTo(1563).playVideo()&#34; href=&#34;#;void;&#34;&gt;Peer/Transactor&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a onclick=&#34;player1.seekTo(1603).playVideo()&#34; href=&#34;#;void;&#34;&gt;Storage service&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a onclick=&#34;player1.seekTo(1651).playVideo()&#34; href=&#34;#;void;&#34;&gt;Peer cache&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a onclick=&#34;player1.seekTo(1725).playVideo()&#34; href=&#34;#;void;&#34;&gt;Live index&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a onclick=&#34;player1.seekTo(1856).playVideo()&#34; href=&#34;#;void;&#34;&gt;Memcache&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a onclick=&#34;player1.seekTo(1927).playVideo()&#34; href=&#34;#;void;&#34;&gt;Questions&lt;/a&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;h2 id=&#34;2:e8a80e11a9ea81b9e6071cec3c4864a9&#34;&gt;&lt;a href=&#34;#contents:e8a80e11a9ea81b9e6071cec3c4864a9&#34;&gt;☝︎&lt;/a&gt; Part 2: Building a DSL with Scala macros&lt;/h2&gt;
-
-&lt;div class=&#34;embed-responsive embed-responsive-16by9&#34;&gt;
-  &lt;iframe id=&#34;part2&#34; 
-    width=&#34;560&#34; 
-    height=&#34;315&#34; 
-    src=&#34;https://www.youtube.com/embed/bIhVAMd3-EU?enablejsapi=1&#34;
-    frameborder=&#34;0&#34; 
-    allowfullscreen&gt;&lt;/iframe&gt;
-&lt;/div&gt;
-
-&lt;div style=&#34;column-width: 15em;&#34;&gt;
-&lt;div class=&#34;unbreakable&#34;&gt;
-    &lt;h4&gt;Macro transformation&lt;/h4&gt;
-    &lt;ul&gt;
-      &lt;li&gt;&lt;a onclick=&#34;player2.seekTo(13).playVideo()&#34; href=&#34;#;void;&#34;&gt;Raw query in Scala&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a onclick=&#34;player2.seekTo(151).playVideo()&#34; href=&#34;#;void;&#34;&gt;Casting result&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a onclick=&#34;player2.seekTo(187).playVideo()&#34; href=&#34;#;void;&#34;&gt;Compile-time/runtime&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a onclick=&#34;player2.seekTo(256).playVideo()&#34; href=&#34;#;void;&#34;&gt;Quasiquotes&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a onclick=&#34;player2.seekTo(295).playVideo()&#34; href=&#34;#;void;&#34;&gt;Macro implementation&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a onclick=&#34;player2.seekTo(346).playVideo()&#34; href=&#34;#;void;&#34;&gt;Implicit macro&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a onclick=&#34;player2.seekTo(397).playVideo()&#34; href=&#34;#;void;&#34;&gt;Recursive tree extraction&lt;/a&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class=&#34;unbreakable&#34;&gt;
-    &lt;h4&gt;Molecule DSL&lt;/h4&gt;
-    &lt;ul&gt;
-      &lt;li&gt;&lt;a onclick=&#34;player2.seekTo(519).playVideo()&#34; href=&#34;#;void;&#34;&gt;Boilerplate DSL code&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a onclick=&#34;player2.seekTo(661).playVideo()&#34; href=&#34;#;void;&#34;&gt;SBT-plugin&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a onclick=&#34;player2.seekTo(686).playVideo()&#34; href=&#34;#;void;&#34;&gt;Schema definition&lt;/a&gt;
-        &lt;br&gt;
-        &lt;br&gt;
-        &lt;br&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class=&#34;unbreakable&#34;&gt;
-    &lt;h4&gt;Schema def DSL&lt;/h4&gt;
-    &lt;ul&gt;
-      &lt;li&gt;&lt;a onclick=&#34;player2.seekTo(730).playVideo()&#34; href=&#34;#;void;&#34;&gt;Cardinality/type&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a onclick=&#34;player2.seekTo(806).playVideo()&#34; href=&#34;#;void;&#34;&gt;Options&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a onclick=&#34;player2.seekTo(824).playVideo()&#34; href=&#34;#;void;&#34;&gt;Molecule eco system&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a onclick=&#34;player2.seekTo(892).playVideo()&#34; href=&#34;#;void;&#34;&gt;Questions&lt;/a&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;h2 id=&#34;3:e8a80e11a9ea81b9e6071cec3c4864a9&#34;&gt;&lt;a href=&#34;#contents:e8a80e11a9ea81b9e6071cec3c4864a9&#34;&gt;☝︎&lt;/a&gt; Part 3: Tour of Molecule features&lt;/h2&gt;
-
-&lt;div class=&#34;embed-responsive embed-responsive-16by9&#34;&gt;
-  &lt;iframe id=&#34;part3&#34; 
-    width=&#34;560&#34; 
-    height=&#34;315&#34; 
-    src=&#34;https://www.youtube.com/embed/dxMK3jxmzj4?enablejsapi=1&#34;
-    frameborder=&#34;0&#34; 
-    allowfullscreen&gt;&lt;/iframe&gt;
-&lt;/div&gt;
-
-&lt;div style=&#34;column-width: 15em; width: 100%;&#34;&gt;
-&lt;div class=&#34;unbreakable&#34;&gt;
-    &lt;h4&gt;Core&lt;/h4&gt;
-    &lt;ul&gt;
-      &lt;li&gt;&lt;a onclick=&#34;player3.seekTo(37).playVideo()&#34; href=&#34;#;void;&#34;&gt;Entities&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a onclick=&#34;player3.seekTo(134).playVideo()&#34; href=&#34;#;void;&#34;&gt;Attributes&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;Expressions
-        &lt;ul&gt;
-          &lt;li&gt;&lt;a onclick=&#34;player3.seekTo(306).playVideo()&#34; href=&#34;#;void;&#34;&gt;Equality&lt;/a&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;a onclick=&#34;player3.seekTo(361).playVideo()&#34; href=&#34;#;void;&#34;&gt;Fulltext search&lt;/a&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;a onclick=&#34;player3.seekTo(390).playVideo()&#34; href=&#34;#;void;&#34;&gt;Negation&lt;/a&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;a onclick=&#34;player3.seekTo(398).playVideo()&#34; href=&#34;#;void;&#34;&gt;Null / Nil&lt;/a&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;a onclick=&#34;player3.seekTo(412).playVideo()&#34; href=&#34;#;void;&#34;&gt;Comparison&lt;/a&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;a onclick=&#34;player3.seekTo(417).playVideo()&#34; href=&#34;#;void;&#34;&gt;Aggregates&lt;/a&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;a onclick=&#34;player3.seekTo(443).playVideo()&#34; href=&#34;#;void;&#34;&gt;Logical OR&lt;/a&gt;&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-      &lt;li&gt;Relationships
-        &lt;ul&gt;        
-          &lt;li&gt;&lt;a onclick=&#34;player3.seekTo(486).playVideo()&#34; href=&#34;#;void;&#34;&gt;Card-one&lt;/a&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;a onclick=&#34;player3.seekTo(618).playVideo()&#34; href=&#34;#;void;&#34;&gt;Back-ref&lt;/a&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;a onclick=&#34;player3.seekTo(712).playVideo()&#34; href=&#34;#;void;&#34;&gt;Card-many&lt;/a&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;a onclick=&#34;player3.seekTo(758).playVideo()&#34; href=&#34;#;void;&#34;&gt;Nested&lt;/a&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;a onclick=&#34;player3.seekTo(817).playVideo()&#34; href=&#34;#;void;&#34;&gt;Non-intrinsic&lt;/a&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;a onclick=&#34;player3.seekTo(878).playVideo()&#34; href=&#34;#;void;&#34;&gt;Composites&lt;/a&gt;&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class=&#34;unbreakable&#34;&gt;
-    &lt;h4&gt;CRUD&lt;/h4&gt;
-    &lt;ul&gt;
-        &lt;li&gt;Create
-            &lt;ul&gt;                       
-              &lt;li&gt;&lt;a onclick=&#34;player3.seekTo(1073).playVideo()&#34; href=&#34;#;void;&#34;&gt;Save&lt;/a&gt;&lt;/li&gt;
-              &lt;li&gt;&lt;a onclick=&#34;player3.seekTo(1088).playVideo()&#34; href=&#34;#;void;&#34;&gt;Insert&lt;/a&gt;&lt;/li&gt;
-              &lt;li&gt;&lt;a onclick=&#34;player3.seekTo(1162).playVideo()&#34; href=&#34;#;void;&#34;&gt;2-step insert&lt;/a&gt;&lt;/li&gt;
-            &lt;/ul&gt;
-        &lt;/li&gt;
-        &lt;li&gt;Read&lt;/li&gt;
-        &lt;li&gt;Update
-            &lt;ul&gt;
-              &lt;li&gt;&lt;a onclick=&#34;player3.seekTo(1240).playVideo()&#34; href=&#34;#;void;&#34;&gt;Card-one&lt;/a&gt;&lt;/li&gt;
-              &lt;li&gt;&lt;a onclick=&#34;player3.seekTo(1312).playVideo()&#34; href=&#34;#;void;&#34;&gt;Card-many&lt;/a&gt;&lt;/li&gt;
-            &lt;/ul&gt;
-        &lt;/li&gt;
-        &lt;li&gt;&lt;a onclick=&#34;player3.seekTo(1425).playVideo()&#34; href=&#34;#;void;&#34;&gt;Delete&lt;/a&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-    &lt;br&gt;
-    &lt;br&gt;
-&lt;/div&gt;
-&lt;div class=&#34;unbreakable&#34;&gt;
-    &lt;h4&gt;Extras&lt;/h4&gt;
-    &lt;ul&gt;
-      &lt;li&gt;&lt;a onclick=&#34;player3.seekTo(1478).playVideo()&#34; href=&#34;#;void;&#34;&gt;Map attributes&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a onclick=&#34;player3.seekTo(1668).playVideo()&#34; href=&#34;#;void;&#34;&gt;Input molecules&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a onclick=&#34;player3.seekTo(1747).playVideo()&#34; href=&#34;#;void;&#34;&gt;Bidirectional refs&lt;/a&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-    &lt;br&gt;
-    &lt;br&gt;
-    &lt;br&gt;
-    &lt;br&gt;
-&lt;/div&gt;
-&lt;div class=&#34;unbreakable&#34;&gt;
-    &lt;h4&gt;Time&lt;/h4&gt;
-    &lt;ul&gt;
-      &lt;li&gt;&lt;a onclick=&#34;player3.seekTo(1936).playVideo()&#34; href=&#34;#;void;&#34;&gt;Tx data&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a onclick=&#34;player3.seekTo(2429).playVideo()&#34; href=&#34;#;void;&#34;&gt;Tx meta data&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a onclick=&#34;player3.seekTo(2715).playVideo()&#34; href=&#34;#;void;&#34;&gt;asOf&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a onclick=&#34;player3.seekTo(2941).playVideo()&#34; href=&#34;#;void;&#34;&gt;History&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a onclick=&#34;player3.seekTo(3095).playVideo()&#34; href=&#34;#;void;&#34;&gt;+ meta data&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a onclick=&#34;player3.seekTo(3117).playVideo()&#34; href=&#34;#;void;&#34;&gt;Since&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a onclick=&#34;player3.seekTo(3130).playVideo()&#34; href=&#34;#;void;&#34;&gt;With&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a onclick=&#34;player3.seekTo(3329).playVideo()&#34; href=&#34;#;void;&#34;&gt;Questions&lt;/a&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;h2 id=&#34;4:e8a80e11a9ea81b9e6071cec3c4864a9&#34;&gt;&lt;a href=&#34;#contents:e8a80e11a9ea81b9e6071cec3c4864a9&#34;&gt;☝︎&lt;/a&gt; Part 4: Molecule domain modelling&lt;/h2&gt;
-
-&lt;div class=&#34;embed-responsive embed-responsive-16by9&#34;&gt;
-  &lt;iframe id=&#34;part4&#34; 
-    width=&#34;560&#34; 
-    height=&#34;315&#34; 
-    src=&#34;https://www.youtube.com/embed/Y0ttNN_JA1s?enablejsapi=1&#34; 
-    frameborder=&#34;0&#34; 
-    allowfullscreen&gt;&lt;/iframe&gt;
-&lt;/div&gt;
-
-&lt;div style=&#34;column-width: 15em;&#34;&gt;
-&lt;div class=&#34;unbreakable&#34;&gt;
-    &lt;h4&gt;Traditional modelling&lt;/h4&gt;
-    &lt;ul&gt;
-      &lt;li&gt;&lt;a onclick=&#34;player4.playVideo()&#34; href=&#34;#;void;&#34;&gt;Fat models&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a onclick=&#34;player4.seekTo(42).playVideo()&#34; href=&#34;#;void;&#34;&gt;Sub-typing&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a onclick=&#34;player4.seekTo(65).playVideo()&#34; href=&#34;#;void;&#34;&gt;Entity consumers&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a onclick=&#34;player4.seekTo(149).playVideo()&#34; href=&#34;#;void;&#34;&gt;Property pace&lt;/a&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class=&#34;unbreakable&#34;&gt;
-    &lt;h4&gt;Molecule modelling&lt;/h4&gt;
-    &lt;ul&gt;
-      &lt;li&gt;&lt;a onclick=&#34;player4.seekTo(193).playVideo()&#34; href=&#34;#;void;&#34;&gt;Molecular entities&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a onclick=&#34;player4.seekTo(402).playVideo()&#34; href=&#34;#;void;&#34;&gt;Molecules in-process&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a onclick=&#34;player4.seekTo(517).playVideo()&#34; href=&#34;#;void;&#34;&gt;Questions and discussion&lt;/a&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;br&gt;&lt;/p&gt;
-</description>
+      <guid>http://scalamolecule.org/resources/videos/2017-04-25_marc_grue/</guid>
+      <description>Molecule video presentation  Part 1: Datomic data model Part 2: Building a DSL with Scala macros Part 3: Tour of Molecule features Part 4: Molecule domain modelling  Molecule presentation in 4 parts by creator Marc Grue at a Scala MeetUp in Gothenburg 2017-04-25.
+Attendees came with great suggestions for improvements that were incorporated in Molecule v0.11. Some of the slides in the videos below are updated to show the new API of v0.</description>
     </item>
     
     <item>
-      <title>Mapped attributes</title>
-      <link>http://scalamolecule.org/manual/query/mapped/</link>
-      <pubDate>Fri, 02 Jan 2015 22:06:44 CET</pubDate>
+      <title>Other</title>
+      <link>http://scalamolecule.org/documentation/graphs/other/</link>
+      <pubDate>Fri, 02 Jan 2015 22:06:44 +0100</pubDate>
       
-      <guid>http://scalamolecule.org/manual/query/mapped/</guid>
-      <description>
-
-&lt;h1 id=&#34;mapped-attributes:a97bd84cbba6263d9bc50859a818a594&#34;&gt;Mapped Attributes&lt;/h1&gt;
-
-&lt;p&gt;(See &lt;a href=&#34;https://github.com/scalamolecule/molecule/tree/master/coretest/src/test/scala/molecule/attrMap&#34;&gt;mapped tests&lt;/a&gt;)&lt;/p&gt;
-
-&lt;p&gt;Mapped values can be saved with mapped attributes in Molecule. It&amp;rsquo;s a special Molecule construct that makes
-it easy to save for instance multi-lingual data without having to create language-variations of each attribute.
-But they can also be used for any other key-value indexed data.&lt;/p&gt;
-
-&lt;p&gt;Say you want to save famous Persons names in multiple languages. Then you could use a mapString:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;// In definition file
-val name = mapString
- 
-// Insert mapped data
-Person.id.name.insert(
-  1, 
-  Map(
-    &amp;quot;en&amp;quot; -&amp;gt; &amp;quot;Dmitri Shostakovich&amp;quot;,
-    &amp;quot;de&amp;quot; -&amp;gt; &amp;quot;Dmitri Schostakowitsch&amp;quot;,
-    &amp;quot;fr&amp;quot; -&amp;gt; &amp;quot;Dmitri Chostakovitch&amp;quot;,
-    &amp;quot;es&amp;quot; -&amp;gt; &amp;quot;Dmitri Shostakóvich&amp;quot;
-  )
-)
-
-// Retrieve mapped data
-Person.id.name.get.head=== (1, 
-  Map(
-    &amp;quot;en&amp;quot; -&amp;gt; &amp;quot;Dmitri Shostakovich&amp;quot;,
-    &amp;quot;de&amp;quot; -&amp;gt; &amp;quot;Dmitri Schostakowitsch&amp;quot;,
-    &amp;quot;fr&amp;quot; -&amp;gt; &amp;quot;Dmitri Chostakovitch&amp;quot;,
-    &amp;quot;es&amp;quot; -&amp;gt; &amp;quot;Dmitri Shostakóvich&amp;quot;
-  )
-)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Molecule concatenates the key and value of each pair to one of several values of an underlying cardinality-many attribute. When
-data is then retrieved Molecule splits the concatenated string into a typed pair. This all happens automatically and let&amp;rsquo;s us focus
- on their use in our code.&lt;/p&gt;
-
-&lt;p&gt;There&amp;rsquo;s a broad range of ways we can query mapped attributes and you can see a lot of examples of their use in
-the &lt;a href=&#34;https://github.com/scalamolecule/molecule/tree/master/coretest/src/test/scala/molecule/attrMap&#34;&gt;&lt;code&gt;attrMap&lt;/code&gt; test cases&lt;/a&gt;&amp;hellip;&lt;/p&gt;
-</description>
+      <guid>http://scalamolecule.org/documentation/graphs/other/</guid>
+      <description> Other&amp;hellip; </description>
+    </item>
+    
+    <item>
+      <title>Since</title>
+      <link>http://scalamolecule.org/documentation/time/since/</link>
+      <pubDate>Fri, 02 Jan 2015 22:06:44 +0100</pubDate>
+      
+      <guid>http://scalamolecule.org/documentation/time/since/</guid>
+      <description> Since </description>
+    </item>
+    
+    <item>
+      <title>Tx meta data</title>
+      <link>http://scalamolecule.org/documentation/transactions/tx-meta-data/</link>
+      <pubDate>Fri, 02 Jan 2015 22:06:44 +0100</pubDate>
+      
+      <guid>http://scalamolecule.org/documentation/transactions/tx-meta-data/</guid>
+      <description>Transaction meta data Transaction data in Datomic is basically a list of facts/datoms being asserted or retracted. If we take the Provenance example we could add two Story entities each with two datoms (title and url) with this molecule:
+Story.title.url insert List( (&amp;quot;ElastiCache in 6 minutes&amp;quot;, &amp;quot;blog.com/elasticache-in-5-minutes.html&amp;quot;), (&amp;quot;Keep Chocolate Love Atomic&amp;quot;, &amp;quot;blog.com/atomic-chocolate.html&amp;quot;) )  Molecule translate this to a transaction list of 4 datoms:
+List( // operation entity id attribute value List(:db/add, #db/id[:db.</description>
+    </item>
+    
+    <item>
+      <title>Boilerplate</title>
+      <link>http://scalamolecule.org/developer/boilerplate/</link>
+      <pubDate>Wed, 14 May 2014 02:13:50 +0000</pubDate>
+      
+      <guid>http://scalamolecule.org/developer/boilerplate/</guid>
+      <description>Boilerplate code generation An attribute definition like
+@InOut(3, 8) trait SeattleDefinition { trait Community { val name = oneString.fullTextSearch } }  would generate the following boilerplate code
+object Community extends Community_0 { def apply(e: Long): Community_0 = ??? } trait Community { class name [Ns, In] extends OneString [Ns, In] with FulltextSearch[Ns, In] with Indexed } trait Community_0 extends Community with Out_0[Community_0, Community_1, Community_In_1_0, Community_In_1_1] { lazy val name : name[Community_1[String], Community_In_1_1[String, String]] with Community_1[String] = new name[Community_1[String], Community_In_1_1[String, String]] with Community_1[String] { override val _kw = &amp;quot;:community/name&amp;quot; } lazy val name_ : name[Community_0, Community_In_1_0[String]] with Community_0 = ?</description>
+    </item>
+    
+    <item>
+      <title>SQL</title>
+      <link>http://scalamolecule.org/compare/sql/</link>
+      <pubDate>Wed, 14 May 2014 02:13:50 +0000</pubDate>
+      
+      <guid>http://scalamolecule.org/compare/sql/</guid>
+      <description>SQL vs. Molecule examples We&amp;rsquo;ll make a similar comparison to SQL as Slick does:
+SELECT * sql&amp;quot;select * from PERSON&amp;quot;.as[Person].list  In molecule we would declare each attribute we are interested in also to infer the exact return type
+val persons: Iterable[(String, Int)] = Person.name.age.get  SELECT sql&amp;quot;&amp;quot;&amp;quot; select AGE, concat(concat(concat(NAME,&#39; (&#39;),ID),&#39;)&#39;) from PERSON &amp;quot;&amp;quot;&amp;quot;.as[(Int,String)].list  With Molecule we would concatenate name and id with the returned result set:</description>
+    </item>
+    
+    <item>
+      <title>Slick</title>
+      <link>http://scalamolecule.org/compare/sql/slick/</link>
+      <pubDate>Wed, 14 May 2014 02:13:50 +0000</pubDate>
+      
+      <guid>http://scalamolecule.org/compare/sql/slick/</guid>
+      <description>Slick vs. Molecule examples Using examples from Slick:
+Select all table values // Slick people.run  In molecule we would declare each attribute we are interested in also to infer the exact return type
+// Molecule Person.name.age.get  Select certain columns people.map(p =&amp;gt; (p.age, p.name ++ &amp;quot; (&amp;quot; ++ p.id.asColumnOf[String] ++ &amp;quot;)&amp;quot;)).run  With Molecule we would concatenate name and id with the returned result set:
+Person.age.name.e.get map { case (age, name, id) =&amp;gt; (age, s&amp;quot;$name ($id)&amp;quot; }  filter / WHERE people.</description>
+    </item>
+    
+    <item>
+      <title>Nested</title>
+      <link>http://scalamolecule.org/documentation/relationships/nested/</link>
+      <pubDate>Sun, 24 Jul 2016 22:06:44 +0100</pubDate>
+      
+      <guid>http://scalamolecule.org/documentation/relationships/nested/</guid>
+      <description>Nested relationships One-to-One A Person could have a cardinality-one reference to City having a cardinality-one reference to a Country:
+Person.name.City.name.Country.name  Strictly speaking we have an entity with an asserted :person/name attribute value with a reference to another entity with an asserted :city/name attribute value etc. But in practice we simply talk about &amp;ldquo;namespace A has a relationship/reference to namespace B&amp;rdquo;.
+A namespace is not like an SQL Table but rather organizes some attributes by a meaningful name - it&amp;rsquo;s, well, a namespace.</description>
+    </item>
+    
+    <item>
+      <title>Edge self</title>
+      <link>http://scalamolecule.org/documentation/graphs/edge-self/</link>
+      <pubDate>Fri, 02 Jan 2015 22:06:44 +0100</pubDate>
+      
+      <guid>http://scalamolecule.org/documentation/graphs/edge-self/</guid>
+      <description> Edge other&amp;hellip; </description>
+    </item>
+    
+    <item>
+      <title>Get</title>
+      <link>http://scalamolecule.org/documentation/crud/get/</link>
+      <pubDate>Fri, 02 Jan 2015 22:06:44 +0100</pubDate>
+      
+      <guid>http://scalamolecule.org/documentation/crud/get/</guid>
+      <description> Get (read) data </description>
+    </item>
+    
+    <item>
+      <title>Map attributes</title>
+      <link>http://scalamolecule.org/documentation/attributes/mapped/</link>
+      <pubDate>Fri, 02 Jan 2015 22:06:44 +0100</pubDate>
+      
+      <guid>http://scalamolecule.org/documentation/attributes/mapped/</guid>
+      <description>Map Attributes (See mapped tests)
+Mapped values can be saved with mapped attributes in Molecule. It&amp;rsquo;s a special Molecule construct that makes it easy to save for instance multi-lingual data without having to create language-variations of each attribute. But they can also be used for any other key-value indexed data.
+Say you want to save famous Persons names in multiple languages. Then you could use a mapString:
+// In definition file val name = mapString // Insert mapped data Person.</description>
+    </item>
+    
+    <item>
+      <title>Project setup</title>
+      <link>http://scalamolecule.org/documentation/getting-started/project-setup/</link>
+      <pubDate>Fri, 02 Jan 2015 22:06:44 +0100</pubDate>
+      
+      <guid>http://scalamolecule.org/documentation/getting-started/project-setup/</guid>
+      <description>Setup your project with Molecule To use Molecule we need to define our database schema in a Schema definition file and then tell sbt about it. When compiling our project from the command line, all necessary boilerplate code is then automatically generated.
+1. SBT build settings Add the following to your build files:
+project/build.properties:
+sbt.version=0.13.13  project/buildinfo.sbt:
+addSbtPlugin(&amp;quot;org.scalamolecule&amp;quot; % &amp;quot;sbt-molecule&amp;quot; % &amp;quot;0.3.3&amp;quot;)  build.sbt:
+lazy val yourProject = project.in(file(&amp;quot;demo&amp;quot;)) .</description>
+    </item>
+    
+    <item>
+      <title>Transaction</title>
+      <link>http://scalamolecule.org/documentation/schema/transaction/</link>
+      <pubDate>Fri, 02 Jan 2015 22:06:44 +0100</pubDate>
+      
+      <guid>http://scalamolecule.org/documentation/schema/transaction/</guid>
+      <description>Schema transaction To create our Datomic database we need to transact some schema transaction data.
+Schema transaction data Molecule transforms our Schema definition file to basically a java.util.List containing a java.util.Map of schema transaction data for each attribute defined. Our name and url attributes for instance requires the following map of information to be transacted in Datomic:
+object SeattleSchema extends Transaction { lazy val partitions = Util.list() lazy val namespaces = Util.</description>
+    </item>
+    
+    <item>
+      <title>Gremlin</title>
+      <link>http://scalamolecule.org/compare/gremlin/</link>
+      <pubDate>Wed, 14 May 2014 02:13:50 +0000</pubDate>
+      
+      <guid>http://scalamolecule.org/compare/gremlin/</guid>
+      <description> Gremlin vs. Molecule examples We&amp;rsquo;ll make a similar comparison to SQL as Slick does:
+SELECT * sql&amp;quot;select * from PERSON&amp;quot;.as[Person].list  In molecule we would declare each attribute we are interested in also to infer the exact return type
+val persons: Iterable[(String, Int)] = Person.name.age.get  </description>
+    </item>
+    
+    <item>
+      <title>Transformation</title>
+      <link>http://scalamolecule.org/developer/transformation/</link>
+      <pubDate>Wed, 14 May 2014 02:13:50 +0000</pubDate>
+      
+      <guid>http://scalamolecule.org/developer/transformation/</guid>
+      <description>Macro transformation Molecule performs a series of transformation of the molecules we write so that they in the end become a Datomic query:
+1. Source code To find southern media communities we could make the following molecule
+Community.name.`type`(&amp;quot;twitter&amp;quot; or &amp;quot;facebook_page&amp;quot;) .Neighborhood.District.region(&amp;quot;sw&amp;quot; or &amp;quot;s&amp;quot; or &amp;quot;se&amp;quot;)  2. Model AST The source code of our molecule is then pattern matched in Dsl2Model element by element in order to create an abstracted Model of Atoms and Bonds:</description>
+    </item>
+    
+    <item>
+      <title>Composites</title>
+      <link>http://scalamolecule.org/documentation/relationships/composites/</link>
+      <pubDate>Fri, 02 Jan 2015 22:06:44 +0100</pubDate>
+      
+      <guid>http://scalamolecule.org/documentation/relationships/composites/</guid>
+      <description>Composites 
+Entities can have attributes from any namespace
+Composite inserts A core feature of Datomic is that any attribute value can be associated with an entity. This allow us to &amp;ldquo;compose&amp;rdquo; entities with attribute values from un-related namespaces.
+Say for instance if we want to tag various part of our domain. It would be tedious and counter-intuitive to have references between every single namespace to a tag namespace. Tags are not an intrinsic value of most entities and are therefore better modelled in isolation.</description>
+    </item>
+    
+    <item>
+      <title>Edge other</title>
+      <link>http://scalamolecule.org/documentation/graphs/edge-other/</link>
+      <pubDate>Fri, 02 Jan 2015 22:06:44 +0100</pubDate>
+      
+      <guid>http://scalamolecule.org/documentation/graphs/edge-other/</guid>
+      <description> Edge others&amp;hellip; </description>
+    </item>
+    
+    <item>
+      <title>Entities</title>
+      <link>http://scalamolecule.org/documentation/entities/</link>
+      <pubDate>Fri, 02 Jan 2015 22:06:44 +0100</pubDate>
+      
+      <guid>http://scalamolecule.org/documentation/entities/</guid>
+      <description>Entities Entities&amp;hellip;</description>
+    </item>
+    
+    <item>
+      <title>Expressions</title>
+      <link>http://scalamolecule.org/documentation/attributes/expressions/</link>
+      <pubDate>Fri, 02 Jan 2015 22:06:44 +0100</pubDate>
+      
+      <guid>http://scalamolecule.org/documentation/attributes/expressions/</guid>
+      <description>Expressions (See expression tests)
+Equality We can apply values to Attributes in order to filter the data structures we are looking for. We could for instance look for names of female persons:
+Person.age.apply(42)  or simply
+Person.age(42)  OR-logic We can apply OR-logic to find a selection of alternatives
+Person.age(40 or 41 or 42) // .. same as Person.age(40, 41, 42) // .. same as Person.age(List(40, 41, 42))  Negation We can exclude a certain attribute value</description>
+    </item>
+    
+    <item>
+      <title>Update</title>
+      <link>http://scalamolecule.org/documentation/crud/update/</link>
+      <pubDate>Fri, 02 Jan 2015 22:06:44 +0100</pubDate>
+      
+      <guid>http://scalamolecule.org/documentation/crud/update/</guid>
+      <description>Update data Update An &amp;ldquo;update&amp;rdquo; is a two-step process in Datomic:
+ Retract old fact Assert new fact  Datomic doesn&amp;rsquo;t overwrite data. &amp;ldquo;Retract&amp;rdquo; is a statement that says &amp;ldquo;this data is no longer current&amp;rdquo; which means that it won&amp;rsquo;t turn up when you query for it as of now. If you query for it as of before you will see it!
+Being able to see how data develops over time is a brillant core feature of Datomic.</description>
+    </item>
+    
+    <item>
+      <title>Aggregates</title>
+      <link>http://scalamolecule.org/documentation/attributes/aggregates/</link>
+      <pubDate>Fri, 02 Jan 2015 22:06:44 +0100</pubDate>
+      
+      <guid>http://scalamolecule.org/documentation/attributes/aggregates/</guid>
+      <description>Aggregates (See aggregates tests)
+Datomic offers some built-in aggregate functions to aggregate attribute values.
+Aggregates returning a single value min/max In Molecule you simply apply the aggregate function name as a keyword to your attribute.
+Person.age(min) // lowest age Person.age(max) // highest age  Supports all types.
+count Not to be confused with sum in that count counts the entities having attribute with some value
+Person.age(count) // count of all persons with an age (not the sum of ages)  countDistinct Not to be confused with sum in that count counts the entities having attribute with some value</description>
+    </item>
+    
+    <item>
+      <title>Retract</title>
+      <link>http://scalamolecule.org/documentation/crud/retract/</link>
+      <pubDate>Fri, 02 Jan 2015 22:06:44 +0100</pubDate>
+      
+      <guid>http://scalamolecule.org/documentation/crud/retract/</guid>
+      <description>Retract data Update An &amp;ldquo;update&amp;rdquo; is a two-step process in Datomic:
+ Retract old fact Assert new fact  Datomic doesn&amp;rsquo;t overwrite data. &amp;ldquo;Retract&amp;rdquo; is a statement that says &amp;ldquo;this data is no longer current&amp;rdquo; which means that it won&amp;rsquo;t turn up when you query for it as of now. If you query for it as of before you will see it!
+Being able to see how data develops over time is a brillant core feature of Datomic.</description>
+    </item>
+    
+    <item>
+      <title>Parameterized</title>
+      <link>http://scalamolecule.org/documentation/attributes/parameterized/</link>
+      <pubDate>Fri, 02 Jan 2015 22:06:44 +0100</pubDate>
+      
+      <guid>http://scalamolecule.org/documentation/attributes/parameterized/</guid>
+      <description>Parameterized Input-molecules (See parameterize tests)
+Molecules can be parameterized by applying the input placeholder ? as a value to an attribute. The molecule then expects input for that attribute at runtime.
+By assigning parameterized &amp;ldquo;Input-molecules&amp;rdquo; to variables we can re-use those variables to query for similar data structures where only some data part varies:
+// 1 input parameter val person = m(Person.name(?)) val john = person(&amp;quot;John&amp;quot;).get.head val lisa = person(&amp;quot;Lisa&amp;quot;).</description>
+    </item>
+    
+    <item>
+      <title>Tutorials</title>
+      <link>http://scalamolecule.org/resources/tutorials/</link>
+      <pubDate>Fri, 02 Jan 2015 22:06:44 +0100</pubDate>
+      
+      <guid>http://scalamolecule.org/resources/tutorials/</guid>
+      <description> Molecule tutorials Tutorials  Seattle tutorial - all-round introduction to using Molecule   </description>
+    </item>
+    
+    <item>
+      <title>Videos</title>
+      <link>http://scalamolecule.org/resources/videos/</link>
+      <pubDate>Fri, 02 Jan 2015 22:06:44 +0100</pubDate>
+      
+      <guid>http://scalamolecule.org/resources/videos/</guid>
+      <description> Molecule tutorials Videos  Scala Meetup presentation 2017-04-25 by Marc Grue  Part 1: Datomic data model Part 2: Building a DSL with Scala macros Part 3: Tour of Molecule features Part 4: Molecule domain modelling   </description>
+    </item>
+    
+    <item>
+      <title>About</title>
+      <link>http://scalamolecule.org/about/</link>
+      <pubDate>Wed, 14 May 2014 02:13:50 +0000</pubDate>
+      
+      <guid>http://scalamolecule.org/about/</guid>
+      <description>About Molecule is created by Marc Grue (bass player in the Gothenburg Symphony orchestra and a dedicated Scala programmer).
+Pull requests are welcome and you can ask questions in the Molecule forum.
+License Molecule is licensed under the Apache License 2.0</description>
+    </item>
+    
+    <item>
+      <title>Credits</title>
+      <link>http://scalamolecule.org/credits/</link>
+      <pubDate>Wed, 14 May 2014 02:13:50 +0000</pubDate>
+      
+      <guid>http://scalamolecule.org/credits/</guid>
+      <description> Credits Molecule is created by Marc Grue (bass player in the Gothenburg Symphony orchestra and a dedicated Scala programmer).
+Rogue Datomisca SqlTyped JScala Parboiled2 </description>
     </item>
     
   </channel>

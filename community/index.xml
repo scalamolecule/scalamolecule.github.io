@@ -1,36 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Communities on Molecule</title>
+    <title>Community on Molecule</title>
     <link>http://scalamolecule.org/community/</link>
-    <description>Recent content in Communities on Molecule</description>
+    <description>Recent content in Community on Molecule</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
+    <lastBuildDate>Wed, 14 May 2014 02:13:50 +0000</lastBuildDate>
     
+	<atom:link href="http://scalamolecule.org/community/index.xml" rel="self" type="application/rss+xml" />
     
-    <lastBuildDate>Wed, 14 May 2014 02:13:50 UTC</lastBuildDate>
-    <atom:link href="http://scalamolecule.org/community/index.xml" rel="self" type="application/rss+xml" />
-    
-    <item>
-      <title>Community</title>
-      <link>http://scalamolecule.org/community/overview/</link>
-      <pubDate>Wed, 14 May 2014 02:13:50 UTC</pubDate>
-      
-      <guid>http://scalamolecule.org/community/overview/</guid>
-      <description>
-
-&lt;h1 id=&#34;community:68f80267fa3a50980dbb745a782b8dca&#34;&gt;Community&lt;/h1&gt;
-
-&lt;p&gt;The &lt;a href=&#34;https://groups.google.com/forum/#!forum/molecule-dsl&#34;&gt;Molecule google list&lt;/a&gt; is open to questions and discussions about Molecule and other Scala-based Datomic resources.&lt;/p&gt;
-
-&lt;h3 id=&#34;resources:68f80267fa3a50980dbb745a782b8dca&#34;&gt;Resources&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/scalamolecule/molecule/issues&#34;&gt;Issues&lt;/a&gt; - please feel free to raise issues/report bugs or make pull requests&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://datomic.com&#34;&gt;Datomic&lt;/a&gt; website&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-    </item>
     
   </channel>
 </rss>

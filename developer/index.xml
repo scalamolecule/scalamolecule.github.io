@@ -1,288 +1,36 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Developers on Molecule</title>
+    <title>Developer on Molecule</title>
     <link>http://scalamolecule.org/developer/</link>
-    <description>Recent content in Developers on Molecule</description>
+    <description>Recent content in Developer on Molecule</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
+    <lastBuildDate>Wed, 14 May 2014 02:13:50 +0000</lastBuildDate>
     
+	<atom:link href="http://scalamolecule.org/developer/index.xml" rel="self" type="application/rss+xml" />
     
-    <lastBuildDate>Wed, 14 May 2014 02:13:50 UTC</lastBuildDate>
-    <atom:link href="http://scalamolecule.org/developer/index.xml" rel="self" type="application/rss+xml" />
-    
-    <item>
-      <title>Developer</title>
-      <link>http://scalamolecule.org/developer/overview/</link>
-      <pubDate>Wed, 14 May 2014 02:13:50 UTC</pubDate>
-      
-      <guid>http://scalamolecule.org/developer/overview/</guid>
-      <description>
-
-&lt;h1 id=&#34;developer:68f80267fa3a50980dbb745a782b8dca&#34;&gt;Developer&lt;/h1&gt;
-
-&lt;p&gt;The basic philosophy of Molecule is to think from the User&amp;rsquo;s perspective towards a technical solution.&lt;/p&gt;
-
-&lt;p&gt;The priority is always to make it as easy as possible for the end User to make Datomic queries, no matter
-how challenging on the Molecule backend.&lt;/p&gt;
-
-&lt;p&gt;When we asked&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;&amp;ldquo;how can I most intuitively and with most minimal code query for persons?&amp;rdquo;&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;we first tried something like this&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;import Person._
-m(firstName ~ lastName ~ age) // all fields of a `Person` trait...
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;But it quickly became un-intuitive with relations, expressions etc.&lt;/p&gt;
-
-&lt;h3 id=&#34;builder-pattern:68f80267fa3a50980dbb745a782b8dca&#34;&gt;Builder pattern&lt;/h3&gt;
-
-&lt;p&gt;Instead we settled on using the builder pattern with &lt;code&gt;.&lt;/code&gt;s&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.firstName.lastName.age
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;We can&amp;rsquo;t think of a more minimal Scala representation of &amp;ldquo;finding persons&amp;rdquo;.&lt;/p&gt;
-
-&lt;h3 id=&#34;generated-boilerplate-code:68f80267fa3a50980dbb745a782b8dca&#34;&gt;Generated boilerplate code&lt;/h3&gt;
-
-&lt;p&gt;The builder pattern has shown a surprising strong capacity to express a wide range of query constructs. But it also
- requires an extensive amount of boilerplace code to work.&lt;/p&gt;
-
-&lt;p&gt;We therefore generate all boilerplate code automatically when we compile our project with &lt;code&gt;sbt compile&lt;/code&gt;.&lt;/p&gt;
-
-&lt;h3 id=&#34;scala-macro-transformations:68f80267fa3a50980dbb745a782b8dca&#34;&gt;Scala macro transformations&lt;/h3&gt;
-
-&lt;p&gt;Our generated boilerplate code allow us to build molecules attribute by attribute:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val molecule = m(Person.name.age)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;The &lt;code&gt;m&lt;/code&gt;olecule method transforms our source code &lt;em&gt;at compile time&lt;/em&gt; through a series of states:&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;Source code&lt;/li&gt;
-&lt;li&gt;Model AST&lt;/li&gt;
-&lt;li&gt;Query AST&lt;/li&gt;
-&lt;li&gt;Datomic query string&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;The end result is simply a Datomic query string:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;&amp;quot;[:find ?b ?c :where [?a :person/name ?b] [?a :person/age ?c]]&amp;quot;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Since the query is created at compile time it&amp;rsquo;s all ready to fetch our data &lt;em&gt;at runtime&lt;/em&gt; with no performance impact:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val data = personsMolecule.get
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Given implicit conversions we could even unify the two steps:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val persons = Person.name.age.get
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;The query would still be created at compile time and fetching data at runtime.&lt;/p&gt;
-
-&lt;h3 id=&#34;closed-eco-system:68f80267fa3a50980dbb745a782b8dca&#34;&gt;Closed eco-system&lt;/h3&gt;
-
-&lt;p&gt;Since we create our molecules from our self-generated boilerplate code our macros have full knowledge about the
-possible constructs we can expect. We are therefore in full control of the entire &amp;ldquo;eco-system&amp;rdquo; from molecule
- to Datomic query. Non-valid molecules simply won&amp;rsquo;t compile. And we can infer all type information from our molecules.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;http://scalamolecule.org/developer/transformation&#34;&gt;Read more about the macro transformations&amp;hellip;&lt;/a&gt;&lt;/p&gt;
-</description>
-    </item>
     
     <item>
       <title>Boilerplate</title>
       <link>http://scalamolecule.org/developer/boilerplate/</link>
-      <pubDate>Wed, 14 May 2014 02:13:50 UTC</pubDate>
+      <pubDate>Wed, 14 May 2014 02:13:50 +0000</pubDate>
       
       <guid>http://scalamolecule.org/developer/boilerplate/</guid>
-      <description>
-
-&lt;h1 id=&#34;boilerplate-code-generation:36a3cc328100a137a125b621a816413d&#34;&gt;Boilerplate code generation&lt;/h1&gt;
-
-&lt;p&gt;An attribute definition like&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;@InOut(3, 8)
-trait SeattleDefinition {
-  trait Community {
-    val name = oneString.fullTextSearch
-  }
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;would generate the following boilerplate code&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;object Community extends Community_0 {
-  def apply(e: Long): Community_0 = ???
-}
-
-trait Community {
-  class name [Ns, In] extends OneString [Ns, In] with FulltextSearch[Ns, In] with Indexed
-}
-
-trait Community_0 extends Community with Out_0[Community_0, Community_1, Community_In_1_0, Community_In_1_1] {
-  lazy val name : name[Community_1[String], Community_In_1_1[String, String]] with Community_1[String] = 
-    new name[Community_1[String], Community_In_1_1[String, String]] with Community_1[String] { 
-      override val _kw = &amp;quot;:community/name&amp;quot; 
-    }
-  lazy val name_ : name[Community_0, Community_In_1_0[String]] with Community_0 = ???
-}
-         
-trait Community_1[A] extends Community with Out_1[Community_1, Community_2, Community_In_1_1, Community_In_1_2, A] {
-  lazy val name  : name[Community_2[A, String], Community_In_1_2[String, A, String]] with Community_2[A, String] = ???
-  lazy val name_ : name[Community_1[A], Community_In_1_1[String, A]] with Community_1[A] = ???
-}
-         
-trait Community_2[A, B] extends Community with Out_2[Community_2, Community_3, Community_In_1_2, Community_In_1_3, A, B] {
-  // etc up to arity 8...
-
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;The type information passed on from each step of building a molecule enables our IDE to infer the type of our molecule
-and suggest possible further building blocks.&lt;/p&gt;
-
-&lt;h3 id=&#34;input-molecules:36a3cc328100a137a125b621a816413d&#34;&gt;Input molecules&lt;/h3&gt;
-
-&lt;p&gt;The &lt;code&gt;Community_In_1_0&lt;/code&gt; is a trait that the builder jumps to if we make en input molecule like &lt;code&gt;Community.name(?)&lt;/code&gt;.
-From there on Molecule knows that we expect to receive an input for the placeholder &lt;code&gt;?&lt;/code&gt;.&lt;/p&gt;
-
-&lt;h3 id=&#34;arity:36a3cc328100a137a125b621a816413d&#34;&gt;Arity&lt;/h3&gt;
-
-&lt;p&gt;The annotation &lt;code&gt;@InOut(3,8)&lt;/code&gt; on the schema trait tells molecule how long molecules we expect to create. This is to
-not always generate the possible arity of 22 which causes a significant chunk of boilerplate code!&lt;/p&gt;
-
-&lt;p&gt;We also have to remember that this is not a limitation of &lt;em&gt;how many attribute values&lt;/em&gt; we can find but rather a
-limitation of how many &lt;em&gt;where clauses&lt;/em&gt; we can have since each added attribute to our molecules generates it&amp;rsquo;s
-corresponding where clause. In that respect it seems a very seldom necessity to have 22 where clauses!&lt;/p&gt;
-
-&lt;h3 id=&#34;entity-api:36a3cc328100a137a125b621a816413d&#34;&gt;Entity API&lt;/h3&gt;
-
-&lt;p&gt;A way to gather additional/optional values from a query is to use the entity API by applying an attribute name
-to an entity id from the query:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;communityId(&amp;quot;:community/url&amp;quot;) === Some(&amp;quot;http://eastballard.com/&amp;quot;)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;This gives us an optional value back if an attribute value has been asserted for this entity.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;https://github.com/scalamolecule/molecule/blob/master/examples/src/test/scala/molecule/examples/seattle/SeattleTests.scala#L24-L52&#34;&gt;See entity api example&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;tacet-attributes:36a3cc328100a137a125b621a816413d&#34;&gt;Tacet attributes&lt;/h3&gt;
-
-&lt;p&gt;The &lt;code&gt;name_&lt;/code&gt; attributes are &amp;ldquo;tacet&amp;rdquo; attributes that cause a :where clause in the query but doesn&amp;rsquo;t return any data
-(no variable in the :find section of the produced query). This is to be able to skip returning data of attributes
-that we for instance apply a constant value to&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Person.name.age_(28).get // no need to return age values (all 28)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;type-inferring:36a3cc328100a137a125b621a816413d&#34;&gt;Type inferring&lt;/h3&gt;
-
-&lt;p&gt;The end user doesn&amp;rsquo;t have to know about any of the generated boilerplate code since the IDE will take care of
-inferring and suggesting the possible types to proceed with.&lt;/p&gt;
-</description>
+      <description>Boilerplate code generation An attribute definition like
+@InOut(3, 8) trait SeattleDefinition { trait Community { val name = oneString.fullTextSearch } }  would generate the following boilerplate code
+object Community extends Community_0 { def apply(e: Long): Community_0 = ??? } trait Community { class name [Ns, In] extends OneString [Ns, In] with FulltextSearch[Ns, In] with Indexed } trait Community_0 extends Community with Out_0[Community_0, Community_1, Community_In_1_0, Community_In_1_1] { lazy val name : name[Community_1[String], Community_In_1_1[String, String]] with Community_1[String] = new name[Community_1[String], Community_In_1_1[String, String]] with Community_1[String] { override val _kw = &amp;quot;:community/name&amp;quot; } lazy val name_ : name[Community_0, Community_In_1_0[String]] with Community_0 = ?</description>
     </item>
     
     <item>
       <title>Transformation</title>
       <link>http://scalamolecule.org/developer/transformation/</link>
-      <pubDate>Wed, 14 May 2014 02:13:50 UTC</pubDate>
+      <pubDate>Wed, 14 May 2014 02:13:50 +0000</pubDate>
       
       <guid>http://scalamolecule.org/developer/transformation/</guid>
-      <description>
-
-&lt;h1 id=&#34;macro-transformation:596edf0adf55e6ba8eb0683b47bc2db2&#34;&gt;Macro transformation&lt;/h1&gt;
-
-&lt;p&gt;Molecule performs a series of transformation of the molecules we write so that they in the end become a Datomic query:&lt;/p&gt;
-
-&lt;h3 id=&#34;1-source-code:596edf0adf55e6ba8eb0683b47bc2db2&#34;&gt;1. Source code&lt;/h3&gt;
-
-&lt;p&gt;To find southern media communities we could make the following molecule&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Community.name.`type`(&amp;quot;twitter&amp;quot; or &amp;quot;facebook_page&amp;quot;)
-  .Neighborhood.District.region(&amp;quot;sw&amp;quot; or &amp;quot;s&amp;quot; or &amp;quot;se&amp;quot;)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;2-model-ast:596edf0adf55e6ba8eb0683b47bc2db2&#34;&gt;2. Model AST&lt;/h3&gt;
-
-&lt;p&gt;The source code of our molecule is then pattern matched in &lt;a href=&#34;https://github.com/scalamolecule/molecule/blob/master/core/src/main/scala/molecule/transform/Dsl2Model.scala&#34;&gt;Dsl2Model&lt;/a&gt; element by element in order to create an abstracted Model of &lt;code&gt;Atom&lt;/code&gt;s and &lt;code&gt;Bond&lt;/code&gt;s:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Model(List(
-  Atom(&amp;quot;community&amp;quot;, &amp;quot;name&amp;quot;, &amp;quot;String&amp;quot;, 1, VarValue, None),
-  Atom(&amp;quot;community&amp;quot;, &amp;quot;type_&amp;quot;, &amp;quot;String&amp;quot;, 1, Eq(List(&amp;quot;twitter&amp;quot;, &amp;quot;facebook_page&amp;quot;)), Some(&amp;quot;:community.type/&amp;quot;)),
-  Bond(&amp;quot;community&amp;quot;, &amp;quot;neighborhood&amp;quot;, &amp;quot;neighborhood&amp;quot;),
-  Bond(&amp;quot;neighborhood&amp;quot;, &amp;quot;district&amp;quot;, &amp;quot;district&amp;quot;),
-  Atom(&amp;quot;district&amp;quot;, &amp;quot;region_&amp;quot;, &amp;quot;String&amp;quot;, 1, Eq(List(&amp;quot;sw&amp;quot;, &amp;quot;s&amp;quot;, &amp;quot;se&amp;quot;)), Some(&amp;quot;:district.region/&amp;quot;)))
-)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;This simple &lt;a href=&#34;https://github.com/scalamolecule/molecule/blob/master/core/src/main/scala/molecule/ast/model.scala&#34;&gt;Model AST&lt;/a&gt; has shown to cover a surprising wide spectre of queries.&lt;/p&gt;
-
-&lt;h3 id=&#34;3-query-ast:596edf0adf55e6ba8eb0683b47bc2db2&#34;&gt;3. Query AST&lt;/h3&gt;
-
-&lt;p&gt;Our model is then transformed in &lt;a href=&#34;https://github.com/scalamolecule/molecule/blob/master/core/src/main/scala/molecule/transform/Model2Query.scala&#34;&gt;Model2Query&lt;/a&gt; to a Query AST which is a little more elaborate:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;Query(
-  Find(List(
-    Var(&amp;quot;b&amp;quot;))),
-  In(List(), List(
-    Rule(&amp;quot;rule1&amp;quot;, List(Var(&amp;quot;a&amp;quot;)), List(
-      DataClause(ImplDS, Var(&amp;quot;a&amp;quot;), KW(&amp;quot;community&amp;quot;, &amp;quot;type&amp;quot;), Val(&amp;quot;:community.type/twitter&amp;quot;), Empty))),
-    Rule(&amp;quot;rule1&amp;quot;, List(Var(&amp;quot;a&amp;quot;)), List(
-      DataClause(ImplDS, Var(&amp;quot;a&amp;quot;), KW(&amp;quot;community&amp;quot;, &amp;quot;type&amp;quot;), Val(&amp;quot;:community.type/facebook_page&amp;quot;), Empty))),
-    Rule(&amp;quot;rule2&amp;quot;, List(Var(&amp;quot;e&amp;quot;)), List(
-      DataClause(ImplDS, Var(&amp;quot;e&amp;quot;), KW(&amp;quot;district&amp;quot;, &amp;quot;region&amp;quot;), Val(&amp;quot;:district.region/sw&amp;quot;), Empty))),
-    Rule(&amp;quot;rule2&amp;quot;, List(Var(&amp;quot;e&amp;quot;)), List(
-      DataClause(ImplDS, Var(&amp;quot;e&amp;quot;), KW(&amp;quot;district&amp;quot;, &amp;quot;region&amp;quot;), Val(&amp;quot;:district.region/s&amp;quot;), Empty))),
-    Rule(&amp;quot;rule2&amp;quot;, List(Var(&amp;quot;e&amp;quot;)), List(
-      DataClause(ImplDS, Var(&amp;quot;e&amp;quot;), KW(&amp;quot;district&amp;quot;, &amp;quot;region&amp;quot;), Val(&amp;quot;:district.region/se&amp;quot;), Empty)))), List(DS)),
-  Where(List(
-    DataClause(ImplDS, Var(&amp;quot;a&amp;quot;), KW(&amp;quot;community&amp;quot;, &amp;quot;name&amp;quot;), Var(&amp;quot;b&amp;quot;), Empty),
-    RuleInvocation(&amp;quot;rule1&amp;quot;, List(Var(&amp;quot;a&amp;quot;))),
-    DataClause(ImplDS, Var(&amp;quot;a&amp;quot;), KW(&amp;quot;community&amp;quot;, &amp;quot;neighborhood&amp;quot;, &amp;quot;neighborhood&amp;quot;), Var(&amp;quot;d&amp;quot;), Empty),
-    DataClause(ImplDS, Var(&amp;quot;d&amp;quot;), KW(&amp;quot;neighborhood&amp;quot;, &amp;quot;district&amp;quot;, &amp;quot;district&amp;quot;), Var(&amp;quot;e&amp;quot;), Empty),
-    RuleInvocation(&amp;quot;rule2&amp;quot;, List(Var(&amp;quot;e&amp;quot;)))))
-)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;As you see this &lt;a href=&#34;https://github.com/scalamolecule/molecule/blob/master/core/src/main/scala/molecule/ast/query.scala&#34;&gt;Query AST&lt;/a&gt; is tailored to Datomic.&lt;/p&gt;
-
-&lt;p&gt;In principle we should be able to use the same model to create other Query abstractions tailored to other database systems!&amp;hellip;&lt;/p&gt;
-
-&lt;h3 id=&#34;4-datomic-query-string:596edf0adf55e6ba8eb0683b47bc2db2&#34;&gt;4. Datomic query string&lt;/h3&gt;
-
-&lt;p&gt;Finally Molecule transforms our Query AST in &lt;a href=&#34;https://github.com/scalamolecule/molecule/blob/master/core/src/main/scala/molecule/transform/Query2String.scala&#34;&gt;Query2String&lt;/a&gt; to a Datomic query text strings:&lt;/p&gt;
-
-&lt;pre&gt;
-[:find  ?b
- :in    $ %
- :where [?a :community/name ?b]
-        (rule1 ?a)
-        [?a :community/neighborhood ?d]
-        [?d :neighborhood/district ?e]
-        (rule2 ?e)]
-
-INPUTS:
-List(
-  1 datomic.db.Db@xxx
-  2 [[(rule1 ?a) [?a :community/type &#34;:community.type/twitter&#34;]]
-     [(rule1 ?a) [?a :community/type &#34;:community.type/facebook_page&#34;]]
-     [(rule2 ?e) [?e :district/region &#34;:district.region/sw&#34;]]
-     [(rule2 ?e) [?e :district/region &#34;:district.region/s&#34;]]
-     [(rule2 ?e) [?e :district/region &#34;:district.region/se&#34;]]]
-&lt;/pre&gt;
-
-&lt;p&gt;All 3 transformations happen at compile time and therefore have no impact on the runtime performance.&lt;/p&gt;
-
-&lt;p&gt;See more examples of &lt;a href=&#34;https://github.com/scalamolecule/molecule/blob/master/examples/src/test/scala/molecule/examples/seattle/SeattleTransformationTests.scala&#34;&gt;transformation of the Seattle molecules&lt;/a&gt;&amp;hellip;&lt;/p&gt;
-</description>
+      <description>Macro transformation Molecule performs a series of transformation of the molecules we write so that they in the end become a Datomic query:
+1. Source code To find southern media communities we could make the following molecule
+Community.name.`type`(&amp;quot;twitter&amp;quot; or &amp;quot;facebook_page&amp;quot;) .Neighborhood.District.region(&amp;quot;sw&amp;quot; or &amp;quot;s&amp;quot; or &amp;quot;se&amp;quot;)  2. Model AST The source code of our molecule is then pattern matched in Dsl2Model element by element in order to create an abstracted Model of Atoms and Bonds:</description>
     </item>
     
   </channel>
