@@ -4,10 +4,12 @@
 	<meta name="generator" content="Hugo 0.20.7" />
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
   <link href='http://fonts.googleapis.com/css?family=Merriweather+Sans:400,300,300italic,400italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
   <title>Home</title>
   <link href="/css/bootstrap.min.css" rel="stylesheet">
   <link href="/css/highlight/styles/solarized_light.css" rel="stylesheet" />
+  <link rel="stylesheet" type="text/css" href="/vendor/font-awesome/css/font-awesome.min.css">
   <link href="/css/style.css" rel="stylesheet">
   <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/img/apple-touch-icon-144-precomposed.png">
   <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/img/apple-touch-icon-114-precomposed.png">
@@ -56,83 +58,80 @@
         </ul>
       </li>
       <li class="dropdown ">
-        <a data-toggle="dropdown" href="/documentation/" target="_top" onclick="javascript:top.location = '\/documentation\/';return true;">Documentation</a>
+        <a data-toggle="dropdown" href="/docs/" target="_top" onclick="javascript:top.location = '\/docs\/';return true;">Docs</a>
           <ul class="dropdown-menu level1" role="menu" aria-labelledby="dropdownMenu">
             <li class="dropdown-submenu">
-              <a href="/documentation/getting-started/">Getting started</a>
+              <a href="/docs/">Documentation</a>
               <ul class="dropdown-menu">
-                <li><a href="/documentation/getting-started/introduction/">Introduction</a></li>
-                <li><a href="/documentation/getting-started/quickstart/">Demo quickstart</a></li>
-                <li><a href="/documentation/getting-started/project-setup/">Project setup</a></li>
+                <li><a href="/docs/documentation/introduction/">Introduction</a></li>
               </ul>
             </li>
             <li class="dropdown-submenu">
-              <a href="/documentation/schema/">Schema</a>
+              <a href="/docs/getting-started/">Getting started</a>
               <ul class="dropdown-menu">
-                <li><a href="/documentation/schema/transaction/">Transaction</a></li>
+                <li><a href="/docs/getting-started/setup/">Setup</a></li>
               </ul>
             </li>
             <li class="dropdown-submenu">
-              <a href="/documentation/attributes/">Attributes</a>
+              <a href="/docs/schema/">Schema</a>
               <ul class="dropdown-menu">
-                <li><a href="/documentation/attributes/basics/">Basics</a></li>
-                <li><a href="/documentation/attributes/modes/">Mandatory/Tacet/Optional</a></li>
-                <li><a href="/documentation/attributes/mapped/">Map attributes</a></li>
-                <li><a href="/documentation/attributes/expressions/">Expressions</a></li>
-                <li><a href="/documentation/attributes/aggregates/">Aggregates</a></li>
-                <li><a href="/documentation/attributes/parameterized/">Parameterized</a></li>
-              </ul>
-            </li>
-            <li><a href="/documentation/entities/">Entities</a></li>
-            <li class="dropdown-submenu">
-              <a href="/documentation/relationships/">Relationships</a>
-              <ul class="dropdown-menu">
-                <li><a href="/documentation/relationships/card-one/">Cardinality one</a></li>
-                <li><a href="/documentation/relationships/card-many/">Cardinality many</a></li>
-                <li><a href="/documentation/relationships/nested/">Nested</a></li>
-                <li><a href="/documentation/relationships/composites/">Composites</a></li>
+                <li><a href="/docs/schema/transaction/">Transaction</a></li>
               </ul>
             </li>
             <li class="dropdown-submenu">
-              <a href="/documentation/crud/">CRUD</a>
+              <a href="/docs/attributes/">Attributes</a>
               <ul class="dropdown-menu">
-                <li><a href="/documentation/crud/save/">Save</a></li>
-                <li><a href="/documentation/crud/insert/">Insert</a></li>
-                <li><a href="/documentation/crud/get/">Get</a></li>
-                <li><a href="/documentation/crud/update/">Update</a></li>
-                <li><a href="/documentation/crud/retract/">Retract</a></li>
+                <li><a href="/docs/attributes/basics/">Basics</a></li>
+                <li><a href="/docs/attributes/modes/">Mandatory/Tacet/Optional</a></li>
+                <li><a href="/docs/attributes/mapped/">Map attributes</a></li>
+                <li><a href="/docs/attributes/expressions/">Expressions</a></li>
+                <li><a href="/docs/attributes/aggregates/">Aggregates</a></li>
+                <li><a href="/docs/attributes/parameterized/">Parameterized</a></li>
+              </ul>
+            </li>
+            <li><a href="/docs/entities/">Entities</a></li>
+            <li class="dropdown-submenu">
+              <a href="/docs/relationships/">Relationships</a>
+              <ul class="dropdown-menu">
+                <li><a href="/docs/relationships/card-one/">Cardinality one</a></li>
+                <li><a href="/docs/relationships/card-many/">Cardinality many</a></li>
+                <li><a href="/docs/relationships/composites/">Composites</a></li>
+                <li><a href="/docs/relationships/bidirectional/">Bidirectional</a></li>
               </ul>
             </li>
             <li class="dropdown-submenu">
-              <a href="/documentation/transactions/">Transactions</a>
+              <a href="/docs/crud/">CRUD</a>
               <ul class="dropdown-menu">
-                <li><a href="/documentation/transactions/tx-data/">Tx data</a></li>
-                <li><a href="/documentation/transactions/tx-meta-data/">Tx meta data</a></li>
+                <li><a href="/docs/crud/save/">Save</a></li>
+                <li><a href="/docs/crud/insert/">Insert</a></li>
+                <li><a href="/docs/crud/get/">Get</a></li>
+                <li><a href="/docs/crud/update/">Update</a></li>
+                <li><a href="/docs/crud/retract/">Retract</a></li>
               </ul>
             </li>
             <li class="dropdown-submenu">
-              <a href="/documentation/time/">Time</a>
+              <a href="/docs/transactions/">Transactions</a>
               <ul class="dropdown-menu">
-                <li><a href="/documentation/time/asof/">AsOf</a></li>
-                <li><a href="/documentation/time/since/">Since</a></li>
+                <li><a href="/docs/transactions/tx-meta-data/">Tx meta data</a></li>
               </ul>
             </li>
             <li class="dropdown-submenu">
-              <a href="/documentation/graphs/">Graphs</a>
+              <a href="/docs/time/">Time</a>
               <ul class="dropdown-menu">
-                <li><a href="/documentation/graphs/self/">Self</a></li>
-                <li><a href="/documentation/graphs/other/">Other</a></li>
-                <li><a href="/documentation/graphs/edge-self/">Edge self</a></li>
-                <li><a href="/documentation/graphs/edge-other/">Edge other</a></li>
+                <li><a href="/docs/time/asof-since/">AsOf/Since</a></li>
+                <li><a href="/docs/time/history/">History</a></li>
+                <li><a href="/docs/time/with/">With</a></li>
+                <li><a href="/docs/time/testing/">Testing</a></li>
               </ul>
             </li>
         </ul>
       </li>
       <li class="dropdown ">
-        <a data-toggle="dropdown" href="/developer/" target="_top" onclick="javascript:top.location = '\/developer\/';return true;">Developer</a>
+        <a data-toggle="dropdown" href="/dev/" target="_top" onclick="javascript:top.location = '\/dev\/';return true;">Dev</a>
           <ul class="dropdown-menu level1" role="menu" aria-labelledby="dropdownMenu">
-            <li><a href="/developer/boilerplate/">Boilerplate</a></li>
-            <li><a href="/developer/transformation/">Transformation</a></li>
+            <li><a href="/dev/">Developer</a></li>
+            <li><a href="/dev/boilerplate/">Boilerplate</a></li>
+            <li><a href="/dev/transformation/">Transformation</a></li>
         </ul>
       </li>
       <li class="dropdown ">
@@ -230,9 +229,9 @@
             <div class="carousel-caption">                   
                 <h3 id="insert-multi-level-data:ffcff61ab3a11ef1d50900901a24ec54">Insert multi-level data</h3>
 
-<p>Insert data for multiple namespace levels in one go:</p>
+<p>Save data for multiple namespace levels in one go:</p>
 
-<pre><code class="language-scala">Person.name(&quot;Johnson&quot;).age(35).Address.street(&quot;5th&quot;).City.name(&quot;New York&quot;).add
+<pre><code class="language-scala">Person.name(&quot;Johnson&quot;).age(35).Address.street(&quot;5th&quot;).City.name(&quot;New York&quot;).save
 </code></pre>
 
 <p><em>&ldquo;Add a 35-year-old Johnson living on 5th street in New York&rdquo;</em></p>
@@ -240,9 +239,9 @@
         </div>
         <div class="item">
             <div class="carousel-caption">                   
-                <h3 id="upsert-data:ffcff61ab3a11ef1d50900901a24ec54">Upsert data</h3>
+                <h3 id="upsert-data:ffcff61ab3a11ef1d50900901a24ec54">Update data</h3>
 
-<p>Add new facts</p>
+<p>Update molecules with new data</p>
 
 <pre><code class="language-scala">Person(johnsonId).Address.street(&quot;Broadway&quot;).update
 </code></pre>
@@ -254,9 +253,9 @@
             <div class="carousel-caption">                   
                 <h3 id="more-up-the-sleeve:ffcff61ab3a11ef1d50900901a24ec54">More..</h3>
 <ul>
-<li><a href="/home/introduction">Introduction</a></li>
-<li><a href="/tutorials/seattle">Seattle Tutorial</a></li>
-<li><a href="/home/setup">Setup</a></li>
+    <li><a href="/docs/documentation/introduction">Introduction</a></li>
+    <li><a href="/docs/getting-started/setup">Setup</a></li>
+    <li><a href="/resources/tutorials/seattle">Seattle Tutorial</a></li>
 </ul>
             </div>
         </div>
@@ -279,29 +278,29 @@ for <a href="http://www.datomic.com">Datomic</a> - the database of immutable fac
 
 <div class="media">
   <div class="media-left">
-    <a href="/learn/videos/2017-04-25_Marc_Grue">
+    <a href="/resources/videos/2017-04-25_marc_grue">
       <img class="media-object" src="/img/presentation.jpg" alt="...">
     </a>
   </div>
   <div class="media-body">
       <ol>
           <li>
-            <a href="/learn/videos/2017-04-25_Marc_Grue#1:e8a80e11a9ea81b9e6071cec3c4864a9">Datomic data model</a>
+            <a href="/resources/videos/2017-04-25_marc_grue/#1">Datomic data model</a>
             <p>Introduction to the data model of Datomic that Molecule is based on.</p>
           </li>
           <li>
-            <a href="/learn/videos/2017-04-25_Marc_Grue#2:e8a80e11a9ea81b9e6071cec3c4864a9">Building a DSL with Scala macros</a>
+            <a href="/resources/videos/2017-04-25_marc_grue/#2">Building a DSL with Scala macros</a>
             <p>A look behind the scenes of how Molecule is build.</p>
           </li>
           <li>
-            <a href="/learn/videos/2017-04-25_Marc_Grue#3:e8a80e11a9ea81b9e6071cec3c4864a9">Molecule tour</a>
+            <a href="/resources/videos/2017-04-25_marc_grue/#3">Molecule tour</a>
             <p>A walk through of Molecule features.</p>
           </li>
           <li>
-            <a href="/learn/videos/2017-04-25_Marc_Grue#4:e8a80e11a9ea81b9e6071cec3c4864a9">Molecule domain modelling</a>
+            <a href="/resources/videos/2017-04-25_marc_grue/#4">Molecule domain modelling</a>
             <p>Using Molecule in your domain modelling.</p>
             <br>
-            <a href="/learn/videos/2017-04-25_Marc_Grue">More info</a>
+            <a href="/resources/videos/2017-04-25_marc_grue">More info</a>
           </li>
       </ol>
   </div>
@@ -391,18 +390,12 @@ trait Address {
 <li>Run app - and build new molecules&hellip;</li>
 </ol>
 
-<h3 id="next">Next</h3>
-
-<p><a href="/manual/getting-started">Get started&hellip;</a></p>
-
 <h3 id="read-more">Read more</h3>
 
 <ul>
-<li><a href="/home/introduction">Introduction</a> to Datomic/Molecule</li>
-<li><a href="/manual/setup">Setup Database</a>: initiate a Datomic database and create a database schema with Molecule</li>
-<li><a href="/manual/insert">Populate Database</a>: populate a Datomic database with Molecule</li>
-<li><a href="/tutorials/seattle">Molecule Seattle tutorial</a> examples of using Molecule (based on the
-<a href="http://docs.datomic.com/tutorial.html">Datomic Seattle tutorial</a>)</li>
+<li><a href="/docs/documentation/introduction/">Introduction</a> to Datomic/Molecule</li>
+<li><a href="/docs/getting-started/">Getting started</a> with Molecule</li>
+<li><a href="/docs/getting-started/setup/">Setup</a> your Molecule project</li>
 </ul>
 
 </div>
@@ -421,11 +414,12 @@ trait Address {
     <ul class="bs-docs-footer-links">
       <li style="vertical-align: top; margin-top: 0px;"><a href="/front/"><img src="/img/logo/MoleculeLogo200.png" alt=""></a></li>
       <li><a href="https://github.com/scalamolecule/molecule">GitHub</a></li>
+      <li><a href="https://github.com/scalamolecule/molecule-docs">GitHub-docs</a></li>
       <li><a href="https://groups.google.com/forum/#!forum/molecule-dsl">Forum</a></li>
       <li><a href="/about/">About</a></li>
       <li><a href="/credits/">Credits</a></li>
     </ul>
-    <p> Created by Marc Grue. Licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0" target="_blank" rel="license">Apache License 2.0</a></p>
+    <p>Licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0" target="_blank" rel="license">Apache License 2.0</a></p>
   </div>
 </footer>
 

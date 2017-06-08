@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+  <link href='http://fonts.googleapis.com/css?family=Merriweather+Sans:400,300,300italic,400italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+  <title>Self</title>
+  <link href="/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/css/highlight/styles/solarized_light.css" rel="stylesheet" />
+  <link href="/css/style.css" rel="stylesheet">
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/img/apple-touch-icon-144-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/img/apple-touch-icon-114-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/img/apple-touch-icon-72-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" href="/img/apple-touch-icon-57-precomposed.png">
+  <link rel="shortcut icon" href="/img/favicon.png">
+  <link href="" rel="alternate" type="application/rss+xml" title="Molecule" />
+</head>
+<body>
+<div class="wrapper">
+<div class="container" style="padding-top:20px">
+  <div class="col-md-12 column" style="padding-left:0px; margin-bottom:15px">
+    <div class="col-md-12 column" style="padding-left:0px;height:50px;">
+
+    <ul class="nav nav-pills">
+      <li><a href="/" style="padding-left: 6px; padding-right: 13px; vertical-align: top; margin-top: 0px;"><img src="/img/logo/MoleculeLogo600.png" alt="" width="200"></a></li>
+      
+      <li class="dropdown ">
+        <a data-toggle="dropdown" href="/compare/" target="_top" onclick="javascript:top.location = '\/compare\/';return true;">Compare</a>
+          <ul class="dropdown-menu level1" role="menu" aria-labelledby="dropdownMenu">
+            <li><a href="/compare/datomic/">Datomic</a></li>
+            <li class="dropdown-submenu">
+              <a href="/compare/sql/">SQL</a>
+              <ul class="dropdown-menu">
+                <li><a href="/compare/sql/slick/">Slick</a></li>
+              </ul>
+            </li>
+            <li><a href="/compare/gremlin/">Gremlin</a></li>
+        </ul>
+      </li>
+      <li class="dropdown ">
+        <a data-toggle="dropdown" href="/resources/" target="_top" onclick="javascript:top.location = '\/resources\/';return true;">Resources</a>
+          <ul class="dropdown-menu level1" role="menu" aria-labelledby="dropdownMenu">
+            <li class="dropdown-submenu">
+              <a href="/resources/tutorials/">Tutorials</a>
+              <ul class="dropdown-menu">
+                <li><a href="/resources/tutorials/seattle/">Seattle</a></li>
+              </ul>
+            </li>
+            <li class="dropdown-submenu">
+              <a href="/resources/videos/">Videos</a>
+              <ul class="dropdown-menu">
+                <li><a href="/resources/videos/2017-04-25_marc_grue/">Molecule presentation</a></li>
+              </ul>
+            </li>
+        </ul>
+      </li>
+      <li class="dropdown active">
+        <a data-toggle="dropdown" href="/documentation/" target="_top" onclick="javascript:top.location = '\/documentation\/';return true;">Documentation</a>
+          <ul class="dropdown-menu level1" role="menu" aria-labelledby="dropdownMenu">
+            <li class="dropdown-submenu">
+              <a href="/documentation/getting-started/">Getting started</a>
+              <ul class="dropdown-menu">
+                <li><a href="/documentation/getting-started/introduction/">Introduction</a></li>
+                <li><a href="/documentation/getting-started/quickstart/">Demo quickstart</a></li>
+                <li><a href="/documentation/getting-started/project-setup/">Project setup</a></li>
+              </ul>
+            </li>
+            <li class="dropdown-submenu">
+              <a href="/documentation/schema/">Schema</a>
+              <ul class="dropdown-menu">
+                <li><a href="/documentation/schema/transaction/">Transaction</a></li>
+              </ul>
+            </li>
+            <li class="dropdown-submenu">
+              <a href="/documentation/attributes/">Attributes</a>
+              <ul class="dropdown-menu">
+                <li><a href="/documentation/attributes/basics/">Basics</a></li>
+                <li><a href="/documentation/attributes/modes/">Mandatory/Tacet/Optional</a></li>
+                <li><a href="/documentation/attributes/mapped/">Map attributes</a></li>
+                <li><a href="/documentation/attributes/expressions/">Expressions</a></li>
+                <li><a href="/documentation/attributes/aggregates/">Aggregates</a></li>
+                <li><a href="/documentation/attributes/parameterized/">Parameterized</a></li>
+              </ul>
+            </li>
+            <li><a href="/documentation/entities/">Entities</a></li>
+            <li class="dropdown-submenu">
+              <a href="/documentation/relationships/">Relationships</a>
+              <ul class="dropdown-menu">
+                <li><a href="/documentation/relationships/card-one/">Cardinality one</a></li>
+                <li><a href="/documentation/relationships/card-many/">Cardinality many</a></li>
+                <li><a href="/documentation/relationships/nested/">Nested</a></li>
+                <li><a href="/documentation/relationships/composites/">Composites</a></li>
+              </ul>
+            </li>
+            <li class="dropdown-submenu">
+              <a href="/documentation/crud/">CRUD</a>
+              <ul class="dropdown-menu">
+                <li><a href="/documentation/crud/save/">Save</a></li>
+                <li><a href="/documentation/crud/insert/">Insert</a></li>
+                <li><a href="/documentation/crud/get/">Get</a></li>
+                <li><a href="/documentation/crud/update/">Update</a></li>
+                <li><a href="/documentation/crud/retract/">Retract</a></li>
+              </ul>
+            </li>
+            <li class="dropdown-submenu">
+              <a href="/documentation/transactions/">Transactions</a>
+              <ul class="dropdown-menu">
+                <li><a href="/documentation/transactions/tx-data/">Tx data</a></li>
+                <li><a href="/documentation/transactions/tx-meta-data/">Tx meta data</a></li>
+              </ul>
+            </li>
+            <li class="dropdown-submenu">
+              <a href="/documentation/time/">Time</a>
+              <ul class="dropdown-menu">
+                <li><a href="/documentation/time/asof/">AsOf</a></li>
+                <li><a href="/documentation/time/since/">Since</a></li>
+              </ul>
+            </li>
+            <li class="dropdown-submenu">
+              <a href="/documentation/graphs/">Graphs</a>
+              <ul class="dropdown-menu">
+                <li><a href="/documentation/graphs/self/">Self</a></li>
+                <li><a href="/documentation/graphs/other/">Other</a></li>
+                <li><a href="/documentation/graphs/edge-self/">Edge self</a></li>
+                <li><a href="/documentation/graphs/edge-other/">Edge other</a></li>
+              </ul>
+            </li>
+        </ul>
+      </li>
+      <li class="dropdown ">
+        <a data-toggle="dropdown" href="/developer/" target="_top" onclick="javascript:top.location = '\/developer\/';return true;">Developer</a>
+          <ul class="dropdown-menu level1" role="menu" aria-labelledby="dropdownMenu">
+            <li><a href="/developer/boilerplate/">Boilerplate</a></li>
+            <li><a href="/developer/transformation/">Transformation</a></li>
+        </ul>
+      </li>
+      <li class="dropdown ">
+        <a data-toggle="dropdown" href="/community/" target="_top" onclick="javascript:top.location = '\/community\/';return true;">Community</a>
+          <ul class="dropdown-menu level1" role="menu" aria-labelledby="dropdownMenu">
+        </ul>
+      </li>
+      <li>
+        <div  style="padding-left:14px;padding-top:19px;height:24px;float:right;">
+            <a href="https://github.com/scalamolecule/molecule" class="github-button" data-icon="octicon-star">Github</a>
+            
+          </div>
+      </li>
+    </ul>
+
+</div>
+  </div> 
+
+<div class="col-sm-10 column" style="padding-left:8px;">
+	
+
+<h1 id="bidirectional-references">Bidirectional references</h1>
+
+<p>(See <a href="https://github.com/scalamolecule/molecule/blob/master/coretest/src/test/scala/molecule/bidirectional/self.md">bidirectional tests</a>)</p>
+
+<h3 id="unidirectional-reference-limitations">Unidirectional reference limitations</h3>
+
+<p>Normal Datomic references are unidirectional. If we add a friend reference from Ann to Ben</p>
+
+<pre><code class="language-scala">Person.name(&quot;Ann&quot;).Friends.name(&quot;Ben&quot;).save
+</code></pre>
+
+<p>Then we can naturally query to get friends of Ann</p>
+
+<pre><code class="language-scala">Person.name_(&quot;Ann&quot;).Friends.name.get === List(&quot;Ben&quot;)
+</code></pre>
+
+<p>But what if we want to find friends of Ben? This will give us nothing since our reference only went from Ann to Ben:</p>
+
+<pre><code class="language-scala">Person.name_(&quot;Ben&quot;).Friends.name.get === List()
+</code></pre>
+
+<p>Instead we would have to think backwards to get the back reference &ldquo;who referenced Ben?&rdquo;:</p>
+
+<pre><code class="language-scala"> Person.name.Friends.name_(&quot;Ben&quot;).get === List(&quot;Ann&quot;)
+</code></pre>
+
+<p>Since we can&rsquo;t know from which person a friendship reference is made we will always have to query
+separately in both directions. If we were to traverse say 3 levels into a friendship graph we would end
+ up with 6 queries - one in each direction for all three levels. It can quickly become a pain.</p>
+
+<h3 id="bidirectional-refs-to-the-rescue">Bidirectional refs to the rescue&hellip;</h3>
+
+<p>By defining a relationship in Molecule as bidirectional:</p>
+
+<pre><code class="language-scala">val friends = manyBi[Person]
+</code></pre>
+
+<p>we can start treating friendship relationships uniformly in both directions and get the intuitively
+expected results</p>
+
+<pre><code class="language-scala"> Person.name_(&quot;Ann&quot;).Friends.name.get === List(&quot;Ben&quot;)
+ Person.name_(&quot;Ben&quot;).Friends.name.get === List(&quot;Ann&quot;)
+</code></pre>
+
+<p>And the graph example becomes easy</p>
+
+<pre><code class="language-scala"> Person.name_(&quot;Ann&quot;).Friends.Friends.Friends.name.get === List(...)
+ 
+ // Or without recycling to Ann
+ Person.name_(&quot;Ann&quot;).Friends.Friends.name_.not(&quot;Ann&quot;).Friends.name.not(&quot;Ann&quot;).get === List(...)
+</code></pre>
+
+<h2 id="direct-bidirectional-refs">Direct bidirectional refs</h2>
+
+<p>Single direct references to another entity can either go to the same namespace or to another namespace:</p>
+
+<h3 id="a-a">A &lt;&mdash;&gt; A</h3>
+
+<p>The friendship reference we saw above is a classic &ldquo;self-reference&rdquo; in that it&rsquo;s a cardinality-many relationship
+between same-kinds: Persons.</p>
+
+<p>A cardinality-one example would be</p>
+
+<pre><code class="language-scala">val spouse = oneBi[Person]
+</code></pre>
+
+<p>where the relationship goes in both directions but only between two persons. If Ann is spouse to Ben, then Ben
+is also spouse to Ann and we want to be able to query that information uniformly in both directions:</p>
+
+<pre><code class="language-scala"> Person.name_(&quot;Ann&quot;).Spouse.name.get === List(&quot;Ben&quot;)
+ Person.name_(&quot;Ben&quot;).Spouse.name.get === List(&quot;Ann&quot;)
+</code></pre>
+
+<h3 id="a-b">A &lt;&mdash;&gt; B</h3>
+
+<p>In a zoo we could (admittedly a bit contrively) say that the caretakers are buddies with the animals they take care of,
+and reversely the caretakers would be &ldquo;buddies&rdquo; of the animals. We define such bidirectional relationship with a
+reference from each namespace to the other:</p>
+
+<pre><code class="language-scala">object Person extends Person
+trait Person {
+  val buddies = manyBi[Animal.buddies.type]
+  
+  val name = oneString
+}
+
+object Animal extends Animal
+trait Animal {
+  val buddies = manyBi[Person.buddies.type]
+  
+  val name = oneString
+}
+</code></pre>
+
+<p>Each <code>manyBi</code> reference definition takes a type parameter that points back to the other definition. This is so that
+ Molecule can keep track of the references back and forth.</p>
+
+<p>As with friends we can now query uniformly no matter from which end the reference was entered:</p>
+
+<pre><code class="language-scala"> Person.name_(&quot;Joe&quot;).Buddies.name.get === List(&quot;Leo&quot;, &quot;Gus&quot;)
+ Animal.name_(&quot;Leo&quot;).Buddies.name.get === List(&quot;Joe&quot;)
+ Animal.name_(&quot;Gus&quot;).Buddies.name.get === List(&quot;Joe&quot;)
+</code></pre>
+
+<p>An interesting aspect is that we can give the reference attributes different names on each end. Say Persons have 1 Pet
+and we model that as a bidirectional cardinality-one reference:</p>
+
+<pre><code class="language-scala">object Person extends Person
+trait Person {
+  val pet = oneBi[Animal.master.type]
+  
+  val name = oneString
+}
+
+object Animal extends Animal
+trait Animal {
+  val master = oneBi[Person.pet.type]
+}
+</code></pre>
+
+<p>If we then enter a pet ownership</p>
+
+<pre><code class="language-scala">Person.name(&quot;Liz&quot;).Pet.name(&quot;Rex&quot;).save
+</code></pre>
+
+<p>then we can get access to that information uniformly from both ends even though different attribute names are used:</p>
+
+<pre><code class="language-scala"> Person.name_(&quot;Liz&quot;).Pet.name.get === List(&quot;Rex&quot;)
+ Animal.name_(&quot;Rex&quot;).Master.name.get === List(&quot;Liz&quot;)
+</code></pre>
+
+<h2 id="property-edges">Property edges</h2>
+
+<p>Taking bidirectionality to the next level involves &ldquo;property edges&rdquo;, a term taken from graph theory where an edge/relationship
+between two vertices/entities has some property values attached to it. Molecule models this by using a bidirectional reference between one entity
+and a (property edge) entity, and then between this property edge entity and another entity.</p>
+
+<p>This is actually what we do all the time with references except that they are normally unidirectional! In order to make them bidirectional
+Molecule offers a convenient solution:</p>
+
+<h3 id="a-edge-properties-a">A &lt;&mdash;&gt; Edge.properties&hellip; &lt;&mdash;&gt; A</h3>
+
+<p>If we want to express &ldquo;how well&rdquo; two persons know each other we could model the above friendship example instead with at property edge
+having a <code>weight</code> property:</p>
+
+<pre><code class="language-scala">// Entity
+object Person extends Person
+trait Person {
+  // A ==&gt; edge -- a
+  val knows = manyBiEdge[Knows.person.type]
+  
+  val name = oneString
+}
+
+// Property edge
+object Knows extends Knows
+trait Knows {
+  // a --- edge ==&gt; a
+  val person: AnyRef = target[Person.knows.type]
+  
+  // Property
+  val weight = oneInt
+}
+</code></pre>
+
+<p>Now we use the <code>manyBiEdge</code> definition that takes a type parameter pointing to the reference in the edge namespace that points back here. In the
+edge namespace we define the reference back with the <code>target</code> definition.</p>
+
+<p>Now we can add some weighed friendships:</p>
+
+<pre><code class="language-scala">Person.name.Knows.*(Knows.weight.Person.name).insert(&quot;Ann&quot;, List((7, &quot;Ben&quot;), (8, &quot;Joe&quot;)))
+</code></pre>
+
+<p>And uniformly retrieve that information from any end:</p>
+
+<pre><code class="language-scala">Person.name_(&quot;Ann&quot;).Knows.*(Knows.weight.Person.name).get.head === List((7, &quot;Ben&quot;), (8, &quot;Joe&quot;))
+Person.name_(&quot;Ben&quot;).Knows.*(Knows.weight.Person.name).get.head === List((7, &quot;Ann&quot;))
+Person.name_(&quot;Joe&quot;).Knows.*(Knows.weight.Person.name).get.head === List((8, &quot;Ann&quot;))
+</code></pre>
+
+<h3 id="a-edge-properties-b">A &lt;&mdash;&gt; Edge.properties&hellip; &lt;&mdash;&gt; B</h3>
+
+<p>Let&rsquo;s add weight to the relationships between caretakers and animals. The edge namespace now has to reference both the Person and Animal
+namespaces:</p>
+
+<pre><code class="language-scala">// Entity A
+object Person extends Person
+trait Person {
+  // Ref to edge
+  // A ==&gt; edge -- b
+  val closeTo = manyBiEdge[CloseTo.animal.type]
+  
+  val name = oneString
+}
+
+// Property edge
+object CloseTo extends CloseTo
+trait CloseTo {
+  // Ref to Person
+  // a &lt;== edge --- b
+  val person: AnyRef = target[Person.closeTo.type]
+  
+  // Ref to Animal
+  // a --- edge ==&gt; b
+  val animal: AnyRef = target[Animal.closeTo.type]
+  
+  // Property
+  val weight = oneInt
+}
+
+// Entity B
+object Animal extends Animal
+trait Animal {
+  // Ref to edge
+  // a -- edge &lt;== B
+  val closeTo  = manyBiEdge[CloseTo.person.type]
+  
+  val name = oneString
+}
+</code></pre>
+
+<p>Adding data from one end (we could as well have done it from the Animal end)</p>
+
+<pre><code class="language-scala">Person.name.CloseTo.*(CloseTo.weight.Animal.name) insert List((&quot;Joe&quot;, List((7, &quot;Gus&quot;), (6, &quot;Leo&quot;))))
+</code></pre>
+
+<p>We can now uniformly retrieve the weighed friendship information from any end:</p>
+
+<pre><code class="language-scala">// Querying from Person
+Person.name_(&quot;Joe&quot;).CloseTo.*(CloseTo.weight.Animal.name).get.head === List((7, &quot;Gus&quot;), (8, &quot;Leo&quot;))
+
+// Querying from Animal
+Animal.name_(&quot;Gus&quot;).CloseTo.*(CloseTo.weight.Person.name).get.head === List((7, &quot;Joe&quot;))
+Animal.name_(&quot;Leo&quot;).CloseTo.*(CloseTo.weight.Person.name).get.head === List((8, &quot;Joe&quot;))
+</code></pre>
+
+<h3 id="how-it-works">How it works</h3>
+
+<p>For each bidirectional reference created, Molecule creates a reverse reference:</p>
+
+<pre><code>Ann --&gt; Ben
+Ben &lt;-- Ann // reverse ref
+</code></pre>
+
+<p>and for edges a full reverse edge entity with properties is created:</p>
+
+<pre><code>Ann --&gt; annLovesBen (7) --&gt;  Ben
+  \                         /
+    &lt;-- benLovesAnn (7) &lt;--       // reverse edge
+</code></pre>
+
+<p>Since Molecule is a closed eco-system it can manage this redundancy with 100% control. The advantages
+of uniform queries should easily outweigh the impact of a bit of additional information for the reverse references.</p>
+
+<h3 id="more-exampes">More exampes&hellip;</h3>
+
+<p>Please have a look at the implementation of the
+<a href="https://github.com/scalamolecule/molecule/blob/master/examples/src/test/scala/molecule/examples/gremlin/gettingStarted/">Gremlin graph</a>.</p>
+
+</div>
+
+<div class="col-sm-2 column" style="padding-left:20px;padding-top:22px;padding-right: 0px;">
+  <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm ">
+  <ul class="bs-docs-sidenav">
+    
+      
+        
+          
+            <li><a href="/documentation/">Documentation</a></li>
+            
+          
+        
+          
+            <li><a href="/documentation/getting-started/">Getting started</a></li>
+            
+              <ul class="level2">
+                
+                <li><a href="/documentation/getting-started/introduction/">Introduction</a></li>
+                
+              
+                
+                <li><a href="/documentation/getting-started/quickstart/">Demo quickstart</a></li>
+                
+              
+                
+                <li><a href="/documentation/getting-started/project-setup/">Project setup</a></li>
+                
+              
+              </ul>
+            
+          
+        
+          
+            <li><a href="/documentation/schema/">Schema</a></li>
+            
+              <ul class="level2">
+                
+                <li><a href="/documentation/schema/transaction/">Transaction</a></li>
+                
+              
+              </ul>
+            
+          
+        
+          
+            <li><a href="/documentation/attributes/">Attributes</a></li>
+            
+              <ul class="level2">
+                
+                <li><a href="/documentation/attributes/basics/">Basics</a></li>
+                
+              
+                
+                <li><a href="/documentation/attributes/modes/">Mandatory/Tacet/Optional</a></li>
+                
+              
+                
+                <li><a href="/documentation/attributes/mapped/">Map attributes</a></li>
+                
+              
+                
+                <li><a href="/documentation/attributes/expressions/">Expressions</a></li>
+                
+              
+                
+                <li><a href="/documentation/attributes/aggregates/">Aggregates</a></li>
+                
+              
+                
+                <li><a href="/documentation/attributes/parameterized/">Parameterized</a></li>
+                
+              
+              </ul>
+            
+          
+        
+          
+            <li><a href="/documentation/entities/">Entities</a></li>
+            
+          
+        
+          
+            <li><a href="/documentation/relationships/">Relationships</a></li>
+            
+              <ul class="level2">
+                
+                <li><a href="/documentation/relationships/card-one/">Cardinality one</a></li>
+                
+              
+                
+                <li><a href="/documentation/relationships/card-many/">Cardinality many</a></li>
+                
+              
+                
+                <li><a href="/documentation/relationships/nested/">Nested</a></li>
+                
+              
+                
+                <li><a href="/documentation/relationships/composites/">Composites</a></li>
+                
+              
+              </ul>
+            
+          
+        
+          
+            <li><a href="/documentation/crud/">CRUD</a></li>
+            
+              <ul class="level2">
+                
+                <li><a href="/documentation/crud/save/">Save</a></li>
+                
+              
+                
+                <li><a href="/documentation/crud/insert/">Insert</a></li>
+                
+              
+                
+                <li><a href="/documentation/crud/get/">Get</a></li>
+                
+              
+                
+                <li><a href="/documentation/crud/update/">Update</a></li>
+                
+              
+                
+                <li><a href="/documentation/crud/retract/">Retract</a></li>
+                
+              
+              </ul>
+            
+          
+        
+          
+            <li><a href="/documentation/transactions/">Transactions</a></li>
+            
+              <ul class="level2">
+                
+                <li><a href="/documentation/transactions/tx-data/">Tx data</a></li>
+                
+              
+                
+                <li><a href="/documentation/transactions/tx-meta-data/">Tx meta data</a></li>
+                
+              
+              </ul>
+            
+          
+        
+          
+            <li><a href="/documentation/time/">Time</a></li>
+            
+              <ul class="level2">
+                
+                <li><a href="/documentation/time/asof/">AsOf</a></li>
+                
+              
+                
+                <li><a href="/documentation/time/since/">Since</a></li>
+                
+              
+              </ul>
+            
+          
+        
+          
+            <li><a href="/documentation/graphs/">Graphs</a></li>
+            
+              <ul class="level2">
+                
+                <li class="active"><b>Self</b></li>
+                
+              
+                
+                <li><a href="/documentation/graphs/other/">Other</a></li>
+                
+              
+                
+                <li><a href="/documentation/graphs/edge-self/">Edge self</a></li>
+                
+              
+                
+                <li><a href="/documentation/graphs/edge-other/">Edge other</a></li>
+                
+              
+              </ul>
+            
+          
+        
+      
+    
+  </ul>
+</nav>
+</div>
+
+     
+  </div> 
+</div> 
+<div class="push"></div>
+</div> 
+
+<footer class="bs-docs-footer">
+
+  <div class="container">
+    <ul class="bs-docs-footer-links">
+      <li style="vertical-align: top; margin-top: 0px;"><a href="/front/"><img src="/img/logo/MoleculeLogo200.png" alt=""></a></li>
+      <li><a href="https://github.com/scalamolecule/molecule">GitHub</a></li>
+      <li><a href="https://groups.google.com/forum/#!forum/molecule-dsl">Forum</a></li>
+      <li><a href="/about/">About</a></li>
+      <li><a href="/credits/">Credits</a></li>
+    </ul>
+    <p> Created by Marc Grue. Licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0" target="_blank" rel="license">Apache License 2.0</a></p>
+  </div>
+</footer>
+
+
+<script type="text/javascript" src="/js/jquery-1.11.2.min.js"></script>
+
+
+
+<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+
+
+
+<script src="/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script type="text/javascript" src="/js/scripts.js"></script>
+
+
+
+
+<script async defer id="github-bjs" src="https://buttons.github.io/buttons.js"></script>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-2787756-3', 'auto');
+  ga('send', 'pageview');
+</script>
+    
+</body>
+</html>

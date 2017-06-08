@@ -52,9 +52,12 @@ Person.age.name.e.get map { case (age, name, id) =&amp;gt; (age, s&amp;quot;$nam
       <pubDate>Wed, 14 May 2014 02:13:50 +0000</pubDate>
       
       <guid>http://scalamolecule.org/compare/gremlin/</guid>
-      <description> Gremlin vs. Molecule examples We&amp;rsquo;ll make a similar comparison to SQL as Slick does:
-SELECT * sql&amp;quot;select * from PERSON&amp;quot;.as[Person].list  In molecule we would declare each attribute we are interested in also to infer the exact return type
-val persons: Iterable[(String, Int)] = Person.name.age.get  </description>
+      <description>Gremlin vs. Molecule examples Let&amp;rsquo;s compare the queries/traversals in the Gremlin Getting Started Tutorial with equivalent Molecule queries.
+For the examples we&amp;rsquo;ll use the same &amp;ldquo;Modern&amp;rdquo; graph as the tutorial:
+
+
+Insert data Gremlin is untyped, so data is inserted directly in a generic way where &amp;ldquo;types&amp;rdquo; are created on-the-go:
+Graph graph = TinkerGraph.open(); (1) Vertex marko = graph.addVertex(T.label, &amp;quot;person&amp;quot;, T.id, 1, &amp;quot;name&amp;quot;, &amp;quot;marko&amp;quot;, &amp;quot;age&amp;quot;, 29); (2) Vertex vadas = graph.</description>
     </item>
     
   </channel>

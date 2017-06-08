@@ -3,10 +3,12 @@
 <head>
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
   <link href='http://fonts.googleapis.com/css?family=Merriweather+Sans:400,300,300italic,400italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
   <title>404 Page not found</title>
   <link href="/css/bootstrap.min.css" rel="stylesheet">
   <link href="/css/highlight/styles/solarized_light.css" rel="stylesheet" />
+  <link rel="stylesheet" type="text/css" href="/vendor/font-awesome/css/font-awesome.min.css">
   <link href="/css/style.css" rel="stylesheet">
   <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/img/apple-touch-icon-144-precomposed.png">
   <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/img/apple-touch-icon-114-precomposed.png">
@@ -55,83 +57,80 @@
         </ul>
       </li>
       <li class="dropdown ">
-        <a data-toggle="dropdown" href="/documentation/" target="_top" onclick="javascript:top.location = '\/documentation\/';return true;">Documentation</a>
+        <a data-toggle="dropdown" href="/docs/" target="_top" onclick="javascript:top.location = '\/docs\/';return true;">Docs</a>
           <ul class="dropdown-menu level1" role="menu" aria-labelledby="dropdownMenu">
             <li class="dropdown-submenu">
-              <a href="/documentation/getting-started/">Getting started</a>
+              <a href="/docs/">Documentation</a>
               <ul class="dropdown-menu">
-                <li><a href="/documentation/getting-started/introduction/">Introduction</a></li>
-                <li><a href="/documentation/getting-started/quickstart/">Demo quickstart</a></li>
-                <li><a href="/documentation/getting-started/project-setup/">Project setup</a></li>
+                <li><a href="/docs/documentation/introduction/">Introduction</a></li>
               </ul>
             </li>
             <li class="dropdown-submenu">
-              <a href="/documentation/schema/">Schema</a>
+              <a href="/docs/getting-started/">Getting started</a>
               <ul class="dropdown-menu">
-                <li><a href="/documentation/schema/transaction/">Transaction</a></li>
+                <li><a href="/docs/getting-started/setup/">Setup</a></li>
               </ul>
             </li>
             <li class="dropdown-submenu">
-              <a href="/documentation/attributes/">Attributes</a>
+              <a href="/docs/schema/">Schema</a>
               <ul class="dropdown-menu">
-                <li><a href="/documentation/attributes/basics/">Basics</a></li>
-                <li><a href="/documentation/attributes/modes/">Mandatory/Tacet/Optional</a></li>
-                <li><a href="/documentation/attributes/mapped/">Map attributes</a></li>
-                <li><a href="/documentation/attributes/expressions/">Expressions</a></li>
-                <li><a href="/documentation/attributes/aggregates/">Aggregates</a></li>
-                <li><a href="/documentation/attributes/parameterized/">Parameterized</a></li>
-              </ul>
-            </li>
-            <li><a href="/documentation/entities/">Entities</a></li>
-            <li class="dropdown-submenu">
-              <a href="/documentation/relationships/">Relationships</a>
-              <ul class="dropdown-menu">
-                <li><a href="/documentation/relationships/card-one/">Cardinality one</a></li>
-                <li><a href="/documentation/relationships/card-many/">Cardinality many</a></li>
-                <li><a href="/documentation/relationships/nested/">Nested</a></li>
-                <li><a href="/documentation/relationships/composites/">Composites</a></li>
+                <li><a href="/docs/schema/transaction/">Transaction</a></li>
               </ul>
             </li>
             <li class="dropdown-submenu">
-              <a href="/documentation/crud/">CRUD</a>
+              <a href="/docs/attributes/">Attributes</a>
               <ul class="dropdown-menu">
-                <li><a href="/documentation/crud/save/">Save</a></li>
-                <li><a href="/documentation/crud/insert/">Insert</a></li>
-                <li><a href="/documentation/crud/get/">Get</a></li>
-                <li><a href="/documentation/crud/update/">Update</a></li>
-                <li><a href="/documentation/crud/retract/">Retract</a></li>
+                <li><a href="/docs/attributes/basics/">Basics</a></li>
+                <li><a href="/docs/attributes/modes/">Mandatory/Tacet/Optional</a></li>
+                <li><a href="/docs/attributes/mapped/">Map attributes</a></li>
+                <li><a href="/docs/attributes/expressions/">Expressions</a></li>
+                <li><a href="/docs/attributes/aggregates/">Aggregates</a></li>
+                <li><a href="/docs/attributes/parameterized/">Parameterized</a></li>
+              </ul>
+            </li>
+            <li><a href="/docs/entities/">Entities</a></li>
+            <li class="dropdown-submenu">
+              <a href="/docs/relationships/">Relationships</a>
+              <ul class="dropdown-menu">
+                <li><a href="/docs/relationships/card-one/">Cardinality one</a></li>
+                <li><a href="/docs/relationships/card-many/">Cardinality many</a></li>
+                <li><a href="/docs/relationships/composites/">Composites</a></li>
+                <li><a href="/docs/relationships/bidirectional/">Bidirectional</a></li>
               </ul>
             </li>
             <li class="dropdown-submenu">
-              <a href="/documentation/transactions/">Transactions</a>
+              <a href="/docs/crud/">CRUD</a>
               <ul class="dropdown-menu">
-                <li><a href="/documentation/transactions/tx-data/">Tx data</a></li>
-                <li><a href="/documentation/transactions/tx-meta-data/">Tx meta data</a></li>
+                <li><a href="/docs/crud/save/">Save</a></li>
+                <li><a href="/docs/crud/insert/">Insert</a></li>
+                <li><a href="/docs/crud/get/">Get</a></li>
+                <li><a href="/docs/crud/update/">Update</a></li>
+                <li><a href="/docs/crud/retract/">Retract</a></li>
               </ul>
             </li>
             <li class="dropdown-submenu">
-              <a href="/documentation/time/">Time</a>
+              <a href="/docs/transactions/">Transactions</a>
               <ul class="dropdown-menu">
-                <li><a href="/documentation/time/asof/">AsOf</a></li>
-                <li><a href="/documentation/time/since/">Since</a></li>
+                <li><a href="/docs/transactions/tx-meta-data/">Tx meta data</a></li>
               </ul>
             </li>
             <li class="dropdown-submenu">
-              <a href="/documentation/graphs/">Graphs</a>
+              <a href="/docs/time/">Time</a>
               <ul class="dropdown-menu">
-                <li><a href="/documentation/graphs/self/">Self</a></li>
-                <li><a href="/documentation/graphs/other/">Other</a></li>
-                <li><a href="/documentation/graphs/edge-self/">Edge self</a></li>
-                <li><a href="/documentation/graphs/edge-other/">Edge other</a></li>
+                <li><a href="/docs/time/asof-since/">AsOf/Since</a></li>
+                <li><a href="/docs/time/history/">History</a></li>
+                <li><a href="/docs/time/with/">With</a></li>
+                <li><a href="/docs/time/testing/">Testing</a></li>
               </ul>
             </li>
         </ul>
       </li>
       <li class="dropdown ">
-        <a data-toggle="dropdown" href="/developer/" target="_top" onclick="javascript:top.location = '\/developer\/';return true;">Developer</a>
+        <a data-toggle="dropdown" href="/dev/" target="_top" onclick="javascript:top.location = '\/dev\/';return true;">Dev</a>
           <ul class="dropdown-menu level1" role="menu" aria-labelledby="dropdownMenu">
-            <li><a href="/developer/boilerplate/">Boilerplate</a></li>
-            <li><a href="/developer/transformation/">Transformation</a></li>
+            <li><a href="/dev/">Developer</a></li>
+            <li><a href="/dev/boilerplate/">Boilerplate</a></li>
+            <li><a href="/dev/transformation/">Transformation</a></li>
         </ul>
       </li>
       <li class="dropdown ">
@@ -151,11 +150,19 @@
   </div> 
 
 <div class="col-sm-10 column" style="padding-left:8px;">
-	
+	Sorry, you might have come to a page no longer in use. Please choose a new page from the menu above.
 </div>
 
 <div class="col-sm-2 column" style="padding-left:20px;padding-top:22px;padding-right: 0px;">
   <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm ">
+
+  <div style="position:absolute;top: -36px; left: 0px;">
+    
+    
+    
+    
+  </div>
+
   <ul class="bs-docs-sidenav">
     
   </ul>
@@ -174,11 +181,12 @@
     <ul class="bs-docs-footer-links">
       <li style="vertical-align: top; margin-top: 0px;"><a href="/front/"><img src="/img/logo/MoleculeLogo200.png" alt=""></a></li>
       <li><a href="https://github.com/scalamolecule/molecule">GitHub</a></li>
+      <li><a href="https://github.com/scalamolecule/molecule-docs">GitHub-docs</a></li>
       <li><a href="https://groups.google.com/forum/#!forum/molecule-dsl">Forum</a></li>
       <li><a href="/about/">About</a></li>
       <li><a href="/credits/">Credits</a></li>
     </ul>
-    <p> Created by Marc Grue. Licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0" target="_blank" rel="license">Apache License 2.0</a></p>
+    <p>Licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0" target="_blank" rel="license">Apache License 2.0</a></p>
   </div>
 </footer>
 

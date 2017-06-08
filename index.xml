@@ -13,44 +13,36 @@
     
     <item>
       <title>Cardinality one</title>
-      <link>http://scalamolecule.org/documentation/relationships/card-one/</link>
+      <link>http://scalamolecule.org/docs/relationships/card-one/</link>
       <pubDate>Sun, 24 Jul 2016 22:06:44 +0100</pubDate>
       
-      <guid>http://scalamolecule.org/documentation/relationships/card-one/</guid>
-      <description>One-to-one relationships One-to-One A Person could have a cardinality-one reference to City having a cardinality-one reference to a Country:
-Person.name.City.name.Country.name  Strictly speaking we have an entity with an asserted :person/name attribute value with a reference to another entity with an asserted :city/name attribute value etc. But in practice we simply talk about &amp;ldquo;namespace A has a relationship/reference to namespace B&amp;rdquo;.
-A namespace is not like an SQL Table but rather organizes some attributes by a meaningful name - it&amp;rsquo;s, well, a namespace.</description>
+      <guid>http://scalamolecule.org/docs/relationships/card-one/</guid>
+      <description>Card-one relationships Tests&amp;hellip;
+In Molecule we model a cardinality-one relationship in our schema definition file with the one[&amp;lt;RefNamespace&amp;gt;] syntax:
+object YourDomainDefinition { trait Person { val name = oneString val home = one[Addr] } trait Addr { val street = oneString val city = oneString } }  The ref attribute home has a card-one relationship to namespace Addr. When our schema is then translated to Molecule boilerplate code our home ref attribute is accessible as a value:</description>
     </item>
     
     <item>
-      <title>Self</title>
-      <link>http://scalamolecule.org/documentation/graphs/self/</link>
-      <pubDate>Sun, 24 Jul 2016 22:06:44 +0100</pubDate>
-      
-      <guid>http://scalamolecule.org/documentation/graphs/self/</guid>
-      <description>Bidirectional references (See bidirectional tests)
-Unidirectional reference limitations Normal Datomic references are unidirectional. If we add a friend reference from Ann to Ben
-Person.name(&amp;quot;Ann&amp;quot;).Friends.name(&amp;quot;Ben&amp;quot;).save  Then we can naturally query to get friends of Ann
-Person.name_(&amp;quot;Ann&amp;quot;).Friends.name.get === List(&amp;quot;Ben&amp;quot;)  But what if we want to find friends of Ben? This will give us nothing since our reference only went from Ann to Ben:
-Person.name_(&amp;quot;Ben&amp;quot;).Friends.name.get === List()  Instead we would have to think backwards to get the back reference &amp;ldquo;who referenced Ben?</description>
-    </item>
-    
-    <item>
-      <title>AsOf</title>
-      <link>http://scalamolecule.org/documentation/time/asof/</link>
+      <title>AsOf/Since</title>
+      <link>http://scalamolecule.org/docs/time/asof-since/</link>
       <pubDate>Fri, 02 Jan 2015 22:06:44 +0100</pubDate>
       
-      <guid>http://scalamolecule.org/documentation/time/asof/</guid>
-      <description> As of </description>
+      <guid>http://scalamolecule.org/docs/time/asof-since/</guid>
+      <description>AsOf / Since Tests&amp;hellip;
+getAsOf(t) and getSince are complementary functions that either get us a snapshop of the database at some point in time or a current snapshot filtered with only changes after a point in time. Like before/after scenarios.
+AsOf Temp test
+Calling getAsOf(t) on a molecule gives us the data as of a certain point in time like t4:
+
+As we saw in point in time, a t can be either a transaction entity id like tx4, a transaction number t4 or a java.</description>
     </item>
     
     <item>
       <title>Basics</title>
-      <link>http://scalamolecule.org/documentation/attributes/basics/</link>
+      <link>http://scalamolecule.org/docs/attributes/basics/</link>
       <pubDate>Fri, 02 Jan 2015 22:06:44 +0100</pubDate>
       
-      <guid>http://scalamolecule.org/documentation/attributes/basics/</guid>
-      <description>Attribute builder pattern (See attribute tests)
+      <guid>http://scalamolecule.org/docs/attributes/basics/</guid>
+      <description>Attribute basics Tests&amp;hellip;
 When we have defined a schema, Molecule generates the necessary boilerplate code so that we can build &amp;ldquo;molecular data structures&amp;rdquo; by building sequences of Attributes separated with dots (the &amp;ldquo;builder pattern&amp;rdquo;).
 We could for instance build a molecule representing the data structure of Persons with name, age and gender Attributes:
 Person.name.age.gender // etc  The fundamental building blocks are Namespaces like Person and Attributes like name, age and gender.</description>
@@ -58,24 +50,26 @@ Person.name.age.gender // etc  The fundamental building blocks are Namespaces li
     
     <item>
       <title>Introduction</title>
-      <link>http://scalamolecule.org/documentation/getting-started/introduction/</link>
+      <link>http://scalamolecule.org/docs/documentation/introduction/</link>
       <pubDate>Fri, 02 Jan 2015 22:06:44 +0100</pubDate>
       
-      <guid>http://scalamolecule.org/documentation/getting-started/introduction/</guid>
+      <guid>http://scalamolecule.org/docs/documentation/introduction/</guid>
       <description>Molecule introduction Molecule let&amp;rsquo;s you model and query your domain data structures directly with the words of your domain.
-Query Describing our domain with Attributes grouped in Namespaces allow us to for instance find Persons in our Datomic database by composing molecules attribute by attribute with the builder pattern:
-val personMolecule = m(Person.name.age)  An implicit macro method get will at compile time translate our molecule to a Datalog query.</description>
+Query Let&amp;rsquo;s say we want to find Persons in our Datomic database. Then we can build a molecule to get this data for us:
+val persons: Iterable[(String, Int)] = m(Person.name.age).get  This fetches an Iterable of tuples of Strings/Int&amp;rsquo;s that are the types of the name and age Attributes that we asked for.</description>
     </item>
     
     <item>
       <title>Save</title>
-      <link>http://scalamolecule.org/documentation/crud/save/</link>
+      <link>http://scalamolecule.org/docs/crud/save/</link>
       <pubDate>Fri, 02 Jan 2015 22:06:44 +0100</pubDate>
       
-      <guid>http://scalamolecule.org/documentation/crud/save/</guid>
-      <description>Save data We basically have 3 ways of entering data with Molecule:
-1. Data-molecule We can insert data by populating a molecule with data by applying a value to each attribute and then simply save it. Molecule makes sure that each attribute only accepts values of the expected type.
-Community .name(&amp;quot;AAA&amp;quot;) .url(&amp;quot;myUrl&amp;quot;) .`type`(&amp;quot;twitter&amp;quot;) .orgtype(&amp;quot;personal&amp;quot;) .category(&amp;quot;my&amp;quot;, &amp;quot;favorites&amp;quot;) // many cardinality allows multiple values .Neighborhood.name(&amp;quot;myNeighborhood&amp;quot;) .District.name(&amp;quot;myDistrict&amp;quot;).region(&amp;quot;nw&amp;quot;).save  Note also how we easily insert data across several namespaces in one go!</description>
+      <guid>http://scalamolecule.org/docs/crud/save/</guid>
+      <description>Save Tests&amp;hellip;
+In Molecule we can populate a molecule with data and save it:
+Person.name(&amp;quot;Fred&amp;quot;).likes(&amp;quot;pizza&amp;quot;).age(38).save  This will assert 3 facts in Datomic that all share the id of the new entity id fredId that is automatically created by Datomic:
+fredId :person/name &amp;quot;Fred&amp;quot; fredId :person/likes &amp;quot;pizza&amp;quot; fredId :person/age 38  Type-safety Type-safety is guaranteed since each attribute only accepts values of its defined type.
+Related data We can even save related date in the same operation</description>
     </item>
     
     <item>
@@ -84,16 +78,21 @@ Community .name(&amp;quot;AAA&amp;quot;) .url(&amp;quot;myUrl&amp;quot;) .`type`
       <pubDate>Fri, 02 Jan 2015 22:06:44 +0100</pubDate>
       
       <guid>http://scalamolecule.org/resources/tutorials/seattle/</guid>
-      <description>Molecule Seattle tutorial  A first query Querying for an attribute&amp;rsquo;s value Querying by attribute values Querying across references Parameterizing queries - input molecules Invoking functions in queries Querying with fulltext search Querying with rules - logical OR Working with time Insert data Update and/or delete data  Credits: This tutorial is based on the original Datomic Seattle tutorial (there is also a new tutorial) and some text passages have been quoted as-is or been slightly modified to describe how Molecule works.</description>
+      <description>Seattle tutorial - with molecules  A first query Querying for an attribute&amp;rsquo;s value Querying by attribute values Querying across references Parameterizing queries - input molecules Invoking functions in queries Querying with fulltext search Querying with rules - logical OR Working with time Insert data Update and/or delete data  Credits: This tutorial is based on the original Datomic Seattle tutorial (there is also a new tutorial) and some text passages have been quoted as-is or been slightly modified to describe how Molecule works.</description>
     </item>
     
     <item>
-      <title>Tx data</title>
-      <link>http://scalamolecule.org/documentation/transactions/tx-data/</link>
+      <title>Setup</title>
+      <link>http://scalamolecule.org/docs/getting-started/setup/</link>
       <pubDate>Fri, 02 Jan 2015 22:06:44 +0100</pubDate>
       
-      <guid>http://scalamolecule.org/documentation/transactions/tx-data/</guid>
-      <description> Tx data </description>
+      <guid>http://scalamolecule.org/docs/getting-started/setup/</guid>
+      <description>Setup To use Molecule we need to define our database schema in a Schema definition file and then tell sbt about it. When compiling our project from the command line, all necessary boilerplate code is then automatically generated by the sbt MoleculePlugin.
+1. SBT build settings Add the following to your build files:
+project/build.properties:
+sbt.version=0.13.13  project/buildinfo.sbt:
+addSbtPlugin(&amp;quot;org.scalamolecule&amp;quot; % &amp;quot;sbt-molecule&amp;quot; % &amp;quot;0.4.1&amp;quot;)  build.sbt:
+lazy val yourProject = project.in(file(&amp;quot;demo&amp;quot;)) .</description>
     </item>
     
     <item>
@@ -110,46 +109,34 @@ Querying for attribute values The most basic query is to ask for entities with s
     
     <item>
       <title>Cardinality many</title>
-      <link>http://scalamolecule.org/documentation/relationships/card-many/</link>
+      <link>http://scalamolecule.org/docs/relationships/card-many/</link>
       <pubDate>Sun, 24 Jul 2016 22:06:44 +0100</pubDate>
       
-      <guid>http://scalamolecule.org/documentation/relationships/card-many/</guid>
-      <description>One-to-many relationships One-to-One A Person could have a cardinality-one reference to City having a cardinality-one reference to a Country:
-Person.name.City.name.Country.name  Strictly speaking we have an entity with an asserted :person/name attribute value with a reference to another entity with an asserted :city/name attribute value etc. But in practice we simply talk about &amp;ldquo;namespace A has a relationship/reference to namespace B&amp;rdquo;.
-A namespace is not like an SQL Table but rather organizes some attributes by a meaningful name - it&amp;rsquo;s, well, a namespace.</description>
-    </item>
-    
-    <item>
-      <title>Demo quickstart</title>
-      <link>http://scalamolecule.org/documentation/getting-started/quickstart/</link>
-      <pubDate>Fri, 02 Jan 2015 22:06:44 +0100</pubDate>
-      
-      <guid>http://scalamolecule.org/documentation/getting-started/quickstart/</guid>
-      <description>Setup your project with Molecule To use Molecule we need to define our database schema in a Schema definition file and then tell sbt about it. When compiling our project from the command line, all necessary boilerplate code is then automatically generated.
-1. SBT build settings Add the following to your build files:
-project/build.properties:
-sbt.version=0.13.13  project/buildinfo.sbt:
-addSbtPlugin(&amp;quot;org.scalamolecule&amp;quot; % &amp;quot;sbt-molecule&amp;quot; % &amp;quot;0.3.3&amp;quot;)  build.sbt:
-lazy val yourProject = project.in(file(&amp;quot;demo&amp;quot;)) .</description>
+      <guid>http://scalamolecule.org/docs/relationships/card-many/</guid>
+      <description>Card-many relationships Tests&amp;hellip;
+Cardinality-many relationships in Molecule are modelled with the many[&amp;lt;RefNamespace&amp;gt;] syntax:
+object OrderDefinition { trait Order { val id = oneString val items = many[LineItem].subComponents } trait LineItem { val qty = oneInt val product = oneString val price = oneDouble } }  An Order can have multiple LineItems so we define a cardinality-many ref attribute items that points to the LineItem namespace.
+Note how we also make LineItems subComponents of the Order.</description>
     </item>
     
     <item>
       <title>Insert</title>
-      <link>http://scalamolecule.org/documentation/crud/insert/</link>
+      <link>http://scalamolecule.org/docs/crud/insert/</link>
       <pubDate>Fri, 02 Jan 2015 22:06:44 +0100</pubDate>
       
-      <guid>http://scalamolecule.org/documentation/crud/insert/</guid>
-      <description>Insert data We basically have 3 ways of entering data with Molecule:
-1. Data-molecule We can insert data by populating a molecule with data by applying a value to each attribute and then simply save it. Molecule makes sure that each attribute only accepts values of the expected type.
-Community.insert .name(&amp;quot;AAA&amp;quot;) .url(&amp;quot;myUrl&amp;quot;) .`type`(&amp;quot;twitter&amp;quot;) .orgtype(&amp;quot;personal&amp;quot;) .category(&amp;quot;my&amp;quot;, &amp;quot;favorites&amp;quot;) // many cardinality allows multiple values .Neighborhood.name(&amp;quot;myNeighborhood&amp;quot;) .District.name(&amp;quot;myDistrict&amp;quot;).region(&amp;quot;nw&amp;quot;).save  Note also how we easily insert data across several namespaces in one go!</description>
+      <guid>http://scalamolecule.org/docs/crud/insert/</guid>
+      <description>Insert Tests&amp;hellip;
+Multiple rows of data can be inserted by making a molecule that matches the values of each row:
+Person.name.likes.age insert List( (&amp;quot;Fred&amp;quot;, &amp;quot;pizza&amp;quot;, 38), (&amp;quot;Lisa&amp;quot;, &amp;quot;pizza&amp;quot;, 7), (&amp;quot;Ben&amp;quot;, &amp;quot;pasta&amp;quot;, 5) )  Type-safety Type-safety is guaranteed since each tuple of data is enforced by the compiler to conform to the molecule type.
+If the data set is not accepted type-wise, then either the molecule needs to be adjusted to match the type of data rows.</description>
     </item>
     
     <item>
       <title>Mandatory/Tacet/Optional</title>
-      <link>http://scalamolecule.org/documentation/attributes/modes/</link>
+      <link>http://scalamolecule.org/docs/attributes/modes/</link>
       <pubDate>Fri, 02 Jan 2015 22:06:44 +0100</pubDate>
       
-      <guid>http://scalamolecule.org/documentation/attributes/modes/</guid>
+      <guid>http://scalamolecule.org/docs/attributes/modes/</guid>
       <description>3 attribute modes 1. Mandatory attr When we use a molecule to query the Datomic database we ask for entities having all our Attributes associated with them.
 Note that this is different from selecting rows from a sql table where you can also get null values back!
 If for instance we have entities representing Persons in our data set that haven&amp;rsquo;t got any age Attribute associated with them then this query will not return those entities:</description>
@@ -166,40 +153,22 @@ Attendees came with great suggestions for improvements that were incorporated in
     </item>
     
     <item>
-      <title>Other</title>
-      <link>http://scalamolecule.org/documentation/graphs/other/</link>
-      <pubDate>Fri, 02 Jan 2015 22:06:44 +0100</pubDate>
-      
-      <guid>http://scalamolecule.org/documentation/graphs/other/</guid>
-      <description> Other&amp;hellip; </description>
-    </item>
-    
-    <item>
-      <title>Since</title>
-      <link>http://scalamolecule.org/documentation/time/since/</link>
-      <pubDate>Fri, 02 Jan 2015 22:06:44 +0100</pubDate>
-      
-      <guid>http://scalamolecule.org/documentation/time/since/</guid>
-      <description> Since </description>
-    </item>
-    
-    <item>
       <title>Tx meta data</title>
-      <link>http://scalamolecule.org/documentation/transactions/tx-meta-data/</link>
+      <link>http://scalamolecule.org/docs/transactions/tx-meta-data/</link>
       <pubDate>Fri, 02 Jan 2015 22:06:44 +0100</pubDate>
       
-      <guid>http://scalamolecule.org/documentation/transactions/tx-meta-data/</guid>
-      <description>Transaction meta data Transaction data in Datomic is basically a list of facts/datoms being asserted or retracted. If we take the Provenance example we could add two Story entities each with two datoms (title and url) with this molecule:
-Story.title.url insert List( (&amp;quot;ElastiCache in 6 minutes&amp;quot;, &amp;quot;blog.com/elasticache-in-5-minutes.html&amp;quot;), (&amp;quot;Keep Chocolate Love Atomic&amp;quot;, &amp;quot;blog.com/atomic-chocolate.html&amp;quot;) )  Molecule translate this to a transaction list of 4 datoms:
-List( // operation entity id attribute value List(:db/add, #db/id[:db.</description>
+      <guid>http://scalamolecule.org/docs/transactions/tx-meta-data/</guid>
+      <description>Transaction meta data Tests&amp;hellip;
+As we saw, a transaction in Datomic is also an entity with a timestamp fact. Since it&amp;rsquo;s an entity as any of our own entities, we can even add more facts that simply share the entity id of the transaction:
+Save Depending on our domain we can tailor any tx meta data that we find valuable to associate with some transactions. We could for instance be interested in &amp;ldquo;who did it&amp;rdquo; and &amp;ldquo;in what use case&amp;rdquo; it happened and create some meta attributes user and uc in an Audit namespace:</description>
     </item>
     
     <item>
       <title>Boilerplate</title>
-      <link>http://scalamolecule.org/developer/boilerplate/</link>
+      <link>http://scalamolecule.org/dev/boilerplate/</link>
       <pubDate>Wed, 14 May 2014 02:13:50 +0000</pubDate>
       
-      <guid>http://scalamolecule.org/developer/boilerplate/</guid>
+      <guid>http://scalamolecule.org/dev/boilerplate/</guid>
       <description>Boilerplate code generation An attribute definition like
 @InOut(3, 8) trait SeattleDefinition { trait Community { val name = oneString.fullTextSearch } }  would generate the following boilerplate code
 object Community extends Community_0 { def apply(e: Long): Community_0 = ??? } trait Community { class name [Ns, In] extends OneString [Ns, In] with FulltextSearch[Ns, In] with Indexed } trait Community_0 extends Community with Out_0[Community_0, Community_1, Community_In_1_0, Community_In_1_1] { lazy val name : name[Community_1[String], Community_In_1_1[String, String]] with Community_1[String] = new name[Community_1[String], Community_In_1_1[String, String]] with Community_1[String] { override val _kw = &amp;quot;:community/name&amp;quot; } lazy val name_ : name[Community_0, Community_In_1_0[String]] with Community_0 = ?</description>
@@ -229,69 +198,48 @@ Person.age.name.e.get map { case (age, name, id) =&amp;gt; (age, s&amp;quot;$nam
     </item>
     
     <item>
-      <title>Nested</title>
-      <link>http://scalamolecule.org/documentation/relationships/nested/</link>
-      <pubDate>Sun, 24 Jul 2016 22:06:44 +0100</pubDate>
-      
-      <guid>http://scalamolecule.org/documentation/relationships/nested/</guid>
-      <description>Nested relationships One-to-One A Person could have a cardinality-one reference to City having a cardinality-one reference to a Country:
-Person.name.City.name.Country.name  Strictly speaking we have an entity with an asserted :person/name attribute value with a reference to another entity with an asserted :city/name attribute value etc. But in practice we simply talk about &amp;ldquo;namespace A has a relationship/reference to namespace B&amp;rdquo;.
-A namespace is not like an SQL Table but rather organizes some attributes by a meaningful name - it&amp;rsquo;s, well, a namespace.</description>
-    </item>
-    
-    <item>
-      <title>Edge self</title>
-      <link>http://scalamolecule.org/documentation/graphs/edge-self/</link>
-      <pubDate>Fri, 02 Jan 2015 22:06:44 +0100</pubDate>
-      
-      <guid>http://scalamolecule.org/documentation/graphs/edge-self/</guid>
-      <description> Edge other&amp;hellip; </description>
-    </item>
-    
-    <item>
       <title>Get</title>
-      <link>http://scalamolecule.org/documentation/crud/get/</link>
+      <link>http://scalamolecule.org/docs/crud/get/</link>
       <pubDate>Fri, 02 Jan 2015 22:06:44 +0100</pubDate>
       
-      <guid>http://scalamolecule.org/documentation/crud/get/</guid>
-      <description> Get (read) data </description>
+      <guid>http://scalamolecule.org/docs/crud/get/</guid>
+      <description>Get (read) Data We get/read data from the database by calling get on a molecule. This returns an Iterable of tuples that match the molecule attributes (except for arity-1):
+val persons1attr: Iterable[String] = Person.name.get val persons2attrs: Iterable[(String, Int)] = Person.name.age.get val persons3attrs: Iterable[(String, Int, String)] = Person.name.age.likes.get // Etc.. to arity 22  With entity id Attributes of some entity are easily fetched by applying an entity id to the first namespace in the molecule</description>
+    </item>
+    
+    <item>
+      <title>History</title>
+      <link>http://scalamolecule.org/docs/time/history/</link>
+      <pubDate>Fri, 02 Jan 2015 22:06:44 +0100</pubDate>
+      
+      <guid>http://scalamolecule.org/docs/time/history/</guid>
+      <description>History Tests&amp;hellip;
+The history perspective gives us all the assertions and retractions that has happened over time.
+Assertions and retractions Normally we get a snapshot of the database at a certain point in time. But when we call the getHistory method on a molecule we get all the assertions and retractions that has happened over time for the attributes of the molecule.
+As an example we can imagine Fred being added in tx3 and then updated in tx6.</description>
     </item>
     
     <item>
       <title>Map attributes</title>
-      <link>http://scalamolecule.org/documentation/attributes/mapped/</link>
+      <link>http://scalamolecule.org/docs/attributes/mapped/</link>
       <pubDate>Fri, 02 Jan 2015 22:06:44 +0100</pubDate>
       
-      <guid>http://scalamolecule.org/documentation/attributes/mapped/</guid>
-      <description>Map Attributes (See mapped tests)
+      <guid>http://scalamolecule.org/docs/attributes/mapped/</guid>
+      <description>Map Attributes Tests&amp;hellip;
 Mapped values can be saved with mapped attributes in Molecule. It&amp;rsquo;s a special Molecule construct that makes it easy to save for instance multi-lingual data without having to create language-variations of each attribute. But they can also be used for any other key-value indexed data.
 Say you want to save famous Persons names in multiple languages. Then you could use a mapString:
 // In definition file val name = mapString // Insert mapped data Person.</description>
     </item>
     
     <item>
-      <title>Project setup</title>
-      <link>http://scalamolecule.org/documentation/getting-started/project-setup/</link>
-      <pubDate>Fri, 02 Jan 2015 22:06:44 +0100</pubDate>
-      
-      <guid>http://scalamolecule.org/documentation/getting-started/project-setup/</guid>
-      <description>Setup your project with Molecule To use Molecule we need to define our database schema in a Schema definition file and then tell sbt about it. When compiling our project from the command line, all necessary boilerplate code is then automatically generated.
-1. SBT build settings Add the following to your build files:
-project/build.properties:
-sbt.version=0.13.13  project/buildinfo.sbt:
-addSbtPlugin(&amp;quot;org.scalamolecule&amp;quot; % &amp;quot;sbt-molecule&amp;quot; % &amp;quot;0.3.3&amp;quot;)  build.sbt:
-lazy val yourProject = project.in(file(&amp;quot;demo&amp;quot;)) .</description>
-    </item>
-    
-    <item>
       <title>Transaction</title>
-      <link>http://scalamolecule.org/documentation/schema/transaction/</link>
+      <link>http://scalamolecule.org/docs/schema/transaction/</link>
       <pubDate>Fri, 02 Jan 2015 22:06:44 +0100</pubDate>
       
-      <guid>http://scalamolecule.org/documentation/schema/transaction/</guid>
-      <description>Schema transaction To create our Datomic database we need to transact some schema transaction data.
+      <guid>http://scalamolecule.org/docs/schema/transaction/</guid>
+      <description>Schema transaction To create our Datomic database we need to transact some schema transaction data in Datomic. This makes our defined attributes available in Datomic.
 Schema transaction data Molecule transforms our Schema definition file to basically a java.util.List containing a java.util.Map of schema transaction data for each attribute defined. Our name and url attributes for instance requires the following map of information to be transacted in Datomic:
-object SeattleSchema extends Transaction { lazy val partitions = Util.list() lazy val namespaces = Util.</description>
+object SeattleSchema extends Transaction { lazy val partitions = Util.</description>
     </item>
     
     <item>
@@ -300,17 +248,20 @@ object SeattleSchema extends Transaction { lazy val partitions = Util.list() laz
       <pubDate>Wed, 14 May 2014 02:13:50 +0000</pubDate>
       
       <guid>http://scalamolecule.org/compare/gremlin/</guid>
-      <description> Gremlin vs. Molecule examples We&amp;rsquo;ll make a similar comparison to SQL as Slick does:
-SELECT * sql&amp;quot;select * from PERSON&amp;quot;.as[Person].list  In molecule we would declare each attribute we are interested in also to infer the exact return type
-val persons: Iterable[(String, Int)] = Person.name.age.get  </description>
+      <description>Gremlin vs. Molecule examples Let&amp;rsquo;s compare the queries/traversals in the Gremlin Getting Started Tutorial with equivalent Molecule queries.
+For the examples we&amp;rsquo;ll use the same &amp;ldquo;Modern&amp;rdquo; graph as the tutorial:
+
+
+Insert data Gremlin is untyped, so data is inserted directly in a generic way where &amp;ldquo;types&amp;rdquo; are created on-the-go:
+Graph graph = TinkerGraph.open(); (1) Vertex marko = graph.addVertex(T.label, &amp;quot;person&amp;quot;, T.id, 1, &amp;quot;name&amp;quot;, &amp;quot;marko&amp;quot;, &amp;quot;age&amp;quot;, 29); (2) Vertex vadas = graph.</description>
     </item>
     
     <item>
       <title>Transformation</title>
-      <link>http://scalamolecule.org/developer/transformation/</link>
+      <link>http://scalamolecule.org/dev/transformation/</link>
       <pubDate>Wed, 14 May 2014 02:13:50 +0000</pubDate>
       
-      <guid>http://scalamolecule.org/developer/transformation/</guid>
+      <guid>http://scalamolecule.org/dev/transformation/</guid>
       <description>Macro transformation Molecule performs a series of transformation of the molecules we write so that they in the end become a Datomic query:
 1. Source code To find southern media communities we could make the following molecule
 Community.name.`type`(&amp;quot;twitter&amp;quot; or &amp;quot;facebook_page&amp;quot;) .Neighborhood.District.region(&amp;quot;sw&amp;quot; or &amp;quot;s&amp;quot; or &amp;quot;se&amp;quot;)  2. Model AST The source code of our molecule is then pattern matched in Dsl2Model element by element in order to create an abstracted Model of Atoms and Bonds:</description>
@@ -318,93 +269,143 @@ Community.name.`type`(&amp;quot;twitter&amp;quot; or &amp;quot;facebook_page&amp
     
     <item>
       <title>Composites</title>
-      <link>http://scalamolecule.org/documentation/relationships/composites/</link>
+      <link>http://scalamolecule.org/docs/relationships/composites/</link>
       <pubDate>Fri, 02 Jan 2015 22:06:44 +0100</pubDate>
       
-      <guid>http://scalamolecule.org/documentation/relationships/composites/</guid>
-      <description>Composites 
-Entities can have attributes from any namespace
-Composite inserts A core feature of Datomic is that any attribute value can be associated with an entity. This allow us to &amp;ldquo;compose&amp;rdquo; entities with attribute values from un-related namespaces.
-Say for instance if we want to tag various part of our domain. It would be tedious and counter-intuitive to have references between every single namespace to a tag namespace. Tags are not an intrinsic value of most entities and are therefore better modelled in isolation.</description>
-    </item>
-    
-    <item>
-      <title>Edge other</title>
-      <link>http://scalamolecule.org/documentation/graphs/edge-other/</link>
-      <pubDate>Fri, 02 Jan 2015 22:06:44 +0100</pubDate>
-      
-      <guid>http://scalamolecule.org/documentation/graphs/edge-other/</guid>
-      <description> Edge others&amp;hellip; </description>
+      <guid>http://scalamolecule.org/docs/relationships/composites/</guid>
+      <description>Composites Tests&amp;hellip;
+As we saw earlier, Entities are simply groups of facts that share an entity id:
+The last fact is kind of a black sheep though since the :site/cat attribute is not in the Person namespace.
+Avoid non-intrinsic pollution Since entities can have attributes from any namespace we have a challenge of how to model this in our schema definiton. It would be quick and easy to just make a relationship from a Person namespace to the Site namespace:</description>
     </item>
     
     <item>
       <title>Entities</title>
-      <link>http://scalamolecule.org/documentation/entities/</link>
+      <link>http://scalamolecule.org/docs/entities/</link>
       <pubDate>Fri, 02 Jan 2015 22:06:44 +0100</pubDate>
       
-      <guid>http://scalamolecule.org/documentation/entities/</guid>
-      <description>Entities Entities&amp;hellip;</description>
+      <guid>http://scalamolecule.org/docs/entities/</guid>
+      <description>Entities An entity in Datomic is a group of Datoms/facts that share an entity id:
+Attributes with any seemingly unrelated namespaces can group as entities by simply sharing the entity id:
+Entity API At runtime we can see the facts of an entity by calling touch on the entity id (of type Long):
+101L.touch === Map( &amp;quot;:db/id&amp;quot; -&amp;gt; 101L, &amp;quot;:person/name&amp;quot; -&amp;gt; &amp;quot;Fred&amp;quot;, &amp;quot;:person/likes&amp;quot; -&amp;gt; &amp;quot;pizza&amp;quot;, &amp;quot;:person/age&amp;quot; -&amp;gt; 38, &amp;quot;:person/addr&amp;quot; -&amp;gt; 102L, // reference to an address entity with entity id 102 &amp;quot;:site/cat&amp;quot; -&amp;gt; &amp;quot;customer&amp;quot; )  Optional attribute values We can look for an optionally present attribute value.</description>
     </item>
     
     <item>
       <title>Expressions</title>
-      <link>http://scalamolecule.org/documentation/attributes/expressions/</link>
+      <link>http://scalamolecule.org/docs/attributes/expressions/</link>
       <pubDate>Fri, 02 Jan 2015 22:06:44 +0100</pubDate>
       
-      <guid>http://scalamolecule.org/documentation/attributes/expressions/</guid>
-      <description>Expressions (See expression tests)
-Equality We can apply values to Attributes in order to filter the data structures we are looking for. We could for instance look for names of female persons:
-Person.age.apply(42)  or simply
-Person.age(42)  OR-logic We can apply OR-logic to find a selection of alternatives
-Person.age(40 or 41 or 42) // .. same as Person.age(40, 41, 42) // .. same as Person.age(List(40, 41, 42))  Negation We can exclude a certain attribute value</description>
+      <guid>http://scalamolecule.org/docs/attributes/expressions/</guid>
+      <description>Expressions Tests&amp;hellip;
+Equality Tests&amp;hellip;
+We can apply values to Attributes in order to filter the data structures we are looking for. We could for instance find people who like pizza:
+Person.likes.apply(&amp;quot;pizza&amp;quot;)  or simply
+Person.likes(&amp;quot;pizza&amp;quot;)  Since the applied value &amp;ldquo;pizza&amp;rdquo; ensures that the attributes returned has this value we will get redundant information back for the likes attribute (&amp;ldquo;pizza&amp;rdquo; is returned for all persons):
+Person.name.likes(&amp;quot;pizza&amp;quot;).get === List( (&amp;quot;Fred&amp;quot;, &amp;quot;pizza&amp;quot;), (&amp;quot;Ben&amp;quot;, &amp;quot;pizza&amp;quot;) )  This is an ideomatic place to use a tacet attribute likes_ to say &amp;ldquo;Give me names of persons that like pizza&amp;rdquo; without returning the likes value &amp;ldquo;pizza&amp;rdquo; over and over again.</description>
     </item>
     
     <item>
       <title>Update</title>
-      <link>http://scalamolecule.org/documentation/crud/update/</link>
+      <link>http://scalamolecule.org/docs/crud/update/</link>
       <pubDate>Fri, 02 Jan 2015 22:06:44 +0100</pubDate>
       
-      <guid>http://scalamolecule.org/documentation/crud/update/</guid>
-      <description>Update data Update An &amp;ldquo;update&amp;rdquo; is a two-step process in Datomic:
+      <guid>http://scalamolecule.org/docs/crud/update/</guid>
+      <description>Update data Tests&amp;hellip;
+An &amp;ldquo;update&amp;rdquo; is a two-step process in Datomic:
  Retract old fact Assert new fact  Datomic doesn&amp;rsquo;t overwrite data. &amp;ldquo;Retract&amp;rdquo; is a statement that says &amp;ldquo;this data is no longer current&amp;rdquo; which means that it won&amp;rsquo;t turn up when you query for it as of now. If you query for it as of before you will see it!
 Being able to see how data develops over time is a brillant core feature of Datomic.</description>
+    </item>
+    
+    <item>
+      <title>With</title>
+      <link>http://scalamolecule.org/docs/time/with/</link>
+      <pubDate>Fri, 02 Jan 2015 22:06:44 +0100</pubDate>
+      
+      <guid>http://scalamolecule.org/docs/time/with/</guid>
+      <description>With Tests&amp;hellip;
+By supplying some test transaction data to getWith(testTxData) we can get a &amp;ldquo;branch&amp;rdquo; of the current database with the test transaction data applied in-memory. This is a very powerful way of testing future-like &amp;ldquo;what-if&amp;rdquo; scenarios
+We could for instance add some transaction data tx8 to a Person molecule to see if we would get the extected persons back:
+Person.name.likes.getWith(&amp;lt;tx8Data&amp;gt;) === ... // Persons after applying tx8  Applying transaction data To make it easier to supply transaction data to the getWith(txData) method, you can simply add Tx to a Molecule transaction function to get some valid transaction data:</description>
+    </item>
+    
+    <item>
+      <title>Bidirectional</title>
+      <link>http://scalamolecule.org/docs/relationships/bidirectional/</link>
+      <pubDate>Sun, 24 Jul 2016 22:06:44 +0100</pubDate>
+      
+      <guid>http://scalamolecule.org/docs/relationships/bidirectional/</guid>
+      <description>Bidirectional references Tests&amp;hellip;
+Unidirectional reference limitations Normal Datomic references are unidirectional. If we add a friend reference from Ann to Ben
+Person.name(&amp;quot;Ann&amp;quot;).Friends.name(&amp;quot;Ben&amp;quot;).save  Then we can naturally query to get friends of Ann
+Person.name_(&amp;quot;Ann&amp;quot;).Friends.name.get === List(&amp;quot;Ben&amp;quot;)  But what if we want to find friends of Ben? This will give us nothing since our reference only went from Ann to Ben:
+Person.name_(&amp;quot;Ben&amp;quot;).Friends.name.get === List()  Instead we would have to think backwards to get the back reference &amp;ldquo;who referenced Ben?</description>
     </item>
     
     <item>
       <title>Aggregates</title>
-      <link>http://scalamolecule.org/documentation/attributes/aggregates/</link>
+      <link>http://scalamolecule.org/docs/attributes/aggregates/</link>
       <pubDate>Fri, 02 Jan 2015 22:06:44 +0100</pubDate>
       
-      <guid>http://scalamolecule.org/documentation/attributes/aggregates/</guid>
-      <description>Aggregates (See aggregates tests)
-Datomic offers some built-in aggregate functions to aggregate attribute values.
-Aggregates returning a single value min/max In Molecule you simply apply the aggregate function name as a keyword to your attribute.
-Person.age(min) // lowest age Person.age(max) // highest age  Supports all types.
-count Not to be confused with sum in that count counts the entities having attribute with some value
-Person.age(count) // count of all persons with an age (not the sum of ages)  countDistinct Not to be confused with sum in that count counts the entities having attribute with some value</description>
+      <guid>http://scalamolecule.org/docs/attributes/aggregates/</guid>
+      <description>Aggregates Tests&amp;hellip;
+Molecule wraps Datomic&amp;rsquo;s native aggregate functions by applying special aggregate keyword objects to the attribute we want to aggregate on. The keyword objects are made available with the molecule._ import.
+Aggregate functions either return a single value or a collection of values:
+Aggregates returning a single value min/max Applying the min or max aggregate keyword object as a value to the age attribute returns the lowest/highest ages.</description>
     </item>
     
     <item>
       <title>Retract</title>
-      <link>http://scalamolecule.org/documentation/crud/retract/</link>
+      <link>http://scalamolecule.org/docs/crud/retract/</link>
       <pubDate>Fri, 02 Jan 2015 22:06:44 +0100</pubDate>
       
-      <guid>http://scalamolecule.org/documentation/crud/retract/</guid>
-      <description>Retract data Update An &amp;ldquo;update&amp;rdquo; is a two-step process in Datomic:
- Retract old fact Assert new fact  Datomic doesn&amp;rsquo;t overwrite data. &amp;ldquo;Retract&amp;rdquo; is a statement that says &amp;ldquo;this data is no longer current&amp;rdquo; which means that it won&amp;rsquo;t turn up when you query for it as of now. If you query for it as of before you will see it!
-Being able to see how data develops over time is a brillant core feature of Datomic.</description>
+      <guid>http://scalamolecule.org/docs/crud/retract/</guid>
+      <description>Retract data Tests&amp;hellip;
+Retract facts To retract individual attributre values apply empty parenthesises to the attribute we want to retract and then update the molecule:
+Community(belltownId).name().category().update  Here we retracted the name and category attribute values of the Belltown Community entity:
+Retract entity To delete a whole entity with all its attribute values we can call retract on a Long entity id
+fredId.retract  Here all attributes having the entity id fredId are retracted.</description>
+    </item>
+    
+    <item>
+      <title>Testing</title>
+      <link>http://scalamolecule.org/docs/time/testing/</link>
+      <pubDate>Fri, 02 Jan 2015 22:06:44 +0100</pubDate>
+      
+      <guid>http://scalamolecule.org/docs/time/testing/</guid>
+      <description>Testing TestDbAsOf, TestDbSince and TestDbWith
+For more complex test scenarios we can use a &amp;ldquo;test database&amp;rdquo; where we can freely make multiple separate molecule queries against a temporary database &amp;ldquo;branch&amp;rdquo;.
+Test db All molecules expect an implicit connection object to be in scope. If we then set a temporary test database on such conn object we can subsequentially freely perform tests against this temporary database as though it was a &amp;ldquo;branch&amp;rdquo; (think git).</description>
     </item>
     
     <item>
       <title>Parameterized</title>
-      <link>http://scalamolecule.org/documentation/attributes/parameterized/</link>
+      <link>http://scalamolecule.org/docs/attributes/parameterized/</link>
       <pubDate>Fri, 02 Jan 2015 22:06:44 +0100</pubDate>
       
-      <guid>http://scalamolecule.org/documentation/attributes/parameterized/</guid>
-      <description>Parameterized Input-molecules (See parameterize tests)
+      <guid>http://scalamolecule.org/docs/attributes/parameterized/</guid>
+      <description>Parameterized Input-molecules Tests&amp;hellip;
 Molecules can be parameterized by applying the input placeholder ? as a value to an attribute. The molecule then expects input for that attribute at runtime.
 By assigning parameterized &amp;ldquo;Input-molecules&amp;rdquo; to variables we can re-use those variables to query for similar data structures where only some data part varies:
-// 1 input parameter val person = m(Person.name(?)) val john = person(&amp;quot;John&amp;quot;).get.head val lisa = person(&amp;quot;Lisa&amp;quot;).</description>
+// 1 input parameter val person = m(Person.name(?)) val john = person(&amp;quot;John&amp;quot;).get.head val lisa = person(&amp;quot;Lisa&amp;quot;).get.head  Of course more complex molecules would benefit even more from this approach.</description>
+    </item>
+    
+    <item>
+      <title>Presentation</title>
+      <link>http://scalamolecule.org/docs/presentation/</link>
+      <pubDate>Fri, 02 Jan 2015 22:06:44 +0100</pubDate>
+      
+      <guid>http://scalamolecule.org/docs/presentation/</guid>
+      <description>Molecule presentation sample code snippets Person.id.nameMap.get.head === (101, Map( &amp;quot;en&amp;quot; -&amp;gt; &amp;quot;Dmitri Shostakovich&amp;quot;, &amp;quot;de&amp;quot; -&amp;gt; &amp;quot;Dmitri Schostakowitsch&amp;quot;, &amp;quot;fr&amp;quot; -&amp;gt; &amp;quot;Dmitri Chostakovitch&amp;quot; )) // By key Person.nameMapK(&amp;quot;fr&amp;quot;).get.head === &amp;quot;Dmitri Chostakovitch&amp;quot; // By value Person.id.nameMap_(&amp;quot;Dmitri Chostakovitch&amp;quot;).get.head === 101 Person.id.nameMap_(&amp;quot;.*Shosta.*&amp;quot;).get.head === 101 // By key and value Person.id.nameMap_(&amp;quot;en&amp;quot; -&amp;gt; &amp;quot;Dmitri Shostakovich&amp;quot;).get.head === 101 Person.id.nameMap_(&amp;quot;en&amp;quot;)(&amp;quot;.*Shosta.*&amp;quot;).get.head === 101  Person.id.nameMap.get.head === (101, Map( &amp;quot;en&amp;quot; -&amp;gt; &amp;quot;Dmitri Shostakovich&amp;quot;, &amp;quot;de&amp;quot; -&amp;gt; &amp;quot;Dmitri Schostakowitsch&amp;quot;, &amp;quot;fr&amp;quot; -&amp;gt; &amp;quot;Dmitri Chostakovitch&amp;quot; )) // By key Person.</description>
+    </item>
+    
+    <item>
+      <title>Presentation</title>
+      <link>http://scalamolecule.org/docs/presentation1/</link>
+      <pubDate>Fri, 02 Jan 2015 22:06:44 +0100</pubDate>
+      
+      <guid>http://scalamolecule.org/docs/presentation1/</guid>
+      <description>Molecule presentation sample code snippets fredId.retract Person.name(&amp;quot;Fred&amp;quot;).get.size === 0  Person.id.nameMap.one === (101, Map( &amp;quot;en&amp;quot; -&amp;gt; &amp;quot;Dmitri Shostakovich&amp;quot;, &amp;quot;de&amp;quot; -&amp;gt; &amp;quot;Dmitri Schostakowitsch&amp;quot;, &amp;quot;fr&amp;quot; -&amp;gt; &amp;quot;Dmitri Chostakovitch&amp;quot; )) // By key Person.nameMapK(&amp;quot;fr&amp;quot;).one === &amp;quot;Dmitri Chostakovitch&amp;quot; // By value Person.id.nameMap_(&amp;quot;Dmitri Chostakovitch&amp;quot;).one === 101 Person.id.nameMap_(&amp;quot;.*Shosta.*&amp;quot;).one === 101 // By key and value Person.id.nameMap_(&amp;quot;en&amp;quot; -&amp;gt; &amp;quot;Dmitri Shostakovich&amp;quot;).one === 101 Person.id.nameMap_(&amp;quot;en&amp;quot;)(&amp;quot;.*Shosta.*&amp;quot;).one === 101  Person.id.nameMap.one === (101, Map( &amp;quot;en&amp;quot; -&amp;gt; &amp;quot;Dmitri Shostakovich&amp;quot;, &amp;quot;de&amp;quot; -&amp;gt; &amp;quot;Dmitri Schostakowitsch&amp;quot;, &amp;quot;fr&amp;quot; -&amp;gt; &amp;quot;Dmitri Chostakovitch&amp;quot; )) // By key Person.</description>
     </item>
     
     <item>
@@ -413,7 +414,7 @@ By assigning parameterized &amp;ldquo;Input-molecules&amp;rdquo; to variables we
       <pubDate>Fri, 02 Jan 2015 22:06:44 +0100</pubDate>
       
       <guid>http://scalamolecule.org/resources/tutorials/</guid>
-      <description> Molecule tutorials Tutorials  Seattle tutorial - all-round introduction to using Molecule   </description>
+      <description> Molecule tutorials  Seattle tutorial - all-round introduction to using Molecule   </description>
     </item>
     
     <item>
@@ -422,7 +423,7 @@ By assigning parameterized &amp;ldquo;Input-molecules&amp;rdquo; to variables we
       <pubDate>Fri, 02 Jan 2015 22:06:44 +0100</pubDate>
       
       <guid>http://scalamolecule.org/resources/videos/</guid>
-      <description> Molecule tutorials Videos  Scala Meetup presentation 2017-04-25 by Marc Grue  Part 1: Datomic data model Part 2: Building a DSL with Scala macros Part 3: Tour of Molecule features Part 4: Molecule domain modelling   </description>
+      <description> Molecule videos  Scala Meetup presentation 2017-04-25 by Marc Grue  Part 1: Datomic data model Part 2: Building a DSL with Scala macros Part 3: Tour of Molecule features Part 4: Molecule domain modelling   </description>
     </item>
     
     <item>
@@ -431,9 +432,12 @@ By assigning parameterized &amp;ldquo;Input-molecules&amp;rdquo; to variables we
       <pubDate>Wed, 14 May 2014 02:13:50 +0000</pubDate>
       
       <guid>http://scalamolecule.org/about/</guid>
-      <description>About Molecule is created by Marc Grue (bass player in the Gothenburg Symphony orchestra and a dedicated Scala programmer).
-Pull requests are welcome and you can ask questions in the Molecule forum.
-License Molecule is licensed under the Apache License 2.0</description>
+      <description>About Creator Molecule is created by Marc Grue who both plays the double bass in the Gothenburg Symphony Orchestra of Sweden and programs a lot in Scala.
+The plan is to use Molecule as the optimal database access DSL for a big website for all classical musicians that Marc works on.
+Watch Molecule presentations
+
+About Marc:
+ marcgrue.com (not much there) Stackoverflow profile  Further development More developers are welcome to join with Pull requests and questions/discussions in the Molecule forum.</description>
     </item>
     
     <item>
@@ -442,8 +446,8 @@ License Molecule is licensed under the Apache License 2.0</description>
       <pubDate>Wed, 14 May 2014 02:13:50 +0000</pubDate>
       
       <guid>http://scalamolecule.org/credits/</guid>
-      <description> Credits Molecule is created by Marc Grue (bass player in the Gothenburg Symphony orchestra and a dedicated Scala programmer).
-Rogue Datomisca SqlTyped JScala Parboiled2 </description>
+      <description> Credits Author(s) Molecule is created by Marc Grue (bass player in the Gothenburg Symphony orchestra and a dedicated Scala programmer).
+Inspired by  Rogue, type-safe Scala DSL for MongoDB Datomisca, a Scala API for Datomic SqlTyped, Embedding SQL as an external DSL into Scala JScala, Scala macro that produces JavaScript from Scala code Parboiled2, A macro-based PEG parser generator for Scala  </description>
     </item>
     
   </channel>

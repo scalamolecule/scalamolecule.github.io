@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Developer on Molecule</title>
+    <link>http://scalamolecule.org/dev/</link>
+    <description>Recent content in Developer on Molecule</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 14 May 2014 02:13:50 +0000</lastBuildDate>
+    
+	<atom:link href="http://scalamolecule.org/dev/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Boilerplate</title>
+      <link>http://scalamolecule.org/dev/boilerplate/</link>
+      <pubDate>Wed, 14 May 2014 02:13:50 +0000</pubDate>
+      
+      <guid>http://scalamolecule.org/dev/boilerplate/</guid>
+      <description>Boilerplate code generation An attribute definition like
+@InOut(3, 8) trait SeattleDefinition { trait Community { val name = oneString.fullTextSearch } }  would generate the following boilerplate code
+object Community extends Community_0 { def apply(e: Long): Community_0 = ??? } trait Community { class name [Ns, In] extends OneString [Ns, In] with FulltextSearch[Ns, In] with Indexed } trait Community_0 extends Community with Out_0[Community_0, Community_1, Community_In_1_0, Community_In_1_1] { lazy val name : name[Community_1[String], Community_In_1_1[String, String]] with Community_1[String] = new name[Community_1[String], Community_In_1_1[String, String]] with Community_1[String] { override val _kw = &amp;quot;:community/name&amp;quot; } lazy val name_ : name[Community_0, Community_In_1_0[String]] with Community_0 = ?</description>
+    </item>
+    
+    <item>
+      <title>Transformation</title>
+      <link>http://scalamolecule.org/dev/transformation/</link>
+      <pubDate>Wed, 14 May 2014 02:13:50 +0000</pubDate>
+      
+      <guid>http://scalamolecule.org/dev/transformation/</guid>
+      <description>Macro transformation Molecule performs a series of transformation of the molecules we write so that they in the end become a Datomic query:
+1. Source code To find southern media communities we could make the following molecule
+Community.name.`type`(&amp;quot;twitter&amp;quot; or &amp;quot;facebook_page&amp;quot;) .Neighborhood.District.region(&amp;quot;sw&amp;quot; or &amp;quot;s&amp;quot; or &amp;quot;se&amp;quot;)  2. Model AST The source code of our molecule is then pattern matched in Dsl2Model element by element in order to create an abstracted Model of Atoms and Bonds:</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+  <link href='http://fonts.googleapis.com/css?family=Merriweather+Sans:400,300,300italic,400italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+  <title>Molecule presentation</title>
+  <link href="/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/css/highlight/styles/solarized_light.css" rel="stylesheet" />
+  <link rel="stylesheet" type="text/css" href="/vendor/font-awesome/css/font-awesome.min.css">
+  <link href="/css/style.css" rel="stylesheet">
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/img/apple-touch-icon-144-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/img/apple-touch-icon-114-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/img/apple-touch-icon-72-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" href="/img/apple-touch-icon-57-precomposed.png">
+  <link rel="shortcut icon" href="/img/favicon.png">
+  <link href="" rel="alternate" type="application/rss+xml" title="Molecule" />
+</head>
+<body>
+<div class="wrapper">
+<div class="container" style="padding-top:20px">
+  <div class="col-md-12 column" style="padding-left:0px; margin-bottom:15px">
+    <div class="col-md-12 column" style="padding-left:0px;height:50px;">
+
+    <ul class="nav nav-pills">
+      <li><a href="/" style="padding-left: 6px; padding-right: 13px; vertical-align: top; margin-top: 0px;"><img src="/img/logo/MoleculeLogo600.png" alt="" width="200"></a></li>
+      
+      <li class="dropdown ">
+        <a data-toggle="dropdown" href="/compare/" target="_top" onclick="javascript:top.location = '\/compare\/';return true;">Compare</a>
+          <ul class="dropdown-menu level1" role="menu" aria-labelledby="dropdownMenu">
+            <li><a href="/compare/datomic/">Datomic</a></li>
+            <li class="dropdown-submenu">
+              <a href="/compare/sql/">SQL</a>
+              <ul class="dropdown-menu">
+                <li><a href="/compare/sql/slick/">Slick</a></li>
+              </ul>
+            </li>
+            <li><a href="/compare/gremlin/">Gremlin</a></li>
+        </ul>
+      </li>
+      <li class="dropdown active">
+        <a data-toggle="dropdown" href="/resources/" target="_top" onclick="javascript:top.location = '\/resources\/';return true;">Resources</a>
+          <ul class="dropdown-menu level1" role="menu" aria-labelledby="dropdownMenu">
+            <li class="dropdown-submenu">
+              <a href="/resources/tutorials/">Tutorials</a>
+              <ul class="dropdown-menu">
+                <li><a href="/resources/tutorials/seattle/">Seattle</a></li>
+              </ul>
+            </li>
+            <li class="dropdown-submenu">
+              <a href="/resources/videos/">Videos</a>
+              <ul class="dropdown-menu">
+                <li><a href="/resources/videos/2017-04-25_marc_grue/">Molecule presentation</a></li>
+              </ul>
+            </li>
+        </ul>
+      </li>
+      <li class="dropdown ">
+        <a data-toggle="dropdown" href="/docs/" target="_top" onclick="javascript:top.location = '\/docs\/';return true;">Docs</a>
+          <ul class="dropdown-menu level1" role="menu" aria-labelledby="dropdownMenu">
+            <li class="dropdown-submenu">
+              <a href="/docs/">Documentation</a>
+              <ul class="dropdown-menu">
+                <li><a href="/docs/documentation/introduction/">Introduction</a></li>
+              </ul>
+            </li>
+            <li class="dropdown-submenu">
+              <a href="/docs/getting-started/">Getting started</a>
+              <ul class="dropdown-menu">
+                <li><a href="/docs/getting-started/setup/">Setup</a></li>
+              </ul>
+            </li>
+            <li class="dropdown-submenu">
+              <a href="/docs/schema/">Schema</a>
+              <ul class="dropdown-menu">
+                <li><a href="/docs/schema/transaction/">Transaction</a></li>
+              </ul>
+            </li>
+            <li class="dropdown-submenu">
+              <a href="/docs/attributes/">Attributes</a>
+              <ul class="dropdown-menu">
+                <li><a href="/docs/attributes/basics/">Basics</a></li>
+                <li><a href="/docs/attributes/modes/">Mandatory/Tacet/Optional</a></li>
+                <li><a href="/docs/attributes/mapped/">Map attributes</a></li>
+                <li><a href="/docs/attributes/expressions/">Expressions</a></li>
+                <li><a href="/docs/attributes/aggregates/">Aggregates</a></li>
+                <li><a href="/docs/attributes/parameterized/">Parameterized</a></li>
+              </ul>
+            </li>
+            <li><a href="/docs/entities/">Entities</a></li>
+            <li class="dropdown-submenu">
+              <a href="/docs/relationships/">Relationships</a>
+              <ul class="dropdown-menu">
+                <li><a href="/docs/relationships/card-one/">Cardinality one</a></li>
+                <li><a href="/docs/relationships/card-many/">Cardinality many</a></li>
+                <li><a href="/docs/relationships/composites/">Composites</a></li>
+                <li><a href="/docs/relationships/bidirectional/">Bidirectional</a></li>
+              </ul>
+            </li>
+            <li class="dropdown-submenu">
+              <a href="/docs/crud/">CRUD</a>
+              <ul class="dropdown-menu">
+                <li><a href="/docs/crud/save/">Save</a></li>
+                <li><a href="/docs/crud/insert/">Insert</a></li>
+                <li><a href="/docs/crud/get/">Get</a></li>
+                <li><a href="/docs/crud/update/">Update</a></li>
+                <li><a href="/docs/crud/retract/">Retract</a></li>
+              </ul>
+            </li>
+            <li class="dropdown-submenu">
+              <a href="/docs/transactions/">Transactions</a>
+              <ul class="dropdown-menu">
+                <li><a href="/docs/transactions/tx-meta-data/">Tx meta data</a></li>
+              </ul>
+            </li>
+            <li class="dropdown-submenu">
+              <a href="/docs/time/">Time</a>
+              <ul class="dropdown-menu">
+                <li><a href="/docs/time/asof-since/">AsOf/Since</a></li>
+                <li><a href="/docs/time/history/">History</a></li>
+                <li><a href="/docs/time/with/">With</a></li>
+                <li><a href="/docs/time/testing/">Testing</a></li>
+              </ul>
+            </li>
+        </ul>
+      </li>
+      <li class="dropdown ">
+        <a data-toggle="dropdown" href="/dev/" target="_top" onclick="javascript:top.location = '\/dev\/';return true;">Dev</a>
+          <ul class="dropdown-menu level1" role="menu" aria-labelledby="dropdownMenu">
+            <li><a href="/dev/">Developer</a></li>
+            <li><a href="/dev/boilerplate/">Boilerplate</a></li>
+            <li><a href="/dev/transformation/">Transformation</a></li>
+        </ul>
+      </li>
+      <li class="dropdown ">
+        <a data-toggle="dropdown" href="/community/" target="_top" onclick="javascript:top.location = '\/community\/';return true;">Community</a>
+          <ul class="dropdown-menu level1" role="menu" aria-labelledby="dropdownMenu">
+        </ul>
+      </li>
+      <li>
+        <div  style="padding-left:14px;padding-top:19px;height:24px;float:right;">
+            <a href="https://github.com/scalamolecule/molecule" class="github-button" data-icon="octicon-star">Github</a>
+            
+          </div>
+      </li>
+    </ul>
+
+</div>
+  </div> 
+
+<div class="col-sm-10 column" style="padding-left:8px;">
+	
+
+<h1 id="contents">Molecule video presentation</h1>
+
+<ul>
+<li><a href="#1">Part 1: Datomic data model</a></li>
+<li><a href="#2">Part 2: Building a DSL with Scala macros</a></li>
+<li><a href="#3">Part 3: Tour of Molecule features</a></li>
+<li><a href="#4">Part 4: Molecule domain modelling</a></li>
+</ul>
+
+<p>Molecule presentation in 4 parts by creator Marc Grue at a <a href="https://www.meetup.com/Scala-Geats/events/238648837/">Scala MeetUp</a>
+in Gothenburg 2017-04-25.</p>
+
+<p>Attendees came with great suggestions for improvements that were incorporated in Molecule v0.11.
+Some of the <a href="https://www.slideshare.net/marcgrue/molecule-scala-metadsl-for-datomic-75995679">slides</a>
+in the videos below are updated to show the new API of v0.11.</p>
+
+<h2 id="1"><a href="#contents">☝︎</a> Part 1: Datomic data model</h2>
+
+<div class="embed-responsive embed-responsive-16by9">
+  <iframe id="part1" 
+    width="560" 
+    height="315" 
+    src="https://www.youtube.com/embed//JjX8DYvQRXQ?enablejsapi=1"
+    frameborder="0" 
+    allowfullscreen></iframe>
+</div>
+
+<script type="text/javascript">
+  var tag = document.createElement('script');
+  tag.id = 'iframe-demo';
+  tag.src = 'https://www.youtube.com/iframe_api';
+  var firstScriptTag = document.getElementsByTagName('script')[0];
+  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+  var player1;
+  var player2;
+  var player3;
+  var player4;
+  function onYouTubeIframeAPIReady() {
+    player1 = new YT.Player('part1', {
+        videoId: 'JjX8DYvQRXQ',
+        events: {}
+    });
+    player2 = new YT.Player('part2', {
+        videoId: 'bIhVAMd3-EU',
+        events: {}
+    });
+    player3 = new YT.Player('part3', {
+        videoId: 'dxMK3jxmzj4',
+        events: {}
+    });
+    player4 = new YT.Player('part4', {
+        videoId: 'Y0ttNN_JA1s',
+        events: {}
+    });
+  }
+</script>
+
+<div style="column-width: 15em;">
+<div class="unbreakable">
+    <h4>Data model</h4>
+    <ul>
+      <li><a onclick="player1.playVideo()" href="#;void;">Overview of talk</a></li>
+      <li><a onclick="player1.seekTo(60).playVideo()" href="#;void;">Datomic overview</a></li>
+      <li><a onclick="player1.seekTo(99).playVideo()" href="#;void;">Key-Value to Datom</a></li>
+      <li><a onclick="player1.seekTo(301).playVideo()" href="#;void;">Schema definition</a></li>
+      <li><a onclick="player1.seekTo(565).playVideo()" href="#;void;">Entity</a></li>
+      <li><a onclick="player1.seekTo(688).playVideo()" href="#;void;">Relationships</a></li>
+    </ul>
+</div>
+<div class="unbreakable">
+    <h4>Mutable/Immutable</h4>
+    <ul>
+      <li><a onclick="player1.seekTo(845).playVideo()" href="#;void;">Immutable facts</a></li>
+      <li><a onclick="player1.seekTo(900).playVideo()" href="#;void;">Create/Assert</a></li>
+      <li><a onclick="player1.seekTo(949).playVideo()" href="#;void;">Update/Retract-Assert</a></li>
+      <li><a onclick="player1.seekTo(1045).playVideo()" href="#;void;">Delete/Retract</a></li>
+    </ul>
+</div>
+<div class="unbreakable">
+    <h4>Datomic queries</h4>
+    <ul>
+      <li><a onclick="player1.seekTo(1107).playVideo()" href="#;void;">Query</a></li>
+      <li><a onclick="player1.seekTo(1297).playVideo()" href="#;void;">asOf</a></li>
+      <li><a onclick="player1.seekTo(1340).playVideo()" href="#;void;">history</a></li>
+      <li><a onclick="player1.seekTo(1368).playVideo()" href="#;void;">since</a></li>
+      <li><a onclick="player1.seekTo(1402).playVideo()" href="#;void;">with</a></li>
+    </ul>
+</div>
+<div class="unbreakable">
+    <h4>Datomic architecture</h4>
+    <ul>
+      <li><a onclick="player1.seekTo(1543).playVideo()" href="#;void;">No db server</a></li>
+      <li><a onclick="player1.seekTo(1563).playVideo()" href="#;void;">Peer/Transactor</a></li>
+      <li><a onclick="player1.seekTo(1603).playVideo()" href="#;void;">Storage service</a></li>
+      <li><a onclick="player1.seekTo(1651).playVideo()" href="#;void;">Peer cache</a></li>
+      <li><a onclick="player1.seekTo(1725).playVideo()" href="#;void;">Live index</a></li>
+      <li><a onclick="player1.seekTo(1856).playVideo()" href="#;void;">Memcache</a></li>
+      <li><a onclick="player1.seekTo(1927).playVideo()" href="#;void;">Questions</a></li>
+    </ul>
+</div>
+</div>
+
+<h2 id="2"><a href="#contents">☝︎</a> Part 2: Building a DSL with Scala macros</h2>
+
+<div class="embed-responsive embed-responsive-16by9">
+  <iframe id="part2" 
+    width="560" 
+    height="315" 
+    src="https://www.youtube.com/embed/bIhVAMd3-EU?enablejsapi=1"
+    frameborder="0" 
+    allowfullscreen></iframe>
+</div>
+
+<div style="column-width: 15em;">
+<div class="unbreakable">
+    <h4>Macro transformation</h4>
+    <ul>
+      <li><a onclick="player2.seekTo(13).playVideo()" href="#;void;">Raw query in Scala</a></li>
+      <li><a onclick="player2.seekTo(151).playVideo()" href="#;void;">Casting result</a></li>
+      <li><a onclick="player2.seekTo(187).playVideo()" href="#;void;">Compile-time/runtime</a></li>
+      <li><a onclick="player2.seekTo(256).playVideo()" href="#;void;">Quasiquotes</a></li>
+      <li><a onclick="player2.seekTo(295).playVideo()" href="#;void;">Macro implementation</a></li>
+      <li><a onclick="player2.seekTo(346).playVideo()" href="#;void;">Implicit macro</a></li>
+      <li><a onclick="player2.seekTo(397).playVideo()" href="#;void;">Recursive tree extraction</a></li>
+    </ul>
+</div>
+<div class="unbreakable">
+    <h4>Molecule DSL</h4>
+    <ul>
+      <li><a onclick="player2.seekTo(519).playVideo()" href="#;void;">Boilerplate DSL code</a></li>
+      <li><a onclick="player2.seekTo(661).playVideo()" href="#;void;">SBT-plugin</a></li>
+      <li><a onclick="player2.seekTo(686).playVideo()" href="#;void;">Schema definition</a>
+        <br>
+        <br>
+        <br>
+      </li>
+    </ul>
+</div>
+<div class="unbreakable">
+    <h4>Schema def DSL</h4>
+    <ul>
+      <li><a onclick="player2.seekTo(730).playVideo()" href="#;void;">Cardinality/type</a></li>
+      <li><a onclick="player2.seekTo(806).playVideo()" href="#;void;">Options</a></li>
+      <li><a onclick="player2.seekTo(824).playVideo()" href="#;void;">Molecule eco system</a></li>
+      <li><a onclick="player2.seekTo(892).playVideo()" href="#;void;">Questions</a></li>
+    </ul>
+</div>
+</div>
+
+<h2 id="3"><a href="#contents">☝︎</a> Part 3: Tour of Molecule features</h2>
+
+<div class="embed-responsive embed-responsive-16by9">
+  <iframe id="part3" 
+    width="560" 
+    height="315" 
+    src="https://www.youtube.com/embed/dxMK3jxmzj4?enablejsapi=1"
+    frameborder="0" 
+    allowfullscreen></iframe>
+</div>
+
+<div style="column-width: 15em; width: 100%;">
+<div class="unbreakable">
+    <h4>Core</h4>
+    <ul>
+      <li><a onclick="player3.seekTo(37).playVideo()" href="#;void;">Entities</a></li>
+      <li><a onclick="player3.seekTo(134).playVideo()" href="#;void;">Attributes</a></li>
+      <li>Expressions
+        <ul>
+          <li><a onclick="player3.seekTo(306).playVideo()" href="#;void;">Equality</a></li>
+          <li><a onclick="player3.seekTo(361).playVideo()" href="#;void;">Fulltext search</a></li>
+          <li><a onclick="player3.seekTo(390).playVideo()" href="#;void;">Negation</a></li>
+          <li><a onclick="player3.seekTo(398).playVideo()" href="#;void;">Null / Nil</a></li>
+          <li><a onclick="player3.seekTo(412).playVideo()" href="#;void;">Comparison</a></li>
+          <li><a onclick="player3.seekTo(417).playVideo()" href="#;void;">Aggregates</a></li>
+          <li><a onclick="player3.seekTo(443).playVideo()" href="#;void;">Logical OR</a></li>
+        </ul>
+      </li>
+      <li>Relationships
+        <ul>        
+          <li><a onclick="player3.seekTo(486).playVideo()" href="#;void;">Card-one</a></li>
+          <li><a onclick="player3.seekTo(618).playVideo()" href="#;void;">Back-ref</a></li>
+          <li><a onclick="player3.seekTo(712).playVideo()" href="#;void;">Card-many</a></li>
+          <li><a onclick="player3.seekTo(758).playVideo()" href="#;void;">Nested</a></li>
+          <li><a onclick="player3.seekTo(817).playVideo()" href="#;void;">Non-intrinsic</a></li>
+          <li><a onclick="player3.seekTo(878).playVideo()" href="#;void;">Composites</a></li>
+        </ul>
+      </li>
+    </ul>
+</div>
+<div class="unbreakable">
+    <h4>CRUD</h4>
+    <ul>
+        <li>Create
+            <ul>                       
+              <li><a onclick="player3.seekTo(1073).playVideo()" href="#;void;">Save</a></li>
+              <li><a onclick="player3.seekTo(1088).playVideo()" href="#;void;">Insert</a></li>
+              <li><a onclick="player3.seekTo(1162).playVideo()" href="#;void;">2-step insert</a></li>
+            </ul>
+        </li>
+        <li>Read</li>
+        <li>Update
+            <ul>
+              <li><a onclick="player3.seekTo(1240).playVideo()" href="#;void;">Card-one</a></li>
+              <li><a onclick="player3.seekTo(1312).playVideo()" href="#;void;">Card-many</a></li>
+            </ul>
+        </li>
+        <li><a onclick="player3.seekTo(1425).playVideo()" href="#;void;">Delete</a></li>
+    </ul>
+    <br>
+    <br>
+</div>
+<div class="unbreakable">
+    <h4>Extras</h4>
+    <ul>
+      <li><a onclick="player3.seekTo(1478).playVideo()" href="#;void;">Map attributes</a></li>
+      <li><a onclick="player3.seekTo(1668).playVideo()" href="#;void;">Input molecules</a></li>
+      <li><a onclick="player3.seekTo(1747).playVideo()" href="#;void;">Bidirectional refs</a></li>
+    </ul>
+    <br>
+    <br>
+    <br>
+    <br>
+</div>
+<div class="unbreakable">
+    <h4>Time</h4>
+    <ul>
+      <li><a onclick="player3.seekTo(1936).playVideo()" href="#;void;">Tx data</a></li>
+      <li><a onclick="player3.seekTo(2429).playVideo()" href="#;void;">Tx meta data</a></li>
+      <li><a onclick="player3.seekTo(2715).playVideo()" href="#;void;">asOf</a></li>
+      <li><a onclick="player3.seekTo(2941).playVideo()" href="#;void;">History</a></li>
+      <li><a onclick="player3.seekTo(3095).playVideo()" href="#;void;">+ meta data</a></li>
+      <li><a onclick="player3.seekTo(3117).playVideo()" href="#;void;">Since</a></li>
+      <li><a onclick="player3.seekTo(3130).playVideo()" href="#;void;">With</a></li>
+      <li><a onclick="player3.seekTo(3329).playVideo()" href="#;void;">Questions</a></li>
+    </ul>
+</div>
+</div>
+
+<h2 id="4"><a href="#contents">☝︎</a> Part 4: Molecule domain modelling</h2>
+
+<div class="embed-responsive embed-responsive-16by9">
+  <iframe id="part4" 
+    width="560" 
+    height="315" 
+    src="https://www.youtube.com/embed/Y0ttNN_JA1s?enablejsapi=1" 
+    frameborder="0" 
+    allowfullscreen></iframe>
+</div>
+
+<div style="column-width: 15em;">
+<div class="unbreakable">
+    <h4>Traditional modelling</h4>
+    <ul>
+      <li><a onclick="player4.playVideo()" href="#;void;">Fat models</a></li>
+      <li><a onclick="player4.seekTo(42).playVideo()" href="#;void;">Sub-typing</a></li>
+      <li><a onclick="player4.seekTo(65).playVideo()" href="#;void;">Entity consumers</a></li>
+      <li><a onclick="player4.seekTo(149).playVideo()" href="#;void;">Property pace</a></li>
+    </ul>
+</div>
+<div class="unbreakable">
+    <h4>Molecule modelling</h4>
+    <ul>
+      <li><a onclick="player4.seekTo(193).playVideo()" href="#;void;">Molecular entities</a></li>
+      <li><a onclick="player4.seekTo(402).playVideo()" href="#;void;">Molecules in-process</a></li>
+      <li><a onclick="player4.seekTo(517).playVideo()" href="#;void;">Questions and discussion</a></li>
+    </ul>
+</div>
+</div>
+
+<p><br></p>
+
+</div>
+
+<div class="col-sm-2 column" style="padding-left:20px;padding-top:22px;padding-right: 0px;">
+  <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm ">
+
+  <div style="position:absolute;top: -36px; left: 0px;">
+    
+    
+    
+    
+  </div>
+
+  <ul class="bs-docs-sidenav">
+    
+    
+    
+    
+    <li><a href="/resources/">Resources</a></li>
+    
+    
+    
+    
+    <li><a href="/resources/tutorials/">Tutorials</a></li>
+    
+    <ul class="level2">
+      
+      <li><a href="/resources/tutorials/seattle/">Seattle</a></li>
+      
+      
+    </ul>
+    
+    
+    
+    
+    <li><a href="/resources/videos/">Videos</a></li>
+    
+    <ul class="level2">
+      
+      <li class="active"><b>Molecule presentation</b></li>
+      
+      
+    </ul>
+    
+    
+    
+    
+    
+  </ul>
+</nav>
+</div>
+
+     
+  </div> 
+</div> 
+<div class="push"></div>
+</div> 
+
+<footer class="bs-docs-footer">
+
+  <div class="container">
+    <ul class="bs-docs-footer-links">
+      <li style="vertical-align: top; margin-top: 0px;"><a href="/front/"><img src="/img/logo/MoleculeLogo200.png" alt=""></a></li>
+      <li><a href="https://github.com/scalamolecule/molecule">GitHub</a></li>
+      <li><a href="https://github.com/scalamolecule/molecule-docs">GitHub-docs</a></li>
+      <li><a href="https://groups.google.com/forum/#!forum/molecule-dsl">Forum</a></li>
+      <li><a href="/about/">About</a></li>
+      <li><a href="/credits/">Credits</a></li>
+    </ul>
+    <p>Licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0" target="_blank" rel="license">Apache License 2.0</a></p>
+  </div>
+</footer>
+
+
+<script type="text/javascript" src="/js/jquery-1.11.2.min.js"></script>
+
+
+
+<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+
+
+
+<script src="/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script type="text/javascript" src="/js/scripts.js"></script>
+
+
+
+
+<script async defer id="github-bjs" src="https://buttons.github.io/buttons.js"></script>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-2787756-3', 'auto');
+  ga('send', 'pageview');
+</script>
+    
+</body>
+</html>

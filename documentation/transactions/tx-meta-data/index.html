@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+  <link href='http://fonts.googleapis.com/css?family=Merriweather+Sans:400,300,300italic,400italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+  <title>Tx meta data</title>
+  <link href="/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/css/highlight/styles/solarized_light.css" rel="stylesheet" />
+  <link href="/css/style.css" rel="stylesheet">
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/img/apple-touch-icon-144-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/img/apple-touch-icon-114-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/img/apple-touch-icon-72-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" href="/img/apple-touch-icon-57-precomposed.png">
+  <link rel="shortcut icon" href="/img/favicon.png">
+  <link href="" rel="alternate" type="application/rss+xml" title="Molecule" />
+</head>
+<body>
+<div class="wrapper">
+<div class="container" style="padding-top:20px">
+  <div class="col-md-12 column" style="padding-left:0px; margin-bottom:15px">
+    <div class="col-md-12 column" style="padding-left:0px;height:50px;">
+
+    <ul class="nav nav-pills">
+      <li><a href="/" style="padding-left: 6px; padding-right: 13px; vertical-align: top; margin-top: 0px;"><img src="/img/logo/MoleculeLogo600.png" alt="" width="200"></a></li>
+      
+      <li class="dropdown ">
+        <a data-toggle="dropdown" href="/compare/" target="_top" onclick="javascript:top.location = '\/compare\/';return true;">Compare</a>
+          <ul class="dropdown-menu level1" role="menu" aria-labelledby="dropdownMenu">
+            <li><a href="/compare/datomic/">Datomic</a></li>
+            <li class="dropdown-submenu">
+              <a href="/compare/sql/">SQL</a>
+              <ul class="dropdown-menu">
+                <li><a href="/compare/sql/slick/">Slick</a></li>
+              </ul>
+            </li>
+            <li><a href="/compare/gremlin/">Gremlin</a></li>
+        </ul>
+      </li>
+      <li class="dropdown ">
+        <a data-toggle="dropdown" href="/resources/" target="_top" onclick="javascript:top.location = '\/resources\/';return true;">Resources</a>
+          <ul class="dropdown-menu level1" role="menu" aria-labelledby="dropdownMenu">
+            <li class="dropdown-submenu">
+              <a href="/resources/tutorials/">Tutorials</a>
+              <ul class="dropdown-menu">
+                <li><a href="/resources/tutorials/seattle/">Seattle</a></li>
+              </ul>
+            </li>
+            <li class="dropdown-submenu">
+              <a href="/resources/videos/">Videos</a>
+              <ul class="dropdown-menu">
+                <li><a href="/resources/videos/2017-04-25_marc_grue/">Molecule presentation</a></li>
+              </ul>
+            </li>
+        </ul>
+      </li>
+      <li class="dropdown active">
+        <a data-toggle="dropdown" href="/documentation/" target="_top" onclick="javascript:top.location = '\/documentation\/';return true;">Documentation</a>
+          <ul class="dropdown-menu level1" role="menu" aria-labelledby="dropdownMenu">
+            <li class="dropdown-submenu">
+              <a href="/documentation/getting-started/">Getting started</a>
+              <ul class="dropdown-menu">
+                <li><a href="/documentation/getting-started/introduction/">Introduction</a></li>
+                <li><a href="/documentation/getting-started/quickstart/">Demo quickstart</a></li>
+                <li><a href="/documentation/getting-started/project-setup/">Project setup</a></li>
+              </ul>
+            </li>
+            <li class="dropdown-submenu">
+              <a href="/documentation/schema/">Schema</a>
+              <ul class="dropdown-menu">
+                <li><a href="/documentation/schema/transaction/">Transaction</a></li>
+              </ul>
+            </li>
+            <li class="dropdown-submenu">
+              <a href="/documentation/attributes/">Attributes</a>
+              <ul class="dropdown-menu">
+                <li><a href="/documentation/attributes/basics/">Basics</a></li>
+                <li><a href="/documentation/attributes/modes/">Mandatory/Tacet/Optional</a></li>
+                <li><a href="/documentation/attributes/mapped/">Map attributes</a></li>
+                <li><a href="/documentation/attributes/expressions/">Expressions</a></li>
+                <li><a href="/documentation/attributes/aggregates/">Aggregates</a></li>
+                <li><a href="/documentation/attributes/parameterized/">Parameterized</a></li>
+              </ul>
+            </li>
+            <li><a href="/documentation/entities/">Entities</a></li>
+            <li class="dropdown-submenu">
+              <a href="/documentation/relationships/">Relationships</a>
+              <ul class="dropdown-menu">
+                <li><a href="/documentation/relationships/card-one/">Cardinality one</a></li>
+                <li><a href="/documentation/relationships/card-many/">Cardinality many</a></li>
+                <li><a href="/documentation/relationships/nested/">Nested</a></li>
+                <li><a href="/documentation/relationships/composites/">Composites</a></li>
+              </ul>
+            </li>
+            <li class="dropdown-submenu">
+              <a href="/documentation/crud/">CRUD</a>
+              <ul class="dropdown-menu">
+                <li><a href="/documentation/crud/save/">Save</a></li>
+                <li><a href="/documentation/crud/insert/">Insert</a></li>
+                <li><a href="/documentation/crud/get/">Get</a></li>
+                <li><a href="/documentation/crud/update/">Update</a></li>
+                <li><a href="/documentation/crud/retract/">Retract</a></li>
+              </ul>
+            </li>
+            <li class="dropdown-submenu">
+              <a href="/documentation/transactions/">Transactions</a>
+              <ul class="dropdown-menu">
+                <li><a href="/documentation/transactions/tx-data/">Tx data</a></li>
+                <li><a href="/documentation/transactions/tx-meta-data/">Tx meta data</a></li>
+              </ul>
+            </li>
+            <li class="dropdown-submenu">
+              <a href="/documentation/time/">Time</a>
+              <ul class="dropdown-menu">
+                <li><a href="/documentation/time/asof/">AsOf</a></li>
+                <li><a href="/documentation/time/since/">Since</a></li>
+              </ul>
+            </li>
+            <li class="dropdown-submenu">
+              <a href="/documentation/graphs/">Graphs</a>
+              <ul class="dropdown-menu">
+                <li><a href="/documentation/graphs/self/">Self</a></li>
+                <li><a href="/documentation/graphs/other/">Other</a></li>
+                <li><a href="/documentation/graphs/edge-self/">Edge self</a></li>
+                <li><a href="/documentation/graphs/edge-other/">Edge other</a></li>
+              </ul>
+            </li>
+        </ul>
+      </li>
+      <li class="dropdown ">
+        <a data-toggle="dropdown" href="/developer/" target="_top" onclick="javascript:top.location = '\/developer\/';return true;">Developer</a>
+          <ul class="dropdown-menu level1" role="menu" aria-labelledby="dropdownMenu">
+            <li><a href="/developer/boilerplate/">Boilerplate</a></li>
+            <li><a href="/developer/transformation/">Transformation</a></li>
+        </ul>
+      </li>
+      <li class="dropdown ">
+        <a data-toggle="dropdown" href="/community/" target="_top" onclick="javascript:top.location = '\/community\/';return true;">Community</a>
+          <ul class="dropdown-menu level1" role="menu" aria-labelledby="dropdownMenu">
+        </ul>
+      </li>
+      <li>
+        <div  style="padding-left:14px;padding-top:19px;height:24px;float:right;">
+            <a href="https://github.com/scalamolecule/molecule" class="github-button" data-icon="octicon-star">Github</a>
+            
+          </div>
+      </li>
+    </ul>
+
+</div>
+  </div> 
+
+<div class="col-sm-10 column" style="padding-left:8px;">
+	
+
+<h1 id="transaction-meta-data">Transaction meta data</h1>
+
+<p>Transaction data in Datomic is basically a list of facts/datoms being asserted or retracted. If we take the
+<a href="https://github.com/scalamolecule/molecule/blob/master/examples/src/test/scala/molecule/examples/dayOfDatomic/Provenance.scala">Provenance</a>
+example we could add two Story entities each with two datoms (<code>title</code> and <code>url</code>) with this molecule:</p>
+
+<pre><code class="language-scala">Story.title.url insert List(
+  (&quot;ElastiCache in 6 minutes&quot;, &quot;blog.com/elasticache-in-5-minutes.html&quot;),
+  (&quot;Keep Chocolate Love Atomic&quot;, &quot;blog.com/atomic-chocolate.html&quot;)
+)
+</code></pre>
+
+<p>Molecule translate this to a transaction list of 4 datoms:</p>
+
+<pre><code>List(
+  //  operation            entity id               attribute             value  
+  List(:db/add,  #db/id[:db.part/user -1000001],  :story/title,  ElastiCache in 6 minutes              ),
+  List(:db/add,  #db/id[:db.part/user -1000001],  :story/url  ,  blog.com/elasticache-in-5-minutes.html),
+  List(:db/add,  #db/id[:db.part/user -1000002],  :story/title,  Keep Chocolate Love Atomic            ),
+  List(:db/add,  #db/id[:db.part/user -1000002],  :story/url  ,  blog.com/atomic-chocolate.html        )
+)
+</code></pre>
+
+<p>Each Datom has 4 - and soon 5 - pieces of information:</p>
+
+<ul>
+<li>Entity id</li>
+<li>Attribute</li>
+<li>Value</li>
+<li>Tx</li>
+<li>Operation (add/retract)</li>
+</ul>
+
+<p>Molecule simply passes our list to be transacted by Datomic. Datomic then creates a transaction entity and makes
+ the association between all the datoms and this transaction id (the Tx part).</p>
+
+<h2 id="annotating-a-transaction">&ldquo;Annotating&rdquo; a transaction</h2>
+
+<p>If we want to &ldquo;annotate&rdquo; a transaction with some meta data like &ldquo;who did it?&rdquo; or &ldquo;what use case?&rdquo; etc, we could
+simply add two more datoms to our list with this meta data. We don&rsquo;t want to repeatedly add the meta data with
+all the rows of data, so we use the special <code>tx_</code> attribute that is available to all molecules and apply another
+Molecule populated with our meta data. So now our &ldquo;tx-annotated&rdquo; molecule looks like this:</p>
+
+<pre><code class="language-scala">Story.title.url.tx_(MetaData.user_(stu).usecase_(&quot;AddStories&quot;)) insert List(
+  (&quot;ElastiCache in 6 minutes&quot;, &quot;blog.com/elasticache-in-5-minutes.html&quot;),
+  (&quot;Keep Chocolate Love Atomic&quot;, &quot;blog.com/atomic-chocolate.html&quot;)
+)
+</code></pre>
+
+<p>The insert data now includes two more datoms that are saved as part of the transaction entity:</p>
+
+<pre><code>List(
+  //  operation            entity id               attribute             value  
+  List(:db/add,  #db/id[:db.part/user -1000001],  :story/title,      ElastiCache in 6 minutes              ),
+  List(:db/add,  #db/id[:db.part/user -1000001],  :story/url  ,      blog.com/elasticache-in-5-minutes.html),
+  List(:db/add,  #db/id[:db.part/user -1000002],  :story/title,      Keep Chocolate Love Atomic            ),
+  List(:db/add,  #db/id[:db.part/user -1000002],  :story/url  ,      blog.com/atomic-chocolate.html        ),
+  List(:db/add,  #db/id[:db.part/tx -1000049],    :metaData/user   , 17592186045423                        ),
+  List(:db/add,  #db/id[:db.part/tx -1000049],    :metaData/usecase, AddStories                            )
+)
+</code></pre>
+
+<h2 id="querying-transaction-meta-data">Querying transaction meta data</h2>
+
+<p>Now we can find stories based on our transaction meta data knowledge:</p>
+
+<pre><code class="language-scala">// Stories that Stu added (first meta information used)
+Story.title.tx_(MetaData.user_(stu)).get === List(
+  &quot;Keep Chocolate Love Atomic&quot;,
+  &quot;ElastiCache in 6 minutes&quot;
+)
+
+// Stories that were added with the AddStories use case (second meta information used)
+Story.title.tx_(MetaData.usecase_(&quot;AddStories&quot;)).get === List(
+  &quot;Keep Chocolate Love Atomic&quot;,
+  &quot;ElastiCache in 6 minutes&quot;
+)
+
+// Stories that Stu added with the AddStories use case (both meta data used)
+Story.title.tx_(MetaData.user_(stu).usecase_(&quot;AddStories&quot;)).get === List(
+  &quot;Keep Chocolate Love Atomic&quot;,
+  &quot;ElastiCache in 6 minutes&quot;
+)
+
+// Stories and transactions where Stu added stories (`tx` is returned)
+Story.title.tx(MetaData.user_(stu).usecase_(&quot;AddStories&quot;)).get === List(
+  (&quot;ElastiCache in 6 minutes&quot;, stuTxId),
+  (&quot;Keep Chocolate Love Atomic&quot;, stuTxId)
+)
+
+// Stories and names of who added them (Note that we can have referenced meta data!)
+Story.title.tx_(MetaData.User.firstName.lastName).get === List(
+  (&quot;ElastiCache in 6 minutes&quot;, &quot;Stu&quot;, &quot;Halloway&quot;),
+  (&quot;Keep Chocolate Love Atomic&quot;, &quot;Stu&quot;, &quot;Halloway&quot;)
+)
+
+// Stories added by a user named &quot;Stu&quot;
+Story.title.tx_(MetaData.User.firstName_(&quot;Stu&quot;)).get === List(
+  &quot;ElastiCache in 6 minutes&quot;,
+  &quot;Keep Chocolate Love Atomic&quot;
+)
+
+// Stories added by a user with email &quot;stuarthalloway@datomic.com&quot;
+Story.title.tx_(MetaData.User.email_(&quot;stuarthalloway@datomic.com&quot;)).get === List(
+  &quot;ElastiCache in 6 minutes&quot;,
+  &quot;Keep Chocolate Love Atomic&quot;
+)
+
+// Count of stories added by a user with email &quot;stuarthalloway@datomic.com&quot;
+Story.title(count).tx_(MetaData.User.email_(&quot;stuarthalloway@datomic.com&quot;)).get.head === 2
+
+// Emails of users who added stories
+Story.title_.tx_(MetaData.usecase_(&quot;AddStories&quot;).User.email).get === List(
+  &quot;stuarthalloway@datomic.com&quot;
+)
+</code></pre>
+
+<h2 id="transaction-history">Transaction history</h2>
+
+<p>We can also annotate updates like this:</p>
+
+<pre><code class="language-scala">Story(elasticacheStory).title(&quot;ElastiCache in 5 minutes&quot;)
+  .tx_(MetaData.user(ed).usecase_(&quot;UpdateStory&quot;)).update
+</code></pre>
+
+<p>We can then use the <code>history</code> of the database in combination with out meta data to follow who
+created/updated:</p>
+
+<pre><code class="language-scala">Story.url_(ecURL).title.op.tx_(MetaData.usecase.User.firstName).history.get.reverse === List(
+  (&quot;ElastiCache in 6 minutes&quot;, true, &quot;AddStories&quot;, &quot;Stu&quot;),  // Stu adds the story
+  (&quot;ElastiCache in 6 minutes&quot;, false, &quot;UpdateStory&quot;, &quot;Ed&quot;), // retraction automatically added by Datomic
+  (&quot;ElastiCache in 5 minutes&quot;, true, &quot;UpdateStory&quot;, &quot;Ed&quot;)   // Ed's update of the title
+)
+</code></pre>
+
+<p>When a new fact is asserted for a cardinality-one attribute that already has a value, Datomic
+automatically makes an extra datom with a retraction (<code>op false</code>) to &ldquo;cancel&rdquo; the old value and
+then adds our assertion datom.</p>
+
+<p>The current database is the latest snapshot of the history, so the ElastiCache now has the correct
+title. We can therefore see if stories have been edited:</p>
+
+<pre><code class="language-scala">// Stories with latest use case meta date
+Story.title.tx_(MetaData.usecase).get === List(
+  (&quot;Keep Chocolate Love Atomic&quot;, &quot;AddStories&quot;),
+  (&quot;ElastiCache in 5 minutes&quot;, &quot;UpdateStory&quot;)
+)
+</code></pre>
+
+<p>And we can even look for data without certain transaction meta data</p>
+
+<pre><code class="language-scala">// Stories without use case meta data
+Story.title.tx_(MetaData.usecase_(nil)).get === List(
+  &quot;Clojure Rationale&quot;,
+  &quot;Beating the Averages&quot;,
+  &quot;Teach Yourself Programming in Ten Years&quot;
+)
+</code></pre>
+
+<p>See also <a href="https://github.com/scalamolecule/molecule/blob/master/coretests/src/test/scala/molecule/coretests/transaction/TransactionMetaData.scala">core tests&hellip;</a></p>
+
+</div>
+
+<div class="col-sm-2 column" style="padding-left:20px;padding-top:22px;padding-right: 0px;">
+  <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm ">
+  <ul class="bs-docs-sidenav">
+    
+      
+        
+          
+            <li><a href="/documentation/">Documentation</a></li>
+            
+          
+        
+          
+            <li><a href="/documentation/getting-started/">Getting started</a></li>
+            
+              <ul class="level2">
+                
+                <li><a href="/documentation/getting-started/introduction/">Introduction</a></li>
+                
+              
+                
+                <li><a href="/documentation/getting-started/quickstart/">Demo quickstart</a></li>
+                
+              
+                
+                <li><a href="/documentation/getting-started/project-setup/">Project setup</a></li>
+                
+              
+              </ul>
+            
+          
+        
+          
+            <li><a href="/documentation/schema/">Schema</a></li>
+            
+              <ul class="level2">
+                
+                <li><a href="/documentation/schema/transaction/">Transaction</a></li>
+                
+              
+              </ul>
+            
+          
+        
+          
+            <li><a href="/documentation/attributes/">Attributes</a></li>
+            
+              <ul class="level2">
+                
+                <li><a href="/documentation/attributes/basics/">Basics</a></li>
+                
+              
+                
+                <li><a href="/documentation/attributes/modes/">Mandatory/Tacet/Optional</a></li>
+                
+              
+                
+                <li><a href="/documentation/attributes/mapped/">Map attributes</a></li>
+                
+              
+                
+                <li><a href="/documentation/attributes/expressions/">Expressions</a></li>
+                
+              
+                
+                <li><a href="/documentation/attributes/aggregates/">Aggregates</a></li>
+                
+              
+                
+                <li><a href="/documentation/attributes/parameterized/">Parameterized</a></li>
+                
+              
+              </ul>
+            
+          
+        
+          
+            <li><a href="/documentation/entities/">Entities</a></li>
+            
+          
+        
+          
+            <li><a href="/documentation/relationships/">Relationships</a></li>
+            
+              <ul class="level2">
+                
+                <li><a href="/documentation/relationships/card-one/">Cardinality one</a></li>
+                
+              
+                
+                <li><a href="/documentation/relationships/card-many/">Cardinality many</a></li>
+                
+              
+                
+                <li><a href="/documentation/relationships/nested/">Nested</a></li>
+                
+              
+                
+                <li><a href="/documentation/relationships/composites/">Composites</a></li>
+                
+              
+              </ul>
+            
+          
+        
+          
+            <li><a href="/documentation/crud/">CRUD</a></li>
+            
+              <ul class="level2">
+                
+                <li><a href="/documentation/crud/save/">Save</a></li>
+                
+              
+                
+                <li><a href="/documentation/crud/insert/">Insert</a></li>
+                
+              
+                
+                <li><a href="/documentation/crud/get/">Get</a></li>
+                
+              
+                
+                <li><a href="/documentation/crud/update/">Update</a></li>
+                
+              
+                
+                <li><a href="/documentation/crud/retract/">Retract</a></li>
+                
+              
+              </ul>
+            
+          
+        
+          
+            <li><a href="/documentation/transactions/">Transactions</a></li>
+            
+              <ul class="level2">
+                
+                <li><a href="/documentation/transactions/tx-data/">Tx data</a></li>
+                
+              
+                
+                <li class="active"><b>Tx meta data</b></li>
+                
+              
+              </ul>
+            
+          
+        
+          
+            <li><a href="/documentation/time/">Time</a></li>
+            
+              <ul class="level2">
+                
+                <li><a href="/documentation/time/asof/">AsOf</a></li>
+                
+              
+                
+                <li><a href="/documentation/time/since/">Since</a></li>
+                
+              
+              </ul>
+            
+          
+        
+          
+            <li><a href="/documentation/graphs/">Graphs</a></li>
+            
+              <ul class="level2">
+                
+                <li><a href="/documentation/graphs/self/">Self</a></li>
+                
+              
+                
+                <li><a href="/documentation/graphs/other/">Other</a></li>
+                
+              
+                
+                <li><a href="/documentation/graphs/edge-self/">Edge self</a></li>
+                
+              
+                
+                <li><a href="/documentation/graphs/edge-other/">Edge other</a></li>
+                
+              
+              </ul>
+            
+          
+        
+      
+    
+  </ul>
+</nav>
+</div>
+
+     
+  </div> 
+</div> 
+<div class="push"></div>
+</div> 
+
+<footer class="bs-docs-footer">
+
+  <div class="container">
+    <ul class="bs-docs-footer-links">
+      <li style="vertical-align: top; margin-top: 0px;"><a href="/front/"><img src="/img/logo/MoleculeLogo200.png" alt=""></a></li>
+      <li><a href="https://github.com/scalamolecule/molecule">GitHub</a></li>
+      <li><a href="https://groups.google.com/forum/#!forum/molecule-dsl">Forum</a></li>
+      <li><a href="/about/">About</a></li>
+      <li><a href="/credits/">Credits</a></li>
+    </ul>
+    <p> Created by Marc Grue. Licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0" target="_blank" rel="license">Apache License 2.0</a></p>
+  </div>
+</footer>
+
+
+<script type="text/javascript" src="/js/jquery-1.11.2.min.js"></script>
+
+
+
+<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+
+
+
+<script src="/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script type="text/javascript" src="/js/scripts.js"></script>
+
+
+
+
+<script async defer id="github-bjs" src="https://buttons.github.io/buttons.js"></script>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-2787756-3', 'auto');
+  ga('send', 'pageview');
+</script>
+    
+</body>
+</html>
