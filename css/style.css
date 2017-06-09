@@ -1,6 +1,10 @@
 @font-face {
-    font-family:"Earth2073";
-    src: url("fonts/Earth 2073.ttf") /* TTF file for CSS3 browsers */
+    font-family: 'Earth2073';
+    src: url('/fonts/earth/earth2073-webfont.woff2') format('woff2'),
+         url('/fonts/earth/earth2073-webfont.woff') format('woff'),
+         url('/fonts/earth/earth2073.ttf')  format('truetype');
+    font-weight: normal;
+    font-style: normal;
 }
 
 body {
