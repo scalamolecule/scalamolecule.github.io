@@ -1,3 +1,8 @@
+@font-face {
+    font-family:"Earth2073";
+    src: url("fonts/Earth 2073.ttf") /* TTF file for CSS3 browsers */
+}
+
 body {
   font-family: "Merriweather Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   background-image: url("/bg/furley_bg.png");
