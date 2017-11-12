@@ -104,6 +104,7 @@
                 <li><a href="/docs/crud/save/">Save</a></li>
                 <li><a href="/docs/crud/insert/">Insert</a></li>
                 <li><a href="/docs/crud/get/">Get</a></li>
+                <li><a href="/docs/crud/getjson/">Get Json</a></li>
                 <li><a href="/docs/crud/update/">Update</a></li>
                 <li><a href="/docs/crud/retract/">Retract</a></li>
               </ul>
@@ -168,7 +169,7 @@
 <p><a href="/docs/attributes/modes">Mandatory/Tacet/Optional</a> attributes (<a href="https://github.com/scalamolecule/molecule/blob/master/coretests/src/test/scala/molecule/coretests/attr/OptionalValues.scala">tests</a>)</p>
 
 <pre><code class="language-scala">Person.name.age.get  // all required values              (&quot;mandatory value&quot;)
-Person.name.age_.get // age is required but not returned (&quot;tacet value&quot;)
+Person.name.age_.get // age is required but not returned (&quot;tacit value&quot;)
 Person.name.age$.get // optional age returned            (&quot;optional value&quot;)
 </code></pre>
 
@@ -354,6 +355,10 @@ val Lisa   = person(&quot;Lisa&quot;, 27).get.head
       
       
       <li><a href="/docs/crud/get/">Get</a></li>
+      
+      
+      
+      <li><a href="/docs/crud/getjson/">Get Json</a></li>
       
       
       

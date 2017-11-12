@@ -12,24 +12,6 @@
     
     
     <item>
-      <title>Tutorials</title>
-      <link>http://scalamolecule.org/resources/tutorials/</link>
-      <pubDate>Fri, 02 Jan 2015 22:06:44 +0100</pubDate>
-      
-      <guid>http://scalamolecule.org/resources/tutorials/</guid>
-      <description> Molecule tutorials  Seattle tutorial - all-round introduction to using Molecule   </description>
-    </item>
-    
-    <item>
-      <title>Videos</title>
-      <link>http://scalamolecule.org/resources/videos/</link>
-      <pubDate>Fri, 02 Jan 2015 22:06:44 +0100</pubDate>
-      
-      <guid>http://scalamolecule.org/resources/videos/</guid>
-      <description> Molecule videos  Scala Meetup presentation 2017-04-25 by Marc Grue  Part 1: Datomic data model Part 2: Building a DSL with Scala macros Part 3: Tour of Molecule features Part 4: Molecule domain modelling   </description>
-    </item>
-    
-    <item>
       <title>Seattle</title>
       <link>http://scalamolecule.org/resources/tutorials/seattle/</link>
       <pubDate>Fri, 02 Jan 2015 22:06:44 +0100</pubDate>
@@ -46,6 +28,24 @@
       <guid>http://scalamolecule.org/resources/videos/2017-04-25_marc_grue/</guid>
       <description>Molecule video presentation  Part 1: Datomic data model Part 2: Building a DSL with Scala macros Part 3: Tour of Molecule features Part 4: Molecule domain modelling  Molecule presentation in 4 parts by creator Marc Grue at a Scala MeetUp in Gothenburg 2017-04-25.
 Attendees came with great suggestions for improvements that were incorporated in Molecule v0.11. Some of the slides in the videos below are updated to show the new API of v0.</description>
+    </item>
+    
+    <item>
+      <title>Tutorials</title>
+      <link>http://scalamolecule.org/resources/tutorials/</link>
+      <pubDate>Fri, 02 Jan 2015 22:06:44 +0100</pubDate>
+      
+      <guid>http://scalamolecule.org/resources/tutorials/</guid>
+      <description> Molecule tutorials  Seattle tutorial - all-round introduction to using Molecule   </description>
+    </item>
+    
+    <item>
+      <title>Videos</title>
+      <link>http://scalamolecule.org/resources/videos/</link>
+      <pubDate>Fri, 02 Jan 2015 22:06:44 +0100</pubDate>
+      
+      <guid>http://scalamolecule.org/resources/videos/</guid>
+      <description> Molecule videos  Scala Meetup presentation 2017-04-25 by Marc Grue  Part 1: Datomic data model Part 2: Building a DSL with Scala macros Part 3: Tour of Molecule features Part 4: Molecule domain modelling   </description>
     </item>
     
   </channel>

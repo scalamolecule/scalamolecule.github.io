@@ -104,6 +104,7 @@
                 <li><a href="/docs/crud/save/">Save</a></li>
                 <li><a href="/docs/crud/insert/">Insert</a></li>
                 <li><a href="/docs/crud/get/">Get</a></li>
+                <li><a href="/docs/crud/getjson/">Get Json</a></li>
                 <li><a href="/docs/crud/update/">Update</a></li>
                 <li><a href="/docs/crud/retract/">Retract</a></li>
               </ul>
@@ -179,7 +180,7 @@ attribute (&ldquo;pizza&rdquo; is returned for all persons):</p>
 )
 </code></pre>
 
-<p>This is an ideomatic place to use a tacet attribute <code>likes_</code> to say &ldquo;Give me names of persons that like pizza&rdquo; without returning the <code>likes</code> value &ldquo;pizza&rdquo;
+<p>This is an ideomatic place to use a tacit attribute <code>likes_</code> to say &ldquo;Give me names of persons that like pizza&rdquo; without returning the <code>likes</code> value &ldquo;pizza&rdquo;
 over and over again. Then we get a nice list of only the pizza likers:</p>
 
 <pre><code class="language-scala">Person.name.likes_(&quot;pizza&quot;).get === List(
@@ -442,6 +443,10 @@ Person.birthday(date)
       
       
       <li><a href="/docs/crud/get/">Get</a></li>
+      
+      
+      
+      <li><a href="/docs/crud/getjson/">Get Json</a></li>
       
       
       

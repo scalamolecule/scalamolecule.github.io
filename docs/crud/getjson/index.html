@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
   <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
   <link href='http://fonts.googleapis.com/css?family=Merriweather+Sans:400,300,300italic,400italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
-  <title>Introduction</title>
+  <title>Get Json</title>
   <link href="/css/bootstrap.min.css" rel="stylesheet">
   <link href="/css/highlight/styles/solarized_light.css" rel="stylesheet" />
   <link rel="stylesheet" type="text/css" href="/vendor/font-awesome/css/font-awesome.min.css">
@@ -153,117 +153,62 @@
 <div class="col-sm-10 column" style="padding-left:8px;">
 	
 
-<h1 id="molecule-introduction">Molecule introduction</h1>
+<h1 id="get-json-formatted-data">Get Json formatted Data</h1>
 
-<p>Molecule let&rsquo;s you model and query your domain data structures directly with the words of your domain.</p>
+<p>We can get data in json format directly from the database by calling <code>getJson</code> on a molecule. So instead of converting tuples of data to
+json with some 3rd party library we can call <code>getJson</code> and pass the json data string directly to an Angular table for instance.</p>
 
-<h3 id="query">Query</h3>
+<p>Internally, Molecule builds the json string in a StringBuffer directly from the raw data coming from Datomic
+(with regards to types being quoted or not). This should make it the fastest way of supplying json data when needed.</p>
 
-<p>Let&rsquo;s say we want to find Persons in our Datomic database. Then we can build a molecule to get this data
-for us:</p>
+<h3 id="flat-data">Flat data</h3>
 
-<pre><code class="language-scala">val persons: Iterable[(String, Int)] = m(Person.name.age).get
+<p>Normal &ldquo;flat&rdquo; molecules creates json with a row on each line in the output:</p>
+
+<pre><code class="language-scala">Person.name.age.getJson ===
+  &quot;&quot;&quot;[
+    |{&quot;name&quot;: &quot;Fred&quot;, &quot;age&quot;: 38},
+    |{&quot;name&quot;: &quot;Lisa&quot;, &quot;age&quot;: 35}
+    |]&quot;&quot;&quot;.stripMargin
 </code></pre>
 
-<p>This fetches an Iterable of tuples of Strings/Int&rsquo;s that are the types of the <code>name</code> and <code>age</code> Attributes that
-we asked for. We can continue adding more and more Attributes as with the builder pattern to define what data
-we are interested in.</p>
+<h3 id="composite-data">Composite data</h3>
 
-<p>Attributes are atomic pieces of information that are prefixed by a Namespace, in this case <code>Person</code>. Namespaces
-are not like SQL tables but just a common meaningful prefix to Attributes that have something in common.</p>
+<p>Composite data has potential field name clashes so each sub part of the composite is rendered
+as a separate json object tied together in an array for each row:</p>
 
-<p>The <code>m</code> method (for &rsquo;m&rsquo;olecule) is an implict macro method in the Molecule library that consumes whatever
-&ldquo;molecule&rdquo; we give it and then offers us for instance the <code>get</code> method to fetch data. Since the <code>m</code> method
-is implict we can simply write</p>
-
-<pre><code class="language-scala">val persons = Person.name.age.get
+<pre><code class="language-scala">m(Person.name.age ~ Category.name.importance).getJson ===
+  &quot;&quot;&quot;[
+    |[{&quot;name&quot;: &quot;Fred&quot;, &quot;age&quot;: 38}, {&quot;name&quot;: &quot;Marketing&quot;, &quot;importance&quot;: 6}],
+    |[{&quot;name&quot;: &quot;Lisa&quot;, &quot;age&quot;: 35}, {&quot;name&quot;: &quot;Management&quot;, &quot;importance&quot;: 7}]
+    |]&quot;&quot;&quot;.stripMargin
 </code></pre>
 
-<p>As you see we can use our domain terms directly in our code in a type-safe and semantically meaningful way to
- to communicate wit our Datomic database. Since we are working with auto-generated boilerplate code for
- our domain terms, our IDE can even already when coding infer the type of each of our molecules which also
- has the benefit that the compiler prevents us from making any invalid queries.</p>
+<p>Note how a field <code>name</code> appears in each sub object. Since the molecule is defined in client code it is presumed that
+the semantics of eventual duplicate field names are also handled by client code.</p>
 
-<h3 id="insert-and-update">Insert and update</h3>
+<h3 id="nested-data">Nested data</h3>
 
-<p>We also insert and update data with molecules:</p>
+<p>Nested date is rendered as a json array with json objects for each nested row:</p>
 
-<pre><code class="language-scala">// Insert and retrieve new entity id
-val lisaId = Person.name(&quot;Lisa&quot;).age(&quot;27&quot;).insert.eid
-
-// Update
-Person(lisaId).age(&quot;28&quot;).update
+<pre><code class="language-scala">(Invoice.no.customer.InvoiceLines * InvoiceLine.item.qty.amount).getJson ===
+  &quot;&quot;&quot;[
+    |{&quot;no&quot;: 1, &quot;customer&quot;: &quot;Johnson&quot;, &quot;invoiceLines&quot;: [
+    |   {&quot;item&quot;: &quot;apples&quot;, &quot;qty&quot;: 10, &quot;amount&quot;: 12.0},
+    |   {&quot;item&quot;: &quot;oranges&quot;, &quot;qty&quot;: 7, &quot;amount&quot;: 3.5}]},
+    |{&quot;no&quot;: 2, &quot;customer&quot;: &quot;Benson&quot;, &quot;invoiceLines&quot;: [
+    |   {&quot;item&quot;: &quot;bananas&quot;, &quot;qty&quot;: 3, &quot;amount&quot;: 3.0},
+    |   {&quot;item&quot;: &quot;oranges&quot;, &quot;qty&quot;: 1, &quot;amount&quot;: 0.5}]}
+    |]&quot;&quot;&quot;.stripMargin
 </code></pre>
 
-<h3 id="expressive-powers">Expressive powers</h3>
+<h3 id="render-strategies">Render strategies&hellip;</h3>
 
-<p>We can apply conditional values, ranges etc to our molecules to express more subtle data structures:</p>
+<p>Various render strategies could rather easily be added if necessary. In that case, please file an issue with a description of a desired format.</p>
 
-<pre><code class="language-scala">Community.name.`type`(&quot;twitter&quot; or &quot;facebook_page&quot;)
-  .Neighborhood.District.region(&quot;sw&quot; or &quot;s&quot; or &quot;se&quot;)
-</code></pre>
+<h3 id="next">Next</h3>
 
-<p>which will find &ldquo;names of twitter/facebook_page communities in neighborhoods of southern districts&rdquo;.</p>
-
-<h2 id="datomic-and-molecule">Datomic and Molecule</h2>
-
-<p>Molecule is a domain-tailored abstraction layer on top of the Datomic database. It can therefore be good to know
-a little about Datomic in order to understand Molecule.</p>
-
-<h3 id="facts-datoms-with-time-built-in">Facts/Datoms with time built in</h3>
-
-<p>Instead of mapping objects to tables or documents, the core unit of data in Molecule is an atomic piece of
-information: an <em>attribute</em>.</p>
-
-<p>Attributes are composed to form &ldquo;molecules&rdquo; that describe unique and flexible data structures in endless
-combinations suiting your domain. Those are then translated to Datalog queries being executed against the
-underlying Datomic database.</p>
-
-<p>An attribute in Datomic is part of a <em>fact</em> or <em>Datom</em> consisting of four elements:</p>
-
-<pre><code> John     likes    pizza      12:35:54
-   |        |        |           |
-Entity  Attribute  Value  Transaction/time
-</code></pre>
-
-<p>With Molecule we could model the fact like this:</p>
-
-<pre><code class="language-scala">Person(johnId).likes(&quot;pizza&quot;).update
-</code></pre>
-
-<p><em>likes</em> is an <code>attribute</code> with <code>value</code> <em>pizza</em>. It is <strong>asserted</strong> that the <code>entity</code> <em>johnId</em> likes pizza
-at <code>transaction</code> time 12:35:54. A timestamp is automatically set with all transactions. But if we need
-&ldquo;domain time&rdquo; we could add such attribute to the transaction as well, since this is simply a saved data structure
-in Datomic as our domain data.</p>
-
-<h3 id="immutable-data">Immutable data</h3>
-
-<p>Everytime a fact is asserted the old value of the attribute is <em>not deleted</em>. A Datomic database is immutable.
-We can go back in time and see the values of an attribute <em>at any point in time</em>. We could for instance see all
-our previous addresses if this was part of our domain model.</p>
-
-<p>Also when we delete data, it&rsquo;s actually not deleted, but &ldquo;retracted&rdquo;. Retracted data doesn&rsquo;t show up when we are
-querying the current database. But if we look at the database at an earlier point in time we can see the data
-before it got retracted.</p>
-
-<h3 id="namespaces-and-attributes">Namespaces and attributes</h3>
-
-<p><code>attributes</code> are organized in <code>namespaces</code> to group related qualities of our domain:</p>
-
-<p><img src="/img/DatomicElements1.png" alt="" /></p>
-
-<h3 id="entity-row-in-an-sql-table">Entity != row in an sql Table</h3>
-
-<p>An <code>entity</code> can have <em>any</em> <code>attribute</code> from <em>any</em> <code>namespace</code> associated to it:</p>
-
-<p><img src="/img/DatomicElements2.png" alt="" /></p>
-
-<p>An entity is therefore not like a row in a table but rather a &ldquo;cross-cutting&rdquo; thing that we can freely associate
-any attribute value to. Note how &ldquo;attrB1&rdquo; in this example is not associated to entity1.</p>
-
-<h3 id="next">Next&hellip;</h3>
-
-<p>See how we can model our domain with attributes in <a href="/docs/schema/">Schema</a>&hellip;</p>
+<p><a href="/docs/crud/update">Update&hellip;</a></p>
 
 </div>
 
@@ -272,22 +217,22 @@ any attribute value to. Note how &ldquo;attrB1&rdquo; in this example is not ass
 
   <div style="position:absolute;top: -36px; left: 0px;">
     
-    <a class="navigation-control up" href="/docs/" style="position:absolute; top:0px; left: 56px">
+    <a class="navigation-control up" href="/docs/crud" style="position:absolute; top:0px; left: 56px">
       <span class="glyphicon glyphicon-chevron-up"></span>
     </a>
     
     
-    <a class="navigation-control left" href="/docs/" style="position:absolute; top: 15px; left: 20px">
+    <a class="navigation-control left" href="/docs/crud/get" style="position:absolute; top: 15px; left: 20px">
       <span class="glyphicon glyphicon-chevron-left"></span>
     </a>
     
     
-    <a class="navigation-control right" href="/docs/getting-started" style="position:absolute; top: 15px; left: 89px">
+    <a class="navigation-control right" href="/docs/crud/update" style="position:absolute; top: 15px; left: 89px">
       <span class="glyphicon glyphicon-chevron-right"></span>
     </a>
     
     
-    <a class="navigation-control right" href="/docs/getting-started" style="position:absolute; top: 30px; left: 54px;">
+    <a class="navigation-control right" href="/docs/transactions" style="position:absolute; top: 30px; left: 54px;">
       <span class="glyphicon glyphicon-chevron-down"></span>
     </a>
     
@@ -302,7 +247,7 @@ any attribute value to. Note how &ldquo;attrB1&rdquo; in this example is not ass
     
     <ul class="level2">
       
-      <li class="active"><b>Introduction</b></li>
+      <li><a href="/docs/documentation/introduction/">Introduction</a></li>
       
       
     </ul>
@@ -411,7 +356,7 @@ any attribute value to. Note how &ldquo;attrB1&rdquo; in this example is not ass
       
       
       
-      <li><a href="/docs/crud/getjson/">Get Json</a></li>
+      <li class="active"><b>Get Json</b></li>
       
       
       

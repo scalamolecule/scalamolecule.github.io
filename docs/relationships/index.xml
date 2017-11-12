@@ -12,24 +12,6 @@
     
     
     <item>
-      <title>Presentation</title>
-      <link>http://scalamolecule.org/docs/presentation/</link>
-      <pubDate>Fri, 02 Jan 2015 22:06:44 +0100</pubDate>
-      
-      <guid>http://scalamolecule.org/docs/presentation/</guid>
-      <description>Molecule presentation sample code snippets Person.id.nameMap.get.head === (101, Map( &amp;quot;en&amp;quot; -&amp;gt; &amp;quot;Dmitri Shostakovich&amp;quot;, &amp;quot;de&amp;quot; -&amp;gt; &amp;quot;Dmitri Schostakowitsch&amp;quot;, &amp;quot;fr&amp;quot; -&amp;gt; &amp;quot;Dmitri Chostakovitch&amp;quot; )) // By key Person.nameMapK(&amp;quot;fr&amp;quot;).get.head === &amp;quot;Dmitri Chostakovitch&amp;quot; // By value Person.id.nameMap_(&amp;quot;Dmitri Chostakovitch&amp;quot;).get.head === 101 Person.id.nameMap_(&amp;quot;.*Shosta.*&amp;quot;).get.head === 101 // By key and value Person.id.nameMap_(&amp;quot;en&amp;quot; -&amp;gt; &amp;quot;Dmitri Shostakovich&amp;quot;).get.head === 101 Person.id.nameMap_(&amp;quot;en&amp;quot;)(&amp;quot;.*Shosta.*&amp;quot;).get.head === 101  Person.id.nameMap.get.head === (101, Map( &amp;quot;en&amp;quot; -&amp;gt; &amp;quot;Dmitri Shostakovich&amp;quot;, &amp;quot;de&amp;quot; -&amp;gt; &amp;quot;Dmitri Schostakowitsch&amp;quot;, &amp;quot;fr&amp;quot; -&amp;gt; &amp;quot;Dmitri Chostakovitch&amp;quot; )) // By key Person.</description>
-    </item>
-    
-    <item>
-      <title>Presentation</title>
-      <link>http://scalamolecule.org/docs/presentation1/</link>
-      <pubDate>Fri, 02 Jan 2015 22:06:44 +0100</pubDate>
-      
-      <guid>http://scalamolecule.org/docs/presentation1/</guid>
-      <description>Molecule presentation sample code snippets fredId.retract Person.name(&amp;quot;Fred&amp;quot;).get.size === 0  Person.id.nameMap.one === (101, Map( &amp;quot;en&amp;quot; -&amp;gt; &amp;quot;Dmitri Shostakovich&amp;quot;, &amp;quot;de&amp;quot; -&amp;gt; &amp;quot;Dmitri Schostakowitsch&amp;quot;, &amp;quot;fr&amp;quot; -&amp;gt; &amp;quot;Dmitri Chostakovitch&amp;quot; )) // By key Person.nameMapK(&amp;quot;fr&amp;quot;).one === &amp;quot;Dmitri Chostakovitch&amp;quot; // By value Person.id.nameMap_(&amp;quot;Dmitri Chostakovitch&amp;quot;).one === 101 Person.id.nameMap_(&amp;quot;.*Shosta.*&amp;quot;).one === 101 // By key and value Person.id.nameMap_(&amp;quot;en&amp;quot; -&amp;gt; &amp;quot;Dmitri Shostakovich&amp;quot;).one === 101 Person.id.nameMap_(&amp;quot;en&amp;quot;)(&amp;quot;.*Shosta.*&amp;quot;).one === 101  Person.id.nameMap.one === (101, Map( &amp;quot;en&amp;quot; -&amp;gt; &amp;quot;Dmitri Shostakovich&amp;quot;, &amp;quot;de&amp;quot; -&amp;gt; &amp;quot;Dmitri Schostakowitsch&amp;quot;, &amp;quot;fr&amp;quot; -&amp;gt; &amp;quot;Dmitri Chostakovitch&amp;quot; )) // By key Person.</description>
-    </item>
-    
-    <item>
       <title>Cardinality one</title>
       <link>http://scalamolecule.org/docs/relationships/card-one/</link>
       <pubDate>Sun, 24 Jul 2016 22:06:44 +0100</pubDate>
@@ -38,70 +20,6 @@
       <description>Card-one relationships Tests&amp;hellip;
 In Molecule we model a cardinality-one relationship in our schema definition file with the one[&amp;lt;RefNamespace&amp;gt;] syntax:
 object YourDomainDefinition { trait Person { val name = oneString val home = one[Addr] } trait Addr { val street = oneString val city = oneString } }  The ref attribute home has a card-one relationship to namespace Addr. When our schema is then translated to Molecule boilerplate code our home ref attribute is accessible as a value:</description>
-    </item>
-    
-    <item>
-      <title>AsOf/Since</title>
-      <link>http://scalamolecule.org/docs/time/asof-since/</link>
-      <pubDate>Fri, 02 Jan 2015 22:06:44 +0100</pubDate>
-      
-      <guid>http://scalamolecule.org/docs/time/asof-since/</guid>
-      <description>AsOf / Since Tests&amp;hellip;
-getAsOf(t) and getSince are complementary functions that either get us a snapshop of the database at some point in time or a current snapshot filtered with only changes after a point in time. Like before/after scenarios.
-AsOf Temp test
-Calling getAsOf(t) on a molecule gives us the data as of a certain point in time like t4:
-
-As we saw in point in time, a t can be either a transaction entity id like tx4, a transaction number t4 or a java.</description>
-    </item>
-    
-    <item>
-      <title>Basics</title>
-      <link>http://scalamolecule.org/docs/attributes/basics/</link>
-      <pubDate>Fri, 02 Jan 2015 22:06:44 +0100</pubDate>
-      
-      <guid>http://scalamolecule.org/docs/attributes/basics/</guid>
-      <description>Attribute basics Tests&amp;hellip;
-When we have defined a schema, Molecule generates the necessary boilerplate code so that we can build &amp;ldquo;molecular data structures&amp;rdquo; by building sequences of Attributes separated with dots (the &amp;ldquo;builder pattern&amp;rdquo;).
-We could for instance build a molecule representing the data structure of Persons with name, age and gender Attributes:
-Person.name.age.gender // etc  The fundamental building blocks are Namespaces like Person and Attributes like name, age and gender.</description>
-    </item>
-    
-    <item>
-      <title>Introduction</title>
-      <link>http://scalamolecule.org/docs/documentation/introduction/</link>
-      <pubDate>Fri, 02 Jan 2015 22:06:44 +0100</pubDate>
-      
-      <guid>http://scalamolecule.org/docs/documentation/introduction/</guid>
-      <description>Molecule introduction Molecule let&amp;rsquo;s you model and query your domain data structures directly with the words of your domain.
-Query Let&amp;rsquo;s say we want to find Persons in our Datomic database. Then we can build a molecule to get this data for us:
-val persons: Iterable[(String, Int)] = m(Person.name.age).get  This fetches an Iterable of tuples of Strings/Int&amp;rsquo;s that are the types of the name and age Attributes that we asked for.</description>
-    </item>
-    
-    <item>
-      <title>Save</title>
-      <link>http://scalamolecule.org/docs/crud/save/</link>
-      <pubDate>Fri, 02 Jan 2015 22:06:44 +0100</pubDate>
-      
-      <guid>http://scalamolecule.org/docs/crud/save/</guid>
-      <description>Save Tests&amp;hellip;
-In Molecule we can populate a molecule with data and save it:
-Person.name(&amp;quot;Fred&amp;quot;).likes(&amp;quot;pizza&amp;quot;).age(38).save  This will assert 3 facts in Datomic that all share the id of the new entity id fredId that is automatically created by Datomic:
-fredId :person/name &amp;quot;Fred&amp;quot; fredId :person/likes &amp;quot;pizza&amp;quot; fredId :person/age 38  Type-safety Type-safety is guaranteed since each attribute only accepts values of its defined type.
-Related data We can even save related date in the same operation</description>
-    </item>
-    
-    <item>
-      <title>Setup</title>
-      <link>http://scalamolecule.org/docs/getting-started/setup/</link>
-      <pubDate>Fri, 02 Jan 2015 22:06:44 +0100</pubDate>
-      
-      <guid>http://scalamolecule.org/docs/getting-started/setup/</guid>
-      <description>Setup To use Molecule we need to define our database schema in a Schema definition file and then tell sbt about it. When compiling our project from the command line, all necessary boilerplate code is then automatically generated by the sbt MoleculePlugin.
-1. SBT build settings Add the following to your build files:
-project/build.properties:
-sbt.version=0.13.13  project/buildinfo.sbt:
-addSbtPlugin(&amp;quot;org.scalamolecule&amp;quot; % &amp;quot;sbt-molecule&amp;quot; % &amp;quot;0.4.1&amp;quot;)  build.sbt:
-lazy val yourProject = project.in(file(&amp;quot;demo&amp;quot;)) .</description>
     </item>
     
     <item>
@@ -117,85 +35,6 @@ Note how we also make LineItems subComponents of the Order.</description>
     </item>
     
     <item>
-      <title>Insert</title>
-      <link>http://scalamolecule.org/docs/crud/insert/</link>
-      <pubDate>Fri, 02 Jan 2015 22:06:44 +0100</pubDate>
-      
-      <guid>http://scalamolecule.org/docs/crud/insert/</guid>
-      <description>Insert Tests&amp;hellip;
-Multiple rows of data can be inserted by making a molecule that matches the values of each row:
-Person.name.likes.age insert List( (&amp;quot;Fred&amp;quot;, &amp;quot;pizza&amp;quot;, 38), (&amp;quot;Lisa&amp;quot;, &amp;quot;pizza&amp;quot;, 7), (&amp;quot;Ben&amp;quot;, &amp;quot;pasta&amp;quot;, 5) )  Type-safety Type-safety is guaranteed since each tuple of data is enforced by the compiler to conform to the molecule type.
-If the data set is not accepted type-wise, then either the molecule needs to be adjusted to match the type of data rows.</description>
-    </item>
-    
-    <item>
-      <title>Mandatory/Tacet/Optional</title>
-      <link>http://scalamolecule.org/docs/attributes/modes/</link>
-      <pubDate>Fri, 02 Jan 2015 22:06:44 +0100</pubDate>
-      
-      <guid>http://scalamolecule.org/docs/attributes/modes/</guid>
-      <description>3 attribute modes 1. Mandatory attr When we use a molecule to query the Datomic database we ask for entities having all our Attributes associated with them.
-Note that this is different from selecting rows from a sql table where you can also get null values back!
-If for instance we have entities representing Persons in our data set that haven&amp;rsquo;t got any age Attribute associated with them then this query will not return those entities:</description>
-    </item>
-    
-    <item>
-      <title>Tx meta data</title>
-      <link>http://scalamolecule.org/docs/transactions/tx-meta-data/</link>
-      <pubDate>Fri, 02 Jan 2015 22:06:44 +0100</pubDate>
-      
-      <guid>http://scalamolecule.org/docs/transactions/tx-meta-data/</guid>
-      <description>Transaction meta data Tests&amp;hellip;
-As we saw, a transaction in Datomic is also an entity with a timestamp fact. Since it&amp;rsquo;s an entity as any of our own entities, we can even add more facts that simply share the entity id of the transaction:
-Save Depending on our domain we can tailor any tx meta data that we find valuable to associate with some transactions. We could for instance be interested in &amp;ldquo;who did it&amp;rdquo; and &amp;ldquo;in what use case&amp;rdquo; it happened and create some meta attributes user and uc in an Audit namespace:</description>
-    </item>
-    
-    <item>
-      <title>Get</title>
-      <link>http://scalamolecule.org/docs/crud/get/</link>
-      <pubDate>Fri, 02 Jan 2015 22:06:44 +0100</pubDate>
-      
-      <guid>http://scalamolecule.org/docs/crud/get/</guid>
-      <description>Get (read) Data We get/read data from the database by calling get on a molecule. This returns an Iterable of tuples that match the molecule attributes (except for arity-1):
-val persons1attr: Iterable[String] = Person.name.get val persons2attrs: Iterable[(String, Int)] = Person.name.age.get val persons3attrs: Iterable[(String, Int, String)] = Person.name.age.likes.get // Etc.. to arity 22  With entity id Attributes of some entity are easily fetched by applying an entity id to the first namespace in the molecule</description>
-    </item>
-    
-    <item>
-      <title>History</title>
-      <link>http://scalamolecule.org/docs/time/history/</link>
-      <pubDate>Fri, 02 Jan 2015 22:06:44 +0100</pubDate>
-      
-      <guid>http://scalamolecule.org/docs/time/history/</guid>
-      <description>History Tests&amp;hellip;
-The history perspective gives us all the assertions and retractions that has happened over time.
-Assertions and retractions Normally we get a snapshot of the database at a certain point in time. But when we call the getHistory method on a molecule we get all the assertions and retractions that has happened over time for the attributes of the molecule.
-As an example we can imagine Fred being added in tx3 and then updated in tx6.</description>
-    </item>
-    
-    <item>
-      <title>Map attributes</title>
-      <link>http://scalamolecule.org/docs/attributes/mapped/</link>
-      <pubDate>Fri, 02 Jan 2015 22:06:44 +0100</pubDate>
-      
-      <guid>http://scalamolecule.org/docs/attributes/mapped/</guid>
-      <description>Map Attributes Tests&amp;hellip;
-Mapped values can be saved with mapped attributes in Molecule. It&amp;rsquo;s a special Molecule construct that makes it easy to save for instance multi-lingual data without having to create language-variations of each attribute. But they can also be used for any other key-value indexed data.
-Say you want to save famous Persons names in multiple languages. Then you could use a mapString:
-// In definition file val name = mapString // Insert mapped data Person.</description>
-    </item>
-    
-    <item>
-      <title>Transaction</title>
-      <link>http://scalamolecule.org/docs/schema/transaction/</link>
-      <pubDate>Fri, 02 Jan 2015 22:06:44 +0100</pubDate>
-      
-      <guid>http://scalamolecule.org/docs/schema/transaction/</guid>
-      <description>Schema transaction To create our Datomic database we need to transact some schema transaction data in Datomic. This makes our defined attributes available in Datomic.
-Schema transaction data Molecule transforms our Schema definition file to basically a java.util.List containing a java.util.Map of schema transaction data for each attribute defined. Our name and url attributes for instance requires the following map of information to be transacted in Datomic:
-object SeattleSchema extends Transaction { lazy val partitions = Util.</description>
-    </item>
-    
-    <item>
       <title>Composites</title>
       <link>http://scalamolecule.org/docs/relationships/composites/</link>
       <pubDate>Fri, 02 Jan 2015 22:06:44 +0100</pubDate>
@@ -205,56 +44,6 @@ object SeattleSchema extends Transaction { lazy val partitions = Util.</descript
 As we saw earlier, Entities are simply groups of facts that share an entity id:
 The last fact is kind of a black sheep though since the :site/cat attribute is not in the Person namespace.
 Avoid non-intrinsic pollution Since entities can have attributes from any namespace we have a challenge of how to model this in our schema definiton. It would be quick and easy to just make a relationship from a Person namespace to the Site namespace:</description>
-    </item>
-    
-    <item>
-      <title>Entities</title>
-      <link>http://scalamolecule.org/docs/entities/</link>
-      <pubDate>Fri, 02 Jan 2015 22:06:44 +0100</pubDate>
-      
-      <guid>http://scalamolecule.org/docs/entities/</guid>
-      <description>Entities An entity in Datomic is a group of Datoms/facts that share an entity id:
-Attributes with any seemingly unrelated namespaces can group as entities by simply sharing the entity id:
-Entity API At runtime we can see the facts of an entity by calling touch on the entity id (of type Long):
-101L.touch === Map( &amp;quot;:db/id&amp;quot; -&amp;gt; 101L, &amp;quot;:person/name&amp;quot; -&amp;gt; &amp;quot;Fred&amp;quot;, &amp;quot;:person/likes&amp;quot; -&amp;gt; &amp;quot;pizza&amp;quot;, &amp;quot;:person/age&amp;quot; -&amp;gt; 38, &amp;quot;:person/addr&amp;quot; -&amp;gt; 102L, // reference to an address entity with entity id 102 &amp;quot;:site/cat&amp;quot; -&amp;gt; &amp;quot;customer&amp;quot; )  Optional attribute values We can look for an optionally present attribute value.</description>
-    </item>
-    
-    <item>
-      <title>Expressions</title>
-      <link>http://scalamolecule.org/docs/attributes/expressions/</link>
-      <pubDate>Fri, 02 Jan 2015 22:06:44 +0100</pubDate>
-      
-      <guid>http://scalamolecule.org/docs/attributes/expressions/</guid>
-      <description>Expressions Tests&amp;hellip;
-Equality Tests&amp;hellip;
-We can apply values to Attributes in order to filter the data structures we are looking for. We could for instance find people who like pizza:
-Person.likes.apply(&amp;quot;pizza&amp;quot;)  or simply
-Person.likes(&amp;quot;pizza&amp;quot;)  Since the applied value &amp;ldquo;pizza&amp;rdquo; ensures that the attributes returned has this value we will get redundant information back for the likes attribute (&amp;ldquo;pizza&amp;rdquo; is returned for all persons):
-Person.name.likes(&amp;quot;pizza&amp;quot;).get === List( (&amp;quot;Fred&amp;quot;, &amp;quot;pizza&amp;quot;), (&amp;quot;Ben&amp;quot;, &amp;quot;pizza&amp;quot;) )  This is an ideomatic place to use a tacet attribute likes_ to say &amp;ldquo;Give me names of persons that like pizza&amp;rdquo; without returning the likes value &amp;ldquo;pizza&amp;rdquo; over and over again.</description>
-    </item>
-    
-    <item>
-      <title>Update</title>
-      <link>http://scalamolecule.org/docs/crud/update/</link>
-      <pubDate>Fri, 02 Jan 2015 22:06:44 +0100</pubDate>
-      
-      <guid>http://scalamolecule.org/docs/crud/update/</guid>
-      <description>Update data Tests&amp;hellip;
-An &amp;ldquo;update&amp;rdquo; is a two-step process in Datomic:
- Retract old fact Assert new fact  Datomic doesn&amp;rsquo;t overwrite data. &amp;ldquo;Retract&amp;rdquo; is a statement that says &amp;ldquo;this data is no longer current&amp;rdquo; which means that it won&amp;rsquo;t turn up when you query for it as of now. If you query for it as of before you will see it!
-Being able to see how data develops over time is a brillant core feature of Datomic.</description>
-    </item>
-    
-    <item>
-      <title>With</title>
-      <link>http://scalamolecule.org/docs/time/with/</link>
-      <pubDate>Fri, 02 Jan 2015 22:06:44 +0100</pubDate>
-      
-      <guid>http://scalamolecule.org/docs/time/with/</guid>
-      <description>With Tests&amp;hellip;
-By supplying some test transaction data to getWith(testTxData) we can get a &amp;ldquo;branch&amp;rdquo; of the current database with the test transaction data applied in-memory. This is a very powerful way of testing future-like &amp;ldquo;what-if&amp;rdquo; scenarios
-We could for instance add some transaction data tx8 to a Person molecule to see if we would get the extected persons back:
-Person.name.likes.getWith(&amp;lt;tx8Data&amp;gt;) === ... // Persons after applying tx8  Applying transaction data To make it easier to supply transaction data to the getWith(txData) method, you can simply add Tx to a Molecule transaction function to get some valid transaction data:</description>
     </item>
     
     <item>
@@ -268,54 +57,6 @@ Unidirectional reference limitations Normal Datomic references are unidirectiona
 Person.name(&amp;quot;Ann&amp;quot;).Friends.name(&amp;quot;Ben&amp;quot;).save  Then we can naturally query to get friends of Ann
 Person.name_(&amp;quot;Ann&amp;quot;).Friends.name.get === List(&amp;quot;Ben&amp;quot;)  But what if we want to find friends of Ben? This will give us nothing since our reference only went from Ann to Ben:
 Person.name_(&amp;quot;Ben&amp;quot;).Friends.name.get === List()  Instead we would have to think backwards to get the back reference &amp;ldquo;who referenced Ben?</description>
-    </item>
-    
-    <item>
-      <title>Aggregates</title>
-      <link>http://scalamolecule.org/docs/attributes/aggregates/</link>
-      <pubDate>Fri, 02 Jan 2015 22:06:44 +0100</pubDate>
-      
-      <guid>http://scalamolecule.org/docs/attributes/aggregates/</guid>
-      <description>Aggregates Tests&amp;hellip;
-Molecule wraps Datomic&amp;rsquo;s native aggregate functions by applying special aggregate keyword objects to the attribute we want to aggregate on. The keyword objects are made available with the molecule._ import.
-Aggregate functions either return a single value or a collection of values:
-Aggregates returning a single value min/max Applying the min or max aggregate keyword object as a value to the age attribute returns the lowest/highest ages.</description>
-    </item>
-    
-    <item>
-      <title>Retract</title>
-      <link>http://scalamolecule.org/docs/crud/retract/</link>
-      <pubDate>Fri, 02 Jan 2015 22:06:44 +0100</pubDate>
-      
-      <guid>http://scalamolecule.org/docs/crud/retract/</guid>
-      <description>Retract data Tests&amp;hellip;
-Retract facts To retract individual attributre values apply empty parenthesises to the attribute we want to retract and then update the molecule:
-Community(belltownId).name().category().update  Here we retracted the name and category attribute values of the Belltown Community entity:
-Retract entity To delete a whole entity with all its attribute values we can call retract on a Long entity id
-fredId.retract  Here all attributes having the entity id fredId are retracted.</description>
-    </item>
-    
-    <item>
-      <title>Testing</title>
-      <link>http://scalamolecule.org/docs/time/testing/</link>
-      <pubDate>Fri, 02 Jan 2015 22:06:44 +0100</pubDate>
-      
-      <guid>http://scalamolecule.org/docs/time/testing/</guid>
-      <description>Testing TestDbAsOf, TestDbSince and TestDbWith
-For more complex test scenarios we can use a &amp;ldquo;test database&amp;rdquo; where we can freely make multiple separate molecule queries against a temporary database &amp;ldquo;branch&amp;rdquo;.
-Test db All molecules expect an implicit connection object to be in scope. If we then set a temporary test database on such conn object we can subsequentially freely perform tests against this temporary database as though it was a &amp;ldquo;branch&amp;rdquo; (think git).</description>
-    </item>
-    
-    <item>
-      <title>Parameterized</title>
-      <link>http://scalamolecule.org/docs/attributes/parameterized/</link>
-      <pubDate>Fri, 02 Jan 2015 22:06:44 +0100</pubDate>
-      
-      <guid>http://scalamolecule.org/docs/attributes/parameterized/</guid>
-      <description>Parameterized Input-molecules Tests&amp;hellip;
-Molecules can be parameterized by applying the input placeholder ? as a value to an attribute. The molecule then expects input for that attribute at runtime.
-By assigning parameterized &amp;ldquo;Input-molecules&amp;rdquo; to variables we can re-use those variables to query for similar data structures where only some data part varies:
-// 1 input parameter val person = m(Person.name(?)) val john = person(&amp;quot;John&amp;quot;).get.head val lisa = person(&amp;quot;Lisa&amp;quot;).get.head  Of course more complex molecules would benefit even more from this approach.</description>
     </item>
     
   </channel>
