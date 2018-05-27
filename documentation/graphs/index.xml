@@ -107,7 +107,7 @@ A namespace is not like an SQL Table but rather organizes some attributes by a m
       <description>Setup your project with Molecule To use Molecule we need to define our database schema in a Schema definition file and then tell sbt about it. When compiling our project from the command line, all necessary boilerplate code is then automatically generated.
 1. SBT build settings Add the following to your build files:
 project/build.properties:
-sbt.version=0.13.13  project/buildinfo.sbt:
+sbt.version=0.13.16  project/buildinfo.sbt:
 addSbtPlugin(&amp;quot;org.scalamolecule&amp;quot; % &amp;quot;sbt-molecule&amp;quot; % &amp;quot;0.3.3&amp;quot;)  build.sbt:
 lazy val yourProject = project.in(file(&amp;quot;demo&amp;quot;)) .</description>
     </item>
@@ -213,7 +213,7 @@ Say you want to save famous Persons names in multiple languages. Then you could 
       <description>Setup your project with Molecule To use Molecule we need to define our database schema in a Schema definition file and then tell sbt about it. When compiling our project from the command line, all necessary boilerplate code is then automatically generated.
 1. SBT build settings Add the following to your build files:
 project/build.properties:
-sbt.version=0.13.13  project/buildinfo.sbt:
+sbt.version=0.13.16  project/buildinfo.sbt:
 addSbtPlugin(&amp;quot;org.scalamolecule&amp;quot; % &amp;quot;sbt-molecule&amp;quot; % &amp;quot;0.3.3&amp;quot;)  build.sbt:
 lazy val yourProject = project.in(file(&amp;quot;demo&amp;quot;)) .</description>
     </item>

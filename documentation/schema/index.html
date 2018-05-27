@@ -172,9 +172,9 @@ import molecule.schema.definition._  // import schema definition DSL
 object SeattleDefinition {
 
   trait Community {
-    val name         = oneString.fullTextSearch
+    val name         = oneString.fulltextSearch
     val url          = oneString
-    val category     = manyString.fullTextSearch
+    val category     = manyString.fulltextSearch
     val orgtype      = oneEnum('community, 'commercial, 'nonprofit, 'personal)
     val `type`       = oneEnum('email_list, 'twitter, 'facebook_page) // + more...
     val neighborhood = one[Neighborhood]
@@ -388,7 +388,7 @@ likely define an Order/OrderLine relationship in an Order namespace as <code>man
     <td>Generated index for this attribute.</td>
   </tr>
   <tr>
-    <td valign="top">fullTextSearch</td>
+    <td valign="top">fulltextSearch</td>
     <td align="center" valign="top">✔︎</td>
     <td>Generate eventually consistent fulltext search index for this attribute.</td>
   </tr>

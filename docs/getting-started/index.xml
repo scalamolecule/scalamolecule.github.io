@@ -21,7 +21,7 @@
 1. SBT build settings Add the following to your build files:
 project/build.properties:
 sbt.version=0.13.16  project/buildinfo.sbt:
-addSbtPlugin(&amp;quot;org.scalamolecule&amp;quot; % &amp;quot;sbt-molecule&amp;quot; % &amp;quot;0.4.4&amp;quot;)  build.sbt:
+addSbtPlugin(&amp;quot;org.scalamolecule&amp;quot; % &amp;quot;sbt-molecule&amp;quot; % &amp;quot;0.4.5&amp;quot;)  build.sbt:
 lazy val yourProject = project.in(file(&amp;quot;demo&amp;quot;)) .</description>
     </item>
     

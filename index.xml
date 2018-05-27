@@ -91,7 +91,7 @@ Related data We can even save related date in the same operation</description>
 1. SBT build settings Add the following to your build files:
 project/build.properties:
 sbt.version=0.13.16  project/buildinfo.sbt:
-addSbtPlugin(&amp;quot;org.scalamolecule&amp;quot; % &amp;quot;sbt-molecule&amp;quot; % &amp;quot;0.4.4&amp;quot;)  build.sbt:
+addSbtPlugin(&amp;quot;org.scalamolecule&amp;quot; % &amp;quot;sbt-molecule&amp;quot; % &amp;quot;0.4.5&amp;quot;)  build.sbt:
 lazy val yourProject = project.in(file(&amp;quot;demo&amp;quot;)) .</description>
     </item>
     
@@ -170,7 +170,7 @@ Save Depending on our domain we can tailor any tx meta data that we find valuabl
       
       <guid>http://scalamolecule.org/dev/boilerplate/</guid>
       <description>Boilerplate code generation An attribute definition like
-@InOut(3, 8) trait SeattleDefinition { trait Community { val name = oneString.fullTextSearch } }  would generate the following boilerplate code
+@InOut(3, 8) trait SeattleDefinition { trait Community { val name = oneString.fulltextSearch } }  would generate the following boilerplate code
 object Community extends Community_0 { def apply(e: Long): Community_0 = ??? } trait Community { class name [Ns, In] extends OneString [Ns, In] with FulltextSearch[Ns, In] with Indexed } trait Community_0 extends Community with Out_0[Community_0, Community_1, Community_In_1_0, Community_In_1_1] { lazy val name : name[Community_1[String], Community_In_1_1[String, String]] with Community_1[String] = new name[Community_1[String], Community_In_1_1[String, String]] with Community_1[String] { override val _kw = &amp;quot;:community/name&amp;quot; } lazy val name_ : name[Community_0, Community_In_1_0[String]] with Community_0 = ?</description>
     </item>
     

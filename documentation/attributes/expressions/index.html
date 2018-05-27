@@ -214,7 +214,7 @@ Person.age.&gt;=(42)
 
 <h3 id="fulltext-search">Fulltext search</h3>
 
-<p>If we add the <code>fullTextSearch</code> option to a String attribute definition Datomic will index the text strings saved so that we can do fulltext searches accross all values. We could for instance search for Community names containing the word &ldquo;Town&rdquo; in their name:</p>
+<p>If we add the <code>fulltextSearch</code> option to a String attribute definition Datomic will index the text strings saved so that we can do fulltext searches accross all values. We could for instance search for Community names containing the word &ldquo;Town&rdquo; in their name:</p>
 
 <pre><code class="language-scala">Community.name.contains(&quot;Town&quot;)
 </code></pre>

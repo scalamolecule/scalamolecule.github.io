@@ -188,14 +188,14 @@ patterns to build molecules&hellip;</p>
 trait that defines namespaces with attributes for your domain:</p>
 
 <pre><code class="language-scala">trait Community {
-  val name = oneString.fullTextSearch
+  val name = oneString.fulltextSearch
   val url  = oneString
   ...
 }
 </code></pre>
 
 <p>The <code>name</code> field defines an attribute of type String with cardinality one. Adding the
-<code>fullTextSearch</code> option will tell Datomic that we want to be able to make fulltext
+<code>fulltextSearch</code> option will tell Datomic that we want to be able to make fulltext
 searches on the values of this attribute.</p>
 
 <p>After defining the schema like this, we run <code>sbt compile</code> and Molecule will generate some
