@@ -198,7 +198,7 @@ are &ldquo;owned&rdquo; by the main entity as when an <code>Order</code> own its
 
   trait Order {
     val id    = oneInt
-    val items = many[LineItem].subComponents // Order owns its line items
+    val items = many[LineItem].isComponent // Order owns its line items
   }
 
   trait LineItem {

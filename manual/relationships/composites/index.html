@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+  <link href='http://fonts.googleapis.com/css?family=Merriweather+Sans:400,300,300italic,400italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+  <title>Composites</title>
+  <link href="/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/css/highlight/styles/solarized_light.css" rel="stylesheet" />
+  <link rel="stylesheet" type="text/css" href="/vendor/font-awesome/css/font-awesome.min.css">
+  <link href="/css/style.css" rel="stylesheet">
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/img/apple-touch-icon-144-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/img/apple-touch-icon-114-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/img/apple-touch-icon-72-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" href="/img/apple-touch-icon-57-precomposed.png">
+  <link rel="shortcut icon" href="/img/favicon.png">
+  <link href="" rel="alternate" type="application/rss+xml" title="Molecule" />
+</head>
+<body>
+<div class="wrapper">
+<div class="container" style="padding-top:20px">
+  <div class="col-md-12 column" style="padding-left:0px; margin-bottom:15px">
+    <div class="col-md-12 column" style="padding-left:0px;height:50px;">
+
+    <ul class="nav nav-pills">
+      <li><a href="/" style="padding-left: 6px; padding-right: 13px; vertical-align: top; margin-top: 0px;"><img src="/img/logo/MoleculeLogo600.png" alt="" width="200"></a></li>
+      
+      
+      
+        <li class="dropdown ">
+          <a data-toggle="dropdown" href="/compare/" target="_top" onclick="javascript:top.location = '\/compare\/';return true;">Compare</a>
+          
+            <ul class="dropdown-menu level1" role="menu" aria-labelledby="dropdownMenu">
+              
+                
+              
+                
+
+                  
+                    <li><a href="/compare/datomic/">Datomic</a></li>
+                  
+
+                
+              
+                
+
+                  
+                    <li class="dropdown-submenu">
+                      <a href="/compare/sql/">SQL</a>
+                      <ul class="dropdown-menu">
+                        
+                          <li><a href="/compare/sql/slick/">Slick</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+
+                
+              
+                
+
+                  
+                    <li><a href="/compare/gremlin/">Gremlin</a></li>
+                  
+
+                
+              
+            </ul>
+          
+        </li>
+      
+      
+        <li class="dropdown ">
+          <a data-toggle="dropdown" href="/resources/" target="_top" onclick="javascript:top.location = '\/resources\/';return true;">Resources</a>
+          
+            <ul class="dropdown-menu level1" role="menu" aria-labelledby="dropdownMenu">
+              
+                
+              
+                
+
+                  
+                    <li class="dropdown-submenu">
+                      <a href="/resources/tutorials/">Tutorials</a>
+                      <ul class="dropdown-menu">
+                        
+                          <li><a href="/resources/tutorials/seattle/">Seattle</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+
+                
+              
+                
+
+                  
+                    <li class="dropdown-submenu">
+                      <a href="/resources/videos/">Videos</a>
+                      <ul class="dropdown-menu">
+                        
+                          <li><a href="/resources/videos/2017-04-25_marc_grue/">Molecule presentation</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+
+                
+              
+            </ul>
+          
+        </li>
+      
+      
+        <li class="dropdown active">
+          <a data-toggle="dropdown" href="/manual/" target="_top" onclick="javascript:top.location = '\/manual\/';return true;">Manual</a>
+          
+            <ul class="dropdown-menu level1" role="menu" aria-labelledby="dropdownMenu">
+              
+                
+
+                  
+                    <li class="dropdown-submenu">
+                      <a href="/manual/">Quick start</a>
+                      <ul class="dropdown-menu">
+                        
+                          <li><a href="/manual/quick-start/introduction/">Introduction</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+
+                
+              
+                
+
+                  
+                    <li><a href="/manual/setup/">Setup</a></li>
+                  
+
+                
+              
+                
+
+                  
+                    <li class="dropdown-submenu">
+                      <a href="/manual/schema/">Schema</a>
+                      <ul class="dropdown-menu">
+                        
+                          <li><a href="/manual/schema/transaction/">Transaction</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+
+                
+              
+                
+
+                  
+                    <li class="dropdown-submenu">
+                      <a href="/manual/attributes/">Attributes</a>
+                      <ul class="dropdown-menu">
+                        
+                          <li><a href="/manual/attributes/basics/">Basics</a></li>
+                        
+                          <li><a href="/manual/attributes/modes/">Mandatory/Tacet/Optional</a></li>
+                        
+                          <li><a href="/manual/attributes/mapped/">Map attributes</a></li>
+                        
+                          <li><a href="/manual/attributes/expressions/">Expressions</a></li>
+                        
+                          <li><a href="/manual/attributes/aggregates/">Aggregates</a></li>
+                        
+                          <li><a href="/manual/attributes/parameterized/">Parameterized</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+
+                
+              
+                
+
+                  
+                    <li><a href="/manual/entities/">Entities</a></li>
+                  
+
+                
+              
+                
+
+                  
+                    <li class="dropdown-submenu">
+                      <a href="/manual/relationships/">Relationships</a>
+                      <ul class="dropdown-menu">
+                        
+                          <li><a href="/manual/relationships/card-one/">Cardinality one</a></li>
+                        
+                          <li><a href="/manual/relationships/card-many/">Cardinality many</a></li>
+                        
+                          <li><a href="/manual/relationships/composites/">Composites</a></li>
+                        
+                          <li><a href="/manual/relationships/bidirectional/">Bidirectional</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+
+                
+              
+                
+
+                  
+                    <li class="dropdown-submenu">
+                      <a href="/manual/crud/">CRUD</a>
+                      <ul class="dropdown-menu">
+                        
+                          <li><a href="/manual/crud/save/">Save</a></li>
+                        
+                          <li><a href="/manual/crud/insert/">Insert</a></li>
+                        
+                          <li><a href="/manual/crud/composite-insert/">Composite insert</a></li>
+                        
+                          <li><a href="/manual/crud/get/">Get</a></li>
+                        
+                          <li><a href="/manual/crud/getjson/">Get Json</a></li>
+                        
+                          <li><a href="/manual/crud/update/">Update</a></li>
+                        
+                          <li><a href="/manual/crud/retract/">Retract</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+
+                
+              
+                
+
+                  
+                    <li class="dropdown-submenu">
+                      <a href="/manual/transactions/">Transactions</a>
+                      <ul class="dropdown-menu">
+                        
+                          <li><a href="/manual/transactions/tx-meta-data/">Tx meta data</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+
+                
+              
+                
+
+                  
+                    <li class="dropdown-submenu">
+                      <a href="/manual/time/">Time</a>
+                      <ul class="dropdown-menu">
+                        
+                          <li><a href="/manual/time/asof-since/">AsOf/Since</a></li>
+                        
+                          <li><a href="/manual/time/history/">History</a></li>
+                        
+                          <li><a href="/manual/time/with/">With</a></li>
+                        
+                          <li><a href="/manual/time/testing/">Testing</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+
+                
+              
+            </ul>
+          
+        </li>
+      
+      
+        <li class="dropdown ">
+          <a data-toggle="dropdown" href="/api/" target="_top" onclick="javascript:top.location = '\/api\/';return true;">API</a>
+          
+        </li>
+      
+      
+        <li class="dropdown ">
+          <a data-toggle="dropdown" href="/dev/" target="_top" onclick="javascript:top.location = '\/dev\/';return true;">Dev</a>
+          
+            <ul class="dropdown-menu level1" role="menu" aria-labelledby="dropdownMenu">
+              
+                
+
+                  
+                    <li><a href="/dev/">Developer</a></li>
+                  
+
+                
+              
+                
+
+                  
+                    <li><a href="/dev/boilerplate/">Boilerplate</a></li>
+                  
+
+                
+              
+                
+
+                  
+                    <li><a href="/dev/transformation/">Transformation</a></li>
+                  
+
+                
+              
+            </ul>
+          
+        </li>
+      
+      
+        <li class="dropdown ">
+          <a data-toggle="dropdown" href="/community/" target="_top" onclick="javascript:top.location = '\/community\/';return true;">Community</a>
+          
+            <ul class="dropdown-menu level1" role="menu" aria-labelledby="dropdownMenu">
+              
+                
+
+                  
+                    <li><a href="https://groups.google.com/forum/#!forum/molecule-dsl">Forum</a></li>
+                  
+
+                
+              
+                
+
+                  
+                    <li><a href="https://github.com/scalamolecule/molecule">Github</a></li>
+                  
+
+                
+              
+                
+
+                  
+                    <li><a href="https://github.com/scalamolecule/molecule/issues">Molecule issues</a></li>
+                  
+
+                
+              
+                
+
+                  
+                    <li><a href="https://github.com/scalamolecule/molecule-docs/issues">Molecule docs issues</a></li>
+                  
+
+                
+              
+            </ul>
+          
+        </li>
+      
+      <li>
+        <div  style="padding-left:14px;padding-top:19px;height:24px;float:right;">
+            <a href="https://github.com/scalamolecule/molecule" class="github-button" data-icon="octicon-star">Github</a>
+            
+          </div>
+      </li>
+    </ul>
+
+</div>
+  </div> 
+
+<div class="col-sm-10 column" style="padding-left:8px;">
+	
+
+<h1 id="composites">Composites</h1>
+
+<p><a href="https://github.com/scalamolecule/molecule/blob/master/coretests/src/test/scala/molecule/coretests/ref/Composite.scala">Tests&hellip;</a></p>
+
+<p>As we saw earlier, <a href="/manual/entities/">Entities</a> are simply groups of facts that share an entity id:</p>
+
+<p><img src="/img/entity/entity5.jpg" alt="" /></p>
+
+<p>The last fact is kind of a black sheep though since the <code>:site/cat</code> attribute is not in the <code>Person</code> namespace.</p>
+
+<h3 id="avoid-non-intrinsic-pollution">Avoid non-intrinsic pollution</h3>
+
+<p>Since entities can have attributes from <strong>any</strong> namespace we have a challenge of how to model this in our
+schema definiton. It would be quick and easy to just make a relationship from a <code>Person</code> namespace to
+the <code>Site</code> namespace:</p>
+
+<pre><code class="language-scala">object YourDomainDefinition {
+  trait Person {
+    val name  = oneString
+    val likes = oneString
+    val age   = oneInt
+    val addr  = one[Addr]
+    val site  = one[Site]
+  }
+  trait Addr {
+    val street = oneString
+    val city   = oneString
+  }
+  trait Site {
+    val cat    = oneString
+  }
+}
+</code></pre>
+
+<p>Then we could easily build a molecule to get the <code>Site</code> category:</p>
+
+<pre><code class="language-scala">Person.name.likes.age.Site.cat.get.head === (&quot;Fred&quot;, &quot;pizza&quot;, 38, &quot;customer&quot;)
+</code></pre>
+
+<p>Modelling-wise this is just not the best idea since we could easily end up making lots of redundant relationships from
+various namespaces to <code>Site</code>:</p>
+
+<pre><code class="language-scala">object YourDomainDefinition {
+  trait Person {
+    val site  = one[Site]
+  }
+  trait Company {
+    val site  = one[Site]
+  }
+  trait Project {
+    val site  = one[Site]
+  }
+  // etc...
+  
+  trait Site {
+    val cat    = oneString
+  }
+}
+</code></pre>
+
+<p>Relationships to <code>Site</code> are simply not <em>intrinsic</em> to or a natural core part of neither <code>Person</code>, <code>Company</code> or <code>Project</code>.
+Littering non-intrinsic relationships to <code>Site</code> - and possibly other cross-cutting namespaces like <code>Tags</code>, <code>Likes</code> etc - all
+over the place quickly clutters and pollutes our domain model.</p>
+
+<p>Instead we want to create a more &ldquo;loose association&rdquo; to <code>Site</code>. This is what Datomic allow us to do by letting an entity id
+tie <em>any</em> attributes together as we see in the list of facts at the top of this page.</p>
+
+<h2 id="composite-modelling">Composite modelling</h2>
+
+<p>In Molecule we can model &ldquo;loose associations&rdquo; with the <code>~</code> (&ldquo;Tilde&rdquo;) method:</p>
+
+<pre><code class="language-scala">m(Person.name.likes.age ~ Site.cat).get === List(
+  ((&quot;Fred&quot;, &quot;pizza&quot;, 38), &quot;customer&quot;)
+)
+</code></pre>
+
+<p>We make a composite molecule from two &ldquo;sub-molecules&rdquo; <code>Person.name.likes.age</code> and <code>Site.cat</code>.</p>
+
+<p>The composite result set is a list of tuples with
+a sub-tuple for each sub-molecule.</p>
+
+<p>Since in this case the last sub-molecule only has one attribute value &ldquo;customer&rdquo; a single value for that is returned. If it
+had 2 attributes we would get a sub-tuple for that too:</p>
+
+<pre><code class="language-scala">m(Person.name.likes.age ~ Site.cat.status).get === List(
+  ((&quot;Fred&quot;, &quot;pizza&quot;, 38), (&quot;customer&quot;, &quot;good&quot;))
+)
+</code></pre>
+
+<p>And so on..</p>
+
+<pre><code class="language-scala">m(Person.name.likes.age ~ Site.cat.status ~ Loc.tags ~ Emotion.like).get === List(
+  ((&quot;Fred&quot;, &quot;pizza&quot;, 38), (&quot;customer&quot;, &quot;good&quot;), Set(&quot;inner city&quot;, &quot;hipster&quot;), true)
+)
+</code></pre>
+
+<p>We can compose up to 22 sub-molecules (!) which should give us plenty of room to model even the most complex
+composite aspects of our domain.</p>
+
+<h3 id="with-expressions">&hellip;with expressions</h3>
+
+<p><em>&ldquo;Which positive elder hipster customers like what?&rdquo;</em></p>
+
+<pre><code class="language-scala">m(Person.name.likes.age_.&gt;(35) 
+ ~ Site.cat_(&quot;customer&quot;)
+ ~ Loc.tags_(&quot;hipster&quot;) 
+ ~ Emotion.like_(true)).get === List(
+  (&quot;Fred&quot;, &quot;pizza&quot;)
+)
+</code></pre>
+
+<p>The combinations are quite endless - while you can keep your domain model/schema clean and intrinsic!</p>
+
+<h2 id="arity-22-molecules">Arity 22+ molecules</h2>
+
+<p>Since composites are composed of up to 22 sub-molecules we could potentially insert and retrieve
+mega composite molecules with up to 22 x 22 = 484 attributes, although the compiler probably wouldn&rsquo;t
+be too happy about that.</p>
+
+<h3 id="compile-time-performance-trick">Compile time performance trick&hellip;</h3>
+
+<p><a href="https://github.com/scalamolecule/molecule/blob/master/coretests/src/test/scala/molecule/coretests/perf/CompilationPerf.scala">Tests&hellip;</a></p>
+
+<p>Compile time for molecules longer than about 14-16 attributes tend to increase sharply, so simply
+splitting up long molecules in 2 or more sub-molecules composed into 1 composite molecule easily keeps compilation fast.</p>
+
+<p>It&rsquo;s also worth to remember that each mandatory attribute in a molecule is like a where clause. So having more than
+ 14-16 where clauses seems also like a less frequent need.</p>
+
+<h3 id="next">Next</h3>
+
+<p><a href="/manual/relationships/bidirectional">Bidirectional references&hellip;</a></p>
+
+</div>
+
+<div class="col-sm-2 column" style="padding-left:20px;padding-top:22px;padding-right: 0px;">
+  <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm ">
+
+  <div style="position:absolute;top: -36px; left: 0px;">
+    
+    <a class="navigation-control up" href="/manual/relationships" style="position:absolute; top:0px; left: 56px">
+      <span class="glyphicon glyphicon-chevron-up"></span>
+    </a>
+    
+    
+    <a class="navigation-control left" href="/manual/relationships/card-many" style="position:absolute; top: 15px; left: 20px">
+      <span class="glyphicon glyphicon-chevron-left"></span>
+    </a>
+    
+    
+    <a class="navigation-control right" href="/manual/relationships/bidirectional" style="position:absolute; top: 15px; left: 89px">
+      <span class="glyphicon glyphicon-chevron-right"></span>
+    </a>
+    
+    
+    <a class="navigation-control right" href="/manual/crud" style="position:absolute; top: 30px; left: 54px;">
+      <span class="glyphicon glyphicon-chevron-down"></span>
+    </a>
+    
+  </div>
+
+  <ul class="bs-docs-sidenav">
+    
+    
+    
+    
+    <li><a href="/manual/">Quick start</a></li>
+    
+    <ul class="level2">
+      
+      <li><a href="/manual/quick-start/introduction/">Introduction</a></li>
+      
+      
+    </ul>
+    
+    
+    
+    
+    <li><a href="/manual/setup/">Setup</a></li>
+    
+    
+    
+    
+    <li><a href="/manual/schema/">Schema</a></li>
+    
+    <ul class="level2">
+      
+      <li><a href="/manual/schema/transaction/">Transaction</a></li>
+      
+      
+    </ul>
+    
+    
+    
+    
+    <li><a href="/manual/attributes/">Attributes</a></li>
+    
+    <ul class="level2">
+      
+      <li><a href="/manual/attributes/basics/">Basics</a></li>
+      
+      
+      
+      <li><a href="/manual/attributes/modes/">Mandatory/Tacet/Optional</a></li>
+      
+      
+      
+      <li><a href="/manual/attributes/mapped/">Map attributes</a></li>
+      
+      
+      
+      <li><a href="/manual/attributes/expressions/">Expressions</a></li>
+      
+      
+      
+      <li><a href="/manual/attributes/aggregates/">Aggregates</a></li>
+      
+      
+      
+      <li><a href="/manual/attributes/parameterized/">Parameterized</a></li>
+      
+      
+    </ul>
+    
+    
+    
+    
+    <li><a href="/manual/entities/">Entities</a></li>
+    
+    
+    
+    
+    <li><a href="/manual/relationships/">Relationships</a></li>
+    
+    <ul class="level2">
+      
+      <li><a href="/manual/relationships/card-one/">Cardinality one</a></li>
+      
+      
+      
+      <li><a href="/manual/relationships/card-many/">Cardinality many</a></li>
+      
+      
+      
+      <li class="active"><b>Composites</b></li>
+      
+      
+      
+      <li><a href="/manual/relationships/bidirectional/">Bidirectional</a></li>
+      
+      
+    </ul>
+    
+    
+    
+    
+    <li><a href="/manual/crud/">CRUD</a></li>
+    
+    <ul class="level2">
+      
+      <li><a href="/manual/crud/save/">Save</a></li>
+      
+      
+      
+      <li><a href="/manual/crud/insert/">Insert</a></li>
+      
+      
+      
+      <li><a href="/manual/crud/composite-insert/">Composite insert</a></li>
+      
+      
+      
+      <li><a href="/manual/crud/get/">Get</a></li>
+      
+      
+      
+      <li><a href="/manual/crud/getjson/">Get Json</a></li>
+      
+      
+      
+      <li><a href="/manual/crud/update/">Update</a></li>
+      
+      
+      
+      <li><a href="/manual/crud/retract/">Retract</a></li>
+      
+      
+    </ul>
+    
+    
+    
+    
+    <li><a href="/manual/transactions/">Transactions</a></li>
+    
+    <ul class="level2">
+      
+      <li><a href="/manual/transactions/tx-meta-data/">Tx meta data</a></li>
+      
+      
+    </ul>
+    
+    
+    
+    
+    <li><a href="/manual/time/">Time</a></li>
+    
+    <ul class="level2">
+      
+      <li><a href="/manual/time/asof-since/">AsOf/Since</a></li>
+      
+      
+      
+      <li><a href="/manual/time/history/">History</a></li>
+      
+      
+      
+      <li><a href="/manual/time/with/">With</a></li>
+      
+      
+      
+      <li><a href="/manual/time/testing/">Testing</a></li>
+      
+      
+    </ul>
+    
+    
+    
+    
+    
+  </ul>
+</nav>
+</div>
+
+     
+  </div> 
+</div> 
+<div class="push"></div>
+</div> 
+
+<footer class="bs-docs-footer">
+
+  <div class="container">
+    <ul class="bs-docs-footer-links">
+      <li style="vertical-align: top; margin-top: 0px;"><a href="/front/"><img src="/img/logo/MoleculeLogo200.png" alt=""></a></li>
+      <li><a href="https://github.com/scalamolecule/molecule">GitHub</a></li>
+      <li><a href="https://github.com/scalamolecule/molecule-docs">GitHub-docs</a></li>
+      <li><a href="https://groups.google.com/forum/#!forum/molecule-dsl">Forum</a></li>
+      <li><a href="/about/">About</a></li>
+      <li><a href="/credits/">Credits</a></li>
+    </ul>
+    <p>Licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0" target="_blank" rel="license">Apache License 2.0</a></p>
+  </div>
+</footer>
+
+
+<script type="text/javascript" src="/js/jquery-1.11.2.min.js"></script>
+
+
+
+<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+
+
+
+<script src="/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script type="text/javascript" src="/js/scripts.js"></script>
+
+
+
+
+<script async defer id="github-bjs" src="https://buttons.github.io/buttons.js"></script>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-2787756-3', 'auto');
+  ga('send', 'pageview');
+</script>
+    
+</body>
+</html>

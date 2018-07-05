@@ -163,7 +163,7 @@
 
   trait Order {
     val id    = oneString
-    val items = many[LineItem].subComponents
+    val items = many[LineItem].isComponent
   }
 
   trait LineItem {

@@ -1,0 +1,1722 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+  <link href='http://fonts.googleapis.com/css?family=Merriweather+Sans:400,300,300italic,400italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+  <title>Presentation</title>
+  <link href="/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/css/highlight/styles/solarized_light.css" rel="stylesheet" />
+  <link rel="stylesheet" type="text/css" href="/vendor/font-awesome/css/font-awesome.min.css">
+  <link href="/css/style.css" rel="stylesheet">
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/img/apple-touch-icon-144-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/img/apple-touch-icon-114-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/img/apple-touch-icon-72-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" href="/img/apple-touch-icon-57-precomposed.png">
+  <link rel="shortcut icon" href="/img/favicon.png">
+  <link href="" rel="alternate" type="application/rss+xml" title="Molecule" />
+</head>
+<body>
+<div class="wrapper">
+<div class="container" style="padding-top:20px">
+  <div class="col-md-12 column" style="padding-left:0px; margin-bottom:15px">
+    <div class="col-md-12 column" style="padding-left:0px;height:50px;">
+
+    <ul class="nav nav-pills">
+      <li><a href="/" style="padding-left: 6px; padding-right: 13px; vertical-align: top; margin-top: 0px;"><img src="/img/logo/MoleculeLogo600.png" alt="" width="200"></a></li>
+      
+      
+      
+        <li class="dropdown ">
+          <a data-toggle="dropdown" href="/compare/" target="_top" onclick="javascript:top.location = '\/compare\/';return true;">Compare</a>
+          
+            <ul class="dropdown-menu level1" role="menu" aria-labelledby="dropdownMenu">
+              
+                
+              
+                
+
+                  
+                    <li><a href="/compare/datomic/">Datomic</a></li>
+                  
+
+                
+              
+                
+
+                  
+                    <li class="dropdown-submenu">
+                      <a href="/compare/sql/">SQL</a>
+                      <ul class="dropdown-menu">
+                        
+                          <li><a href="/compare/sql/slick/">Slick</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+
+                
+              
+                
+
+                  
+                    <li><a href="/compare/gremlin/">Gremlin</a></li>
+                  
+
+                
+              
+            </ul>
+          
+        </li>
+      
+      
+        <li class="dropdown ">
+          <a data-toggle="dropdown" href="/resources/" target="_top" onclick="javascript:top.location = '\/resources\/';return true;">Resources</a>
+          
+            <ul class="dropdown-menu level1" role="menu" aria-labelledby="dropdownMenu">
+              
+                
+              
+                
+
+                  
+                    <li class="dropdown-submenu">
+                      <a href="/resources/tutorials/">Tutorials</a>
+                      <ul class="dropdown-menu">
+                        
+                          <li><a href="/resources/tutorials/seattle/">Seattle</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+
+                
+              
+                
+
+                  
+                    <li class="dropdown-submenu">
+                      <a href="/resources/videos/">Videos</a>
+                      <ul class="dropdown-menu">
+                        
+                          <li><a href="/resources/videos/2017-04-25_marc_grue/">Molecule presentation</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+
+                
+              
+            </ul>
+          
+        </li>
+      
+      
+        <li class="dropdown ">
+          <a data-toggle="dropdown" href="/manual/" target="_top" onclick="javascript:top.location = '\/manual\/';return true;">Manual</a>
+          
+            <ul class="dropdown-menu level1" role="menu" aria-labelledby="dropdownMenu">
+              
+                
+
+                  
+                    <li class="dropdown-submenu">
+                      <a href="/manual/">Quick start</a>
+                      <ul class="dropdown-menu">
+                        
+                          <li><a href="/manual/quick-start/introduction/">Introduction</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+
+                
+              
+                
+
+                  
+                    <li><a href="/manual/setup/">Setup</a></li>
+                  
+
+                
+              
+                
+
+                  
+                    <li class="dropdown-submenu">
+                      <a href="/manual/schema/">Schema</a>
+                      <ul class="dropdown-menu">
+                        
+                          <li><a href="/manual/schema/transaction/">Transaction</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+
+                
+              
+                
+
+                  
+                    <li class="dropdown-submenu">
+                      <a href="/manual/attributes/">Attributes</a>
+                      <ul class="dropdown-menu">
+                        
+                          <li><a href="/manual/attributes/basics/">Basics</a></li>
+                        
+                          <li><a href="/manual/attributes/modes/">Mandatory/Tacet/Optional</a></li>
+                        
+                          <li><a href="/manual/attributes/mapped/">Map attributes</a></li>
+                        
+                          <li><a href="/manual/attributes/expressions/">Expressions</a></li>
+                        
+                          <li><a href="/manual/attributes/aggregates/">Aggregates</a></li>
+                        
+                          <li><a href="/manual/attributes/parameterized/">Parameterized</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+
+                
+              
+                
+
+                  
+                    <li><a href="/manual/entities/">Entities</a></li>
+                  
+
+                
+              
+                
+
+                  
+                    <li class="dropdown-submenu">
+                      <a href="/manual/relationships/">Relationships</a>
+                      <ul class="dropdown-menu">
+                        
+                          <li><a href="/manual/relationships/card-one/">Cardinality one</a></li>
+                        
+                          <li><a href="/manual/relationships/card-many/">Cardinality many</a></li>
+                        
+                          <li><a href="/manual/relationships/composites/">Composites</a></li>
+                        
+                          <li><a href="/manual/relationships/bidirectional/">Bidirectional</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+
+                
+              
+                
+
+                  
+                    <li class="dropdown-submenu">
+                      <a href="/manual/crud/">CRUD</a>
+                      <ul class="dropdown-menu">
+                        
+                          <li><a href="/manual/crud/save/">Save</a></li>
+                        
+                          <li><a href="/manual/crud/insert/">Insert</a></li>
+                        
+                          <li><a href="/manual/crud/composite-insert/">Composite insert</a></li>
+                        
+                          <li><a href="/manual/crud/get/">Get</a></li>
+                        
+                          <li><a href="/manual/crud/getjson/">Get Json</a></li>
+                        
+                          <li><a href="/manual/crud/update/">Update</a></li>
+                        
+                          <li><a href="/manual/crud/retract/">Retract</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+
+                
+              
+                
+
+                  
+                    <li class="dropdown-submenu">
+                      <a href="/manual/transactions/">Transactions</a>
+                      <ul class="dropdown-menu">
+                        
+                          <li><a href="/manual/transactions/tx-meta-data/">Tx meta data</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+
+                
+              
+                
+
+                  
+                    <li class="dropdown-submenu">
+                      <a href="/manual/time/">Time</a>
+                      <ul class="dropdown-menu">
+                        
+                          <li><a href="/manual/time/asof-since/">AsOf/Since</a></li>
+                        
+                          <li><a href="/manual/time/history/">History</a></li>
+                        
+                          <li><a href="/manual/time/with/">With</a></li>
+                        
+                          <li><a href="/manual/time/testing/">Testing</a></li>
+                        
+                      </ul>
+                    </li>
+                  
+
+                
+              
+            </ul>
+          
+        </li>
+      
+      
+        <li class="dropdown ">
+          <a data-toggle="dropdown" href="/api/" target="_top" onclick="javascript:top.location = '\/api\/';return true;">API</a>
+          
+        </li>
+      
+      
+        <li class="dropdown ">
+          <a data-toggle="dropdown" href="/dev/" target="_top" onclick="javascript:top.location = '\/dev\/';return true;">Dev</a>
+          
+            <ul class="dropdown-menu level1" role="menu" aria-labelledby="dropdownMenu">
+              
+                
+
+                  
+                    <li><a href="/dev/">Developer</a></li>
+                  
+
+                
+              
+                
+
+                  
+                    <li><a href="/dev/boilerplate/">Boilerplate</a></li>
+                  
+
+                
+              
+                
+
+                  
+                    <li><a href="/dev/transformation/">Transformation</a></li>
+                  
+
+                
+              
+            </ul>
+          
+        </li>
+      
+      
+        <li class="dropdown ">
+          <a data-toggle="dropdown" href="/community/" target="_top" onclick="javascript:top.location = '\/community\/';return true;">Community</a>
+          
+            <ul class="dropdown-menu level1" role="menu" aria-labelledby="dropdownMenu">
+              
+                
+
+                  
+                    <li><a href="https://groups.google.com/forum/#!forum/molecule-dsl">Forum</a></li>
+                  
+
+                
+              
+                
+
+                  
+                    <li><a href="https://github.com/scalamolecule/molecule">Github</a></li>
+                  
+
+                
+              
+                
+
+                  
+                    <li><a href="https://github.com/scalamolecule/molecule/issues">Molecule issues</a></li>
+                  
+
+                
+              
+                
+
+                  
+                    <li><a href="https://github.com/scalamolecule/molecule-docs/issues">Molecule docs issues</a></li>
+                  
+
+                
+              
+            </ul>
+          
+        </li>
+      
+      <li>
+        <div  style="padding-left:14px;padding-top:19px;height:24px;float:right;">
+            <a href="https://github.com/scalamolecule/molecule" class="github-button" data-icon="octicon-star">Github</a>
+            
+          </div>
+      </li>
+    </ul>
+
+</div>
+  </div> 
+
+<div class="col-sm-10 column" style="padding-left:8px;">
+	
+
+<h1 id="molecule-presentation-sample-code-snippets">Molecule presentation sample code snippets</h1>
+
+<pre><code class="language-scala">Person.id.nameMap.get.head === (101, Map(
+    &quot;en&quot; -&gt; &quot;Dmitri Shostakovich&quot;,
+    &quot;de&quot; -&gt; &quot;Dmitri Schostakowitsch&quot;,
+    &quot;fr&quot; -&gt; &quot;Dmitri Chostakovitch&quot;
+  ))
+  
+// By key
+Person.nameMapK(&quot;fr&quot;).get.head === &quot;Dmitri Chostakovitch&quot;
+
+// By value
+Person.id.nameMap_(&quot;Dmitri Chostakovitch&quot;).get.head === 101
+Person.id.nameMap_(&quot;.*Shosta.*&quot;).get.head === 101
+
+// By key and value
+Person.id.nameMap_(&quot;en&quot; -&gt; &quot;Dmitri Shostakovich&quot;).get.head === 101
+Person.id.nameMap_(&quot;en&quot;)(&quot;.*Shosta.*&quot;).get.head === 101
+</code></pre>
+
+<pre><code class="language-scala">Person.id.nameMap.get.head === (101, Map(
+    &quot;en&quot; -&gt; &quot;Dmitri Shostakovich&quot;,
+    &quot;de&quot; -&gt; &quot;Dmitri Schostakowitsch&quot;,
+    &quot;fr&quot; -&gt; &quot;Dmitri Chostakovitch&quot;
+  ))
+  
+// By key
+Person.nameMapK(&quot;fr&quot;).get.head === &quot;Dmitri Chostakovitch&quot;
+
+// By value
+Person.id.nameMap_(&quot;Dmitri Chostakovitch&quot;).get.head === 101
+Person.id.nameMap_(&quot;.*Shosta.*&quot;).get.head === 101
+</code></pre>
+
+<pre><code class="language-scala">Person.id.nameMap.get.head === (101, Map(
+    &quot;en&quot; -&gt; &quot;Dmitri Shostakovich&quot;,
+    &quot;de&quot; -&gt; &quot;Dmitri Schostakowitsch&quot;,
+    &quot;fr&quot; -&gt; &quot;Dmitri Chostakovitch&quot;
+  ))
+  
+// By key
+Person.nameMapK(&quot;fr&quot;).get.head === &quot;Dmitri Chostakovitch&quot;
+</code></pre>
+
+<pre><code class="language-scala">Person.id.nameMap.get.head === (101, Map(
+    &quot;en&quot; -&gt; &quot;Dmitri Shostakovich&quot;,
+    &quot;de&quot; -&gt; &quot;Dmitri Schostakowitsch&quot;,
+    &quot;fr&quot; -&gt; &quot;Dmitri Chostakovitch&quot;
+  ))
+  
+// By key
+Person.nameMapK(&quot;fr&quot;).get.head === &quot;Dmitri Chostakovitch&quot;
+Person.nameMapK(&quot;fr|en&quot;).get.head === &quot;Dmitri Chostakovitch&quot;
+</code></pre>
+
+<pre><code class="language-scala">Person.name
+  .Home.street.city._Person
+  .Work.street.city.get.head === (
+  &quot;Fred&quot;, 
+  &quot;Baker st. 7&quot;, &quot;Boston&quot;, 
+  &quot;Downtown 1&quot;, &quot;Boston&quot;
+)
+</code></pre>
+
+<pre><code class="language-scala">Person.name
+  .Home.street.city._Person
+  .Cottage.street.city._Person
+  .Work.street.city.get.head === (
+  &quot;Fred&quot;, 
+  &quot;Baker st. 7&quot;, &quot;Boston&quot;, 
+  &quot;Mountain way 32&quot;, &quot;Woods town&quot;, 
+  &quot;Downtown 1&quot;, &quot;Boston&quot;
+)
+</code></pre>
+
+<pre><code class="language-scala">Person.name.Home.street.city.get.head === (
+  &quot;Fred&quot;, &quot;Baker St. 7&quot;, &quot;Boston&quot;
+)
+</code></pre>
+
+<pre><code class="language-scala">Person.name.age.get  // &quot;We need an M2 with a 'get' method!&quot;
+</code></pre>
+
+<pre><code class="language-scala">Person.name.age
+</code></pre>
+
+<pre><code class="language-scala">Person.name.age  // extends M2[String, Int])
+</code></pre>
+
+<pre><code class="language-scala">m(Person.name.age).get     ...or...       Person.name.age.get
+</code></pre>
+
+<pre><code class="language-scala">implicit def m[A, B](dsl: M2[A, B]): Molecule2[A, B] = macro from2attr[A, B]
+</code></pre>
+
+<pre><code class="language-scala">implicit def m[A, B](dsl: M2[A, B]): Molecule2[A, B] = macro from2attr[A, B]
+
+// Macro implementation (simplified)
+def from2attr[A, B](dsl: M2[A, B]): Molecule2[A, B] = {
+  val query = ??? // todo
+  q&quot;&quot;&quot;
+    new Molecule2[A, B] {
+      def get: Iterable[(A, B)] = datomic.Peer.q(${query}, conn.db).asScala.map(
+        _.asScala match {
+          case Seq(a, b) =&gt; (a.asInstanceOf[A], b.asInstanceOf[B])
+        }
+      )
+    }
+  &quot;&quot;&quot;
+}
+</code></pre>
+
+<pre><code class="language-scala">
+
+// Macro implementation (simplified)
+def from2attr[A, B](dsl: M2[A, B]): Molecule2[A, B] = {
+  val query = ??? // todo
+  q&quot;&quot;&quot;
+    new Molecule2[A, B] {
+      def get: Iterable[(A, B)] = datomic.Peer.q(${query}, conn.db).asScala.map(
+        _.asScala match {
+          case Seq(a, b) =&gt; (a.asInstanceOf[A], b.asInstanceOf[B])
+        }
+      )
+    }
+  &quot;&quot;&quot;
+}
+</code></pre>
+
+<pre><code class="language-scala">
+
+
+
+  val query = ??? // todo
+  q&quot;&quot;&quot;
+    new Molecule2[A, B] {
+      def get: Iterable[(A, B)] = datomic.Peer.q(${query}, conn.db).asScala.map(
+        _.asScala match {
+          case Seq(a, b) =&gt; (a.asInstanceOf[A], b.asInstanceOf[B])
+        }
+      )
+    }
+  &quot;&quot;&quot;
+
+</code></pre>
+
+<pre><code class="language-scala">
+
+
+
+
+  q&quot;&quot;&quot;
+    new Molecule2[A, B] {
+      def get: Iterable[(A, B)] = datomic.Peer.q(${query}, conn.db).asScala.map(
+        _.asScala match {
+          case Seq(a, b) =&gt; (a.asInstanceOf[A], b.asInstanceOf[B])
+        }
+      )
+    }
+  &quot;&quot;&quot;
+
+</code></pre>
+
+<pre><code class="language-scala">implicit def m[A, B](dsl: M2[A, B]): Molecule2[A, B] = macro from2attr[A, B]
+
+def from2attr[A: c.WeakTypeTag, B: c.WeakTypeTag]
+    (c: Context)
+    (dsl: c.Expr[M2[A, B]])
+: c.Expr[Molecule2[A, B]] = {
+  val query = ???
+  c.Expr(
+    q&quot;&quot;&quot;
+      new Molecule2[${c.weakTypeOf[A]}, ${c.weakTypeOf[B]}] {
+        def get = datomic.Peer.q(${query}, conn.db).asScala.map( _.asScala match {
+            case Seq(a, b) =&gt;
+              (a.asInstanceOf[${c.weakTypeOf[A]}], b.asInstanceOf[${c.weakTypeOf[B]}])
+          }
+        )
+      }
+    &quot;&quot;&quot;
+  )
+}
+</code></pre>
+
+<pre><code class="language-scala">val (email, oldPassw) = User(eid).email.passw.get.head
+</code></pre>
+
+<pre><code class="language-scala">val encryptedNewPassw = encrypt(newPassw)
+User(eid).passw(encryptedNewPassw).save
+</code></pre>
+
+<pre><code class="language-scala">// Actions
+val saveJohn      = Person.str(&quot;John&quot;).int(44).saveTx
+val insertMembers = Person.str.int insertTx List((&quot;Lisa&quot;, 23), (&quot;Pete&quot;, 24))
+val updateFred    = Person(fred).int(43).updateTx
+
+val base     = m(Person.name.age)
+val expected = List(
+  (&quot;Fred&quot;, 43), // Updated
+  (&quot;John&quot;, 44), // Saved
+  (&quot;Lisa&quot;, 23), // Inserted
+  (&quot;Pete&quot;, 24)  // Inserted
+)
+
+// Test: Order of actions doesn't affect outcome
+base.getWith(saveJohn, insertMembers, updateFred) === expected
+base.getWith(saveJohn, updateFred, insertMembers) === expected
+base.getWith(insertMembers, saveJohn, updateFred) === expected
+base.getWith(insertMembers, updateFred, saveJohn) === expected
+base.getWith(updateFred, saveJohn, insertMembers) === expected
+base.getWith(updateFred, insertMembers, saveJohn) === expected
+</code></pre>
+
+<pre><code class="language-scala">// Actions
+val saveJohn      = Person.str(&quot;John&quot;).int(44).saveTx
+val insertMembers = Person.str.int insertTx List((&quot;Lisa&quot;, 23), (&quot;Pete&quot;, 24))
+val updateFred    = Person(fred).int(43).updateTx
+
+val base     = m(Person.name.age)
+val expected = List(
+  (&quot;Fred&quot;, 43), // Updated
+  (&quot;John&quot;, 44), // Saved
+  (&quot;Lisa&quot;, 23), // Inserted
+  (&quot;Pete&quot;, 24)  // Inserted
+)
+
+// Test: Order of actions doesn't affect outcome
+base.getWith(saveJohn, insertMembers, updateFred).get.toSeq.sorted === expected
+base.getWith(saveJohn, updateFred, insertMembers).get.toSeq.sorted === expected
+base.getWith(insertMembers, saveJohn, updateFred).get.toSeq.sorted === expected
+base.getWith(insertMembers, updateFred, saveJohn).get.toSeq.sorted === expected
+base.getWith(updateFred, saveJohn, insertMembers).get.toSeq.sorted === expected
+base.getWith(updateFred, insertMembers, saveJohn).get.toSeq.sorted === expected
+</code></pre>
+
+<pre><code class="language-scala">val fred = Person.name(&quot;Fred&quot;).age(42).save.eid
+Person.name.age.get === List((&quot;Fred&quot;, 42))
+
+Person.name.age.getWith(
+  Person.name(&quot;John&quot;).age(44).saveTx,
+  Person.name.age insertTx List(
+    (&quot;Lisa&quot;, 23),
+    (&quot;Pete&quot;, 24)
+  ),
+  Person(fred).age(43).updateTx
+) === List(
+  (&quot;Fred&quot;, 43), // Updated
+  (&quot;John&quot;, 44), // Saved
+  (&quot;Lisa&quot;, 23), // Inserted
+  (&quot;Pete&quot;, 24)  // Inserted
+)
+
+// Nothing changed
+Person.name.age.get === List((&quot;Fred&quot;, 42))
+</code></pre>
+
+<pre><code class="language-scala">val fred = Person.name(&quot;Fred&quot;).age(42).save.eid
+Person.name.age.get === List((&quot;Fred&quot;, 42))
+
+Person.name.age.getWith(
+  Person.name.age insertTx List(
+    (&quot;Lisa&quot;, 23),
+    (&quot;Pete&quot;, 24)
+  )
+) === List(
+  (&quot;Fred&quot;, 42), // unchanged
+  (&quot;Lisa&quot;, 23), // inserted
+  (&quot;Pete&quot;, 24)  // inserted
+)
+
+// Nothing changed
+Person.name.age.get === List((&quot;Fred&quot;, 42))
+</code></pre>
+
+<pre><code class="language-scala">val fred = Person.name(&quot;Fred&quot;).age(42).save.eid
+Person.name.age.get === List((&quot;Fred&quot;, 42))
+
+Person.name.age.getWith(
+  Person.name(&quot;John&quot;).age(44).saveTx
+) === List(
+  (&quot;Fred&quot;, 42), // unchanged
+  (&quot;John&quot;, 44)  // new saved
+)
+
+// Nothing changed
+Person.name.age.get === List((&quot;Fred&quot;, 42))
+</code></pre>
+
+<pre><code class="language-scala">val fred = Person.name(&quot;Fred&quot;).age(42).save.eid
+Person.name.age.get === List((&quot;Fred&quot;, 42))
+
+Person.name.age.getWith(
+  Person(fred).age(43).updateTx
+) === List(
+  (&quot;Fred&quot;, 43) // updated
+)
+
+// Nothing changed
+Person.name.age.get === List((&quot;Fred&quot;, 42))
+</code></pre>
+
+<pre><code>List(
+  [:db/add, 17592186045445, :ns/int, 43]
+)
+List(
+    [:db/add, #db/id[:db.part/user -1000112], :ns/str, John], 
+    [:db/add, #db/id[:db.part/user -1000112], :ns/int, 44]
+)
+List(
+    [:db/add, #db/id[:db.part/user -1000113], :ns/str, Lisa], 
+    [:db/add, #db/id[:db.part/user -1000113], :ns/int, 23], 
+    [:db/add, #db/id[:db.part/user -1000114], :ns/str, Pete], 
+    [:db/add, #db/id[:db.part/user -1000114], :ns/int, 24]
+)
+List(
+    [:db/add, 17592186045445, :ns/int, 43]
+)
+</code></pre>
+
+<pre><code>List(
+  [:db/add, 17592186045445, :ns/int, 43]
+)
+</code></pre>
+
+<pre><code class="language-scala">val fred = Person.name(&quot;Fred&quot;).age(42).save.eid
+Person.name.age.get === List((&quot;Fred&quot;, 42))
+
+Person.name.age.getWith ( // previously `imagine`
+  // Manipulate some data...
+) === List(
+  // Expected result?
+)
+
+// Nothing changed
+Person.name.age.get === List((&quot;Fred&quot;, 42))
+</code></pre>
+
+<pre><code class="language-scala">val tx1 = Person.likes(&quot;pizza&quot;).save
+val tx2 = Person.likes(&quot;pasta&quot;).save
+val tx3 = Person.likes(&quot;sushi&quot;).save
+val tx4 = Person.likes(&quot;burger&quot;).save
+
+// Values since tx2 (tx2 itself excluded)
+// (previously `since(tx2).get`)
+Person.likes.getSince(tx2) === List(&quot;sushi&quot;, &quot;burger&quot;)  
+</code></pre>
+
+<pre><code class="language-scala">Person.e.likes.op.txInstant
+  .tx_(Audit.user.uc).getHistory === List(
+  (fred, &quot;pizza&quot;, true, &quot;2017-04-25 13:52:07&quot;, &quot;Lisa&quot;, &quot;survey&quot;),
+  (fred, &quot;pizza&quot;, false, &quot;2017-04-26 18:35:41&quot;, &quot;Peter&quot;, &quot;interview&quot;),
+  (fred, &quot;pasta&quot;, true, &quot;2017-04-26 18:35:41&quot;, &quot;Peter&quot;, &quot;interview&quot;)
+)
+
+Person.e.likes.op.txInstant
+  .tx_(Audit.user_(&quot;Peter&quot;).uc_(&quot;interview&quot;)).getHistory === List(
+  (fred, &quot;pizza&quot;, false, &quot;2017-04-26 18:35:41&quot;),
+  (fred, &quot;pasta&quot;, true, &quot;2017-04-26 18:35:41&quot;)
+)
+
+Person.e.likes_(&quot;pizza&quot;).op_(false).txInstant
+  .tx_(Audit.uc_(&quot;interview&quot;)).getHistory === List(
+  (fred, &quot;2017-04-26 18:35:41&quot;)
+)
+</code></pre>
+
+<pre><code class="language-scala">Person.e.likes.op.txInstant
+  .tx_(Audit.user.uc).getHistory === List(
+  (fred, &quot;pizza&quot;, true, &quot;2017-04-25 13:52:07&quot;, &quot;Lisa&quot;, &quot;survey&quot;),
+  (fred, &quot;pizza&quot;, false, &quot;2017-04-26 18:35:41&quot;, &quot;Peter&quot;, &quot;interview&quot;),
+  (fred, &quot;pasta&quot;, true, &quot;2017-04-26 18:35:41&quot;, &quot;Peter&quot;, &quot;interview&quot;)
+)
+
+Person.e.likes.op.txInstant
+  .tx_(Audit.user_(&quot;Peter&quot;).uc_(&quot;interview&quot;)).getHistory === List(
+  (fred, &quot;pizza&quot;, false, &quot;2017-04-26 18:35:41&quot;),
+  (fred, &quot;pasta&quot;, true, &quot;2017-04-26 18:35:41&quot;)
+)
+</code></pre>
+
+<pre><code class="language-scala">Person.e.likes.op.txInstant
+  .tx_(Audit.user.uc).getHistory === List(
+  (fred, &quot;pizza&quot;, true, &quot;2017-04-25 13:52:07&quot;, &quot;Lisa&quot;, &quot;survey&quot;),
+  (fred, &quot;pizza&quot;, false, &quot;2017-04-26 18:35:41&quot;, &quot;Peter&quot;, &quot;interview&quot;),
+  (fred, &quot;pasta&quot;, true, &quot;2017-04-26 18:35:41&quot;, &quot;Peter&quot;, &quot;interview&quot;)
+)
+</code></pre>
+
+<pre><code class="language-scala">Person.name.likes.op.txInstant
+  .tx_(Audit.user.uc).getHistory === List(
+  (&quot;Fred&quot;, &quot;pizza&quot;, true, &quot;2017-04-25 13:52:07&quot;, &quot;Lisa&quot;, &quot;survey&quot;),
+  (&quot;Fred&quot;, &quot;pizza&quot;, false, &quot;2017-04-26 18:35:41&quot;, &quot;Peter&quot;, &quot;interview&quot;),
+  (&quot;Fred&quot;, &quot;pasta&quot;, true, &quot;2017-04-26 18:35:41&quot;, &quot;Peter&quot;, &quot;interview&quot;)
+)
+</code></pre>
+
+<pre><code class="language-scala">Person(fred).likes.op
+  .tx_(Audit.user.uc).getHistory === List(
+  (&quot;pizza&quot;, true),
+  (&quot;pizza&quot;, false),
+  (&quot;pasta&quot;, true)
+)
+
+Person.name.likes.op_(false).txInstant
+  .tx_(Audit.user.uc).getHistory === List(
+  (&quot;Fred&quot;, &quot;pizza&quot;, &quot;2017-04-26 18:35:41&quot;, &quot;Peter&quot;, &quot;interview&quot;)
+)
+</code></pre>
+
+<pre><code class="language-scala">Person(fred).likes.op.getHistory === List(
+  (&quot;pizza&quot;, true),
+  (&quot;pizza&quot;, false),
+  (&quot;pasta&quot;, true)
+)
+
+Person(fred).likes.getHistory === List(&quot;pizza&quot;, &quot;pasta&quot;)
+
+Person(fred).likes.op_(false).getHistory === List(&quot;pizza&quot;)
+
+Person.name_(&quot;Fred&quot;).likes.op_(false).txInstant.getHistory === List(
+  (&quot;pizza&quot;, &quot;2017-04-26 18:35:41&quot;)
+)
+</code></pre>
+
+<pre><code class="language-scala">Person(fred).likes.op.getHistory === List(
+  (&quot;pizza&quot;, true),
+  (&quot;pizza&quot;, false),
+  (&quot;pasta&quot;, true)
+)
+
+Person(fred).likes.getHistory === List(&quot;pizza&quot;, &quot;pasta&quot;)
+
+Person(fred).likes.op_(false).getHistory === List(&quot;pizza&quot;)
+
+Person.e.likes.op_(false).txInstant.getHistory === List(
+  (fred, &quot;pizza&quot;, &quot;2017-04-26 18:35:41&quot;)
+)
+</code></pre>
+
+<pre><code class="language-scala">Person(fred).likes.op.getHistory === List(
+  (&quot;pizza&quot;, true),
+  (&quot;pizza&quot;, false),
+  (&quot;pasta&quot;, true)
+)
+
+Person(fred).likes.getHistory === List(&quot;pizza&quot;, &quot;pasta&quot;)
+
+Person(fred).likes.op_(false).getHistory === List(&quot;pizza&quot;)
+
+Person.name.likes.op_(false).txInstant.getHistory === List(
+  (&quot;Fred&quot;, &quot;pizza&quot;, &quot;2017-04-26 18:35:41&quot;)
+)
+</code></pre>
+
+<pre><code class="language-scala">Person(fred).likes.op.getHistory === List(
+  (&quot;pizza&quot;, true),
+  (&quot;pizza&quot;, false),
+  (&quot;pasta&quot;, true)
+)
+
+Person(fred).likes.getHistory === List(&quot;pizza&quot;, &quot;pasta&quot;)
+
+Person(fred).likes.op_(false).getHistory === List(&quot;pizza&quot;)
+</code></pre>
+
+<pre><code class="language-scala">Person(fred).likes.op.getHistory === List(
+  (&quot;pizza&quot;, true),
+  (&quot;pizza&quot;, false),
+  (&quot;pasta&quot;, true)
+)
+
+Person(fred).likes.getHistory === List(&quot;pizza&quot;, &quot;pasta&quot;)
+</code></pre>
+
+<pre><code class="language-scala">Db.e.a.v.tx.t.txInstant.op.getHistory === List(
+  (fred, &quot;:person/name&quot;,  &quot;Fred&quot;,  tx1, t1, date1, true),
+  (fred, &quot;:person/likes&quot;, &quot;pizza&quot;, tx1, t1, date1, true),
+  (fred, &quot;:person/likes&quot;, &quot;pizza&quot;, tx2, t2, date2, false),
+  (fred, &quot;:person/likes&quot;, &quot;pasta&quot;, tx2, t2, date2, true)
+)
+</code></pre>
+
+<pre><code class="language-scala">Person(fred).a.v.tx.t.txInstant.op.getHistory === List(
+  (&quot;:person/name&quot;,  &quot;Fred&quot;,  tx1, t1, date1, true),
+  (&quot;:person/likes&quot;, &quot;pizza&quot;, tx1, t1, date1, true),
+  (&quot;:person/likes&quot;, &quot;pizza&quot;, tx2, t2, date2, false),
+  (&quot;:person/likes&quot;, &quot;pasta&quot;, tx2, t2, date2, true)
+)
+</code></pre>
+
+<pre><code class="language-scala">Person.e.likes.tx.t.txInstant.op.getHistory === List(
+  (fred, &quot;pizza&quot;, tx1, t1, date1, true),
+  (fred, &quot;pizza&quot;, tx2, t2, date2, false),
+  (fred, &quot;pasta&quot;, tx2, t2, date2, true)
+)
+</code></pre>
+
+<pre><code class="language-scala">Person(fred).likes.t.op.getHistory === List(
+  (&quot;pizza&quot;, t1, true),
+  (&quot;pizza&quot;, t2, false),
+  (&quot;pasta&quot;, t2, true)
+)
+</code></pre>
+
+<pre><code class="language-scala">Person(fred).likes.op.getHistory === List(
+  (&quot;pizza&quot;, true),
+  (&quot;pizza&quot;, false),
+  (&quot;pasta&quot;, true)
+)
+</code></pre>
+
+<pre><code class="language-scala">Person(fred).likes.op.getHistory === List( // previously `history.get`
+  (&quot;pizza&quot;, true),
+  (&quot;pizza&quot;, false),
+  (&quot;pasta&quot;, true)
+)
+</code></pre>
+
+<pre><code class="language-scala">val result = Person.name(&quot;Fred&quot;).likes(&quot;pizza&quot;).save
+val fred   = result.eid
+val t1     = result.t
+Person(fred).likes.get.head === &quot;pizza&quot;
+
+val t2 = Person(fred).likes(&quot;pasta&quot;).update.t
+Person(fred).likes.get.head === &quot;pasta&quot;
+
+Person(fred).likes.getAsOf(t1).head === &quot;pizza&quot; // previously `asOf(t1).get`
+Person(fred).likes.getAsOf(t2).head === &quot;pasta&quot;
+</code></pre>
+
+<pre><code class="language-scala">val result = Person.name(&quot;Fred&quot;).likes(&quot;pizza&quot;).save
+val fred   = result.eid
+val t1     = result.t
+Person(fred).likes.get.head === &quot;pizza&quot;
+
+val t2 = Person(fred).likes(&quot;pasta&quot;).update.t
+Person(fred).likes.get.head === &quot;pasta&quot;
+</code></pre>
+
+<pre><code class="language-scala">val result = Person.name(&quot;Fred&quot;).likes(&quot;pizza&quot;).save
+val fred   = result.eid
+val t1     = result.t
+Person(fred).likes.get.head === &quot;pizza&quot;
+</code></pre>
+
+<pre><code class="language-scala">Person.likes.tx_(Audit.user_(&quot;Lisa&quot;).uc_(&quot;survey&quot;)).get === List(&quot;pizza&quot;)
+</code></pre>
+
+<pre><code class="language-scala">Person.name.tx_(Audit.uc_(&quot;survey&quot;)).get === List(&quot;Fred&quot;)
+</code></pre>
+
+<pre><code class="language-scala">Person(e5).name.txInstant.tx(Audit.user.uc).get === List( 
+  (&quot;Fred&quot;, &quot;Tue Apr 26 18:35:41 CEST 2017&quot;, &quot;Lisa&quot;, &quot;survey&quot;))
+</code></pre>
+
+<pre><code class="language-scala">Person(e5).name.tx(Audit.user.uc).get === List(
+  (&quot;Fred&quot;, &quot;Lisa&quot;, &quot;survey&quot;))
+</code></pre>
+
+<pre><code class="language-scala">Person(e5).name.tx_(Audit.user.uc).get === List((&quot;Fred&quot;, &quot;Lisa&quot;, &quot;survey&quot;))
+</code></pre>
+
+<pre><code class="language-scala">Person.name(&quot;Fred&quot;).likes(&quot;pizza&quot;)
+  .tx_(Audit.user_(&quot;Lisa&quot;).uc_(&quot;survey&quot;)).save
+</code></pre>
+
+<pre><code class="language-scala">trait Audit {
+  val user = oneString
+  val uc   = oneString
+}
+</code></pre>
+
+<pre><code class="language-scala">Person(e5).name_.txInstant.get.head === date1
+Person(e5).name_.tx.get.head === t4
+</code></pre>
+
+<pre><code class="language-scala">Person(e5).name_.txInstant.get.head === date1  // Tue Apr 26 18:35:41
+</code></pre>
+
+<pre><code class="language-scala">Person(e5).name_.tx.get.head === tx4  // 13194139534340L
+</code></pre>
+
+<pre><code class="language-scala">val e5 = Person.name(&quot;Fred&quot;).likes(&quot;pizza&quot;).save.eid
+</code></pre>
+
+<pre><code class="language-scala">Person.name(&quot;Fred&quot;).likes(&quot;pizza&quot;).save
+</code></pre>
+
+<pre><code class="language-scala">// Property graph
+Person.name_(&quot;Ann&quot;).Knows.weight.Person.name.get === List((7, &quot;Ben&quot;))
+Person.name_(&quot;Ben&quot;).Knows.weight.Person.name.get === List((7, &quot;Ann&quot;))
+</code></pre>
+
+<pre><code class="language-scala">Person.name.Knows.*(Knows.weight.Person.name).insert(
+  &quot;Ann&quot;, List((7, &quot;Ben&quot;), (8, &quot;Joe&quot;)))
+
+Person.name_(&quot;Ann&quot;).Knows.weight.Person.name.get === 
+  List((7, &quot;Ben&quot;), (8, &quot;Joe&quot;))
+
+Person.name_(&quot;Ben&quot;).Knows.weight.Person.name.get === 
+  List((7, &quot;Ann&quot;))
+
+Person.name_(&quot;Joe&quot;).Knows.weight.Person.name.get === 
+  List((8, &quot;Ann&quot;))
+</code></pre>
+
+<pre><code class="language-scala">// Entity
+object Person extends Person
+trait Person {
+  val knows = 
+    manyBiEdge[Knows.person.type]
+  
+  val name = oneString
+}
+
+// Property edge
+object Knows extends Knows
+trait Knows {
+  val person = 
+    target[Person.knows.type]
+  
+  // Property
+  val weight = oneInt
+}
+</code></pre>
+
+<pre><code class="language-scala">// Entity
+object Person extends Person
+trait Person {
+  // A ==&gt; edge -- a
+  val knows = manyBiEdge[Knows.person.type]
+  
+  val name = oneString
+}
+
+// Property edge
+object Knows extends Knows
+trait Knows {
+  // a --- edge ==&gt; a
+  val person: AnyRef = target[Person.knows.type]
+  
+  // Property
+  val weight = oneInt
+}
+</code></pre>
+
+<pre><code class="language-scala">// Graph
+Person.name(&quot;Ann&quot;).Friends.name(&quot;Ben&quot;).save
+Person.name(&quot;Ben&quot;).Friends.name(&quot;Joe&quot;).save
+
+Person.name_(&quot;Ann&quot;).Friends.Friends.name.not(&quot;Ann&quot;).get === List(&quot;Joe&quot;)
+Person.name_(&quot;Joe&quot;).Friends.Friends.name.not(&quot;Joe&quot;).get === List(&quot;Ann&quot;)
+</code></pre>
+
+<pre><code class="language-scala">// Graph
+Person.name(&quot;Ann&quot;).Friends.name(&quot;Ben&quot;).save
+Person.name(&quot;Ben&quot;).Friends.name(&quot;Joe&quot;).save
+
+//                    Ben   Ann/Joe
+Person.name_(&quot;Ann&quot;).Friends.Friends.name.get === List(&quot;Ann&quot;, &quot;Joe&quot;)
+</code></pre>
+
+<pre><code class="language-scala">Person.name(&quot;Ann&quot;).Friends.name(&quot;Ben&quot;).save
+
+Person.name_(&quot;Ann&quot;).Friends.name.get === List(&quot;Ben&quot;)
+Person.name_(&quot;Ben&quot;).Friends.name.get === List(&quot;Ann&quot;)
+
+Ann --&gt; Ben
+Ben &lt;-- Ann // reverse ref
+</code></pre>
+
+<pre><code class="language-scala">trait Person {
+  val name    = oneString
+  val friends = manyBi[Person]
+}
+</code></pre>
+
+<pre><code class="language-scala">Person.name.Friends.name_(&quot;Ben&quot;).get === List(&quot;Ann&quot;)
+</code></pre>
+
+<pre><code class="language-scala">Person.name_(&quot;Ben&quot;).Friends.name.get === List()
+</code></pre>
+
+<pre><code class="language-scala">Person.name_(&quot;Ann&quot;).Friends.name.get === List(&quot;Ben&quot;)
+</code></pre>
+
+<pre><code class="language-scala">Person.name(&quot;Ann&quot;).Friends.name(&quot;Ben&quot;).save
+
+Person.name_(&quot;Ann&quot;).Friends.name.get === List(&quot;Ben&quot;)
+Person.name_(&quot;Ben&quot;).Friends.name.get === List()
+
+Person.name.Friends.name_(&quot;Ben&quot;).get === List(&quot;Ann&quot;)
+</code></pre>
+
+<pre><code class="language-scala">Person.name(&quot;Ann&quot;).Friends.name(&quot;Ben&quot;).save
+
+Person.name_(&quot;Ann&quot;).Friends.name.get === List(&quot;Ben&quot;)
+Person.name_(&quot;Ben&quot;).Friends.name.get === List()
+</code></pre>
+
+<pre><code class="language-scala">Person.name(&quot;Ann&quot;).Friends.name(&quot;Ben&quot;).save
+
+Person.name_(&quot;Ann&quot;).Friends.name.get === List(&quot;Ben&quot;)
+</code></pre>
+
+<pre><code class="language-scala">trait Person {
+  val name    = oneString
+  val friends = many[Person]
+}
+</code></pre>
+
+<pre><code class="language-scala">trait Person {
+  // A ==&gt; a
+  val spouse  = oneBi[Person]
+  val friends = manyBi[Person]
+
+  // A ==&gt; b
+  val pet     = oneBi[Animal.master.type]
+  val buddies = manyBi[Animal.buddies.type]
+
+  // A ==&gt; edge -- a
+  val loves = oneBiEdge[Loves.person.type]
+  val knows = manyBiEdge[Knows.person.type]
+
+  // A ==&gt; edge -- b
+  val favorite = oneBiEdge[Favorite.animal.type]
+  val closeTo  = manyBiEdge[CloseTo.animal.type]
+
+  val name = oneString
+}
+</code></pre>
+
+<pre><code class="language-scala">// Mix input, static expressions and relationships...
+val americansYoungerThan = m(Person.id.age_.&lt;(?).Country.name_(&quot;USA&quot;))
+val americanKids         = americansYoungerThan(13).get
+val americanBabies       = americansYoungerThan(1).get
+</code></pre>
+
+<pre><code class="language-scala">// Multiple input parameters + logic
+val person = m(Person.id.name_(?).age_(?))
+
+// AND
+val john42 = person(&quot;John&quot; and 42).get.head
+
+// AND/OR
+val john42orJonas38  = person((&quot;John&quot; and 42) or (&quot;Jonas&quot; and 38)).get 
+val john42orJonas38b = person((&quot;John&quot;, 42), (&quot;Jonas&quot;, 38)).get
+</code></pre>
+
+<pre><code class="language-scala">// Mix input, static expressions and relationships...
+val americansYoungerThan = m(Person.id.age_.&lt;(?).Country.name_(&quot;USA&quot;))
+val americanKids         = americansYoungerThan(13).get
+val americanBabies       = americansYoungerThan(1).get
+</code></pre>
+
+<pre><code class="language-scala">// Multiple input parameters + logic
+val person = m(Person.id.name_(?).age_(?))
+
+// AND
+val john42 = person(&quot;John&quot; and 42).get.head
+</code></pre>
+
+<pre><code class="language-scala">// 1 input parameter
+val person = m(Person.id.name_(?))
+
+val john     = person(&quot;John&quot;).get.head
+val students = person(allStudentNames).get.head
+</code></pre>
+
+<pre><code class="language-scala">val persons = datomic.Peer.q(
+  &quot;&quot;&quot;
+    |[:find ?id
+    | :in $ ?names
+    | :where
+    |   [?e :person/name ?names]]
+  &quot;&quot;&quot;.stripMargin, conn.db, &quot;John&quot;)
+</code></pre>
+
+<pre><code class="language-scala">fredId.retract
+
+Person.name(&quot;Fred&quot;).get.size === 0 
+</code></pre>
+
+<pre><code class="language-scala">Person.id.nameMap.insert(
+  101,
+  Map(
+    &quot;en&quot; -&gt; &quot;Dmitri Shostakovich&quot;,
+    &quot;de&quot; -&gt; &quot;Dmitri Schostakowitsch&quot;,
+    &quot;fr&quot; -&gt; &quot;Dmitri Chostakovitch&quot;,
+    &quot;es&quot; -&gt; &quot;Dmitri Shostakóvich&quot;
+  )
+)
+</code></pre>
+
+<pre><code class="language-scala">trait Person {
+  val id      = oneInt
+  val nameMap = mapString
+}
+</code></pre>
+
+<pre><code class="language-scala">fredId.retract
+
+Person.name(&quot;Fred&quot;).get.size === 0 
+</code></pre>
+
+<pre><code class="language-scala">Person(bob).hobbies.add(&quot;stars&quot;).update
+Person(bob).hobbies.get.head === Set(&quot;golf&quot;, &quot;cars&quot;, &quot;stars&quot;)
+
+Person(bob).hobbies.replace(&quot;cars&quot; -&gt; &quot;trains&quot;).update
+Person(bob).hobbies.get.head === Set(&quot;golf&quot;, &quot;trains&quot;, &quot;stars&quot;)
+
+Person(bob).hobbies.remove(&quot;golf&quot;).update
+Person(bob).hobbies.get.head === Set(&quot;trains&quot;, &quot;stars&quot;)
+
+Person(bob).hobbies(&quot;skiing&quot;, &quot;stamps&quot;).update
+Person(bob).hobbies.get.head === Set(&quot;skiing&quot;, &quot;stamps&quot;)
+
+Person(bob).hobbies().update
+Person(bob).hobbies.get.head === Set()
+</code></pre>
+
+<pre><code class="language-scala">// Assert new fact
+Person(fred).likes(&quot;pasta&quot;).update
+Person(fred).likes$.get.head === Some(&quot;pasta&quot;)
+
+// Retract old fact
+Person(fred).likes().update
+Person(fred).likes$.get.head === None
+</code></pre>
+
+<pre><code class="language-scala">// Assert new fact
+Person(fred).likes(&quot;pasta&quot;).update
+Person(fred).likes$.get.head === Some(&quot;pasta&quot;)
+</code></pre>
+
+<pre><code class="language-scala">Person(fred).likes(&quot;pasta&quot;).update
+Person(fred).likes$.get.head === Some(&quot;pasta&quot;)
+</code></pre>
+
+<pre><code class="language-scala">// Re-use insert molecules
+val insertPerson = Person.name.likes$.age.insert
+val fredId = insertPerson(&quot;Fred&quot;, Some(&quot;pizza&quot;), 38).eid 
+</code></pre>
+
+<pre><code class="language-scala">Person.name.age.likes$ insert List(
+  (&quot;Fred&quot;, 38, Some(&quot;pizza&quot;)),
+  (&quot;Lisa&quot;, 7, None),
+  (&quot;Ben&quot;, 5, Some(&quot;pizza&quot;))
+)
+
+// Re-use insert-molecules
+val insertPerson = Person.name.age.likes$.insert
+val fred = insertPerson(&quot;Fred&quot;, 38, Some(&quot;pizza&quot;)).eid
+val ben  = insertPerson(&quot;Lisa&quot;, 7, None).eid
+</code></pre>
+
+<pre><code class="language-scala">Person.name.likes$.age insert List(
+  (&quot;Fred&quot;, Some(&quot;pizza&quot;), 38),
+  (&quot;Lisa&quot;, None, 7),
+  (&quot;Ben&quot;, Some(&quot;pizza&quot;), 5)
+)
+</code></pre>
+
+<pre><code class="language-scala">Person
+  .name(&quot;Fred&quot;)
+  .age(38)
+  .likes(&quot;pizza&quot;).save
+</code></pre>
+
+<pre><code class="language-scala">Person.name.age.likes$.get === List(
+  (&quot;Fred&quot;, 38, Some(&quot;pizza&quot;)),
+  (&quot;Lisa&quot;, 7, None),
+  (&quot;Ben&quot;, 5, Some(&quot;pizza&quot;))
+)
+</code></pre>
+
+<pre><code class="language-scala">Person.name.age.likes$ insert List(
+  (&quot;Fred&quot;, 38, Some(&quot;pizza&quot;)),
+  (&quot;Lisa&quot;, 7, None),
+  (&quot;Ben&quot;, 5, Some(&quot;pizza&quot;))
+)
+</code></pre>
+
+<pre><code class="language-scala">// Save 1 molecule
+Person.name(&quot;Fred&quot;).likes(&quot;pizza&quot;).age(38).save
+
+// Insert
+Person.name.likes$.age insert List(
+  (&quot;Fred&quot;, Some(&quot;pizza&quot;), 38),
+  (&quot;Lisa&quot;, None, 7),
+  (&quot;Ben&quot;, Some(&quot;pizza&quot;), 5)
+)
+</code></pre>
+
+<pre><code class="language-scala">Person.name(&quot;Fred&quot;).likes(&quot;pizza&quot;).age(38).save
+</code></pre>
+
+<pre><code class="language-scala">m(Person.name.likes.age ~ Site.cat.status ~ Loc.tag).get === List(
+  ((&quot;Fred&quot;, &quot;pizza&quot;, 38), (&quot;customer&quot;, &quot;good&quot;), &quot;city&quot;)
+)
+</code></pre>
+
+<pre><code class="language-scala">m(Person.name.likes.age ~ Site.cat.status).get === List(
+  ((&quot;Fred&quot;, &quot;pizza&quot;, 38), (&quot;customer&quot;, &quot;good&quot;))
+)
+</code></pre>
+
+<pre><code class="language-scala">m(Person.name.likes.age ~ Site.cat).get === List(
+  ((&quot;Fred&quot;, &quot;pizza&quot;, 38), &quot;customer&quot;)
+)
+</code></pre>
+
+<pre><code class="language-scala">m(Person.name.likes.age ~ Site.cat).get === List(
+  ((&quot;Fred&quot;, &quot;pizza&quot;, 38), &quot;customer&quot;)
+)
+
+val ((name, likes, age), cat) = m(Person.name.likes.age ~ Site.cat).get.head
+</code></pre>
+
+<pre><code class="language-scala">Person.name.likes.age ~ Site.cat
+</code></pre>
+
+<pre><code class="language-scala">object YourDomainDefinition {
+  trait Person {
+    val name  = oneString
+    val likes = oneString
+    val age   = oneInt
+  }
+  trait Site {
+    val cat    = oneString
+    val status = oneString
+  }
+}
+</code></pre>
+
+<pre><code class="language-scala">Person.name.likes.age.Site.cat
+</code></pre>
+
+<pre><code class="language-scala">object YourDomainDefinition {
+  trait Person {
+    val name  = oneString
+    val likes = oneString
+    val age   = oneInt
+    val site  = one[Site] // Not intrinsic!
+  }
+  trait Site {
+    val cat    = oneString
+    val status = oneString
+  }
+}
+</code></pre>
+
+<pre><code class="language-scala">Person.name.likes.age.Site.cat
+</code></pre>
+
+<pre><code class="language-scala">object YourDomainDefinition {
+  trait Person {
+    val name  = oneString
+    val likes = oneString
+    val age   = oneInt
+    val site  = one[Site]
+  }
+  trait Site {
+    val cat    = oneString
+    val status = oneString
+  }
+}
+</code></pre>
+
+<pre><code class="language-scala">Person.name.likes.age .. ? .. Site.cat
+</code></pre>
+
+<pre><code class="language-scala">object YourDomainDefinition {
+  trait Person {
+    val name  = oneString
+    val likes = oneString
+    val age   = oneInt
+  }
+  trait Site {
+    val cat    = oneString
+    val status = oneString
+  }
+}
+</code></pre>
+
+<pre><code class="language-scala">fredId.touch === Map( // Map[String, Any]
+  &quot;:db/id&quot; -&gt; 101L,
+  &quot;:person/name&quot; -&gt; &quot;Fred&quot;,
+  &quot;:person/likes&quot; -&gt; &quot;pizza&quot;,
+  &quot;:person/age&quot;	-&gt; 38,
+  &quot;:site/cat&quot; -&gt; &quot;customer&quot;
+)
+
+val siteCat_? : Option[String] = fredId[String](&quot;:site/cat&quot;)
+</code></pre>
+
+<pre><code class="language-scala">fredId.touch === Map(
+  &quot;:db/id&quot; -&gt; 101L,
+  &quot;:person/name&quot; -&gt; &quot;Fred&quot;,
+  &quot;:person/likes&quot; -&gt; &quot;pizza&quot;,
+  &quot;:person/age&quot;	-&gt; 38,
+  &quot;:site/cat&quot; -&gt; &quot;customer&quot;
+)
+</code></pre>
+
+<pre><code class="language-scala">m(Order.orderid.LineItems * (
+  LineItem.product.price.quantity.Comments * (
+    Comment.text.descr.Authors * Person.name))).get === List(
+      (23, List(
+        (chocolateId, 48.00, 1, List(
+          (&quot;first&quot;, &quot;1a&quot;, List(&quot;Marc Grue&quot;)),
+          (&quot;product&quot;, &quot;1b&quot;, List(&quot;Marc Grue&quot;)))),
+        (whiskyId, 38.00, 2, List(
+          (&quot;second&quot;, &quot;2b&quot;, List(&quot;Don Juan&quot;, &quot;Stuart Halloway&quot;)),
+          (&quot;is&quot;, &quot;2b&quot;, List(&quot;Nick Smith&quot;)),
+          (&quot;best&quot;, &quot;2c&quot;, List(&quot;test&quot;))))
+      ))
+    )
+</code></pre>
+
+<pre><code class="language-scala">// Touch entity facts hierarchy recursively
+orderId.touch === Map(
+  &quot;:db/id&quot; -&gt; 101L,
+  &quot;:order/lineItems&quot; -&gt; List(
+    Map(
+      &quot;:db/id&quot; -&gt; 102L, 
+      &quot;:lineItem/qty&quot; -&gt; 3, 
+      &quot;:lineItem/product&quot; -&gt; &quot;Milk&quot;,
+      &quot;:lineItem/price&quot; -&gt; 12.0),
+    Map(
+      &quot;:db/id&quot; -&gt; 103L, 
+      &quot;:lineItem/qty&quot; -&gt; 2, 
+      &quot;:lineItem/product&quot; -&gt; &quot;Coffee&quot;,
+      &quot;:lineItem/price&quot; -&gt; 46.0)))
+
+// Optional typed attribute value
+fredId[String](&quot;:person/likes&quot;) === Some(&quot;pizza&quot;)
+</code></pre>
+
+<pre><code class="language-scala">// Nested molecule
+m(Order.id.Items * LineItem.qty.product.price).get === List(
+  (1, List(
+    (3, &quot;Milk&quot;, 12.0), 
+    (2, &quot;Coffee&quot;, 46.0)))
+)
+
+// Entity api - .touch
+101.touch === Map(
+  &quot;:db/id&quot; -&gt; 101L,
+  &quot;:order/lineItems&quot; -&gt; List(
+    Map(
+      &quot;:db/id&quot; -&gt; 102L, 
+      &quot;:lineItem/qty&quot; -&gt; 3, 
+      &quot;:lineItem/product&quot; -&gt; &quot;Milk&quot;,
+      &quot;:lineItem/price&quot; -&gt; 12.0),
+    Map(
+      &quot;:db/id&quot; -&gt; 103L, 
+      &quot;:lineItem/qty&quot; -&gt; 2, 
+      &quot;:lineItem/product&quot; -&gt; &quot;Coffee&quot;,
+      &quot;:lineItem/price&quot; -&gt; 46.0)))
+</code></pre>
+
+<pre><code class="language-scala">// Adjacent facts
+Order.id.Items.qty.product.price.get === List(
+  (1, 3, &quot;Milk&quot;, 12.0),
+  (1, 2, &quot;Coffee&quot;, 46.0)
+)
+
+// Nested facts
+m(Order.id.Items * LineItem.qty.product.price).get === List(
+  (1, List(
+    (3, &quot;Milk&quot;, 12.0), 
+    (2, &quot;Coffee&quot;, 46.0)))
+)
+</code></pre>
+
+<pre><code class="language-scala">// Adjacent facts
+Order.id.Items.qty.product.price.get === List(
+  (1, 3, &quot;Milk&quot;, 12.0),
+  (1, 2, &quot;Coffee&quot;, 46.0)
+)
+</code></pre>
+
+<pre><code class="language-scala">object OrderDefinition {
+
+  trait Order {
+    val id    = oneInt
+    val items = many[LineItem].isComponent
+  }
+
+  trait LineItem {
+    val qty     = oneInt
+    val product = oneString
+    val price   = oneDouble
+  }
+}
+</code></pre>
+
+<pre><code class="language-scala">object ProductsOrderDefinition {
+
+  trait Order {
+    val id    = oneInt
+    val items = many[LineItem].isComponent
+  }
+
+  trait LineItem {
+    val product = one[Product]
+    val price   = oneDouble
+    val qty     = oneInt
+  }
+
+  trait Product {
+    val description = oneString
+  }
+}
+</code></pre>
+
+<pre><code class="language-scala">Person.name.Home.street.city. ..??
+</code></pre>
+
+<pre><code class="language-scala">object YourDomainDefinition {
+  trait Person {
+    val name = oneString
+    val age  = oneInt
+    val home = one[Addr]
+  }
+  trait Addr {
+    val street = oneString
+    val city   = oneString
+  }
+}
+</code></pre>
+
+<pre><code class="language-scala">object YourDomainDefinition {
+  trait Person {
+    val name = oneString
+    val age  = oneInt
+    val home = one[Addr]
+    val work = one[Addr]
+  }
+  trait Addr {
+    val street = oneString
+    val city   = oneString
+  }
+}
+</code></pre>
+
+<pre><code class="language-scala">Person.name.Home.street.city
+Person.name.Work.street.city
+</code></pre>
+
+<pre><code class="language-scala">Person.name.Home.street.city
+</code></pre>
+
+<pre><code class="language-scala">Person.name.Home.street.city.get.head === (
+  &quot;Fred&quot;, &quot;Baker St. 7&quot;, &quot;Boston&quot;
+)
+</code></pre>
+
+<pre><code class="language-scala">Person.name.age(5 or 6 or 7).get === List(
+  (&quot;Lisa&quot;, 7),
+  (&quot;Ben&quot;, 5)
+)
+Person.name.age(5, 6, 7).get === List(
+  (&quot;Lisa&quot;, 7),
+  (&quot;Ben&quot;, 5)
+)
+Person.name.age(Seq(5, 6, 7)).get === List(
+  (&quot;Lisa&quot;, 7),
+  (&quot;Ben&quot;, 5)
+)
+</code></pre>
+
+<pre><code class="language-scala">Person.age(min).get.head           === 5 
+Person.age(max).get.head           === 38 
+Person.age(sum).get.head           === 50 
+Person.age(count).get.head         === 3 
+Person.age(countDistinct).get.head === 3 
+Person.age(avg).get.head           === 16.66666667
+Person.age(median).get.head        === 7 
+Person.age(variance).get.head      === 228.2222222222 
+Person.age(stddev).get.head        === 15.107025591499
+ 
+Person.age(distinct).get.head  === Vector(5, 7, 38) 
+Person.age(min(2)).get.head    === Vector(5, 7) 
+Person.age(max(2)).get.head    === Vector(38, 7) 
+Person.age(rand(2)).get.head   === Stream(5, ?) 
+Person.age(sample(2)).get.head === Vector(7, 38) 
+</code></pre>
+
+<pre><code class="language-scala">Person.name.age.&gt;(7).get === List(
+  (&quot;Fred&quot;, 38)
+)
+Person.name.age.&gt;=(7).get === List(
+  (&quot;Fred&quot;, 38),
+  (&quot;Lisa&quot;, 7)
+)
+Person.name.age.&lt;(7).get === List(
+  (&quot;Ben&quot;, 5)
+)
+Person.name.age.&lt;=(7).get === List(
+  (&quot;Lisa&quot;, 7),
+  (&quot;Ben&quot;, 5)
+)
+</code></pre>
+
+<pre><code class="language-scala">Person.name.likes_(nil).get === List(
+  &quot;Lisa&quot;
+)
+</code></pre>
+
+<pre><code class="language-scala">Person.name.age.not(38).get === List(
+  (&quot;Lisa&quot;, 7),
+  (&quot;Ben&quot;, 5)
+)
+Person.name.age.!=(38).get === List(
+  (&quot;Lisa&quot;, 7),
+  (&quot;Ben&quot;, 5)
+)
+</code></pre>
+
+<pre><code class="language-scala">// Equality - exact matches only
+Person.name(&quot;Fred&quot;).age.get === List()
+
+Person.name(&quot;Fred Ben&quot;).age.get === List(
+  (&quot;Fred Ben&quot;, 38)
+)
+</code></pre>
+
+<pre><code class="language-scala">Person.name.contains(&quot;Ben&quot;).get === List(
+  &quot;Fred Ben&quot;, &quot;Ben&quot;
+)
+
+Person.name.contains(&quot;Be&quot;).get === List()
+</code></pre>
+
+<pre><code class="language-scala">Person.name.age_(38).get === List(
+  &quot;Fred&quot;
+)
+</code></pre>
+
+<pre><code class="language-scala">Person.name.likes_(&quot;pizza&quot;).get === List(
+  &quot;Fred&quot;, &quot;Ben&quot;
+)
+</code></pre>
+
+<pre><code class="language-scala">Person.name.likes(&quot;pizza&quot;).get === List(
+  (&quot;Fred&quot;, &quot;pizza&quot;),
+  (&quot;Ben&quot;, &quot;pizza&quot;)
+)
+</code></pre>
+
+<pre><code class="language-scala">Person.name.get === List(
+  &quot;Fred&quot;, &quot;Lisa&quot;, &quot;Ben&quot;
+)
+</code></pre>
+
+<pre><code class="language-scala">Person.name.get: Iterable[String] === List(
+  &quot;Fred&quot;, &quot;Lisa&quot;, &quot;Ben&quot;
+)
+</code></pre>
+
+<pre><code class="language-scala">Person.name.age.get: Iterable[(String, Int)] === List(
+  (&quot;Fred&quot;, 38),
+  (&quot;Lisa&quot;, 7),
+  (&quot;Ben&quot;, 5)
+)
+</code></pre>
+
+<pre><code class="language-scala">Person.name.age.likes.get === List(
+  (&quot;Fred&quot;, 38, &quot;pizza&quot;),
+  (&quot;Ben&quot;, 5, &quot;pizza&quot;)
+)
+</code></pre>
+
+<hr />
+
+</div>
+
+<div class="col-sm-2 column" style="padding-left:20px;padding-top:22px;padding-right: 0px;">
+  <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm ">
+
+  <div style="position:absolute;top: -36px; left: 0px;">
+    
+    
+    
+    
+  </div>
+
+  <ul class="bs-docs-sidenav">
+    
+  </ul>
+</nav>
+</div>
+
+     
+  </div> 
+</div> 
+<div class="push"></div>
+</div> 
+
+<footer class="bs-docs-footer">
+
+  <div class="container">
+    <ul class="bs-docs-footer-links">
+      <li style="vertical-align: top; margin-top: 0px;"><a href="/front/"><img src="/img/logo/MoleculeLogo200.png" alt=""></a></li>
+      <li><a href="https://github.com/scalamolecule/molecule">GitHub</a></li>
+      <li><a href="https://github.com/scalamolecule/molecule-docs">GitHub-docs</a></li>
+      <li><a href="https://groups.google.com/forum/#!forum/molecule-dsl">Forum</a></li>
+      <li><a href="/about/">About</a></li>
+      <li><a href="/credits/">Credits</a></li>
+    </ul>
+    <p>Licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0" target="_blank" rel="license">Apache License 2.0</a></p>
+  </div>
+</footer>
+
+
+<script type="text/javascript" src="/js/jquery-1.11.2.min.js"></script>
+
+
+
+<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+
+
+
+<script src="/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script type="text/javascript" src="/js/scripts.js"></script>
+
+
+
+
+<script async defer id="github-bjs" src="https://buttons.github.io/buttons.js"></script>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-2787756-3', 'auto');
+  ga('send', 'pageview');
+</script>
+    
+</body>
+</html>

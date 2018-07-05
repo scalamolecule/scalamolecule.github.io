@@ -30,7 +30,7 @@ object YourDomainDefinition { trait Person { val name = oneString val home = one
       <guid>http://scalamolecule.org/docs/relationships/card-many/</guid>
       <description>Card-many relationships Tests&amp;hellip;
 Cardinality-many relationships in Molecule are modelled with the many[&amp;lt;RefNamespace&amp;gt;] syntax:
-object OrderDefinition { trait Order { val id = oneString val items = many[LineItem].subComponents } trait LineItem { val qty = oneInt val product = oneString val price = oneDouble } }  An Order can have multiple LineItems so we define a cardinality-many ref attribute items that points to the LineItem namespace.
+object OrderDefinition { trait Order { val id = oneString val items = many[LineItem].isComponent } trait LineItem { val qty = oneInt val product = oneString val price = oneDouble } }  An Order can have multiple LineItems so we define a cardinality-many ref attribute items that points to the LineItem namespace.
 Note how we also make LineItems subComponents of the Order.</description>
     </item>
     

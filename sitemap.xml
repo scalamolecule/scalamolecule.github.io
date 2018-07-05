@@ -3,11 +3,6 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>http://scalamolecule.org/docs/</loc>
-    <lastmod>2015-01-02T22:06:44+01:00</lastmod>
-  </url>
-  
-  <url>
     <loc>http://scalamolecule.org/resources/</loc>
     <lastmod>2015-01-02T22:06:44+01:00</lastmod>
   </url>
@@ -18,48 +13,33 @@
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/docs/relationships/card-one/</loc>
+    <loc>http://scalamolecule.org/manual/relationships/card-one/</loc>
     <lastmod>2016-07-24T22:06:44+01:00</lastmod>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/docs/time/asof-since/</loc>
+    <loc>http://scalamolecule.org/manual/time/asof-since/</loc>
     <lastmod>2015-01-02T22:06:44+01:00</lastmod>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/docs/attributes/basics/</loc>
+    <loc>http://scalamolecule.org/manual/attributes/basics/</loc>
     <lastmod>2015-01-02T22:06:44+01:00</lastmod>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/docs/getting-started/</loc>
+    <loc>http://scalamolecule.org/manual/</loc>
     <lastmod>2015-01-02T22:06:44+01:00</lastmod>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/docs/documentation/introduction/</loc>
-    <lastmod>2015-01-02T22:06:44+01:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://scalamolecule.org/docs/crud/save/</loc>
+    <loc>http://scalamolecule.org/manual/crud/save/</loc>
     <lastmod>2015-01-02T22:06:44+01:00</lastmod>
   </url>
   
   <url>
     <loc>http://scalamolecule.org/resources/tutorials/seattle/</loc>
     <lastmod>2015-01-02T22:06:44+01:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://scalamolecule.org/docs/getting-started/setup/</loc>
-    <lastmod>2015-01-02T22:06:44+01:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://scalamolecule.org/community/</loc>
-    <lastmod>2014-05-14T02:13:50+00:00</lastmod>
   </url>
   
   <url>
@@ -73,17 +53,22 @@
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/docs/relationships/card-many/</loc>
-    <lastmod>2016-07-24T22:06:44+01:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://scalamolecule.org/docs/crud/insert/</loc>
+    <loc>http://scalamolecule.org/manual/quick-start/introduction/</loc>
     <lastmod>2015-01-02T22:06:44+01:00</lastmod>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/docs/attributes/modes/</loc>
+    <loc>http://scalamolecule.org/manual/relationships/card-many/</loc>
+    <lastmod>2016-07-24T22:06:44+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://scalamolecule.org/manual/crud/insert/</loc>
+    <lastmod>2015-01-02T22:06:44+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://scalamolecule.org/manual/attributes/modes/</loc>
     <lastmod>2015-01-02T22:06:44+01:00</lastmod>
   </url>
   
@@ -93,12 +78,12 @@
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/docs/schema/</loc>
+    <loc>http://scalamolecule.org/manual/setup/</loc>
     <lastmod>2015-01-02T22:06:44+01:00</lastmod>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/docs/transactions/tx-meta-data/</loc>
+    <loc>http://scalamolecule.org/manual/transactions/tx-meta-data/</loc>
     <lastmod>2015-01-02T22:06:44+01:00</lastmod>
   </url>
   
@@ -118,27 +103,22 @@
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/docs/attributes/</loc>
+    <loc>http://scalamolecule.org/manual/crud/composite-insert/</loc>
     <lastmod>2015-01-02T22:06:44+01:00</lastmod>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/docs/crud/get/</loc>
+    <loc>http://scalamolecule.org/manual/time/history/</loc>
     <lastmod>2015-01-02T22:06:44+01:00</lastmod>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/docs/time/history/</loc>
+    <loc>http://scalamolecule.org/manual/attributes/mapped/</loc>
     <lastmod>2015-01-02T22:06:44+01:00</lastmod>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/docs/attributes/mapped/</loc>
-    <lastmod>2015-01-02T22:06:44+01:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://scalamolecule.org/docs/schema/transaction/</loc>
+    <loc>http://scalamolecule.org/manual/schema/</loc>
     <lastmod>2015-01-02T22:06:44+01:00</lastmod>
   </url>
   
@@ -153,77 +133,97 @@
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/docs/crud/getjson/</loc>
+    <loc>http://scalamolecule.org/manual/schema/transaction/</loc>
     <lastmod>2015-01-02T22:06:44+01:00</lastmod>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/docs/relationships/composites/</loc>
+    <loc>http://scalamolecule.org/community/</loc>
+    <lastmod>2014-05-14T02:13:50+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://scalamolecule.org/manual/attributes/</loc>
     <lastmod>2015-01-02T22:06:44+01:00</lastmod>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/docs/entities/</loc>
+    <loc>http://scalamolecule.org/manual/relationships/composites/</loc>
     <lastmod>2015-01-02T22:06:44+01:00</lastmod>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/docs/attributes/expressions/</loc>
+    <loc>http://scalamolecule.org/manual/attributes/expressions/</loc>
     <lastmod>2015-01-02T22:06:44+01:00</lastmod>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/docs/crud/update/</loc>
+    <loc>http://scalamolecule.org/manual/crud/get/</loc>
     <lastmod>2015-01-02T22:06:44+01:00</lastmod>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/docs/time/with/</loc>
+    <loc>http://scalamolecule.org/manual/time/with/</loc>
     <lastmod>2015-01-02T22:06:44+01:00</lastmod>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/docs/relationships/bidirectional/</loc>
+    <loc>http://scalamolecule.org/manual/relationships/bidirectional/</loc>
     <lastmod>2016-07-24T22:06:44+01:00</lastmod>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/docs/attributes/aggregates/</loc>
+    <loc>http://scalamolecule.org/manual/attributes/aggregates/</loc>
     <lastmod>2015-01-02T22:06:44+01:00</lastmod>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/docs/relationships/</loc>
+    <loc>http://scalamolecule.org/manual/entities/</loc>
     <lastmod>2015-01-02T22:06:44+01:00</lastmod>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/docs/crud/retract/</loc>
+    <loc>http://scalamolecule.org/manual/crud/getjson/</loc>
     <lastmod>2015-01-02T22:06:44+01:00</lastmod>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/docs/time/testing/</loc>
+    <loc>http://scalamolecule.org/manual/time/testing/</loc>
     <lastmod>2015-01-02T22:06:44+01:00</lastmod>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/docs/attributes/parameterized/</loc>
+    <loc>http://scalamolecule.org/manual/attributes/parameterized/</loc>
     <lastmod>2015-01-02T22:06:44+01:00</lastmod>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/docs/crud/</loc>
+    <loc>http://scalamolecule.org/manual/relationships/</loc>
     <lastmod>2015-01-02T22:06:44+01:00</lastmod>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/docs/transactions/</loc>
+    <loc>http://scalamolecule.org/manual/crud/update/</loc>
     <lastmod>2015-01-02T22:06:44+01:00</lastmod>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/docs/time/</loc>
+    <loc>http://scalamolecule.org/manual/crud/</loc>
+    <lastmod>2015-01-02T22:06:44+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://scalamolecule.org/manual/crud/retract/</loc>
+    <lastmod>2015-01-02T22:06:44+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://scalamolecule.org/manual/transactions/</loc>
+    <lastmod>2015-01-02T22:06:44+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://scalamolecule.org/manual/time/</loc>
     <lastmod>2015-01-02T22:06:44+01:00</lastmod>
   </url>
   
@@ -233,12 +233,12 @@
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/docs/presentation/</loc>
+    <loc>http://scalamolecule.org/_presentation/presentation/</loc>
     <lastmod>2015-01-02T22:06:44+01:00</lastmod>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/docs/presentation1/</loc>
+    <loc>http://scalamolecule.org/_presentation/presentation1/</loc>
     <lastmod>2015-01-02T22:06:44+01:00</lastmod>
   </url>
   
@@ -269,6 +269,12 @@
   
   <url>
     <loc>http://scalamolecule.org/tags/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://scalamolecule.org/_presentation/</loc>
+    <lastmod>2015-01-02T22:06:44+01:00</lastmod>
     <priority>0</priority>
   </url>
   

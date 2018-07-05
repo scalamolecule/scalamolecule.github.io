@@ -491,7 +491,7 @@ Order.id.Items.qty.product.price.get === List(
 
   trait Order {
     val id    = oneInt
-    val items = many[LineItem].subComponents
+    val items = many[LineItem].isComponent
   }
 
   trait LineItem {
@@ -506,7 +506,7 @@ Order.id.Items.qty.product.price.get === List(
 
   trait Order {
     val id    = oneInt
-    val items = many[LineItem].subComponents
+    val items = many[LineItem].isComponent
   }
 
   trait LineItem {
