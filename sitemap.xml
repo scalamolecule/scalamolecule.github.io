@@ -73,7 +73,7 @@
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/resources/videos/2017-04-25_marc_grue/</loc>
+    <loc>http://scalamolecule.org/resources/videos/2017-04-25_Marc_Grue/</loc>
     <lastmod>2015-01-02T22:06:44+01:00</lastmod>
   </url>
   
@@ -104,6 +104,11 @@
   
   <url>
     <loc>http://scalamolecule.org/manual/crud/composite-insert/</loc>
+    <lastmod>2015-01-02T22:06:44+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://scalamolecule.org/manual/relationships/composites/</loc>
     <lastmod>2015-01-02T22:06:44+01:00</lastmod>
   </url>
   
@@ -143,12 +148,12 @@
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/manual/attributes/</loc>
-    <lastmod>2015-01-02T22:06:44+01:00</lastmod>
+    <loc>http://scalamolecule.org/manual/relationships/bidirectional/</loc>
+    <lastmod>2016-07-24T22:06:44+01:00</lastmod>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/manual/relationships/composites/</loc>
+    <loc>http://scalamolecule.org/manual/attributes/</loc>
     <lastmod>2015-01-02T22:06:44+01:00</lastmod>
   </url>
   
@@ -168,11 +173,6 @@
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/manual/relationships/bidirectional/</loc>
-    <lastmod>2016-07-24T22:06:44+01:00</lastmod>
-  </url>
-  
-  <url>
     <loc>http://scalamolecule.org/manual/attributes/aggregates/</loc>
     <lastmod>2015-01-02T22:06:44+01:00</lastmod>
   </url>
@@ -183,7 +183,12 @@
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/manual/crud/getjson/</loc>
+    <loc>http://scalamolecule.org/manual/crud/getJson/</loc>
+    <lastmod>2015-01-02T22:06:44+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://scalamolecule.org/manual/relationships/self-join/</loc>
     <lastmod>2015-01-02T22:06:44+01:00</lastmod>
   </url>
   

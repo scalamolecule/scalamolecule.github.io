@@ -31,7 +31,7 @@ Querying for attribute values The most basic query is to ask for entities with s
       <guid>http://scalamolecule.org/compare/sql/</guid>
       <description>SQL vs. Molecule examples We&amp;rsquo;ll make a similar comparison to SQL as Slick does:
 SELECT * sql&amp;quot;select * from PERSON&amp;quot;.as[Person].list  In molecule we would declare each attribute we are interested in also to infer the exact return type
-val persons: Iterable[(String, Int)] = Person.name.age.get  SELECT sql&amp;quot;&amp;quot;&amp;quot; select AGE, concat(concat(concat(NAME,&#39; (&#39;),ID),&#39;)&#39;) from PERSON &amp;quot;&amp;quot;&amp;quot;.as[(Int,String)].list  With Molecule we would concatenate name and id with the returned result set:</description>
+val persons: List[(String, Int)] = Person.name.age.get  SELECT sql&amp;quot;&amp;quot;&amp;quot; select AGE, concat(concat(concat(NAME,&#39; (&#39;),ID),&#39;)&#39;) from PERSON &amp;quot;&amp;quot;&amp;quot;.as[(Int,String)].list  With Molecule we would concatenate name and id with the returned result set:</description>
     </item>
     
     <item>
