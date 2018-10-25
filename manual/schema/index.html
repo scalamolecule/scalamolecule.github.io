@@ -281,7 +281,7 @@
       
       
         <li class="dropdown ">
-          <a data-toggle="dropdown" href="/api/molecule" target="_top" onclick="javascript:top.location = '\/api\/molecule';return true;">API docs</a>
+          <a data-toggle="dropdown" href="/api/molecule" target="_top" onclick="javascript:top.location = '\/api\/molecule';return true;">Docs</a>
           
             <ul class="dropdown-menu level1" role="menu" aria-labelledby="dropdownMenu">
               
@@ -292,6 +292,8 @@
                       <a href="/api/molecule/action">action</a>
                       <ul class="dropdown-menu">
                         
+                          <li><a href="/api/molecule/action/get/">get</a></li>
+                        
                           <li><a href="/api/molecule/action/CompositeInserts.html">CompositeInserts</a></li>
                         
                           <li><a href="/api/molecule/action/Entity.html">Entity</a></li>
@@ -300,10 +302,18 @@
                         
                           <li><a href="/api/molecule/action/Molecule.html">Molecule</a></li>
                         
-                          <li><a href="/api/molecule/action/OptionalMapOps.html">OptionalMapOps</a></li>
+                          <li><a href="/api/molecule/action/ShowDebug.html">OptionalMapOps</a></li>
                         
                       </ul>
                     </li>
+                  
+
+                
+              
+                
+
+                  
+                    <li><a href="/api/molecule/api">api</a></li>
                   
 
                 
@@ -373,7 +383,7 @@
                         
                           <li><a href="/api/molecule/expression/AggregateKeywords.html">AggregateKeywords</a></li>
                         
-                          <li><a href="/api/molecule/expression/AttrExpressions.html">AttrExpressions</a></li>
+                          <li><a href="/api/molecule/expression/LogicImplicits.html">AttrExpressions</a></li>
                         
                       </ul>
                     </li>
@@ -597,7 +607,7 @@ sbt-plugin can create a Molecule DSL from your definitions.</p>
 <pre><code class="language-scala">package path.to.your.project
 import molecule.schema.definition._  // import schema definition DSL
 
-@InOut(3, 8)
+@InOut(2, 8)
 object SeattleDefinition {
 
   trait Community {
@@ -635,8 +645,8 @@ IDE:</p>
 
 <h3 id="molecule-arity">Molecule arity</h3>
 
-<p>The <code>@InOut(3, 8)</code> arity annotation instructs the sbt-molecule plugin to generate boilerplate code with the ability to create
-molecules with up to 8 attributes including up to 3 <a href="/manual/attributes/parameterized">input attributes</a>.</p>
+<p>The <code>@InOut(2, 8)</code> arity annotation instructs the sbt-molecule plugin to generate boilerplate code with the ability to create
+molecules with up to 8 attributes including up to 2 <a href="/manual/attributes/parameterized">input attributes</a>.</p>
 
 <p>When developing your schema you might just set the first arity annotation variable for input attributes to <code>0</code> and
 then later when your schema is stabilizing add the ability to make input molecules by setting it to 1, 2 or 3 (the maximum).
@@ -644,8 +654,7 @@ Using parameterized input attributes can be a performance
 optimization since using input values in Datalog queries allow Datomic to cache the query.</p>
 
 <p>The second arity annotation parameter basically tells how long molecules you can build (this doesn&rsquo;t affect
- how many attributes you can <em>define</em> in each namespace). Generally you want to keep this number as low as possible
- not to generate more boilerplate code than necessary. The maximum arity is 22, the same as for tuples.</p>
+ how many attributes you can <em>define</em> in each namespace). The maximum arity is 22, the same as for tuples.</p>
 
 <p>If you at some point need to make molecules with more than 22 attributes you can use
 <a href="/manual/relationships/composites">composite molecules</a> or insert/query in two steps as

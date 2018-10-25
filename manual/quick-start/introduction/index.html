@@ -281,7 +281,7 @@
       
       
         <li class="dropdown ">
-          <a data-toggle="dropdown" href="/api/molecule" target="_top" onclick="javascript:top.location = '\/api\/molecule';return true;">API docs</a>
+          <a data-toggle="dropdown" href="/api/molecule" target="_top" onclick="javascript:top.location = '\/api\/molecule';return true;">Docs</a>
           
             <ul class="dropdown-menu level1" role="menu" aria-labelledby="dropdownMenu">
               
@@ -292,6 +292,8 @@
                       <a href="/api/molecule/action">action</a>
                       <ul class="dropdown-menu">
                         
+                          <li><a href="/api/molecule/action/get/">get</a></li>
+                        
                           <li><a href="/api/molecule/action/CompositeInserts.html">CompositeInserts</a></li>
                         
                           <li><a href="/api/molecule/action/Entity.html">Entity</a></li>
@@ -300,10 +302,18 @@
                         
                           <li><a href="/api/molecule/action/Molecule.html">Molecule</a></li>
                         
-                          <li><a href="/api/molecule/action/OptionalMapOps.html">OptionalMapOps</a></li>
+                          <li><a href="/api/molecule/action/ShowDebug.html">OptionalMapOps</a></li>
                         
                       </ul>
                     </li>
+                  
+
+                
+              
+                
+
+                  
+                    <li><a href="/api/molecule/api">api</a></li>
                   
 
                 
@@ -373,7 +383,7 @@
                         
                           <li><a href="/api/molecule/expression/AggregateKeywords.html">AggregateKeywords</a></li>
                         
-                          <li><a href="/api/molecule/expression/AttrExpressions.html">AttrExpressions</a></li>
+                          <li><a href="/api/molecule/expression/LogicImplicits.html">AttrExpressions</a></li>
                         
                       </ul>
                     </li>
@@ -596,13 +606,25 @@ for us:</p>
 we asked for. We can continue adding more and more Attributes as with the builder pattern to define what data
 we are interested in.</p>
 
-<p>For expected large result sets we can return an Iterable instead:</p>
+<p>Data can be returned in 5 different formats:</p>
 
-<pre><code class="language-scala">val aLotOfPersons: Iterable[(String, Int)] = m(Person.name.age).getIterable
+<pre><code class="language-scala">// List for convenient access to smaller data sets
+val list : List[(String, Int)] = m(Person.name.age).get
+
+// Mutable Array for fastest retrieval and traversing
+val array: Array[(String, Int)] = m(Person.name.age).getArray
+
+// Iterable for lazy traversing with an Iterator
+val iterable: Iterable[(String, Int)] = m(Person.name.age).getIterable
+
+// Json formatted string 
+val json: String = m(Person.name.age).getJson
+
+// Raw untyped Datomic data if data doesn't need to be typed
+val raw: java.util.Collection[java.util.List[AnyRef]] = m(Person.name.age).getJson
 </code></pre>
 
-<p>The difference between returning a List or an Iterable is that all tuples in the list have been type-casted
-while type-casting for Iterables is lazily performed only on each call to <code>next</code> on the Iterator.</p>
+<h3 id="building-blocks">Building blocks</h3>
 
 <p>Attributes are atomic pieces of information that are prefixed by a Namespace, in this case <code>Person</code>. Namespaces
 are not like SQL tables but just a common meaningful prefix to Attributes that have something in common.</p>
@@ -620,16 +642,32 @@ Since the <code>m</code> method is implicit we can simply write</p>
  our domain terms, our IDE can help us infer the type of each of our molecules and prevents us from making
  any invalid queries.</p>
 
-<h3 id="save-and-update">Save and update</h3>
+<h3 id="adding-and-updating-data">Adding and updating data</h3>
 
-<p>We also save and update data with molecules:</p>
+<p>For single entities we can populate a molecule with data to save it:</p>
 
 <pre><code class="language-scala">// Save Lisa entity and retrieve new entity id
 val lisaId = Person.name(&quot;Lisa&quot;).age(&quot;27&quot;).save.eid
+</code></pre>
 
-// Update
+<p>Or we can add data for multiple entities with an <code>insert</code>:</p>
+
+<pre><code class="language-scala">// Save Lisa entity and retrieve new entity id
+Person.name.age insert List(
+  (&quot;Lisa&quot;, 27),
+  (&quot;Jhn&quot;, 32)
+)
+</code></pre>
+
+<p>Using an entity id we can update an entity:</p>
+
+<pre><code class="language-scala">// Update
 Person(lisaId).age(&quot;28&quot;).update
 </code></pre>
+
+<p>In Datomic, an update is actually a retraction of the old data and an assertion of the new data. In this example,
+Lisa&rsquo;s age 27 is retracted and her new age 28 asserted. With this information model, Datomic allow us to go
+back in time and see when Lisa&rsquo;s age was changed to 28.</p>
 
 <h3 id="expressive-powers">Expressive powers</h3>
 
