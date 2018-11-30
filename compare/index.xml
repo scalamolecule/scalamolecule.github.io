@@ -40,10 +40,9 @@ val persons: List[(String, Int)] = Person.name.age.get  SELECT sql&amp;quot;&amp
       <pubDate>Wed, 14 May 2014 02:13:50 +0000</pubDate>
       
       <guid>http://scalamolecule.org/compare/sql/slick/</guid>
-      <description>Slick vs. Molecule examples Using examples from Slick:
-Select all table values // Slick people.run  In molecule we would declare each attribute we are interested in also to infer the exact return type
-// Molecule Person.name.age.get  Select certain columns people.map(p =&amp;gt; (p.age, p.name ++ &amp;quot; (&amp;quot; ++ p.id.asColumnOf[String] ++ &amp;quot;)&amp;quot;)).run  With Molecule we would concatenate name and id with the returned result set:
-Person.age.name.e.get map { case (age, name, id) =&amp;gt; (age, s&amp;quot;$name ($id)&amp;quot; }  filter / WHERE people.</description>
+      <description>Slick vs. Molecule examples Using examples from Coming from SQL to Slick:
+Select all table values // Slick people.result  In molecule we would declare each attribute we are interested in also to infer the exact return type
+// Molecule Person.name.age.get  Select certain columns people.map(p =&amp;gt; (p.age, p.name ++ &amp;quot; (&amp;quot; ++ p.id.asColumnOf[String] ++ &amp;quot;)&amp;quot;)).result  With Molecule we would concatenate name and id with the returned result set:</description>
     </item>
     
     <item>

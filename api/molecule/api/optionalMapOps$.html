@@ -3,9 +3,9 @@
         <head>
           <meta http-equiv="X-UA-Compatible" content="IE=edge" />
           <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-          <title>Molecule 0.15.1 - molecule.api.optionalMapOps</title>
-          <meta name="description" content="Molecule 0.15.1 - molecule.api.optionalMapOps" />
-          <meta name="keywords" content="Molecule 0.15.1 molecule.api.optionalMapOps" />
+          <title>Molecule 0.16.0 - molecule.api.OptionalMapOps</title>
+          <meta name="description" content="Molecule 0.16.0 - molecule.api.OptionalMapOps" />
+          <meta name="keywords" content="Molecule 0.16.0 molecule.api.OptionalMapOps" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../lib/index.css" media="screen" type="text/css" rel="stylesheet" />
@@ -28,7 +28,7 @@
         </head>
         <body>
       <div id="search">
-        <span id="doc-title">Molecule<span id="doc-version">0.15.1</span></span>
+        <span id="doc-title">Molecule<span id="doc-version">0.16.0</span></span>
         <span class="close-results"><span class="left">&lt;</span> Back</span>
         <div id="textfilter">
           <span class="input">
@@ -89,12 +89,8 @@
       
       <p class="shortcomment cmt"><a href="http://www.scalamolecule.org" target="_blank">Molecule</a> library - a Scala meta-DSL for the <a href="https://www.datomic.com" target="_blank">Datomic</a> database.</p><div class="fullcomment"><div class="comment cmt"><p><a href="http://www.scalamolecule.org" target="_blank">Molecule</a> library - a Scala meta-DSL for the <a href="https://www.datomic.com" target="_blank">Datomic</a> database.</p><p>See <a href="index.html" class="extype" name="molecule.api">api</a> package for various api imports to start using Molecule.</p><h4> Sub-packages </h4><p><table>
   <tr>
-    <td><a href="action/index.html">action</a><td>
-    <td>Actions on molecules and entities.</td>
-  </tr>
-  <tr>
     <td><a href="api/index.html">api</a><td>
-    <td>Molecule import interfaces of various arities.</td>
+    <td>Molecule API.</td>
   </tr>
   <tr>
     <td><a href="ast/index.html">ast</a><td>
@@ -166,10 +162,10 @@
         <span class="kind">package</span>
       </span>
       <span class="symbol">
-        <a title="Public interfaces to be imported to use Molecule." href="index.html"><span class="name">api</span></a>
+        <a title="Public interface to be imported to use Molecule." href="index.html"><span class="name">api</span></a>
       </span>
       
-      <p class="shortcomment cmt">Public interfaces to be imported to use Molecule.</p><div class="fullcomment"><div class="comment cmt"><p>Public interfaces to be imported to use Molecule.</p><p>To make the Molecule macro materializations as fast as possible we try to
+      <p class="shortcomment cmt">Public interface to be imported to use Molecule.</p><div class="fullcomment"><div class="comment cmt"><p>Public interface to be imported to use Molecule.</p><p>To make the Molecule macro materializations as fast as possible we try to
 import as few macro implicits as possible. If your application code build molecules
 with at the most 10 attributes, then you can do the following import to start using Molecule:</p><pre><span class="kw">import</span> molecule.api.out10._</pre><p><code>out</code> means &quot;output molecule&quot; , and <code>10</code> the maximum arity or number of attributes
 of your molecules.</p><p>If you use input molecules awaiting an input then you can add <code>inX</code> where X is
@@ -177,366 +173,448 @@ how many inputs (1, 2 or 3) you will use, for instance:</p><pre><span class="kw"
 as fast as possible.</p><p>Arities can be changed anytime you like. But not to a lower arity than that of the
 molecules you use in scope of the import.
 </p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../index.html" class="extype" name="molecule">molecule</a></dd></dl></div>
+    </li><li name="molecule.api.exception" visbl="pub" class="indented3 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="exception"></a><a id="exception:exception"></a>
+      <span class="permalink">
+      <a href="../../molecule/api/index.html#exception" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <a title="" href="exception/index.html"><span class="name">exception</span></a>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="index.html" class="extype" name="molecule.api">api</a></dd></dl></div>
+    </li><li name="molecule.api.get" visbl="pub" class="indented3 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="get"></a><a id="get:get"></a>
+      <span class="permalink">
+      <a href="../../molecule/api/index.html#get" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <a title="Synchronous getter methods to retrieve data from Datomic." href="get/index.html"><span class="name">get</span></a>
+      </span>
+      
+      <p class="shortcomment cmt">Synchronous getter methods to retrieve data from Datomic.</p><div class="fullcomment"><div class="comment cmt"><p>Synchronous getter methods to retrieve data from Datomic.</p><p>The Datomic On-Prem(ises) server model provides a Peer that returns data synchronously.
+The Peer which lives in application memory caches data aggressively and for data
+fitting in memory latency can be extremely low and queries return very fast. And
+even when access to disk is needed, clever branching is used. Memcached is also
+an option.</p><p>The Datomic Cloud model data returns data asynchronously. If Datomic creates a
+Java API for the Cloud model, Molecule could relatively easy adapt to this model too.
+In the meanwhile, Future-wrapped methods in this package can be used.</p><p>Molecule has 5 groups of synchronous getters, each returning data in various formats:</p><ul><li><a href="get/GetArray.html" class="extype" name="molecule.api.get.GetArray">GetArray</a> - fastest retrieved typed data set. Can be traversed with a fast <code>while</code> loop</li><li><a href="get/GetIterable.html" class="extype" name="molecule.api.get.GetIterable">GetIterable</a> - for lazily traversing row by row</li><li><a href="get/GetJson.html" class="extype" name="molecule.api.get.GetJson">GetJson</a> - data formatted as Json string</li><li><a href="get/GetList.html" class="extype" name="molecule.api.get.GetList">GetList</a> - default getter returning Lists of tuples. Convenient typed data, suitable for smaller data sets</li><li><a href="get/GetRaw.html" class="extype" name="molecule.api.get.GetRaw">GetRaw</a> - fastest retrieved raw un-typed data from Datomic</li></ul><p>Getters in each of the 5 groups come with 5 time-dependent variations:</p><ul><li>get [current data]</li><li>getAsOf</li><li>getSince</li><li>getWith</li><li>getHistory</li></ul><p>Each time variation has various overloads taking different parameters (see each group for more info).
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="index.html" class="extype" name="molecule.api">api</a></dd><dt>See also</dt><dd><span class="cmt"><p>equivalent asynchronous getters in the <a href="getAsync/index.html" class="extype" name="molecule.api.getAsync">getAsync</a> package.</p></span></dd></dl></div>
+    </li><li name="molecule.api.getAsync" visbl="pub" class="indented3 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getAsync"></a><a id="getAsync:getAsync"></a>
+      <span class="permalink">
+      <a href="../../molecule/api/index.html#getAsync" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <a title="Asynchronous getter methods to retrieve data from Datomic." href="getAsync/index.html"><span class="name">getAsync</span></a>
+      </span>
+      
+      <p class="shortcomment cmt">Asynchronous getter methods to retrieve data from Datomic.</p><div class="fullcomment"><div class="comment cmt"><p>Asynchronous getter methods to retrieve data from Datomic.</p><p>For convenience, all synchronous getter methods from the <code>get</code> package are here wrapped in Futures.</p><p>The Datomic On-Prem(ises) server model provides a Peer that returns data synchronously.
+The Peer which lives in application memory caches data aggressively and for data
+fitting in memory latency can be extremely low and queries return very fast. And
+even when access to disk is needed, clever branching is used. Memcached is also
+an option.</p><p>The Datomic Cloud model data returns data asynchronously. If Datomic creates a
+Java API for the Cloud model, Molecule could relatively easy adapt to this model too.
+In the meanwhile, Future-wrapped methods in this package can be used.</p><p>Molecule has 5 groups of asynchronous getters, each returning Futures of data in various formats:</p><ul><li><a href="getAsync/GetAsyncArray.html" class="extype" name="molecule.api.getAsync.GetAsyncArray">GetAsyncArray</a> - fastest retrieved typed data set. Can be traversed with a fast <code>while</code> loop</li><li><a href="getAsync/GetAsyncIterable.html" class="extype" name="molecule.api.getAsync.GetAsyncIterable">GetAsyncIterable</a> - for lazily traversing row by row</li><li><a href="getAsync/GetAsyncJson.html" class="extype" name="molecule.api.getAsync.GetAsyncJson">GetAsyncJson</a> - data formatted as Json string</li><li><a href="getAsync/GetAsyncList.html" class="extype" name="molecule.api.getAsync.GetAsyncList">GetAsyncList</a> - default getter returning Lists of tuples. Convenient typed data, suitable for smaller data sets</li><li><a href="getAsync/GetAsyncRaw.html" class="extype" name="molecule.api.getAsync.GetAsyncRaw">GetAsyncRaw</a> - fastest retrieved raw un-typed data from Datomic</li></ul><p>Getters in each of the 5 groups come with 5 time-dependent variations:</p><ul><li>getAsync [current data]</li><li>getAsyncAsOf</li><li>getAsyncSince</li><li>getAsyncWith</li><li>getAsyncHistory</li></ul><p>Each time variation has various overloads taking different parameters (see each group for more info).
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="index.html" class="extype" name="molecule.api">api</a></dd><dt>See also</dt><dd><span class="cmt"><p>equivalent synchronous getters in the <a href="get/index.html" class="extype" name="molecule.api.get">get</a> package.</p></span></dd></dl></div>
     </li><li class="current-entities indented2">
+                        <a class="object" href="Entity$.html" title="Entity wrapper factory."></a>
+                        <a class="class" href="Entity.html" title="Entity wrapper with actions on entity."></a>
+                        <a href="Entity.html" title="Entity wrapper with actions on entity.">Entity</a>
+                      </li><li class="current-entities indented2">
+                        <span class="separator"></span>
+                        <a class="trait" href="EntityOps.html" title="Operations on multiple entities."></a>
+                        <a href="EntityOps.html" title="Operations on multiple entities.">EntityOps</a>
+                      </li><li class="current-entities indented2">
+                        <a class="object" href="Molecule$.html" title="Arity 1-22 molecule implementation interfaces."></a>
+                        <a class="trait" href="Molecule.html" title="Core molecule interface defining actions that can be called on molecules."></a>
+                        <a href="Molecule.html" title="Core molecule interface defining actions that can be called on molecules.">Molecule</a>
+                      </li><li class="current-entities indented2">
+                        <a class="object" href="" title="Optional implicit operations for optional Map attributes"></a>
+                        <a class="trait" href="OptionalMapOps.html" title="Container of implicit for optional Map operations."></a>
+                        <a href="OptionalMapOps.html" title="Container of implicit for optional Map operations.">OptionalMapOps</a>
+                      </li><li class="current-entities indented2">
+                        <span class="separator"></span>
+                        <a class="trait" href="ShowDebug.html" title="Debug methods"></a>
+                        <a href="ShowDebug.html" title="Debug methods">ShowDebug</a>
+                      </li><li class="current-entities indented2">
+                        <a class="object" href="TxMethods$.html" title=""></a>
+                        <a class="trait" href="TxMethods.html" title="Transactional methods for bundled transactions and tx functions"></a>
+                        <a href="TxMethods.html" title="Transactional methods for bundled transactions and tx functions">TxMethods</a>
+                      </li><li class="current-entities indented2">
                         <span class="separator"></span>
                         <a class="object" href="core$.html" title=""></a>
                         <a href="core$.html" title="">core</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
-                        <a class="object" href="in1_out1$.html" title=""></a>
-                        <a href="in1_out1$.html" title="">in1_out1</a>
+                        <a class="object" href="package$$in1_out1$.html" title=""></a>
+                        <a href="package$$in1_out1$.html" title="">in1_out1</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
-                        <a class="object" href="in1_out10$.html" title=""></a>
-                        <a href="in1_out10$.html" title="">in1_out10</a>
+                        <a class="object" href="package$$in1_out10$.html" title=""></a>
+                        <a href="package$$in1_out10$.html" title="">in1_out10</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
-                        <a class="object" href="in1_out11$.html" title=""></a>
-                        <a href="in1_out11$.html" title="">in1_out11</a>
+                        <a class="object" href="package$$in1_out11$.html" title=""></a>
+                        <a href="package$$in1_out11$.html" title="">in1_out11</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
-                        <a class="object" href="in1_out12$.html" title=""></a>
-                        <a href="in1_out12$.html" title="">in1_out12</a>
+                        <a class="object" href="package$$in1_out12$.html" title=""></a>
+                        <a href="package$$in1_out12$.html" title="">in1_out12</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
-                        <a class="object" href="in1_out13$.html" title=""></a>
-                        <a href="in1_out13$.html" title="">in1_out13</a>
+                        <a class="object" href="package$$in1_out13$.html" title=""></a>
+                        <a href="package$$in1_out13$.html" title="">in1_out13</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
-                        <a class="object" href="in1_out14$.html" title=""></a>
-                        <a href="in1_out14$.html" title="">in1_out14</a>
+                        <a class="object" href="package$$in1_out14$.html" title=""></a>
+                        <a href="package$$in1_out14$.html" title="">in1_out14</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
-                        <a class="object" href="in1_out15$.html" title=""></a>
-                        <a href="in1_out15$.html" title="">in1_out15</a>
+                        <a class="object" href="package$$in1_out15$.html" title=""></a>
+                        <a href="package$$in1_out15$.html" title="">in1_out15</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
-                        <a class="object" href="in1_out16$.html" title=""></a>
-                        <a href="in1_out16$.html" title="">in1_out16</a>
+                        <a class="object" href="package$$in1_out16$.html" title=""></a>
+                        <a href="package$$in1_out16$.html" title="">in1_out16</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
-                        <a class="object" href="in1_out17$.html" title=""></a>
-                        <a href="in1_out17$.html" title="">in1_out17</a>
+                        <a class="object" href="package$$in1_out17$.html" title=""></a>
+                        <a href="package$$in1_out17$.html" title="">in1_out17</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
-                        <a class="object" href="in1_out18$.html" title=""></a>
-                        <a href="in1_out18$.html" title="">in1_out18</a>
+                        <a class="object" href="package$$in1_out18$.html" title=""></a>
+                        <a href="package$$in1_out18$.html" title="">in1_out18</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
-                        <a class="object" href="in1_out19$.html" title=""></a>
-                        <a href="in1_out19$.html" title="">in1_out19</a>
+                        <a class="object" href="package$$in1_out19$.html" title=""></a>
+                        <a href="package$$in1_out19$.html" title="">in1_out19</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
-                        <a class="object" href="in1_out2$.html" title=""></a>
-                        <a href="in1_out2$.html" title="">in1_out2</a>
+                        <a class="object" href="package$$in1_out2$.html" title=""></a>
+                        <a href="package$$in1_out2$.html" title="">in1_out2</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
-                        <a class="object" href="in1_out20$.html" title=""></a>
-                        <a href="in1_out20$.html" title="">in1_out20</a>
+                        <a class="object" href="package$$in1_out20$.html" title=""></a>
+                        <a href="package$$in1_out20$.html" title="">in1_out20</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
-                        <a class="object" href="in1_out21$.html" title=""></a>
-                        <a href="in1_out21$.html" title="">in1_out21</a>
+                        <a class="object" href="package$$in1_out21$.html" title=""></a>
+                        <a href="package$$in1_out21$.html" title="">in1_out21</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
-                        <a class="object" href="in1_out22$.html" title=""></a>
-                        <a href="in1_out22$.html" title="">in1_out22</a>
+                        <a class="object" href="package$$in1_out22$.html" title=""></a>
+                        <a href="package$$in1_out22$.html" title="">in1_out22</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
-                        <a class="object" href="in1_out3$.html" title=""></a>
-                        <a href="in1_out3$.html" title="">in1_out3</a>
+                        <a class="object" href="package$$in1_out3$.html" title=""></a>
+                        <a href="package$$in1_out3$.html" title="">in1_out3</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
-                        <a class="object" href="in1_out4$.html" title=""></a>
-                        <a href="in1_out4$.html" title="">in1_out4</a>
+                        <a class="object" href="package$$in1_out4$.html" title=""></a>
+                        <a href="package$$in1_out4$.html" title="">in1_out4</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
-                        <a class="object" href="in1_out5$.html" title=""></a>
-                        <a href="in1_out5$.html" title="">in1_out5</a>
+                        <a class="object" href="package$$in1_out5$.html" title=""></a>
+                        <a href="package$$in1_out5$.html" title="">in1_out5</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
-                        <a class="object" href="in1_out6$.html" title=""></a>
-                        <a href="in1_out6$.html" title="">in1_out6</a>
+                        <a class="object" href="package$$in1_out6$.html" title=""></a>
+                        <a href="package$$in1_out6$.html" title="">in1_out6</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
-                        <a class="object" href="in1_out7$.html" title=""></a>
-                        <a href="in1_out7$.html" title="">in1_out7</a>
+                        <a class="object" href="package$$in1_out7$.html" title=""></a>
+                        <a href="package$$in1_out7$.html" title="">in1_out7</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
-                        <a class="object" href="in1_out8$.html" title=""></a>
-                        <a href="in1_out8$.html" title="">in1_out8</a>
+                        <a class="object" href="package$$in1_out8$.html" title=""></a>
+                        <a href="package$$in1_out8$.html" title="">in1_out8</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
-                        <a class="object" href="in1_out9$.html" title=""></a>
-                        <a href="in1_out9$.html" title="">in1_out9</a>
+                        <a class="object" href="package$$in1_out9$.html" title=""></a>
+                        <a href="package$$in1_out9$.html" title="">in1_out9</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
-                        <a class="object" href="in2_out1$.html" title=""></a>
-                        <a href="in2_out1$.html" title="">in2_out1</a>
+                        <a class="object" href="package$$in2_out1$.html" title=""></a>
+                        <a href="package$$in2_out1$.html" title="">in2_out1</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
-                        <a class="object" href="in2_out10$.html" title=""></a>
-                        <a href="in2_out10$.html" title="">in2_out10</a>
+                        <a class="object" href="package$$in2_out10$.html" title=""></a>
+                        <a href="package$$in2_out10$.html" title="">in2_out10</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
-                        <a class="object" href="in2_out11$.html" title=""></a>
-                        <a href="in2_out11$.html" title="">in2_out11</a>
+                        <a class="object" href="package$$in2_out11$.html" title=""></a>
+                        <a href="package$$in2_out11$.html" title="">in2_out11</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
-                        <a class="object" href="in2_out12$.html" title=""></a>
-                        <a href="in2_out12$.html" title="">in2_out12</a>
+                        <a class="object" href="package$$in2_out12$.html" title=""></a>
+                        <a href="package$$in2_out12$.html" title="">in2_out12</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
-                        <a class="object" href="in2_out13$.html" title=""></a>
-                        <a href="in2_out13$.html" title="">in2_out13</a>
+                        <a class="object" href="package$$in2_out13$.html" title=""></a>
+                        <a href="package$$in2_out13$.html" title="">in2_out13</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
-                        <a class="object" href="in2_out14$.html" title=""></a>
-                        <a href="in2_out14$.html" title="">in2_out14</a>
+                        <a class="object" href="package$$in2_out14$.html" title=""></a>
+                        <a href="package$$in2_out14$.html" title="">in2_out14</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
-                        <a class="object" href="in2_out15$.html" title=""></a>
-                        <a href="in2_out15$.html" title="">in2_out15</a>
+                        <a class="object" href="package$$in2_out15$.html" title=""></a>
+                        <a href="package$$in2_out15$.html" title="">in2_out15</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
-                        <a class="object" href="in2_out16$.html" title=""></a>
-                        <a href="in2_out16$.html" title="">in2_out16</a>
+                        <a class="object" href="package$$in2_out16$.html" title=""></a>
+                        <a href="package$$in2_out16$.html" title="">in2_out16</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
-                        <a class="object" href="in2_out17$.html" title=""></a>
-                        <a href="in2_out17$.html" title="">in2_out17</a>
+                        <a class="object" href="package$$in2_out17$.html" title=""></a>
+                        <a href="package$$in2_out17$.html" title="">in2_out17</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
-                        <a class="object" href="in2_out18$.html" title=""></a>
-                        <a href="in2_out18$.html" title="">in2_out18</a>
+                        <a class="object" href="package$$in2_out18$.html" title=""></a>
+                        <a href="package$$in2_out18$.html" title="">in2_out18</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
-                        <a class="object" href="in2_out19$.html" title=""></a>
-                        <a href="in2_out19$.html" title="">in2_out19</a>
+                        <a class="object" href="package$$in2_out19$.html" title=""></a>
+                        <a href="package$$in2_out19$.html" title="">in2_out19</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
-                        <a class="object" href="in2_out2$.html" title=""></a>
-                        <a href="in2_out2$.html" title="">in2_out2</a>
+                        <a class="object" href="package$$in2_out2$.html" title=""></a>
+                        <a href="package$$in2_out2$.html" title="">in2_out2</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
-                        <a class="object" href="in2_out20$.html" title=""></a>
-                        <a href="in2_out20$.html" title="">in2_out20</a>
+                        <a class="object" href="package$$in2_out20$.html" title=""></a>
+                        <a href="package$$in2_out20$.html" title="">in2_out20</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
-                        <a class="object" href="in2_out21$.html" title=""></a>
-                        <a href="in2_out21$.html" title="">in2_out21</a>
+                        <a class="object" href="package$$in2_out21$.html" title=""></a>
+                        <a href="package$$in2_out21$.html" title="">in2_out21</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
-                        <a class="object" href="in2_out22$.html" title=""></a>
-                        <a href="in2_out22$.html" title="">in2_out22</a>
+                        <a class="object" href="package$$in2_out22$.html" title=""></a>
+                        <a href="package$$in2_out22$.html" title="">in2_out22</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
-                        <a class="object" href="in2_out3$.html" title=""></a>
-                        <a href="in2_out3$.html" title="">in2_out3</a>
+                        <a class="object" href="package$$in2_out3$.html" title=""></a>
+                        <a href="package$$in2_out3$.html" title="">in2_out3</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
-                        <a class="object" href="in2_out4$.html" title=""></a>
-                        <a href="in2_out4$.html" title="">in2_out4</a>
+                        <a class="object" href="package$$in2_out4$.html" title=""></a>
+                        <a href="package$$in2_out4$.html" title="">in2_out4</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
-                        <a class="object" href="in2_out5$.html" title=""></a>
-                        <a href="in2_out5$.html" title="">in2_out5</a>
+                        <a class="object" href="package$$in2_out5$.html" title=""></a>
+                        <a href="package$$in2_out5$.html" title="">in2_out5</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
-                        <a class="object" href="in2_out6$.html" title=""></a>
-                        <a href="in2_out6$.html" title="">in2_out6</a>
+                        <a class="object" href="package$$in2_out6$.html" title=""></a>
+                        <a href="package$$in2_out6$.html" title="">in2_out6</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
-                        <a class="object" href="in2_out7$.html" title=""></a>
-                        <a href="in2_out7$.html" title="">in2_out7</a>
+                        <a class="object" href="package$$in2_out7$.html" title=""></a>
+                        <a href="package$$in2_out7$.html" title="">in2_out7</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
-                        <a class="object" href="in2_out8$.html" title=""></a>
-                        <a href="in2_out8$.html" title="">in2_out8</a>
+                        <a class="object" href="package$$in2_out8$.html" title=""></a>
+                        <a href="package$$in2_out8$.html" title="">in2_out8</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
-                        <a class="object" href="in2_out9$.html" title=""></a>
-                        <a href="in2_out9$.html" title="">in2_out9</a>
+                        <a class="object" href="package$$in2_out9$.html" title=""></a>
+                        <a href="package$$in2_out9$.html" title="">in2_out9</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
-                        <a class="object" href="in3_out1$.html" title=""></a>
-                        <a href="in3_out1$.html" title="">in3_out1</a>
+                        <a class="object" href="package$$in3_out1$.html" title=""></a>
+                        <a href="package$$in3_out1$.html" title="">in3_out1</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
-                        <a class="object" href="in3_out10$.html" title=""></a>
-                        <a href="in3_out10$.html" title="">in3_out10</a>
+                        <a class="object" href="package$$in3_out10$.html" title=""></a>
+                        <a href="package$$in3_out10$.html" title="">in3_out10</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
-                        <a class="object" href="in3_out11$.html" title=""></a>
-                        <a href="in3_out11$.html" title="">in3_out11</a>
+                        <a class="object" href="package$$in3_out11$.html" title=""></a>
+                        <a href="package$$in3_out11$.html" title="">in3_out11</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
-                        <a class="object" href="in3_out12$.html" title=""></a>
-                        <a href="in3_out12$.html" title="">in3_out12</a>
+                        <a class="object" href="package$$in3_out12$.html" title=""></a>
+                        <a href="package$$in3_out12$.html" title="">in3_out12</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
-                        <a class="object" href="in3_out13$.html" title=""></a>
-                        <a href="in3_out13$.html" title="">in3_out13</a>
+                        <a class="object" href="package$$in3_out13$.html" title=""></a>
+                        <a href="package$$in3_out13$.html" title="">in3_out13</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
-                        <a class="object" href="in3_out14$.html" title=""></a>
-                        <a href="in3_out14$.html" title="">in3_out14</a>
+                        <a class="object" href="package$$in3_out14$.html" title=""></a>
+                        <a href="package$$in3_out14$.html" title="">in3_out14</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
-                        <a class="object" href="in3_out15$.html" title=""></a>
-                        <a href="in3_out15$.html" title="">in3_out15</a>
+                        <a class="object" href="package$$in3_out15$.html" title=""></a>
+                        <a href="package$$in3_out15$.html" title="">in3_out15</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
-                        <a class="object" href="in3_out16$.html" title=""></a>
-                        <a href="in3_out16$.html" title="">in3_out16</a>
+                        <a class="object" href="package$$in3_out16$.html" title=""></a>
+                        <a href="package$$in3_out16$.html" title="">in3_out16</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
-                        <a class="object" href="in3_out17$.html" title=""></a>
-                        <a href="in3_out17$.html" title="">in3_out17</a>
+                        <a class="object" href="package$$in3_out17$.html" title=""></a>
+                        <a href="package$$in3_out17$.html" title="">in3_out17</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
-                        <a class="object" href="in3_out18$.html" title=""></a>
-                        <a href="in3_out18$.html" title="">in3_out18</a>
+                        <a class="object" href="package$$in3_out18$.html" title=""></a>
+                        <a href="package$$in3_out18$.html" title="">in3_out18</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
-                        <a class="object" href="in3_out19$.html" title=""></a>
-                        <a href="in3_out19$.html" title="">in3_out19</a>
+                        <a class="object" href="package$$in3_out19$.html" title=""></a>
+                        <a href="package$$in3_out19$.html" title="">in3_out19</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
-                        <a class="object" href="in3_out2$.html" title=""></a>
-                        <a href="in3_out2$.html" title="">in3_out2</a>
+                        <a class="object" href="package$$in3_out2$.html" title=""></a>
+                        <a href="package$$in3_out2$.html" title="">in3_out2</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
-                        <a class="object" href="in3_out20$.html" title=""></a>
-                        <a href="in3_out20$.html" title="">in3_out20</a>
+                        <a class="object" href="package$$in3_out20$.html" title=""></a>
+                        <a href="package$$in3_out20$.html" title="">in3_out20</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
-                        <a class="object" href="in3_out21$.html" title=""></a>
-                        <a href="in3_out21$.html" title="">in3_out21</a>
+                        <a class="object" href="package$$in3_out21$.html" title=""></a>
+                        <a href="package$$in3_out21$.html" title="">in3_out21</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
-                        <a class="object" href="in3_out22$.html" title=""></a>
-                        <a href="in3_out22$.html" title="">in3_out22</a>
+                        <a class="object" href="package$$in3_out22$.html" title=""></a>
+                        <a href="package$$in3_out22$.html" title="">in3_out22</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
-                        <a class="object" href="in3_out3$.html" title=""></a>
-                        <a href="in3_out3$.html" title="">in3_out3</a>
+                        <a class="object" href="package$$in3_out3$.html" title=""></a>
+                        <a href="package$$in3_out3$.html" title="">in3_out3</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
-                        <a class="object" href="in3_out4$.html" title=""></a>
-                        <a href="in3_out4$.html" title="">in3_out4</a>
+                        <a class="object" href="package$$in3_out4$.html" title=""></a>
+                        <a href="package$$in3_out4$.html" title="">in3_out4</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
-                        <a class="object" href="in3_out5$.html" title=""></a>
-                        <a href="in3_out5$.html" title="">in3_out5</a>
+                        <a class="object" href="package$$in3_out5$.html" title=""></a>
+                        <a href="package$$in3_out5$.html" title="">in3_out5</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
-                        <a class="object" href="in3_out6$.html" title=""></a>
-                        <a href="in3_out6$.html" title="">in3_out6</a>
+                        <a class="object" href="package$$in3_out6$.html" title=""></a>
+                        <a href="package$$in3_out6$.html" title="">in3_out6</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
-                        <a class="object" href="in3_out7$.html" title=""></a>
-                        <a href="in3_out7$.html" title="">in3_out7</a>
+                        <a class="object" href="package$$in3_out7$.html" title=""></a>
+                        <a href="package$$in3_out7$.html" title="">in3_out7</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
-                        <a class="object" href="in3_out8$.html" title=""></a>
-                        <a href="in3_out8$.html" title="">in3_out8</a>
+                        <a class="object" href="package$$in3_out8$.html" title=""></a>
+                        <a href="package$$in3_out8$.html" title="">in3_out8</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
-                        <a class="object" href="in3_out9$.html" title=""></a>
-                        <a href="in3_out9$.html" title="">in3_out9</a>
+                        <a class="object" href="package$$in3_out9$.html" title=""></a>
+                        <a href="package$$in3_out9$.html" title="">in3_out9</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
-                        <a class="object" href="" title="Optional implicit operations for optional Map attributes"></a>
-                        <a href="" title="Optional implicit operations for optional Map attributes">optionalMapOps</a>
+                        <a class="object" href="package$$out1$.html" title=""></a>
+                        <a href="package$$out1$.html" title="">out1</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
-                        <a class="object" href="out1$.html" title=""></a>
-                        <a href="out1$.html" title="">out1</a>
+                        <a class="object" href="package$$out10$.html" title=""></a>
+                        <a href="package$$out10$.html" title="">out10</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
-                        <a class="object" href="out10$.html" title=""></a>
-                        <a href="out10$.html" title="">out10</a>
+                        <a class="object" href="package$$out11$.html" title=""></a>
+                        <a href="package$$out11$.html" title="">out11</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
-                        <a class="object" href="out11$.html" title=""></a>
-                        <a href="out11$.html" title="">out11</a>
+                        <a class="object" href="package$$out12$.html" title=""></a>
+                        <a href="package$$out12$.html" title="">out12</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
-                        <a class="object" href="out12$.html" title=""></a>
-                        <a href="out12$.html" title="">out12</a>
+                        <a class="object" href="package$$out13$.html" title=""></a>
+                        <a href="package$$out13$.html" title="">out13</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
-                        <a class="object" href="out13$.html" title=""></a>
-                        <a href="out13$.html" title="">out13</a>
+                        <a class="object" href="package$$out14$.html" title=""></a>
+                        <a href="package$$out14$.html" title="">out14</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
-                        <a class="object" href="out14$.html" title=""></a>
-                        <a href="out14$.html" title="">out14</a>
+                        <a class="object" href="package$$out15$.html" title=""></a>
+                        <a href="package$$out15$.html" title="">out15</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
-                        <a class="object" href="out15$.html" title=""></a>
-                        <a href="out15$.html" title="">out15</a>
+                        <a class="object" href="package$$out16$.html" title=""></a>
+                        <a href="package$$out16$.html" title="">out16</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
-                        <a class="object" href="out16$.html" title=""></a>
-                        <a href="out16$.html" title="">out16</a>
+                        <a class="object" href="package$$out17$.html" title=""></a>
+                        <a href="package$$out17$.html" title="">out17</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
-                        <a class="object" href="out17$.html" title=""></a>
-                        <a href="out17$.html" title="">out17</a>
+                        <a class="object" href="package$$out18$.html" title=""></a>
+                        <a href="package$$out18$.html" title="">out18</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
-                        <a class="object" href="out18$.html" title=""></a>
-                        <a href="out18$.html" title="">out18</a>
+                        <a class="object" href="package$$out19$.html" title=""></a>
+                        <a href="package$$out19$.html" title="">out19</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
-                        <a class="object" href="out19$.html" title=""></a>
-                        <a href="out19$.html" title="">out19</a>
+                        <a class="object" href="package$$out2$.html" title=""></a>
+                        <a href="package$$out2$.html" title="">out2</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
-                        <a class="object" href="out2$.html" title=""></a>
-                        <a href="out2$.html" title="">out2</a>
+                        <a class="object" href="package$$out20$.html" title=""></a>
+                        <a href="package$$out20$.html" title="">out20</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
-                        <a class="object" href="out20$.html" title=""></a>
-                        <a href="out20$.html" title="">out20</a>
+                        <a class="object" href="package$$out21$.html" title=""></a>
+                        <a href="package$$out21$.html" title="">out21</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
-                        <a class="object" href="out21$.html" title=""></a>
-                        <a href="out21$.html" title="">out21</a>
+                        <a class="object" href="package$$out22$.html" title=""></a>
+                        <a href="package$$out22$.html" title="">out22</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
-                        <a class="object" href="out22$.html" title=""></a>
-                        <a href="out22$.html" title="">out22</a>
+                        <a class="object" href="package$$out3$.html" title=""></a>
+                        <a href="package$$out3$.html" title="">out3</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
-                        <a class="object" href="out3$.html" title=""></a>
-                        <a href="out3$.html" title="">out3</a>
+                        <a class="object" href="package$$out4$.html" title=""></a>
+                        <a href="package$$out4$.html" title="">out4</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
-                        <a class="object" href="out4$.html" title=""></a>
-                        <a href="out4$.html" title="">out4</a>
+                        <a class="object" href="package$$out5$.html" title=""></a>
+                        <a href="package$$out5$.html" title="">out5</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
-                        <a class="object" href="out5$.html" title=""></a>
-                        <a href="out5$.html" title="">out5</a>
+                        <a class="object" href="package$$out6$.html" title=""></a>
+                        <a href="package$$out6$.html" title="">out6</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
-                        <a class="object" href="out6$.html" title=""></a>
-                        <a href="out6$.html" title="">out6</a>
+                        <a class="object" href="package$$out7$.html" title=""></a>
+                        <a href="package$$out7$.html" title="">out7</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
-                        <a class="object" href="out7$.html" title=""></a>
-                        <a href="out7$.html" title="">out7</a>
+                        <a class="object" href="package$$out8$.html" title=""></a>
+                        <a href="package$$out8$.html" title="">out8</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
-                        <a class="object" href="out8$.html" title=""></a>
-                        <a href="out8$.html" title="">out8</a>
-                      </li><li class="current-entities indented2">
-                        <span class="separator"></span>
-                        <a class="object" href="out9$.html" title=""></a>
-                        <a href="out9$.html" title="">out9</a>
+                        <a class="object" href="package$$out9$.html" title=""></a>
+                        <a href="package$$out9$.html" title="">out9</a>
                       </li>
               </ul>
             </div>
@@ -544,14 +622,16 @@ molecules you use in scope of the import.
           <div id="content">
             <body class="object value">
       <div id="definition">
-        <div class="big-circle object">o</div>
+        <a href="OptionalMapOps.html" title="See companion trait"><div class="big-circle object-companion-trait">o</div></a>
         <p id="owner"><a href="../index.html" class="extype" name="molecule">molecule</a>.<a href="index.html" class="extype" name="molecule.api">api</a></p>
-        <h1>optionalMapOps<span class="permalink">
-      <a href="../../molecule/api/optionalMapOps$.html" title="Permalink">
+        <h1><a href="OptionalMapOps.html" title="See companion trait">OptionalMapOps</a><span class="permalink">
+      <a href="../../molecule/api/OptionalMapOps$.html" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span></h1>
-        <h3><span class="morelinks"></span></h3>
+        <h3><span class="morelinks"><div>
+            Companion <a href="OptionalMapOps.html" title="See companion trait">trait OptionalMapOps</a>
+          </div></span></h3>
       </div>
 
       <h4 id="signature" class="signature">
@@ -560,7 +640,7 @@ molecules you use in scope of the import.
         <span class="kind">object</span>
       </span>
       <span class="symbol">
-        <span class="name">optionalMapOps</span><span class="result"> extends <a href="../action/OptionalMapOps.html" class="extype" name="molecule.action.OptionalMapOps">OptionalMapOps</a></span>
+        <span class="name">OptionalMapOps</span><span class="result"> extends <a href="OptionalMapOps.html" class="extype" name="molecule.api.OptionalMapOps">OptionalMapOps</a></span>
       </span>
       </h4>
 
@@ -569,11 +649,11 @@ molecules you use in scope of the import.
 are rather specialized. If needed, they can be made available with
 the following aditional import:</p><pre><span class="kw">import</span> molecule.api.optionalMapOps._
 <span class="kw">import</span> molecule.api.out8._ <span class="cmt">// Standard api import with any arity</span></pre><p>Since this is a rather specialized
-</p></div><dl class="attributes block"> <dt>Source</dt><dd><a href="https://github.com/scalamolecule/molecule/tree/master/core/src/main/scala/molecule/api/optionalMapOps.scala#L1" target="_blank">optionalMapOps.scala</a></dd></dl><div class="toggleContainer block">
+</p></div><dl class="attributes block"> <dt>Source</dt><dd><a href="https://github.com/scalamolecule/molecule/tree/master/core/src/main/scala/molecule/api/OptionalMapOps.scala#L1" target="_blank">OptionalMapOps.scala</a></dd></dl><div class="toggleContainer block">
           <span class="toggle">
             Linear Supertypes
           </span>
-          <div class="superTypes hiddenContent"><a href="../action/OptionalMapOps.html" class="extype" name="molecule.action.OptionalMapOps">OptionalMapOps</a>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
+          <div class="superTypes hiddenContent"><a href="OptionalMapOps.html" class="extype" name="molecule.api.OptionalMapOps">OptionalMapOps</a>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
         
 
@@ -599,7 +679,7 @@ the following aditional import:</p><pre><span class="kw">import</span> molecule.
                   <span class="filtertype">Inherited<br />
                   </span>
                   <ol id="linearization">
-                    <li class="in" name="molecule.api.optionalMapOps"><span>optionalMapOps</span></li><li class="in" name="molecule.action.OptionalMapOps"><span>OptionalMapOps</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                    <li class="in" name="molecule.api.OptionalMapOps"><span>OptionalMapOps</span></li><li class="in" name="molecule.api.OptionalMapOps"><span>OptionalMapOps</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
                   </ol>
                 </div><div class="ancestors">
               <span class="filtertype"></span>
@@ -621,10 +701,10 @@ the following aditional import:</p><pre><span class="kw">import</span> molecule.
 
         <div id="types" class="types members">
               <h3>Type Members</h3>
-              <ol><li name="molecule.action.OptionalMapOps.OptMapAttr2MapOps" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="entityOps">
+              <ol><li name="molecule.api.OptionalMapOps.OptMapAttr2MapOps" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="entityOps">
       <a id="OptMapAttr2MapOps[T]extendsAnyRef"></a><a id="OptMapAttr2MapOps[T]:OptMapAttr2MapOps[T]"></a>
       <span class="permalink">
-      <a href="../../molecule/action/OptionalMapOps.html#OptMapAttr2MapOps[T]extendsAnyRef" title="Permalink">
+      <a href="../../molecule/api/OptionalMapOps.html#OptMapAttr2MapOps[T]extendsAnyRef" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -633,12 +713,12 @@ the following aditional import:</p><pre><span class="kw">import</span> molecule.
         <span class="kind">class</span>
       </span>
       <span class="symbol">
-        <a title="Implicit convenience ops on Option[Map[String, T]]" href="../action/OptionalMapOps$OptMapAttr2MapOps.html"><span class="name">OptMapAttr2MapOps</span></a><span class="tparams">[<span name="T">T</span>]</span><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+        <a title="Implicit convenience ops on Option[Map[String, T]]" href="OptionalMapOps$OptMapAttr2MapOps.html"><span class="name">OptMapAttr2MapOps</span></a><span class="tparams">[<span name="T">T</span>]</span><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
       </span>
       
       <p class="shortcomment cmt">Implicit convenience ops on <code>Option[Map[String, T]]</code>
 </p><div class="fullcomment"><div class="comment cmt"><p>Implicit convenience ops on <code>Option[Map[String, T]]</code>
-</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../action/OptionalMapOps.html" class="extype" name="molecule.action.OptionalMapOps">OptionalMapOps</a></dd></dl></div>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="OptionalMapOps.html" class="extype" name="molecule.api.OptionalMapOps">OptionalMapOps</a></dd></dl></div>
     </li></ol>
             </div>
 
@@ -650,7 +730,7 @@ the following aditional import:</p><pre><span class="kw">import</span> molecule.
                 <li name="scala.AnyRef#!=" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="!=(x$1:Any):Boolean"></a><a id="!=(Any):Boolean"></a>
       <span class="permalink">
-      <a href="../../molecule/api/optionalMapOps$.html#!=(x$1:Any):Boolean" title="Permalink">
+      <a href="../../molecule/api/OptionalMapOps$.html#!=(x$1:Any):Boolean" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -666,7 +746,7 @@ the following aditional import:</p><pre><span class="kw">import</span> molecule.
     </li><li name="scala.AnyRef###" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="##():Int"></a>
       <span class="permalink">
-      <a href="../../molecule/api/optionalMapOps$.html###():Int" title="Permalink">
+      <a href="../../molecule/api/OptionalMapOps$.html###():Int" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -682,7 +762,7 @@ the following aditional import:</p><pre><span class="kw">import</span> molecule.
     </li><li name="scala.AnyRef#==" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="==(x$1:Any):Boolean"></a><a id="==(Any):Boolean"></a>
       <span class="permalink">
-      <a href="../../molecule/api/optionalMapOps$.html#==(x$1:Any):Boolean" title="Permalink">
+      <a href="../../molecule/api/OptionalMapOps$.html#==(x$1:Any):Boolean" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -698,7 +778,7 @@ the following aditional import:</p><pre><span class="kw">import</span> molecule.
     </li><li name="scala.Any#asInstanceOf" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="asInstanceOf[T0]:T0"></a>
       <span class="permalink">
-      <a href="../../molecule/api/optionalMapOps$.html#asInstanceOf[T0]:T0" title="Permalink">
+      <a href="../../molecule/api/OptionalMapOps$.html#asInstanceOf[T0]:T0" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -714,7 +794,7 @@ the following aditional import:</p><pre><span class="kw">import</span> molecule.
     </li><li name="scala.AnyRef#clone" visbl="prt" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="clone():Object"></a><a id="clone():AnyRef"></a>
       <span class="permalink">
-      <a href="../../molecule/api/optionalMapOps$.html#clone():Object" title="Permalink">
+      <a href="../../molecule/api/OptionalMapOps$.html#clone():Object" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -738,7 +818,7 @@ the following aditional import:</p><pre><span class="kw">import</span> molecule.
     </li><li name="scala.AnyRef#eq" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="eq(x$1:AnyRef):Boolean"></a><a id="eq(AnyRef):Boolean"></a>
       <span class="permalink">
-      <a href="../../molecule/api/optionalMapOps$.html#eq(x$1:AnyRef):Boolean" title="Permalink">
+      <a href="../../molecule/api/OptionalMapOps$.html#eq(x$1:AnyRef):Boolean" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -754,7 +834,7 @@ the following aditional import:</p><pre><span class="kw">import</span> molecule.
     </li><li name="scala.AnyRef#equals" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="equals(x$1:Any):Boolean"></a><a id="equals(Any):Boolean"></a>
       <span class="permalink">
-      <a href="../../molecule/api/optionalMapOps$.html#equals(x$1:Any):Boolean" title="Permalink">
+      <a href="../../molecule/api/OptionalMapOps$.html#equals(x$1:Any):Boolean" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -770,7 +850,7 @@ the following aditional import:</p><pre><span class="kw">import</span> molecule.
     </li><li name="scala.AnyRef#finalize" visbl="prt" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="finalize():Unit"></a>
       <span class="permalink">
-      <a href="../../molecule/api/optionalMapOps$.html#finalize():Unit" title="Permalink">
+      <a href="../../molecule/api/OptionalMapOps$.html#finalize():Unit" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -792,7 +872,7 @@ the following aditional import:</p><pre><span class="kw">import</span> molecule.
     </li><li name="scala.AnyRef#getClass" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="getClass():Class[_]"></a>
       <span class="permalink">
-      <a href="../../molecule/api/optionalMapOps$.html#getClass():Class[_]" title="Permalink">
+      <a href="../../molecule/api/OptionalMapOps$.html#getClass():Class[_]" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -811,7 +891,7 @@ the following aditional import:</p><pre><span class="kw">import</span> molecule.
     </li><li name="scala.AnyRef#hashCode" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="hashCode():Int"></a>
       <span class="permalink">
-      <a href="../../molecule/api/optionalMapOps$.html#hashCode():Int" title="Permalink">
+      <a href="../../molecule/api/OptionalMapOps$.html#hashCode():Int" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -830,7 +910,7 @@ the following aditional import:</p><pre><span class="kw">import</span> molecule.
     </li><li name="scala.Any#isInstanceOf" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="isInstanceOf[T0]:Boolean"></a>
       <span class="permalink">
-      <a href="../../molecule/api/optionalMapOps$.html#isInstanceOf[T0]:Boolean" title="Permalink">
+      <a href="../../molecule/api/OptionalMapOps$.html#isInstanceOf[T0]:Boolean" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -846,7 +926,7 @@ the following aditional import:</p><pre><span class="kw">import</span> molecule.
     </li><li name="scala.AnyRef#ne" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="ne(x$1:AnyRef):Boolean"></a><a id="ne(AnyRef):Boolean"></a>
       <span class="permalink">
-      <a href="../../molecule/api/optionalMapOps$.html#ne(x$1:AnyRef):Boolean" title="Permalink">
+      <a href="../../molecule/api/OptionalMapOps$.html#ne(x$1:AnyRef):Boolean" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -862,7 +942,7 @@ the following aditional import:</p><pre><span class="kw">import</span> molecule.
     </li><li name="scala.AnyRef#notify" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="notify():Unit"></a>
       <span class="permalink">
-      <a href="../../molecule/api/optionalMapOps$.html#notify():Unit" title="Permalink">
+      <a href="../../molecule/api/OptionalMapOps$.html#notify():Unit" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -881,7 +961,7 @@ the following aditional import:</p><pre><span class="kw">import</span> molecule.
     </li><li name="scala.AnyRef#notifyAll" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="notifyAll():Unit"></a>
       <span class="permalink">
-      <a href="../../molecule/api/optionalMapOps$.html#notifyAll():Unit" title="Permalink">
+      <a href="../../molecule/api/OptionalMapOps$.html#notifyAll():Unit" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -900,7 +980,7 @@ the following aditional import:</p><pre><span class="kw">import</span> molecule.
     </li><li name="scala.AnyRef#synchronized" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="synchronized[T0](x$1:=&gt;T0):T0"></a><a id="synchronized[T0](⇒T0):T0"></a>
       <span class="permalink">
-      <a href="../../molecule/api/optionalMapOps$.html#synchronized[T0](x$1:=&gt;T0):T0" title="Permalink">
+      <a href="../../molecule/api/OptionalMapOps$.html#synchronized[T0](x$1:=&gt;T0):T0" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -916,7 +996,7 @@ the following aditional import:</p><pre><span class="kw">import</span> molecule.
     </li><li name="scala.AnyRef#toString" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="toString():String"></a>
       <span class="permalink">
-      <a href="../../molecule/api/optionalMapOps$.html#toString():String" title="Permalink">
+      <a href="../../molecule/api/OptionalMapOps$.html#toString():String" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -932,7 +1012,7 @@ the following aditional import:</p><pre><span class="kw">import</span> molecule.
     </li><li name="scala.AnyRef#wait" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="wait():Unit"></a>
       <span class="permalink">
-      <a href="../../molecule/api/optionalMapOps$.html#wait():Unit" title="Permalink">
+      <a href="../../molecule/api/OptionalMapOps$.html#wait():Unit" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -954,7 +1034,7 @@ the following aditional import:</p><pre><span class="kw">import</span> molecule.
     </li><li name="scala.AnyRef#wait" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="wait(x$1:Long,x$2:Int):Unit"></a><a id="wait(Long,Int):Unit"></a>
       <span class="permalink">
-      <a href="../../molecule/api/optionalMapOps$.html#wait(x$1:Long,x$2:Int):Unit" title="Permalink">
+      <a href="../../molecule/api/OptionalMapOps$.html#wait(x$1:Long,x$2:Int):Unit" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -976,7 +1056,7 @@ the following aditional import:</p><pre><span class="kw">import</span> molecule.
     </li><li name="scala.AnyRef#wait" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="wait(x$1:Long):Unit"></a><a id="wait(Long):Unit"></a>
       <span class="permalink">
-      <a href="../../molecule/api/optionalMapOps$.html#wait(x$1:Long):Unit" title="Permalink">
+      <a href="../../molecule/api/OptionalMapOps$.html#wait(x$1:Long):Unit" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -1007,8 +1087,8 @@ the following aditional import:</p><pre><span class="kw">import</span> molecule.
         </div>
 
         <div id="inheritedMembers">
-        <div class="parent" name="molecule.action.OptionalMapOps">
-              <h3>Inherited from <a href="../action/OptionalMapOps.html" class="extype" name="molecule.action.OptionalMapOps">OptionalMapOps</a></h3>
+        <div class="parent" name="molecule.api.OptionalMapOps">
+              <h3>Inherited from <a href="OptionalMapOps.html" class="extype" name="molecule.api.OptionalMapOps">OptionalMapOps</a></h3>
             </div><div class="parent" name="scala.AnyRef">
               <h3>Inherited from <span class="extype" name="scala.AnyRef">AnyRef</span></h3>
             </div><div class="parent" name="scala.Any">

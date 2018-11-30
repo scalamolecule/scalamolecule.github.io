@@ -1,594 +1,646 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
 <head>
-  <meta http-equiv="content-type" content="text/html; charset=utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
-  <link href='http://fonts.googleapis.com/css?family=Merriweather+Sans:400,300,300italic,400italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
-  <title>Time</title>
-  <link href="/css/bootstrap.min.css" rel="stylesheet">
-  <link href="/css/highlight/styles/solarized_light.css" rel="stylesheet" />
-  <link rel="stylesheet" type="text/css" href="/vendor/font-awesome/css/font-awesome.min.css">
-  <link href="/css/style.css" rel="stylesheet">
-  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/img/apple-touch-icon-144-precomposed.png">
-  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/img/apple-touch-icon-114-precomposed.png">
-  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/img/apple-touch-icon-72-precomposed.png">
-  <link rel="apple-touch-icon-precomposed" href="/img/apple-touch-icon-57-precomposed.png">
-  <link rel="shortcut icon" href="/img/favicon.png">
-  <link href="" rel="alternate" type="application/rss+xml" title="Molecule" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
+    <link href='http://fonts.googleapis.com/css?family=Merriweather+Sans:400,300,300italic,400italic,700,700italic,800,800italic'
+          rel='stylesheet' type='text/css'>
+    <title>Time</title>
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/highlight/styles/solarized_light.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="/vendor/font-awesome/css/font-awesome.min.css">
+    <link href="/css/style.css" rel="stylesheet">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/img/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/img/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/img/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="/img/apple-touch-icon-57-precomposed.png">
+    <link rel="shortcut icon" href="/img/favicon.png">
+    <link href="" rel="alternate" type="application/rss+xml" title="Molecule"/>
 </head>
 <body>
-<div class="wrapper">
-<div class="container" style="padding-top:20px">
-  <div class="col-md-12 column" style="padding-left:0px; margin-bottom:15px">
-    <div class="col-md-12 column" style="padding-left:0px;height:50px;">
+
+
+<header class="bs-docs-header">
+    <div class="container">
+        <div class="col-md-12 column" style="padding-left:0px; padding-right:0px; margin-bottom:15px">
+            <div class="col-md-10 column" style="padding-left:0px;height:50px;">
 
     <ul class="nav nav-pills">
-      <li><a href="/" style="padding-left: 6px; padding-right: 13px; vertical-align: top; margin-top: 0px;"><img src="/img/logo/MoleculeLogo600.png" alt="" width="200"></a></li>
-      
-      
-      
+        <li><a href="/" style="padding-left: 6px; padding-right: 13px; vertical-align: top; margin-top: 2px;"><img
+                src="/img/logo/MoleculeLogo600.png" alt="" width="200"></a></li>
+        
+        
+        
         <li class="dropdown ">
-          <a data-toggle="dropdown" href="/compare/" target="_top" onclick="javascript:top.location = '\/compare\/';return true;">Compare</a>
-          
-            <ul class="dropdown-menu level1" role="menu" aria-labelledby="dropdownMenu">
-              
-                
-              
-                
-
-                  
-                    <li><a href="/compare/datomic/">Datomic</a></li>
-                  
-
-                
-              
-                
-
-                  
-                    <li class="dropdown-submenu">
-                      <a href="/compare/sql/">SQL</a>
-                      <ul class="dropdown-menu">
-                        
-                          <li><a href="/compare/sql/slick/">Slick</a></li>
-                        
-                      </ul>
-                    </li>
-                  
-
-                
-              
-                
-
-                  
-                    <li><a href="/compare/gremlin/">Gremlin</a></li>
-                  
-
-                
-              
-            </ul>
-          
-        </li>
-      
-      
-        <li class="dropdown ">
-          <a data-toggle="dropdown" href="/resources/" target="_top" onclick="javascript:top.location = '\/resources\/';return true;">Resources</a>
-          
-            <ul class="dropdown-menu level1" role="menu" aria-labelledby="dropdownMenu">
-              
-                
-              
-                
-
-                  
-                    <li class="dropdown-submenu">
-                      <a href="/resources/tutorials/">Tutorials</a>
-                      <ul class="dropdown-menu">
-                        
-                          <li><a href="/resources/tutorials/seattle/">Seattle</a></li>
-                        
-                      </ul>
-                    </li>
-                  
-
-                
-              
-                
-
-                  
-                    <li class="dropdown-submenu">
-                      <a href="/resources/videos/">Videos</a>
-                      <ul class="dropdown-menu">
-                        
-                          <li><a href="/resources/videos/2017-04-25_Marc_Grue/">Molecule presentation</a></li>
-                        
-                      </ul>
-                    </li>
-                  
-
-                
-              
-            </ul>
-          
-        </li>
-      
-      
-        <li class="dropdown active">
-          <a data-toggle="dropdown" href="/manual/" target="_top" onclick="javascript:top.location = '\/manual\/';return true;">Manual</a>
-          
-            <ul class="dropdown-menu level1" role="menu" aria-labelledby="dropdownMenu">
-              
-                
-
-                  
-                    <li class="dropdown-submenu">
-                      <a href="/manual/">Quick start</a>
-                      <ul class="dropdown-menu">
-                        
-                          <li><a href="/manual/quick-start/introduction/">Introduction</a></li>
-                        
-                      </ul>
-                    </li>
-                  
-
-                
-              
-                
-
-                  
-                    <li><a href="/manual/setup/">Setup</a></li>
-                  
-
-                
-              
-                
-
-                  
-                    <li class="dropdown-submenu">
-                      <a href="/manual/schema/">Schema</a>
-                      <ul class="dropdown-menu">
-                        
-                          <li><a href="/manual/schema/transaction/">Transaction</a></li>
-                        
-                      </ul>
-                    </li>
-                  
-
-                
-              
-                
-
-                  
-                    <li class="dropdown-submenu">
-                      <a href="/manual/attributes/">Attributes</a>
-                      <ul class="dropdown-menu">
-                        
-                          <li><a href="/manual/attributes/basics/">Basics</a></li>
-                        
-                          <li><a href="/manual/attributes/modes/">Mandatory/Tacit/Optional</a></li>
-                        
-                          <li><a href="/manual/attributes/mapped/">Map attributes</a></li>
-                        
-                          <li><a href="/manual/attributes/expressions/">Expressions</a></li>
-                        
-                          <li><a href="/manual/attributes/aggregates/">Aggregates</a></li>
-                        
-                          <li><a href="/manual/attributes/parameterized/">Parameterized</a></li>
-                        
-                      </ul>
-                    </li>
-                  
-
-                
-              
-                
-
-                  
-                    <li><a href="/manual/entities/">Entities</a></li>
-                  
-
-                
-              
-                
-
-                  
-                    <li class="dropdown-submenu">
-                      <a href="/manual/relationships/">Relationships</a>
-                      <ul class="dropdown-menu">
-                        
-                          <li><a href="/manual/relationships/card-one/">Cardinality one</a></li>
-                        
-                          <li><a href="/manual/relationships/card-many/">Cardinality many</a></li>
-                        
-                          <li><a href="/manual/relationships/composites/">Composites</a></li>
-                        
-                          <li><a href="/manual/relationships/bidirectional/">Bidirectional</a></li>
-                        
-                          <li><a href="/manual/relationships/self-join/">Self-join</a></li>
-                        
-                      </ul>
-                    </li>
-                  
-
-                
-              
-                
-
-                  
-                    <li class="dropdown-submenu">
-                      <a href="/manual/crud/">CRUD</a>
-                      <ul class="dropdown-menu">
-                        
-                          <li><a href="/manual/crud/save/">Save</a></li>
-                        
-                          <li><a href="/manual/crud/insert/">Insert</a></li>
-                        
-                          <li><a href="/manual/crud/composite-insert/">Composite insert</a></li>
-                        
-                          <li><a href="/manual/crud/get/">Get</a></li>
-                        
-                          <li><a href="/manual/crud/getJson/">Get Json</a></li>
-                        
-                          <li><a href="/manual/crud/update/">Update</a></li>
-                        
-                          <li><a href="/manual/crud/retract/">Retract</a></li>
-                        
-                      </ul>
-                    </li>
-                  
-
-                
-              
-                
-
-                  
-                    <li class="dropdown-submenu">
-                      <a href="/manual/transactions/">Transactions</a>
-                      <ul class="dropdown-menu">
-                        
-                          <li><a href="/manual/transactions/tx-meta-data/">Tx meta data</a></li>
-                        
-                      </ul>
-                    </li>
-                  
-
-                
-              
-                
-
-                  
-                    <li class="dropdown-submenu">
-                      <a href="/manual/time/">Time</a>
-                      <ul class="dropdown-menu">
-                        
-                          <li><a href="/manual/time/asof-since/">AsOf/Since</a></li>
-                        
-                          <li><a href="/manual/time/history/">History</a></li>
-                        
-                          <li><a href="/manual/time/with/">With</a></li>
-                        
-                          <li><a href="/manual/time/testing/">Testing</a></li>
-                        
-                      </ul>
-                    </li>
-                  
-
-                
-              
-            </ul>
-          
-        </li>
-      
-      
-        <li class="dropdown ">
-          <a data-toggle="dropdown" href="/api/molecule" target="_top" onclick="javascript:top.location = '\/api\/molecule';return true;">Docs</a>
-          
-            <ul class="dropdown-menu level1" role="menu" aria-labelledby="dropdownMenu">
-              
-                
-
-                  
-                    <li class="dropdown-submenu">
-                      <a href="/api/molecule/action">action</a>
-                      <ul class="dropdown-menu">
-                        
-                          <li><a href="/api/molecule/action/get/">get</a></li>
-                        
-                          <li><a href="/api/molecule/action/CompositeInserts.html">CompositeInserts</a></li>
-                        
-                          <li><a href="/api/molecule/action/Entity.html">Entity</a></li>
-                        
-                          <li><a href="/api/molecule/action/EntityOps.html">EntityOps</a></li>
-                        
-                          <li><a href="/api/molecule/action/Molecule.html">Molecule</a></li>
-                        
-                          <li><a href="/api/molecule/action/ShowDebug.html">OptionalMapOps</a></li>
-                        
-                      </ul>
-                    </li>
-                  
-
-                
-              
-                
-
-                  
-                    <li><a href="/api/molecule/api">api</a></li>
-                  
-
-                
-              
-                
-
-                  
-                    <li class="dropdown-submenu">
-                      <a href="/api/molecule/composition">composition</a>
-                      <ul class="dropdown-menu">
-                        
-                          <li><a href="/api/molecule/composition/Composite.html">Composite</a></li>
-                        
-                          <li><a href="/api/molecule/composition/CompositeInit.html">CompositeInit</a></li>
-                        
-                          <li><a href="/api/molecule/composition/CompositeInit_In_1.html">CompositeInit_In_1</a></li>
-                        
-                          <li><a href="/api/molecule/composition/CompositeInit_In_2.html">CompositeInit_In_2</a></li>
-                        
-                          <li><a href="/api/molecule/composition/CompositeInit_In_3.html">CompositeInit_In_3</a></li>
-                        
-                          <li><a href="/api/molecule/composition/Composite_In_1.html">Composite_In_1</a></li>
-                        
-                          <li><a href="/api/molecule/composition/Composite_In_2.html">Composite_In_2</a></li>
-                        
-                          <li><a href="/api/molecule/composition/Composite_In_3.html">Composite_In_3</a></li>
-                        
-                          <li><a href="/api/molecule/composition/Nested.html">Nested</a></li>
-                        
-                          <li><a href="/api/molecule/composition/Nested_In_1.html">Nested_In_1</a></li>
-                        
-                          <li><a href="/api/molecule/composition/Nested_In_2.html">Nested_In_2</a></li>
-                        
-                          <li><a href="/api/molecule/composition/Nested_In_3.html">Nested_In_3</a></li>
-                        
-                          <li><a href="/api/molecule/composition/Tx.html">Tx</a></li>
-                        
-                      </ul>
-                    </li>
-                  
-
-                
-              
-                
-
-                  
-                    <li class="dropdown-submenu">
-                      <a href="/api/molecule/exceptions">exceptions</a>
-                      <ul class="dropdown-menu">
-                        
-                          <li><a href="/api/molecule/exceptions/package$$MoleculeException.html">MoleculeException</a></li>
-                        
-                          <li><a href="/api/molecule/exceptions/package$$QueryException.html">QueryException</a></li>
-                        
-                      </ul>
-                    </li>
-                  
-
-                
-              
-                
-
-                  
-                    <li class="dropdown-submenu">
-                      <a href="/api/molecule/expression">expression</a>
-                      <ul class="dropdown-menu">
-                        
-                          <li><a href="/api/molecule/expression/AggregateKeywords.html">AggregateKeywords</a></li>
-                        
-                          <li><a href="/api/molecule/expression/LogicImplicits.html">AttrExpressions</a></li>
-                        
-                      </ul>
-                    </li>
-                  
-
-                
-              
-                
-
-                  
-                    <li class="dropdown-submenu">
-                      <a href="/api/molecule/facade">facade</a>
-                      <ul class="dropdown-menu">
-                        
-                          <li><a href="/api/molecule/facade/Conn.html">Conn</a></li>
-                        
-                          <li><a href="/api/molecule/facade/Datomic.html">Datomic</a></li>
-                        
-                          <li><a href="/api/molecule/facade/TxReport.html">TxReport</a></li>
-                        
-                      </ul>
-                    </li>
-                  
-
-                
-              
-                
-
-                  
-                    <li class="dropdown-submenu">
-                      <a href="/api/molecule/factory">factory</a>
-                      <ul class="dropdown-menu">
-                        
-                          <li><a href="/api/molecule/factory/Composite_Factory.html">Composite_Factory</a></li>
-                        
-                          <li><a href="/api/molecule/factory/Composite_In_1_Factory.html">Composite_In_1_Factory</a></li>
-                        
-                          <li><a href="/api/molecule/factory/Composite_In_2_Factory.html">Composite_In_2_Factory</a></li>
-                        
-                          <li><a href="/api/molecule/factory/Composite_In_3_Factory.html">Composite_In_3_Factory</a></li>
-                        
-                          <li><a href="/api/molecule/factory/Molecule_Factory.html">Molecule_Factory</a></li>
-                        
-                          <li><a href="/api/molecule/factory/Molecule_In_1_Factory.html">Molecule_In_1_Factory</a></li>
-                        
-                          <li><a href="/api/molecule/factory/Molecule_In_2_Factory.html">Molecule_In_2_Factory</a></li>
-                        
-                          <li><a href="/api/molecule/factory/Molecule_In_3_Factory.html">Molecule_In_3_Factory</a></li>
-                        
-                      </ul>
-                    </li>
-                  
-
-                
-              
-                
-
-                  
-                    <li class="dropdown-submenu">
-                      <a href="/api/molecule/generic">generic</a>
-                      <ul class="dropdown-menu">
-                        
-                          <li><a href="/api/molecule/generic/Datom.html">Datom</a></li>
-                        
-                          <li><a href="/api/molecule/generic/Db.html">Db</a></li>
-                        
-                      </ul>
-                    </li>
-                  
-
-                
-              
-                
-
-                  
-                    <li class="dropdown-submenu">
-                      <a href="/api/molecule/input">input</a>
-                      <ul class="dropdown-menu">
-                        
-                          <li><a href="/api/molecule/input/InputMolecule.html">InputMolecule</a></li>
-                        
-                          <li><a href="/api/molecule/input/InputMolecule_1.html">InputMolecule_1</a></li>
-                        
-                          <li><a href="/api/molecule/input/InputMolecule_2.html">InputMolecule_2</a></li>
-                        
-                          <li><a href="/api/molecule/input/InputMolecule_3.html">InputMolecule_3</a></li>
-                        
-                      </ul>
-                    </li>
-                  
-
-                
-              
-                
-
-                  
-                    <li class="dropdown-submenu">
-                      <a href="/api/molecule/schema">schema</a>
-                      <ul class="dropdown-menu">
-                        
-                          <li><a href="/api/molecule/schema/SchemaTransaction.html">SchemaTransaction</a></li>
-                        
-                          <li><a href="/api/molecule/schema/definition$.html">definition</a></li>
-                        
-                      </ul>
-                    </li>
-                  
-
-                
-              
-            </ul>
-          
-        </li>
-      
-      
-        <li class="dropdown ">
-          <a data-toggle="dropdown" href="/dev/" target="_top" onclick="javascript:top.location = '\/dev\/';return true;">Dev</a>
-          
-            <ul class="dropdown-menu level1" role="menu" aria-labelledby="dropdownMenu">
-              
-                
-
-                  
-                    <li><a href="/dev/">Developer</a></li>
-                  
-
-                
-              
-                
-
-                  
-                    <li><a href="/dev/boilerplate/">Boilerplate</a></li>
-                  
-
-                
-              
-                
-
-                  
-                    <li><a href="/dev/transformation/">Transformation</a></li>
-                  
-
-                
-              
-            </ul>
-          
-        </li>
-      
-      
-        <li class="dropdown ">
-          <a data-toggle="dropdown" href="/community/" target="_top" onclick="javascript:top.location = '\/community\/';return true;">Community</a>
-          
-            <ul class="dropdown-menu level1" role="menu" aria-labelledby="dropdownMenu">
-              
-                
-              
-                
-
-                  
-                    <li><a href="https://groups.google.com/forum/#!forum/molecule-dsl">Forum</a></li>
-                  
-
-                
-              
-                
-
-                  
-                    <li><a href="https://github.com/scalamolecule/molecule">Github</a></li>
-                  
-
-                
-              
-                
-
-                  
-                    <li><a href="https://github.com/scalamolecule/molecule/issues">Molecule issues</a></li>
-                  
-
-                
-              
-                
-
-                  
-                    <li><a href="https://github.com/scalamolecule/molecule-docs/issues">Molecule docs issues</a></li>
-                  
-
-                
-              
-            </ul>
-          
-        </li>
-      
-      <li>
-        <div  style="padding-left:14px;padding-top:19px;height:24px;float:right;">
-            <a href="https://github.com/scalamolecule/molecule" class="github-button" data-icon="octicon-star">Github</a>
+            <a data-toggle="dropdown" href="/compare/" target="_top"
+               onclick="javascript:top.location = '\/compare\/';return true;">Compare</a>
             
-          </div>
-      </li>
+            <ul class="dropdown-menu level1" role="menu" aria-labelledby="dropdownMenu">
+                
+                
+                
+                
+
+                
+                <li><a href="/compare/datomic/">Datomic</a></li>
+                
+
+                
+                
+                
+
+                
+                <li class="dropdown-submenu">
+                    <a href="/compare/sql/">SQL</a>
+                    <ul class="dropdown-menu">
+                        
+                        <li><a href="/compare/sql/slick/">Slick</a></li>
+                        
+                    </ul>
+                </li>
+                
+
+                
+                
+                
+
+                
+                <li><a href="/compare/gremlin/">Gremlin</a></li>
+                
+
+                
+                
+            </ul>
+            
+        </li>
+        
+        
+        <li class="dropdown ">
+            <a data-toggle="dropdown" href="/resources/" target="_top"
+               onclick="javascript:top.location = '\/resources\/';return true;">Resources</a>
+            
+            <ul class="dropdown-menu level1" role="menu" aria-labelledby="dropdownMenu">
+                
+                
+                
+                
+
+                
+                <li class="dropdown-submenu">
+                    <a href="/resources/tutorials/">Tutorials</a>
+                    <ul class="dropdown-menu">
+                        
+                        <li><a href="/resources/tutorials/seattle/">Seattle</a></li>
+                        
+                    </ul>
+                </li>
+                
+
+                
+                
+                
+
+                
+                <li class="dropdown-submenu">
+                    <a href="/resources/videos/">Videos</a>
+                    <ul class="dropdown-menu">
+                        
+                        <li><a href="/resources/videos/2017-04-25_Marc_Grue/">Molecule presentation</a></li>
+                        
+                    </ul>
+                </li>
+                
+
+                
+                
+            </ul>
+            
+        </li>
+        
+        
+        <li class="dropdown active">
+            <a data-toggle="dropdown" href="/manual/" target="_top"
+               onclick="javascript:top.location = '\/manual\/';return true;">Manual</a>
+            
+            <ul class="dropdown-menu level1" role="menu" aria-labelledby="dropdownMenu">
+                
+                
+
+                
+                <li class="dropdown-submenu">
+                    <a href="/manual/">Quick start</a>
+                    <ul class="dropdown-menu">
+                        
+                        <li><a href="/manual/quick-start/introduction/">Introduction</a></li>
+                        
+                    </ul>
+                </li>
+                
+
+                
+                
+                
+
+                
+                <li><a href="/manual/setup/">Setup</a></li>
+                
+
+                
+                
+                
+
+                
+                <li class="dropdown-submenu">
+                    <a href="/manual/schema/">Schema</a>
+                    <ul class="dropdown-menu">
+                        
+                        <li><a href="/manual/schema/transaction/">Transaction</a></li>
+                        
+                    </ul>
+                </li>
+                
+
+                
+                
+                
+
+                
+                <li class="dropdown-submenu">
+                    <a href="/manual/attributes/">Attributes</a>
+                    <ul class="dropdown-menu">
+                        
+                        <li><a href="/manual/attributes/basics/">Building molecules</a></li>
+                        
+                        <li><a href="/manual/attributes/modes/">Mandatory/Tacit/Optional</a></li>
+                        
+                        <li><a href="/manual/attributes/mapped/">Map attributes</a></li>
+                        
+                        <li><a href="/manual/attributes/expressions/">Expressions</a></li>
+                        
+                        <li><a href="/manual/attributes/aggregates/">Aggregates</a></li>
+                        
+                        <li><a href="/manual/attributes/parameterized/">Parameterized</a></li>
+                        
+                    </ul>
+                </li>
+                
+
+                
+                
+                
+
+                
+                <li><a href="/manual/entities/">Entities</a></li>
+                
+
+                
+                
+                
+
+                
+                <li class="dropdown-submenu">
+                    <a href="/manual/relationships/">Relationships</a>
+                    <ul class="dropdown-menu">
+                        
+                        <li><a href="/manual/relationships/card-one/">Cardinality one</a></li>
+                        
+                        <li><a href="/manual/relationships/card-many/">Cardinality many</a></li>
+                        
+                        <li><a href="/manual/relationships/composites/">Composites</a></li>
+                        
+                        <li><a href="/manual/relationships/bidirectional/">Bidirectional</a></li>
+                        
+                        <li><a href="/manual/relationships/self-join/">Self-join</a></li>
+                        
+                    </ul>
+                </li>
+                
+
+                
+                
+                
+
+                
+                <li class="dropdown-submenu">
+                    <a href="/manual/crud/">&#34;CRUD&#34;</a>
+                    <ul class="dropdown-menu">
+                        
+                        <li><a href="/manual/crud/save/">Save</a></li>
+                        
+                        <li><a href="/manual/crud/insert/">Insert</a></li>
+                        
+                        <li><a href="/manual/crud/get/">Get</a></li>
+                        
+                        <li><a href="/manual/crud/getJson/">Get Json</a></li>
+                        
+                        <li><a href="/manual/crud/update/">Update</a></li>
+                        
+                        <li><a href="/manual/crud/retract/">Retract</a></li>
+                        
+                    </ul>
+                </li>
+                
+
+                
+                
+                
+
+                
+                <li class="dropdown-submenu">
+                    <a href="/manual/transactions/">Transactions</a>
+                    <ul class="dropdown-menu">
+                        
+                        <li><a href="/manual/transactions/tx-bundle/">Tx bundle</a></li>
+                        
+                        <li><a href="/manual/transactions/tx-functions/">Tx functions</a></li>
+                        
+                        <li><a href="/manual/transactions/tx-meta-data/">Tx meta data</a></li>
+                        
+                    </ul>
+                </li>
+                
+
+                
+                
+                
+
+                
+                <li class="dropdown-submenu">
+                    <a href="/manual/time/">Time</a>
+                    <ul class="dropdown-menu">
+                        
+                        <li><a href="/manual/time/asof-since/">AsOf/Since</a></li>
+                        
+                        <li><a href="/manual/time/history/">History</a></li>
+                        
+                        <li><a href="/manual/time/with/">With</a></li>
+                        
+                        <li><a href="/manual/time/testing/">Testing</a></li>
+                        
+                    </ul>
+                </li>
+                
+
+                
+                
+            </ul>
+            
+        </li>
+        
+        
+        <li class="dropdown ">
+            <a data-toggle="dropdown" href="/api/molecule" target="_top"
+               onclick="javascript:top.location = '\/api\/molecule';return true;">Docs</a>
+            
+            <ul class="dropdown-menu level1" role="menu" aria-labelledby="dropdownMenu">
+                
+                
+
+                
+                <li class="dropdown-submenu">
+                    <a href="/api/molecule/api">api</a>
+                    <ul class="dropdown-menu">
+                        
+                        <li><a href="/api/molecule/api/Entity.html">Entity</a></li>
+                        
+                        <li><a href="/api/molecule/api/EntityOps.html">EntityOps</a></li>
+                        
+                        <li><a href="/api/molecule/api/Molecule.html">Molecule</a></li>
+                        
+                        <li><a href="/api/molecule/api/OptionalMapOps.html">OptionalMapOps</a></li>
+                        
+                        <li><a href="/api/molecule/api/ShowDebug.html">ShowDebug</a></li>
+                        
+                        <li><a href="/api/molecule/api/TxMethods.html">TxMethods</a></li>
+                        
+                        <li><a href="/api/molecule/api/exception">exception</a></li>
+                        
+                        <li><a href="/api/molecule/api/get">get</a></li>
+                        
+                        <li><a href="/api/molecule/api/getAsync">getAsync</a></li>
+                        
+                    </ul>
+                </li>
+                
+
+                
+                
+                
+
+                
+                <li class="dropdown-submenu">
+                    <a href="/api/molecule/composition">composition</a>
+                    <ul class="dropdown-menu">
+                        
+                        <li><a href="/api/molecule/composition/Composite.html">Composite</a></li>
+                        
+                        <li><a href="/api/molecule/composition/CompositeInit.html">CompositeInit</a></li>
+                        
+                        <li><a href="/api/molecule/composition/CompositeInit_In_1.html">CompositeInit_In_1</a></li>
+                        
+                        <li><a href="/api/molecule/composition/CompositeInit_In_2.html">CompositeInit_In_2</a></li>
+                        
+                        <li><a href="/api/molecule/composition/CompositeInit_In_3.html">CompositeInit_In_3</a></li>
+                        
+                        <li><a href="/api/molecule/composition/Composite_In_1.html">Composite_In_1</a></li>
+                        
+                        <li><a href="/api/molecule/composition/Composite_In_2.html">Composite_In_2</a></li>
+                        
+                        <li><a href="/api/molecule/composition/Composite_In_3.html">Composite_In_3</a></li>
+                        
+                        <li><a href="/api/molecule/composition/Nested.html">Nested</a></li>
+                        
+                        <li><a href="/api/molecule/composition/Nested_In_1.html">Nested_In_1</a></li>
+                        
+                        <li><a href="/api/molecule/composition/Nested_In_2.html">Nested_In_2</a></li>
+                        
+                        <li><a href="/api/molecule/composition/Nested_In_3.html">Nested_In_3</a></li>
+                        
+                        <li><a href="/api/molecule/composition/Tx.html">Tx</a></li>
+                        
+                    </ul>
+                </li>
+                
+
+                
+                
+                
+
+                
+                <li class="dropdown-submenu">
+                    <a href="/api/molecule/exceptions">exceptions</a>
+                    <ul class="dropdown-menu">
+                        
+                        <li><a href="/api/molecule/exceptions/package$$MoleculeCompileException.html">MoleculeCompileException</a></li>
+                        
+                        <li><a href="/api/molecule/exceptions/package$$MoleculeException.html">MoleculeException</a></li>
+                        
+                        <li><a href="/api/molecule/exceptions/package$$QueryException.html">QueryException</a></li>
+                        
+                    </ul>
+                </li>
+                
+
+                
+                
+                
+
+                
+                <li class="dropdown-submenu">
+                    <a href="/api/molecule/expression">expression</a>
+                    <ul class="dropdown-menu">
+                        
+                        <li><a href="/api/molecule/expression/AggregateKeywords.html">AggregateKeywords</a></li>
+                        
+                        <li><a href="/api/molecule/expression/LogicImplicits.html">AttrExpressions</a></li>
+                        
+                    </ul>
+                </li>
+                
+
+                
+                
+                
+
+                
+                <li class="dropdown-submenu">
+                    <a href="/api/molecule/facade">facade</a>
+                    <ul class="dropdown-menu">
+                        
+                        <li><a href="/api/molecule/facade/Conn.html">Conn</a></li>
+                        
+                        <li><a href="/api/molecule/facade/Datomic.html">Datomic</a></li>
+                        
+                        <li><a href="/api/molecule/facade/TxReport.html">TxReport</a></li>
+                        
+                        <li><a href="/api/molecule/facade/exception">exception</a></li>
+                        
+                    </ul>
+                </li>
+                
+
+                
+                
+                
+
+                
+                <li class="dropdown-submenu">
+                    <a href="/api/molecule/factory">factory</a>
+                    <ul class="dropdown-menu">
+                        
+                        <li><a href="/api/molecule/factory/Composite_Factory2.html">Composite_Factory2</a></li>
+                        
+                        <li><a href="/api/molecule/factory/Composite_In_1_Factory2.html">Composite_In_1_Factory2</a></li>
+                        
+                        <li><a href="/api/molecule/factory/Composite_In_2_Factory2.html">Composite_In_2_Factory2</a></li>
+                        
+                        <li><a href="/api/molecule/factory/Composite_In_3_Factory2.html">Composite_In_3_Factory2</a></li>
+                        
+                        <li><a href="/api/molecule/factory/Molecule_Factory2.html">Molecule_Factory2</a></li>
+                        
+                        <li><a href="/api/molecule/factory/Molecule_In_1_Factory2.html">Molecule_In_1_Factory2</a></li>
+                        
+                        <li><a href="/api/molecule/factory/Molecule_In_2_Factory2.html">Molecule_In_2_Factory2</a></li>
+                        
+                        <li><a href="/api/molecule/factory/Molecule_In_3_Factory2.html">Molecule_In_3_Factory2</a></li>
+                        
+                    </ul>
+                </li>
+                
+
+                
+                
+                
+
+                
+                <li class="dropdown-submenu">
+                    <a href="/api/molecule/generic">generic</a>
+                    <ul class="dropdown-menu">
+                        
+                        <li><a href="/api/molecule/generic/Datom.html">Datom</a></li>
+                        
+                        <li><a href="/api/molecule/generic/Db.html">Db</a></li>
+                        
+                    </ul>
+                </li>
+                
+
+                
+                
+                
+
+                
+                <li class="dropdown-submenu">
+                    <a href="/api/molecule/input">input</a>
+                    <ul class="dropdown-menu">
+                        
+                        <li><a href="/api/molecule/input/InputMolecule.html">InputMolecule</a></li>
+                        
+                        <li><a href="/api/molecule/input/InputMolecule_1.html">InputMolecule_1</a></li>
+                        
+                        <li><a href="/api/molecule/input/InputMolecule_2.html">InputMolecule_2</a></li>
+                        
+                        <li><a href="/api/molecule/input/InputMolecule_3.html">InputMolecule_3</a></li>
+                        
+                        <li><a href="/api/molecule/input/exception">exception</a></li>
+                        
+                    </ul>
+                </li>
+                
+
+                
+                
+                
+
+                
+                <li class="dropdown-submenu">
+                    <a href="/api/molecule/macros">macros</a>
+                    <ul class="dropdown-menu">
+                        
+                        <li><a href="/api/molecule/macros/TxFns.html">TxFns</a></li>
+                        
+                    </ul>
+                </li>
+                
+
+                
+                
+                
+
+                
+                <li class="dropdown-submenu">
+                    <a href="/api/molecule/schema">schema</a>
+                    <ul class="dropdown-menu">
+                        
+                        <li><a href="/api/molecule/schema/SchemaTransaction.html">SchemaTransaction</a></li>
+                        
+                        <li><a href="/api/molecule/schema/definition$.html">definition</a></li>
+                        
+                    </ul>
+                </li>
+                
+
+                
+                
+            </ul>
+            
+        </li>
+        
+        
+        <li class="dropdown ">
+            <a data-toggle="dropdown" href="/dev/" target="_top"
+               onclick="javascript:top.location = '\/dev\/';return true;">Dev</a>
+            
+            <ul class="dropdown-menu level1" role="menu" aria-labelledby="dropdownMenu">
+                
+                
+
+                
+                <li><a href="/dev/">Developer</a></li>
+                
+
+                
+                
+                
+
+                
+                <li><a href="/dev/boilerplate/">Boilerplate</a></li>
+                
+
+                
+                
+                
+
+                
+                <li><a href="/dev/transformation/">Transformation</a></li>
+                
+
+                
+                
+            </ul>
+            
+        </li>
+        
+        
+        <li class="dropdown ">
+            <a data-toggle="dropdown" href="/community/" target="_top"
+               onclick="javascript:top.location = '\/community\/';return true;">Community</a>
+            
+            <ul class="dropdown-menu level1" role="menu" aria-labelledby="dropdownMenu">
+                
+                
+                
+                
+
+                
+                <li><a href="https://groups.google.com/forum/#!forum/molecule-dsl">Forum</a></li>
+                
+
+                
+                
+                
+
+                
+                <li><a href="https://github.com/scalamolecule/molecule">Github</a></li>
+                
+
+                
+                
+                
+
+                
+                <li><a href="https://github.com/scalamolecule/molecule/issues">Molecule issues</a></li>
+                
+
+                
+                
+                
+
+                
+                <li><a href="https://github.com/scalamolecule/molecule-web/issues">Molecule docs issues</a></li>
+                
+
+                
+                
+            </ul>
+            
+        </li>
+        
+        <li>
+            
+        </li>
     </ul>
 
 </div>
-  </div> 
 
-<div class="col-sm-10 column" style="padding-left:8px;">
-	
+            <div class="col-md-2 column" style="padding-top:20px;padding-right:0px;">
+                <ul class="nav nav-pills" style="float:right;">
+                    <li>
+                        <a href="/changelog" style="margin-top:-2px;">v0.16.0</a>
+                    </li>
+                    <li>
+                        <div style="padding-left:14px;">
+                            <a href="https://github.com/scalamolecule/molecule" class="github-button"
+                               data-icon="octicon">Github</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+
+    </div>
+</header>
+
+<div class="wrapper">
+    
+     
+
+<div class="container" style="padding-top:20px">
+
+    <div class="col-sm-10 column" style="padding-left:8px;">
+        
 
 <h1 id="time">Time</h1>
 
@@ -615,9 +667,9 @@
 <p>The two methods <code>getAsOf(t)</code> and <code>getSince(t)</code> takes a <em>point in time</em> in the database that can be supplied in
 4 different ways:</p>
 
-<h3 id="1-tx-transaction-entity-id">1. <code>tx</code> Transaction entity id</h3>
+<h3 id="1-transaction-entity-id">1. Transaction entity id</h3>
 
-<p>A transaction entity id is the 4th value of the Datomic quintuplets that tells us in what transaction
+<p>A transaction entity id is the 4th value of Datomic quintuplets that tells us in what transaction
  this Datom/fact was asserted/retracted.</p>
 
 <p><img src="/img/time/1.png" alt="" /></p>
@@ -633,7 +685,7 @@ was asserted that Person entity <code>fredId</code> likes pizza.</p>
 <p>Such transaction entity id can then be used as a point in time <code>t</code> for <code>getAsOf(t)</code> or <code>getSince(t)</code> in
 other queries.</p>
 
-<h3 id="2-t-transaction-value">2. <code>t</code> Transaction value</h3>
+<h3 id="2-transaction-value">2. Transaction value</h3>
 
 <p>An alternative to the transaction entity id is a &ldquo;transaction value&rdquo; that is an auto-incremented number
 that Datomic generates automatically in the background for each transaction taking place.
@@ -683,110 +735,117 @@ Person(e5).likes.getAsOf(criticalDate) === List(&quot;pizza&quot;)
 
 <h2 id="data-getters">Data getters</h2>
 
-<h3 id="get-current-view"><code>get</code> current view</h3>
+<h3 id="get-or-getasync-the-current-view"><code>get</code> or <code>getAsync</code> - the current view</h3>
 
 <p>Normally we get the current state of the database with the <code>get</code> method on a molecule.</p>
 
-<pre><code class="language-scala">Person.name.age.get === ... // Persons as of now
+<pre><code class="language-scala">// Sync
+val personsCurrently: List[(String, Int)] = Person.name.age.get
+
+// Async - wraps data in a Future
+val personsCurrentlyAsync: Future[List[(String, Int)]] = Person.name.age.getAsync
 </code></pre>
 
 <p>But we might be interested in how the data looked at another point in time:</p>
 
-<h3 id="getasof-t-manual-time-asof-since"><a href="/manual/time/asof-since/">☞ <code>getAsOf(t)</code></a></h3>
+<h3 id="getasof-t-manual-time-asof-since-or-getasyncasof-t-manual-time-asof-since"><a href="/manual/time/asof-since/">☞ <code>getAsOf(t)</code></a> or <a href="/manual/time/asof-since/"><code>getAsyncAsOf(t)</code></a></h3>
 
 <p>When we call <code>getAsOf(t)</code> on a molecule we get the data as it looked at some point in time <code>t</code>.</p>
 
 <p>We could for instance want to know what Persons existed in the database the 5th of November:</p>
 
-<pre><code class="language-scala">Person.name.age.getAsOf(nov5date) === ... // Persons as of November 5 (inclusive) 
+<pre><code class="language-scala">val personsAsOfNov5 = Person.name.age.getAsOf(nov5date) 
+val personsAsOfNov5Async = Person.name.age.getAsyncAsOf(nov5date) 
 </code></pre>
 
-<h3 id="getsince-t-manual-time-asof-since"><a href="/manual/time/asof-since/">☞ <code>getSince(t)</code></a></h3>
+<h3 id="getsince-t-manual-time-asof-since-or-getsince-t-manual-time-asof-since"><a href="/manual/time/asof-since/">☞ <code>getSince(t)</code></a> or <a href="/manual/time/asof-since/"><code>getSince(t)</code></a></h3>
 
-<p>Likewise we might want to know what Persons have been added <em>after</em> or <em>since</em> 5th of November. Whn
+<p>Likewise we might want to know what Persons have been added <em>after</em> or <em>since</em> 5th of November. When
 we call <code>getSince(nov5date)</code> we will get a snapshot of the current
 database filtered with only the data added/retracted after November 5:</p>
 
-<pre><code class="language-scala">Person.name.age.getSince(nov5date) === ... // Persons added after November 5
+<pre><code class="language-scala">val personsAddedSinceNov5 = Person.name.age.getSince(nov5date)
+val personsAddedSinceNov5Async = Person.name.age.getAsyncSince(nov5date)
 </code></pre>
 
-<h3 id="gethistory-manual-time-history"><a href="/manual/time/history/">☞ <code>getHistory</code></a></h3>
+<h3 id="gethistory-manual-time-history-or-getasynchistory-manual-time-history"><a href="/manual/time/history/">☞ <code>getHistory</code></a> or <a href="/manual/time/history/"><code>getAsyncHistory</code></a></h3>
 
 <p>The <code>getHistory</code> can for instance tell us how a Persons age attribute value has changed over time</p>
 
-<pre><code class="language-scala">Person(fredId).age.getHistory === ... // Current and previous ages of Fred
+<pre><code class="language-scala">val currentAndPreviousAgesOfFred = Person(fredId).age.getHistory
+val currentAndPreviousAgesOfFredAsync = Person(fredId).age.getAsyncHistory
 </code></pre>
 
 <p>Note that this is not a snapshot in time but a series of all assertions and retractions over time that matches the query!</p>
 
-<h3 id="getwith-testtxdata-manual-time-with"><a href="/manual/time/with/">☞ <code>getWith(testTxData)</code></a></h3>
+<h3 id="getwith-txtestdata-manual-time-with-or-getasyncwith-txtestdata-manual-time-with"><a href="/manual/time/with/">☞ <code>getWith(txTestData)</code></a> or <a href="/manual/time/with/"><code>getAsyncWith(txTestData)</code></a></h3>
 
-<p>By supplying some test transaction data to <code>getWith(testTxData)</code> we can get a &ldquo;branch&rdquo; of the current database with
-the test transaction data applied. This is a very powerful way of testing future-like &ldquo;what-if&rdquo; scenarios</p>
+<p>By supplying some test transaction data to <code>getWith(txTestData)</code> we can get a &ldquo;branch&rdquo; of the current database with
+the test transaction data applied. This is a very powerful way of testing future-like &ldquo;what-if&rdquo; scenarios.</p>
 
-<pre><code class="language-scala">Person.name.age.getWith(&lt;testTxData&gt;) === ... // Persons including some new data 
+<p>Transactional test data to be tested can be obtained by calling one of the following methods on some test-molecules:</p>
+
+<ul>
+<li><code>&lt;molecule&gt;.getSaveTx</code><br /></li>
+<li><code>&lt;molecule&gt;.getInsertTx</code><br /></li>
+<li><code>&lt;molecule&gt;.getUpdateTx</code><br /></li>
+<li><code>&lt;entityId&gt;.getRetractTx</code><br /></li>
+</ul>
+
+<pre><code class="language-scala">// Apply one or more tx test data molecules
+val personsWithNewData = Person.name.age.getWith(&lt;txTestData&gt;*) 
+val personsWithNewDataAsync = Person.name.age.getAsyncWith(&lt;txTestData&gt;*) 
 </code></pre>
 
 <p>The &ldquo;test db&rdquo; that such query works on is simply garbage collected when it goes out of scope. We therefore don&rsquo;t need
-to any tear-down as we would normally need to testing with a mutable database.</p>
+to do any tear-down as we would normally need to when testing with a mutable database.</p>
 
-<h2 id="3-return-types">3 return types</h2>
+<h2 id="limit-returned-data">Limit returned data</h2>
 
-<p>Each data getter has 3 interfaces that return data in different ways:</p>
-
-<h3 id="typed">Typed</h3>
-
-<p>The standard getters return Lists of tuples of type-casted data.</p>
-
-<p><code>:List[&lt;tuple&gt;]</code></p>
+<p>The amount of data returned with</p>
 
 <ul>
-<li><code>get</code></li>
-<li><code>getAsOf(t)</code></li>
-<li><code>getSince(t)</code></li>
-<li><code>getHistory</code></li>
-<li><code>getWith(txData)</code></li>
+<li>get</li>
+<li>getAsOf</li>
+<li>getSince</li>
+<li>getWith</li>
 </ul>
 
-<h3 id="lazily-typed">Lazily typed</h3>
+<p>can be limitted by adding a max row parameter:</p>
 
-<p>If large data sets are expected, an Iterable of tuples of lazily type-cased data can be retrieved instead.
-Data is type-casted on each call to <code>next</code> on the iterator.</p>
+<pre><code class="language-scala">val some30personsCurrently = Person.name.age.get(30)
 
-<p><code>:Iterable[&lt;tuple&gt;]</code></p>
+val some20personsAsOfNov5Async = Person.name.age.getAsyncAsOf(nov5date, 20) 
 
-<ul>
-<li><code>getIterable</code></li>
-<li><code>getIterableAsOf(t)</code></li>
-<li><code>getIterableSince(t)</code></li>
-<li><code>getIterableHistory</code></li>
-<li><code>getIterableWith(txData)</code></li>
-</ul>
+val some10personsAddedSinceNov5 = Person.name.age.getSince(nov5date, 10)
 
-<h3 id="untyped">Untyped</h3>
+// The `with` methods have the limit parameter as their first argument since the last argument is a vararg
+val some25personsWithNewData = Person.name.age.getWith(25, &lt;txTestData&gt;) 
+</code></pre>
 
-<p>If typed data is not required we can get the raw untyped java collections of Lists of objects.</p>
+<p><code>getHistory(n: Int)</code> is not implemented since the whole data set normally needs to be sorted
+to give chronological meaningful information.</p>
 
-<p><code>:java.util.Collection[java.util.List[AnyRef]]</code></p>
+<h4 id="why-not-an-offset-method-for-pagination">Why not an <code>offSet</code> method for pagination?</h4>
 
-<ul>
-<li><code>getRaw</code></li>
-<li><code>getRawAsOf(t)</code></li>
-<li><code>getRawSince(t)</code></li>
-<li><code>getRawHistory</code></li>
-<li><code>getRawWith(txData)</code></li>
-</ul>
+<p>Since Datomic has no sorting option in queries (like <code>ORDER BY</code> in sql for instance),
+we sort data in application code. This sorting could be arbitrary complex and Molecule therefore
+has no &ldquo;standard&rdquo; sorting API implemented.</p>
+
+<p>Pagination is and example that needs sorting, and we do that in our application code on the
+server as it would be done on a sql database server too except that we apply our logic on the raw data
+ourselves. The limit option is therefore mainly implemented to be able to work on a smaller data set.</p>
 
 <h3 id="next">Next</h3>
 
 <p><a href="/manual/time/asof-since">AsOf / Since&hellip;</a></p>
 
-</div>
+    </div>
 
-<div class="col-sm-2 column" style="padding-left:20px;padding-top:22px;padding-right: 0px;">
-  <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm ">
+    <div class="col-sm-2 column" style="padding-left:20px;padding-top:22px;padding-right: 0px;">
+        <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm ">
 
-  <div style="position:absolute;top: -36px; left: 0px;">
+  <div style="position:absolute;top: 15px; left: 0px;">
     
     <a class="navigation-control up" href="/manual/transactions" style="position:absolute; top:0px; left: 56px">
       <span class="glyphicon glyphicon-chevron-up"></span>
@@ -843,7 +902,7 @@ Data is type-casted on each call to <code>next</code> on the iterator.</p>
     
     <ul class="level2">
       
-      <li><a href="/manual/attributes/basics/">Basics</a></li>
+      <li><a href="/manual/attributes/basics/">Building molecules</a></li>
       
       
       
@@ -904,7 +963,7 @@ Data is type-casted on each call to <code>next</code> on the iterator.</p>
     
     
     
-    <li><a href="/manual/crud/">CRUD</a></li>
+    <li><a href="/manual/crud/">&#34;CRUD&#34;</a></li>
     
     <ul class="level2">
       
@@ -913,10 +972,6 @@ Data is type-casted on each call to <code>next</code> on the iterator.</p>
       
       
       <li><a href="/manual/crud/insert/">Insert</a></li>
-      
-      
-      
-      <li><a href="/manual/crud/composite-insert/">Composite insert</a></li>
       
       
       
@@ -943,6 +998,14 @@ Data is type-casted on each call to <code>next</code> on the iterator.</p>
     <li><a href="/manual/transactions/">Transactions</a></li>
     
     <ul class="level2">
+      
+      <li><a href="/manual/transactions/tx-bundle/">Tx bundle</a></li>
+      
+      
+      
+      <li><a href="/manual/transactions/tx-functions/">Tx functions</a></li>
+      
+      
       
       <li><a href="/manual/transactions/tx-meta-data/">Tx meta data</a></li>
       
@@ -971,11 +1034,13 @@ Data is type-casted on each call to <code>next</code> on the iterator.</p>
     
   </ul>
 </nav>
-</div>
+    </div>
+
+</div> 
 
      
-  </div> 
-</div> 
+   
+ 
 <div class="push"></div>
 </div> 
 
@@ -985,7 +1050,7 @@ Data is type-casted on each call to <code>next</code> on the iterator.</p>
     <ul class="bs-docs-footer-links">
       <li style="vertical-align: top; margin-top: 0px;"><a href="/front/"><img src="/img/logo/MoleculeLogo200.png" alt=""></a></li>
       <li><a href="https://github.com/scalamolecule/molecule">GitHub</a></li>
-      <li><a href="https://github.com/scalamolecule/molecule-docs">GitHub-docs</a></li>
+      <li><a href="https://github.com/scalamolecule/molecule-web">GitHub-web</a></li>
       <li><a href="https://groups.google.com/forum/#!forum/molecule-dsl">Forum</a></li>
       <li><a href="/about/">About</a></li>
       <li><a href="/credits/">Credits</a></li>

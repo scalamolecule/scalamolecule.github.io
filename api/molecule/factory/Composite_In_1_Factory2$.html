@@ -3,9 +3,9 @@
         <head>
           <meta http-equiv="X-UA-Compatible" content="IE=edge" />
           <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-          <title>Molecule 0.15.1 - molecule.factory.Composite_In_1_Factory2</title>
-          <meta name="description" content="Molecule 0.15.1 - molecule.factory.Composite In 1 Factory2" />
-          <meta name="keywords" content="Molecule 0.15.1 molecule.factory.Composite In 1 Factory2" />
+          <title>Molecule 0.16.0 - molecule.factory.Composite_In_1_Factory2</title>
+          <meta name="description" content="Molecule 0.16.0 - molecule.factory.Composite In 1 Factory2" />
+          <meta name="keywords" content="Molecule 0.16.0 molecule.factory.Composite In 1 Factory2" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../lib/index.css" media="screen" type="text/css" rel="stylesheet" />
@@ -28,7 +28,7 @@
         </head>
         <body>
       <div id="search">
-        <span id="doc-title">Molecule<span id="doc-version">0.15.1</span></span>
+        <span id="doc-title">Molecule<span id="doc-version">0.16.0</span></span>
         <span class="close-results"><span class="left">&lt;</span> Back</span>
         <div id="textfilter">
           <span class="input">
@@ -89,12 +89,8 @@
       
       <p class="shortcomment cmt"><a href="http://www.scalamolecule.org" target="_blank">Molecule</a> library - a Scala meta-DSL for the <a href="https://www.datomic.com" target="_blank">Datomic</a> database.</p><div class="fullcomment"><div class="comment cmt"><p><a href="http://www.scalamolecule.org" target="_blank">Molecule</a> library - a Scala meta-DSL for the <a href="https://www.datomic.com" target="_blank">Datomic</a> database.</p><p>See <a href="../api/index.html" class="extype" name="molecule.api">api</a> package for various api imports to start using Molecule.</p><h4> Sub-packages </h4><p><table>
   <tr>
-    <td><a href="action/index.html">action</a><td>
-    <td>Actions on molecules and entities.</td>
-  </tr>
-  <tr>
     <td><a href="api/index.html">api</a><td>
-    <td>Molecule import interfaces of various arities.</td>
+    <td>Molecule API.</td>
   </tr>
   <tr>
     <td><a href="ast/index.html">ast</a><td>
@@ -1176,7 +1172,7 @@
 <br><br>
 The builder pattern is used to add one or more attributes to an initial namespace
 like <code>Person</code> from the example below. Further non-related attributes can be tied together
-with the <code>~</code> method to form &quot;composite molecules&quot; that is basically just attributes
+with the <code>+</code> method to form &quot;composite molecules&quot; that is basically just attributes
 sharing the same entity id.
 <br><br>
 Applying the <code>?</code> marker to an attribute changes the semantics of the composite
@@ -1185,26 +1181,26 @@ attribute marked with <code>?</code>.
 <br><br>
 Once the composite input molecule models the desired data structure and has been resolved with input
 we can call various actions on it, like <code>get</code> that retrieves matching data from the database.</p><pre><span class="cmt">// Apply `?` to `score` attribute to create composite input molecule</span>
-<span class="kw">val</span> personsWithScore = m(Person.name ~ Tag.score(?))
+<span class="kw">val</span> personsWithScore = m(Person.name + Tag.score(?))
 
 <span class="cmt">// At runtime, a `score` value is applied to get the Person's name</span>
 personsWithScore(<span class="num">7</span>).get.head === (<span class="lit">"Ben"</span>, <span class="num">7</span>)</pre><p>Composite input molecules of arity 2 has two sub-molecules with output attribute(s). If a sub-molecule
 has multiple output attributes, a tuple is returned, otherwise just the single value. The two
 groups of either a single type or tuple are then tied together in an outer composite tuple:</p><pre>Composite input molecule          Composite <span class="kw">type</span> (<span class="num">2</span> output groups)
 
-A.a1    ~ B.b1(?)           <span class="kw">=&gt;</span>    (a1, b1)
-A.a1    ~ B.b1(?).b2        <span class="kw">=&gt;</span>    (a1, (b1, b2))
-A.a1.a2 ~ B.b1(?)           <span class="kw">=&gt;</span>    ((a1, a2), b1)
-A.a1.a2 ~ B.b1(?).b2        <span class="kw">=&gt;</span>    ((a1, a2), (b1, b2)) etc...
+A.a1    + B.b1(?)           <span class="kw">=&gt;</span>    (a1, b1)
+A.a1    + B.b1(?).b2        <span class="kw">=&gt;</span>    (a1, (b1, b2))
+A.a1.a2 + B.b1(?)           <span class="kw">=&gt;</span>    ((a1, a2), b1)
+A.a1.a2 + B.b1(?).b2        <span class="kw">=&gt;</span>    ((a1, a2), (b1, b2)) etc...
 
 We could even have additional non-output sub-molecules:
-A.a1.a2 ~ B.b1.b2 ~ C.c1_(?)     <span class="kw">=&gt;</span>    ((a1, a2), (b1, b2)) etc...</pre><p>Translating into the example:</p><pre>m(Person.name     ~ Tag.score(?)      )(<span class="num">7</span>).get.head === (<span class="lit">"Ben"</span>, <span class="num">7</span>)
-m(Person.name     ~ Tag.score(?).flags)(<span class="num">7</span>).get.head === (<span class="lit">"Ben"</span>, (<span class="num">7</span>, <span class="num">3</span>))
-m(Person.name.age ~ Tag.score(?)      )(<span class="num">7</span>).get.head === ((<span class="lit">"Ben"</span>, <span class="num">42</span>), <span class="num">7</span>)
-m(Person.name.age ~ Tag.score(?).flags)(<span class="num">7</span>).get.head === ((<span class="lit">"Ben"</span>, <span class="num">42</span>), (<span class="num">7</span>, <span class="num">3</span>))
+A.a1.a2 + B.b1.b2 + C.c1_(?)     <span class="kw">=&gt;</span>    ((a1, a2), (b1, b2)) etc...</pre><p>Translating into the example:</p><pre>m(Person.name     + Tag.score(?)      )(<span class="num">7</span>).get.head === (<span class="lit">"Ben"</span>, <span class="num">7</span>)
+m(Person.name     + Tag.score(?).flags)(<span class="num">7</span>).get.head === (<span class="lit">"Ben"</span>, (<span class="num">7</span>, <span class="num">3</span>))
+m(Person.name.age + Tag.score(?)      )(<span class="num">7</span>).get.head === ((<span class="lit">"Ben"</span>, <span class="num">42</span>), <span class="num">7</span>)
+m(Person.name.age + Tag.score(?).flags)(<span class="num">7</span>).get.head === ((<span class="lit">"Ben"</span>, <span class="num">42</span>), (<span class="num">7</span>, <span class="num">3</span>))
 
-m(Person.name.age ~
-  Tag.score.flags ~
+m(Person.name.age +
+  Tag.score.flags +
   Cat.name_(?))(<span class="lit">"pitcher"</span>).get.head === ((<span class="lit">"Ben"</span>, <span class="num">42</span>), (<span class="num">7</span>, <span class="num">3</span>))</pre></div><dl class="paramcmts block"><dt class="tparam">I1</dt><dd class="cmt"><p>Type of input attribute 1 (<code>score</code>: Int)</p></dd><dt class="tparam">T1</dt><dd class="cmt"><p>Type of output group 1</p></dd><dt class="tparam">T2</dt><dd class="cmt"><p>Type of output group 2</p></dd><dt class="param">dsl</dt><dd class="cmt"><p>User-defined DSL structure modelling the composite input molecule awaiting 1 input</p></dd><dt>returns</dt><dd class="cmt"><p>Composite input molecule awaiting 1 input</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Composite_In_1_Factory2.html" class="extype" name="molecule.factory.Composite_In_1_Factory2">Composite_In_1_Factory2</a></dd></dl></div>
     </li><li name="molecule.factory.Composite_In_1_Factory2#m" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="composite1">
       <a id="m[I1,T1](dsl:molecule.composition.Composite_In_1.Composite_In_1_01[I1,T1]):molecule.input.InputMolecule_1.InputMolecule_1_01[I1,T1]"></a><a id="m[I1,T1](Composite_In_1_01[I1,T1]):InputMolecule_1_01[I1,T1]"></a>
@@ -1225,7 +1221,7 @@ m(Person.name.age ~
 <br><br>
 The builder pattern is used to add one or more attributes to an initial namespace
 like <code>Person</code> from the example below. Further non-related attributes can be tied together
-with the <code>~</code> method to form &quot;composite molecules&quot; that is basically just attributes
+with the <code>+</code> method to form &quot;composite molecules&quot; that is basically just attributes
 sharing the same entity id.
 <br><br>
 Applying the <code>?</code> marker to an attribute changes the semantics of the composite
@@ -1234,24 +1230,24 @@ attribute marked with <code>?</code>.
 <br><br>
 Once the composite input molecule models the desired data structure and has been resolved with input
 we can call various actions on it, like <code>get</code> that retrieves matching data from the database.</p><pre><span class="cmt">// Apply `?` to `score` attribute to create composite input molecule</span>
-<span class="kw">val</span> personsWithScore = m(Person.name ~ Tag.score_(?))
+<span class="kw">val</span> personsWithScore = m(Person.name + Tag.score_(?))
 
 <span class="cmt">// At runtime, a `score` value is applied to get the Person's name</span>
 personsWithScore(<span class="num">7</span>).get.head === <span class="lit">"Ben"</span></pre><p>Composite input molecules of arity 1 has only one sub-molecule with output attribute(s).
 If the sub-molecule has multiple output attributes, a tuple is returned, otherwise
 just the single value:</p><pre>Composite input molecule         Composite <span class="kw">type</span> (<span class="num">1</span> output group)
 
-A.a1       ~ B.b1_(?)      <span class="kw">=&gt;</span>    a1
-A.a1.a2    ~ B.b1_(?)      <span class="kw">=&gt;</span>    (a1, a2)
-A.a1.a2.a3 ~ B.b1_(?)      <span class="kw">=&gt;</span>    (a1, a2, a3)
+A.a1       + B.b1_(?)      <span class="kw">=&gt;</span>    a1
+A.a1.a2    + B.b1_(?)      <span class="kw">=&gt;</span>    (a1, a2)
+A.a1.a2.a3 + B.b1_(?)      <span class="kw">=&gt;</span>    (a1, a2, a3)
 
-A.a1_(?) ~ B.b1            <span class="kw">=&gt;</span>    b1
-A.a1_(?) ~ B.b1.b2         <span class="kw">=&gt;</span>    (b1, b2)
-A.a1_(?) ~ B.b1.b2.b3      <span class="kw">=&gt;</span>    (b1, b2, b3)
+A.a1_(?) + B.b1            <span class="kw">=&gt;</span>    b1
+A.a1_(?) + B.b1.b2         <span class="kw">=&gt;</span>    (b1, b2)
+A.a1_(?) + B.b1.b2.b3      <span class="kw">=&gt;</span>    (b1, b2, b3)
 
 We could even have multiple tacit sub-molecules <span class="kw">with</span> multiple tacit attributes
-A.a1_(?).a2_ ~ B.b1_ ~ C.c1.c2_.c3     <span class="kw">=&gt;</span>    (c1, c3)</pre><p>So, given two output attributes, a tuple is returned:</p><pre>m(Person.name.age ~ Tag.score_(?))(<span class="num">7</span>).get.head === (<span class="lit">"Ben"</span>, <span class="num">42</span>)
-<span class="cmt">//  A   . a1 . a2 ~  B .   b1_(?)               => (  a1 , a2)</span></pre></div><dl class="paramcmts block"><dt class="tparam">I1</dt><dd class="cmt"><p>Type of input attribute 1 (<code>score</code>: Int)</p></dd><dt class="tparam">T1</dt><dd class="cmt"><p>Type of output group</p></dd><dt class="param">dsl</dt><dd class="cmt"><p>User-defined DSL structure modelling the composite input molecule awaiting 1 input</p></dd><dt>returns</dt><dd class="cmt"><p>Composite input molecule awaiting 1 input</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Composite_In_1_Factory2.html" class="extype" name="molecule.factory.Composite_In_1_Factory2">Composite_In_1_Factory2</a></dd></dl></div>
+A.a1_(?).a2_ + B.b1_ + C.c1.c2_.c3     <span class="kw">=&gt;</span>    (c1, c3)</pre><p>So, given two output attributes, a tuple is returned:</p><pre>m(Person.name.age + Tag.score_(?))(<span class="num">7</span>).get.head === (<span class="lit">"Ben"</span>, <span class="num">42</span>)
+<span class="cmt">//  A   . a1 . a2 +  B .   b1_(?)               => (  a1 , a2)</span></pre></div><dl class="paramcmts block"><dt class="tparam">I1</dt><dd class="cmt"><p>Type of input attribute 1 (<code>score</code>: Int)</p></dd><dt class="tparam">T1</dt><dd class="cmt"><p>Type of output group</p></dd><dt class="param">dsl</dt><dd class="cmt"><p>User-defined DSL structure modelling the composite input molecule awaiting 1 input</p></dd><dt>returns</dt><dd class="cmt"><p>Composite input molecule awaiting 1 input</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Composite_In_1_Factory2.html" class="extype" name="molecule.factory.Composite_In_1_Factory2">Composite_In_1_Factory2</a></dd></dl></div>
     </li><li name="scala.AnyRef#ne" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="ne(x$1:AnyRef):Boolean"></a><a id="ne(AnyRef):Boolean"></a>
       <span class="permalink">
