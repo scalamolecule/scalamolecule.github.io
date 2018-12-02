@@ -15,7 +15,6 @@
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/img/apple-touch-icon-114-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/img/apple-touch-icon-72-precomposed.png">
     <link rel="apple-touch-icon-precomposed" href="/img/apple-touch-icon-57-precomposed.png">
-    <link rel="shortcut icon" href="/img/favicon.png">
     <link href="" rel="alternate" type="application/rss+xml" title="Molecule"/>
 </head>
 <body>
@@ -617,7 +616,7 @@
             <div class="col-md-2 column" style="padding-top:20px;padding-right:0px;">
                 <ul class="nav nav-pills" style="float:right;">
                     <li>
-                        <a href="/changelog" style="margin-top:-2px;">v0.16.0</a>
+                        <a href="/changelog" style="margin-top:-2px;">v0.16.1</a>
                     </li>
                     <li>
                         <div style="padding-left:14px;">
@@ -685,15 +684,6 @@ object SeattleDefinition {
 
 <p>The outer object <code>SeattleDefinition</code> encapsulates our schema definition. The name of this object has to end with &ldquo;Definition&rdquo;
 in order for the sbt-molecule plugin to recognize it.</p>
-
-<h3 id="custom-scala-doc-generation">Custom Scala Doc generation</h3>
-
-<p>The sbt-molecule plugin even generates ScalaDoc documentation for the custom DSL generated form the schema definition file!
-Attribute types are explained and an optional <code>doc(&lt;text...&gt;)</code> can be added to give a hint about the attribute when
-working with the code in the IDE. Given the <code>doc</code> text above for the <code>Community.name</code> attribute we can see this in our
-IDE:</p>
-
-<p><img src="/img/schema/attr-doc.png" alt="Attribute Scala docs" /></p>
 
 <h3 id="molecule-arity">Molecule arity</h3>
 

@@ -15,7 +15,6 @@
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/img/apple-touch-icon-114-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/img/apple-touch-icon-72-precomposed.png">
     <link rel="apple-touch-icon-precomposed" href="/img/apple-touch-icon-57-precomposed.png">
-    <link rel="shortcut icon" href="/img/favicon.png">
     <link href="" rel="alternate" type="application/rss+xml" title="Molecule"/>
 </head>
 <body>
@@ -617,7 +616,7 @@
             <div class="col-md-2 column" style="padding-top:20px;padding-right:0px;">
                 <ul class="nav nav-pills" style="float:right;">
                     <li>
-                        <a href="/changelog" style="margin-top:-2px;">v0.16.0</a>
+                        <a href="/changelog" style="margin-top:-2px;">v0.16.1</a>
                     </li>
                     <li>
                         <div style="padding-left:14px;">
@@ -649,6 +648,7 @@
 <p>Main changes:</p>
 
 <ul>
+<li>2018-12-02 v0.16.1 <a href="#21">Sbt-molecule 0.7.0, bootstrap speed optimization</a></li>
 <li>2018-11-25 v0.16.0 <a href="#20">Async API + tx functions</a></li>
 <li>2018-10-25 v0.15.0 <a href="#19">10x-100x Compilation speed boost</a></li>
 <li>2018-09-06 v0.14.0 <a href="#18">Scala docs and semantic updates</a></li>
@@ -670,6 +670,22 @@
 <li>2014-12-25 v0.2.0 <a href="#2">Implemented Day-Of-Datomic and MBrainz</a></li>
 <li>2014-07-02 v0.1.0 <a href="#1">Initial commit - Seattle tutorial</a></li>
 </ul>
+
+<h2 id="21"><a href="#top">☝</a> Sbt-molecule plugin compilation speed optimizations</h2>
+
+<p><em>2018-11-25 v0.16.1</em></p>
+
+<p>Minor upgrade to match <a href="https://github.com/scalamolecule/sbt-molecule">sbt-molecule</a> plugin v0.7.0.</p>
+
+<p>When compiling a molecule project with <code>sbt compile</code>, compilation of boilerplate
+code is now 4-5x faster than with v0.6.2. Using lazy vals for attributes and
+methods for reference namespaces did the trick.</p>
+
+<p>Since attributes are now defined as lazy vals in boilerplate code, we can no longer
+override some super/base structure where we earlier saved the doc comments. Alternatively
+we could add doc comments to all arities of boilerplate attributes. But that would be
+a lot of redundancy. Combined with the massive compilation speed improvement doc comments
+are therefore skipped.</p>
 
 <h2 id="20"><a href="#top">☝</a> Async API + tx functions</h2>
 
