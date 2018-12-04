@@ -787,8 +787,8 @@ val currentAndPreviousAgesOfFredAsync = Person(fredId).age.getAsyncHistory
 
 <h3 id="getwith-txtestdata-manual-time-with-or-getasyncwith-txtestdata-manual-time-with"><a href="/manual/time/with/">☞ <code>getWith(txTestData)</code></a> or <a href="/manual/time/with/"><code>getAsyncWith(txTestData)</code></a></h3>
 
-<p>By supplying some test transaction data to <code>getWith(txTestData)</code> we can get a &ldquo;branch&rdquo; of the current database with
-the test transaction data applied. This is a very powerful way of testing future-like &ldquo;what-if&rdquo; scenarios.</p>
+<p>By supplying some test transaction data to <code>getWith(txTestData)</code> we filter the current database by applying
+the test transaction data. This is a very powerful way of testing future-like &ldquo;what-if&rdquo; scenarios.</p>
 
 <p>Transactional test data to be tested can be obtained by calling one of the following methods on some test-molecules:</p>
 

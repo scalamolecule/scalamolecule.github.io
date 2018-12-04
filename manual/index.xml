@@ -272,7 +272,7 @@ val persons1attr: List[String] = Person.name.get val persons2attrs: List[(String
       
       <guid>http://scalamolecule.org/manual/time/with/</guid>
       <description>With Tests&amp;hellip;
-By supplying some test transaction data to getWith(testTxData) we can get a &amp;ldquo;branch&amp;rdquo; of the current database with the test transaction data applied in-memory. This is a very powerful way of testing future-like &amp;ldquo;what-if&amp;rdquo; scenarios
+By supplying some test transaction data to getWith(testTxData) we filter the current database with the test transaction data applied in-memory. This is a very powerful way of testing future-like &amp;ldquo;what-if&amp;rdquo; scenarios.
 We could for instance add some transaction data tx8 to a Person molecule to see if we would get the extected persons back:
 Person.name.likes.getWith(&amp;lt;tx8Data&amp;gt;) === ... // Persons after applying tx8  Applying transaction data To make it easier to supply transaction data to the getWith(txData) method, you can simply add Tx to a Molecule transaction function to get some valid transaction data:</description>
     </item>
@@ -328,8 +328,8 @@ Next CRUD operations&amp;hellip;</description>
       
       <guid>http://scalamolecule.org/manual/time/testing/</guid>
       <description>Testing TestDbAsOf, TestDbSince and TestDbWith
-For more complex test scenarios we can use a &amp;ldquo;test database&amp;rdquo; where we can freely make multiple separate molecule queries against a temporary database &amp;ldquo;branch&amp;rdquo;.
-Test db All molecules expect an implicit connection object to be in scope. If we then set a temporary test database on such conn object we can subsequentially freely perform tests against this temporary database as though it was a &amp;ldquo;branch&amp;rdquo; (think git).</description>
+For more complex test scenarios we can use a &amp;ldquo;test database&amp;rdquo; where we can freely make multiple separate molecule queries against a temporary filtered database.
+Test db All molecules expect an implicit connection object to be in scope. If we then set a temporary test database on such conn object we can subsequentially freely perform tests against this temporary filtered database as though it was a &amp;ldquo;branch&amp;rdquo; (think git).</description>
     </item>
     
     <item>

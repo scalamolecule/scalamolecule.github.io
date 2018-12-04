@@ -864,13 +864,19 @@ Molecule now also returns super fast mutable pre-allocated Arrays of typed data 
 
 <h3 id="thorough-scala-docs-api-documentation">Thorough Scala docs API documentation</h3>
 
-<p>All relevant public interfaces have been documented in the new <a href="http://www.scalamolecule.org/api/molecule">Scala docs</a>. Shortcuts to Scala docs sub packages and documents are also directly available via &ldquo;API docs&rdquo; in the menu on the <a href="http://www.scalamolecule.org">Molecule website</a>.</p>
+<p>All relevant public interfaces have been documented in the new <a href="http://www.scalamolecule.org/api/molecule">Scala docs</a>.
+Shortcuts to Scala docs sub packages and documents are also directly available via &ldquo;API docs&rdquo; in the menu on the
+<a href="http://www.scalamolecule.org">Molecule website</a>.</p>
 
-<p>To aid constructing molecules in your code, all attributes defined now also have Scala docs automatically defined by the <a href="https://github.com/scalamolecule">sbt-molecule plugin</a> upon compilation.</p>
+<p>To aid constructing molecules in your code, all attributes defined now also have Scala docs automatically defined
+by the <a href="https://github.com/scalamolecule">sbt-molecule plugin</a> upon compilation.</p>
 
 <h3 id="input-molecules-correctly-implemented">Input molecules correctly implemented</h3>
 
-<p>Input molecules are now semantically correctly implemented and thoroughly tested (<a href="https://github.com/scalamolecule/molecule/blob/master/coretests/src/test/scala/molecule/coretests/input1">1 input</a>, <a href="https://github.com/scalamolecule/molecule/blob/master/coretests/src/test/scala/molecule/coretests/input2">2 inputs</a>, <a href="https://github.com/scalamolecule/molecule/blob/master/coretests/src/test/scala/molecule/coretests/input3">3 inputs</a>).</p>
+<p>Input molecules are now semantically correctly implemented and thoroughly tested
+(<a href="https://github.com/scalamolecule/molecule/blob/master/coretests/src/test/scala/molecule/coretests/input1">1 input</a>,
+<a href="https://github.com/scalamolecule/molecule/blob/master/coretests/src/test/scala/molecule/coretests/input2">2 inputs</a>,
+<a href="https://github.com/scalamolecule/molecule/blob/master/coretests/src/test/scala/molecule/coretests/input3">3 inputs</a>).</p>
 
 <h3 id="interfaces-updated-and-streamlined">Interfaces updated and streamlined</h3>
 
@@ -907,13 +913,16 @@ Data is type-casted on each call to <code>next</code> on the iterator.</p>
 
 <h3 id="breaking-changes">Breaking changes</h3>
 
-<p>The whole directory layout of the Molecule library has been re-arranged and optimized, including many interfaces. So you might have to change some method names if you have used earlier versions of Molecule.</p>
+<p>The whole directory layout of the Molecule library has been re-arranged and optimized, including many interfaces.
+So you might have to change some method names if you have used earlier versions of Molecule.</p>
 
 <h2 id="17"><a href="#top">☝</a> Native Json output</h2>
 
 <p><em>2017-11-13 <a href="https://github.com/scalamolecule/molecule/releases/tag/v0.13.0">v0.13.0</a></em></p>
 
-<p>We can now get data in json format directly from the database by calling <code>getJson</code> on a molecule. So instead of converting tuples of data to json with some 3rd party library we can call <code>getJson</code> and pass the json data string directly to an Angular table for instance.</p>
+<p>We can now get data in json format directly from the database by calling <code>getJson</code> on a molecule. So instead of converting
+tuples of data to json with some 3rd party library we can call <code>getJson</code> and pass the json data string directly to an
+Angular table for instance.</p>
 
 <p>Internally, Molecule builds the json string in a StringBuffer directly from the raw data coming from Datomic
 (with regards to types being quoted or not). This should make it the fastest way of supplying json data when needed.</p>
@@ -963,9 +972,12 @@ the semantics of eventual duplicate field names are also handled by client code.
 
 <p><em>2017-05-28 <a href="https://github.com/scalamolecule/molecule/releases/tag/v0.12.0">v0.12.0</a></em></p>
 
-<p>Often, form submissions have some optional field values. Molecule now allow us to <code>save</code> molecules with both mandatory and optional attributes.</p>
+<p>Often, form submissions have some optional field values. Molecule now allow us to <code>save</code> molecules with both mandatory
+and optional attributes.</p>
 
-<p>We could for instance have <code>aName</code>,  <code>optionalLikes</code> and <code>anAge</code> values from a form submission that we want to save. We can now apply those values directly to a mandatory <code>name</code> attribute, an optional <code>likes$</code> attribute (<code>$</code> appended makes it optional) and a mandatory <code>age</code> attribute of a save-molecule and then save it:</p>
+<p>We could for instance have <code>aName</code>,  <code>optionalLikes</code> and <code>anAge</code> values from a form submission that we want to save.
+We can now apply those values directly to a mandatory <code>name</code> attribute, an optional <code>likes$</code> attribute (<code>$</code> appended
+makes it optional) and a mandatory <code>age</code> attribute of a save-molecule and then save it:</p>
 
 <pre><code class="language-scala">Person
   .name(aName)
@@ -1002,7 +1014,8 @@ Person(fredId).age.getHistory === ... // Current and previous ages of Fred in th
 
 <p><code>t</code> can be a transaction entity id (<code>Long</code>), a transaction number (<code>Long</code>) or a <code>java.util.Date</code>.</p>
 
-<p>If we want to test the outcome of some transaction without affecting the production db we can apply transaction data to the <code>getWith(txData)</code> method:</p>
+<p>If we want to test the outcome of some transaction without affecting the production db we can apply transaction data to
+the <code>getWith(txData)</code> method:</p>
 
 <pre><code class="language-scala">Person.name.age.getWith(
   // Testing adding some transactional data to the current db
@@ -1016,17 +1029,21 @@ Person(fredId).age.getHistory === ... // Current and previous ages of Fred in th
 </code></pre>
 
 <p>By adding the <code>Tx</code> suffix to the standard molecule commands (<code>save</code>, <code>insert</code>, <code>update</code> or <code>retract</code>)
-we can get the transactional data that those operations would normally transact directly. Here, <code>&lt;command&gt;Tx</code> methods on transaction molecules just return the transaction data so that we can apply it to the <code>getWith(txData)</code> method. This make it convenient for us to ask speculative questions like &ldquo;what would I get if I did those transactions&rdquo;.</p>
+we can get the transactional data that those operations would normally transact directly. Here, <code>&lt;command&gt;Tx</code> methods
+on transaction molecules just return the transaction data so that we can apply it to the <code>getWith(txData)</code> method.
+This make it convenient for us to ask speculative questions like &ldquo;what would I get if I did those transactions&rdquo;.</p>
 
 <p>For more complex test scenarios we can now use a test database:</p>
 
 <h3 id="test-db">Test db</h3>
 
-<p>All molecules expect an implicit connection object to be in scope. If we then set a temporary test database on such <code>conn</code> object we can subsequentially freely perform tests against this temporary database as though it was a &ldquo;branch&rdquo; (think git).</p>
+<p>All molecules expect an implicit connection object to be in scope. If we then set a temporary test database on such <code>conn</code> object
+we can subsequentially freely perform tests against this temporary database as though it was a &ldquo;branch&rdquo; (think git).</p>
 
-<p>When the connection/db goes out of scope it is simply garbage collected automatically by the JVM. At any point we can also explicitly go back to continuing using our live production db.</p>
+<p>When the connection/db goes out of scope it is simply garbage collected automatically by the JVM. At any point we can also
+explicitly go back to continuing using our live production db.</p>
 
-<p>To make a few tests with a &ldquo;branch&rdquo; of our live db we can now do like this:</p>
+<p>To make a few tests with our filtered db we can now do like this:</p>
 
 <pre><code class="language-scala">// Current state
 Person(fredId).name.age.get.head === (&quot;Fred&quot;, 27)
@@ -1050,9 +1067,12 @@ Person(fredId).name.age.get.head === (&quot;Fred&quot;, 27)
 
 <h3 id="test-db-with-domain-classes">Test db with domain classes</h3>
 
-<p>When molecules are used inside domain classes we want to test the domain operations also without affecting the state of our production database. And also ideally without having to create mockups of our domain objects. This is now possible by setting a temporary test database on the implicit connection object that all molecules expect to be present in their scope - which includes the molecules inside domain classes.</p>
+<p>When molecules are used inside domain classes we want to test the domain operations also without affecting the state of our production database.
+And also ideally without having to create mockups of our domain objects. This is now possible by setting a temporary test database on the implicit
+connection object that all molecules expect to be present in their scope - which includes the molecules inside domain classes.</p>
 
-<p>When we test against a temporary database, Molecule internally uses the <code>with</code> function of Datomic to apply transaction data to a &ldquo;branch&rdquo; of the database that is simply garbage collected when it goes out of scope!</p>
+<p>When we test against a temporary database, Molecule internally uses the <code>with</code> function of Datomic to apply transaction data to a &ldquo;branch&rdquo; of
+the database that is simply garbage collected when it goes out of scope!</p>
 
 <p>To make a few tests on a domain object that have molecule calls internally we can now do like this:</p>
 
@@ -1077,7 +1097,8 @@ conn.useLiveDb
 domainObj.myState == &quot;some state&quot;
 </code></pre>
 
-<p>Since internal domain methods will in turn call other domain methods that also expects an implicit conn object then the same test db is even propragated recursively inside the chain of domain operations.</p>
+<p>Since internal domain methods will in turn call other domain methods that also expects an implicit conn object then the same test db is even
+propragated recursively inside the chain of domain operations.</p>
 
 <h3 id="multiple-time-views">Multiple time views</h3>
 
@@ -1089,7 +1110,8 @@ conn.testDbSince(t)
 conn.testWith(txData)
 </code></pre>
 
-<p>This make it possible to run arbitrarily complex test scenarios directly against our production data at any point in time without having to do any manual setup or tear-down of mock domain/database objects!</p>
+<p>This make it possible to run arbitrarily complex test scenarios directly against our production data at any point in time without having to do
+any manual setup or tear-down of mock domain/database objects!</p>
 
 <h2 id="14"><a href="#top">☝</a> Entity selection retrieval and manipulation</h2>
 
@@ -1116,9 +1138,13 @@ Ns(a, b).int(4).update
 Ns.str.int.get.sorted === List((&quot;a&quot;, 4), (&quot;b&quot;, 4), (&quot;c&quot;, 3))
 </code></pre>
 
-<p>See more examples <a href="https://github.com/scalamolecule/molecule/blob/master/coretest/src/test/scala/molecule/attr/EntitySelection.scala">here</a> and <a href="https://github.com/scalamolecule/molecule/blob/master/coretest/src/test/scala/molecule/manipulation/UpdateMultipleEntities.scala">here</a>.</p>
+<p>See more examples
+<a href="https://github.com/scalamolecule/molecule/blob/master/coretest/src/test/scala/molecule/attr/EntitySelection.scala">here</a> and
+<a href="https://github.com/scalamolecule/molecule/blob/master/coretest/src/test/scala/molecule/manipulation/UpdateMultipleEntities.scala">here</a>.</p>
 
-<p>Datomic encourages multi-step queries where you find some entities ids with one query and then pass those ids on as input to the following query. Since we don&rsquo;t have the cost of round-trips to a database server, this is a powerful technique that Molecule now supports with ease.</p>
+<p>Datomic encourages multi-step queries where you find some entities ids with one query and then pass those ids on as input
+to the following query. Since we don&rsquo;t have the cost of round-trips to a database server, this is a powerful technique
+that Molecule now supports with ease.</p>
 
 <h2 id="13"><a href="#top">☝</a> Bidirectional references</h2>
 
@@ -1146,13 +1172,15 @@ Ns.str.int.get.sorted === List((&quot;a&quot;, 4), (&quot;b&quot;, 4), (&quot;c&
 <pre><code class="language-scala"> Person.name.Friends.name_(&quot;Ben&quot;).get === List(&quot;Ann&quot;)
 </code></pre>
 
-<p>If we want to traverse deeper into a friendship graph we would have to query both forward and backward for each step in the graph which would quickly become a pain. With Molecules new bidirectional references we can uniformly query from both ends:</p>
+<p>If we want to traverse deeper into a friendship graph we would have to query both forward and backward for each step in the graph
+which would quickly become a pain. With Molecules new bidirectional references we can uniformly query from both ends:</p>
 
 <pre><code class="language-scala"> Person.name_(&quot;Ann&quot;).Friends.name.get === List(&quot;Ben&quot;)
  Person.name_(&quot;Ben&quot;).Friends.name.get === List(&quot;Ann&quot;)
 </code></pre>
 
-<p>Please see <a href="http://www.scalamolecule.org/manual/query/bidirectional%20refs/">Bidirectional refs</a> for more information and the <a href="https://github.com/scalamolecule/molecule/blob/master/examples/src/test/scala/molecule/examples/gremlin/gettingStarted/">Gremlin graph examples</a>.
+<p>Please see <a href="http://www.scalamolecule.org/manual/query/bidirectional%20refs/">Bidirectional refs</a> for more information and the
+<a href="https://github.com/scalamolecule/molecule/blob/master/examples/src/test/scala/molecule/examples/gremlin/gettingStarted/">Gremlin graph examples</a>.
 - This release also adds support for BigInts and BigDecimals. Only bytes is not supported now due to the limited
   capabilities this type has in Datomic.
 - Input molecules can now also include nested data structures.</p>
@@ -1161,11 +1189,15 @@ Ns.str.int.get.sorted === List((&quot;a&quot;, 4), (&quot;b&quot;, 4), (&quot;c&
 
 <p><em>2016-06-13 <a href="https://github.com/scalamolecule/molecule/releases/tag/v0.8.0">v0.8.0</a></em></p>
 
-<p><a href="http://www.scalamolecule.org/manual/query/composites/">Composites</a> and <a href="http://www.scalamolecule.org/manual/query/txMetaData/">Transaction meta data</a> are two new major functionalities added to Molecule.</p>
+<p><a href="http://www.scalamolecule.org/manual/query/composites/">Composites</a> and
+<a href="http://www.scalamolecule.org/manual/query/txMetaData/">Transaction meta data</a> are two new major functionalities added to Molecule.</p>
 
-<p>Merge up to 22 sub-molecules as a Composite. Composite inserts create entities with data of attributes type-checking against each sub-molecule. Sub-molecules don&rsquo;t need to be related. The created entity is what ties it all together which is a core feature of Datomic that sets it apart from table/join-thinking.</p>
+<p>Merge up to 22 sub-molecules as a Composite. Composite inserts create entities with data of attributes type-checking against
+each sub-molecule. Sub-molecules don&rsquo;t need to be related. The created entity is what ties it all together which is a core
+feature of Datomic that sets it apart from table/join-thinking.</p>
 
-<p>An obvious candidate for composites is cross-cutting data that could be applied to any entity of our domain - like Tags. No need anymore to litter all parts of your domain with refs to Tags. Keep your domain namespaces intrinsic and compose instead!</p>
+<p>An obvious candidate for composites is cross-cutting data that could be applied to any entity of our domain - like Tags. No need anymore
+to litter all parts of your domain with refs to Tags. Keep your domain namespaces intrinsic and compose instead!</p>
 
 <p>Even transaction meta data can now be applied:</p>
 
@@ -1195,7 +1227,8 @@ m(Article.name.author ~ Tag.weight.&gt;=(4).tx_(MetaData.submitter_(&quot;Brenda
 
 <p><em>2016-06-04 <a href="https://github.com/scalamolecule/molecule/releases/tag/v0.7.0">v0.7.0</a></em></p>
 
-<p>Previous fragile build system now standardized to use the new <a href="https://github.com/scalamolecule/sbt-molecule">sbt-molecule plugin</a> to generate and package Molecule boilerplate code.</p>
+<p>Previous fragile build system now standardized to use the new <a href="https://github.com/scalamolecule/sbt-molecule">sbt-molecule plugin</a>
+to generate and package Molecule boilerplate code.</p>
 
 <p>Several updates to <a href="http://www.scalamolecule.org">scalamolecule.org</a>.</p>
 
@@ -1216,7 +1249,8 @@ m(Article.name.author ~ Tag.weight.&gt;=(4).tx_(MetaData.submitter_(&quot;Brenda
 
 <p><em>2016-04-25 <a href="https://github.com/scalamolecule/molecule/releases/tag/v0.6.1">v0.6.1</a></em></p>
 
-<p>Each defined attribute map now adds an additional attribute with a &ldquo;K&rdquo; appended to the attribute name. This &ldquo;Keyed attribute map&rdquo; expects a key and will then return the single value type instead of a Map of key/values:</p>
+<p>Each defined attribute map now adds an additional attribute with a &ldquo;K&rdquo; appended to the attribute name. This &ldquo;Keyed attribute map&rdquo; expects
+a key and will then return the single value type instead of a Map of key/values:</p>
 
 <pre><code class="language-Scala">// Normal attribute map returning maps of key/values
 Ns.int.greetings(&quot;en&quot;).get === List(
@@ -1239,7 +1273,8 @@ Ns.int.greetingsK(&quot;en&quot;).get === List(
 
 <p><em>2015-12-14 <a href="https://github.com/scalamolecule/molecule/releases/tag/v0.5.0">v0.5.0</a></em></p>
 
-<p>Molecule now supports an easy way to handle multilingual values; say, names of greetings in different languages for various entities - all with one &ldquo;Map Attribute&rdquo; like <code>greetings</code>:</p>
+<p>Molecule now supports an easy way to handle multilingual values; say, names of greetings in different languages for various entities - all
+with one &ldquo;Map Attribute&rdquo; like <code>greetings</code>:</p>
 
 <pre><code class="language-Scala">Ns.int.greetings insert List(
   (1, Map(&quot;en&quot; -&gt; &quot;Hi there&quot;)),
@@ -1251,7 +1286,8 @@ Ns.int.greetingsK(&quot;en&quot;).get === List(
 
 <p>Other types are supported too. So we could for instance have timezones as Float values for different countries etc.</p>
 
-<p>Each key is prepended to its value and saved as a cardinality many value (&ldquo;en@Hi there&rdquo;) in Datomic. When we then retrieve the values, Molecule automatically splits the values into typed key/value pairs in a map so that we can conveniently continue to work with them in Scala:</p>
+<p>Each key is prepended to its value and saved as a cardinality many value (&ldquo;en@Hi there&rdquo;) in Datomic. When we then retrieve the values,
+Molecule automatically splits the values into typed key/value pairs in a map so that we can conveniently continue to work with them in Scala:</p>
 
 <pre><code class="language-Scala">Ns.int.greetings.get === List(
   (1, Map(&quot;en&quot; -&gt; &quot;Hi there&quot;)),
@@ -1317,13 +1353,16 @@ m(lit_Book.title.Author.name._Book.Reviewers * gen_Person.name).get === List(
 )
 </code></pre>
 
-<p>From the <code>Book</code> namespace we reference first the <code>Author</code> namespace and then go back to the <code>Book</code> namespace again with the <code>_Book</code> back reference so that we can then reference the <code>Reviewers</code> namespace. Like multiple connected &ldquo;arms&rdquo; of a complex molecule.</p>
+<p>From the <code>Book</code> namespace we reference first the <code>Author</code> namespace and then go back to the <code>Book</code> namespace again with
+the <code>_Book</code> back reference so that we can then reference the <code>Reviewers</code> namespace. Like multiple connected &ldquo;arms&rdquo; of a complex molecule.</p>
 
 <h2 id="5"><a href="#top">☝</a> Differentiating between optional values in insert/get</h2>
 
 <p><em>2015-10-28 <a href="https://github.com/scalamolecule/molecule/releases/tag/v0.4.1">v0.4.1</a></em></p>
 
-<p>Single optional values should be retrievable. But when inserting we want to avoid creating orphan referenced entities with no asserted attribute values. Example from <a href="https://github.com/scalamolecule/molecule/blob/8e5c0437c245201f5e174cb407ae74cdbc654257/coretest/src/test/scala/molecule/Relations.scala#L196-L236">Relations</a> test:</p>
+<p>Single optional values should be retrievable. But when inserting we want to avoid creating orphan referenced entities with
+no asserted attribute values. Example from
+<a href="https://github.com/scalamolecule/molecule/blob/8e5c0437c245201f5e174cb407ae74cdbc654257/coretest/src/test/scala/molecule/Relations.scala#L196-L236">Relations</a> test:</p>
 
 <pre><code class="language-scala">&quot;No mandatory attributes after card-one ref&quot; in new CoreSetup {
   m(Ns.str.Ref1.int1) insert List(
@@ -1363,13 +1402,17 @@ m(lit_Book.title.Author.name._Book.Reviewers * gen_Person.name).get === List(
 )
 </code></pre>
 
-<p>See more examples of even deeply nested optional values in the <a href="https://github.com/scalamolecule/molecule/blob/80765bfbae17657cd0fa0fa099a6ba22f41a179f/coretest/src/test/scala/molecule/OptionalValues.scala">OptionalValues</a> tests.</p>
+<p>See more examples of even deeply nested optional values in the
+<a href="https://github.com/scalamolecule/molecule/blob/80765bfbae17657cd0fa0fa099a6ba22f41a179f/coretest/src/test/scala/molecule/OptionalValues.scala">OptionalValues</a> tests.</p>
 
 <h2 id="3"><a href="#top">☝</a> Nested data structures</h2>
 
 <p><em>2015-10-04 <a href="https://github.com/scalamolecule/molecule/releases/tag/v0.3.0">v0.3.0</a></em></p>
 
-<p><a href="https://github.com/scalamolecule/molecule/blob/master/examples/src/test/scala/molecule/examples/dayOfDatomic/ProductsAndOrders.scala">Products and Orders</a> shows how Molecule can now retrieve nested data structures at up to 10 levels deep (more can be implemented if necessary). This means that you don&rsquo;t need to manually organize the flat output from Datomic into hierarchical data structures yourself when you query for one-many or many-many data. Molecule does it for you.</p>
+<p><a href="https://github.com/scalamolecule/molecule/blob/master/examples/src/test/scala/molecule/examples/dayOfDatomic/ProductsAndOrders.scala">Products and Orders</a>
+shows how Molecule can now retrieve nested data structures at up to 10 levels deep (more can be implemented if necessary). This means
+that you don&rsquo;t need to manually organize the flat output from Datomic into hierarchical data structures yourself when you query for
+one-many or many-many data. Molecule does it for you.</p>
 
 <h2 id="2"><a href="#top">☝</a> Implemented Day-Of-Datomic and MBrainz</h2>
 
