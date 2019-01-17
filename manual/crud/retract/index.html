@@ -283,6 +283,46 @@
 
                 
                 
+                
+
+                
+                <li class="dropdown-submenu">
+                    <a href="/manual/generic/">Generic</a>
+                    <ul class="dropdown-menu">
+                        
+                        <li><a href="/manual/generic/datom/">Datom</a></li>
+                        
+                        <li><a href="/manual/generic/indexes/">Index</a></li>
+                        
+                        <li><a href="/manual/generic/log/">Log</a></li>
+                        
+                        <li><a href="/manual/generic/schema/">Schema</a></li>
+                        
+                    </ul>
+                </li>
+                
+
+                
+                
+                
+
+                
+                <li class="dropdown-submenu">
+                    <a href="/manual/debug/">Debug</a>
+                    <ul class="dropdown-menu">
+                        
+                        <li><a href="/manual/debug/datalog/">Datalog/data</a></li>
+                        
+                        <li><a href="/manual/debug/debug-transactions/">Transactions</a></li>
+                        
+                        <li><a href="/manual/debug/err/">Errors</a></li>
+                        
+                    </ul>
+                </li>
+                
+
+                
+                
             </ul>
             
         </li>
@@ -457,9 +497,13 @@
                     <a href="/api/molecule/generic">generic</a>
                     <ul class="dropdown-menu">
                         
-                        <li><a href="/api/molecule/generic/Datom.html">Datom</a></li>
+                        <li><a href="/api/molecule/generic/datom/index.html">Datom</a></li>
                         
-                        <li><a href="/api/molecule/generic/Db.html">Db</a></li>
+                        <li><a href="/api/molecule/generic/datom/index/index.html">Index</a></li>
+                        
+                        <li><a href="/api/molecule/generic/schema/Log.html">Log</a></li>
+                        
+                        <li><a href="/api/molecule/generic/schema/index.html">Schema</a></li>
                         
                     </ul>
                 </li>
@@ -624,7 +668,7 @@
             <div class="col-md-2 column" style="padding-top:20px;padding-right:0px;">
                 <ul class="nav nav-pills" style="float:right;">
                     <li>
-                        <a href="/changelog" style="margin-top:-2px;">v0.16.1</a>
+                        <a href="/changelog" style="margin-top:-2px;">v0.17.0</a>
                     </li>
                     <li>
                         <div style="padding-left:14px;">
@@ -668,14 +712,31 @@ the attribute we want to retract and then update the molecule:</p>
 
 <p>Here we retracted the <code>name</code> and <code>category</code> attribute values of the Belltown Community entity:</p>
 
-<h2 id="retract-entity">Retract entity</h2>
+<h2 id="retract-an-entity">Retract an entity</h2>
 
 <p>To delete a whole entity with all its attribute values we can call <code>retract</code> on a <code>Long</code> entity id</p>
 
 <pre><code class="language-scala">fredId.retract
 </code></pre>
 
-<p>Here all attributes having the entity id <code>fredId</code> are retracted.</p>
+<p>All attributes having the entity id <code>fredId</code> are retracted.</p>
+
+<h3 id="add-tx-meta-data-to-retraction-on-entity-id">Add Tx meta data to retraction on entity id</h3>
+
+<p>Associate transaction meta data to a retraction on an entity id</p>
+
+<pre><code class="language-scala">fredId.Tx(MyUseCase.name(&quot;Terminate membership&quot;)).retract
+</code></pre>
+
+<p>We can then afterwards use the tx meta data to get information of retracted data:</p>
+
+<pre><code class="language-scala">// Who got their membership terminated and when?
+Person.e.name.t.op(false).Tx(MyUseCase.name_(&quot;Termminate membership&quot;)).getHistory === List(
+  (fredId, &quot;Fred&quot;, t3, false) // Fred terminated his membership at transaction t3 and was retracted
+)
+</code></pre>
+
+<h2 id="retract-multiple-entities">Retract multiple entities</h2>
 
 <p>Alternatively we can use the <code>retract</code> method (available via <code>import molecule.imports._</code>)</p>
 
@@ -690,10 +751,21 @@ the attribute we want to retract and then update the molecule:</p>
 retract(eids)
 </code></pre>
 
+<h3 id="add-tx-meta-data-to-retraction-of-multiple-entity-ids">Add Tx meta data to retraction of multiple entity ids</h3>
+
 <p>.. and even associate transaction meta data to the retraction</p>
 
 <pre><code class="language-scala">// Retract multiple entity ids and some tx meta data about the transaction
 retract(eids, MyUseCase.name(&quot;Terminate membership&quot;))
+</code></pre>
+
+<p>Again, we can then afterwards use the tx meta data to get information of retracted data:</p>
+
+<pre><code class="language-scala">// Who got their membership terminated and when?
+Person.e.name.t.op(false).Tx(MyUseCase.name_(&quot;Termminate membership&quot;)).getHistory === List(
+  (fredId, &quot;Fred&quot;, t3, false), // Fred terminated his membership at transaction t3 and was retracted
+  (lisaId, &quot;Lisa&quot;, t5, false)  // Lisa terminated her membership at transaction t5 and was retracted
+)
 </code></pre>
 
 <h2 id="retract-component-entity">Retract component entity</h2>
@@ -966,6 +1038,50 @@ Ns.int.insertAsync(1, 2, 3).map { tx =&gt; // tx report from successful insert t
       
       
       <li><a href="/manual/time/testing/">Testing</a></li>
+      
+      
+    </ul>
+    
+    
+    
+    
+    <li><a href="/manual/generic/">Generic</a></li>
+    
+    <ul class="level2">
+      
+      <li><a href="/manual/generic/datom/">Datom</a></li>
+      
+      
+      
+      <li><a href="/manual/generic/indexes/">Index</a></li>
+      
+      
+      
+      <li><a href="/manual/generic/log/">Log</a></li>
+      
+      
+      
+      <li><a href="/manual/generic/schema/">Schema</a></li>
+      
+      
+    </ul>
+    
+    
+    
+    
+    <li><a href="/manual/debug/">Debug</a></li>
+    
+    <ul class="level2">
+      
+      <li><a href="/manual/debug/datalog/">Datalog/data</a></li>
+      
+      
+      
+      <li><a href="/manual/debug/debug-transactions/">Transactions</a></li>
+      
+      
+      
+      <li><a href="/manual/debug/err/">Errors</a></li>
       
       
     </ul>

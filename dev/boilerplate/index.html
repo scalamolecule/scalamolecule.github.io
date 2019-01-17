@@ -283,6 +283,46 @@
 
                 
                 
+                
+
+                
+                <li class="dropdown-submenu">
+                    <a href="/manual/generic/">Generic</a>
+                    <ul class="dropdown-menu">
+                        
+                        <li><a href="/manual/generic/datom/">Datom</a></li>
+                        
+                        <li><a href="/manual/generic/indexes/">Index</a></li>
+                        
+                        <li><a href="/manual/generic/log/">Log</a></li>
+                        
+                        <li><a href="/manual/generic/schema/">Schema</a></li>
+                        
+                    </ul>
+                </li>
+                
+
+                
+                
+                
+
+                
+                <li class="dropdown-submenu">
+                    <a href="/manual/debug/">Debug</a>
+                    <ul class="dropdown-menu">
+                        
+                        <li><a href="/manual/debug/datalog/">Datalog/data</a></li>
+                        
+                        <li><a href="/manual/debug/debug-transactions/">Transactions</a></li>
+                        
+                        <li><a href="/manual/debug/err/">Errors</a></li>
+                        
+                    </ul>
+                </li>
+                
+
+                
+                
             </ul>
             
         </li>
@@ -457,9 +497,13 @@
                     <a href="/api/molecule/generic">generic</a>
                     <ul class="dropdown-menu">
                         
-                        <li><a href="/api/molecule/generic/Datom.html">Datom</a></li>
+                        <li><a href="/api/molecule/generic/datom/index.html">Datom</a></li>
                         
-                        <li><a href="/api/molecule/generic/Db.html">Db</a></li>
+                        <li><a href="/api/molecule/generic/datom/index/index.html">Index</a></li>
+                        
+                        <li><a href="/api/molecule/generic/schema/Log.html">Log</a></li>
+                        
+                        <li><a href="/api/molecule/generic/schema/index.html">Schema</a></li>
                         
                     </ul>
                 </li>
@@ -624,7 +668,7 @@
             <div class="col-md-2 column" style="padding-top:20px;padding-right:0px;">
                 <ul class="nav nav-pills" style="float:right;">
                     <li>
-                        <a href="/changelog" style="margin-top:-2px;">v0.16.1</a>
+                        <a href="/changelog" style="margin-top:-2px;">v0.17.0</a>
                     </li>
                     <li>
                         <div style="padding-left:14px;">
@@ -656,7 +700,7 @@
 <pre><code class="language-scala">@InOut(3, 8)
 trait SeattleDefinition {
   trait Community {
-    val name = oneString.fulltextSearch
+    val name = oneString.fulltext
   }
 }
 </code></pre>
@@ -668,7 +712,7 @@ trait SeattleDefinition {
 }
 
 trait Community {
-  class name [Ns, In] extends OneString [Ns, In] with FulltextSearch[Ns, In] with Indexed
+  class name [Ns, In] extends OneString [Ns, In] with Fulltext[Ns, In] with Indexed
 }
 
 trait Community_0 extends Community with Out_0[Community_0, Community_1, Community_In_1_0, Community_In_1_1] {

@@ -283,6 +283,46 @@
 
                 
                 
+                
+
+                
+                <li class="dropdown-submenu">
+                    <a href="/manual/generic/">Generic</a>
+                    <ul class="dropdown-menu">
+                        
+                        <li><a href="/manual/generic/datom/">Datom</a></li>
+                        
+                        <li><a href="/manual/generic/indexes/">Index</a></li>
+                        
+                        <li><a href="/manual/generic/log/">Log</a></li>
+                        
+                        <li><a href="/manual/generic/schema/">Schema</a></li>
+                        
+                    </ul>
+                </li>
+                
+
+                
+                
+                
+
+                
+                <li class="dropdown-submenu">
+                    <a href="/manual/debug/">Debug</a>
+                    <ul class="dropdown-menu">
+                        
+                        <li><a href="/manual/debug/datalog/">Datalog/data</a></li>
+                        
+                        <li><a href="/manual/debug/debug-transactions/">Transactions</a></li>
+                        
+                        <li><a href="/manual/debug/err/">Errors</a></li>
+                        
+                    </ul>
+                </li>
+                
+
+                
+                
             </ul>
             
         </li>
@@ -457,9 +497,13 @@
                     <a href="/api/molecule/generic">generic</a>
                     <ul class="dropdown-menu">
                         
-                        <li><a href="/api/molecule/generic/Datom.html">Datom</a></li>
+                        <li><a href="/api/molecule/generic/datom/index.html">Datom</a></li>
                         
-                        <li><a href="/api/molecule/generic/Db.html">Db</a></li>
+                        <li><a href="/api/molecule/generic/datom/index/index.html">Index</a></li>
+                        
+                        <li><a href="/api/molecule/generic/schema/Log.html">Log</a></li>
+                        
+                        <li><a href="/api/molecule/generic/schema/index.html">Schema</a></li>
                         
                     </ul>
                 </li>
@@ -624,7 +668,7 @@
             <div class="col-md-2 column" style="padding-top:20px;padding-right:0px;">
                 <ul class="nav nav-pills" style="float:right;">
                     <li>
-                        <a href="/changelog" style="margin-top:-2px;">v0.16.1</a>
+                        <a href="/changelog" style="margin-top:-2px;">v0.17.0</a>
                     </li>
                     <li>
                         <div style="padding-left:14px;">
@@ -684,14 +728,14 @@ patterns to build molecules&hellip;</p>
 trait that defines namespaces with attributes for your domain:</p>
 
 <pre><code class="language-scala">trait Community {
-  val name = oneString.fulltextSearch
+  val name = oneString.fulltext
   val url  = oneString
   ...
 }
 </code></pre>
 
 <p>The <code>name</code> field defines an attribute of type String with cardinality one. Adding the
-<code>fulltextSearch</code> option will tell Datomic that we want to be able to make fulltext
+<code>fulltext</code> option will tell Datomic that we want to be able to make fulltext
 searches on the values of this attribute.</p>
 
 <p>After defining the schema like this, we run <code>sbt compile</code> and Molecule will generate some
@@ -1049,7 +1093,7 @@ communitiesBefore(&quot;A&quot;).get(3) === List(&quot;15th Ave Community&quot;)
 <p>Datomic supports fulltext searching. When you define an attribute
 of string value, you can indicate whether it should be indexed for
 fulltext search. For instance Community <code>name</code> and <code>category</code> have
-the fulltextSearch option defined in the Seattle schema. Let&rsquo;s find
+the fulltext option defined in the Seattle schema. Let&rsquo;s find
 communities with &ldquo;Wallingford&rdquo; in the name.</p>
 
 <pre><code class="language-scala">(Community.name contains &quot;Wallingford&quot; take 3) === List(

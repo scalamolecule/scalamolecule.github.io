@@ -3,43 +3,17 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>http://scalamolecule.org/resources/</loc>
-    <lastmod>2015-01-02T22:06:44+01:00</lastmod>
-  </url>
-  
-  <url>
     <loc>http://scalamolecule.org/compare/</loc>
     <lastmod>2014-05-14T02:13:50+00:00</lastmod>
   </url>
   
   <url>
+    <loc>http://scalamolecule.org/resources/</loc>
+  </url>
+  
+  <url>
     <loc>http://scalamolecule.org/manual/relationships/card-one/</loc>
     <lastmod>2016-07-24T22:06:44+01:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://scalamolecule.org/manual/time/asof-since/</loc>
-    <lastmod>2015-01-02T22:06:44+01:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://scalamolecule.org/manual/attributes/basics/</loc>
-    <lastmod>2015-01-02T22:06:44+01:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://scalamolecule.org/manual/</loc>
-    <lastmod>2015-01-02T22:06:44+01:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://scalamolecule.org/manual/crud/save/</loc>
-    <lastmod>2015-01-02T22:06:44+01:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://scalamolecule.org/resources/tutorials/seattle/</loc>
-    <lastmod>2015-01-02T22:06:44+01:00</lastmod>
   </url>
   
   <url>
@@ -53,48 +27,41 @@
   </url>
   
   <url>
+    <loc>http://scalamolecule.org/manual/time/asof-since/</loc>
+  </url>
+  
+  <url>
+    <loc>http://scalamolecule.org/manual/attributes/basics/</loc>
+  </url>
+  
+  <url>
+    <loc>http://scalamolecule.org/manual/debug/datalog/</loc>
+  </url>
+  
+  <url>
+    <loc>http://scalamolecule.org/manual/generic/datom/</loc>
+  </url>
+  
+  <url>
+    <loc>http://scalamolecule.org/manual/</loc>
+    <lastmod>2016-07-24T22:06:44+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://scalamolecule.org/manual/crud/save/</loc>
+  </url>
+  
+  <url>
+    <loc>http://scalamolecule.org/resources/tutorials/seattle/</loc>
+  </url>
+  
+  <url>
     <loc>http://scalamolecule.org/manual/quick-start/introduction/</loc>
-    <lastmod>2015-01-02T22:06:44+01:00</lastmod>
   </url>
   
   <url>
     <loc>http://scalamolecule.org/manual/relationships/card-many/</loc>
     <lastmod>2016-07-24T22:06:44+01:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://scalamolecule.org/manual/crud/insert/</loc>
-    <lastmod>2015-01-02T22:06:44+01:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://scalamolecule.org/manual/attributes/modes/</loc>
-    <lastmod>2015-01-02T22:06:44+01:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://scalamolecule.org/resources/videos/2017-04-25_Marc_Grue/</loc>
-    <lastmod>2015-01-02T22:06:44+01:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://scalamolecule.org/manual/setup/</loc>
-    <lastmod>2015-01-02T22:06:44+01:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://scalamolecule.org/manual/transactions/tx-bundle/</loc>
-    <lastmod>2015-01-02T22:06:44+01:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://scalamolecule.org/manual/transactions/tx-functions/</loc>
-    <lastmod>2015-01-02T22:06:44+01:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://scalamolecule.org/manual/transactions/tx-meta-data/</loc>
-    <lastmod>2015-01-02T22:06:44+01:00</lastmod>
   </url>
   
   <url>
@@ -113,23 +80,39 @@
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/manual/relationships/composites/</loc>
-    <lastmod>2015-01-02T22:06:44+01:00</lastmod>
+    <loc>http://scalamolecule.org/manual/generic/indexes/</loc>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/manual/time/history/</loc>
-    <lastmod>2015-01-02T22:06:44+01:00</lastmod>
+    <loc>http://scalamolecule.org/manual/crud/insert/</loc>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/manual/attributes/mapped/</loc>
-    <lastmod>2015-01-02T22:06:44+01:00</lastmod>
+    <loc>http://scalamolecule.org/manual/attributes/modes/</loc>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/manual/schema/</loc>
-    <lastmod>2015-01-02T22:06:44+01:00</lastmod>
+    <loc>http://scalamolecule.org/resources/videos/2017-04-25_Marc_Grue/</loc>
+  </url>
+  
+  <url>
+    <loc>http://scalamolecule.org/manual/setup/</loc>
+  </url>
+  
+  <url>
+    <loc>http://scalamolecule.org/manual/debug/debug-transactions/</loc>
+  </url>
+  
+  <url>
+    <loc>http://scalamolecule.org/manual/transactions/tx-bundle/</loc>
+  </url>
+  
+  <url>
+    <loc>http://scalamolecule.org/manual/transactions/tx-functions/</loc>
+  </url>
+  
+  <url>
+    <loc>http://scalamolecule.org/manual/transactions/tx-meta-data/</loc>
   </url>
   
   <url>
@@ -143,8 +126,31 @@
   </url>
   
   <url>
+    <loc>http://scalamolecule.org/manual/relationships/composites/</loc>
+  </url>
+  
+  <url>
+    <loc>http://scalamolecule.org/manual/debug/err/</loc>
+  </url>
+  
+  <url>
+    <loc>http://scalamolecule.org/manual/time/history/</loc>
+  </url>
+  
+  <url>
+    <loc>http://scalamolecule.org/manual/generic/log/</loc>
+  </url>
+  
+  <url>
+    <loc>http://scalamolecule.org/manual/attributes/mapped/</loc>
+  </url>
+  
+  <url>
+    <loc>http://scalamolecule.org/manual/schema/</loc>
+  </url>
+  
+  <url>
     <loc>http://scalamolecule.org/manual/schema/transaction/</loc>
-    <lastmod>2015-01-02T22:06:44+01:00</lastmod>
   </url>
   
   <url>
@@ -159,112 +165,83 @@
   
   <url>
     <loc>http://scalamolecule.org/manual/attributes/</loc>
-    <lastmod>2015-01-02T22:06:44+01:00</lastmod>
   </url>
   
   <url>
     <loc>http://scalamolecule.org/manual/attributes/expressions/</loc>
-    <lastmod>2015-01-02T22:06:44+01:00</lastmod>
   </url>
   
   <url>
     <loc>http://scalamolecule.org/manual/crud/get/</loc>
-    <lastmod>2015-01-02T22:06:44+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://scalamolecule.org/manual/generic/schema/</loc>
   </url>
   
   <url>
     <loc>http://scalamolecule.org/manual/time/with/</loc>
-    <lastmod>2015-01-02T22:06:44+01:00</lastmod>
   </url>
   
   <url>
     <loc>http://scalamolecule.org/manual/attributes/aggregates/</loc>
-    <lastmod>2015-01-02T22:06:44+01:00</lastmod>
   </url>
   
   <url>
     <loc>http://scalamolecule.org/manual/entities/</loc>
-    <lastmod>2015-01-02T22:06:44+01:00</lastmod>
   </url>
   
   <url>
     <loc>http://scalamolecule.org/manual/crud/getJson/</loc>
-    <lastmod>2015-01-02T22:06:44+01:00</lastmod>
   </url>
   
   <url>
     <loc>http://scalamolecule.org/manual/relationships/self-join/</loc>
-    <lastmod>2015-01-02T22:06:44+01:00</lastmod>
   </url>
   
   <url>
     <loc>http://scalamolecule.org/manual/time/testing/</loc>
-    <lastmod>2015-01-02T22:06:44+01:00</lastmod>
   </url>
   
   <url>
     <loc>http://scalamolecule.org/manual/attributes/parameterized/</loc>
-    <lastmod>2015-01-02T22:06:44+01:00</lastmod>
   </url>
   
   <url>
     <loc>http://scalamolecule.org/manual/relationships/</loc>
-    <lastmod>2015-01-02T22:06:44+01:00</lastmod>
   </url>
   
   <url>
     <loc>http://scalamolecule.org/manual/crud/update/</loc>
-    <lastmod>2015-01-02T22:06:44+01:00</lastmod>
   </url>
   
   <url>
     <loc>http://scalamolecule.org/manual/crud/</loc>
-    <lastmod>2015-01-02T22:06:44+01:00</lastmod>
   </url>
   
   <url>
     <loc>http://scalamolecule.org/manual/crud/retract/</loc>
-    <lastmod>2015-01-02T22:06:44+01:00</lastmod>
   </url>
   
   <url>
     <loc>http://scalamolecule.org/manual/transactions/</loc>
-    <lastmod>2015-01-02T22:06:44+01:00</lastmod>
   </url>
   
   <url>
     <loc>http://scalamolecule.org/manual/time/</loc>
-    <lastmod>2015-01-02T22:06:44+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://scalamolecule.org/manual/generic/</loc>
+  </url>
+  
+  <url>
+    <loc>http://scalamolecule.org/manual/debug/</loc>
   </url>
   
   <url>
     <loc>http://scalamolecule.org/changelog/</loc>
     <lastmod>2018-11-14T02:13:50+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://scalamolecule.org/</loc>
-    <lastmod>2015-01-02T22:06:44+01:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://scalamolecule.org/_presentation/presentation/</loc>
-    <lastmod>2015-01-02T22:06:44+01:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://scalamolecule.org/_presentation/presentation1/</loc>
-    <lastmod>2015-01-02T22:06:44+01:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://scalamolecule.org/resources/tutorials/</loc>
-    <lastmod>2015-01-02T22:06:44+01:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://scalamolecule.org/resources/videos/</loc>
-    <lastmod>2015-01-02T22:06:44+01:00</lastmod>
   </url>
   
   <url>
@@ -283,13 +260,33 @@
   </url>
   
   <url>
+    <loc>http://scalamolecule.org/</loc>
+    <lastmod>2016-07-24T22:06:44+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://scalamolecule.org/_presentation/presentation/</loc>
+  </url>
+  
+  <url>
+    <loc>http://scalamolecule.org/_presentation/presentation1/</loc>
+  </url>
+  
+  <url>
     <loc>http://scalamolecule.org/tags/</loc>
     <priority>0</priority>
   </url>
   
   <url>
+    <loc>http://scalamolecule.org/resources/tutorials/</loc>
+  </url>
+  
+  <url>
+    <loc>http://scalamolecule.org/resources/videos/</loc>
+  </url>
+  
+  <url>
     <loc>http://scalamolecule.org/_presentation/</loc>
-    <lastmod>2015-01-02T22:06:44+01:00</lastmod>
     <priority>0</priority>
   </url>
   

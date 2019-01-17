@@ -6,7 +6,7 @@
     <description>Recent content in Quick start on Molecule</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 02 Jan 2015 22:06:44 +0100</lastBuildDate>
+    <lastBuildDate>Sun, 24 Jul 2016 22:06:44 +0100</lastBuildDate>
     
 	<atom:link href="http://scalamolecule.org/manual/index.xml" rel="self" type="application/rss+xml" />
     
@@ -25,7 +25,7 @@ object YourDomainDefinition { trait Person { val name = oneString val home = one
     <item>
       <title>AsOf/Since</title>
       <link>http://scalamolecule.org/manual/time/asof-since/</link>
-      <pubDate>Fri, 02 Jan 2015 22:06:44 +0100</pubDate>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://scalamolecule.org/manual/time/asof-since/</guid>
       <description>AsOf / Since Tests&amp;hellip;
@@ -39,7 +39,7 @@ As we saw in point in time, a t can be either a transaction entity id like txE4,
     <item>
       <title>Building molecules</title>
       <link>http://scalamolecule.org/manual/attributes/basics/</link>
-      <pubDate>Fri, 02 Jan 2015 22:06:44 +0100</pubDate>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://scalamolecule.org/manual/attributes/basics/</guid>
       <description>Building molecules Tests&amp;hellip;
@@ -49,9 +49,32 @@ Person.name.age.gender // etc  The fundamental building blocks are Namespaces li
     </item>
     
     <item>
+      <title>Datalog/data</title>
+      <link>http://scalamolecule.org/manual/debug/datalog/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://scalamolecule.org/manual/debug/datalog/</guid>
+      <description>Show Datalog queries and data All molecule query commands have a corresponding debug command that will print debugging information to console.
+ &amp;lt;molecule&amp;gt;.debugGet &amp;lt;molecule&amp;gt;.debugGetHistory &amp;lt;molecule&amp;gt;.debugGetAsOf(...) &amp;lt;molecule&amp;gt;.debugGetSince(...) &amp;lt;molecule&amp;gt;.debugGetWith(...)  debugGet Simply replace a get command on a molecule with debugGet to print debugging data when running the code in a test for instance:
+// Molecule to be debugged Community.name.Neighborhood.District.region_(&amp;quot;ne&amp;quot; or &amp;quot;sw&amp;quot;).get(3) === List( &amp;quot;Beach Drive Blog&amp;quot;, &amp;quot;KOMO Communities - Green Lake&amp;quot;, &amp;quot;Delridge Produce Cooperative&amp;quot; ) // Debug `get` Community.</description>
+    </item>
+    
+    <item>
+      <title>Datom</title>
+      <link>http://scalamolecule.org/manual/generic/datom/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://scalamolecule.org/manual/generic/datom/</guid>
+      <description>Datom API Tests&amp;hellip;
+Datoms / quintuplets Attribute values are saved as quintuplets of information in Datomic:
+The Datom API in Molecule let us retrieve each element generically for any molecule we are working on by providing the following &amp;ldquo;generic attributes&amp;rdquo; that we can add to our custom molecules:
+ e - Entity id (Long) a - Attribute (String) v - Value (Any) t - Transaction point in time (Long alternatively Int) op - Operation: assertion / retraction (Boolean true/false)  The Transaction value has two more representations</description>
+    </item>
+    
+    <item>
       <title>Save</title>
       <link>http://scalamolecule.org/manual/crud/save/</link>
-      <pubDate>Fri, 02 Jan 2015 22:06:44 +0100</pubDate>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://scalamolecule.org/manual/crud/save/</guid>
       <description>Save Tests&amp;hellip;
@@ -64,10 +87,11 @@ Asynchronous save All transactional operators have an asynchronous equivalent.</
     <item>
       <title>Introduction</title>
       <link>http://scalamolecule.org/manual/quick-start/introduction/</link>
-      <pubDate>Fri, 02 Jan 2015 22:06:44 +0100</pubDate>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://scalamolecule.org/manual/quick-start/introduction/</guid>
       <description>Molecule introduction Molecule let&amp;rsquo;s you model and query your domain data structures directly with the words of your domain.
+bldskjfl ksdfjl sadkf lj
 Query Let&amp;rsquo;s say we want to find Persons in the Datomic database. Then we can build a molecule to get this data for us:
 val persons: List[(String, Int)] = m(Person.name.age).get  This fetches a List of tuples of Strings/Int&amp;rsquo;s that are the types of the name and age Attributes that we asked for.</description>
     </item>
@@ -85,9 +109,21 @@ Note how we also make LineItems a component with the isComponent option.</descri
     </item>
     
     <item>
+      <title>Index</title>
+      <link>http://scalamolecule.org/manual/generic/indexes/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://scalamolecule.org/manual/generic/indexes/</guid>
+      <description>Index APIs Tests&amp;hellip;
+Some index descriptions in the following sections respectfully quoted from the Datomic documentation.
+Datomic maintains four indexes that contain ordered sets of datoms. Each of these indexes is named based on the sort order used. E, A, and V are always sorted in ascending order, while T is always in descending order:
+ EAVT - Datoms sorted by Entity-Attribute-Value-Transaction. AVET - Datoms sorted by Attribute-Value-Entity-Transaction. AEVT - Datoms sorted by Attribute-Entity-Value-Transaction.</description>
+    </item>
+    
+    <item>
       <title>Insert</title>
       <link>http://scalamolecule.org/manual/crud/insert/</link>
-      <pubDate>Fri, 02 Jan 2015 22:06:44 +0100</pubDate>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://scalamolecule.org/manual/crud/insert/</guid>
       <description>Insert Tests&amp;hellip;
@@ -100,7 +136,7 @@ Person.name.likes.age insert List( (&amp;quot;Lisa&amp;quot;, &amp;quot;pizza&am
     <item>
       <title>Mandatory/Tacit/Optional</title>
       <link>http://scalamolecule.org/manual/attributes/modes/</link>
-      <pubDate>Fri, 02 Jan 2015 22:06:44 +0100</pubDate>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://scalamolecule.org/manual/attributes/modes/</guid>
       <description>3 attribute modes (All getters have an asynchronous equivalent. Synchronous getters shown for brevity)
@@ -112,7 +148,7 @@ If for instance we have entities representing Persons in our data set that haven
     <item>
       <title>Setup</title>
       <link>http://scalamolecule.org/manual/setup/</link>
-      <pubDate>Fri, 02 Jan 2015 22:06:44 +0100</pubDate>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://scalamolecule.org/manual/setup/</guid>
       <description>Setup To use Molecule we need to define our database schema in a Schema definition file and then tell sbt about it. When compiling our project from the command line, all necessary boilerplate code is then automatically generated by the sbt MoleculePlugin.
@@ -124,9 +160,20 @@ lazy val yourProject = project.in(file(&amp;quot;app&amp;quot;)) .</description>
     </item>
     
     <item>
+      <title>Transactions</title>
+      <link>http://scalamolecule.org/manual/debug/debug-transactions/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://scalamolecule.org/manual/debug/debug-transactions/</guid>
+      <description>Debug transactions Transactional operations can be debugged with the following methods:
+ &amp;lt;molecule&amp;gt;.debugSave &amp;lt;molecule&amp;gt;.debugInsert(data...) &amp;lt;molecule&amp;gt;.debugUpdate &amp;lt;entityId&amp;gt;.debugRetract &amp;lt;entityId&amp;gt;.Tx(transactionMolecule).debugRetract debugRetract(entityIds, txMetaDataMolecules*)  Calling these debug methods will print the produced transaction statements to console only and not perform any transaction on the database.
+Debug Save If we are about to save a molecule we can instead call debugSave on the same molecule to see what transaction statements Molecule will send to Datomic.</description>
+    </item>
+    
+    <item>
       <title>Tx bundle</title>
       <link>http://scalamolecule.org/manual/transactions/tx-bundle/</link>
-      <pubDate>Fri, 02 Jan 2015 22:06:44 +0100</pubDate>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://scalamolecule.org/manual/transactions/tx-bundle/</guid>
       <description>Transaction bundle Tests&amp;hellip;
@@ -137,7 +184,7 @@ Each of the above operations has an equivalent method for getting the transactio
     <item>
       <title>Tx functions</title>
       <link>http://scalamolecule.org/manual/transactions/tx-functions/</link>
-      <pubDate>Fri, 02 Jan 2015 22:06:44 +0100</pubDate>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://scalamolecule.org/manual/transactions/tx-functions/</guid>
       <description>Transaction functions Tests&amp;hellip;
@@ -148,7 +195,7 @@ Atomic processing within the transaction Transaction functions
     <item>
       <title>Tx meta data</title>
       <link>http://scalamolecule.org/manual/transactions/tx-meta-data/</link>
-      <pubDate>Fri, 02 Jan 2015 22:06:44 +0100</pubDate>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://scalamolecule.org/manual/transactions/tx-meta-data/</guid>
       <description>Transaction meta data Tests&amp;hellip;
@@ -159,7 +206,7 @@ Save Depending on our domain we can tailor any tx meta data that we find valuabl
     <item>
       <title>Composites</title>
       <link>http://scalamolecule.org/manual/relationships/composites/</link>
-      <pubDate>Fri, 02 Jan 2015 22:06:44 +0100</pubDate>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://scalamolecule.org/manual/relationships/composites/</guid>
       <description>Composites Tests&amp;hellip;
@@ -169,9 +216,20 @@ Avoid non-intrinsic pollution Since entities can have attributes from any namesp
     </item>
     
     <item>
+      <title>Errors</title>
+      <link>http://scalamolecule.org/manual/debug/err/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://scalamolecule.org/manual/debug/err/</guid>
+      <description>Common errors and solutions As errors and solutions are encountered this list is updated to help developers working with Molecule.
+Compile time  Inferred: Cannot resolve overloaded method &amp;lsquo;inputMolecule&amp;rsquo; Compiled: overloaded method value apply with alternatives:  Runtime  JdbcSQLException: Connection is broken: &amp;ldquo;java.net.ConnectException: Connection refused  ☝︎ Cannot resolve overloaded method &amp;lsquo;inputMolecule&amp;rsquo; When forgetting to explicitly calling m on an input molecule
+val inputMolecule = Community.name(?) inputMolecule(&amp;quot;Ben&amp;quot;) // will not compile and likely be inferred as an error in your IDE  Input molecule needs to be declared explicitly with the m method</description>
+    </item>
+    
+    <item>
       <title>History</title>
       <link>http://scalamolecule.org/manual/time/history/</link>
-      <pubDate>Fri, 02 Jan 2015 22:06:44 +0100</pubDate>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://scalamolecule.org/manual/time/history/</guid>
       <description>History Tests&amp;hellip;
@@ -181,9 +239,21 @@ As an example we can imagine Fred being added in tx3 and then updated in tx6.</d
     </item>
     
     <item>
+      <title>Log</title>
+      <link>http://scalamolecule.org/manual/generic/log/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://scalamolecule.org/manual/generic/log/</guid>
+      <description>Log API Tests&amp;hellip;
+Some index descriptions in the following sections respectfully quoted from the Datomic documentation.
+Datomic&amp;rsquo;s database log is a recording of all transaction data in historic order, organized for efficient access by transaction. The Log is therefore an efficient source of finding data by transaction time.
+Tx range and generic Log attributes The Molecule Log implementation takes two arguments to define a range of transactions between from (inclusive) and until (exclusive).</description>
+    </item>
+    
+    <item>
       <title>Map attributes</title>
       <link>http://scalamolecule.org/manual/attributes/mapped/</link>
-      <pubDate>Fri, 02 Jan 2015 22:06:44 +0100</pubDate>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://scalamolecule.org/manual/attributes/mapped/</guid>
       <description>Map Attributes Tests&amp;hellip;
@@ -195,7 +265,7 @@ Say you want to save famous Persons names in multiple languages. Then you could 
     <item>
       <title>Schema</title>
       <link>http://scalamolecule.org/manual/schema/</link>
-      <pubDate>Fri, 02 Jan 2015 22:06:44 +0100</pubDate>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://scalamolecule.org/manual/schema/</guid>
       <description>Schema A Datomic schema defines the set of possible attributes that we can use.
@@ -206,7 +276,7 @@ Schema definition file Molecule provides an intuitive and type-safe dsl to model
     <item>
       <title>Transaction</title>
       <link>http://scalamolecule.org/manual/schema/transaction/</link>
-      <pubDate>Fri, 02 Jan 2015 22:06:44 +0100</pubDate>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://scalamolecule.org/manual/schema/transaction/</guid>
       <description>Schema transaction To create our Datomic database we need to transact some schema transaction data in Datomic. This makes our defined attributes available in Datomic.
@@ -229,7 +299,7 @@ Person.name_(&amp;quot;Ben&amp;quot;).Friends.name.get === List()  Instead we wo
     <item>
       <title>Attributes</title>
       <link>http://scalamolecule.org/manual/attributes/</link>
-      <pubDate>Fri, 02 Jan 2015 22:06:44 +0100</pubDate>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://scalamolecule.org/manual/attributes/</guid>
       <description>Attributes Molecules are built by chaining attributes together with the builder pattern. Here are some groups of different attribute types and their use with links to their manual pages:
@@ -243,7 +313,7 @@ Person.name.age.get // all required values (&amp;quot;mandatory value&amp;quot;)
     <item>
       <title>Expressions</title>
       <link>http://scalamolecule.org/manual/attributes/expressions/</link>
-      <pubDate>Fri, 02 Jan 2015 22:06:44 +0100</pubDate>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://scalamolecule.org/manual/attributes/expressions/</guid>
       <description>Expressions Tests&amp;hellip;
@@ -257,7 +327,7 @@ Person.likes(&amp;quot;pizza&amp;quot;)  Since the applied value &amp;ldquo;pizz
     <item>
       <title>Get</title>
       <link>http://scalamolecule.org/manual/crud/get/</link>
-      <pubDate>Fri, 02 Jan 2015 22:06:44 +0100</pubDate>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://scalamolecule.org/manual/crud/get/</guid>
       <description>Get (read) Data We get/read data from the database by calling get on a molecule. This returns a List of tuples that match the molecule attributes (except for arity-1):
@@ -266,9 +336,21 @@ val persons1attr: List[String] = Person.name.get val persons2attrs: List[(String
     </item>
     
     <item>
+      <title>Schema</title>
+      <link>http://scalamolecule.org/manual/generic/schema/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://scalamolecule.org/manual/generic/schema/</guid>
+      <description>Schema API Tests&amp;hellip;
+The generic Schema interface provides attributes to build a Schema molecule that query the Schema structure of the current database. Datomic&amp;rsquo;s bootstrapped attributes are transparently filtered out so that only schema data of the current database is returned.
+Generic Schema attributes The following Schema attributes can be used to build Schema molecules:
+  Attribute &amp;nbsp;&amp;nbsp; Description Example value  id &amp;nbsp;&amp;nbsp; Attribute definition entity idLong a &amp;nbsp;&amp;nbsp; (Partition-)Namespace-prefixed attribute name &amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;ldquo;:ind_Person/name&amp;rdquo; or &amp;ldquo;:person/name&amp;rdquo; if no partitions part &amp;nbsp;&amp;nbsp; Partition name.</description>
+    </item>
+    
+    <item>
       <title>With</title>
       <link>http://scalamolecule.org/manual/time/with/</link>
-      <pubDate>Fri, 02 Jan 2015 22:06:44 +0100</pubDate>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://scalamolecule.org/manual/time/with/</guid>
       <description>With Tests&amp;hellip;
@@ -280,7 +362,7 @@ Person.name.likes.getWith(&amp;lt;tx8Data&amp;gt;) === ... // Persons after appl
     <item>
       <title>Aggregates</title>
       <link>http://scalamolecule.org/manual/attributes/aggregates/</link>
-      <pubDate>Fri, 02 Jan 2015 22:06:44 +0100</pubDate>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://scalamolecule.org/manual/attributes/aggregates/</guid>
       <description>Aggregates Core tests | Example tests
@@ -292,7 +374,7 @@ Aggregates returning a single value min/max Applying the min or max aggregate ke
     <item>
       <title>Entities</title>
       <link>http://scalamolecule.org/manual/entities/</link>
-      <pubDate>Fri, 02 Jan 2015 22:06:44 +0100</pubDate>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://scalamolecule.org/manual/entities/</guid>
       <description>Entities An entity in Datomic is a group of Datoms/facts that share an entity id:
@@ -303,7 +385,7 @@ This demonstrates that Datomic/Molecule Namespaces are not like Tables in SQL. T
     <item>
       <title>Get Json</title>
       <link>http://scalamolecule.org/manual/crud/getJson/</link>
-      <pubDate>Fri, 02 Jan 2015 22:06:44 +0100</pubDate>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://scalamolecule.org/manual/crud/getJson/</guid>
       <description>Get Json formatted Data Tests&amp;hellip;
@@ -314,7 +396,7 @@ Internally, Molecule builds the json string in a StringBuffer directly from the 
     <item>
       <title>Self-join</title>
       <link>http://scalamolecule.org/manual/relationships/self-join/</link>
-      <pubDate>Fri, 02 Jan 2015 22:06:44 +0100</pubDate>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://scalamolecule.org/manual/relationships/self-join/</guid>
       <description>Self-join Please see the following Self-join examples of Molecule
@@ -324,7 +406,7 @@ Next CRUD operations&amp;hellip;</description>
     <item>
       <title>Testing</title>
       <link>http://scalamolecule.org/manual/time/testing/</link>
-      <pubDate>Fri, 02 Jan 2015 22:06:44 +0100</pubDate>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://scalamolecule.org/manual/time/testing/</guid>
       <description>Testing TestDbAsOf, TestDbSince and TestDbWith
@@ -335,7 +417,7 @@ Test db All molecules expect an implicit connection object to be in scope. If we
     <item>
       <title>Parameterized</title>
       <link>http://scalamolecule.org/manual/attributes/parameterized/</link>
-      <pubDate>Fri, 02 Jan 2015 22:06:44 +0100</pubDate>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://scalamolecule.org/manual/attributes/parameterized/</guid>
       <description>Parameterized Input-molecules Tests: 1 input, 2 inputs, 3 inputs
@@ -347,7 +429,7 @@ By assigning parameterized &amp;ldquo;Input-molecules&amp;rdquo; to variables we
     <item>
       <title>Relationships</title>
       <link>http://scalamolecule.org/manual/relationships/</link>
-      <pubDate>Fri, 02 Jan 2015 22:06:44 +0100</pubDate>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://scalamolecule.org/manual/relationships/</guid>
       <description>Relationships Tests&amp;hellip;
@@ -359,7 +441,7 @@ In the following example, entity 101 has a ref attribute :person/home with a val
     <item>
       <title>Update</title>
       <link>http://scalamolecule.org/manual/crud/update/</link>
-      <pubDate>Fri, 02 Jan 2015 22:06:44 +0100</pubDate>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://scalamolecule.org/manual/crud/update/</guid>
       <description>Update data An &amp;ldquo;update&amp;rdquo; is a two-step process in Datomic:
@@ -370,7 +452,7 @@ Being able to see how data develops over time is a brillant core feature of Dato
     <item>
       <title>&#34;CRUD&#34;</title>
       <link>http://scalamolecule.org/manual/crud/</link>
-      <pubDate>Fri, 02 Jan 2015 22:06:44 +0100</pubDate>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://scalamolecule.org/manual/crud/</guid>
       <description>&amp;ldquo;CRUD&amp;rdquo; Tests&amp;hellip;
@@ -382,7 +464,7 @@ Transactions return TxReport All transactional operations on molecules return a 
     <item>
       <title>Retract</title>
       <link>http://scalamolecule.org/manual/crud/retract/</link>
-      <pubDate>Fri, 02 Jan 2015 22:06:44 +0100</pubDate>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://scalamolecule.org/manual/crud/retract/</guid>
       <description>Retract data Tests&amp;hellip;
@@ -393,7 +475,7 @@ Retract facts To retract individual attributre values apply empty parenthesises 
     <item>
       <title>Transactions</title>
       <link>http://scalamolecule.org/manual/transactions/</link>
-      <pubDate>Fri, 02 Jan 2015 22:06:44 +0100</pubDate>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://scalamolecule.org/manual/transactions/</guid>
       <description>Transactions All assertions and retractions in Datomic happen within a transaction that guarantees ACID consistency. Along with the domain data involved, Datomic also automatically asserts a timestamp as part of a created Transaction entity for that transaction.
@@ -405,7 +487,7 @@ The 4th column of the quintuplets is the entity id of the transaction where the 
     <item>
       <title>Time</title>
       <link>http://scalamolecule.org/manual/time/</link>
-      <pubDate>Fri, 02 Jan 2015 22:06:44 +0100</pubDate>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://scalamolecule.org/manual/time/</guid>
       <description>Time Tests&amp;hellip;
@@ -413,6 +495,31 @@ Datomic has powerful ways of accessing the immutable data that accumulates over 
 Molecule maps those to 5 data getters that we can illustrate with a time line of transactions.
 The 5 ways of getting data have the following semantics:
  get - snapshot of tx 1-7 accumulated. This is the current view of the database (&amp;ldquo;as of now&amp;rdquo;) that we normally use. ☞ getAsOf(t4) - snapshot of tx 1-4 accumulated.</description>
+    </item>
+    
+    <item>
+      <title>Generic</title>
+      <link>http://scalamolecule.org/manual/generic/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://scalamolecule.org/manual/generic/</guid>
+      <description>Generic attributes Tests&amp;hellip;
+Molecule provides access to meta data about data and Schema with the following 7 generic interfaces (each with a little example - read more by clicking on each title):
+Datom Get id of Ben entity with generic Datom attribute e
+Person.e.name.get.head === (benEntityId, &amp;quot;Ben&amp;quot;)  EAVT Index Attributes and values of entity e1
+EAVT(e1).a.v.get === List( (&amp;quot;:person/name&amp;quot;, &amp;quot;Ben&amp;quot;), (&amp;quot;:person/age&amp;quot;, 42), (&amp;quot;:golf/score&amp;quot;, 5.7) )  AVET Index Values, entities and transactions where attribute :person/age is involved</description>
+    </item>
+    
+    <item>
+      <title>Debug</title>
+      <link>http://scalamolecule.org/manual/debug/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://scalamolecule.org/manual/debug/</guid>
+      <description>Debug molecules See debug docs&amp;hellip; 3 resources helping debugging molecules:
+Show Datalog queries and data All molecule query commands have a corresponding debug command that will print debugging information to console.
+ &amp;lt;molecule&amp;gt;.debugGet &amp;lt;molecule&amp;gt;.debugGetHistory &amp;lt;molecule&amp;gt;.debugGetAsOf(...) &amp;lt;molecule&amp;gt;.debugGetSince(...) &amp;lt;molecule&amp;gt;.debugGetWith(...)  Debug transactions Transactional operations can be debugged with the following methods:
+ &amp;lt;molecule&amp;gt;.debugSave &amp;lt;molecule&amp;gt;.debugInsert(data...) &amp;lt;molecule&amp;gt;.debugUpdate &amp;lt;entityId&amp;gt;.debugRetract &amp;lt;entityId&amp;gt;.Tx(transactionMolecule).debugRetract debugRetract(entityIds, txMetaDataMolecules*)  Common errors and solutions List of possible compilation/runtime errors and solutions&amp;hellip;</description>
     </item>
     
   </channel>
