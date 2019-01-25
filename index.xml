@@ -219,7 +219,7 @@ Attendees came with great suggestions for improvements that were incorporated in
 1. SBT build settings Add the following to your build files:
 project/build.properties:
 sbt.version=1.1.6  project/plugins.sbt:
-addSbtPlugin(&amp;quot;org.scalamolecule&amp;quot; % &amp;quot;sbt-molecule&amp;quot; % &amp;quot;0.7.1&amp;quot;)  build.sbt:
+addSbtPlugin(&amp;quot;org.scalamolecule&amp;quot; % &amp;quot;sbt-molecule&amp;quot; % &amp;quot;0.7.2&amp;quot;)  build.sbt:
 lazy val yourProject = project.in(file(&amp;quot;app&amp;quot;)) .</description>
     </item>
     
