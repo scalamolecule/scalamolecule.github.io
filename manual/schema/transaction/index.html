@@ -797,7 +797,7 @@ implicit val conn = molecule.facade.Conn(&quot;myDatabase&quot;)
 implicit val conn = recreateDbFrom(SeattleSchema, &quot;myDatabase&quot;, &quot;mem&quot;)
 </code></pre>
 
-<h3 id="working-with-non-molecule-datomic-databases">Working with non-molecule Datomic databases</h3>
+<h2 id="working-with-non-molecule-datomic-databases">Working with non-molecule Datomic databases</h2>
 
 <p>If you are working with externally defined Datomic databases or data sets with lowercase namespace
 names defined then you can easily add some attribute name aliases so that you can freely
@@ -807,7 +807,7 @@ work with the external data from your molecule code.</p>
 that can be transacted with the external lowercase database so that you can use your
 uppercase Molecule code with it:</p>
 
-<h4 id="molecule-schema-uppercase-external-data-lowercase">Molecule schema (uppercase) + external data (lowercase)</h4>
+<h3 id="molecule-schema-uppercase-external-data-lowercase">Molecule schema (uppercase) + external data (lowercase)</h3>
 
 <p>When importing external data
 (<a href="https://github.com/scalamolecule/molecule/blob/master/examples/src/test/scala/molecule/examples/seattle/SeattleTests.scala#L367-L368">example</a>)
@@ -820,7 +820,7 @@ imported lowercase data:</p>
 <pre><code class="language-scala">conn.datomicConn.transact(SchemaUpperToLower.namespaces)
 </code></pre>
 
-<h4 id="external-schema-lowercase-external-data-lowercase">External schema (lowercase) + external data (lowercase)</h4>
+<h3 id="external-schema-lowercase-external-data-lowercase">External schema (lowercase) + external data (lowercase)</h3>
 
 <p>If both external schema and data is created with lowercase namespace names, then you can transact
 uppercase attribute aliases with the live database so that it will recognize your uppercase
