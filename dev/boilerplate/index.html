@@ -668,7 +668,7 @@
             <div class="col-md-2 column" style="padding-top:20px;padding-right:0px;">
                 <ul class="nav nav-pills" style="float:right;">
                     <li>
-                        <a href="/changelog" style="margin-top:-2px;">v0.17.2</a>
+                        <a href="/changelog" style="margin-top:-2px;">v0.18.0</a>
                     </li>
                     <li>
                         <div style="padding-left:14px;">
@@ -718,7 +718,7 @@ trait Community {
 trait Community_0 extends Community with Out_0[Community_0, Community_1, Community_In_1_0, Community_In_1_1] {
   lazy val name : name[Community_1[String], Community_In_1_1[String, String]] with Community_1[String] = 
     new name[Community_1[String], Community_In_1_1[String, String]] with Community_1[String] { 
-      override val _kw = &quot;:community/name&quot; 
+      override val _kw = &quot;:Community/name&quot; 
     }
   lazy val name_ : name[Community_0, Community_In_1_0[String]] with Community_0 = ???
 }
@@ -755,7 +755,7 @@ corresponding where clause. In that respect it seems a very seldom necessity to 
 <p>A way to gather additional/optional values from a query is to use the entity API by applying an attribute name
 to an entity id from the query:</p>
 
-<pre><code class="language-scala">communityId(&quot;:community/url&quot;) === Some(&quot;http://eastballard.com/&quot;)
+<pre><code class="language-scala">communityId(&quot;:Community/url&quot;) === Some(&quot;http://eastballard.com/&quot;)
 </code></pre>
 
 <p>This gives us an optional value back if an attribute value has been asserted for this entity.</p>

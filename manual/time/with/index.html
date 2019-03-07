@@ -668,7 +668,7 @@
             <div class="col-md-2 column" style="padding-top:20px;padding-right:0px;">
                 <ul class="nav nav-pills" style="float:right;">
                     <li>
-                        <a href="/changelog" style="margin-top:-2px;">v0.17.2</a>
+                        <a href="/changelog" style="margin-top:-2px;">v0.18.0</a>
                     </li>
                     <li>
                         <div style="padding-left:14px;">
@@ -715,8 +715,8 @@ Molecule transaction function to get some valid transaction data:</p>
 <p>Transaction data is supplied to <code>getWith(txData)</code> by calling a transaction data getter on a molecule:</p>
 
 <pre><code class="language-scala">Person(fred).likes(&quot;sushi&quot;).getUpdateTx === List(
-  [:db/retract, 17592186045445, :person/likes, &quot;pasta&quot;]
-  [:db/add    , 17592186045445, :person/likes, &quot;sushi&quot;]
+  [:db/retract, 17592186045445, :Person/likes, &quot;pasta&quot;]
+  [:db/add    , 17592186045445, :Person/likes, &quot;sushi&quot;]
 ) 
 </code></pre>
 

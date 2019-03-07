@@ -668,7 +668,7 @@
             <div class="col-md-2 column" style="padding-top:20px;padding-right:0px;">
                 <ul class="nav nav-pills" style="float:right;">
                     <li>
-                        <a href="/changelog" style="margin-top:-2px;">v0.17.2</a>
+                        <a href="/changelog" style="margin-top:-2px;">v0.18.0</a>
                     </li>
                     <li>
                         <div style="padding-left:14px;">
@@ -712,24 +712,24 @@ read more by clicking on each title):</p>
 <p>Attributes and values of entity e1</p>
 
 <pre><code class="language-scala">EAVT(e1).a.v.get === List(
-  (&quot;:person/name&quot;, &quot;Ben&quot;),
-  (&quot;:person/age&quot;, 42),
-  (&quot;:golf/score&quot;, 5.7)
+  (&quot;:Person/name&quot;, &quot;Ben&quot;),
+  (&quot;:Person/age&quot;, 42),
+  (&quot;:Golf/score&quot;, 5.7)
 )
 </code></pre>
 
 <h3 id="avet-index-indexes"><a href="indexes">AVET Index</a></h3>
 
-<p>Values, entities and transactions where attribute :person/age is involved</p>
+<p>Values, entities and transactions where attribute :Person/age is involved</p>
 
-<pre><code class="language-scala">AVET(&quot;:person/age&quot;).e.v.t.get === List(
+<pre><code class="language-scala">AVET(&quot;:Person/age&quot;).e.v.t.get === List(
   (42, e1, t2),
   (37, e2, t5)
   (14, e3, t7),
 )
 
 // AVET index filtered with an attribute name and a range of values
-AVET.range(&quot;:person/age&quot;, Some(14), Some(40)).v.e.t.get === List(
+AVET.range(&quot;:Person/age&quot;, Some(14), Some(40)).v.e.t.get === List(
   (14, e4, t7),
   (37, e2, t5)
 )
@@ -737,9 +737,9 @@ AVET.range(&quot;:person/age&quot;, Some(14), Some(40)).v.e.t.get === List(
 
 <h3 id="aevt-index-indexes"><a href="indexes">AEVT Index</a></h3>
 
-<p>Entities, values and transactions where attribute :person/name is involved</p>
+<p>Entities, values and transactions where attribute :Person/name is involved</p>
 
-<pre><code class="language-scala">AEVT(&quot;:person/name&quot;).e.v.t.get === List(
+<pre><code class="language-scala">AEVT(&quot;:Person/name&quot;).e.v.t.get === List(
   (e1, &quot;Ben&quot;, t2),
   (e2, &quot;Liz&quot;, t5)
 )
@@ -750,9 +750,9 @@ AVET.range(&quot;:person/age&quot;, Some(14), Some(40)).v.e.t.get === List(
 <p>Get entities pointing to entity a1</p>
 
 <pre><code class="language-scala">VAET(a1).v.a.e.get === List(
-  (a1, &quot;:release/artists&quot;, r1),
-  (a1, &quot;:release/artists&quot;, r2),
-  (a1, &quot;:release/artists&quot;, r3),
+  (a1, &quot;:Release/artists&quot;, r1),
+  (a1, &quot;:Release/artists&quot;, r2),
+  (a1, &quot;:Release/artists&quot;, r3),
 )
 </code></pre>
 
@@ -761,14 +761,14 @@ AVET.range(&quot;:person/age&quot;, Some(14), Some(40)).v.e.t.get === List(
 <p>Data from transaction t1 until t4 (exclusive)</p>
 
 <pre><code class="language-scala">Log(Some(t1), Some(t4)).t.e.a.v.op.get === List(
-  (t1, e1, &quot;:person/name&quot;, &quot;Ben&quot;, true),
-  (t1, e1, &quot;:person/age&quot;, 41, true),
+  (t1, e1, &quot;:Person/name&quot;, &quot;Ben&quot;, true),
+  (t1, e1, &quot;:Person/age&quot;, 41, true),
 
-  (t2, e2, &quot;:person/name&quot;, &quot;Liz&quot;, true),
-  (t2, e2, &quot;:person/age&quot;, 37, true),
+  (t2, e2, &quot;:Person/name&quot;, &quot;Liz&quot;, true),
+  (t2, e2, &quot;:Person/age&quot;, 37, true),
 
-  (t3, e1, &quot;:person/age&quot;, 41, false),
-  (t3, e1, &quot;:person/age&quot;, 42, true)
+  (t3, e1, &quot;:Person/age&quot;, 41, false),
+  (t3, e1, &quot;:Person/age&quot;, 42, true)
 )
 </code></pre>
 
@@ -776,7 +776,7 @@ AVET.range(&quot;:person/age&quot;, Some(14), Some(40)).v.e.t.get === List(
 
 <p>Get entities pointing to entity a1</p>
 
-<pre><code class="language-scala">Schema.part.ns.attr.fuolltext$.doc.get === List(
+<pre><code class="language-scala">Schema.part.ns.attr.fulltext$.doc.get === List(
   (&quot;ind&quot;, &quot;person&quot;, &quot;name&quot;, Some(true), &quot;Person name&quot;), // fulltext search enabled
   (&quot;ind&quot;, &quot;person&quot;, &quot;age&quot;, None, &quot;Person age&quot;),
   (&quot;cat&quot;, &quot;sport&quot;, &quot;name&quot;, None, &quot;Sport category name&quot;)

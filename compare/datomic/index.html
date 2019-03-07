@@ -668,7 +668,7 @@
             <div class="col-md-2 column" style="padding-top:20px;padding-right:0px;">
                 <ul class="nav nav-pills" style="float:right;">
                     <li>
-                        <a href="/changelog" style="margin-top:-2px;">v0.17.2</a>
+                        <a href="/changelog" style="margin-top:-2px;">v0.18.0</a>
                     </li>
                     <li>
                         <div style="padding-left:14px;">
@@ -705,9 +705,9 @@
 
 <pre><code>// Datalog
 [:find  ?b ?c (distinct ?d)
- :where [?a :community/name ?b]
-        [?a :community/url ?c]
-        [?a :community/category ?d]]
+ :where [?a :Community/name ?b]
+        [?a :Community/url ?c]
+        [?a :Community/category ?d]]
 </code></pre>
 
 <p>In Molecule we simply use the namespace name and add the attribute names:</p>
@@ -725,8 +725,8 @@ Community.name.url.category
 <p>Let&rsquo;s query by an enumerated value for the <code>type</code> attribute:</p>
 
 <pre><code>[:find  ?b
- :where [?a :community/name ?b]
-        [?a :community/type &quot;:community.type/twitter&quot;]]
+ :where [?a :Community/name ?b]
+        [?a :Community/type &quot;:Community.type/twitter&quot;]]
 </code></pre>
 
 <pre><code class="language-scala">Community.name.type_(&quot;twitter&quot;)
@@ -740,14 +740,14 @@ Community.name.url.category
 
 <pre><code>[:find  ?b
  :in    $ %
- :where [?a :community/name ?b]
+ :where [?a :Community/name ?b]
         (rule1 ?a)]
 
 INPUTS:
 List(
   1 datomic.db.Db@xxx
-  2 [[(rule1 ?a) [?a :community/category &quot;news&quot;]]
-     [(rule1 ?a) [?a :community/category &quot;arts&quot;]]]
+  2 [[(rule1 ?a) [?a :Community/category &quot;news&quot;]]
+     [(rule1 ?a) [?a :Community/category &quot;arts&quot;]]]
 )
 </code></pre>
 
@@ -762,10 +762,10 @@ Community.name.category_(&quot;news&quot;, &quot;arts&quot;)
 <h3 id="querying-across-references">Querying across references</h3>
 
 <pre><code>[:find  ?b ?e2
- :where [?a :community/name ?b]
-        [?a :community/neighborhood ?c]
-        [?c :neighborhood/district ?d]
-        [?d :district/region ?e]
+ :where [?a :Community/name ?b]
+        [?a :Community/neighborhood ?c]
+        [?c :Neighborhood/district ?d]
+        [?d :District/region ?e]
         [?e :db/ident ?e1]
         [(.getName ^clojure.lang.Keyword ?e1) ?e2]]
 </code></pre>
@@ -779,15 +779,15 @@ Community.name.category_(&quot;news&quot;, &quot;arts&quot;)
 
 <pre><code>[:find  ?b ?c2
  :in    $ ?c
- :where [?a :community/name ?b]
-        [?a :community/type ?c]
+ :where [?a :Community/name ?b]
+        [?a :Community/type ?c]
         [?c :db/ident ?c1]
         [(.getName ^clojure.lang.Keyword ?c1) ?c2]]
 
 INPUTS:
 List(
   1 datomic.db.Db@xxx
-  2 :community.type/twitter
+  2 :Community.type/twitter
 )
 </code></pre>
 
@@ -799,15 +799,15 @@ val twitterCommunities = communitiesOfType(&quot;twitter&quot;)
 
 <pre><code>[:find  ?b ?c2
  :in    $ ?c
- :where [?a :community/name ?b]
-        [?a :community/type ?c]
+ :where [?a :Community/name ?b]
+        [?a :Community/type ?c]
         [?c :db/ident ?c1]
         [(.getName ^clojure.lang.Keyword ?c1) ?c2]]
 
 INPUTS:
 List(
   1 datomic.db.Db@xxx
-  2 :community.type/twitter
+  2 :Community.type/twitter
 )
 </code></pre>
 
@@ -818,14 +818,14 @@ List(
 
 <pre><code>[:find  ?b
  :in    $ [[ ?c ?d ]]
- :where [?a :community/name ?b]
-        [?a :community/type ?c]
-        [?a :community/orgtype ?d]]
+ :where [?a :Community/name ?b]
+        [?a :Community/type ?c]
+        [?a :Community/orgtype ?d]]
 
 INPUTS:
 List(
   1 datomic.db.Db@xxx
-  2 [[:community.type/email_list, :community.orgtype/community]]
+  2 [[:Community.type/email_list, :Community.orgtype/community]]
 )
 </code></pre>
 
@@ -836,19 +836,19 @@ List(
 
 <pre><code>[:find  ?b ?c2 ?d2
  :in    $ [[ ?c ?d ]]
- :where [?a :community/name ?b]
-        [?a :community/type ?c]
+ :where [?a :Community/name ?b]
+        [?a :Community/type ?c]
         [?c :db/ident ?c1]
         [(.getName ^clojure.lang.Keyword ?c1) ?c2]
-        [?a :community/orgtype ?d]
+        [?a :Community/orgtype ?d]
         [?d :db/ident ?d1]
         [(.getName ^clojure.lang.Keyword ?d1) ?d2]]
 
 INPUTS:
 List(
   1 datomic.db.Db@xxx
-  2 [[:community.type/email_list, :community.orgtype/community], 
-     [:community.type/website, :community.orgtype/commercial]]
+  2 [[:Community.type/email_list, :Community.orgtype/community], 
+     [:Community.type/website, :Community.orgtype/commercial]]
 )
 </code></pre>
 
@@ -859,7 +859,7 @@ List(
 <h3 id="invoking-functions-in-queries">Invoking functions in queries</h3>
 
 <pre><code>[:find  ?b
- :where [?a :community/name ?b]
+ :where [?a :Community/name ?b]
         [(.compareTo ^String ?b &quot;C&quot;) ?b2]
         [(&lt; ?b2 0)]]
 </code></pre>
@@ -870,7 +870,7 @@ List(
 <h3 id="fulltext-search">Fulltext search</h3>
 
 <pre><code>[:find  ?b
- :where [(fulltext $ :community/name &quot;Wallingford&quot;) [[ ?a ?b ]]]]
+ :where [(fulltext $ :Community/name &quot;Wallingford&quot;) [[ ?a ?b ]]]]
 </code></pre>
 
 <pre><code class="language-scala">Community.name.contains(&quot;Wallingford&quot;)
@@ -879,9 +879,9 @@ List(
 <p>Fulltext search on many-attribute (<code>category</code>)</p>
 
 <pre><code>[:find  ?b (distinct ?d)
- :where [?a :community/name ?b]
-        [?a :community/type &quot;:community.type/website&quot;]
-        [(fulltext $ :community/category &quot;food&quot;) [[ ?a ?d ]]]]
+ :where [?a :Community/name ?b]
+        [?a :Community/type &quot;:Community.type/website&quot;]
+        [(fulltext $ :Community/category &quot;food&quot;) [[ ?a ?d ]]]]
 </code></pre>
 
 <pre><code class="language-scala">Community.name.type_(&quot;website&quot;).category.contains(&quot;food&quot;)
@@ -893,14 +893,14 @@ List(
 
 <pre><code>[:find  ?b
  :in    $ %
- :where [?a :community/name ?b]
+ :where [?a :Community/name ?b]
         (rule1 ?a)]
 
 INPUTS:
 List(
   1 datomic.db.Db@xxx
-  2 [[(rule1 ?a) [?a :community/type &quot;:community.type/twitter&quot;]]
-     [(rule1 ?a) [?a :community/type &quot;:community.type/facebook_page&quot;]]]
+  2 [[(rule1 ?a) [?a :Community/type &quot;:Community.type/twitter&quot;]]
+     [(rule1 ?a) [?a :Community/type &quot;:Community.type/facebook_page&quot;]]]
 )
 </code></pre>
 
@@ -911,20 +911,20 @@ List(
 
 <pre><code>[:find  ?b
  :in    $ %
- :where [?a :community/name ?b]
+ :where [?a :Community/name ?b]
         (rule1 ?a)
-        [?a :community/neighborhood ?d]
-        [?d :neighborhood/district ?e]
+        [?a :Community/neighborhood ?d]
+        [?d :Neighborhood/district ?e]
         (rule2 ?e)]
 
 INPUTS:
 List(
   1 datomic.db.Db@xxx
-  2 [[(rule1 ?a) [?a :community/type &quot;:community.type/twitter&quot;]]
-     [(rule1 ?a) [?a :community/type &quot;:community.type/facebook_page&quot;]]
-     [(rule2 ?e) [?e :district/region &quot;:district.region/sw&quot;]]
-     [(rule2 ?e) [?e :district/region &quot;:district.region/s&quot;]]
-     [(rule2 ?e) [?e :district/region &quot;:district.region/se&quot;]]]
+  2 [[(rule1 ?a) [?a :Community/type &quot;:Community.type/twitter&quot;]]
+     [(rule1 ?a) [?a :Community/type &quot;:Community.type/facebook_page&quot;]]
+     [(rule2 ?e) [?e :District/region &quot;:District.region/sw&quot;]]
+     [(rule2 ?e) [?e :District/region &quot;:District.region/s&quot;]]
+     [(rule2 ?e) [?e :District/region &quot;:District.region/se&quot;]]]
 )
 </code></pre>
 
@@ -936,22 +936,22 @@ List(
 
 <pre><code>[:find  ?b
  :in    $ %
- :where [?a :community/name ?b]
-        [?a :community/type ?c]
-        [?a :community/neighborhood ?d]
-        [?d :neighborhood/district ?e]
-        [?e :district/region ?f]
+ :where [?a :Community/name ?b]
+        [?a :Community/type ?c]
+        [?a :Community/neighborhood ?d]
+        [?d :Neighborhood/district ?e]
+        [?e :District/region ?f]
         (rule1 ?a)
         (rule2 ?e)]
 
 INPUTS:
 List(
   1 datomic.db.Db@xxx
-  2 [[(rule1 ?a) [?a :community/type &quot;:community.type/twitter&quot;]]
-     [(rule1 ?a) [?a :community/type &quot;:community.type/facebook_page&quot;]]
-     [(rule2 ?e) [?e :district/region &quot;:district.region/sw&quot;]]
-     [(rule2 ?e) [?e :district/region &quot;:district.region/s&quot;]]
-     [(rule2 ?e) [?e :district/region &quot;:district.region/se&quot;]]]
+  2 [[(rule1 ?a) [?a :Community/type &quot;:Community.type/twitter&quot;]]
+     [(rule1 ?a) [?a :Community/type &quot;:Community.type/facebook_page&quot;]]
+     [(rule2 ?e) [?e :District/region &quot;:District.region/sw&quot;]]
+     [(rule2 ?e) [?e :District/region &quot;:District.region/s&quot;]]
+     [(rule2 ?e) [?e :District/region &quot;:District.region/se&quot;]]]
 )
 </code></pre>
 
@@ -971,17 +971,17 @@ List(
 <h3 id="inserting-data">Inserting data</h3>
 
 <pre><code>List(
-  List(  :db/add,   #db/id[:db.part/user -1000001],   :community/name        ,   AAA                             )
-  List(  :db/add,   #db/id[:db.part/user -1000001],   :community/url         ,   myUrl                           )
-  List(  :db/add,   #db/id[:db.part/user -1000001],   :community/type        ,   :community.type/twitter         )
-  List(  :db/add,   #db/id[:db.part/user -1000001],   :community/orgtype     ,   :community.orgtype/personal     )
-  List(  :db/add,   #db/id[:db.part/user -1000001],   :community/category    ,   my                              )
-  List(  :db/add,   #db/id[:db.part/user -1000001],   :community/category    ,   favorites                       )
-  List(  :db/add,   #db/id[:db.part/user -1000001],   :community/neighborhood,   #db/id[:db.part/user -1000002]  )
-  List(  :db/add,   #db/id[:db.part/user -1000002],   :neighborhood/name     ,   myNeighborhood                  )
-  List(  :db/add,   #db/id[:db.part/user -1000002],   :neighborhood/district ,   #db/id[:db.part/user -1000003]  )
-  List(  :db/add,   #db/id[:db.part/user -1000003],   :district/name         ,   myDistrict                      )
-  List(  :db/add,   #db/id[:db.part/user -1000003],   :district/region       ,   :district.region/nw             )
+  List(  :db/add,   #db/id[:db.part/user -1000001],   :Community/name        ,   AAA                             )
+  List(  :db/add,   #db/id[:db.part/user -1000001],   :Community/url         ,   myUrl                           )
+  List(  :db/add,   #db/id[:db.part/user -1000001],   :Community/type        ,   :Community.type/twitter         )
+  List(  :db/add,   #db/id[:db.part/user -1000001],   :Community/orgtype     ,   :Community.orgtype/personal     )
+  List(  :db/add,   #db/id[:db.part/user -1000001],   :Community/category    ,   my                              )
+  List(  :db/add,   #db/id[:db.part/user -1000001],   :Community/category    ,   favorites                       )
+  List(  :db/add,   #db/id[:db.part/user -1000001],   :Community/neighborhood,   #db/id[:db.part/user -1000002]  )
+  List(  :db/add,   #db/id[:db.part/user -1000002],   :Neighborhood/name     ,   myNeighborhood                  )
+  List(  :db/add,   #db/id[:db.part/user -1000002],   :Neighborhood/district ,   #db/id[:db.part/user -1000003]  )
+  List(  :db/add,   #db/id[:db.part/user -1000003],   :District/name         ,   myDistrict                      )
+  List(  :db/add,   #db/id[:db.part/user -1000003],   :District/region       ,   :District.region/nw             )
 )
 </code></pre>
 
@@ -998,28 +998,28 @@ List(
 <p>Multiple entities:</p>
 
 <pre><code>List(
-  List(  :db/add,   #db/id[:db.part/user -1000001],   :community/name        ,   DDD Blogging Georgetown                        )
-  List(  :db/add,   #db/id[:db.part/user -1000001],   :community/url         ,   http://www.blogginggeorgetown.com/             )
-  List(  :db/add,   #db/id[:db.part/user -1000001],   :community/type        ,   :community.type/blog                           )
-  List(  :db/add,   #db/id[:db.part/user -1000001],   :community/orgtype     ,   :community.orgtype/commercial                  )
-  List(  :db/add,   #db/id[:db.part/user -1000001],   :community/category    ,   DD cat 1                                       )
-  List(  :db/add,   #db/id[:db.part/user -1000001],   :community/category    ,   DD cat 2                                       )
-  List(  :db/add,   #db/id[:db.part/user -1000001],   :community/neighborhood,   #db/id[:db.part/user -1000002]                 )
-  List(  :db/add,   #db/id[:db.part/user -1000002],   :neighborhood/name     ,   DD Georgetown                                  )
-  List(  :db/add,   #db/id[:db.part/user -1000002],   :neighborhood/district ,   #db/id[:db.part/user -1000003]                 )
-  List(  :db/add,   #db/id[:db.part/user -1000003],   :district/name         ,   Greater Duwamish                               )
-  List(  :db/add,   #db/id[:db.part/user -1000003],   :district/region       ,   :district.region/s                             )
+  List(  :db/add,   #db/id[:db.part/user -1000001],   :Community/name        ,   DDD Blogging Georgetown                        )
+  List(  :db/add,   #db/id[:db.part/user -1000001],   :Community/url         ,   http://www.blogginggeorgetown.com/             )
+  List(  :db/add,   #db/id[:db.part/user -1000001],   :Community/type        ,   :Community.type/blog                           )
+  List(  :db/add,   #db/id[:db.part/user -1000001],   :Community/orgtype     ,   :Community.orgtype/commercial                  )
+  List(  :db/add,   #db/id[:db.part/user -1000001],   :Community/category    ,   DD cat 1                                       )
+  List(  :db/add,   #db/id[:db.part/user -1000001],   :Community/category    ,   DD cat 2                                       )
+  List(  :db/add,   #db/id[:db.part/user -1000001],   :Community/neighborhood,   #db/id[:db.part/user -1000002]                 )
+  List(  :db/add,   #db/id[:db.part/user -1000002],   :Neighborhood/name     ,   DD Georgetown                                  )
+  List(  :db/add,   #db/id[:db.part/user -1000002],   :Neighborhood/district ,   #db/id[:db.part/user -1000003]                 )
+  List(  :db/add,   #db/id[:db.part/user -1000003],   :District/name         ,   Greater Duwamish                               )
+  List(  :db/add,   #db/id[:db.part/user -1000003],   :District/region       ,   :District.region/s                             )
   
-  List(  :db/add,   #db/id[:db.part/user -1000004],   :community/name        ,   DDD Interbay District Blog                     )
-  List(  :db/add,   #db/id[:db.part/user -1000004],   :community/url         ,   http://interbayneighborhood.neighborlogs.com/  )
-  List(  :db/add,   #db/id[:db.part/user -1000004],   :community/type        ,   :community.type/blog                           )
-  List(  :db/add,   #db/id[:db.part/user -1000004],   :community/orgtype     ,   :community.orgtype/community                   )
-  List(  :db/add,   #db/id[:db.part/user -1000004],   :community/category    ,   DD cat 3                                       )
-  List(  :db/add,   #db/id[:db.part/user -1000004],   :community/neighborhood,   #db/id[:db.part/user -1000005]                 )
-  List(  :db/add,   #db/id[:db.part/user -1000005],   :neighborhood/name     ,   DD Interbay                                    )
-  List(  :db/add,   #db/id[:db.part/user -1000005],   :neighborhood/district ,   #db/id[:db.part/user -1000006]                 )
-  List(  :db/add,   #db/id[:db.part/user -1000006],   :district/name         ,   Magnolia/Queen Anne                            )
-  List(  :db/add,   #db/id[:db.part/user -1000006],   :district/region       ,   :district.region/w                             )
+  List(  :db/add,   #db/id[:db.part/user -1000004],   :Community/name        ,   DDD Interbay District Blog                     )
+  List(  :db/add,   #db/id[:db.part/user -1000004],   :Community/url         ,   http://interbayneighborhood.neighborlogs.com/  )
+  List(  :db/add,   #db/id[:db.part/user -1000004],   :Community/type        ,   :Community.type/blog                           )
+  List(  :db/add,   #db/id[:db.part/user -1000004],   :Community/orgtype     ,   :Community.orgtype/community                   )
+  List(  :db/add,   #db/id[:db.part/user -1000004],   :Community/category    ,   DD cat 3                                       )
+  List(  :db/add,   #db/id[:db.part/user -1000004],   :Community/neighborhood,   #db/id[:db.part/user -1000005]                 )
+  List(  :db/add,   #db/id[:db.part/user -1000005],   :Neighborhood/name     ,   DD Interbay                                    )
+  List(  :db/add,   #db/id[:db.part/user -1000005],   :Neighborhood/district ,   #db/id[:db.part/user -1000006]                 )
+  List(  :db/add,   #db/id[:db.part/user -1000006],   :District/name         ,   Magnolia/Queen Anne                            )
+  List(  :db/add,   #db/id[:db.part/user -1000006],   :District/region       ,   :District.region/w                             )
 )
 </code></pre>
 
@@ -1034,8 +1034,8 @@ List(
 <p>Updating one-attribute</p>
 
 <pre><code>List(
-  List(  :db/add,   17592186045649,   :community/name,   belltown 2  )
-  List(  :db/add,   17592186045649,   :community/url ,   url 2       )
+  List(  :db/add,   17592186045649,   :Community/name,   belltown 2  )
+  List(  :db/add,   17592186045649,   :Community/url ,   url 2       )
 )
 </code></pre>
 
@@ -1045,8 +1045,8 @@ List(
 <p>Updating many-attribute</p>
 
 <pre><code>List(
-  List(  :db/retract,   17592186045649,   :community/category,   news       )
-  List(  :db/add    ,   17592186045649,   :community/category,   Cool news  )
+  List(  :db/retract,   17592186045649,   :Community/category,   news       )
+  List(  :db/add    ,   17592186045649,   :Community/category,   Cool news  )
 )
 </code></pre>
 
@@ -1056,10 +1056,10 @@ List(
 <p>Update multiple values of many-attribute</p>
 
 <pre><code>List(
-  List(  :db/retract,   17592186045649,   :community/category,   Cool news          )
-  List(  :db/add    ,   17592186045649,   :community/category,   Super cool news    )
-  List(  :db/retract,   17592186045649,   :community/category,   events             )
-  List(  :db/add    ,   17592186045649,   :community/category,   Super cool events  )
+  List(  :db/retract,   17592186045649,   :Community/category,   Cool news          )
+  List(  :db/add    ,   17592186045649,   :Community/category,   Super cool news    )
+  List(  :db/retract,   17592186045649,   :Community/category,   events             )
+  List(  :db/add    ,   17592186045649,   :Community/category,   Super cool events  )
 )
 </code></pre>
 
@@ -1072,10 +1072,10 @@ List(
 <p>Update multiple values of many-attribute</p>
 
 <pre><code>List(
-  List(  :db/retract,   17592186045649,   :community/category,   Cool news          )
-  List(  :db/add    ,   17592186045649,   :community/category,   Super cool news    )
-  List(  :db/retract,   17592186045649,   :community/category,   events             )
-  List(  :db/add    ,   17592186045649,   :community/category,   Super cool events  )
+  List(  :db/retract,   17592186045649,   :Community/category,   Cool news          )
+  List(  :db/add    ,   17592186045649,   :Community/category,   Super cool news    )
+  List(  :db/retract,   17592186045649,   :Community/category,   events             )
+  List(  :db/add    ,   17592186045649,   :Community/category,   Super cool events  )
 )
 </code></pre>
 
@@ -1088,7 +1088,7 @@ List(
 <p>Add a value to a many-attribute</p>
 
 <pre><code>List(
-  List(  :db/add,   17592186045649,   :community/category,   extra category  )
+  List(  :db/add,   17592186045649,   :Community/category,   extra category  )
 )
 </code></pre>
 
@@ -1098,7 +1098,7 @@ List(
 <p>Remove value from a many-attribute</p>
 
 <pre><code>List(
-  List(  :db/retract,   17592186045649,   :community/category,   Super cool events  )
+  List(  :db/retract,   17592186045649,   :Community/category,   Super cool events  )
 )
 </code></pre>
 
@@ -1108,10 +1108,10 @@ List(
 <p>Mixing updates and deletes</p>
 
 <pre><code>List(
-  List(  :db/add    ,   17592186045649,   :community/name    ,   belltown 3                      )
-  List(  :db/retract,   17592186045649,   :community/url     ,   http://www.belltownpeople.com/  )
-  List(  :db/retract,   17592186045649,   :community/category,   events                          )
-  List(  :db/retract,   17592186045649,   :community/category,   news                            )
+  List(  :db/add    ,   17592186045649,   :Community/name    ,   belltown 3                      )
+  List(  :db/retract,   17592186045649,   :Community/url     ,   http://www.belltownpeople.com/  )
+  List(  :db/retract,   17592186045649,   :Community/category,   events                          )
+  List(  :db/retract,   17592186045649,   :Community/category,   news                            )
 )
 </code></pre>
 

@@ -668,7 +668,7 @@
             <div class="col-md-2 column" style="padding-top:20px;padding-right:0px;">
                 <ul class="nav nav-pills" style="float:right;">
                     <li>
-                        <a href="/changelog" style="margin-top:-2px;">v0.17.2</a>
+                        <a href="/changelog" style="margin-top:-2px;">v0.18.0</a>
                     </li>
                     <li>
                         <div style="padding-left:14px;">
@@ -703,7 +703,7 @@
 
 <p>A relationship in Datomic is simply when a ref attribute of entity A has an entity B id value. Then there is a relationship from A to B!</p>
 
-<p>In the following example, entity <code>101</code> has a ref attribute <code>:person/home</code> with a value <code>102</code>. That makes the relationship between
+<p>In the following example, entity <code>101</code> has a ref attribute <code>:Person/home</code> with a value <code>102</code>. That makes the relationship between
 entity <code>101</code> and entity <code>102</code>, or that Fred has an Address:</p>
 
 <p><img src="/img/relationships/ref.jpg" alt="" /></p>
@@ -718,7 +718,7 @@ entity <code>101</code> and entity <code>102</code>, or that Fred has an Address
 
 <p>Since datomic has cardinality many attributes, ref attributes can also be of cardinality many.</p>
 
-<p>We could for instance have a classic Order/LineItems card-many example where the <code>:order/items</code> card-many ref attribute has two
+<p>We could for instance have a classic Order/LineItems card-many example where the <code>:Order/items</code> card-many ref attribute has two
 LineItem entity id values <code>102</code> and <code>103</code>:</p>
 
 <p><img src="/img/relationships/entityrefs.jpg" alt="" /></p>

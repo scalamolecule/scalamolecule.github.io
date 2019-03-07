@@ -668,7 +668,7 @@
             <div class="col-md-2 column" style="padding-top:20px;padding-right:0px;">
                 <ul class="nav nav-pills" style="float:right;">
                     <li>
-                        <a href="/changelog" style="margin-top:-2px;">v0.17.2</a>
+                        <a href="/changelog" style="margin-top:-2px;">v0.18.0</a>
                     </li>
                     <li>
                         <div style="padding-left:14px;">
@@ -780,10 +780,10 @@ number for each transaction) with the generic attribute <code>t</code>:</p>
 track changes to all atrributes of an entity:</p>
 
 <pre><code class="language-scala">Person(fred).a.v.t.op.getHistory === List(
-  (&quot;:person/name&quot;, &quot;Fred&quot;, t3, true), 
-  (&quot;:person/likes&quot;, &quot;pizza&quot;, t3, true), 
-  (&quot;:person/likes&quot;, &quot;pizza&quot;, t6, false),
-  (&quot;:person/likes&quot;, &quot;pasta&quot;, t6, true)  
+  (&quot;:Person/name&quot;, &quot;Fred&quot;, t3, true), 
+  (&quot;:Person/likes&quot;, &quot;pizza&quot;, t3, true), 
+  (&quot;:Person/likes&quot;, &quot;pizza&quot;, t6, false),
+  (&quot;:Person/likes&quot;, &quot;pasta&quot;, t6, true)  
 )
 </code></pre>
 
@@ -794,14 +794,14 @@ track changes to all atrributes of an entity:</p>
 <pre><code class="language-scala">// &quot;What has been retracted for the entity `fred`&quot;
 // - Fred disliked &quot;pizza&quot; at date6
 Person(fred).a.v.txInstant.op_(false).getHistory === List(
-  (&quot;:person/likes&quot;, &quot;pizza&quot;, date6, false) 
+  (&quot;:Person/likes&quot;, &quot;pizza&quot;, date6, false) 
 )
 
 // What happened for Fred in tx 3?
 // - Fred's name and liking was asserted
 Person(fred).a.v.tx(tx3).op.getHistory === List(
-  (&quot;:person/name&quot;, &quot;Fred&quot;, t3, true), 
-  (&quot;:person/likes&quot;, &quot;pizza&quot;, t3, true)
+  (&quot;:Person/name&quot;, &quot;Fred&quot;, t3, true), 
+  (&quot;:Person/likes&quot;, &quot;pizza&quot;, t3, true)
 )
 </code></pre>
 

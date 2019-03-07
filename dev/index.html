@@ -668,7 +668,7 @@
             <div class="col-md-2 column" style="padding-top:20px;padding-right:0px;">
                 <ul class="nav nav-pills" style="float:right;">
                     <li>
-                        <a href="/changelog" style="margin-top:-2px;">v0.17.2</a>
+                        <a href="/changelog" style="margin-top:-2px;">v0.18.0</a>
                     </li>
                     <li>
                         <div style="padding-left:14px;">
@@ -746,7 +746,7 @@ m(firstName ~ lastName ~ age) // all fields of a `Person` trait...
 
 <p>The end result is simply a Datomic query string:</p>
 
-<pre><code class="language-scala">&quot;[:find ?b ?c :where [?a :person/name ?b] [?a :person/age ?c]]&quot;
+<pre><code class="language-scala">&quot;[:find ?b ?c :where [?a :Person/name ?b] [?a :Person/age ?c]]&quot;
 </code></pre>
 
 <p>Since the query is created at compile time it&rsquo;s all ready to fetch our data <em>at runtime</em> with no performance impact:</p>

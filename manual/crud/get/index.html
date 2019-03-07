@@ -668,7 +668,7 @@
             <div class="col-md-2 column" style="padding-top:20px;padding-right:0px;">
                 <ul class="nav nav-pills" style="float:right;">
                     <li>
-                        <a href="/changelog" style="margin-top:-2px;">v0.17.2</a>
+                        <a href="/changelog" style="margin-top:-2px;">v0.18.0</a>
                     </li>
                     <li>
                         <div style="padding-left:14px;">
@@ -746,7 +746,7 @@ val raw     : Future[java.util.Collection[java.util.List[AnyRef]]] = m(Person.na
 
 <p>The entity id is used for the first attribute of the molecule, here <code>name</code> having entity id <code>fredId</code>.</p>
 
-<p><code>Person</code> is just the namespace for the following attributes, so that we get <code>:person/name</code>, <code>:person/age</code>, <code>:person/likes</code> etc..</p>
+<p><code>Person</code> is just the namespace for the following attributes, so that we get <code>:Person/name</code>, <code>:Person/age</code>, <code>:Person/likes</code> etc..</p>
 
 <h2 id="2-steps-with-entity-api">2-steps with Entity API</h2>
 
@@ -776,7 +776,7 @@ val seed: List[(Long, String, Int)] = Person.e.name.age.get
 // Step 2
 val data: List[(String, Int, Option[String])] = seed.map { case (e, name, age) =&gt;
   // Add optional `likes` value via entity api
-  (name, age, e[String](&quot;:person/likes&quot;))
+  (name, age, e[String](&quot;:Person/likes&quot;))
 }
 </code></pre>
 

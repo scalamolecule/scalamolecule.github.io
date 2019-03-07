@@ -668,7 +668,7 @@
             <div class="col-md-2 column" style="padding-top:20px;padding-right:0px;">
                 <ul class="nav nav-pills" style="float:right;">
                     <li>
-                        <a href="/changelog" style="margin-top:-2px;">v0.17.2</a>
+                        <a href="/changelog" style="margin-top:-2px;">v0.18.0</a>
                     </li>
                     <li>
                         <div style="padding-left:14px;">
@@ -759,10 +759,10 @@ in the database:</p>
 
 <pre><code class="language-scala">// What do we know about the fred entity?
 Person(fred).a.v.t.op.getHistory.sortBy(r =&gt; (r._2, r._3)) === List(
-  (&quot;:person/name&quot;, &quot;Fred&quot;, t3, true), 
-  (&quot;:person/likes&quot;, &quot;pizza&quot;, t3, true), 
-  (&quot;:person/likes&quot;, &quot;pizza&quot;, t6, false),
-  (&quot;:person/likes&quot;, &quot;pasta&quot;, t6, true)  
+  (&quot;:Person/name&quot;, &quot;Fred&quot;, t3, true), 
+  (&quot;:Person/likes&quot;, &quot;pizza&quot;, t3, true), 
+  (&quot;:Person/likes&quot;, &quot;pizza&quot;, t6, false),
+  (&quot;:Person/likes&quot;, &quot;pasta&quot;, t6, true)  
 )
 </code></pre>
 

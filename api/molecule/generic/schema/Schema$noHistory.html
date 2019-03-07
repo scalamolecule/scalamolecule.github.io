@@ -3,9 +3,9 @@
         <head>
           <meta http-equiv="X-UA-Compatible" content="IE=edge" />
           <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-          <title>Molecule 0.17.2 - molecule.generic.schema.Schema.noHistory</title>
-          <meta name="description" content="Molecule 0.17.2 - molecule.generic.schema.Schema.noHistory" />
-          <meta name="keywords" content="Molecule 0.17.2 molecule.generic.schema.Schema.noHistory" />
+          <title>Molecule 0.18.0 - molecule.generic.schema.Schema.noHistory</title>
+          <meta name="description" content="Molecule 0.18.0 - molecule.generic.schema.Schema.noHistory" />
+          <meta name="keywords" content="Molecule 0.18.0 molecule.generic.schema.Schema.noHistory" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/index.css" media="screen" type="text/css" rel="stylesheet" />
@@ -28,7 +28,7 @@
         </head>
         <body>
       <div id="search">
-        <span id="doc-title">Molecule<span id="doc-version">0.17.2</span></span>
+        <span id="doc-title">Molecule<span id="doc-version">0.18.0</span></span>
         <span class="close-results"><span class="left">&lt;</span> Back</span>
         <div id="textfilter">
           <span class="input">
@@ -190,15 +190,15 @@ query the Schema structure of the current database.</p><pre><span class="cmt">//
 
 <span class="cmt">// Attribute name elements</span>
 Schema.a.part.ns.nsFull.attr.get === <span class="std">List</span> (
-  (<span class="lit">":sales_Customer/name"</span>, <span class="lit">"sales"</span>, <span class="lit">"customer"</span>, <span class="lit">"sales_Customer"</span>, <span class="lit">"name"</span>),
-  (<span class="lit">":sales_Customer/name"</span>, <span class="lit">"sales"</span>, <span class="lit">"customer"</span>, <span class="lit">"sales_Customer"</span>, <span class="lit">"name"</span>),
+  (<span class="lit">":sales_Customer/name"</span>, <span class="lit">"sales"</span>, <span class="lit">"Customer"</span>, <span class="lit">"sales_Customer"</span>, <span class="lit">"name"</span>),
+  (<span class="lit">":sales_Customer/name"</span>, <span class="lit">"sales"</span>, <span class="lit">"Customer"</span>, <span class="lit">"sales_Customer"</span>, <span class="lit">"name"</span>),
   <span class="cmt">// etc..</span>
 )
 
 <span class="cmt">// Datomic type and cardinality of attributes</span>
 Schema.a.tpe.card.get === <span class="std">List</span> (
-  (<span class="lit">":sales_customer/name"</span>, <span class="lit">"string"</span>, <span class="lit">"one"</span>),
-  (<span class="lit">":accounting_invoice/invoiceLine"</span>, <span class="lit">"ref"</span>, <span class="lit">"many"</span>),
+  (<span class="lit">":sales_Customer/name"</span>, <span class="lit">"string"</span>, <span class="lit">"one"</span>),
+  (<span class="lit">":accounting_Invoice/invoiceLine"</span>, <span class="lit">"ref"</span>, <span class="lit">"many"</span>),
 )
 
 <span class="cmt">// Optional docs and attribute options</span>
@@ -211,7 +211,7 @@ Schema.a
       .isComponent$
       .noHistory$
       .get === <span class="std">List</span>(
-  (<span class="lit">":sales_customer/name"</span>,
+  (<span class="lit">":sales_Customer/name"</span>,
     <span class="kw">true</span>,            <span class="cmt">// indexed</span>
     <span class="lit">"Customer name"</span>, <span class="cmt">// doc</span>
     <span class="std">None</span>,            <span class="cmt">// Uniqueness not set</span>
@@ -219,7 +219,7 @@ Schema.a
     <span class="std">None</span>,            <span class="cmt">// Not a component</span>
     <span class="std">None</span>             <span class="cmt">// History is preserved (noHistory not set)</span>
     ),
-  (<span class="lit">":accounting_invoice/invoiceLine"</span>,
+  (<span class="lit">":accounting_Invoice/invoiceLine"</span>,
     <span class="kw">true</span>,                   <span class="cmt">// indexed</span>
     <span class="lit">"Ref to Invoice lines"</span>, <span class="cmt">// doc</span>
     <span class="std">None</span>,                   <span class="cmt">// Uniqueness not set</span>
@@ -231,8 +231,8 @@ Schema.a
 
 <span class="cmt">// Defined enum values</span>
 Schema.a.enum.get.groupBy(_._1).map(g <span class="kw">=&gt;</span> g._1 -&gt; g._2) === <span class="std">Map</span>(
-  <span class="lit">":person/gender"</span> -&gt; <span class="std">List</span>(<span class="lit">"female"</span>, <span class="lit">"male"</span>),
-  <span class="lit">":interests/sports"</span> -&gt; <span class="std">List</span>(<span class="lit">"golf"</span>, <span class="lit">"basket"</span>, <span class="lit">"badminton"</span>)
+  <span class="lit">":Person/gender"</span> -&gt; <span class="std">List</span>(<span class="lit">"female"</span>, <span class="lit">"male"</span>),
+  <span class="lit">":Interests/sports"</span> -&gt; <span class="std">List</span>(<span class="lit">"golf"</span>, <span class="lit">"basket"</span>, <span class="lit">"badminton"</span>)
 )
 
 <span class="cmt">// Schema transaction times</span>
@@ -240,10 +240,10 @@ Schema.t.tx.txInstant.get === <span class="std">List</span>(
   (t1, tx1, &lt;Date: <span class="num">2018</span>-<span class="num">11</span>-<span class="num">07</span> <span class="num">09</span>:<span class="num">28</span>:<span class="num">10</span>&gt;), <span class="cmt">// Initial schema transaction</span>
   (t2, tx2, &lt;Date: <span class="num">2019</span>-<span class="num">01</span>-<span class="num">12</span> <span class="num">12</span>:<span class="num">43</span>:<span class="num">27</span>&gt;), <span class="cmt">// Additional schema attribute definitions...</span>
 )</pre><p>Apply expressions to narrow the returned selection of Schema data:</p><pre><span class="cmt">// Namespaces in the "gen" partition (partition name tacit)</span>
-Schema.part_(<span class="lit">"location"</span>).ns.get === <span class="std">List</span>(<span class="lit">"country"</span>, <span class="lit">"region"</span>, etc...)
+Schema.part_(<span class="lit">"location"</span>).ns.get === <span class="std">List</span>(<span class="lit">"Country"</span>, <span class="lit">"Region"</span>, etc...)
 
 <span class="cmt">// Attributes in the "Person" namespace</span>
-Schema.ns_(<span class="lit">"person"</span>).a.get === <span class="std">List</span>(<span class="lit">"name"</span>, <span class="lit">"age"</span>, <span class="lit">"hobbies"</span>, etc...)
+Schema.ns_(<span class="lit">"Person"</span>).attr.get === <span class="std">List</span>(<span class="lit">"name"</span>, <span class="lit">"age"</span>, <span class="lit">"hobbies"</span>, etc...)
 
 <span class="cmt">// How many enum attributes?</span>
 Schema.enum_.a(count).get === <span class="std">List</span>(<span class="num">2</span>)</pre></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../index.html" class="extype" name="molecule.generic">generic</a></dd><dt>Note</dt><dd><span class="cmt"><p>Schema attributes defined in Datomic's bootstrap process that are not related
@@ -267,8 +267,8 @@ Schema.enum_.a(count).get === <span class="std">List</span>(<span class="num">2<
       <p class="shortcomment cmt">Base Schema trait with attribute types shared by all arity interfaces.</p><div class="fullcomment"><div class="comment cmt"><p>Base Schema trait with attribute types shared by all arity interfaces.</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="index.html" class="extype" name="molecule.generic.schema">schema</a></dd></dl></div>
     </li><li class="current-entities indented4">
                         <span class="separator"></span>
-                        <a class="class" href="Schema$a.html" title="(Partition-)Namespace-prefixed attribute name (&quot;:part_Ns/attr&quot; or &quot;:ns/attr&quot; if no partitions)."></a>
-                        <a href="Schema$a.html" title="(Partition-)Namespace-prefixed attribute name (&quot;:part_Ns/attr&quot; or &quot;:ns/attr&quot; if no partitions).">a</a>
+                        <a class="class" href="Schema$a.html" title="(Partition-)Namespace-prefixed attribute name (&quot;:part_Ns/attr&quot; or &quot;:Ns/attr&quot; if no partitions)."></a>
+                        <a href="Schema$a.html" title="(Partition-)Namespace-prefixed attribute name (&quot;:part_Ns/attr&quot; or &quot;:Ns/attr&quot; if no partitions).">a</a>
                       </li><li class="current-entities indented4">
                         <span class="separator"></span>
                         <a class="class" href="Schema$attr.html" title="Isolated attribute name without namespace prefix (&quot;attr&quot;)."></a>
@@ -398,7 +398,7 @@ Schema.enum_.a(count).get === <span class="std">List</span>(<span class="num">2<
                 <span class="toggle diagram-link">
                   Type Hierarchy
                 </span>
-                <div class="diagram" id="inheritance-diagram"><svg class="class-diagram" id="graph1" viewBox="0.00 0.00 212.00 120.00" height="120pt" width="212pt" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"><g transform="scale(1 1) rotate(0) translate(4 116)" class="graph" id="graph0"><polygon points="-4,4 -4,-116 208,-116 208,4 -4,4" stroke="none" fill="white"></polygon><g class="cluster" id="clust1"></g><g class="cluster" id="clust2"></g><!-- node0 --><g class="node this class" id="graph1_0"><g id="a_this class|graph1_0"><a xlink:title="molecule.generic.schema.Schema.noHistory (this class)" xlink:href="#inheritance-diagram"><path d="M154.583,-50C154.583,-50 69.4167,-50 69.4167,-50 65.0833,-50 60.75,-45.6667 60.75,-41.3333 60.75,-41.3333 60.75,-32.6667 60.75,-32.6667 60.75,-28.3333 65.0833,-24 69.4167,-24 69.4167,-24 154.583,-24 154.583,-24 158.917,-24 163.25,-28.3333 163.25,-32.6667 163.25,-32.6667 163.25,-41.3333 163.25,-41.3333 163.25,-45.6667 158.917,-50 154.583,-50" stroke="#418565" fill="#418565"></path><text fill="#ffffff" font-size="8.00" font-family="Source Code Pro" y="-34.6" x="92.8242" text-anchor="start">noHistory[Ns, In]</text></a></g></g><!-- node1 --><g class="node trait" id="graph1_1"><g id="a_trait|graph1_1"><a xlink:title="molecule.boilerplate.attributes.OneBoolean" xlink:href="../../boilerplate/attributes$$OneBoolean.html#inheritance-diagram"><path d="M105.333,-112C105.333,-112 8.66667,-112 8.66667,-112 4.33333,-112 0,-107.667 0,-103.333 0,-103.333 0,-94.6667 0,-94.6667 0,-90.3333 4.33333,-86 8.66667,-86 8.66667,-86 105.333,-86 105.333,-86 109.667,-86 114,-90.3333 114,-94.6667 114,-94.6667 114,-103.333 114,-103.333 114,-107.667 109.667,-112 105.333,-112" stroke="#2e6d82" fill="#2e6d82"></path><image xlink:href="../../../lib/trait_diagram.png" y="-105" x="12" preserveAspectRatio="xMinYMin meet" height="12px" width="12px"></image><text fill="#ffffff" font-size="8.00" font-family="Source Code Pro" y="-96.6" x="31.9785" text-anchor="start">OneBoolean[Ns, In]</text></a></g></g><!-- node1&#45;&gt;node0 --><g class="edge inheritance" id="graph1_1_0"><g id="a_inheritance|graph1_1_0"><a xlink:title="noHistory[Ns, In] is a subtype of OneBoolean[Ns, In]"><path d="M72.8743,-80.6826C81.8452,-70.8961 92.8392,-58.9026 100.886,-50.1238" stroke="#d4d4d4" fill="none"></path><polygon points="71.0541,-79.0425 68.1301,-85.8581 74.6662,-82.3535 71.0541,-79.0425" stroke="#d4d4d4" fill="none"></polygon></a></g></g><!-- node2 --><g class="node trait" id="graph1_2"><g id="a_trait|graph1_2"><a xlink:title="molecule.boilerplate.attributes.Indexed" xlink:href="../../boilerplate/attributes$$Indexed.html#inheritance-diagram"><path d="M195.333,-112C195.333,-112 140.667,-112 140.667,-112 136.333,-112 132,-107.667 132,-103.333 132,-103.333 132,-94.6667 132,-94.6667 132,-90.3333 136.333,-86 140.667,-86 140.667,-86 195.333,-86 195.333,-86 199.667,-86 204,-90.3333 204,-94.6667 204,-94.6667 204,-103.333 204,-103.333 204,-107.667 199.667,-112 195.333,-112" stroke="#2e6d82" fill="#2e6d82"></path><image xlink:href="../../../lib/trait_diagram.png" y="-105" x="144" preserveAspectRatio="xMinYMin meet" height="12px" width="12px"></image><text fill="#ffffff" font-size="8.00" font-family="Source Code Pro" y="-96.6" x="163.654" text-anchor="start">Indexed</text></a></g></g><!-- node2&#45;&gt;node0 --><g class="edge inheritance" id="graph1_2_0"><g id="a_inheritance|graph1_2_0"><a xlink:title="noHistory[Ns, In] is a subtype of Indexed"><path d="M151.837,-80.6826C142.703,-70.8961 131.509,-58.9026 123.316,-50.1238" stroke="#d4d4d4" fill="none"></path><polygon points="150.1,-82.4124 156.668,-85.8581 153.682,-79.069 150.1,-82.4124" stroke="#d4d4d4" fill="none"></polygon></a></g></g></g></svg></div>
+                <div class="diagram" id="inheritance-diagram"><svg class="class-diagram" id="graph1" viewBox="0.00 0.00 212.00 120.00" height="120pt" width="212pt" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"><g transform="scale(1 1) rotate(0) translate(4 116)" class="graph" id="graph0"><polygon points="-4,4 -4,-116 208,-116 208,4 -4,4" stroke="none" fill="white"></polygon><g class="cluster" id="clust1"></g><g class="cluster" id="clust2"></g><!-- node0 --><g class="node this class" id="graph1_0"><g id="a_this class|graph1_0"><a xlink:title="molecule.generic.schema.Schema.noHistory (this class)" xlink:href="#inheritance-diagram"><path d="M154.583,-50C154.583,-50 69.4167,-50 69.4167,-50 65.0833,-50 60.75,-45.6667 60.75,-41.3333 60.75,-41.3333 60.75,-32.6667 60.75,-32.6667 60.75,-28.3333 65.0833,-24 69.4167,-24 69.4167,-24 154.583,-24 154.583,-24 158.917,-24 163.25,-28.3333 163.25,-32.6667 163.25,-32.6667 163.25,-41.3333 163.25,-41.3333 163.25,-45.6667 158.917,-50 154.583,-50" stroke="#418565" fill="#418565"></path><image xlink:href="../../../lib/class_diagram.png" y="-43" x="73" preserveAspectRatio="xMinYMin meet" height="12px" width="12px"></image><text fill="#ffffff" font-size="8.00" font-family="Source Code Pro" y="-34.6" x="92.8242" text-anchor="start">noHistory[Ns, In]</text></a></g></g><!-- node1 --><g class="node trait" id="graph1_1"><g id="a_trait|graph1_1"><a xlink:title="molecule.boilerplate.attributes.OneBoolean" xlink:href="../../boilerplate/attributes$$OneBoolean.html#inheritance-diagram"><path d="M105.333,-112C105.333,-112 8.66667,-112 8.66667,-112 4.33333,-112 0,-107.667 0,-103.333 0,-103.333 0,-94.6667 0,-94.6667 0,-90.3333 4.33333,-86 8.66667,-86 8.66667,-86 105.333,-86 105.333,-86 109.667,-86 114,-90.3333 114,-94.6667 114,-94.6667 114,-103.333 114,-103.333 114,-107.667 109.667,-112 105.333,-112" stroke="#2e6d82" fill="#2e6d82"></path><image xlink:href="../../../lib/trait_diagram.png" y="-105" x="12" preserveAspectRatio="xMinYMin meet" height="12px" width="12px"></image><text fill="#ffffff" font-size="8.00" font-family="Source Code Pro" y="-96.6" x="31.9785" text-anchor="start">OneBoolean[Ns, In]</text></a></g></g><!-- node1&#45;&gt;node0 --><g class="edge inheritance" id="graph1_1_0"><g id="a_inheritance|graph1_1_0"><a xlink:title="noHistory[Ns, In] is a subtype of OneBoolean[Ns, In]"><path d="M72.8743,-80.6826C81.8452,-70.8961 92.8392,-58.9026 100.886,-50.1238" stroke="#d4d4d4" fill="none"></path><polygon points="71.0541,-79.0425 68.1301,-85.8581 74.6662,-82.3535 71.0541,-79.0425" stroke="#d4d4d4" fill="none"></polygon></a></g></g><!-- node2 --><g class="node trait" id="graph1_2"><g id="a_trait|graph1_2"><a xlink:title="molecule.boilerplate.attributes.Indexed" xlink:href="../../boilerplate/attributes$$Indexed.html#inheritance-diagram"><path d="M195.333,-112C195.333,-112 140.667,-112 140.667,-112 136.333,-112 132,-107.667 132,-103.333 132,-103.333 132,-94.6667 132,-94.6667 132,-90.3333 136.333,-86 140.667,-86 140.667,-86 195.333,-86 195.333,-86 199.667,-86 204,-90.3333 204,-94.6667 204,-94.6667 204,-103.333 204,-103.333 204,-107.667 199.667,-112 195.333,-112" stroke="#2e6d82" fill="#2e6d82"></path><image xlink:href="../../../lib/trait_diagram.png" y="-105" x="144" preserveAspectRatio="xMinYMin meet" height="12px" width="12px"></image><text fill="#ffffff" font-size="8.00" font-family="Source Code Pro" y="-96.6" x="163.654" text-anchor="start">Indexed</text></a></g></g><!-- node2&#45;&gt;node0 --><g class="edge inheritance" id="graph1_2_0"><g id="a_inheritance|graph1_2_0"><a xlink:title="noHistory[Ns, In] is a subtype of Indexed"><path d="M151.837,-80.6826C142.703,-70.8961 131.509,-58.9026 123.316,-50.1238" stroke="#d4d4d4" fill="none"></path><polygon points="150.1,-82.4124 156.668,-85.8581 153.682,-79.069 150.1,-82.4124" stroke="#d4d4d4" fill="none"></polygon></a></g></g></g></svg></div>
                 <div id="diagram-controls" class="hiddenContent">
                   <button id="diagram-zoom-out" class="diagram-btn"><i class="material-icons"></i></button>
                   <button id="diagram-zoom-in" class="diagram-btn"><i class="material-icons"></i></button>

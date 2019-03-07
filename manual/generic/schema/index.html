@@ -668,7 +668,7 @@
             <div class="col-md-2 column" style="padding-top:20px;padding-right:0px;">
                 <ul class="nav nav-pills" style="float:right;">
                     <li>
-                        <a href="/changelog" style="margin-top:-2px;">v0.17.2</a>
+                        <a href="/changelog" style="margin-top:-2px;">v0.18.0</a>
                     </li>
                     <li>
                         <div style="padding-left:14px;">
@@ -710,10 +710,10 @@ schema data of the current database is returned.</p>
     <tr><td><i><b>Attribute</i></b>         &nbsp;&nbsp;</td> <td><b><i>Description</i></b></td> <td><b><i>Example value</i></b></td></tr>
 </th>
 <tr><td><code>id</code>         &nbsp;&nbsp;</td> <td>Attribute definition entity id</td><td><code>Long</code></td></tr>
-<tr><td><code>a</code>          &nbsp;&nbsp;</td> <td>(Partition-)Namespace-prefixed attribute name &nbsp;&nbsp;&nbsp;</td> <td>&ldquo;:ind_Person/name&rdquo; or &ldquo;:person/name&rdquo; if no partitions</td></tr>
+<tr><td><code>a</code>          &nbsp;&nbsp;</td> <td>(Partition-)Namespace-prefixed attribute name &nbsp;&nbsp;&nbsp;</td> <td>&ldquo;:ind_Person/name&rdquo; or &ldquo;:Person/name&rdquo; if no partitions</td></tr>
 <tr><td><code>part</code>       &nbsp;&nbsp;</td> <td>Partition name.</td> <td>&ldquo;ind&rdquo; or &ldquo;&rdquo; if no partitions</td></tr>
-<tr><td><code>nsFull</code>     &nbsp;&nbsp;</td> <td>Namespace name with partition prefix</td> <td>&ldquo;ind_Person&rdquo; or &ldquo;person&rdquo; if no partitions</td></tr>
-<tr><td><code>ns</code>         &nbsp;&nbsp;</td> <td>Namespace name</td> <td>&ldquo;person&rdquo;</td></tr>
+<tr><td><code>nsFull</code>     &nbsp;&nbsp;</td> <td>Namespace name with partition prefix</td> <td>&ldquo;ind_Person&rdquo; or &ldquo;Person&rdquo; if no partitions</td></tr>
+<tr><td><code>ns</code>         &nbsp;&nbsp;</td> <td>Namespace name</td> <td>&ldquo;Person&rdquo;</td></tr>
 <tr><td><code>attr</code>       &nbsp;&nbsp;</td> <td>Attribute name</td> <td>&ldquo;name&rdquo;</td></tr>
 <tr><td><code>tpe</code>        &nbsp;&nbsp;</td> <td>Attribute Datomic type</td> <td>See types below </td></tr>
 <tr><td><code>card</code>       &nbsp;&nbsp;</td> <td>Attribute cardinality</td> <td>&ldquo;one&rdquo;/&ldquo;many&rdquo;</td></tr>
@@ -739,8 +739,8 @@ val attrIds: Seq[Long] = Schema.id.get
 
 <pre><code class="language-scala">// Attribute name elements
 Schema.a.part.ns.nsFull.attr.get === List (
-  (&quot;:sales_Customer/name&quot;, &quot;sales&quot;, &quot;customer&quot;, &quot;sales_Customer&quot;, &quot;name&quot;),
-  (&quot;:sales_Customer/name&quot;, &quot;sales&quot;, &quot;customer&quot;, &quot;sales_Customer&quot;, &quot;name&quot;),
+  (&quot;:sales_Customer/name&quot;, &quot;sales&quot;, &quot;Customer&quot;, &quot;sales_Customer&quot;, &quot;name&quot;),
+  (&quot;:accounting_Invoice/invoiceLine&quot;, &quot;accounting&quot;, &quot;Invoice&quot;, &quot;accounting_Invoice&quot;, &quot;invoiceLine&quot;),
   // etc..
 )
 </code></pre>
@@ -749,8 +749,8 @@ Schema.a.part.ns.nsFull.attr.get === List (
 
 <pre><code class="language-scala">// Datomic type and cardinality of attributes
 Schema.a.tpe.card.get === List (
-  (&quot;:sales_customer/name&quot;, &quot;string&quot;, &quot;one&quot;),
-  (&quot;:accounting_invoice/invoiceLine&quot;, &quot;ref&quot;, &quot;many&quot;)
+  (&quot;:sales_Customer/name&quot;, &quot;string&quot;, &quot;one&quot;),
+  (&quot;:accounting_Invoice/invoiceLine&quot;, &quot;ref&quot;, &quot;many&quot;)
 )
 </code></pre>
 
@@ -786,7 +786,7 @@ Schema.a.tpe.card.get === List (
       .isComponent$
       .noHistory$
       .get === List(
-  (&quot;:sales_customer/name&quot;,
+  (&quot;:sales_Customer/name&quot;,
     true,            // indexed
     &quot;Customer name&quot;, // doc
     None,            // Uniqueness not set
@@ -794,7 +794,7 @@ Schema.a.tpe.card.get === List (
     None,            // Not a component
     None             // History is preserved (noHistory not set)
     ),
-  (&quot;:accounting_invoice/invoiceLine&quot;,
+  (&quot;:accounting_Invoice/invoiceLine&quot;,
     true,                   // indexed
     &quot;Ref to Invoice lines&quot;, // doc
     None,                   // Uniqueness not set
@@ -811,8 +811,8 @@ Schema.a.tpe.card.get === List (
 
 <pre><code class="language-scala">// Defined enum values
 Schema.a.enum.get.groupBy(_._1).map(g =&gt; g._1 -&gt; g._2) === Map(
-  &quot;:person/gender&quot; -&gt; List(&quot;female&quot;, &quot;male&quot;),
-  &quot;:interests/sports&quot; -&gt; List(&quot;golf&quot;, &quot;basket&quot;, &quot;badminton&quot;)
+  &quot;:Person/gender&quot; -&gt; List(&quot;female&quot;, &quot;male&quot;),
+  &quot;:Interests/sports&quot; -&gt; List(&quot;golf&quot;, &quot;basket&quot;, &quot;badminton&quot;)
 )
 </code></pre>
 

@@ -668,7 +668,7 @@
             <div class="col-md-2 column" style="padding-top:20px;padding-right:0px;">
                 <ul class="nav nav-pills" style="float:right;">
                     <li>
-                        <a href="/changelog" style="margin-top:-2px;">v0.17.2</a>
+                        <a href="/changelog" style="margin-top:-2px;">v0.18.0</a>
                     </li>
                     <li>
                         <div style="padding-left:14px;">
@@ -995,25 +995,25 @@ Person.name.age.get === List((&quot;Fred&quot;, 42))
 </code></pre>
 
 <pre><code>List(
-  [:db/add, 17592186045445, :ns/int, 43]
+  [:db/add, 17592186045445, :Ns/int, 43]
 )
 List(
-    [:db/add, #db/id[:db.part/user -1000112], :ns/str, John], 
-    [:db/add, #db/id[:db.part/user -1000112], :ns/int, 44]
+    [:db/add, #db/id[:db.part/user -1000112], :Ns/str, John], 
+    [:db/add, #db/id[:db.part/user -1000112], :Ns/int, 44]
 )
 List(
-    [:db/add, #db/id[:db.part/user -1000113], :ns/str, Lisa], 
-    [:db/add, #db/id[:db.part/user -1000113], :ns/int, 23], 
-    [:db/add, #db/id[:db.part/user -1000114], :ns/str, Pete], 
-    [:db/add, #db/id[:db.part/user -1000114], :ns/int, 24]
+    [:db/add, #db/id[:db.part/user -1000113], :Ns/str, Lisa], 
+    [:db/add, #db/id[:db.part/user -1000113], :Ns/int, 23], 
+    [:db/add, #db/id[:db.part/user -1000114], :Ns/str, Pete], 
+    [:db/add, #db/id[:db.part/user -1000114], :Ns/int, 24]
 )
 List(
-    [:db/add, 17592186045445, :ns/int, 43]
+    [:db/add, 17592186045445, :Ns/int, 43]
 )
 </code></pre>
 
 <pre><code>List(
-  [:db/add, 17592186045445, :ns/int, 43]
+  [:db/add, 17592186045445, :Ns/int, 43]
 )
 </code></pre>
 
@@ -1168,18 +1168,18 @@ Person(fred).likes.getHistory === List(&quot;pizza&quot;, &quot;pasta&quot;)
 </code></pre>
 
 <pre><code class="language-scala">Db.e.a.v.tx.t.txInstant.op.getHistory === List(
-  (fred, &quot;:person/name&quot;,  &quot;Fred&quot;,  tx1, t1, date1, true),
-  (fred, &quot;:person/likes&quot;, &quot;pizza&quot;, tx1, t1, date1, true),
-  (fred, &quot;:person/likes&quot;, &quot;pizza&quot;, tx2, t2, date2, false),
-  (fred, &quot;:person/likes&quot;, &quot;pasta&quot;, tx2, t2, date2, true)
+  (fred, &quot;:Person/name&quot;,  &quot;Fred&quot;,  tx1, t1, date1, true),
+  (fred, &quot;:Person/likes&quot;, &quot;pizza&quot;, tx1, t1, date1, true),
+  (fred, &quot;:Person/likes&quot;, &quot;pizza&quot;, tx2, t2, date2, false),
+  (fred, &quot;:Person/likes&quot;, &quot;pasta&quot;, tx2, t2, date2, true)
 )
 </code></pre>
 
 <pre><code class="language-scala">Person(fred).a.v.tx.t.txInstant.op.getHistory === List(
-  (&quot;:person/name&quot;,  &quot;Fred&quot;,  tx1, t1, date1, true),
-  (&quot;:person/likes&quot;, &quot;pizza&quot;, tx1, t1, date1, true),
-  (&quot;:person/likes&quot;, &quot;pizza&quot;, tx2, t2, date2, false),
-  (&quot;:person/likes&quot;, &quot;pasta&quot;, tx2, t2, date2, true)
+  (&quot;:Person/name&quot;,  &quot;Fred&quot;,  tx1, t1, date1, true),
+  (&quot;:Person/likes&quot;, &quot;pizza&quot;, tx1, t1, date1, true),
+  (&quot;:Person/likes&quot;, &quot;pizza&quot;, tx2, t2, date2, false),
+  (&quot;:Person/likes&quot;, &quot;pasta&quot;, tx2, t2, date2, true)
 )
 </code></pre>
 
@@ -1467,7 +1467,7 @@ val students = person(allStudentNames).get.head
     |[:find ?id
     | :in $ ?names
     | :where
-    |   [?e :person/name ?names]]
+    |   [?e :Person/name ?names]]
   &quot;&quot;&quot;.stripMargin, conn.db, &quot;John&quot;)
 </code></pre>
 
@@ -1680,21 +1680,21 @@ val ((name, likes, age), cat) = m(Person.name.likes.age ~ Site.cat).get.head
 
 <pre><code class="language-scala">fredId.touch === Map( // Map[String, Any]
   &quot;:db/id&quot; -&gt; 101L,
-  &quot;:person/name&quot; -&gt; &quot;Fred&quot;,
-  &quot;:person/likes&quot; -&gt; &quot;pizza&quot;,
-  &quot;:person/age&quot;	-&gt; 38,
-  &quot;:site/cat&quot; -&gt; &quot;customer&quot;
+  &quot;:Person/name&quot; -&gt; &quot;Fred&quot;,
+  &quot;:Person/likes&quot; -&gt; &quot;pizza&quot;,
+  &quot;:Person/age&quot;	-&gt; 38,
+  &quot;:Site/cat&quot; -&gt; &quot;customer&quot;
 )
 
-val siteCat_? : Option[String] = fredId[String](&quot;:site/cat&quot;)
+val siteCat_? : Option[String] = fredId[String](&quot;:Site/cat&quot;)
 </code></pre>
 
 <pre><code class="language-scala">fredId.touch === Map(
   &quot;:db/id&quot; -&gt; 101L,
-  &quot;:person/name&quot; -&gt; &quot;Fred&quot;,
-  &quot;:person/likes&quot; -&gt; &quot;pizza&quot;,
-  &quot;:person/age&quot;	-&gt; 38,
-  &quot;:site/cat&quot; -&gt; &quot;customer&quot;
+  &quot;:Person/name&quot; -&gt; &quot;Fred&quot;,
+  &quot;:Person/likes&quot; -&gt; &quot;pizza&quot;,
+  &quot;:Person/age&quot;	-&gt; 38,
+  &quot;:Site/cat&quot; -&gt; &quot;customer&quot;
 )
 </code></pre>
 
@@ -1716,20 +1716,20 @@ val siteCat_? : Option[String] = fredId[String](&quot;:site/cat&quot;)
 <pre><code class="language-scala">// Touch entity facts hierarchy recursively
 orderId.touch === Map(
   &quot;:db/id&quot; -&gt; 101L,
-  &quot;:order/lineItems&quot; -&gt; List(
+  &quot;:Order/lineItems&quot; -&gt; List(
     Map(
       &quot;:db/id&quot; -&gt; 102L, 
-      &quot;:lineItem/qty&quot; -&gt; 3, 
-      &quot;:lineItem/product&quot; -&gt; &quot;Milk&quot;,
-      &quot;:lineItem/price&quot; -&gt; 12.0),
+      &quot;:LineItem/qty&quot; -&gt; 3, 
+      &quot;:LineItem/product&quot; -&gt; &quot;Milk&quot;,
+      &quot;:LineItem/price&quot; -&gt; 12.0),
     Map(
       &quot;:db/id&quot; -&gt; 103L, 
-      &quot;:lineItem/qty&quot; -&gt; 2, 
-      &quot;:lineItem/product&quot; -&gt; &quot;Coffee&quot;,
-      &quot;:lineItem/price&quot; -&gt; 46.0)))
+      &quot;:LineItem/qty&quot; -&gt; 2, 
+      &quot;:LineItem/product&quot; -&gt; &quot;Coffee&quot;,
+      &quot;:LineItem/price&quot; -&gt; 46.0)))
 
 // Optional typed attribute value
-fredId[String](&quot;:person/likes&quot;) === Some(&quot;pizza&quot;)
+fredId[String](&quot;:Person/likes&quot;) === Some(&quot;pizza&quot;)
 </code></pre>
 
 <pre><code class="language-scala">// Nested molecule
@@ -1742,17 +1742,17 @@ m(Order.id.Items * LineItem.qty.product.price).get === List(
 // Entity api - .touch
 101.touch === Map(
   &quot;:db/id&quot; -&gt; 101L,
-  &quot;:order/lineItems&quot; -&gt; List(
+  &quot;:Order/lineItems&quot; -&gt; List(
     Map(
       &quot;:db/id&quot; -&gt; 102L, 
-      &quot;:lineItem/qty&quot; -&gt; 3, 
-      &quot;:lineItem/product&quot; -&gt; &quot;Milk&quot;,
-      &quot;:lineItem/price&quot; -&gt; 12.0),
+      &quot;:LineItem/qty&quot; -&gt; 3, 
+      &quot;:LineItem/product&quot; -&gt; &quot;Milk&quot;,
+      &quot;:LineItem/price&quot; -&gt; 12.0),
     Map(
       &quot;:db/id&quot; -&gt; 103L, 
-      &quot;:lineItem/qty&quot; -&gt; 2, 
-      &quot;:lineItem/product&quot; -&gt; &quot;Coffee&quot;,
-      &quot;:lineItem/price&quot; -&gt; 46.0)))
+      &quot;:LineItem/qty&quot; -&gt; 2, 
+      &quot;:LineItem/product&quot; -&gt; &quot;Coffee&quot;,
+      &quot;:LineItem/price&quot; -&gt; 46.0)))
 </code></pre>
 
 <pre><code class="language-scala">// Adjacent facts

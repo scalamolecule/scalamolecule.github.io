@@ -80,7 +80,7 @@ The Datom API in Molecule let us retrieve each element generically for any molec
       <description>Save Tests&amp;hellip;
 In Molecule we can populate a molecule with data and save it:
 Person.name(&amp;quot;Fred&amp;quot;).likes(&amp;quot;pizza&amp;quot;).age(38).save  This will assert 3 facts in Datomic that all share the id of the new entity id fredId that is automatically created by Datomic:
-fredId :person/name &amp;quot;Fred&amp;quot; fredId :person/likes &amp;quot;pizza&amp;quot; fredId :person/age 38  Type-safety Type-safety is guaranteed since each attribute only accepts values of its defined type.
+fredId :Person/name &amp;quot;Fred&amp;quot; fredId :Person/likes &amp;quot;pizza&amp;quot; fredId :Person/age 38  Type-safety Type-safety is guaranteed since each attribute only accepts values of its defined type.
 Asynchronous save All transactional operators have an asynchronous equivalent.</description>
     </item>
     
@@ -211,7 +211,7 @@ Save Depending on our domain we can tailor any tx meta data that we find valuabl
       <guid>http://scalamolecule.org/manual/relationships/composites/</guid>
       <description>Composites Tests&amp;hellip;
 As we saw earlier, Entities are simply groups of facts that share an entity id:
-The last fact is kind of a black sheep though since the :site/cat attribute is not in the Person namespace.
+The last fact is kind of a black sheep though since the :Site/cat attribute is not in the Person namespace.
 Avoid non-intrinsic pollution Since entities can have attributes from any namespace we have a challenge of how to model this in our schema definiton. It would be quick and easy to just make a relationship from a Person namespace to the Site namespace:</description>
     </item>
     
@@ -344,7 +344,7 @@ val persons1attr: List[String] = Person.name.get val persons2attrs: List[(String
       <description>Schema API Tests&amp;hellip;
 The generic Schema interface provides attributes to build a Schema molecule that query the Schema structure of the current database. Datomic&amp;rsquo;s bootstrapped attributes are transparently filtered out so that only schema data of the current database is returned.
 Generic Schema attributes The following Schema attributes can be used to build Schema molecules:
-  Attribute &amp;nbsp;&amp;nbsp; Description Example value  id &amp;nbsp;&amp;nbsp; Attribute definition entity idLong a &amp;nbsp;&amp;nbsp; (Partition-)Namespace-prefixed attribute name &amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;ldquo;:ind_Person/name&amp;rdquo; or &amp;ldquo;:person/name&amp;rdquo; if no partitions part &amp;nbsp;&amp;nbsp; Partition name.</description>
+  Attribute &amp;nbsp;&amp;nbsp; Description Example value  id &amp;nbsp;&amp;nbsp; Attribute definition entity idLong a &amp;nbsp;&amp;nbsp; (Partition-)Namespace-prefixed attribute name &amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;ldquo;:ind_Person/name&amp;rdquo; or &amp;ldquo;:Person/name&amp;rdquo; if no partitions part &amp;nbsp;&amp;nbsp; Partition name.</description>
     </item>
     
     <item>
@@ -435,7 +435,7 @@ By assigning parameterized &amp;ldquo;Input-molecules&amp;rdquo; to variables we
       <description>Relationships Tests&amp;hellip;
 To understand how Molecule treats relationships it is valuable to get an idea of how they work in Datomic.
 Ref attributes connect entities A relationship in Datomic is simply when a ref attribute of entity A has an entity B id value. Then there is a relationship from A to B!
-In the following example, entity 101 has a ref attribute :person/home with a value 102. That makes the relationship between entity 101 and entity 102, or that Fred has an Address:</description>
+In the following example, entity 101 has a ref attribute :Person/home with a value 102. That makes the relationship between entity 101 and entity 102, or that Fred has an Address:</description>
     </item>
     
     <item>
@@ -507,7 +507,7 @@ The 5 ways of getting data have the following semantics:
 Molecule provides access to meta data about data and Schema with the following 7 generic interfaces (each with a little example - read more by clicking on each title):
 Datom Get id of Ben entity with generic Datom attribute e
 Person.e.name.get.head === (benEntityId, &amp;quot;Ben&amp;quot;)  EAVT Index Attributes and values of entity e1
-EAVT(e1).a.v.get === List( (&amp;quot;:person/name&amp;quot;, &amp;quot;Ben&amp;quot;), (&amp;quot;:person/age&amp;quot;, 42), (&amp;quot;:golf/score&amp;quot;, 5.7) )  AVET Index Values, entities and transactions where attribute :person/age is involved</description>
+EAVT(e1).a.v.get === List( (&amp;quot;:Person/name&amp;quot;, &amp;quot;Ben&amp;quot;), (&amp;quot;:Person/age&amp;quot;, 42), (&amp;quot;:Golf/score&amp;quot;, 5.7) )  AVET Index Values, entities and transactions where attribute :Person/age is involved</description>
     </item>
     
     <item>

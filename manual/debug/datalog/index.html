@@ -668,7 +668,7 @@
             <div class="col-md-2 column" style="padding-top:20px;padding-right:0px;">
                 <ul class="nav nav-pills" style="float:right;">
                     <li>
-                        <a href="/changelog" style="margin-top:-2px;">v0.17.2</a>
+                        <a href="/changelog" style="margin-top:-2px;">v0.18.0</a>
                     </li>
                     <li>
                         <div style="padding-left:14px;">
@@ -725,10 +725,10 @@ Community.name.Neighborhood.District.region_(&quot;ne&quot; or &quot;sw&quot;).d
 
 <pre><code>--------------------------------------------------------------------------
 Model(List(
-  Atom(&quot;community&quot;, &quot;name&quot;, &quot;String&quot;, 1, VarValue, None, Seq(), Seq()),
-  Bond(&quot;community&quot;, &quot;neighborhood&quot;, &quot;neighborhood&quot;, 1, Seq()),
-  Bond(&quot;neighborhood&quot;, &quot;district&quot;, &quot;district&quot;, 1, Seq()),
-  Atom(&quot;district&quot;, &quot;region_&quot;, &quot;String&quot;, 1, Eq(Seq(&quot;ne&quot;, &quot;sw&quot;)), Some(&quot;:district.region/&quot;), Seq(), Seq())))
+  Atom(&quot;Community&quot;, &quot;name&quot;, &quot;String&quot;, 1, VarValue, None, Seq(), Seq()),
+  Bond(&quot;Community&quot;, &quot;neighborhood&quot;, &quot;Neighborhood&quot;, 1, Seq()),
+  Bond(&quot;Neighborhood&quot;, &quot;district&quot;, &quot;District&quot;, 1, Seq()),
+  Atom(&quot;District&quot;, &quot;region_&quot;, &quot;String&quot;, 1, Eq(Seq(&quot;ne&quot;, &quot;sw&quot;)), Some(&quot;:District.region/&quot;), Seq(), Seq())))
 
 Query(
   Find(List(
@@ -737,26 +737,26 @@ Query(
     List(),
     List(
       Rule(&quot;rule1&quot;, Seq(Var(&quot;d&quot;)), Seq(
-        DataClause(ImplDS, Var(&quot;d&quot;), KW(&quot;district&quot;, &quot;region&quot;, &quot;&quot;), Val(&quot;:district.region/ne&quot;), Empty, NoBinding))),
+        DataClause(ImplDS, Var(&quot;d&quot;), KW(&quot;District&quot;, &quot;region&quot;, &quot;&quot;), Val(&quot;:District.region/ne&quot;), Empty, NoBinding))),
       Rule(&quot;rule1&quot;, Seq(Var(&quot;d&quot;)), Seq(
-        DataClause(ImplDS, Var(&quot;d&quot;), KW(&quot;district&quot;, &quot;region&quot;, &quot;&quot;), Val(&quot;:district.region/sw&quot;), Empty, NoBinding)))),
+        DataClause(ImplDS, Var(&quot;d&quot;), KW(&quot;District&quot;, &quot;region&quot;, &quot;&quot;), Val(&quot;:District.region/sw&quot;), Empty, NoBinding)))),
     List(DS)),
   Where(List(
-    DataClause(ImplDS, Var(&quot;a&quot;), KW(&quot;community&quot;, &quot;name&quot;, &quot;&quot;), Var(&quot;b&quot;), Empty, NoBinding),
-    DataClause(ImplDS, Var(&quot;a&quot;), KW(&quot;community&quot;, &quot;neighborhood&quot;, &quot;neighborhood&quot;), Var(&quot;c&quot;), Empty, NoBinding),
-    DataClause(ImplDS, Var(&quot;c&quot;), KW(&quot;neighborhood&quot;, &quot;district&quot;, &quot;district&quot;), Var(&quot;d&quot;), Empty, NoBinding),
+    DataClause(ImplDS, Var(&quot;a&quot;), KW(&quot;Community&quot;, &quot;name&quot;, &quot;&quot;), Var(&quot;b&quot;), Empty, NoBinding),
+    DataClause(ImplDS, Var(&quot;a&quot;), KW(&quot;Community&quot;, &quot;neighborhood&quot;, &quot;Neighborhood&quot;), Var(&quot;c&quot;), Empty, NoBinding),
+    DataClause(ImplDS, Var(&quot;c&quot;), KW(&quot;Neighborhood&quot;, &quot;district&quot;, &quot;District&quot;), Var(&quot;d&quot;), Empty, NoBinding),
     RuleInvocation(&quot;rule1&quot;, Seq(Var(&quot;d&quot;))))))
 
 [:find  ?b
  :in    $ %
- :where [?a :community/name ?b]
-        [?a :community/neighborhood ?c]
-        [?c :neighborhood/district ?d]
+ :where [?a :Community/name ?b]
+        [?a :Community/neighborhood ?c]
+        [?c :Neighborhood/district ?d]
         (rule1 ?d)]
 
 RULES: [
- [(rule1 ?d) [?d :district/region &quot;:district.region/ne&quot;]]
- [(rule1 ?d) [?d :district/region &quot;:district.region/sw&quot;]]
+ [(rule1 ?d) [?d :District/region &quot;:District.region/ne&quot;]]
+ [(rule1 ?d) [?d :District/region &quot;:District.region/sw&quot;]]
 ]
 
 INPUTS: none
@@ -822,14 +822,14 @@ from console into the query call on the connection object:</p>
   // Datalog query:
   &quot;&quot;&quot;[:find  ?b
     | :in    $ %
-    | :where [?a :community/name ?b]
-    |        [?a :community/neighborhood ?c]
-    |        [?c :neighborhood/district ?d]
+    | :where [?a :Community/name ?b]
+    |        [?a :Community/neighborhood ?c]
+    |        [?c :Neighborhood/district ?d]
     |        (rule1 ?d)]&quot;&quot;&quot;.stripMargin,
   // Input:
   &quot;&quot;&quot;[
-    | [(rule1 ?d) [?d :district/region &quot;:district.region/ne&quot;]]
-    | [(rule1 ?d) [?d :district/region &quot;:district.region/sw&quot;]]
+    | [(rule1 ?d) [?d :District/region &quot;:District.region/ne&quot;]]
+    | [(rule1 ?d) [?d :District/region &quot;:District.region/sw&quot;]]
     |]&quot;&quot;&quot;.stripMargin
 ) foreach println
 </code></pre>
@@ -861,7 +861,7 @@ val tx3 = Ns(e1).int(2).update
 val t3  = tx3.t // 1031
 </code></pre>
 
-<p>Then we can for instance debug the history of the <code>:ns/str</code> attribute by calling the <code>debugGetHistory</code> method:</p>
+<p>Then we can for instance debug the history of the <code>:Ns/str</code> attribute by calling the <code>debugGetHistory</code> method:</p>
 
 <pre><code class="language-scala">Ns(e1).str.t.op.debugGetHistory
 </code></pre>
@@ -871,7 +871,7 @@ val t3  = tx3.t // 1031
 <pre><code>--------------------------------------------------------------------------
 Model(List(
   Meta(&quot;?&quot;, &quot;e_&quot;, &quot;Long&quot;, Eq(Seq(17592186045445L))),
-  Atom(&quot;ns&quot;, &quot;str&quot;, &quot;String&quot;, 1, VarValue, None, Seq(), Seq()),
+  Atom(&quot;Ns&quot;, &quot;str&quot;, &quot;String&quot;, 1, VarValue, None, Seq(), Seq()),
   Meta(&quot;?&quot;, &quot;t&quot;, &quot;t&quot;, NoValue),
   Meta(&quot;?&quot;, &quot;op&quot;, &quot;op&quot;, NoValue)))
 
@@ -886,12 +886,12 @@ Query(
     List(),
     List(DS)),
   Where(List(
-    DataClause(ImplDS, Var(&quot;a&quot;), KW(&quot;ns&quot;, &quot;str&quot;, &quot;&quot;), Var(&quot;c&quot;), Var(&quot;c_tx&quot;), Var(&quot;c_op&quot;)),
+    DataClause(ImplDS, Var(&quot;a&quot;), KW(&quot;Ns&quot;, &quot;str&quot;, &quot;&quot;), Var(&quot;c&quot;), Var(&quot;c_tx&quot;), Var(&quot;c_op&quot;)),
     Funct(&quot;datomic.Peer/toT ^Long&quot;, Seq(Var(&quot;c_tx&quot;)), ScalarBinding(Var(&quot;c_t&quot;))))))
 
 [:find  ?c ?c_t ?c_op
  :in    $ [?a ...]
- :where [?a :ns/str ?c ?c_tx ?c_op]
+ :where [?a :Ns/str ?c ?c_tx ?c_op]
         [(datomic.Peer/toT ^Long ?c_tx) ?c_t]]
 
 RULES: none
@@ -921,7 +921,7 @@ OUTPUTS:
 <pre><code>--------------------------------------------------------------------------
 Model(List(
   Meta(&quot;?&quot;, &quot;e_&quot;, &quot;Long&quot;, Eq(Seq(17592186045445L))),
-  Atom(&quot;ns&quot;, &quot;str&quot;, &quot;String&quot;, 1, VarValue, None, Seq(), Seq()),
+  Atom(&quot;Ns&quot;, &quot;str&quot;, &quot;String&quot;, 1, VarValue, None, Seq(), Seq()),
   Meta(&quot;?&quot;, &quot;t&quot;, &quot;t&quot;, NoValue),
   Meta(&quot;?&quot;, &quot;op&quot;, &quot;op&quot;, NoValue)))
 
@@ -936,12 +936,12 @@ Query(
     List(),
     List(DS)),
   Where(List(
-    DataClause(ImplDS, Var(&quot;a&quot;), KW(&quot;ns&quot;, &quot;str&quot;, &quot;&quot;), Var(&quot;c&quot;), Var(&quot;c_tx&quot;), Var(&quot;c_op&quot;)),
+    DataClause(ImplDS, Var(&quot;a&quot;), KW(&quot;Ns&quot;, &quot;str&quot;, &quot;&quot;), Var(&quot;c&quot;), Var(&quot;c_tx&quot;), Var(&quot;c_op&quot;)),
     Funct(&quot;datomic.Peer/toT ^Long&quot;, Seq(Var(&quot;c_tx&quot;)), ScalarBinding(Var(&quot;c_t&quot;))))))
 
 [:find  ?c ?c_t ?c_op
  :in    $ [?a ...]
- :where [?a :ns/str ?c ?c_tx ?c_op]
+ :where [?a :Ns/str ?c ?c_tx ?c_op]
         [(datomic.Peer/toT ^Long ?c_tx) ?c_t]]
 
 RULES: none
@@ -955,21 +955,21 @@ OUTPUTS:
 --------------------------------------------------------------------------
 </code></pre>
 
-<p>Showing the <code>:ns/str</code> value at transaction 1028</p>
+<p>Showing the <code>:Ns/str</code> value at transaction 1028</p>
 
 <h2 id="debuggetsince"><code>debugGetSince(..)</code></h2>
 
-<p>Likewise we can get changes of attribute <code>:ns/int</code> since transaction t1/1028</p>
+<p>Likewise we can get changes of attribute <code>:Ns/int</code> since transaction t1/1028</p>
 
 <pre><code class="language-scala">Ns(e1).int.t.op.debugGetSince(t1)
 </code></pre>
 
-<p>And see that <code>:ns/int</code> value 2 was asserted in transaction 1031:</p>
+<p>And see that <code>:Ns/int</code> value 2 was asserted in transaction 1031:</p>
 
 <pre><code>--------------------------------------------------------------------------
 Model(List(
   Meta(&quot;?&quot;, &quot;e_&quot;, &quot;Long&quot;, Eq(Seq(17592186045445L))),
-  Atom(&quot;ns&quot;, &quot;int&quot;, &quot;Int&quot;, 1, VarValue, None, Seq(), Seq()),
+  Atom(&quot;Ns&quot;, &quot;int&quot;, &quot;Int&quot;, 1, VarValue, None, Seq(), Seq()),
   Meta(&quot;?&quot;, &quot;t&quot;, &quot;t&quot;, NoValue),
   Meta(&quot;?&quot;, &quot;op&quot;, &quot;op&quot;, NoValue)))
 
@@ -984,12 +984,12 @@ Query(
     List(),
     List(DS)),
   Where(List(
-    DataClause(ImplDS, Var(&quot;a&quot;), KW(&quot;ns&quot;, &quot;int&quot;, &quot;&quot;), Var(&quot;c&quot;), Var(&quot;c_tx&quot;), Var(&quot;c_op&quot;)),
+    DataClause(ImplDS, Var(&quot;a&quot;), KW(&quot;Ns&quot;, &quot;int&quot;, &quot;&quot;), Var(&quot;c&quot;), Var(&quot;c_tx&quot;), Var(&quot;c_op&quot;)),
     Funct(&quot;datomic.Peer/toT ^Long&quot;, Seq(Var(&quot;c_tx&quot;)), ScalarBinding(Var(&quot;c_t&quot;))))))
 
 [:find  ?c ?c_t ?c_op
  :in    $ [?a ...]
- :where [?a :ns/int ?c ?c_tx ?c_op]
+ :where [?a :Ns/int ?c ?c_tx ?c_op]
         [(datomic.Peer/toT ^Long ?c_tx) ?c_t]]
 
 RULES: none
@@ -1025,20 +1025,20 @@ Ns.str.int.debugGetWith(
 
 <pre><code>--------------------------------------------------------------------------
 Model(List(
-  Atom(&quot;ns&quot;, &quot;str&quot;, &quot;String&quot;, 1, VarValue, None, Seq(), Seq()),
-  Atom(&quot;ns&quot;, &quot;int&quot;, &quot;Int&quot;, 1, VarValue, None, Seq(), Seq())))
+  Atom(&quot;Ns&quot;, &quot;str&quot;, &quot;String&quot;, 1, VarValue, None, Seq(), Seq()),
+  Atom(&quot;Ns&quot;, &quot;int&quot;, &quot;Int&quot;, 1, VarValue, None, Seq(), Seq())))
 
 Query(
   Find(List(
     Var(&quot;b&quot;),
     Var(&quot;c&quot;))),
   Where(List(
-    DataClause(ImplDS, Var(&quot;a&quot;), KW(&quot;ns&quot;, &quot;str&quot;, &quot;&quot;), Var(&quot;b&quot;), Empty, NoBinding),
-    DataClause(ImplDS, Var(&quot;a&quot;), KW(&quot;ns&quot;, &quot;int&quot;, &quot;&quot;), Var(&quot;c&quot;), Empty, NoBinding))))
+    DataClause(ImplDS, Var(&quot;a&quot;), KW(&quot;Ns&quot;, &quot;str&quot;, &quot;&quot;), Var(&quot;b&quot;), Empty, NoBinding),
+    DataClause(ImplDS, Var(&quot;a&quot;), KW(&quot;Ns&quot;, &quot;int&quot;, &quot;&quot;), Var(&quot;c&quot;), Empty, NoBinding))))
 
 [:find  ?b ?c
- :where [?a :ns/str ?b]
-        [?a :ns/int ?c]]
+ :where [?a :Ns/str ?b]
+        [?a :Ns/int ?c]]
 
 RULES: none
 
@@ -1053,26 +1053,26 @@ OUTPUTS:
 ================================================================================================================
 1          List(
   1          List(
-    1          :db/add    #db/id[:db.part/user -1000123]   :ns/str              John
-    2          :db/add    #db/id[:db.part/user -1000123]   :ns/int              44))
+    1          :db/add    #db/id[:db.part/user -1000123]   :Ns/str              John
+    2          :db/add    #db/id[:db.part/user -1000123]   :Ns/int              44))
 ================================================================================================================
 
 ## 2 ## Statements, transaction molecule 2: 
 ================================================================================================================
 1          List(
   1          List(
-    1          :db/add    #db/id[:db.part/user -1000124]   :ns/str              Lisa
-    2          :db/add    #db/id[:db.part/user -1000124]   :ns/int              23)
+    1          :db/add    #db/id[:db.part/user -1000124]   :Ns/str              Lisa
+    2          :db/add    #db/id[:db.part/user -1000124]   :Ns/int              23)
   2          List(
-    1          :db/add    #db/id[:db.part/user -1000125]   :ns/str              Pete
-    2          :db/add    #db/id[:db.part/user -1000125]   :ns/int              24))
+    1          :db/add    #db/id[:db.part/user -1000125]   :Ns/str              Pete
+    2          :db/add    #db/id[:db.part/user -1000125]   :Ns/int              24))
 ================================================================================================================
 
 ## 3 ## Statements, transaction molecule 3: 
 ================================================================================================================
 1          List(
   1          List(
-    1          :db/add    17592186045451                   :ns/int              43))
+    1          :db/add    17592186045451                   :Ns/int              43))
 ================================================================================================================
 </code></pre>
 

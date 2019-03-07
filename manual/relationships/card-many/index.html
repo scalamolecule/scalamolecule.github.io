@@ -668,7 +668,7 @@
             <div class="col-md-2 column" style="padding-top:20px;padding-right:0px;">
                 <ul class="nav nav-pills" style="float:right;">
                     <li>
-                        <a href="/changelog" style="margin-top:-2px;">v0.17.2</a>
+                        <a href="/changelog" style="margin-top:-2px;">v0.18.0</a>
                     </li>
                     <li>
                         <div style="padding-left:14px;">
@@ -760,18 +760,18 @@ retracted if the <code>Order</code> is retracted. Subsequent component-defined r
 <pre><code class="language-scala">// Touch entity facts hierarchy recursively
 orderId.touch === Map(
   &quot;:db/id&quot; -&gt; 101L,
-  &quot;:order/id&quot; -&gt; &quot;order1&quot;,
-  &quot;:order/items&quot; -&gt; List(
+  &quot;:Order/id&quot; -&gt; &quot;order1&quot;,
+  &quot;:Order/items&quot; -&gt; List(
     Map(
       &quot;:db/id&quot; -&gt; 102L, 
-      &quot;:lineItem/qty&quot; -&gt; 3, 
-      &quot;:lineItem/product&quot; -&gt; &quot;Milk&quot;,
-      &quot;:lineItem/price&quot; -&gt; 12.0),
+      &quot;:LineItem/qty&quot; -&gt; 3, 
+      &quot;:LineItem/product&quot; -&gt; &quot;Milk&quot;,
+      &quot;:LineItem/price&quot; -&gt; 12.0),
     Map(
       &quot;:db/id&quot; -&gt; 103L, 
-      &quot;:lineItem/qty&quot; -&gt; 2, 
-      &quot;:lineItem/product&quot; -&gt; &quot;Coffee&quot;,
-      &quot;:lineItem/price&quot; -&gt; 46.0)))
+      &quot;:LineItem/qty&quot; -&gt; 2, 
+      &quot;:LineItem/product&quot; -&gt; &quot;Coffee&quot;,
+      &quot;:LineItem/price&quot; -&gt; 46.0)))
 </code></pre>
 
 <h3 id="next">Next</h3>

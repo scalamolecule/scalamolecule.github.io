@@ -668,7 +668,7 @@
             <div class="col-md-2 column" style="padding-top:20px;padding-right:0px;">
                 <ul class="nav nav-pills" style="float:right;">
                     <li>
-                        <a href="/changelog" style="margin-top:-2px;">v0.17.2</a>
+                        <a href="/changelog" style="margin-top:-2px;">v0.18.0</a>
                     </li>
                     <li>
                         <div style="padding-left:14px;">
@@ -704,9 +704,9 @@
 
 <p>This will assert 3 facts in Datomic that all share the id of the new entity id <code>fredId</code> that is automatically created by Datomic:</p>
 
-<pre><code>fredId    :person/name    &quot;Fred&quot;
-fredId    :person/likes   &quot;pizza&quot;
-fredId    :person/age     38
+<pre><code>fredId    :Person/name    &quot;Fred&quot;
+fredId    :Person/likes   &quot;pizza&quot;
+fredId    :Person/age     38
 </code></pre>
 
 <h3 id="type-safety">Type-safety</h3>
@@ -748,15 +748,15 @@ for {
 <pre><code class="language-scala">Person.name(&quot;Fred&quot;).likes(&quot;pizza&quot;).age(38).Home.street(&quot;Baker St. 7&quot;).city(&quot;Boston&quot;).save
 </code></pre>
 
-<p>In this case, 6 facts will be asserted for the entity of Fred. A <code>:person/home</code> ref attribute will resolve to the
+<p>In this case, 6 facts will be asserted for the entity of Fred. A <code>:Person/home</code> ref attribute will resolve to the
 value of a new Address entity with id <code>addrId</code> and thereby establish the relationship from Fred to his Address:</p>
 
-<pre><code>fredId    :person/name    &quot;Fred&quot;
-fredId    :person/likes   &quot;pizza&quot;
-fredId    :person/age     38
-fredId    :person/home    addrId
-addrId    :addr/street    &quot;Baker St. 7&quot;
-addrId    :addr/city      &quot;Boston&quot;
+<pre><code>fredId    :Person/name    &quot;Fred&quot;
+fredId    :Person/likes   &quot;pizza&quot;
+fredId    :Person/age     38
+fredId    :Person/home    addrId
+addrId    :Addr/street    &quot;Baker St. 7&quot;
+addrId    :Addr/city      &quot;Boston&quot;
 </code></pre>
 
 <p>And we could go on with further relationships&hellip;</p>
@@ -787,8 +787,8 @@ Person.hobbies(seq).save
 
 <p>When this molecule is saved, only 2 facts will be asserted:</p>
 
-<pre><code>fredId    :person/name    &quot;Fred&quot;
-fredId    :person/age     38
+<pre><code>fredId    :Person/name    &quot;Fred&quot;
+fredId    :Person/age     38
 </code></pre>
 
 <p>This is different from SQL where we would save a NULL value in a <code>likes</code> column.</p>

@@ -668,7 +668,7 @@
             <div class="col-md-2 column" style="padding-top:20px;padding-right:0px;">
                 <ul class="nav nav-pills" style="float:right;">
                     <li>
-                        <a href="/changelog" style="margin-top:-2px;">v0.17.2</a>
+                        <a href="/changelog" style="margin-top:-2px;">v0.18.0</a>
                     </li>
                     <li>
                         <div style="padding-left:14px;">
@@ -713,20 +713,20 @@ Attributes from any number of namespaces could be asserted sharing the same enti
 
 <pre><code class="language-scala">101L.touch === Map(
   &quot;:db/id&quot; -&gt; 101L,
-  &quot;:person/name&quot;  -&gt; &quot;Fred&quot;, 
-  &quot;:person/likes&quot; -&gt; &quot;pizza&quot;, 
-  &quot;:person/age&quot;   -&gt; 38, 
-  &quot;:person/addr&quot;  -&gt; 102L,        // reference to an address entity with entity id 102 
-  &quot;:site/cat&quot;     -&gt; &quot;customer&quot;
+  &quot;:Person/name&quot;  -&gt; &quot;Fred&quot;, 
+  &quot;:Person/likes&quot; -&gt; &quot;pizza&quot;, 
+  &quot;:Person/age&quot;   -&gt; 38, 
+  &quot;:Person/addr&quot;  -&gt; 102L,        // reference to an address entity with entity id 102 
+  &quot;:Site/cat&quot;     -&gt; &quot;customer&quot;
 )
 </code></pre>
 
 <h3 id="optional-attribute-values">Optional attribute values</h3>
 
 <p>We can look for an optionally present attribute value. Here we ask the entity id <code>fredId</code> if it has
-a <code>:site/cat</code> attribute value (of type <code>String</code>) and we get a typed optional value back:</p>
+a <code>:Site/cat</code> attribute value (of type <code>String</code>) and we get a typed optional value back:</p>
 
-<pre><code class="language-scala">val siteCat_? : Option[String] = fredId[String](&quot;:site/cat&quot;)
+<pre><code class="language-scala">val siteCat_? : Option[String] = fredId[String](&quot;:Site/cat&quot;)
 </code></pre>
 
 <h3 id="traversing">Traversing</h3>
@@ -735,33 +735,33 @@ a <code>:site/cat</code> attribute value (of type <code>String</code>) and we ge
 
 <pre><code class="language-scala">orderId.touch === Map(
   &quot;:db/id&quot; -&gt; orderId,
-  &quot;:order/lineItems&quot; -&gt; List(
+  &quot;:Order/lineItems&quot; -&gt; List(
     Map(
       &quot;:db/id&quot; -&gt; 102L, 
-      &quot;:lineItem/qty&quot; -&gt; 3, 
-      &quot;:lineItem/product&quot; -&gt; &quot;Milk&quot;,
-      &quot;:lineItem/price&quot; -&gt; 12.0),
+      &quot;:LineItem/qty&quot; -&gt; 3, 
+      &quot;:LineItem/product&quot; -&gt; &quot;Milk&quot;,
+      &quot;:LineItem/price&quot; -&gt; 12.0),
     Map(
       &quot;:db/id&quot; -&gt; 103L, 
-      &quot;:lineItem/qty&quot; -&gt; 2, 
-      &quot;:lineItem/product&quot; -&gt; &quot;Coffee&quot;,
-      &quot;:lineItem/price&quot; -&gt; 46.0)))
+      &quot;:LineItem/qty&quot; -&gt; 2, 
+      &quot;:LineItem/product&quot; -&gt; &quot;Coffee&quot;,
+      &quot;:LineItem/price&quot; -&gt; 46.0)))
 </code></pre>
 
 <p>The entity attributes graph might be deep and wide so we can apply a max level to <code>touch(&lt;maxLevel&gt;)</code>:</p>
 
 <pre><code class="language-scala">fredId.touchMax(2) === Map(
   &quot;:db/id&quot; -&gt; fredId,
-  &quot;:person/name&quot; -&gt; &quot;Fred&quot;
-  &quot;:person/friends&quot; -&gt; List(
+  &quot;:Person/name&quot; -&gt; &quot;Fred&quot;
+  &quot;:Person/friends&quot; -&gt; List(
     Map(
       &quot;:db/id&quot; -&gt; lisaId,
-      &quot;:person/name&quot; -&gt; &quot;Lisa&quot;
-      &quot;:person/friends&quot; -&gt; List(
+      &quot;:Person/name&quot; -&gt; &quot;Lisa&quot;
+      &quot;:Person/friends&quot; -&gt; List(
         Map(
           &quot;:db/id&quot; -&gt; monaId,
-          &quot;:person/name&quot; -&gt; &quot;Mona&quot;
-          &quot;:person/friends&quot; -&gt; Set(ids...) // Mona's friends (3 levels deep) only as ids - not attribute maps
+          &quot;:Person/name&quot; -&gt; &quot;Mona&quot;
+          &quot;:Person/friends&quot; -&gt; Set(ids...) // Mona's friends (3 levels deep) only as ids - not attribute maps
         ),
         Map(...) // + more friends of Lisa (2 levels deep)
       )

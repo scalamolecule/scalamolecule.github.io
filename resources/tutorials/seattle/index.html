@@ -668,7 +668,7 @@
             <div class="col-md-2 column" style="padding-top:20px;padding-right:0px;">
                 <ul class="nav nav-pills" style="float:right;">
                     <li>
-                        <a href="/changelog" style="margin-top:-2px;">v0.17.2</a>
+                        <a href="/changelog" style="margin-top:-2px;">v0.18.0</a>
                     </li>
                     <li>
                         <div style="padding-left:14px;">
@@ -805,27 +805,27 @@ so we add the <code>name</code> attribute with an underscore (to omit it from th
 
 // Use the community id to touch all the entity's attribute values
 communityId.touch === Map(
-  &quot;:community/type&quot; -&gt; &quot;:community.type/website&quot;,
-  &quot;:community/url&quot; -&gt; &quot;http://www.greenlakecommunitycouncil.org/&quot;,
-  &quot;:community/category&quot; -&gt; List(&quot;community council&quot;),
-  &quot;:community/orgtype&quot; -&gt; &quot;:community.orgtype/community&quot;,
+  &quot;:Community/type&quot; -&gt; &quot;:Community.type/website&quot;,
+  &quot;:Community/url&quot; -&gt; &quot;http://www.greenlakecommunitycouncil.org/&quot;,
+  &quot;:Community/category&quot; -&gt; List(&quot;community council&quot;),
+  &quot;:Community/orgtype&quot; -&gt; &quot;:Community.orgtype/community&quot;,
   &quot;:db/id&quot; -&gt; 17592186045665L,
-  &quot;:community/name&quot; -&gt; &quot;Greenlake Community Council&quot;,
-  &quot;:community/neighborhood&quot; -&gt; Map(
+  &quot;:Community/name&quot; -&gt; &quot;Greenlake Community Council&quot;,
+  &quot;:Community/neighborhood&quot; -&gt; Map(
     &quot;:db/id&quot; -&gt; 17592186045666L,
-    &quot;:neighborhood/district&quot; -&gt; Map(
+    &quot;:Neighborhood/district&quot; -&gt; Map(
       &quot;:db/id&quot; -&gt; 17592186045667L,
-      &quot;:district/name&quot; -&gt; &quot;Northwest&quot;,
-      &quot;:district/region&quot; -&gt; &quot;:district.region/sw&quot;),
-    &quot;:neighborhood/name&quot; -&gt; &quot;Green Lake&quot;))
+      &quot;:District/name&quot; -&gt; &quot;Northwest&quot;,
+      &quot;:District/region&quot; -&gt; &quot;:District.region/sw&quot;),
+    &quot;:Neighborhood/name&quot; -&gt; &quot;Green Lake&quot;))
 </code></pre>
 
 <p>We can also retrive attribute values one by one by simply applying an attribute name to the entity id:</p>
 
-<pre><code class="language-scala">communityId(&quot;:community/name&quot;) === Some(&quot;Greenlake Community Council&quot;)
-communityId(&quot;:community/url&quot;) === Some(&quot;http://www.greenlakecommunitycouncil.org/&quot;)
-communityId(&quot;:community/category&quot;) === Some(Set(&quot;community council&quot;))
-communityId(&quot;:community/emptyOrBogusAttribute&quot;) === None
+<pre><code class="language-scala">communityId(&quot;:Community/name&quot;) === Some(&quot;Greenlake Community Council&quot;)
+communityId(&quot;:Community/url&quot;) === Some(&quot;http://www.greenlakecommunitycouncil.org/&quot;)
+communityId(&quot;:Community/category&quot;) === Some(Set(&quot;community council&quot;))
+communityId(&quot;:Community/emptyOrBogusAttribute&quot;) === None
 </code></pre>
 
 <h2 id="2"><a href="#contents">☝︎</a> Querying <em>for</em> an attribute&rsquo;s value</h2>
