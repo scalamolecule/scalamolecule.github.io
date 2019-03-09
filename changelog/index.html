@@ -287,16 +287,16 @@
 
                 
                 <li class="dropdown-submenu">
-                    <a href="/manual/generic/">Generic</a>
+                    <a href="/manual/meta/">Meta</a>
                     <ul class="dropdown-menu">
                         
-                        <li><a href="/manual/generic/datom/">Datom</a></li>
+                        <li><a href="/manual/meta/datom/">Datom</a></li>
                         
-                        <li><a href="/manual/generic/indexes/">Index</a></li>
+                        <li><a href="/manual/meta/indexes/">Index</a></li>
                         
-                        <li><a href="/manual/generic/log/">Log</a></li>
+                        <li><a href="/manual/meta/log/">Log</a></li>
                         
-                        <li><a href="/manual/generic/schema/">Schema</a></li>
+                        <li><a href="/manual/meta/schema/">Schema</a></li>
                         
                     </ul>
                 </li>
@@ -494,27 +494,6 @@
 
                 
                 <li class="dropdown-submenu">
-                    <a href="/api/molecule/generic">generic</a>
-                    <ul class="dropdown-menu">
-                        
-                        <li><a href="/api/molecule/generic/datom/index.html">Datom</a></li>
-                        
-                        <li><a href="/api/molecule/generic/index/index.html">Index</a></li>
-                        
-                        <li><a href="/api/molecule/generic/Log.html">Log</a></li>
-                        
-                        <li><a href="/api/molecule/generic/schema/index.html">Schema</a></li>
-                        
-                    </ul>
-                </li>
-                
-
-                
-                
-                
-
-                
-                <li class="dropdown-submenu">
                     <a href="/api/molecule/input">input</a>
                     <ul class="dropdown-menu">
                         
@@ -542,6 +521,27 @@
                     <ul class="dropdown-menu">
                         
                         <li><a href="/api/molecule/macros/TxFns.html">TxFns</a></li>
+                        
+                    </ul>
+                </li>
+                
+
+                
+                
+                
+
+                
+                <li class="dropdown-submenu">
+                    <a href="/api/molecule/meta">meta</a>
+                    <ul class="dropdown-menu">
+                        
+                        <li><a href="/api/molecule/meta/datom/index.html">Datom</a></li>
+                        
+                        <li><a href="/api/molecule/meta/index/index.html">Index</a></li>
+                        
+                        <li><a href="/api/molecule/meta/Log.html">Log</a></li>
+                        
+                        <li><a href="/api/molecule/meta/schema/index.html">Schema</a></li>
                         
                     </ul>
                 </li>
@@ -668,7 +668,7 @@
             <div class="col-md-2 column" style="padding-top:20px;padding-right:0px;">
                 <ul class="nav nav-pills" style="float:right;">
                     <li>
-                        <a href="/changelog" style="margin-top:-2px;">v0.18.0</a>
+                        <a href="/changelog" style="margin-top:-2px;">v0.18.1</a>
                     </li>
                     <li>
                         <div style="padding-left:14px;">
@@ -700,6 +700,8 @@
 <p>Main changes:</p>
 
 <ul>
+<li>2019-03-09 v0.18.1 <a href="#24">Shift Meta semantics</a></li>
+<li>2019-03-07 v0.18.0 <a href="#23">Synchronized internal naming scheme + bug fixes</a></li>
 <li>2019-01-15 v0.17.0 <a href="#22">Datoms, Indexes, Log, Schema and debugging</a></li>
 <li>2018-12-02 v0.16.1 <a href="#21">Sbt-molecule 0.7.0, bootstrap speed optimization</a></li>
 <li>2018-11-25 v0.16.0 <a href="#20">Async API + tx functions</a></li>
@@ -724,6 +726,100 @@
 <li>2014-07-02 v0.1.0 <a href="#1">Initial commit - Seattle tutorial</a></li>
 </ul>
 
+<h2 id="24"><a href="#top">☝︎</a> Shift Meta semantics</h2>
+
+<p><em>2019-03-09 v0.18.1</em></p>
+
+<p>Re-aligning Meta semantics</p>
+
+<h2 id="23"><a href="#top">☝︎</a> Synchronized internal naming scheme + bug fixes</h2>
+
+<p><em>2019-03-07 v0.18.0</em></p>
+
+<p>In order to synchronize scala molecule boilerplate code and its internal representation,
+namespace names are now capitalized also in molecule model/query/datalog. This
+applies when no custom partitions are defined (and namespaces not partition-prefixed):</p>
+
+<pre><code class="language-scala">// Namespace names are now capitalized in the model
+m(Community.name)._model === Model(List(
+  Atom(&quot;Community&quot;, &quot;name&quot;, &quot;String&quot;, 1, VarValue) // &quot;Community&quot; now uppercase
+))
+
+// Uppercase namespace names are also retrieved when querying the schema
+Schema.a.part.ns.nsFull.attr.get === List((
+  &quot;:Community/name&quot;, // namespace name now uppercase 
+  &quot;db.part/user&quot;, // default partition (not prefixed to namespaces)
+  &quot;Community&quot;, // now uppercase
+  &quot;Customer&quot;, // now uppercase (has no partition prefix when no custom partition is defined)
+  &quot;name&quot;
+))
+
+// Produced Datalog queries will also use the uppercase namespace name 
+[:find  ?b
+ :where [?a :Community/name ?b]]
+</code></pre>
+
+<p>This change takes away the need to lower/capitalize namespace names back and forth
+between the source code representation and molecule model/query/datalog representations.
+It also makes it easier to distinguish between namespace/attribute names in internal
+molecule representations.</p>
+
+<h3 id="unaffected-with-custom-partitions">Unaffected with custom partitions</h3>
+
+<p>As before, custom partition-prefixed namespaces are unaffected:</p>
+
+<pre><code class="language-scala">// Namespace names are now capitalized in the model
+m(accounting_Invoice.invoiceLine)._model === Model(List(
+  Atom(&quot;accounting_Invoice&quot;, &quot;invoiceLine&quot;, &quot;ref&quot;, 1, VarValue)
+))
+
+// Querying the schema
+Schema.a.part.ns.nsFull.attr.get === List((
+  &quot;:accounting_Invoice/invoiceLine&quot;, 
+  &quot;accounting&quot;, // custom partition (always lowercase)
+  &quot;Invoice&quot;, // namespace now uppercase
+  &quot;accounting_Invoice&quot;, // partition-prefixed namespace
+  &quot;invoiceLine&quot;
+))
+
+// Datalog query 
+[:find  ?b
+ :where [?a :accounting_Invoice/invoiceLine ?b]]
+</code></pre>
+
+<h3 id="working-with-non-molecule-datomic-databases">Working with non-molecule Datomic databases</h3>
+
+<p>For the end user internal uppercase namespace names have no impact unless you are working
+with externally defined Datomic databases or data sets that can have lowercase namespace
+names defined.</p>
+
+<p>The sbt-plugin (as of version 0.8) now generates two additional schema transaction files
+that can be transacted with the external lowercase database so that you can use your
+uppercase Molecule code with it:</p>
+
+<h4 id="molecule-schema-uppercase-external-data-lowercase">Molecule schema (uppercase) + external data (lowercase)</h4>
+
+<p>When importing external data
+(<a href="https://github.com/scalamolecule/molecule/blob/master/examples/src/test/scala/molecule/examples/seattle/SeattleTests.scala#L367-L368">example</a>)
+from a database with lowercase namespace names then you can
+transact lowercase attribute aliases
+(<a href="https://github.com/scalamolecule/molecule/blob/master/examples/src/test/scala/molecule/examples/seattle/SeattleSpec.scala#L18">example</a>)
+so that your uppercase Molecule code can recognize the
+imported lowercase data:</p>
+
+<pre><code class="language-scala">conn.datomicConn.transact(SchemaUpperToLower.namespaces)
+</code></pre>
+
+<h4 id="external-schema-lowercase-external-data-lowercase">External schema (lowercase) + external data (lowercase)</h4>
+
+<p>If both external schema and data is created with lowercase namespace names, then you can transact
+uppercase attribute aliases with the live database so that it will recognize your uppercase
+molecule code
+(<a href="https://github.com/scalamolecule/molecule/blob/master/examples/src/test/scala/molecule/examples/mbrainz/MBrainz.scala#L38">example</a>):</p>
+
+<pre><code class="language-scala">conn.datomicConn.transact(MBrainzSchemaLowerToUpper.namespaces)
+</code></pre>
+
 <h2 id="22"><a href="#top">☝︎</a> Datoms, Indexes, Log, Schema and debugging</h2>
 
 <p><em>2019-01-15 v0.17.0</em></p>
@@ -732,7 +828,7 @@
 
 <h4 id="datoms">Datoms</h4>
 
-<p>Entity id of Ben with generic datom attribute <code>e</code> on a custom molecule&hellip;</p>
+<p>Entity id of Ben with meta datom attribute <code>e</code> on a custom molecule&hellip;</p>
 
 <pre><code class="language-scala">Person.e.name.get.head === (benEntityId, &quot;Ben&quot;)
 </code></pre>

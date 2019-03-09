@@ -287,16 +287,16 @@
 
                 
                 <li class="dropdown-submenu">
-                    <a href="/manual/generic/">Generic</a>
+                    <a href="/manual/meta/">Meta</a>
                     <ul class="dropdown-menu">
                         
-                        <li><a href="/manual/generic/datom/">Datom</a></li>
+                        <li><a href="/manual/meta/datom/">Datom</a></li>
                         
-                        <li><a href="/manual/generic/indexes/">Index</a></li>
+                        <li><a href="/manual/meta/indexes/">Index</a></li>
                         
-                        <li><a href="/manual/generic/log/">Log</a></li>
+                        <li><a href="/manual/meta/log/">Log</a></li>
                         
-                        <li><a href="/manual/generic/schema/">Schema</a></li>
+                        <li><a href="/manual/meta/schema/">Schema</a></li>
                         
                     </ul>
                 </li>
@@ -494,27 +494,6 @@
 
                 
                 <li class="dropdown-submenu">
-                    <a href="/api/molecule/generic">generic</a>
-                    <ul class="dropdown-menu">
-                        
-                        <li><a href="/api/molecule/generic/datom/index.html">Datom</a></li>
-                        
-                        <li><a href="/api/molecule/generic/index/index.html">Index</a></li>
-                        
-                        <li><a href="/api/molecule/generic/Log.html">Log</a></li>
-                        
-                        <li><a href="/api/molecule/generic/schema/index.html">Schema</a></li>
-                        
-                    </ul>
-                </li>
-                
-
-                
-                
-                
-
-                
-                <li class="dropdown-submenu">
                     <a href="/api/molecule/input">input</a>
                     <ul class="dropdown-menu">
                         
@@ -542,6 +521,27 @@
                     <ul class="dropdown-menu">
                         
                         <li><a href="/api/molecule/macros/TxFns.html">TxFns</a></li>
+                        
+                    </ul>
+                </li>
+                
+
+                
+                
+                
+
+                
+                <li class="dropdown-submenu">
+                    <a href="/api/molecule/meta">meta</a>
+                    <ul class="dropdown-menu">
+                        
+                        <li><a href="/api/molecule/meta/datom/index.html">Datom</a></li>
+                        
+                        <li><a href="/api/molecule/meta/index/index.html">Index</a></li>
+                        
+                        <li><a href="/api/molecule/meta/Log.html">Log</a></li>
+                        
+                        <li><a href="/api/molecule/meta/schema/index.html">Schema</a></li>
                         
                     </ul>
                 </li>
@@ -668,7 +668,7 @@
             <div class="col-md-2 column" style="padding-top:20px;padding-right:0px;">
                 <ul class="nav nav-pills" style="float:right;">
                     <li>
-                        <a href="/changelog" style="margin-top:-2px;">v0.18.0</a>
+                        <a href="/changelog" style="margin-top:-2px;">v0.18.1</a>
                     </li>
                     <li>
                         <div style="padding-left:14px;">
@@ -718,8 +718,8 @@ for that fact.</p>
 
 <p>Since the transaction is itself an entity exactly as any other entity we can query it as we query our own domain data.</p>
 
-<p>Molecule offers some generic attributes that makes it easy to access transaction data. In our example we could find the
-transaction entity id of the assertion of Freds <code>name</code> by adding the generic attribute <code>tx</code> right after the <code>name_</code> attribute (that we
+<p>Molecule offers some meta attributes that makes it easy to access transaction data. In our example we could find the
+transaction entity id of the assertion of Freds <code>name</code> by adding the meta attribute <code>tx</code> right after the <code>name_</code> attribute (that we
 have made tacit with the underscore since we&rsquo;re not interested in value &ldquo;Fred&rdquo;):</p>
 
 <p><em>&ldquo;In what transaction was Freds name asserted?&rdquo;</em></p>
@@ -740,7 +740,7 @@ have made tacit with the underscore since we&rsquo;re not interested in value &l
 <h3 id="transaction-time-txinstant">Transaction time <code>txInstant</code></h3>
 
 <p>With the transaction entity available we can then also get to the value of the timestamp fact of that transaction entity. For
- convenience Molecule has a generic <code>txIntstant</code> to lookup the timestamp which is a <code>date.util.Date</code>:</p>
+ convenience Molecule has a meta <code>txIntstant</code> to lookup the timestamp which is a <code>date.util.Date</code>:</p>
 
 <p><em>&ldquo;When was Freds name asserted?&rdquo;</em></p>
 
@@ -978,23 +978,23 @@ date1.before(date2) === true
     
     
     
-    <li><a href="/manual/generic/">Generic</a></li>
+    <li><a href="/manual/meta/">Meta</a></li>
     
     <ul class="level2">
       
-      <li><a href="/manual/generic/datom/">Datom</a></li>
+      <li><a href="/manual/meta/datom/">Datom</a></li>
       
       
       
-      <li><a href="/manual/generic/indexes/">Index</a></li>
+      <li><a href="/manual/meta/indexes/">Index</a></li>
       
       
       
-      <li><a href="/manual/generic/log/">Log</a></li>
+      <li><a href="/manual/meta/log/">Log</a></li>
       
       
       
-      <li><a href="/manual/generic/schema/">Schema</a></li>
+      <li><a href="/manual/meta/schema/">Schema</a></li>
       
       
     </ul>
