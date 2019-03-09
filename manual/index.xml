@@ -503,7 +503,7 @@ The 5 ways of getting data have the following semantics:
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://scalamolecule.org/manual/meta/</guid>
-      <description>Generic attributes Tests&amp;hellip;
+      <description>Meta attributes Tests&amp;hellip;
 Molecule provides access to meta data about data and Schema with the following 7 meta interfaces (each with a little example - read more by clicking on each title):
 Datom Get id of Ben entity with meta Datom attribute e
 Person.e.name.get.head === (benEntityId, &amp;quot;Ben&amp;quot;)  EAVT Index Attributes and values of entity e1
