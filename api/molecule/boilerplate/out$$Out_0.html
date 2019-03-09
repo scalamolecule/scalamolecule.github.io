@@ -3,9 +3,9 @@
         <head>
           <meta http-equiv="X-UA-Compatible" content="IE=edge" />
           <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-          <title>Molecule 0.18.0 - molecule.boilerplate.out.Out_0</title>
-          <meta name="description" content="Molecule 0.18.0 - molecule.boilerplate.out.Out 0" />
-          <meta name="keywords" content="Molecule 0.18.0 molecule.boilerplate.out.Out 0" />
+          <title>Molecule 0.18.1 - molecule.boilerplate.out.Out_0</title>
+          <meta name="description" content="Molecule 0.18.1 - molecule.boilerplate.out.Out 0" />
+          <meta name="keywords" content="Molecule 0.18.1 molecule.boilerplate.out.Out 0" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../lib/index.css" media="screen" type="text/css" rel="stylesheet" />
@@ -28,7 +28,7 @@
         </head>
         <body>
       <div id="search">
-        <span id="doc-title">Molecule<span id="doc-version">0.18.0</span></span>
+        <span id="doc-title">Molecule<span id="doc-version">0.18.1</span></span>
         <span class="close-results"><span class="left">&lt;</span> Back</span>
         <div id="textfilter">
           <span class="input">
@@ -121,16 +121,16 @@
     <td>Implicit macro methods `m` to instantiate molecules from custom DSL molecule constructs.</td>
   </tr>
   <tr>
-    <td><a href="generic/index.html">generic</a><td>
-    <td>Interfaces to generic information about datoms and Datomic database.</td>
-  </tr>
-  <tr>
     <td><a href="input/index.html">input</a><td>
     <td>Input molecules awaiting input.</td>
   </tr>
   <tr>
-    <td><a href="macro/index.html">macro</a><td>
+    <td><a href="macro/index.html">macros</a><td>
     <td style="color:#888">Internal macros generating molecule code from custom DSL molecule constructs.</td>
+  </tr>
+  <tr>
+    <td><a href="generic/index.html">meta</a><td>
+    <td>Interfaces to meta information about datoms and Datomic database.</td>
   </tr>
   <tr>
     <td><a href="ops/index.html">ops</a><td>
@@ -301,7 +301,7 @@ Molecule macros can then type-safely deduct the type structure of composed molec
         <span class="kind">trait</span>
       </span>
       <span class="symbol">
-        <span class="name">Out_0</span><span class="tparams">[<span name="Ns0">Ns0</span>, <span name="Ns1">Ns1<span class="tparams">[<span name="_">_</span>]</span></span>, <span name="In1_0">In1_0<span class="tparams">[<span name="_">_</span>]</span></span>, <span name="In1_1">In1_1<span class="tparams">[<span name="_">_</span>, <span name="_">_</span>]</span></span>]</span><span class="result"> extends <a href="base$$NS00.html" class="extype" name="molecule.boilerplate.base.NS00">NS00</a>[<span class="extype" name="scala.Nothing">Nothing</span>] with <a href="../generic/datom/Datom_0.html" class="extype" name="molecule.generic.datom.Datom_0">Datom_0</a>[<span class="extype" name="molecule.boilerplate.out.Out_0.Ns0">Ns0</span>, <span class="extype" name="molecule.boilerplate.out.Out_0.Ns1">Ns1</span>, <span class="extype" name="molecule.boilerplate.out.Out_0.In1_0">In1_0</span>, <span class="extype" name="molecule.boilerplate.out.Out_0.In1_1">In1_1</span>] with <a href="../expression/AggregateKeywords$$Aggregate00.html" class="extype" name="molecule.expression.AggregateKeywords.Aggregate00">Aggregate00</a>[<span class="extype" name="molecule.boilerplate.out.Out_0.Ns0">Ns0</span>] with <a href="../composition/CompositeInit$$CompositeInit00.html" class="extype" name="molecule.composition.CompositeInit.CompositeInit00">CompositeInit00</a> with <a href="../composition/Tx$$Tx00.html" class="extype" name="molecule.composition.Tx.Tx00">Tx00</a></span>
+        <span class="name">Out_0</span><span class="tparams">[<span name="Ns0">Ns0</span>, <span name="Ns1">Ns1<span class="tparams">[<span name="_">_</span>]</span></span>, <span name="In1_0">In1_0<span class="tparams">[<span name="_">_</span>]</span></span>, <span name="In1_1">In1_1<span class="tparams">[<span name="_">_</span>, <span name="_">_</span>]</span></span>]</span><span class="result"> extends <a href="base$$NS00.html" class="extype" name="molecule.boilerplate.base.NS00">NS00</a>[<span class="extype" name="scala.Nothing">Nothing</span>] with <a href="../meta/datom/Datom_0.html" class="extype" name="molecule.meta.datom.Datom_0">Datom_0</a>[<span class="extype" name="molecule.boilerplate.out.Out_0.Ns0">Ns0</span>, <span class="extype" name="molecule.boilerplate.out.Out_0.Ns1">Ns1</span>, <span class="extype" name="molecule.boilerplate.out.Out_0.In1_0">In1_0</span>, <span class="extype" name="molecule.boilerplate.out.Out_0.In1_1">In1_1</span>] with <a href="../expression/AggregateKeywords$$Aggregate00.html" class="extype" name="molecule.expression.AggregateKeywords.Aggregate00">Aggregate00</a>[<span class="extype" name="molecule.boilerplate.out.Out_0.Ns0">Ns0</span>] with <a href="../composition/CompositeInit$$CompositeInit00.html" class="extype" name="molecule.composition.CompositeInit.CompositeInit00">CompositeInit00</a> with <a href="../composition/Tx$$Tx00.html" class="extype" name="molecule.composition.Tx.Tx00">Tx00</a></span>
       </span>
       </h4>
 
@@ -310,12 +310,12 @@ Molecule macros can then type-safely deduct the type structure of composed molec
           <span class="toggle">
             Linear Supertypes
           </span>
-          <div class="superTypes hiddenContent"><a href="../composition/Tx$$Tx00.html" class="extype" name="molecule.composition.Tx.Tx00">Tx00</a>, <a href="../composition/Tx.html" class="extype" name="molecule.composition.Tx">Tx</a>, <a href="../composition/CompositeInit$$CompositeInit00.html" class="extype" name="molecule.composition.CompositeInit.CompositeInit00">CompositeInit00</a>, <a href="../composition/CompositeInit.html" class="extype" name="molecule.composition.CompositeInit">CompositeInit</a>, <a href="../expression/AggregateKeywords$$Aggregate00.html" class="extype" name="molecule.expression.AggregateKeywords.Aggregate00">Aggregate00</a>[<span class="extype" name="molecule.boilerplate.out.Out_0.Ns0">Ns0</span>], <a href="../generic/datom/Datom_0.html" class="extype" name="molecule.generic.datom.Datom_0">Datom_0</a>[<span class="extype" name="molecule.boilerplate.out.Out_0.Ns0">Ns0</span>, <span class="extype" name="molecule.boilerplate.out.Out_0.Ns1">Ns1</span>, <span class="extype" name="molecule.boilerplate.out.Out_0.In1_0">In1_0</span>, <span class="extype" name="molecule.boilerplate.out.Out_0.In1_1">In1_1</span>], <a href="../generic/datom/Datom.html" class="extype" name="molecule.generic.datom.Datom">Datom</a>, <a href="base$$NS00.html" class="extype" name="molecule.boilerplate.base.NS00">NS00</a>[<span class="extype" name="scala.Nothing">Nothing</span>], <a href="base$$NS.html" class="extype" name="molecule.boilerplate.base.NS">NS</a>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
+          <div class="superTypes hiddenContent"><a href="../composition/Tx$$Tx00.html" class="extype" name="molecule.composition.Tx.Tx00">Tx00</a>, <a href="../composition/Tx.html" class="extype" name="molecule.composition.Tx">Tx</a>, <a href="../composition/CompositeInit$$CompositeInit00.html" class="extype" name="molecule.composition.CompositeInit.CompositeInit00">CompositeInit00</a>, <a href="../composition/CompositeInit.html" class="extype" name="molecule.composition.CompositeInit">CompositeInit</a>, <a href="../expression/AggregateKeywords$$Aggregate00.html" class="extype" name="molecule.expression.AggregateKeywords.Aggregate00">Aggregate00</a>[<span class="extype" name="molecule.boilerplate.out.Out_0.Ns0">Ns0</span>], <a href="../meta/datom/Datom_0.html" class="extype" name="molecule.meta.datom.Datom_0">Datom_0</a>[<span class="extype" name="molecule.boilerplate.out.Out_0.Ns0">Ns0</span>, <span class="extype" name="molecule.boilerplate.out.Out_0.Ns1">Ns1</span>, <span class="extype" name="molecule.boilerplate.out.Out_0.In1_0">In1_0</span>, <span class="extype" name="molecule.boilerplate.out.Out_0.In1_1">In1_1</span>], <a href="../meta/datom/Datom.html" class="extype" name="molecule.meta.datom.Datom">Datom</a>, <a href="base$$NS00.html" class="extype" name="molecule.boilerplate.base.NS00">NS00</a>[<span class="extype" name="scala.Nothing">Nothing</span>], <a href="base$$NS.html" class="extype" name="molecule.boilerplate.base.NS">NS</a>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div><div class="toggleContainer block diagram-container" id="inheritance-diagram-container">
                 <span class="toggle diagram-link">
                   Type Hierarchy
                 </span>
-                <div class="diagram" id="inheritance-diagram"><svg class="class-diagram" id="graph1" viewBox="0.00 0.00 610.00 120.00" height="120pt" width="610pt" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"><g transform="scale(1 1) rotate(0) translate(4 116)" class="graph" id="graph0"><polygon points="-4,4 -4,-116 606,-116 606,4 -4,4" stroke="none" fill="white"></polygon><g class="cluster" id="clust1"></g><g class="cluster" id="clust2"></g><!-- node0 --><g class="node this trait" id="graph1_0"><g id="a_this trait|graph1_0"><a xlink:title="molecule.boilerplate.out.Out_0 (this trait)" xlink:href="#inheritance-diagram"><path d="M415.333,-50C415.333,-50 280.667,-50 280.667,-50 276.333,-50 272,-45.6667 272,-41.3333 272,-41.3333 272,-32.6667 272,-32.6667 272,-28.3333 276.333,-24 280.667,-24 280.667,-24 415.333,-24 415.333,-24 419.667,-24 424,-28.3333 424,-32.6667 424,-32.6667 424,-41.3333 424,-41.3333 424,-45.6667 419.667,-50 415.333,-50" stroke="#2e6d82" fill="#2e6d82"></path><image xlink:href="../../lib/trait_diagram.png" y="-43" x="284" preserveAspectRatio="xMinYMin meet" height="12px" width="12px"></image><text fill="#ffffff" font-size="8.00" font-family="Source Code Pro" y="-34.6" x="303.855" text-anchor="start">Out_0[Ns0, Ns1, In1_0, In1_1]</text></a></g></g><!-- node1 --><g class="node trait" id="graph1_1"><g id="a_trait|graph1_1"><a xlink:title="molecule.boilerplate.base.NS00" xlink:href="base$$NS00.html#inheritance-diagram"><path d="M87.3333,-112C87.3333,-112 8.66667,-112 8.66667,-112 4.33333,-112 0,-107.667 0,-103.333 0,-103.333 0,-94.6667 0,-94.6667 0,-90.3333 4.33333,-86 8.66667,-86 8.66667,-86 87.3333,-86 87.3333,-86 91.6667,-86 96,-90.3333 96,-94.6667 96,-94.6667 96,-103.333 96,-103.333 96,-107.667 91.6667,-112 87.3333,-112" stroke="#2e6d82" fill="#2e6d82"></path><image xlink:href="../../lib/trait_diagram.png" y="-105" x="12" preserveAspectRatio="xMinYMin meet" height="12px" width="12px"></image><text fill="#ffffff" font-size="8.00" font-family="Source Code Pro" y="-96.6" x="31.873" text-anchor="start">NS00[Nothing]</text></a></g></g><!-- node1&#45;&gt;node0 --><g class="edge inheritance" id="graph1_1_0"><g id="a_inheritance|graph1_1_0"><a xlink:title="Out_0[Ns0, Ns1, In1_0, In1_1] is a subtype of NS00[Nothing]"><path d="M103.103,-86.3876C103.739,-86.2575 104.371,-86.1282 105,-86 166.517,-73.4494 236.903,-59.602 286.034,-50.0191" stroke="#d4d4d4" fill="none"></path><polygon points="102.556,-83.9989 96.1933,-87.8099 103.544,-88.7983 102.556,-83.9989" stroke="#d4d4d4" fill="none"></polygon></a></g></g><!-- node2 --><g class="node trait" id="graph1_2"><g id="a_trait|graph1_2"><a xlink:title="molecule.generic.datom.Datom_0" xlink:href="../generic/datom/Datom_0.html#inheritance-diagram"><path d="M267.333,-112C267.333,-112 122.667,-112 122.667,-112 118.333,-112 114,-107.667 114,-103.333 114,-103.333 114,-94.6667 114,-94.6667 114,-90.3333 118.333,-86 122.667,-86 122.667,-86 267.333,-86 267.333,-86 271.667,-86 276,-90.3333 276,-94.6667 276,-94.6667 276,-103.333 276,-103.333 276,-107.667 271.667,-112 267.333,-112" stroke="#2e6d82" fill="#2e6d82"></path><image xlink:href="../../lib/trait_diagram.png" y="-105" x="126" preserveAspectRatio="xMinYMin meet" height="12px" width="12px"></image><text fill="#ffffff" font-size="8.00" font-family="Source Code Pro" y="-96.6" x="145.521" text-anchor="start">Datom_0[Ns0, Ns1, In1_0, In1_1]</text></a></g></g><!-- node2&#45;&gt;node0 --><g class="edge inheritance" id="graph1_2_0"><g id="a_inheritance|graph1_2_0"><a xlink:title="Out_0[Ns0, Ns1, In1_0, In1_1] is a subtype of Datom_0[Ns0, Ns1, In1_0, In1_1]"><path d="M232.737,-83.2013C258.784,-72.9866 292.98,-59.5763 317.346,-50.0213" stroke="#d4d4d4" fill="none"></path><polygon points="231.584,-81.0215 225.962,-85.8581 233.373,-85.5833 231.584,-81.0215" stroke="#d4d4d4" fill="none"></polygon></a></g></g><!-- node3 --><g class="node trait" id="graph1_3"><g id="a_trait|graph1_3"><a xlink:title="molecule.expression.AggregateKeywords.Aggregate00" xlink:href="../expression/AggregateKeywords$$Aggregate00.html#inheritance-diagram"><path d="M393.333,-112C393.333,-112 302.667,-112 302.667,-112 298.333,-112 294,-107.667 294,-103.333 294,-103.333 294,-94.6667 294,-94.6667 294,-90.3333 298.333,-86 302.667,-86 302.667,-86 393.333,-86 393.333,-86 397.667,-86 402,-90.3333 402,-94.6667 402,-94.6667 402,-103.333 402,-103.333 402,-107.667 397.667,-112 393.333,-112" stroke="#2e6d82" fill="#2e6d82"></path><image xlink:href="../../lib/trait_diagram.png" y="-105" x="306" preserveAspectRatio="xMinYMin meet" height="12px" width="12px"></image><text fill="#ffffff" font-size="8.00" font-family="Source Code Pro" y="-96.6" x="325.645" text-anchor="start">Aggregate00[Ns0]</text></a></g></g><!-- node3&#45;&gt;node0 --><g class="edge inheritance" id="graph1_3_0"><g id="a_inheritance|graph1_3_0"><a xlink:title="Out_0[Ns0, Ns1, In1_0, In1_1] is a subtype of Aggregate00[Ns0]"><path d="M348,-78.7534C348,-69.3549 348,-58.3336 348,-50.1238" stroke="#d4d4d4" fill="none"></path><polygon points="345.55,-78.8581 348,-85.8581 350.45,-78.8581 345.55,-78.8581" stroke="#d4d4d4" fill="none"></polygon></a></g></g><!-- node4 --><g class="node trait" id="graph1_4"><g id="a_trait|graph1_4"><a xlink:title="molecule.composition.CompositeInit.CompositeInit00" xlink:href="../composition/CompositeInit$$CompositeInit00.html#inheritance-diagram"><path d="M513.333,-112C513.333,-112 428.667,-112 428.667,-112 424.333,-112 420,-107.667 420,-103.333 420,-103.333 420,-94.6667 420,-94.6667 420,-90.3333 424.333,-86 428.667,-86 428.667,-86 513.333,-86 513.333,-86 517.667,-86 522,-90.3333 522,-94.6667 522,-94.6667 522,-103.333 522,-103.333 522,-107.667 517.667,-112 513.333,-112" stroke="#2e6d82" fill="#2e6d82"></path><image xlink:href="../../lib/trait_diagram.png" y="-105" x="432" preserveAspectRatio="xMinYMin meet" height="12px" width="12px"></image><text fill="#ffffff" font-size="8.00" font-family="Source Code Pro" y="-96.6" x="451.984" text-anchor="start">CompositeInit00</text></a></g></g><!-- node4&#45;&gt;node0 --><g class="edge inheritance" id="graph1_4_0"><g id="a_inheritance|graph1_4_0"><a xlink:title="Out_0[Ns0, Ns1, In1_0, In1_1] is a subtype of CompositeInit00"><path d="M439.61,-82.6877C418.884,-72.5774 392.1,-59.5123 372.854,-50.1238" stroke="#d4d4d4" fill="none"></path><polygon points="438.744,-84.9911 446.109,-85.8581 440.892,-80.5871 438.744,-84.9911" stroke="#d4d4d4" fill="none"></polygon></a></g></g><!-- node5 --><g class="node trait" id="graph1_5"><g id="a_trait|graph1_5"><a xlink:title="molecule.composition.Tx.Tx00" xlink:href="../composition/Tx$$Tx00.html#inheritance-diagram"><path d="M593.333,-112C593.333,-112 548.667,-112 548.667,-112 544.333,-112 540,-107.667 540,-103.333 540,-103.333 540,-94.6667 540,-94.6667 540,-90.3333 544.333,-86 548.667,-86 548.667,-86 593.333,-86 593.333,-86 597.667,-86 602,-90.3333 602,-94.6667 602,-94.6667 602,-103.333 602,-103.333 602,-107.667 597.667,-112 593.333,-112" stroke="#2e6d82" fill="#2e6d82"></path><image xlink:href="../../lib/trait_diagram.png" y="-105" x="552" preserveAspectRatio="xMinYMin meet" height="12px" width="12px"></image><text fill="#ffffff" font-size="8.00" font-family="Source Code Pro" y="-96.6" x="571.996" text-anchor="start">Tx00</text></a></g></g><!-- node5&#45;&gt;node0 --><g class="edge inheritance" id="graph1_5_0"><g id="a_inheritance|graph1_5_0"><a xlink:title="Out_0[Ns0, Ns1, In1_0, In1_1] is a subtype of Tx00"><path d="M532.846,-86.5214C532.226,-86.3456 531.611,-86.1716 531,-86 485.309,-73.1582 432.893,-59.5204 395.902,-50.0768" stroke="#d4d4d4" fill="none"></path><polygon points="532.183,-88.8799 539.587,-88.4632 533.539,-84.1713 532.183,-88.8799" stroke="#d4d4d4" fill="none"></polygon></a></g></g></g></svg></div>
+                <div class="diagram" id="inheritance-diagram"><svg class="class-diagram" id="graph1" viewBox="0.00 0.00 610.00 120.00" height="120pt" width="610pt" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"><g transform="scale(1 1) rotate(0) translate(4 116)" class="graph" id="graph0"><polygon points="-4,4 -4,-116 606,-116 606,4 -4,4" stroke="none" fill="white"></polygon><g class="cluster" id="clust1"></g><g class="cluster" id="clust2"></g><!-- node0 --><g class="node this trait" id="graph1_0"><g id="a_this trait|graph1_0"><a xlink:title="molecule.boilerplate.out.Out_0 (this trait)" xlink:href="#inheritance-diagram"><path d="M415.333,-50C415.333,-50 280.667,-50 280.667,-50 276.333,-50 272,-45.6667 272,-41.3333 272,-41.3333 272,-32.6667 272,-32.6667 272,-28.3333 276.333,-24 280.667,-24 280.667,-24 415.333,-24 415.333,-24 419.667,-24 424,-28.3333 424,-32.6667 424,-32.6667 424,-41.3333 424,-41.3333 424,-45.6667 419.667,-50 415.333,-50" stroke="#2e6d82" fill="#2e6d82"></path><image xlink:href="../../lib/trait_diagram.png" y="-43" x="284" preserveAspectRatio="xMinYMin meet" height="12px" width="12px"></image><text fill="#ffffff" font-size="8.00" font-family="Source Code Pro" y="-34.6" x="303.855" text-anchor="start">Out_0[Ns0, Ns1, In1_0, In1_1]</text></a></g></g><!-- node1 --><g class="node trait" id="graph1_1"><g id="a_trait|graph1_1"><a xlink:title="molecule.boilerplate.base.NS00" xlink:href="base$$NS00.html#inheritance-diagram"><path d="M87.3333,-112C87.3333,-112 8.66667,-112 8.66667,-112 4.33333,-112 0,-107.667 0,-103.333 0,-103.333 0,-94.6667 0,-94.6667 0,-90.3333 4.33333,-86 8.66667,-86 8.66667,-86 87.3333,-86 87.3333,-86 91.6667,-86 96,-90.3333 96,-94.6667 96,-94.6667 96,-103.333 96,-103.333 96,-107.667 91.6667,-112 87.3333,-112" stroke="#2e6d82" fill="#2e6d82"></path><image xlink:href="../../lib/trait_diagram.png" y="-105" x="12" preserveAspectRatio="xMinYMin meet" height="12px" width="12px"></image><text fill="#ffffff" font-size="8.00" font-family="Source Code Pro" y="-96.6" x="31.873" text-anchor="start">NS00[Nothing]</text></a></g></g><!-- node1&#45;&gt;node0 --><g class="edge inheritance" id="graph1_1_0"><g id="a_inheritance|graph1_1_0"><a xlink:title="Out_0[Ns0, Ns1, In1_0, In1_1] is a subtype of NS00[Nothing]"><path d="M103.103,-86.3876C103.739,-86.2575 104.371,-86.1282 105,-86 166.517,-73.4494 236.903,-59.602 286.034,-50.0191" stroke="#d4d4d4" fill="none"></path><polygon points="102.556,-83.9989 96.1933,-87.8099 103.544,-88.7983 102.556,-83.9989" stroke="#d4d4d4" fill="none"></polygon></a></g></g><!-- node2 --><g class="node trait" id="graph1_2"><g id="a_trait|graph1_2"><a xlink:title="molecule.meta.datom.Datom_0" xlink:href="../meta/datom/Datom_0.html#inheritance-diagram"><path d="M267.333,-112C267.333,-112 122.667,-112 122.667,-112 118.333,-112 114,-107.667 114,-103.333 114,-103.333 114,-94.6667 114,-94.6667 114,-90.3333 118.333,-86 122.667,-86 122.667,-86 267.333,-86 267.333,-86 271.667,-86 276,-90.3333 276,-94.6667 276,-94.6667 276,-103.333 276,-103.333 276,-107.667 271.667,-112 267.333,-112" stroke="#2e6d82" fill="#2e6d82"></path><image xlink:href="../../lib/trait_diagram.png" y="-105" x="126" preserveAspectRatio="xMinYMin meet" height="12px" width="12px"></image><text fill="#ffffff" font-size="8.00" font-family="Source Code Pro" y="-96.6" x="145.521" text-anchor="start">Datom_0[Ns0, Ns1, In1_0, In1_1]</text></a></g></g><!-- node2&#45;&gt;node0 --><g class="edge inheritance" id="graph1_2_0"><g id="a_inheritance|graph1_2_0"><a xlink:title="Out_0[Ns0, Ns1, In1_0, In1_1] is a subtype of Datom_0[Ns0, Ns1, In1_0, In1_1]"><path d="M232.737,-83.2013C258.784,-72.9866 292.98,-59.5763 317.346,-50.0213" stroke="#d4d4d4" fill="none"></path><polygon points="231.584,-81.0215 225.962,-85.8581 233.373,-85.5833 231.584,-81.0215" stroke="#d4d4d4" fill="none"></polygon></a></g></g><!-- node3 --><g class="node trait" id="graph1_3"><g id="a_trait|graph1_3"><a xlink:title="molecule.expression.AggregateKeywords.Aggregate00" xlink:href="../expression/AggregateKeywords$$Aggregate00.html#inheritance-diagram"><path d="M393.333,-112C393.333,-112 302.667,-112 302.667,-112 298.333,-112 294,-107.667 294,-103.333 294,-103.333 294,-94.6667 294,-94.6667 294,-90.3333 298.333,-86 302.667,-86 302.667,-86 393.333,-86 393.333,-86 397.667,-86 402,-90.3333 402,-94.6667 402,-94.6667 402,-103.333 402,-103.333 402,-107.667 397.667,-112 393.333,-112" stroke="#2e6d82" fill="#2e6d82"></path><image xlink:href="../../lib/trait_diagram.png" y="-105" x="306" preserveAspectRatio="xMinYMin meet" height="12px" width="12px"></image><text fill="#ffffff" font-size="8.00" font-family="Source Code Pro" y="-96.6" x="325.645" text-anchor="start">Aggregate00[Ns0]</text></a></g></g><!-- node3&#45;&gt;node0 --><g class="edge inheritance" id="graph1_3_0"><g id="a_inheritance|graph1_3_0"><a xlink:title="Out_0[Ns0, Ns1, In1_0, In1_1] is a subtype of Aggregate00[Ns0]"><path d="M348,-78.7534C348,-69.3549 348,-58.3336 348,-50.1238" stroke="#d4d4d4" fill="none"></path><polygon points="345.55,-78.8581 348,-85.8581 350.45,-78.8581 345.55,-78.8581" stroke="#d4d4d4" fill="none"></polygon></a></g></g><!-- node4 --><g class="node trait" id="graph1_4"><g id="a_trait|graph1_4"><a xlink:title="molecule.composition.CompositeInit.CompositeInit00" xlink:href="../composition/CompositeInit$$CompositeInit00.html#inheritance-diagram"><path d="M513.333,-112C513.333,-112 428.667,-112 428.667,-112 424.333,-112 420,-107.667 420,-103.333 420,-103.333 420,-94.6667 420,-94.6667 420,-90.3333 424.333,-86 428.667,-86 428.667,-86 513.333,-86 513.333,-86 517.667,-86 522,-90.3333 522,-94.6667 522,-94.6667 522,-103.333 522,-103.333 522,-107.667 517.667,-112 513.333,-112" stroke="#2e6d82" fill="#2e6d82"></path><image xlink:href="../../lib/trait_diagram.png" y="-105" x="432" preserveAspectRatio="xMinYMin meet" height="12px" width="12px"></image><text fill="#ffffff" font-size="8.00" font-family="Source Code Pro" y="-96.6" x="451.984" text-anchor="start">CompositeInit00</text></a></g></g><!-- node4&#45;&gt;node0 --><g class="edge inheritance" id="graph1_4_0"><g id="a_inheritance|graph1_4_0"><a xlink:title="Out_0[Ns0, Ns1, In1_0, In1_1] is a subtype of CompositeInit00"><path d="M439.61,-82.6877C418.884,-72.5774 392.1,-59.5123 372.854,-50.1238" stroke="#d4d4d4" fill="none"></path><polygon points="438.744,-84.9911 446.109,-85.8581 440.892,-80.5871 438.744,-84.9911" stroke="#d4d4d4" fill="none"></polygon></a></g></g><!-- node5 --><g class="node trait" id="graph1_5"><g id="a_trait|graph1_5"><a xlink:title="molecule.composition.Tx.Tx00" xlink:href="../composition/Tx$$Tx00.html#inheritance-diagram"><path d="M593.333,-112C593.333,-112 548.667,-112 548.667,-112 544.333,-112 540,-107.667 540,-103.333 540,-103.333 540,-94.6667 540,-94.6667 540,-90.3333 544.333,-86 548.667,-86 548.667,-86 593.333,-86 593.333,-86 597.667,-86 602,-90.3333 602,-94.6667 602,-94.6667 602,-103.333 602,-103.333 602,-107.667 597.667,-112 593.333,-112" stroke="#2e6d82" fill="#2e6d82"></path><image xlink:href="../../lib/trait_diagram.png" y="-105" x="552" preserveAspectRatio="xMinYMin meet" height="12px" width="12px"></image><text fill="#ffffff" font-size="8.00" font-family="Source Code Pro" y="-96.6" x="571.996" text-anchor="start">Tx00</text></a></g></g><!-- node5&#45;&gt;node0 --><g class="edge inheritance" id="graph1_5_0"><g id="a_inheritance|graph1_5_0"><a xlink:title="Out_0[Ns0, Ns1, In1_0, In1_1] is a subtype of Tx00"><path d="M532.846,-86.5214C532.226,-86.3456 531.611,-86.1716 531,-86 485.309,-73.1582 432.893,-59.5204 395.902,-50.0768" stroke="#d4d4d4" fill="none"></path><polygon points="532.183,-88.8799 539.587,-88.4632 533.539,-84.1713 532.183,-88.8799" stroke="#d4d4d4" fill="none"></polygon></a></g></g></g></svg></div>
                 <div id="diagram-controls" class="hiddenContent">
                   <button id="diagram-zoom-out" class="diagram-btn"><i class="material-icons"></i></button>
                   <button id="diagram-zoom-in" class="diagram-btn"><i class="material-icons"></i></button>
@@ -346,7 +346,7 @@ Molecule macros can then type-safely deduct the type structure of composed molec
                   <span class="filtertype">Inherited<br />
                   </span>
                   <ol id="linearization">
-                    <li class="in" name="molecule.boilerplate.out.Out_0"><span>Out_0</span></li><li class="in" name="molecule.composition.Tx.Tx00"><span>Tx00</span></li><li class="in" name="molecule.composition.Tx"><span>Tx</span></li><li class="in" name="molecule.composition.CompositeInit.CompositeInit00"><span>CompositeInit00</span></li><li class="in" name="molecule.composition.CompositeInit"><span>CompositeInit</span></li><li class="in" name="molecule.expression.AggregateKeywords.Aggregate00"><span>Aggregate00</span></li><li class="in" name="molecule.generic.datom.Datom_0"><span>Datom_0</span></li><li class="in" name="molecule.generic.datom.Datom"><span>Datom</span></li><li class="in" name="molecule.boilerplate.base.NS00"><span>NS00</span></li><li class="in" name="molecule.boilerplate.base.NS"><span>NS</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                    <li class="in" name="molecule.boilerplate.out.Out_0"><span>Out_0</span></li><li class="in" name="molecule.composition.Tx.Tx00"><span>Tx00</span></li><li class="in" name="molecule.composition.Tx"><span>Tx</span></li><li class="in" name="molecule.composition.CompositeInit.CompositeInit00"><span>CompositeInit00</span></li><li class="in" name="molecule.composition.CompositeInit"><span>CompositeInit</span></li><li class="in" name="molecule.expression.AggregateKeywords.Aggregate00"><span>Aggregate00</span></li><li class="in" name="molecule.meta.datom.Datom_0"><span>Datom_0</span></li><li class="in" name="molecule.meta.datom.Datom"><span>Datom</span></li><li class="in" name="molecule.boilerplate.base.NS00"><span>NS00</span></li><li class="in" name="molecule.boilerplate.base.NS"><span>NS</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
                   </ol>
                 </div><div class="ancestors">
               <span class="filtertype"></span>
@@ -368,7 +368,7 @@ Molecule macros can then type-safely deduct the type structure of composed molec
 
         <div id="types" class="types members">
               <h3>Type Members</h3>
-              <ol><li name="molecule.generic.datom.Datom_0.Next_" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+              <ol><li name="molecule.meta.datom.Datom_0.Next_" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="Next_[Attr[_,_],Type]=Attr[Ns1[Type],In1[_,_]]withNs1[Type]"></a><a id="Next_[Attr[_,_],Type]:Next_[Attr,Type]"></a>
       <span class="permalink">
       <a href="../../molecule/boilerplate/out$$Out_0.html#Next_[Attr[_,_],Type]=Attr[Ns1[Type],In1[_,_]]withNs1[Type]" title="Permalink">
@@ -380,11 +380,11 @@ Molecule macros can then type-safely deduct the type structure of composed molec
         <span class="kind">type</span>
       </span>
       <span class="symbol">
-        <span class="name">Next_</span><span class="tparams">[<span name="Attr">Attr<span class="tparams">[<span name="_">_</span>, <span name="_">_</span>]</span></span>, <span name="Type">Type</span>]</span><span class="result alias"> = <span class="extype" name="molecule.generic.datom.Datom_0.Next_.Attr">Attr</span>[<span class="extype" name="molecule.boilerplate.out.Out_0.Ns1">Ns1</span>[<span class="extype" name="molecule.generic.datom.Datom_0.Next_.Type">Type</span>], <span class="extype" name="molecule.boilerplate.out.Out_0.In1_1">In1_1</span>[_, _]] with <span class="extype" name="molecule.boilerplate.out.Out_0.Ns1">Ns1</span>[<span class="extype" name="molecule.generic.datom.Datom_0.Next_.Type">Type</span>]</span>
+        <span class="name">Next_</span><span class="tparams">[<span name="Attr">Attr<span class="tparams">[<span name="_">_</span>, <span name="_">_</span>]</span></span>, <span name="Type">Type</span>]</span><span class="result alias"> = <span class="extype" name="molecule.meta.datom.Datom_0.Next_.Attr">Attr</span>[<span class="extype" name="molecule.boilerplate.out.Out_0.Ns1">Ns1</span>[<span class="extype" name="molecule.meta.datom.Datom_0.Next_.Type">Type</span>], <span class="extype" name="molecule.boilerplate.out.Out_0.In1_1">In1_1</span>[_, _]] with <span class="extype" name="molecule.boilerplate.out.Out_0.Ns1">Ns1</span>[<span class="extype" name="molecule.meta.datom.Datom_0.Next_.Type">Type</span>]</span>
       </span>
       
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../generic/datom/Datom_0.html" class="extype" name="molecule.generic.datom.Datom_0">Datom_0</a></dd></dl></div>
-    </li><li name="molecule.generic.datom.Datom_0.Stay_" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../meta/datom/Datom_0.html" class="extype" name="molecule.meta.datom.Datom_0">Datom_0</a></dd></dl></div>
+    </li><li name="molecule.meta.datom.Datom_0.Stay_" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="Stay_[Attr[_,_],Type]=Attr[Ns0,In0[_]]withNs0"></a><a id="Stay_[Attr[_,_],Type]:Stay_[Attr,Type]"></a>
       <span class="permalink">
       <a href="../../molecule/boilerplate/out$$Out_0.html#Stay_[Attr[_,_],Type]=Attr[Ns0,In0[_]]withNs0" title="Permalink">
@@ -396,14 +396,14 @@ Molecule macros can then type-safely deduct the type structure of composed molec
         <span class="kind">type</span>
       </span>
       <span class="symbol">
-        <span class="name">Stay_</span><span class="tparams">[<span name="Attr">Attr<span class="tparams">[<span name="_">_</span>, <span name="_">_</span>]</span></span>, <span name="Type">Type</span>]</span><span class="result alias"> = <span class="extype" name="molecule.generic.datom.Datom_0.Stay_.Attr">Attr</span>[<span class="extype" name="molecule.boilerplate.out.Out_0.Ns0">Ns0</span>, <span class="extype" name="molecule.boilerplate.out.Out_0.In1_0">In1_0</span>[_]] with <span class="extype" name="molecule.boilerplate.out.Out_0.Ns0">Ns0</span></span>
+        <span class="name">Stay_</span><span class="tparams">[<span name="Attr">Attr<span class="tparams">[<span name="_">_</span>, <span name="_">_</span>]</span></span>, <span name="Type">Type</span>]</span><span class="result alias"> = <span class="extype" name="molecule.meta.datom.Datom_0.Stay_.Attr">Attr</span>[<span class="extype" name="molecule.boilerplate.out.Out_0.Ns0">Ns0</span>, <span class="extype" name="molecule.boilerplate.out.Out_0.In1_0">In1_0</span>[_]] with <span class="extype" name="molecule.boilerplate.out.Out_0.Ns0">Ns0</span></span>
       </span>
       
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../generic/datom/Datom_0.html" class="extype" name="molecule.generic.datom.Datom_0">Datom_0</a></dd></dl></div>
-    </li><li name="molecule.generic.datom.Datom.a" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../meta/datom/Datom_0.html" class="extype" name="molecule.meta.datom.Datom_0">Datom_0</a></dd></dl></div>
+    </li><li name="molecule.meta.datom.Datom.a" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="a[Ns,In]extendsattributes.OneString[Ns,In]withattributes.Indexed"></a><a id="a[Ns,In]:a[Ns,In]"></a>
       <span class="permalink">
-      <a href="../../../molecule/generic/datom/Datom.html#a[Ns,In]extendsattributes.OneString[Ns,In]withattributes.Indexed" title="Permalink">
+      <a href="../../../molecule/meta/datom/Datom.html#a[Ns,In]extendsattributes.OneString[Ns,In]withattributes.Indexed" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -412,14 +412,14 @@ Molecule macros can then type-safely deduct the type structure of composed molec
         <span class="kind">class</span>
       </span>
       <span class="symbol">
-        <a title="(Partition)-Namespace-prefixed attribute name (&quot;:part_Ns/attr&quot;)" href="../generic/datom/Datom$a.html"><span class="name">a</span></a><span class="tparams">[<span name="Ns">Ns</span>, <span name="In">In</span>]</span><span class="result"> extends <a href="attributes$$OneString.html" class="extype" name="molecule.boilerplate.attributes.OneString">OneString</a>[<span class="extype" name="molecule.generic.datom.Datom.a.Ns">Ns</span>, <span class="extype" name="molecule.generic.datom.Datom.a.In">In</span>] with <a href="attributes$$Indexed.html" class="extype" name="molecule.boilerplate.attributes.Indexed">Indexed</a></span>
+        <a title="(Partition)-Namespace-prefixed attribute name (&quot;:part_Ns/attr&quot;)" href="../meta/datom/Datom$a.html"><span class="name">a</span></a><span class="tparams">[<span name="Ns">Ns</span>, <span name="In">In</span>]</span><span class="result"> extends <a href="attributes$$OneString.html" class="extype" name="molecule.boilerplate.attributes.OneString">OneString</a>[<span class="extype" name="molecule.meta.datom.Datom.a.Ns">Ns</span>, <span class="extype" name="molecule.meta.datom.Datom.a.In">In</span>] with <a href="attributes$$Indexed.html" class="extype" name="molecule.boilerplate.attributes.Indexed">Indexed</a></span>
       </span>
       
-      <p class="shortcomment cmt">(Partition)-Namespace-prefixed attribute name (&quot;:part_Ns/attr&quot;)</p><div class="fullcomment"><div class="comment cmt"><p>(Partition)-Namespace-prefixed attribute name (&quot;:part_Ns/attr&quot;)</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../generic/datom/Datom.html" class="extype" name="molecule.generic.datom.Datom">Datom</a></dd></dl></div>
-    </li><li name="molecule.generic.datom.Datom.e" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <p class="shortcomment cmt">(Partition)-Namespace-prefixed attribute name (&quot;:part_Ns/attr&quot;)</p><div class="fullcomment"><div class="comment cmt"><p>(Partition)-Namespace-prefixed attribute name (&quot;:part_Ns/attr&quot;)</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../meta/datom/Datom.html" class="extype" name="molecule.meta.datom.Datom">Datom</a></dd></dl></div>
+    </li><li name="molecule.meta.datom.Datom.e" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="e[Ns,In]extendsattributes.OneLong[Ns,In]withattributes.Indexed"></a><a id="e[Ns,In]:e[Ns,In]"></a>
       <span class="permalink">
-      <a href="../../../molecule/generic/datom/Datom.html#e[Ns,In]extendsattributes.OneLong[Ns,In]withattributes.Indexed" title="Permalink">
+      <a href="../../../molecule/meta/datom/Datom.html#e[Ns,In]extendsattributes.OneLong[Ns,In]withattributes.Indexed" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -428,14 +428,14 @@ Molecule macros can then type-safely deduct the type structure of composed molec
         <span class="kind">class</span>
       </span>
       <span class="symbol">
-        <a title="Entity id (Long)" href="../generic/datom/Datom$e.html"><span class="name">e</span></a><span class="tparams">[<span name="Ns">Ns</span>, <span name="In">In</span>]</span><span class="result"> extends <a href="attributes$$OneLong.html" class="extype" name="molecule.boilerplate.attributes.OneLong">OneLong</a>[<span class="extype" name="molecule.generic.datom.Datom.e.Ns">Ns</span>, <span class="extype" name="molecule.generic.datom.Datom.e.In">In</span>] with <a href="attributes$$Indexed.html" class="extype" name="molecule.boilerplate.attributes.Indexed">Indexed</a></span>
+        <a title="Entity id (Long)" href="../meta/datom/Datom$e.html"><span class="name">e</span></a><span class="tparams">[<span name="Ns">Ns</span>, <span name="In">In</span>]</span><span class="result"> extends <a href="attributes$$OneLong.html" class="extype" name="molecule.boilerplate.attributes.OneLong">OneLong</a>[<span class="extype" name="molecule.meta.datom.Datom.e.Ns">Ns</span>, <span class="extype" name="molecule.meta.datom.Datom.e.In">In</span>] with <a href="attributes$$Indexed.html" class="extype" name="molecule.boilerplate.attributes.Indexed">Indexed</a></span>
       </span>
       
-      <p class="shortcomment cmt">Entity id (Long)</p><div class="fullcomment"><div class="comment cmt"><p>Entity id (Long)</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../generic/datom/Datom.html" class="extype" name="molecule.generic.datom.Datom">Datom</a></dd></dl></div>
-    </li><li name="molecule.generic.datom.Datom.op" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <p class="shortcomment cmt">Entity id (Long)</p><div class="fullcomment"><div class="comment cmt"><p>Entity id (Long)</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../meta/datom/Datom.html" class="extype" name="molecule.meta.datom.Datom">Datom</a></dd></dl></div>
+    </li><li name="molecule.meta.datom.Datom.op" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="op[Ns,In]extendsattributes.OneBoolean[Ns,In]withattributes.Indexed"></a><a id="op[Ns,In]:op[Ns,In]"></a>
       <span class="permalink">
-      <a href="../../../molecule/generic/datom/Datom.html#op[Ns,In]extendsattributes.OneBoolean[Ns,In]withattributes.Indexed" title="Permalink">
+      <a href="../../../molecule/meta/datom/Datom.html#op[Ns,In]extendsattributes.OneBoolean[Ns,In]withattributes.Indexed" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -444,14 +444,14 @@ Molecule macros can then type-safely deduct the type structure of composed molec
         <span class="kind">class</span>
       </span>
       <span class="symbol">
-        <a title="Transaction operation: assertion (true) or retraction (false)" href="../generic/datom/Datom$op.html"><span class="name">op</span></a><span class="tparams">[<span name="Ns">Ns</span>, <span name="In">In</span>]</span><span class="result"> extends <a href="attributes$$OneBoolean.html" class="extype" name="molecule.boilerplate.attributes.OneBoolean">OneBoolean</a>[<span class="extype" name="molecule.generic.datom.Datom.op.Ns">Ns</span>, <span class="extype" name="molecule.generic.datom.Datom.op.In">In</span>] with <a href="attributes$$Indexed.html" class="extype" name="molecule.boilerplate.attributes.Indexed">Indexed</a></span>
+        <a title="Transaction operation: assertion (true) or retraction (false)" href="../meta/datom/Datom$op.html"><span class="name">op</span></a><span class="tparams">[<span name="Ns">Ns</span>, <span name="In">In</span>]</span><span class="result"> extends <a href="attributes$$OneBoolean.html" class="extype" name="molecule.boilerplate.attributes.OneBoolean">OneBoolean</a>[<span class="extype" name="molecule.meta.datom.Datom.op.Ns">Ns</span>, <span class="extype" name="molecule.meta.datom.Datom.op.In">In</span>] with <a href="attributes$$Indexed.html" class="extype" name="molecule.boilerplate.attributes.Indexed">Indexed</a></span>
       </span>
       
-      <p class="shortcomment cmt">Transaction operation: assertion (true) or retraction (false)</p><div class="fullcomment"><div class="comment cmt"><p>Transaction operation: assertion (true) or retraction (false)</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../generic/datom/Datom.html" class="extype" name="molecule.generic.datom.Datom">Datom</a></dd></dl></div>
-    </li><li name="molecule.generic.datom.Datom.t" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <p class="shortcomment cmt">Transaction operation: assertion (true) or retraction (false)</p><div class="fullcomment"><div class="comment cmt"><p>Transaction operation: assertion (true) or retraction (false)</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../meta/datom/Datom.html" class="extype" name="molecule.meta.datom.Datom">Datom</a></dd></dl></div>
+    </li><li name="molecule.meta.datom.Datom.t" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="t[Ns,In]extendsattributes.OneLong[Ns,In]withattributes.Indexed"></a><a id="t[Ns,In]:t[Ns,In]"></a>
       <span class="permalink">
-      <a href="../../../molecule/generic/datom/Datom.html#t[Ns,In]extendsattributes.OneLong[Ns,In]withattributes.Indexed" title="Permalink">
+      <a href="../../../molecule/meta/datom/Datom.html#t[Ns,In]extendsattributes.OneLong[Ns,In]withattributes.Indexed" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -460,14 +460,14 @@ Molecule macros can then type-safely deduct the type structure of composed molec
         <span class="kind">class</span>
       </span>
       <span class="symbol">
-        <a title="Transaction point in time t (Long/Int)" href="../generic/datom/Datom$t.html"><span class="name">t</span></a><span class="tparams">[<span name="Ns">Ns</span>, <span name="In">In</span>]</span><span class="result"> extends <a href="attributes$$OneLong.html" class="extype" name="molecule.boilerplate.attributes.OneLong">OneLong</a>[<span class="extype" name="molecule.generic.datom.Datom.t.Ns">Ns</span>, <span class="extype" name="molecule.generic.datom.Datom.t.In">In</span>] with <a href="attributes$$Indexed.html" class="extype" name="molecule.boilerplate.attributes.Indexed">Indexed</a></span>
+        <a title="Transaction point in time t (Long/Int)" href="../meta/datom/Datom$t.html"><span class="name">t</span></a><span class="tparams">[<span name="Ns">Ns</span>, <span name="In">In</span>]</span><span class="result"> extends <a href="attributes$$OneLong.html" class="extype" name="molecule.boilerplate.attributes.OneLong">OneLong</a>[<span class="extype" name="molecule.meta.datom.Datom.t.Ns">Ns</span>, <span class="extype" name="molecule.meta.datom.Datom.t.In">In</span>] with <a href="attributes$$Indexed.html" class="extype" name="molecule.boilerplate.attributes.Indexed">Indexed</a></span>
       </span>
       
-      <p class="shortcomment cmt">Transaction point in time <code>t</code> (Long/Int)</p><div class="fullcomment"><div class="comment cmt"><p>Transaction point in time <code>t</code> (Long/Int)</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../generic/datom/Datom.html" class="extype" name="molecule.generic.datom.Datom">Datom</a></dd></dl></div>
-    </li><li name="molecule.generic.datom.Datom.tx" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <p class="shortcomment cmt">Transaction point in time <code>t</code> (Long/Int)</p><div class="fullcomment"><div class="comment cmt"><p>Transaction point in time <code>t</code> (Long/Int)</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../meta/datom/Datom.html" class="extype" name="molecule.meta.datom.Datom">Datom</a></dd></dl></div>
+    </li><li name="molecule.meta.datom.Datom.tx" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="tx[Ns,In]extendsattributes.OneLong[Ns,In]withattributes.Indexed"></a><a id="tx[Ns,In]:tx[Ns,In]"></a>
       <span class="permalink">
-      <a href="../../../molecule/generic/datom/Datom.html#tx[Ns,In]extendsattributes.OneLong[Ns,In]withattributes.Indexed" title="Permalink">
+      <a href="../../../molecule/meta/datom/Datom.html#tx[Ns,In]extendsattributes.OneLong[Ns,In]withattributes.Indexed" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -476,14 +476,14 @@ Molecule macros can then type-safely deduct the type structure of composed molec
         <span class="kind">class</span>
       </span>
       <span class="symbol">
-        <a title="Transaction entity id (Long)" href="../generic/datom/Datom$tx.html"><span class="name">tx</span></a><span class="tparams">[<span name="Ns">Ns</span>, <span name="In">In</span>]</span><span class="result"> extends <a href="attributes$$OneLong.html" class="extype" name="molecule.boilerplate.attributes.OneLong">OneLong</a>[<span class="extype" name="molecule.generic.datom.Datom.tx.Ns">Ns</span>, <span class="extype" name="molecule.generic.datom.Datom.tx.In">In</span>] with <a href="attributes$$Indexed.html" class="extype" name="molecule.boilerplate.attributes.Indexed">Indexed</a></span>
+        <a title="Transaction entity id (Long)" href="../meta/datom/Datom$tx.html"><span class="name">tx</span></a><span class="tparams">[<span name="Ns">Ns</span>, <span name="In">In</span>]</span><span class="result"> extends <a href="attributes$$OneLong.html" class="extype" name="molecule.boilerplate.attributes.OneLong">OneLong</a>[<span class="extype" name="molecule.meta.datom.Datom.tx.Ns">Ns</span>, <span class="extype" name="molecule.meta.datom.Datom.tx.In">In</span>] with <a href="attributes$$Indexed.html" class="extype" name="molecule.boilerplate.attributes.Indexed">Indexed</a></span>
       </span>
       
-      <p class="shortcomment cmt">Transaction entity id (Long)</p><div class="fullcomment"><div class="comment cmt"><p>Transaction entity id (Long)</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../generic/datom/Datom.html" class="extype" name="molecule.generic.datom.Datom">Datom</a></dd></dl></div>
-    </li><li name="molecule.generic.datom.Datom.txInstant" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <p class="shortcomment cmt">Transaction entity id (Long)</p><div class="fullcomment"><div class="comment cmt"><p>Transaction entity id (Long)</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../meta/datom/Datom.html" class="extype" name="molecule.meta.datom.Datom">Datom</a></dd></dl></div>
+    </li><li name="molecule.meta.datom.Datom.txInstant" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="txInstant[Ns,In]extendsattributes.OneDate[Ns,In]withattributes.Indexed"></a><a id="txInstant[Ns,In]:txInstant[Ns,In]"></a>
       <span class="permalink">
-      <a href="../../../molecule/generic/datom/Datom.html#txInstant[Ns,In]extendsattributes.OneDate[Ns,In]withattributes.Indexed" title="Permalink">
+      <a href="../../../molecule/meta/datom/Datom.html#txInstant[Ns,In]extendsattributes.OneDate[Ns,In]withattributes.Indexed" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -492,14 +492,14 @@ Molecule macros can then type-safely deduct the type structure of composed molec
         <span class="kind">class</span>
       </span>
       <span class="symbol">
-        <a title="Transaction wall-clock time (Date)" href="../generic/datom/Datom$txInstant.html"><span class="name">txInstant</span></a><span class="tparams">[<span name="Ns">Ns</span>, <span name="In">In</span>]</span><span class="result"> extends <a href="attributes$$OneDate.html" class="extype" name="molecule.boilerplate.attributes.OneDate">OneDate</a>[<span class="extype" name="molecule.generic.datom.Datom.txInstant.Ns">Ns</span>, <span class="extype" name="molecule.generic.datom.Datom.txInstant.In">In</span>] with <a href="attributes$$Indexed.html" class="extype" name="molecule.boilerplate.attributes.Indexed">Indexed</a></span>
+        <a title="Transaction wall-clock time (Date)" href="../meta/datom/Datom$txInstant.html"><span class="name">txInstant</span></a><span class="tparams">[<span name="Ns">Ns</span>, <span name="In">In</span>]</span><span class="result"> extends <a href="attributes$$OneDate.html" class="extype" name="molecule.boilerplate.attributes.OneDate">OneDate</a>[<span class="extype" name="molecule.meta.datom.Datom.txInstant.Ns">Ns</span>, <span class="extype" name="molecule.meta.datom.Datom.txInstant.In">In</span>] with <a href="attributes$$Indexed.html" class="extype" name="molecule.boilerplate.attributes.Indexed">Indexed</a></span>
       </span>
       
-      <p class="shortcomment cmt">Transaction wall-clock time (Date)</p><div class="fullcomment"><div class="comment cmt"><p>Transaction wall-clock time (Date)</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../generic/datom/Datom.html" class="extype" name="molecule.generic.datom.Datom">Datom</a></dd></dl></div>
-    </li><li name="molecule.generic.datom.Datom.v" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <p class="shortcomment cmt">Transaction wall-clock time (Date)</p><div class="fullcomment"><div class="comment cmt"><p>Transaction wall-clock time (Date)</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../meta/datom/Datom.html" class="extype" name="molecule.meta.datom.Datom">Datom</a></dd></dl></div>
+    </li><li name="molecule.meta.datom.Datom.v" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="v[Ns,In]extendsattributes.OneAny[Ns,In]withattributes.Indexed"></a><a id="v[Ns,In]:v[Ns,In]"></a>
       <span class="permalink">
-      <a href="../../../molecule/generic/datom/Datom.html#v[Ns,In]extendsattributes.OneAny[Ns,In]withattributes.Indexed" title="Permalink">
+      <a href="../../../molecule/meta/datom/Datom.html#v[Ns,In]extendsattributes.OneAny[Ns,In]withattributes.Indexed" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -508,10 +508,10 @@ Molecule macros can then type-safely deduct the type structure of composed molec
         <span class="kind">class</span>
       </span>
       <span class="symbol">
-        <a title="Datom value (Any)" href="../generic/datom/Datom$v.html"><span class="name">v</span></a><span class="tparams">[<span name="Ns">Ns</span>, <span name="In">In</span>]</span><span class="result"> extends <a href="attributes$$OneAny.html" class="extype" name="molecule.boilerplate.attributes.OneAny">OneAny</a>[<span class="extype" name="molecule.generic.datom.Datom.v.Ns">Ns</span>, <span class="extype" name="molecule.generic.datom.Datom.v.In">In</span>] with <a href="attributes$$Indexed.html" class="extype" name="molecule.boilerplate.attributes.Indexed">Indexed</a></span>
+        <a title="Datom value (Any)" href="../meta/datom/Datom$v.html"><span class="name">v</span></a><span class="tparams">[<span name="Ns">Ns</span>, <span name="In">In</span>]</span><span class="result"> extends <a href="attributes$$OneAny.html" class="extype" name="molecule.boilerplate.attributes.OneAny">OneAny</a>[<span class="extype" name="molecule.meta.datom.Datom.v.Ns">Ns</span>, <span class="extype" name="molecule.meta.datom.Datom.v.In">In</span>] with <a href="attributes$$Indexed.html" class="extype" name="molecule.boilerplate.attributes.Indexed">Indexed</a></span>
       </span>
       
-      <p class="shortcomment cmt">Datom value (Any)</p><div class="fullcomment"><div class="comment cmt"><p>Datom value (Any)</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../generic/datom/Datom.html" class="extype" name="molecule.generic.datom.Datom">Datom</a></dd></dl></div>
+      <p class="shortcomment cmt">Datom value (Any)</p><div class="fullcomment"><div class="comment cmt"><p>Datom value (Any)</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../meta/datom/Datom.html" class="extype" name="molecule.meta.datom.Datom">Datom</a></dd></dl></div>
     </li></ol>
             </div>
 
@@ -2040,7 +2040,7 @@ Molecule macros can then type-safely deduct the type structure of composed molec
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
-    </li><li name="molecule.generic.datom.Datom_0#a" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+    </li><li name="molecule.meta.datom.Datom_0#a" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="a:Datom_0.this.Next_[Datom_0.this.a,String]"></a><a id="a:Next_[a,String]"></a>
       <span class="permalink">
       <a href="../../molecule/boilerplate/out$$Out_0.html#a:Datom_0.this.Next_[Datom_0.this.a,String]" title="Permalink">
@@ -2052,11 +2052,11 @@ Molecule macros can then type-safely deduct the type structure of composed molec
         <span class="kind">lazy val</span>
       </span>
       <span class="symbol">
-        <span class="name">a</span><span class="result">: <a href="#Next_[Attr[_,_],Type]=Attr[Ns1[Type],In1[_,_]]withNs1[Type]" class="extmbr" name="molecule.boilerplate.out.Out_0.Next_">Next_</a>[<a href="#a[Ns,In]extendsattributes.OneString[Ns,In]withattributes.Indexed" class="extmbr" name="molecule.generic.datom.Datom.a">a</a>, <span class="extype" name="scala.Predef.String">String</span>]</span>
+        <span class="name">a</span><span class="result">: <a href="#Next_[Attr[_,_],Type]=Attr[Ns1[Type],In1[_,_]]withNs1[Type]" class="extmbr" name="molecule.boilerplate.out.Out_0.Next_">Next_</a>[<a href="#a[Ns,In]extendsattributes.OneString[Ns,In]withattributes.Indexed" class="extmbr" name="molecule.meta.datom.Datom.a">a</a>, <span class="extype" name="scala.Predef.String">String</span>]</span>
       </span>
       
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../generic/datom/Datom_0.html" class="extype" name="molecule.generic.datom.Datom_0">Datom_0</a></dd></dl></div>
-    </li><li name="molecule.generic.datom.Datom_0#a_" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../meta/datom/Datom_0.html" class="extype" name="molecule.meta.datom.Datom_0">Datom_0</a></dd></dl></div>
+    </li><li name="molecule.meta.datom.Datom_0#a_" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="a_:Datom_0.this.Stay_[Datom_0.this.a,String]"></a><a id="a_:Stay_[a,String]"></a>
       <span class="permalink">
       <a href="../../molecule/boilerplate/out$$Out_0.html#a_:Datom_0.this.Stay_[Datom_0.this.a,String]" title="Permalink">
@@ -2068,10 +2068,10 @@ Molecule macros can then type-safely deduct the type structure of composed molec
         <span class="kind">lazy val</span>
       </span>
       <span class="symbol">
-        <span class="name">a_</span><span class="result">: <a href="#Stay_[Attr[_,_],Type]=Attr[Ns0,In0[_]]withNs0" class="extmbr" name="molecule.boilerplate.out.Out_0.Stay_">Stay_</a>[<a href="#a[Ns,In]extendsattributes.OneString[Ns,In]withattributes.Indexed" class="extmbr" name="molecule.generic.datom.Datom.a">a</a>, <span class="extype" name="scala.Predef.String">String</span>]</span>
+        <span class="name">a_</span><span class="result">: <a href="#Stay_[Attr[_,_],Type]=Attr[Ns0,In0[_]]withNs0" class="extmbr" name="molecule.boilerplate.out.Out_0.Stay_">Stay_</a>[<a href="#a[Ns,In]extendsattributes.OneString[Ns,In]withattributes.Indexed" class="extmbr" name="molecule.meta.datom.Datom.a">a</a>, <span class="extype" name="scala.Predef.String">String</span>]</span>
       </span>
       
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../generic/datom/Datom_0.html" class="extype" name="molecule.generic.datom.Datom_0">Datom_0</a></dd></dl></div>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../meta/datom/Datom_0.html" class="extype" name="molecule.meta.datom.Datom_0">Datom_0</a></dd></dl></div>
     </li><li name="scala.Any#asInstanceOf" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="asInstanceOf[T0]:T0"></a>
       <span class="permalink">
@@ -2112,7 +2112,7 @@ Molecule macros can then type-safely deduct the type structure of composed molec
     </span>)</span>
               
         </dd></dl></div>
-    </li><li name="molecule.generic.datom.Datom_0#e" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+    </li><li name="molecule.meta.datom.Datom_0#e" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="e:Datom_0.this.Next_[Datom_0.this.e,Long]"></a><a id="e:Next_[e,Long]"></a>
       <span class="permalink">
       <a href="../../molecule/boilerplate/out$$Out_0.html#e:Datom_0.this.Next_[Datom_0.this.e,Long]" title="Permalink">
@@ -2124,11 +2124,11 @@ Molecule macros can then type-safely deduct the type structure of composed molec
         <span class="kind">lazy val</span>
       </span>
       <span class="symbol">
-        <span class="name">e</span><span class="result">: <a href="#Next_[Attr[_,_],Type]=Attr[Ns1[Type],In1[_,_]]withNs1[Type]" class="extmbr" name="molecule.boilerplate.out.Out_0.Next_">Next_</a>[<a href="#e[Ns,In]extendsattributes.OneLong[Ns,In]withattributes.Indexed" class="extmbr" name="molecule.generic.datom.Datom.e">e</a>, <span class="extype" name="scala.Long">Long</span>]</span>
+        <span class="name">e</span><span class="result">: <a href="#Next_[Attr[_,_],Type]=Attr[Ns1[Type],In1[_,_]]withNs1[Type]" class="extmbr" name="molecule.boilerplate.out.Out_0.Next_">Next_</a>[<a href="#e[Ns,In]extendsattributes.OneLong[Ns,In]withattributes.Indexed" class="extmbr" name="molecule.meta.datom.Datom.e">e</a>, <span class="extype" name="scala.Long">Long</span>]</span>
       </span>
       
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../generic/datom/Datom_0.html" class="extype" name="molecule.generic.datom.Datom_0">Datom_0</a></dd></dl></div>
-    </li><li name="molecule.generic.datom.Datom_0#e_" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../meta/datom/Datom_0.html" class="extype" name="molecule.meta.datom.Datom_0">Datom_0</a></dd></dl></div>
+    </li><li name="molecule.meta.datom.Datom_0#e_" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="e_:Datom_0.this.Stay_[Datom_0.this.e,Long]"></a><a id="e_:Stay_[e,Long]"></a>
       <span class="permalink">
       <a href="../../molecule/boilerplate/out$$Out_0.html#e_:Datom_0.this.Stay_[Datom_0.this.e,Long]" title="Permalink">
@@ -2140,10 +2140,10 @@ Molecule macros can then type-safely deduct the type structure of composed molec
         <span class="kind">lazy val</span>
       </span>
       <span class="symbol">
-        <span class="name">e_</span><span class="result">: <a href="#Stay_[Attr[_,_],Type]=Attr[Ns0,In0[_]]withNs0" class="extmbr" name="molecule.boilerplate.out.Out_0.Stay_">Stay_</a>[<a href="#e[Ns,In]extendsattributes.OneLong[Ns,In]withattributes.Indexed" class="extmbr" name="molecule.generic.datom.Datom.e">e</a>, <span class="extype" name="scala.Long">Long</span>]</span>
+        <span class="name">e_</span><span class="result">: <a href="#Stay_[Attr[_,_],Type]=Attr[Ns0,In0[_]]withNs0" class="extmbr" name="molecule.boilerplate.out.Out_0.Stay_">Stay_</a>[<a href="#e[Ns,In]extendsattributes.OneLong[Ns,In]withattributes.Indexed" class="extmbr" name="molecule.meta.datom.Datom.e">e</a>, <span class="extype" name="scala.Long">Long</span>]</span>
       </span>
       
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../generic/datom/Datom_0.html" class="extype" name="molecule.generic.datom.Datom_0">Datom_0</a></dd></dl></div>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../meta/datom/Datom_0.html" class="extype" name="molecule.meta.datom.Datom_0">Datom_0</a></dd></dl></div>
     </li><li name="scala.AnyRef#eq" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="eq(x$1:AnyRef):Boolean"></a><a id="eq(AnyRef):Boolean"></a>
       <span class="permalink">
@@ -2306,7 +2306,7 @@ Molecule macros can then type-safely deduct the type structure of composed molec
                 <span class="name">@native</span><span class="args">()</span>
               
         </dd></dl></div>
-    </li><li name="molecule.generic.datom.Datom_0#op" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+    </li><li name="molecule.meta.datom.Datom_0#op" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="op:Datom_0.this.Next_[Datom_0.this.op,Boolean]"></a><a id="op:Next_[op,Boolean]"></a>
       <span class="permalink">
       <a href="../../molecule/boilerplate/out$$Out_0.html#op:Datom_0.this.Next_[Datom_0.this.op,Boolean]" title="Permalink">
@@ -2318,11 +2318,11 @@ Molecule macros can then type-safely deduct the type structure of composed molec
         <span class="kind">lazy val</span>
       </span>
       <span class="symbol">
-        <span class="name">op</span><span class="result">: <a href="#Next_[Attr[_,_],Type]=Attr[Ns1[Type],In1[_,_]]withNs1[Type]" class="extmbr" name="molecule.boilerplate.out.Out_0.Next_">Next_</a>[<a href="#op[Ns,In]extendsattributes.OneBoolean[Ns,In]withattributes.Indexed" class="extmbr" name="molecule.generic.datom.Datom.op">op</a>, <span class="extype" name="scala.Boolean">Boolean</span>]</span>
+        <span class="name">op</span><span class="result">: <a href="#Next_[Attr[_,_],Type]=Attr[Ns1[Type],In1[_,_]]withNs1[Type]" class="extmbr" name="molecule.boilerplate.out.Out_0.Next_">Next_</a>[<a href="#op[Ns,In]extendsattributes.OneBoolean[Ns,In]withattributes.Indexed" class="extmbr" name="molecule.meta.datom.Datom.op">op</a>, <span class="extype" name="scala.Boolean">Boolean</span>]</span>
       </span>
       
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../generic/datom/Datom_0.html" class="extype" name="molecule.generic.datom.Datom_0">Datom_0</a></dd></dl></div>
-    </li><li name="molecule.generic.datom.Datom_0#op_" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../meta/datom/Datom_0.html" class="extype" name="molecule.meta.datom.Datom_0">Datom_0</a></dd></dl></div>
+    </li><li name="molecule.meta.datom.Datom_0#op_" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="op_:Datom_0.this.Stay_[Datom_0.this.op,Boolean]"></a><a id="op_:Stay_[op,Boolean]"></a>
       <span class="permalink">
       <a href="../../molecule/boilerplate/out$$Out_0.html#op_:Datom_0.this.Stay_[Datom_0.this.op,Boolean]" title="Permalink">
@@ -2334,10 +2334,10 @@ Molecule macros can then type-safely deduct the type structure of composed molec
         <span class="kind">lazy val</span>
       </span>
       <span class="symbol">
-        <span class="name">op_</span><span class="result">: <a href="#Stay_[Attr[_,_],Type]=Attr[Ns0,In0[_]]withNs0" class="extmbr" name="molecule.boilerplate.out.Out_0.Stay_">Stay_</a>[<a href="#op[Ns,In]extendsattributes.OneBoolean[Ns,In]withattributes.Indexed" class="extmbr" name="molecule.generic.datom.Datom.op">op</a>, <span class="extype" name="scala.Boolean">Boolean</span>]</span>
+        <span class="name">op_</span><span class="result">: <a href="#Stay_[Attr[_,_],Type]=Attr[Ns0,In0[_]]withNs0" class="extmbr" name="molecule.boilerplate.out.Out_0.Stay_">Stay_</a>[<a href="#op[Ns,In]extendsattributes.OneBoolean[Ns,In]withattributes.Indexed" class="extmbr" name="molecule.meta.datom.Datom.op">op</a>, <span class="extype" name="scala.Boolean">Boolean</span>]</span>
       </span>
       
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../generic/datom/Datom_0.html" class="extype" name="molecule.generic.datom.Datom_0">Datom_0</a></dd></dl></div>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../meta/datom/Datom_0.html" class="extype" name="molecule.meta.datom.Datom_0">Datom_0</a></dd></dl></div>
     </li><li name="scala.AnyRef#synchronized" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="synchronized[T0](x$1:=&gt;T0):T0"></a><a id="synchronized[T0](⇒T0):T0"></a>
       <span class="permalink">
@@ -2354,7 +2354,7 @@ Molecule macros can then type-safely deduct the type structure of composed molec
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
-    </li><li name="molecule.generic.datom.Datom_0#t" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+    </li><li name="molecule.meta.datom.Datom_0#t" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="t:Datom_0.this.Next_[Datom_0.this.t,Long]"></a><a id="t:Next_[t,Long]"></a>
       <span class="permalink">
       <a href="../../molecule/boilerplate/out$$Out_0.html#t:Datom_0.this.Next_[Datom_0.this.t,Long]" title="Permalink">
@@ -2366,11 +2366,11 @@ Molecule macros can then type-safely deduct the type structure of composed molec
         <span class="kind">lazy val</span>
       </span>
       <span class="symbol">
-        <span class="name">t</span><span class="result">: <a href="#Next_[Attr[_,_],Type]=Attr[Ns1[Type],In1[_,_]]withNs1[Type]" class="extmbr" name="molecule.boilerplate.out.Out_0.Next_">Next_</a>[<a href="#t[Ns,In]extendsattributes.OneLong[Ns,In]withattributes.Indexed" class="extmbr" name="molecule.generic.datom.Datom.t">t</a>, <span class="extype" name="scala.Long">Long</span>]</span>
+        <span class="name">t</span><span class="result">: <a href="#Next_[Attr[_,_],Type]=Attr[Ns1[Type],In1[_,_]]withNs1[Type]" class="extmbr" name="molecule.boilerplate.out.Out_0.Next_">Next_</a>[<a href="#t[Ns,In]extendsattributes.OneLong[Ns,In]withattributes.Indexed" class="extmbr" name="molecule.meta.datom.Datom.t">t</a>, <span class="extype" name="scala.Long">Long</span>]</span>
       </span>
       
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../generic/datom/Datom_0.html" class="extype" name="molecule.generic.datom.Datom_0">Datom_0</a></dd></dl></div>
-    </li><li name="molecule.generic.datom.Datom_0#t_" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../meta/datom/Datom_0.html" class="extype" name="molecule.meta.datom.Datom_0">Datom_0</a></dd></dl></div>
+    </li><li name="molecule.meta.datom.Datom_0#t_" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="t_:Datom_0.this.Stay_[Datom_0.this.t,Long]"></a><a id="t_:Stay_[t,Long]"></a>
       <span class="permalink">
       <a href="../../molecule/boilerplate/out$$Out_0.html#t_:Datom_0.this.Stay_[Datom_0.this.t,Long]" title="Permalink">
@@ -2382,10 +2382,10 @@ Molecule macros can then type-safely deduct the type structure of composed molec
         <span class="kind">lazy val</span>
       </span>
       <span class="symbol">
-        <span class="name">t_</span><span class="result">: <a href="#Stay_[Attr[_,_],Type]=Attr[Ns0,In0[_]]withNs0" class="extmbr" name="molecule.boilerplate.out.Out_0.Stay_">Stay_</a>[<a href="#t[Ns,In]extendsattributes.OneLong[Ns,In]withattributes.Indexed" class="extmbr" name="molecule.generic.datom.Datom.t">t</a>, <span class="extype" name="scala.Long">Long</span>]</span>
+        <span class="name">t_</span><span class="result">: <a href="#Stay_[Attr[_,_],Type]=Attr[Ns0,In0[_]]withNs0" class="extmbr" name="molecule.boilerplate.out.Out_0.Stay_">Stay_</a>[<a href="#t[Ns,In]extendsattributes.OneLong[Ns,In]withattributes.Indexed" class="extmbr" name="molecule.meta.datom.Datom.t">t</a>, <span class="extype" name="scala.Long">Long</span>]</span>
       </span>
       
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../generic/datom/Datom_0.html" class="extype" name="molecule.generic.datom.Datom_0">Datom_0</a></dd></dl></div>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../meta/datom/Datom_0.html" class="extype" name="molecule.meta.datom.Datom_0">Datom_0</a></dd></dl></div>
     </li><li name="scala.AnyRef#toString" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="toString():String"></a>
       <span class="permalink">
@@ -2402,7 +2402,7 @@ Molecule macros can then type-safely deduct the type structure of composed molec
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
-    </li><li name="molecule.generic.datom.Datom_0#tx" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+    </li><li name="molecule.meta.datom.Datom_0#tx" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="tx:Datom_0.this.Next_[Datom_0.this.tx,Long]"></a><a id="tx:Next_[tx,Long]"></a>
       <span class="permalink">
       <a href="../../molecule/boilerplate/out$$Out_0.html#tx:Datom_0.this.Next_[Datom_0.this.tx,Long]" title="Permalink">
@@ -2414,11 +2414,11 @@ Molecule macros can then type-safely deduct the type structure of composed molec
         <span class="kind">lazy val</span>
       </span>
       <span class="symbol">
-        <span class="name">tx</span><span class="result">: <a href="#Next_[Attr[_,_],Type]=Attr[Ns1[Type],In1[_,_]]withNs1[Type]" class="extmbr" name="molecule.boilerplate.out.Out_0.Next_">Next_</a>[<a href="#tx[Ns,In]extendsattributes.OneLong[Ns,In]withattributes.Indexed" class="extmbr" name="molecule.generic.datom.Datom.tx">tx</a>, <span class="extype" name="scala.Long">Long</span>]</span>
+        <span class="name">tx</span><span class="result">: <a href="#Next_[Attr[_,_],Type]=Attr[Ns1[Type],In1[_,_]]withNs1[Type]" class="extmbr" name="molecule.boilerplate.out.Out_0.Next_">Next_</a>[<a href="#tx[Ns,In]extendsattributes.OneLong[Ns,In]withattributes.Indexed" class="extmbr" name="molecule.meta.datom.Datom.tx">tx</a>, <span class="extype" name="scala.Long">Long</span>]</span>
       </span>
       
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../generic/datom/Datom_0.html" class="extype" name="molecule.generic.datom.Datom_0">Datom_0</a></dd></dl></div>
-    </li><li name="molecule.generic.datom.Datom_0#txInstant" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../meta/datom/Datom_0.html" class="extype" name="molecule.meta.datom.Datom_0">Datom_0</a></dd></dl></div>
+    </li><li name="molecule.meta.datom.Datom_0#txInstant" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="txInstant:Datom_0.this.Next_[Datom_0.this.txInstant,java.util.Date]"></a><a id="txInstant:Next_[txInstant,Date]"></a>
       <span class="permalink">
       <a href="../../molecule/boilerplate/out$$Out_0.html#txInstant:Datom_0.this.Next_[Datom_0.this.txInstant,java.util.Date]" title="Permalink">
@@ -2430,11 +2430,11 @@ Molecule macros can then type-safely deduct the type structure of composed molec
         <span class="kind">lazy val</span>
       </span>
       <span class="symbol">
-        <span class="name">txInstant</span><span class="result">: <a href="#Next_[Attr[_,_],Type]=Attr[Ns1[Type],In1[_,_]]withNs1[Type]" class="extmbr" name="molecule.boilerplate.out.Out_0.Next_">Next_</a>[<a href="#txInstant[Ns,In]extendsattributes.OneDate[Ns,In]withattributes.Indexed" class="extmbr" name="molecule.generic.datom.Datom.txInstant">txInstant</a>, <span class="extype" name="java.util.Date">Date</span>]</span>
+        <span class="name">txInstant</span><span class="result">: <a href="#Next_[Attr[_,_],Type]=Attr[Ns1[Type],In1[_,_]]withNs1[Type]" class="extmbr" name="molecule.boilerplate.out.Out_0.Next_">Next_</a>[<a href="#txInstant[Ns,In]extendsattributes.OneDate[Ns,In]withattributes.Indexed" class="extmbr" name="molecule.meta.datom.Datom.txInstant">txInstant</a>, <span class="extype" name="java.util.Date">Date</span>]</span>
       </span>
       
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../generic/datom/Datom_0.html" class="extype" name="molecule.generic.datom.Datom_0">Datom_0</a></dd></dl></div>
-    </li><li name="molecule.generic.datom.Datom_0#txInstant_" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../meta/datom/Datom_0.html" class="extype" name="molecule.meta.datom.Datom_0">Datom_0</a></dd></dl></div>
+    </li><li name="molecule.meta.datom.Datom_0#txInstant_" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="txInstant_:Datom_0.this.Stay_[Datom_0.this.txInstant,java.util.Date]"></a><a id="txInstant_:Stay_[txInstant,Date]"></a>
       <span class="permalink">
       <a href="../../molecule/boilerplate/out$$Out_0.html#txInstant_:Datom_0.this.Stay_[Datom_0.this.txInstant,java.util.Date]" title="Permalink">
@@ -2446,11 +2446,11 @@ Molecule macros can then type-safely deduct the type structure of composed molec
         <span class="kind">lazy val</span>
       </span>
       <span class="symbol">
-        <span class="name">txInstant_</span><span class="result">: <a href="#Stay_[Attr[_,_],Type]=Attr[Ns0,In0[_]]withNs0" class="extmbr" name="molecule.boilerplate.out.Out_0.Stay_">Stay_</a>[<a href="#txInstant[Ns,In]extendsattributes.OneDate[Ns,In]withattributes.Indexed" class="extmbr" name="molecule.generic.datom.Datom.txInstant">txInstant</a>, <span class="extype" name="java.util.Date">Date</span>]</span>
+        <span class="name">txInstant_</span><span class="result">: <a href="#Stay_[Attr[_,_],Type]=Attr[Ns0,In0[_]]withNs0" class="extmbr" name="molecule.boilerplate.out.Out_0.Stay_">Stay_</a>[<a href="#txInstant[Ns,In]extendsattributes.OneDate[Ns,In]withattributes.Indexed" class="extmbr" name="molecule.meta.datom.Datom.txInstant">txInstant</a>, <span class="extype" name="java.util.Date">Date</span>]</span>
       </span>
       
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../generic/datom/Datom_0.html" class="extype" name="molecule.generic.datom.Datom_0">Datom_0</a></dd></dl></div>
-    </li><li name="molecule.generic.datom.Datom_0#tx_" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../meta/datom/Datom_0.html" class="extype" name="molecule.meta.datom.Datom_0">Datom_0</a></dd></dl></div>
+    </li><li name="molecule.meta.datom.Datom_0#tx_" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="tx_:Datom_0.this.Stay_[Datom_0.this.tx,Long]"></a><a id="tx_:Stay_[tx,Long]"></a>
       <span class="permalink">
       <a href="../../molecule/boilerplate/out$$Out_0.html#tx_:Datom_0.this.Stay_[Datom_0.this.tx,Long]" title="Permalink">
@@ -2462,11 +2462,11 @@ Molecule macros can then type-safely deduct the type structure of composed molec
         <span class="kind">lazy val</span>
       </span>
       <span class="symbol">
-        <span class="name">tx_</span><span class="result">: <a href="#Stay_[Attr[_,_],Type]=Attr[Ns0,In0[_]]withNs0" class="extmbr" name="molecule.boilerplate.out.Out_0.Stay_">Stay_</a>[<a href="#tx[Ns,In]extendsattributes.OneLong[Ns,In]withattributes.Indexed" class="extmbr" name="molecule.generic.datom.Datom.tx">tx</a>, <span class="extype" name="scala.Long">Long</span>]</span>
+        <span class="name">tx_</span><span class="result">: <a href="#Stay_[Attr[_,_],Type]=Attr[Ns0,In0[_]]withNs0" class="extmbr" name="molecule.boilerplate.out.Out_0.Stay_">Stay_</a>[<a href="#tx[Ns,In]extendsattributes.OneLong[Ns,In]withattributes.Indexed" class="extmbr" name="molecule.meta.datom.Datom.tx">tx</a>, <span class="extype" name="scala.Long">Long</span>]</span>
       </span>
       
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../generic/datom/Datom_0.html" class="extype" name="molecule.generic.datom.Datom_0">Datom_0</a></dd></dl></div>
-    </li><li name="molecule.generic.datom.Datom_0#v" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../meta/datom/Datom_0.html" class="extype" name="molecule.meta.datom.Datom_0">Datom_0</a></dd></dl></div>
+    </li><li name="molecule.meta.datom.Datom_0#v" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="v:Datom_0.this.Next_[Datom_0.this.v,Any]"></a><a id="v:Next_[v,Any]"></a>
       <span class="permalink">
       <a href="../../molecule/boilerplate/out$$Out_0.html#v:Datom_0.this.Next_[Datom_0.this.v,Any]" title="Permalink">
@@ -2478,11 +2478,11 @@ Molecule macros can then type-safely deduct the type structure of composed molec
         <span class="kind">lazy val</span>
       </span>
       <span class="symbol">
-        <span class="name">v</span><span class="result">: <a href="#Next_[Attr[_,_],Type]=Attr[Ns1[Type],In1[_,_]]withNs1[Type]" class="extmbr" name="molecule.boilerplate.out.Out_0.Next_">Next_</a>[<a href="#v[Ns,In]extendsattributes.OneAny[Ns,In]withattributes.Indexed" class="extmbr" name="molecule.generic.datom.Datom.v">v</a>, <span class="extype" name="scala.Any">Any</span>]</span>
+        <span class="name">v</span><span class="result">: <a href="#Next_[Attr[_,_],Type]=Attr[Ns1[Type],In1[_,_]]withNs1[Type]" class="extmbr" name="molecule.boilerplate.out.Out_0.Next_">Next_</a>[<a href="#v[Ns,In]extendsattributes.OneAny[Ns,In]withattributes.Indexed" class="extmbr" name="molecule.meta.datom.Datom.v">v</a>, <span class="extype" name="scala.Any">Any</span>]</span>
       </span>
       
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../generic/datom/Datom_0.html" class="extype" name="molecule.generic.datom.Datom_0">Datom_0</a></dd></dl></div>
-    </li><li name="molecule.generic.datom.Datom_0#v_" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../meta/datom/Datom_0.html" class="extype" name="molecule.meta.datom.Datom_0">Datom_0</a></dd></dl></div>
+    </li><li name="molecule.meta.datom.Datom_0#v_" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="v_:Datom_0.this.Stay_[Datom_0.this.v,Any]"></a><a id="v_:Stay_[v,Any]"></a>
       <span class="permalink">
       <a href="../../molecule/boilerplate/out$$Out_0.html#v_:Datom_0.this.Stay_[Datom_0.this.v,Any]" title="Permalink">
@@ -2494,10 +2494,10 @@ Molecule macros can then type-safely deduct the type structure of composed molec
         <span class="kind">lazy val</span>
       </span>
       <span class="symbol">
-        <span class="name">v_</span><span class="result">: <a href="#Stay_[Attr[_,_],Type]=Attr[Ns0,In0[_]]withNs0" class="extmbr" name="molecule.boilerplate.out.Out_0.Stay_">Stay_</a>[<a href="#v[Ns,In]extendsattributes.OneAny[Ns,In]withattributes.Indexed" class="extmbr" name="molecule.generic.datom.Datom.v">v</a>, <span class="extype" name="scala.Any">Any</span>]</span>
+        <span class="name">v_</span><span class="result">: <a href="#Stay_[Attr[_,_],Type]=Attr[Ns0,In0[_]]withNs0" class="extmbr" name="molecule.boilerplate.out.Out_0.Stay_">Stay_</a>[<a href="#v[Ns,In]extendsattributes.OneAny[Ns,In]withattributes.Indexed" class="extmbr" name="molecule.meta.datom.Datom.v">v</a>, <span class="extype" name="scala.Any">Any</span>]</span>
       </span>
       
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../generic/datom/Datom_0.html" class="extype" name="molecule.generic.datom.Datom_0">Datom_0</a></dd></dl></div>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../meta/datom/Datom_0.html" class="extype" name="molecule.meta.datom.Datom_0">Datom_0</a></dd></dl></div>
     </li><li name="scala.AnyRef#wait" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="wait():Unit"></a>
       <span class="permalink">
@@ -2602,10 +2602,10 @@ Molecule macros can then type-safely deduct the type structure of composed molec
               <h3>Inherited from <a href="../composition/CompositeInit.html" class="extype" name="molecule.composition.CompositeInit">CompositeInit</a></h3>
             </div><div class="parent" name="molecule.expression.AggregateKeywords.Aggregate00">
               <h3>Inherited from <a href="../expression/AggregateKeywords$$Aggregate00.html" class="extype" name="molecule.expression.AggregateKeywords.Aggregate00">Aggregate00</a>[<span class="extype" name="molecule.boilerplate.out.Out_0.Ns0">Ns0</span>]</h3>
-            </div><div class="parent" name="molecule.generic.datom.Datom_0">
-              <h3>Inherited from <a href="../generic/datom/Datom_0.html" class="extype" name="molecule.generic.datom.Datom_0">Datom_0</a>[<span class="extype" name="molecule.boilerplate.out.Out_0.Ns0">Ns0</span>, <span class="extype" name="molecule.boilerplate.out.Out_0.Ns1">Ns1</span>, <span class="extype" name="molecule.boilerplate.out.Out_0.In1_0">In1_0</span>, <span class="extype" name="molecule.boilerplate.out.Out_0.In1_1">In1_1</span>]</h3>
-            </div><div class="parent" name="molecule.generic.datom.Datom">
-              <h3>Inherited from <a href="../generic/datom/Datom.html" class="extype" name="molecule.generic.datom.Datom">Datom</a></h3>
+            </div><div class="parent" name="molecule.meta.datom.Datom_0">
+              <h3>Inherited from <a href="../meta/datom/Datom_0.html" class="extype" name="molecule.meta.datom.Datom_0">Datom_0</a>[<span class="extype" name="molecule.boilerplate.out.Out_0.Ns0">Ns0</span>, <span class="extype" name="molecule.boilerplate.out.Out_0.Ns1">Ns1</span>, <span class="extype" name="molecule.boilerplate.out.Out_0.In1_0">In1_0</span>, <span class="extype" name="molecule.boilerplate.out.Out_0.In1_1">In1_1</span>]</h3>
+            </div><div class="parent" name="molecule.meta.datom.Datom">
+              <h3>Inherited from <a href="../meta/datom/Datom.html" class="extype" name="molecule.meta.datom.Datom">Datom</a></h3>
             </div><div class="parent" name="molecule.boilerplate.base.NS00">
               <h3>Inherited from <a href="base$$NS00.html" class="extype" name="molecule.boilerplate.base.NS00">NS00</a>[<span class="extype" name="scala.Nothing">Nothing</span>]</h3>
             </div><div class="parent" name="molecule.boilerplate.base.NS">
