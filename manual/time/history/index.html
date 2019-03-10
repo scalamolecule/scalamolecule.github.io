@@ -287,16 +287,16 @@
 
                 
                 <li class="dropdown-submenu">
-                    <a href="/manual/meta/">Meta</a>
+                    <a href="/manual/generic/">Generic</a>
                     <ul class="dropdown-menu">
                         
-                        <li><a href="/manual/meta/datom/">Datom</a></li>
+                        <li><a href="/manual/generic/datom/">Datom</a></li>
                         
-                        <li><a href="/manual/meta/indexes/">Index</a></li>
+                        <li><a href="/manual/generic/indexes/">Indexes</a></li>
                         
-                        <li><a href="/manual/meta/log/">Log</a></li>
+                        <li><a href="/manual/generic/log/">Log</a></li>
                         
-                        <li><a href="/manual/meta/schema/">Schema</a></li>
+                        <li><a href="/manual/generic/schema/">Schema</a></li>
                         
                     </ul>
                 </li>
@@ -494,6 +494,27 @@
 
                 
                 <li class="dropdown-submenu">
+                    <a href="/api/molecule/generic">generic</a>
+                    <ul class="dropdown-menu">
+                        
+                        <li><a href="/api/molecule/generic/datom/index.html">Datom</a></li>
+                        
+                        <li><a href="/api/molecule/generic/index/index.html">Index</a></li>
+                        
+                        <li><a href="/api/molecule/generic/Log.html">Log</a></li>
+                        
+                        <li><a href="/api/molecule/generic/schema/index.html">Schema</a></li>
+                        
+                    </ul>
+                </li>
+                
+
+                
+                
+                
+
+                
+                <li class="dropdown-submenu">
                     <a href="/api/molecule/input">input</a>
                     <ul class="dropdown-menu">
                         
@@ -521,27 +542,6 @@
                     <ul class="dropdown-menu">
                         
                         <li><a href="/api/molecule/macros/TxFns.html">TxFns</a></li>
-                        
-                    </ul>
-                </li>
-                
-
-                
-                
-                
-
-                
-                <li class="dropdown-submenu">
-                    <a href="/api/molecule/meta">meta</a>
-                    <ul class="dropdown-menu">
-                        
-                        <li><a href="/api/molecule/meta/datom/index.html">Datom</a></li>
-                        
-                        <li><a href="/api/molecule/meta/index/index.html">Index</a></li>
-                        
-                        <li><a href="/api/molecule/meta/Log.html">Log</a></li>
-                        
-                        <li><a href="/api/molecule/meta/schema/index.html">Schema</a></li>
                         
                     </ul>
                 </li>
@@ -668,7 +668,7 @@
             <div class="col-md-2 column" style="padding-top:20px;padding-right:0px;">
                 <ul class="nav nav-pills" style="float:right;">
                     <li>
-                        <a href="/changelog" style="margin-top:-2px;">v0.18.1</a>
+                        <a href="/changelog" style="margin-top:-2px;">v0.18.2</a>
                     </li>
                     <li>
                         <div style="padding-left:14px;">
@@ -727,10 +727,10 @@ val tx6 = result6.tx
 <h4 id="tx-op"><code>tx</code>, <code>op</code></h4>
 
 <p>The 4th column in the facts schema above shows the transaction entity id that is saved with each fact.
-We get this value by appending the &ldquo;meta attribute&rdquo; <code>tx</code> after an attribute.</p>
+We get this value by appending the &ldquo;generic attribute&rdquo; <code>tx</code> after an attribute.</p>
 
 <p>The 5th column shows the operation performed. <code>true</code> for added/asserted and <code>false</code> for retracted. We get this value by adding
-the meta attribute <code>op</code> after an attribute.</p>
+the generic attribute <code>op</code> after an attribute.</p>
 
 <p>Let&rsquo;s see the transaction values and operations over time for the attribute <code>likes</code>:</p>
 
@@ -747,7 +747,7 @@ of the historical data (Datomic of course keeps internal order). For brevity we 
 <h4 id="t-txinstant"><code>t</code>, <code>txInstant</code></h4>
 
 <p>Instead of getting the transaction entity id with <code>tx</code> we could also get the transaction value (an auto-incremented internal
-number for each transaction) with the meta attribute <code>t</code>:</p>
+number for each transaction) with the generic attribute <code>t</code>:</p>
 
 <pre><code class="language-scala">Person(fred).likes.t.op.getHistory === List(
   (&quot;pizza&quot;, t3, true), 
@@ -776,7 +776,7 @@ number for each transaction) with the meta attribute <code>t</code>:</p>
 
 <h4 id="a-v"><code>a</code>, <code>v</code></h4>
 
-<p>We can even use a meta attribute <code>a</code> for the attribute name and <code>v</code> for the value of an attribute. This allow us to for instance
+<p>We can even use a generic attribute <code>a</code> for the attribute name and <code>v</code> for the value of an attribute. This allow us to for instance
 track changes to all atrributes of an entity:</p>
 
 <pre><code class="language-scala">Person(fred).a.v.t.op.getHistory === List(
@@ -789,7 +789,7 @@ track changes to all atrributes of an entity:</p>
 
 <h3 id="expressions">Expressions</h3>
 
-<p>We can apply values to meta attributes in history queries to narrow our results:</p>
+<p>We can apply values to generic attributes in history queries to narrow our results:</p>
 
 <pre><code class="language-scala">// &quot;What has been retracted for the entity `fred`&quot;
 // - Fred disliked &quot;pizza&quot; at date6
@@ -1034,23 +1034,23 @@ examples from the Day of Datomic tutorials:</p>
     
     
     
-    <li><a href="/manual/meta/">Meta</a></li>
+    <li><a href="/manual/generic/">Generic</a></li>
     
     <ul class="level2">
       
-      <li><a href="/manual/meta/datom/">Datom</a></li>
+      <li><a href="/manual/generic/datom/">Datom</a></li>
       
       
       
-      <li><a href="/manual/meta/indexes/">Index</a></li>
+      <li><a href="/manual/generic/indexes/">Indexes</a></li>
       
       
       
-      <li><a href="/manual/meta/log/">Log</a></li>
+      <li><a href="/manual/generic/log/">Log</a></li>
       
       
       
-      <li><a href="/manual/meta/schema/">Schema</a></li>
+      <li><a href="/manual/generic/schema/">Schema</a></li>
       
       
     </ul>

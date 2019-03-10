@@ -287,16 +287,16 @@
 
                 
                 <li class="dropdown-submenu">
-                    <a href="/manual/meta/">Meta</a>
+                    <a href="/manual/generic/">Generic</a>
                     <ul class="dropdown-menu">
                         
-                        <li><a href="/manual/meta/datom/">Datom</a></li>
+                        <li><a href="/manual/generic/datom/">Datom</a></li>
                         
-                        <li><a href="/manual/meta/indexes/">Index</a></li>
+                        <li><a href="/manual/generic/indexes/">Indexes</a></li>
                         
-                        <li><a href="/manual/meta/log/">Log</a></li>
+                        <li><a href="/manual/generic/log/">Log</a></li>
                         
-                        <li><a href="/manual/meta/schema/">Schema</a></li>
+                        <li><a href="/manual/generic/schema/">Schema</a></li>
                         
                     </ul>
                 </li>
@@ -494,6 +494,27 @@
 
                 
                 <li class="dropdown-submenu">
+                    <a href="/api/molecule/generic">generic</a>
+                    <ul class="dropdown-menu">
+                        
+                        <li><a href="/api/molecule/generic/datom/index.html">Datom</a></li>
+                        
+                        <li><a href="/api/molecule/generic/index/index.html">Index</a></li>
+                        
+                        <li><a href="/api/molecule/generic/Log.html">Log</a></li>
+                        
+                        <li><a href="/api/molecule/generic/schema/index.html">Schema</a></li>
+                        
+                    </ul>
+                </li>
+                
+
+                
+                
+                
+
+                
+                <li class="dropdown-submenu">
                     <a href="/api/molecule/input">input</a>
                     <ul class="dropdown-menu">
                         
@@ -521,27 +542,6 @@
                     <ul class="dropdown-menu">
                         
                         <li><a href="/api/molecule/macros/TxFns.html">TxFns</a></li>
-                        
-                    </ul>
-                </li>
-                
-
-                
-                
-                
-
-                
-                <li class="dropdown-submenu">
-                    <a href="/api/molecule/meta">meta</a>
-                    <ul class="dropdown-menu">
-                        
-                        <li><a href="/api/molecule/meta/datom/index.html">Datom</a></li>
-                        
-                        <li><a href="/api/molecule/meta/index/index.html">Index</a></li>
-                        
-                        <li><a href="/api/molecule/meta/Log.html">Log</a></li>
-                        
-                        <li><a href="/api/molecule/meta/schema/index.html">Schema</a></li>
                         
                     </ul>
                 </li>
@@ -668,7 +668,7 @@
             <div class="col-md-2 column" style="padding-top:20px;padding-right:0px;">
                 <ul class="nav nav-pills" style="float:right;">
                     <li>
-                        <a href="/changelog" style="margin-top:-2px;">v0.18.1</a>
+                        <a href="/changelog" style="margin-top:-2px;">v0.18.2</a>
                     </li>
                     <li>
                         <div style="padding-left:14px;">
@@ -725,7 +725,7 @@
 
 <p><img src="/img/time/1.png" alt="" /></p>
 
-<p>In Molecule code we can get this information by adding the meta <code>tx</code> attribute after an attribute:</p>
+<p>In Molecule code we can get this information by adding the generic <code>tx</code> attribute after an attribute:</p>
 
 <pre><code class="language-scala">Person(e5).likes.tx.get.head === (&quot;pizza&quot;, tx4)
 </code></pre>
@@ -743,7 +743,7 @@ that Datomic generates automatically in the background for each transaction taki
 This can be useful if we for instance want to examine &ldquo;the previous&rdquo; transaction.</p>
 
 <p>As when getting the transaction entity id with <code>tx</code> we can get the transaction value by appending
-the meta Molecule attribute <code>t</code> after some attribute:</p>
+the generic Molecule attribute <code>t</code> after some attribute:</p>
 
 <pre><code class="language-scala">val someT = Person(e5).likes_.t.get.head
 </code></pre>
@@ -1082,23 +1082,23 @@ ourselves. The limit option is therefore mainly implemented to be able to work o
     
     
     
-    <li><a href="/manual/meta/">Meta</a></li>
+    <li><a href="/manual/generic/">Generic</a></li>
     
     <ul class="level2">
       
-      <li><a href="/manual/meta/datom/">Datom</a></li>
+      <li><a href="/manual/generic/datom/">Datom</a></li>
       
       
       
-      <li><a href="/manual/meta/indexes/">Index</a></li>
+      <li><a href="/manual/generic/indexes/">Indexes</a></li>
       
       
       
-      <li><a href="/manual/meta/log/">Log</a></li>
+      <li><a href="/manual/generic/log/">Log</a></li>
       
       
       
-      <li><a href="/manual/meta/schema/">Schema</a></li>
+      <li><a href="/manual/generic/schema/">Schema</a></li>
       
       
     </ul>

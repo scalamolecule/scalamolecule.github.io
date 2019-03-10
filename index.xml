@@ -73,13 +73,13 @@ Person.name.age.gender // etc  The fundamental building blocks are Namespaces li
     
     <item>
       <title>Datom</title>
-      <link>http://scalamolecule.org/manual/meta/datom/</link>
+      <link>http://scalamolecule.org/manual/generic/datom/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://scalamolecule.org/manual/meta/datom/</guid>
+      <guid>http://scalamolecule.org/manual/generic/datom/</guid>
       <description>Datom API Tests&amp;hellip;
 Datoms / quintuplets Attribute values are saved as quintuplets of information in Datomic:
-The Datom API in Molecule let us retrieve each element generically for any molecule we are working on by providing the following &amp;ldquo;meta attributes&amp;rdquo; that we can add to our custom molecules:
+The Datom API in Molecule let us retrieve each element generically for any molecule we are working on by providing the following &amp;ldquo;generic attributes&amp;rdquo; that we can add to our custom molecules:
  e - Entity id (Long) a - Attribute (String) v - Value (Any) t - Transaction point in time (Long alternatively Int) op - Operation: assertion / retraction (Boolean true/false)  The Transaction value has two more representations</description>
     </item>
     
@@ -163,11 +163,11 @@ Select all table values // Slick people.result  In molecule we would declare eac
     </item>
     
     <item>
-      <title>Index</title>
-      <link>http://scalamolecule.org/manual/meta/indexes/</link>
+      <title>Indexes</title>
+      <link>http://scalamolecule.org/manual/generic/indexes/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://scalamolecule.org/manual/meta/indexes/</guid>
+      <guid>http://scalamolecule.org/manual/generic/indexes/</guid>
       <description>Index APIs Tests&amp;hellip;
 Some index descriptions in the following sections respectfully quoted from the Datomic documentation.
 Datomic maintains four indexes that contain ordered sets of datoms. Each of these indexes is named based on the sort order used. E, A, and V are always sorted in ascending order, while T is always in descending order:
@@ -264,7 +264,7 @@ Atomic processing within the transaction Transaction functions
       <guid>http://scalamolecule.org/manual/transactions/tx-meta-data/</guid>
       <description>Transaction meta data Tests&amp;hellip;
 As we saw, a transaction in Datomic is also an entity with a timestamp fact. Since it&amp;rsquo;s an entity as any of our own entities, we can even add more facts that simply share the entity id of the transaction:
-Save Depending on our domain we can tailor any tx meta data that we find valuable to associate with some transactions. We could for instance be interested in &amp;ldquo;who did it&amp;rdquo; and &amp;ldquo;in what use case&amp;rdquo; it happened and create some meta attributes user and uc in an Audit namespace:</description>
+Save Depending on our domain we can tailor any tx meta data that we find valuable to associate with some transactions. We could for instance be interested in &amp;ldquo;who did it&amp;rdquo; and &amp;ldquo;in what use case&amp;rdquo; it happened and create some generic attributes user and uc in an Audit namespace:</description>
     </item>
     
     <item>
@@ -329,14 +329,14 @@ As an example we can imagine Fred being added in tx3 and then updated in tx6.</d
     
     <item>
       <title>Log</title>
-      <link>http://scalamolecule.org/manual/meta/log/</link>
+      <link>http://scalamolecule.org/manual/generic/log/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://scalamolecule.org/manual/meta/log/</guid>
+      <guid>http://scalamolecule.org/manual/generic/log/</guid>
       <description>Log API Tests&amp;hellip;
 Some index descriptions in the following sections respectfully quoted from the Datomic documentation.
 Datomic&amp;rsquo;s database log is a recording of all transaction data in historic order, organized for efficient access by transaction. The Log is therefore an efficient source of finding data by transaction time.
-Tx range and meta Log attributes The Molecule Log implementation takes two arguments to define a range of transactions between from (inclusive) and until (exclusive).</description>
+Tx range and generic Log attributes The Molecule Log implementation takes two arguments to define a range of transactions between from (inclusive) and until (exclusive).</description>
     </item>
     
     <item>
@@ -426,12 +426,12 @@ val persons1attr: List[String] = Person.name.get val persons2attrs: List[(String
     
     <item>
       <title>Schema</title>
-      <link>http://scalamolecule.org/manual/meta/schema/</link>
+      <link>http://scalamolecule.org/manual/generic/schema/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://scalamolecule.org/manual/meta/schema/</guid>
+      <guid>http://scalamolecule.org/manual/generic/schema/</guid>
       <description>Schema API Tests&amp;hellip;
-The meta Schema interface provides attributes to build a Schema molecule that query the Schema structure of the current database. Datomic&amp;rsquo;s bootstrapped attributes are transparently filtered out so that only schema data of the current database is returned.
+The generic Schema interface provides attributes to build a Schema molecule that query the Schema structure of the current database. Datomic&amp;rsquo;s bootstrapped attributes are transparently filtered out so that only schema data of the current database is returned.
 Generic Schema attributes The following Schema attributes can be used to build Schema molecules:
   Attribute &amp;nbsp;&amp;nbsp; Description Example value  id &amp;nbsp;&amp;nbsp; Attribute definition entity idLong a &amp;nbsp;&amp;nbsp; (Partition-)Namespace-prefixed attribute name &amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;ldquo;:ind_Person/name&amp;rdquo; or &amp;ldquo;:Person/name&amp;rdquo; if no partitions part &amp;nbsp;&amp;nbsp; Partition name.</description>
     </item>
@@ -587,14 +587,14 @@ The 5 ways of getting data have the following semantics:
     </item>
     
     <item>
-      <title>Meta</title>
-      <link>http://scalamolecule.org/manual/meta/</link>
+      <title>Generic</title>
+      <link>http://scalamolecule.org/manual/generic/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://scalamolecule.org/manual/meta/</guid>
-      <description>Meta attributes Tests&amp;hellip;
-Molecule provides access to meta data about data and Schema with the following 7 meta interfaces (each with a little example - read more by clicking on each title):
-Datom Get id of Ben entity with meta Datom attribute e
+      <guid>http://scalamolecule.org/manual/generic/</guid>
+      <description>Generic attributes Tests&amp;hellip;
+Molecule provides access to generic data about data and Schema with the following 7 generic interfaces (each with a little example - read more by clicking on each title):
+Datom Get id of Ben entity with generic Datom attribute e
 Person.e.name.get.head === (benEntityId, &amp;quot;Ben&amp;quot;)  EAVT Index Attributes and values of entity e1
 EAVT(e1).a.v.get === List( (&amp;quot;:Person/name&amp;quot;, &amp;quot;Ben&amp;quot;), (&amp;quot;:Person/age&amp;quot;, 42), (&amp;quot;:Golf/score&amp;quot;, 5.7) )  AVET Index Values, entities and transactions where attribute :Person/age is involved</description>
     </item>
@@ -619,7 +619,7 @@ Show Datalog queries and data All molecule query commands have a corresponding d
       <guid>http://scalamolecule.org/changelog/</guid>
       <description>Molecule changelog Github releases
 Main changes:
- 2019-03-09 v0.18.1 Shift Meta semantics 2019-03-07 v0.18.0 Synchronized internal naming scheme + bug fixes 2019-01-15 v0.17.0 Datoms, Indexes, Log, Schema and debugging 2018-12-02 v0.16.1 Sbt-molecule 0.7.0, bootstrap speed optimization 2018-11-25 v0.16.0 Async API + tx functions 2018-10-25 v0.15.0 10x-100x Compilation speed boost 2018-09-06 v0.14.0 Scala docs and semantic updates 2017-11-13 v0.13.0 Native Json output 2017-05-28 v0.12.0 Optional values in save-molecules 2017-05-19 v0.11.0 Time API 2016-10-19 v0.</description>
+ 2019-03-10 v0.18.2 Meta becomes Generic 2019-03-09 v0.18.1 Shift Meta semantics 2019-03-07 v0.18.0 Synchronized internal naming scheme + bug fixes 2019-01-15 v0.17.0 Datoms, Indexes, Log, Schema and debugging 2018-12-02 v0.16.1 Sbt-molecule 0.7.0, bootstrap speed optimization 2018-11-25 v0.16.0 Async API + tx functions 2018-10-25 v0.15.0 10x-100x Compilation speed boost 2018-09-06 v0.14.0 Scala docs and semantic updates 2017-11-13 v0.13.0 Native Json output 2017-05-28 v0.12.0 Optional values in save-molecules 2017-05-19 v0.</description>
     </item>
     
     <item>

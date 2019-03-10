@@ -287,16 +287,16 @@
 
                 
                 <li class="dropdown-submenu">
-                    <a href="/manual/meta/">Meta</a>
+                    <a href="/manual/generic/">Generic</a>
                     <ul class="dropdown-menu">
                         
-                        <li><a href="/manual/meta/datom/">Datom</a></li>
+                        <li><a href="/manual/generic/datom/">Datom</a></li>
                         
-                        <li><a href="/manual/meta/indexes/">Index</a></li>
+                        <li><a href="/manual/generic/indexes/">Indexes</a></li>
                         
-                        <li><a href="/manual/meta/log/">Log</a></li>
+                        <li><a href="/manual/generic/log/">Log</a></li>
                         
-                        <li><a href="/manual/meta/schema/">Schema</a></li>
+                        <li><a href="/manual/generic/schema/">Schema</a></li>
                         
                     </ul>
                 </li>
@@ -494,6 +494,27 @@
 
                 
                 <li class="dropdown-submenu">
+                    <a href="/api/molecule/generic">generic</a>
+                    <ul class="dropdown-menu">
+                        
+                        <li><a href="/api/molecule/generic/datom/index.html">Datom</a></li>
+                        
+                        <li><a href="/api/molecule/generic/index/index.html">Index</a></li>
+                        
+                        <li><a href="/api/molecule/generic/Log.html">Log</a></li>
+                        
+                        <li><a href="/api/molecule/generic/schema/index.html">Schema</a></li>
+                        
+                    </ul>
+                </li>
+                
+
+                
+                
+                
+
+                
+                <li class="dropdown-submenu">
                     <a href="/api/molecule/input">input</a>
                     <ul class="dropdown-menu">
                         
@@ -521,27 +542,6 @@
                     <ul class="dropdown-menu">
                         
                         <li><a href="/api/molecule/macros/TxFns.html">TxFns</a></li>
-                        
-                    </ul>
-                </li>
-                
-
-                
-                
-                
-
-                
-                <li class="dropdown-submenu">
-                    <a href="/api/molecule/meta">meta</a>
-                    <ul class="dropdown-menu">
-                        
-                        <li><a href="/api/molecule/meta/datom/index.html">Datom</a></li>
-                        
-                        <li><a href="/api/molecule/meta/index/index.html">Index</a></li>
-                        
-                        <li><a href="/api/molecule/meta/Log.html">Log</a></li>
-                        
-                        <li><a href="/api/molecule/meta/schema/index.html">Schema</a></li>
                         
                     </ul>
                 </li>
@@ -668,7 +668,7 @@
             <div class="col-md-2 column" style="padding-top:20px;padding-right:0px;">
                 <ul class="nav nav-pills" style="float:right;">
                     <li>
-                        <a href="/changelog" style="margin-top:-2px;">v0.18.1</a>
+                        <a href="/changelog" style="margin-top:-2px;">v0.18.2</a>
                     </li>
                     <li>
                         <div style="padding-left:14px;">
@@ -700,6 +700,7 @@
 <p>Main changes:</p>
 
 <ul>
+<li>2019-03-10 v0.18.2 <a href="#25">Meta becomes Generic</a></li>
 <li>2019-03-09 v0.18.1 <a href="#24">Shift Meta semantics</a></li>
 <li>2019-03-07 v0.18.0 <a href="#23">Synchronized internal naming scheme + bug fixes</a></li>
 <li>2019-01-15 v0.17.0 <a href="#22">Datoms, Indexes, Log, Schema and debugging</a></li>
@@ -726,11 +727,13 @@
 <li>2014-07-02 v0.1.0 <a href="#1">Initial commit - Seattle tutorial</a></li>
 </ul>
 
+<h2 id="25"><a href="#top">☝︎</a> Meta becomes Generic</h2>
+
+<p><em>2019-03-10 v0.18.2</em></p>
+
 <h2 id="24"><a href="#top">☝︎</a> Shift Meta semantics</h2>
 
 <p><em>2019-03-09 v0.18.1</em></p>
-
-<p>Re-aligning Meta semantics</p>
 
 <h2 id="23"><a href="#top">☝︎</a> Synchronized internal naming scheme + bug fixes</h2>
 
@@ -828,7 +831,7 @@ molecule code
 
 <h4 id="datoms">Datoms</h4>
 
-<p>Entity id of Ben with meta datom attribute <code>e</code> on a custom molecule&hellip;</p>
+<p>Entity id of Ben with generic datom attribute <code>e</code> on a custom molecule&hellip;</p>
 
 <pre><code class="language-scala">Person.e.name.get.head === (benEntityId, &quot;Ben&quot;)
 </code></pre>
