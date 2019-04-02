@@ -668,7 +668,7 @@
             <div class="col-md-2 column" style="padding-top:20px;padding-right:0px;">
                 <ul class="nav nav-pills" style="float:right;">
                     <li>
-                        <a href="/changelog" style="margin-top:-2px;">v0.18.2</a>
+                        <a href="/changelog" style="margin-top:-2px;">v0.18.3</a>
                     </li>
                     <li>
                         <div style="padding-left:14px;">
@@ -700,6 +700,7 @@
 <p>Main changes:</p>
 
 <ul>
+<li>2019-04-02 v0.18.3 <a href="#26">Bug fixes</a></li>
 <li>2019-03-10 v0.18.2 <a href="#25">Meta becomes Generic</a></li>
 <li>2019-03-09 v0.18.1 <a href="#24">Shift Meta semantics</a></li>
 <li>2019-03-07 v0.18.0 <a href="#23">Synchronized internal naming scheme + bug fixes</a></li>
@@ -725,6 +726,25 @@
 <li>2015-10-04 v0.3.0 <a href="#3">Nested data structures</a></li>
 <li>2014-12-25 v0.2.0 <a href="#2">Implemented Day-Of-Datomic and MBrainz</a></li>
 <li>2014-07-02 v0.1.0 <a href="#1">Initial commit - Seattle tutorial</a></li>
+</ul>
+
+<h2 id="26"><a href="#top">☝︎</a> Bug fixes</h2>
+
+<p><em>2019-04-02 v0.18.3</em></p>
+
+<p>Bugfixes:</p>
+
+<ul>
+<li>Card-many ref attributes now have the same api as other card-many attributes (Set&rsquo;s of values can now be applied to both types).</li>
+<li>Variable resolution on fulltext searches added.</li>
+<li>Text attributes can now handle text input with quotation marks.<br /></li>
+<li>Touching entity ids with <code>Entity</code> now correctly handles all types.</li>
+</ul>
+
+<p>Improvement:</p>
+
+<ul>
+<li>For a more direct query evaluation, applying a single value to an attribute is now <code>ground</code>ed to a variable instead of using <code>comparison</code>.</li>
 </ul>
 
 <h2 id="25"><a href="#top">☝︎</a> Meta becomes Generic</h2>
