@@ -668,7 +668,7 @@
             <div class="col-md-2 column" style="padding-top:20px;padding-right:0px;">
                 <ul class="nav nav-pills" style="float:right;">
                     <li>
-                        <a href="/changelog" style="margin-top:-2px;">v0.18.3</a>
+                        <a href="/changelog" style="margin-top:-2px;">v0.18.4</a>
                     </li>
                     <li>
                         <div style="padding-left:14px;">
@@ -699,7 +699,7 @@
 <a href="https://github.com/scalamolecule/molecule/blob/master/examples/src/test/scala/molecule/examples/dayOfDatomic/Aggregates.scala">Example tests</a></p>
 
 <p>Molecule wraps Datomic&rsquo;s native aggregate functions by applying special aggregate keyword objects to the attribute we want to
-aggregate on. The keyword objects are made available with the <code>molecule._</code> import.</p>
+aggregate on.</p>
 
 <p>Aggregate functions either return a single value or a collection of values:</p>
 
@@ -722,14 +722,14 @@ Person.age(max) // highest age
 
 <h4 id="count">count</h4>
 
-<p>Not to be confused with <code>sum</code>. <code>count</code> counts the total number of entities with an asserted <code>age</code> value</p>
+<p>Count the total number of entities with an asserted <code>age</code> value (not to be confused with <code>sum</code>).</p>
 
 <pre><code class="language-scala">Person.age(count) // count of all persons with an age (not the sum of ages)
 </code></pre>
 
 <h4 id="countdistinct">countDistinct</h4>
 
-<p>Not to be confused with <code>sum</code>. <code>count</code> counts the total number of entities with asserted <em>unique</em> <code>age</code> values</p>
+<p>Count the total number of entities with asserted <em>unique</em> <code>age</code> values (not to be confused with <code>sum</code>).</p>
 
 <pre><code class="language-scala">Person.age(countDistinct)  // count of unique ages
 </code></pre>

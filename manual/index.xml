@@ -366,9 +366,10 @@ Person.name.likes.getWith(&amp;lt;tx8Data&amp;gt;) === ... // Persons after appl
       
       <guid>http://scalamolecule.org/manual/attributes/aggregates/</guid>
       <description>Aggregates Core tests | Example tests
-Molecule wraps Datomic&amp;rsquo;s native aggregate functions by applying special aggregate keyword objects to the attribute we want to aggregate on. The keyword objects are made available with the molecule._ import.
+Molecule wraps Datomic&amp;rsquo;s native aggregate functions by applying special aggregate keyword objects to the attribute we want to aggregate on.
 Aggregate functions either return a single value or a collection of values:
-Aggregates returning a single value min/max Applying the min or max aggregate keyword object as a value to the age attribute returns the lowest/highest ages.</description>
+Aggregates returning a single value min/max Applying the min or max aggregate keyword object as a value to the age attribute returns the lowest/highest ages.
+Person.age(min) // lowest age Person.age(max) // highest age  min/max supports all attribute types.</description>
     </item>
     
     <item>
