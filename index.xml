@@ -474,10 +474,10 @@ This demonstrates that Datomic/Molecule Namespaces are not like Tables in SQL. T
     
     <item>
       <title>Get Json</title>
-      <link>http://scalamolecule.org/manual/crud/getJson/</link>
+      <link>http://scalamolecule.org/manual/crud/get-json/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://scalamolecule.org/manual/crud/getJson/</guid>
+      <guid>http://scalamolecule.org/manual/crud/get-json/</guid>
       <description>Get Json formatted Data Tests&amp;hellip;
 We can get data in json format directly from the database by calling getJson on a molecule. So instead of converting tuples of data to json with some 3rd party library we can call getJson and pass the json data string directly to an Angular table for instance.
 Internally, Molecule builds the json string in a StringBuffer directly from the raw data coming from Datomic (with regards to types being quoted or not).</description>
