@@ -620,7 +620,7 @@ Show Datalog queries and data All molecule query commands have a corresponding d
       <guid>http://scalamolecule.org/changelog/</guid>
       <description>Molecule changelog Github releases
 Main changes:
- 2019-05-13 v0.18.4 Aggregates for card-many attributes 2019-04-02 v0.18.3 Bug fixes 2019-03-10 v0.18.2 Meta becomes Generic 2019-03-09 v0.18.1 Shift Meta semantics 2019-03-07 v0.18.0 Synchronized internal naming scheme + bug fixes 2019-01-15 v0.17.0 Datoms, Indexes, Log, Schema and debugging 2018-12-02 v0.16.1 Sbt-molecule 0.7.0, bootstrap speed optimization 2018-11-25 v0.16.0 Async API + tx functions 2018-10-25 v0.15.0 10x-100x Compilation speed boost 2018-09-06 v0.14.0 Scala docs and semantic updates 2017-11-13 v0.</description>
+ 2019-05-17 v0.18.5 Adapting to sbt-molecule 0.8.1 2019-05-13 v0.18.4 Aggregates for card-many attributes 2019-04-02 v0.18.3 Bug fixes 2019-03-10 v0.18.2 Meta becomes Generic 2019-03-09 v0.18.1 Shift Meta semantics 2019-03-07 v0.18.0 Synchronized internal naming scheme + bug fixes 2019-01-15 v0.17.0 Datoms, Indexes, Log, Schema and debugging 2018-12-02 v0.16.1 Sbt-molecule 0.7.0, bootstrap speed optimization 2018-11-25 v0.16.0 Async API + tx functions 2018-10-25 v0.15.0 10x-100x Compilation speed boost 2018-09-06 v0.</description>
     </item>
     
     <item>
