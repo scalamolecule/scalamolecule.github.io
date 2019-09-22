@@ -700,6 +700,7 @@
 <p>Main changes:</p>
 
 <ul>
+<li>2019-09.22 v0.19.0 <a href="#29">Cross-compiling to Scala 2.13.1 and 2.12.10</a></li>
 <li>2019-05-17 v0.18.5 <a href="#28">Adapting to sbt-molecule 0.8.1</a></li>
 <li>2019-05-13 v0.18.4 <a href="#27">Aggregates for card-many attributes</a></li>
 <li>2019-04-02 v0.18.3 <a href="#26">Bug fixes</a></li>
@@ -728,6 +729,21 @@
 <li>2015-10-04 v0.3.0 <a href="#3">Nested data structures</a></li>
 <li>2014-12-25 v0.2.0 <a href="#2">Implemented Day-Of-Datomic and MBrainz</a></li>
 <li>2014-07-02 v0.1.0 <a href="#1">Initial commit - Seattle tutorial</a></li>
+</ul>
+
+<h2 id="29"><a href="#top">☝︎</a> Cross-compiling to Scala 2.13.1 and 2.12.10</h2>
+
+<p><em>2019-09-22 v0.19.0</em></p>
+
+<ul>
+<li>Molecule now cross-compiles to Scala 2.12.10 and 2.13.1</li>
+<li>Generic entity id <code>e</code> can now be used together with aggregates.</li>
+<li><code>ReBond</code> model element simplified (only affects internally).</li>
+<li>All cardinality many types now correctly casted with Entity touch.</li>
+<li>Now saving/inserting correct Float precision.</li>
+<li>Bug fix: correct namespace name when <code>e(count)</code> is first.</li>
+<li>bug fix: generic attr before ref.</li>
+<li>Internal model semantics clarification, changing <code>ns</code> to <code>nsFull</code>.</li>
 </ul>
 
 <h2 id="28"><a href="#top">☝︎</a> Adapting to sbt-molecule 0.8.1</h2>
