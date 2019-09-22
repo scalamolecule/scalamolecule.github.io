@@ -3,22 +3,22 @@
         <head>
           <meta http-equiv="X-UA-Compatible" content="IE=edge" />
           <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-          <title>Molecule 0.18.6 - molecule.expression.AggregateKeywords.distinct</title>
-          <meta name="description" content="Molecule 0.18.6 - molecule.expression.AggregateKeywords.distinct" />
-          <meta name="keywords" content="Molecule 0.18.6 molecule.expression.AggregateKeywords.distinct" />
+          <title>Molecule 0.19.0 - molecule.expression.AggregateKeywords.distinct</title>
+          <meta name="description" content="Molecule 0.19.0 - molecule.expression.AggregateKeywords.distinct" />
+          <meta name="keywords" content="Molecule 0.19.0 molecule.expression.AggregateKeywords.distinct" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
+      
       <link href="../../lib/index.css" media="screen" type="text/css" rel="stylesheet" />
       <link href="../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
       <link href="../../lib/diagrams.css" media="screen" type="text/css" rel="stylesheet" id="diagrams-css" />
-      <script type="text/javascript" src="../../lib/jquery.js"></script>
+      <script type="text/javascript" src="../../lib/jquery.min.js"></script>
       <script type="text/javascript" src="../../lib/jquery.panzoom.min.js"></script>
       <script type="text/javascript" src="../../lib/jquery.mousewheel.min.js"></script>
       <script type="text/javascript" src="../../lib/index.js"></script>
       <script type="text/javascript" src="../../index.js"></script>
       <script type="text/javascript" src="../../lib/scheduler.js"></script>
       <script type="text/javascript" src="../../lib/template.js"></script>
-      <script type="text/javascript" src="../../lib/tools.tooltip.js"></script>
       <script type="text/javascript" src="../../lib/modernizr.custom.js"></script><script type="text/javascript" src="../../lib/diagrams.js" id="diagrams-js"></script>
       <script type="text/javascript">
         /* this variable can be used by the JS to determine the path to the root document */
@@ -28,7 +28,7 @@
         </head>
         <body>
       <div id="search">
-        <span id="doc-title">Molecule<span id="doc-version">0.18.6</span></span>
+        <span id="doc-title">Molecule<span id="doc-version">0.19.0</span></span>
         <span class="close-results"><span class="left">&lt;</span> Back</span>
         <div id="textfilter">
           <span class="input">
@@ -56,7 +56,7 @@
                 <li name="_root_.root" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="_root_"></a><a id="root:_root_"></a>
       <span class="permalink">
-      <a href="index.html#_root_" title="Permalink">
+      <a href="../../index.html" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -75,7 +75,7 @@
     </li><li name="_root_.molecule" visbl="pub" class="indented1 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="molecule"></a><a id="molecule:molecule"></a>
       <span class="permalink">
-      <a href="index.html#molecule" title="Permalink">
+      <a href="../../molecule/index.html" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -153,7 +153,7 @@
     </li><li name="molecule.expression" visbl="pub" class="indented2 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="expression"></a><a id="expression:expression"></a>
       <span class="permalink">
-      <a href="../molecule/index.html#expression" title="Permalink">
+      <a href="../../molecule/expression/index.html" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -170,7 +170,7 @@
 Refine attribute matches with various <a href="AttrExpressions.html" class="extype" name="molecule.expression.AttrExpressions">attribute expressions</a>:</p><pre>Person.age(<span class="num">42</span>)                           <span class="cmt">// equality</span>
 Person.name.contains(<span class="lit">"John"</span>)             <span class="cmt">// fulltext search</span>
 Person.age.!=(<span class="num">42</span>)                        <span class="cmt">// negation (or `not`)</span>
-Person.age.&lt;(<span class="num">42</span>)                         <span class="cmt">// comparison (< > <= >=)</span>
+Person.age.&lt;(<span class="num">42</span>)                         <span class="cmt">// comparison (&lt; &gt; &lt;= &gt;=)</span>
 Person.name(<span class="lit">"John"</span> or <span class="lit">"Jonas"</span>)           <span class="cmt">// OR-logic</span>
 Person.age()                             <span class="cmt">// apply empty value to retract value(s) in updates</span>
 Person.hobbies.assert(<span class="lit">"golf"</span>)               <span class="cmt">// add value(s) to card-many attributes</span>
@@ -205,7 +205,7 @@ Person.age(variance).get.head === <span class="num">228.2222222222</span>   <spa
     </li><li name="molecule.expression.AggregateKeywords" visbl="pub" class="indented3 " data-isabs="true" fullComment="yes" group="Ungrouped">
       <a id="AggregateKeywordsextendsAnyRef"></a><a id="AggregateKeywords:AggregateKeywords"></a>
       <span class="permalink">
-      <a href="../../molecule/expression/index.html#AggregateKeywordsextendsAnyRef" title="Permalink">
+      <a href="../../molecule/expression/AggregateKeywords.html" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -351,7 +351,7 @@ Person.firstName.age(distinct) insert <span class="std">List</span>(
                 <span class="toggle diagram-link">
                   Type Hierarchy
                 </span>
-                <div class="diagram" id="inheritance-diagram"><svg class="class-diagram" id="graph1" viewBox="0.00 0.00 126.00 120.00" height="120pt" width="126pt" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"><g transform="scale(1 1) rotate(0) translate(4 116)" class="graph" id="graph0"><polygon points="-4,4 -4,-116 122,-116 122,4 -4,4" stroke="none" fill="white"></polygon><g class="cluster" id="clust1"></g><g class="cluster" id="clust2"></g><!-- node0 --><g class="node this trait" id="graph1_0"><g id="a_this trait|graph1_0"><a xlink:title="molecule.expression.AggregateKeywords.distinct (this trait)" xlink:href="#inheritance-diagram"><path d="M84.5833,-50C84.5833,-50 33.4167,-50 33.4167,-50 29.0833,-50 24.75,-45.6667 24.75,-41.3333 24.75,-41.3333 24.75,-32.6667 24.75,-32.6667 24.75,-28.3333 29.0833,-24 33.4167,-24 33.4167,-24 84.5833,-24 84.5833,-24 88.9167,-24 93.25,-28.3333 93.25,-32.6667 93.25,-32.6667 93.25,-41.3333 93.25,-41.3333 93.25,-45.6667 88.9167,-50 84.5833,-50" stroke="#2e6d82" fill="#2e6d82"></path><image xlink:href="../../lib/trait_diagram.png" y="-43" x="37" preserveAspectRatio="xMinYMin meet" height="12px" width="12px"></image><text fill="#ffffff" font-size="8.00" font-family="Source Code Pro" y="-34.6" x="56.9395" text-anchor="start">distinct</text></a></g></g><!-- node1 --><g class="node class" id="graph1_1"><g id="a_class|graph1_1"><a xlink:title="scala.AnyRef"><path d="M85.3333,-112C85.3333,-112 32.6667,-112 32.6667,-112 28.3333,-112 24,-107.667 24,-103.333 24,-103.333 24,-94.6667 24,-94.6667 24,-90.3333 28.3333,-86 32.6667,-86 32.6667,-86 85.3333,-86 85.3333,-86 89.6667,-86 94,-90.3333 94,-94.6667 94,-94.6667 94,-103.333 94,-103.333 94,-107.667 89.6667,-112 85.3333,-112" stroke="#418565" fill="#418565"></path><image xlink:href="../../lib/class_diagram.png" y="-105" x="36" preserveAspectRatio="xMinYMin meet" height="12px" width="12px"></image><text fill="#ffffff" font-size="8.00" font-family="Source Code Pro" y="-96.6" x="55.7715" text-anchor="start">AnyRef</text></a></g></g><!-- node1&#45;&gt;node0 --><g class="edge inheritance" id="graph1_1_0"><g id="a_inheritance|graph1_1_0"><a xlink:title="distinct is a subtype of AnyRef"><path d="M59,-78.7534C59,-69.3549 59,-58.3336 59,-50.1238" stroke="#d4d4d4" fill="none"></path><polygon points="56.5501,-78.8581 59,-85.8581 61.4501,-78.8581 56.5501,-78.8581" stroke="#d4d4d4" fill="none"></polygon></a></g></g></g></svg></div>
+                <div class="diagram" id="inheritance-diagram"><svg class="class-diagram" id="graph1" viewBox="0.00 0.00 126.00 120.00" height="120pt" width="126pt" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"><g transform="scale(1 1) rotate(0) translate(4 116)" class="graph" id="graph0"><polygon points="-4,4 -4,-116 122,-116 122,4 -4,4" stroke="none" fill="white"></polygon><g class="cluster" id="clust1"></g><g class="cluster" id="clust2"></g><!-- node0 --><g class="node this trait" id="graph1_0"><g id="a_this trait|graph1_0"><a xlink:title="molecule.expression.AggregateKeywords.distinct (this trait)" xlink:href="#inheritance-diagram"><path d="M84.5833,-50C84.5833,-50 33.4167,-50 33.4167,-50 29.0833,-50 24.75,-45.6667 24.75,-41.3333 24.75,-41.3333 24.75,-32.6667 24.75,-32.6667 24.75,-28.3333 29.0833,-24 33.4167,-24 33.4167,-24 84.5833,-24 84.5833,-24 88.9167,-24 93.25,-28.3333 93.25,-32.6667 93.25,-32.6667 93.25,-41.3333 93.25,-41.3333 93.25,-45.6667 88.9167,-50 84.5833,-50" stroke="#2e6d82" fill="#2e6d82"></path><text fill="#ffffff" font-size="8.00" font-family="Source Code Pro" y="-34.6" x="56.9395" text-anchor="start">distinct</text></a></g></g><!-- node1 --><g class="node class" id="graph1_1"><g id="a_class|graph1_1"><a xlink:title="scala.AnyRef"><path d="M85.3333,-112C85.3333,-112 32.6667,-112 32.6667,-112 28.3333,-112 24,-107.667 24,-103.333 24,-103.333 24,-94.6667 24,-94.6667 24,-90.3333 28.3333,-86 32.6667,-86 32.6667,-86 85.3333,-86 85.3333,-86 89.6667,-86 94,-90.3333 94,-94.6667 94,-94.6667 94,-103.333 94,-103.333 94,-107.667 89.6667,-112 85.3333,-112" stroke="#418565" fill="#418565"></path><image xlink:href="../../lib/class_diagram.png" y="-105" x="36" preserveAspectRatio="xMinYMin meet" height="12px" width="12px"></image><text fill="#ffffff" font-size="8.00" font-family="Source Code Pro" y="-96.6" x="55.7715" text-anchor="start">AnyRef</text></a></g></g><!-- node1&#45;&gt;node0 --><g class="edge inheritance" id="graph1_1_0"><g id="a_inheritance|graph1_1_0"><a xlink:title="distinct is a subtype of AnyRef"><path d="M59,-78.7534C59,-69.3549 59,-58.3336 59,-50.1238" stroke="#d4d4d4" fill="none"></path><polygon points="56.5501,-78.8581 59,-85.8581 61.4501,-78.8581 56.5501,-78.8581" stroke="#d4d4d4" fill="none"></polygon></a></g></g></g></svg></div>
                 <div id="diagram-controls" class="hiddenContent">
                   <button id="diagram-zoom-out" class="diagram-btn"><i class="material-icons"></i></button>
                   <button id="diagram-zoom-in" class="diagram-btn"><i class="material-icons"></i></button>
@@ -488,13 +488,13 @@ Person.firstName.age(distinct) insert <span class="std">List</span>(
         <span class="name">clone</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.AnyRef">AnyRef</span></span>
       </span>
       
-      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../../java/lang/index.html" class="extype" name="java.lang">java.lang</a>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
-                <span class="name">@native</span><span class="args">()</span>
-              
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<span class="extype" name="java.lang">lang</span>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
                 <span class="name">@throws</span><span class="args">(<span>
       
       <span class="defval" name="classOf[java.lang.CloneNotSupportedException]">...</span>
     </span>)</span>
+              
+                <span class="name">@native</span><span class="args">()</span>
               
         </dd></dl></div>
     </li><li name="scala.AnyRef#eq" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
@@ -544,7 +544,7 @@ Person.firstName.age(distinct) insert <span class="std">List</span>(
         <span class="name">finalize</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
       </span>
       
-      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../../java/lang/index.html" class="extype" name="java.lang">java.lang</a>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<span class="extype" name="java.lang">lang</span>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
                 <span class="name">@throws</span><span class="args">(<span>
       
       <span class="symbol">classOf[java.lang.Throwable]</span>
@@ -751,12 +751,12 @@ Person.firstName.age(distinct) insert <span class="std">List</span>(
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
-                <span class="name">@native</span><span class="args">()</span>
-              
                 <span class="name">@throws</span><span class="args">(<span>
       
       <span class="defval" name="classOf[java.lang.InterruptedException]">...</span>
     </span>)</span>
+              
+                <span class="name">@native</span><span class="args">()</span>
               
         </dd></dl></div>
     </li>

@@ -668,7 +668,7 @@
             <div class="col-md-2 column" style="padding-top:20px;padding-right:0px;">
                 <ul class="nav nav-pills" style="float:right;">
                     <li>
-                        <a href="/changelog" style="margin-top:-2px;">v0.18.5</a>
+                        <a href="/changelog" style="margin-top:-2px;">v0.19.0</a>
                     </li>
                     <li>
                         <div style="padding-left:14px;">
@@ -717,8 +717,8 @@ object SeattleDefinition {
     val name         = oneString.fulltext.doc(&quot;A community's name&quot;) // optional doc text
     val url          = oneString
     val category     = manyString.fulltext
-    val orgtype      = oneEnum('community, 'commercial, 'nonprofit, 'personal)
-    val `type`       = oneEnum('email_list, 'twitter, 'facebook_page) // + more...
+    val orgtype      = oneEnum(&quot;community&quot;, &quot;commercial&quot;, &quot;nonprofit&quot;, &quot;personal&quot;)
+    val `type`       = oneEnum(&quot;email_list&quot;, &quot;twitter&quot;, &quot;facebook_page&quot;) // + more...
     val neighborhood = one[Neighborhood]
   }
 
@@ -729,7 +729,7 @@ object SeattleDefinition {
 
   trait District {
     val name   = oneString
-    val region = oneEnum('n, 'ne, 'e, 'se, 's, 'sw, 'w, 'nw)
+    val region = oneEnum(&quot;n&quot;, &quot;ne&quot;, &quot;e&quot;, &quot;se&quot;, &quot;s&quot;, &quot;sw&quot;, &quot;w&quot;, &quot;nw&quot;)
   }
 }
 </code></pre>
@@ -803,7 +803,7 @@ object PartitionTestDefinition {
   object gen {
     trait Person {
       val name   = oneString
-      val gender = oneEnum('male, 'female)
+      val gender = oneEnum(&quot;male&quot;, &quot;female&quot;)
     }
     // ..more namespaces in the `gen` partition
   }
@@ -815,7 +815,7 @@ object PartitionTestDefinition {
       // To avoid attr/partition name clashes we can prepend the definition object name
       // (in case we would have needed an attribute named `gen` for instance)
       val editor = one[PartitionTestDefinition.gen.Person]
-      val cat    = oneEnum('good, 'bad)
+      val cat    = oneEnum(&quot;good&quot;, &quot;bad&quot;)
     }
     // ..more namespaces in the `lit` partition
   }

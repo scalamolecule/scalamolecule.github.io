@@ -3,22 +3,22 @@
         <head>
           <meta http-equiv="X-UA-Compatible" content="IE=edge" />
           <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-          <title>Molecule 0.18.6 - molecule.expression.AggregateKeywordsSchema</title>
-          <meta name="description" content="Molecule 0.18.6 - molecule.expression.AggregateKeywordsSchema" />
-          <meta name="keywords" content="Molecule 0.18.6 molecule.expression.AggregateKeywordsSchema" />
+          <title>Molecule 0.19.0 - molecule.expression.AggregateKeywordsSchema</title>
+          <meta name="description" content="Molecule 0.19.0 - molecule.expression.AggregateKeywordsSchema" />
+          <meta name="keywords" content="Molecule 0.19.0 molecule.expression.AggregateKeywordsSchema" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
+      
       <link href="../../lib/index.css" media="screen" type="text/css" rel="stylesheet" />
       <link href="../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
       <link href="../../lib/diagrams.css" media="screen" type="text/css" rel="stylesheet" id="diagrams-css" />
-      <script type="text/javascript" src="../../lib/jquery.js"></script>
+      <script type="text/javascript" src="../../lib/jquery.min.js"></script>
       <script type="text/javascript" src="../../lib/jquery.panzoom.min.js"></script>
       <script type="text/javascript" src="../../lib/jquery.mousewheel.min.js"></script>
       <script type="text/javascript" src="../../lib/index.js"></script>
       <script type="text/javascript" src="../../index.js"></script>
       <script type="text/javascript" src="../../lib/scheduler.js"></script>
       <script type="text/javascript" src="../../lib/template.js"></script>
-      <script type="text/javascript" src="../../lib/tools.tooltip.js"></script>
       <script type="text/javascript" src="../../lib/modernizr.custom.js"></script><script type="text/javascript" src="../../lib/diagrams.js" id="diagrams-js"></script>
       <script type="text/javascript">
         /* this variable can be used by the JS to determine the path to the root document */
@@ -28,7 +28,7 @@
         </head>
         <body>
       <div id="search">
-        <span id="doc-title">Molecule<span id="doc-version">0.18.6</span></span>
+        <span id="doc-title">Molecule<span id="doc-version">0.19.0</span></span>
         <span class="close-results"><span class="left">&lt;</span> Back</span>
         <div id="textfilter">
           <span class="input">
@@ -56,7 +56,7 @@
                 <li name="_root_.root" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="_root_"></a><a id="root:_root_"></a>
       <span class="permalink">
-      <a href="index.html#_root_" title="Permalink">
+      <a href="../../index.html" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -75,7 +75,7 @@
     </li><li name="_root_.molecule" visbl="pub" class="indented1 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="molecule"></a><a id="molecule:molecule"></a>
       <span class="permalink">
-      <a href="index.html#molecule" title="Permalink">
+      <a href="../../molecule/index.html" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -153,7 +153,7 @@
     </li><li name="molecule.expression" visbl="pub" class="indented2 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="expression"></a><a id="expression:expression"></a>
       <span class="permalink">
-      <a href="../molecule/index.html#expression" title="Permalink">
+      <a href="../../molecule/expression/index.html" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -170,7 +170,7 @@
 Refine attribute matches with various <a href="AttrExpressions.html" class="extype" name="molecule.expression.AttrExpressions">attribute expressions</a>:</p><pre>Person.age(<span class="num">42</span>)                           <span class="cmt">// equality</span>
 Person.name.contains(<span class="lit">"John"</span>)             <span class="cmt">// fulltext search</span>
 Person.age.!=(<span class="num">42</span>)                        <span class="cmt">// negation (or `not`)</span>
-Person.age.&lt;(<span class="num">42</span>)                         <span class="cmt">// comparison (< > <= >=)</span>
+Person.age.&lt;(<span class="num">42</span>)                         <span class="cmt">// comparison (&lt; &gt; &lt;= &gt;=)</span>
 Person.name(<span class="lit">"John"</span> or <span class="lit">"Jonas"</span>)           <span class="cmt">// OR-logic</span>
 Person.age()                             <span class="cmt">// apply empty value to retract value(s) in updates</span>
 Person.hobbies.assert(<span class="lit">"golf"</span>)               <span class="cmt">// add value(s) to card-many attributes</span>
@@ -301,7 +301,7 @@ Person.age(variance).get.head === <span class="num">228.2222222222</span>   <spa
               <ol><li name="molecule.expression.AggregateKeywords.avg" visbl="pub" class="indented0 " data-isabs="true" fullComment="yes" group="aggrNumber">
       <a id="avgextendsAnyRef"></a><a id="avg:avg"></a>
       <span class="permalink">
-      <a href="../../molecule/expression/AggregateKeywords.html#avgextendsAnyRef" title="Permalink">
+      <a href="../../molecule/expression/AggregateKeywords$avg.html" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -320,7 +320,7 @@ Match.score(avg).get.head === <span class="num">2.3333333333333335</span> <span 
     </li><li name="molecule.expression.AggregateKeywords.count" visbl="pub" class="indented0 " data-isabs="true" fullComment="yes" group="aggregates">
       <a id="countextendsAnyRef"></a><a id="count:count"></a>
       <span class="permalink">
-      <a href="../../molecule/expression/AggregateKeywords.html#countextendsAnyRef" title="Permalink">
+      <a href="../../molecule/expression/AggregateKeywords$count.html" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -347,7 +347,7 @@ Person.firstName.age(count).get === <span class="std">List</span>(
     </li><li name="molecule.expression.AggregateKeywords.countDistinct" visbl="pub" class="indented0 " data-isabs="true" fullComment="yes" group="aggregates">
       <a id="countDistinctextendsAnyRef"></a><a id="countDistinct:countDistinct"></a>
       <span class="permalink">
-      <a href="../../molecule/expression/AggregateKeywords.html#countDistinctextendsAnyRef" title="Permalink">
+      <a href="../../molecule/expression/AggregateKeywords$countDistinct.html" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -374,7 +374,7 @@ Person.firstName.age(countDistinct).get === <span class="std">List</span>(
     </li><li name="molecule.expression.AggregateKeywords.distinct" visbl="pub" class="indented0 " data-isabs="true" fullComment="yes" group="aggregates">
       <a id="distinctextendsAnyRef"></a><a id="distinct:distinct"></a>
       <span class="permalink">
-      <a href="../../molecule/expression/AggregateKeywords.html#distinctextendsAnyRef" title="Permalink">
+      <a href="../../molecule/expression/AggregateKeywords$distinct.html" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -401,7 +401,7 @@ Person.firstName.age(distinct) insert <span class="std">List</span>(
     </li><li name="molecule.expression.AggregateKeywords.max" visbl="pub" class="indented0 " data-isabs="true" fullComment="yes" group="aggregates">
       <a id="maxextendsAnyRef"></a><a id="max:max"></a>
       <span class="permalink">
-      <a href="../../molecule/expression/AggregateKeywords.html#maxextendsAnyRef" title="Permalink">
+      <a href="../../molecule/expression/AggregateKeywords$max.html" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -421,7 +421,7 @@ Person.age(max).get.head === <span class="num">70</span></pre><p>Apply <code>max
     </li><li name="molecule.expression.AggregateKeywords.maxs" visbl="pub" class="indented0 " data-isabs="true" fullComment="yes" group="Ungrouped">
       <a id="maxsextendsAnyRef"></a><a id="maxs:maxs"></a>
       <span class="permalink">
-      <a href="../../molecule/expression/AggregateKeywords.html#maxsextendsAnyRef" title="Permalink">
+      <a href="../../molecule/expression/AggregateKeywords$maxs.html" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -437,7 +437,7 @@ Person.age(max).get.head === <span class="num">70</span></pre><p>Apply <code>max
     </li><li name="molecule.expression.AggregateKeywords.median" visbl="pub" class="indented0 " data-isabs="true" fullComment="yes" group="aggrNumber">
       <a id="medianextendsAnyRef"></a><a id="median:median"></a>
       <span class="permalink">
-      <a href="../../molecule/expression/AggregateKeywords.html#medianextendsAnyRef" title="Permalink">
+      <a href="../../molecule/expression/AggregateKeywords$median.html" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -461,7 +461,7 @@ Match.score(median).get.head === <span class="num">2</span> <span class="cmt">//
     </li><li name="molecule.expression.AggregateKeywords.min" visbl="pub" class="indented0 " data-isabs="true" fullComment="yes" group="aggregates">
       <a id="minextendsAnyRef"></a><a id="min:min"></a>
       <span class="permalink">
-      <a href="../../molecule/expression/AggregateKeywords.html#minextendsAnyRef" title="Permalink">
+      <a href="../../molecule/expression/AggregateKeywords$min.html" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -481,7 +481,7 @@ Person.age(min).get.head === <span class="num">25</span></pre><p>Apply <code>min
     </li><li name="molecule.expression.AggregateKeywords.mins" visbl="pub" class="indented0 " data-isabs="true" fullComment="yes" group="Ungrouped">
       <a id="minsextendsAnyRef"></a><a id="mins:mins"></a>
       <span class="permalink">
-      <a href="../../molecule/expression/AggregateKeywords.html#minsextendsAnyRef" title="Permalink">
+      <a href="../../molecule/expression/AggregateKeywords$mins.html" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -497,7 +497,7 @@ Person.age(min).get.head === <span class="num">25</span></pre><p>Apply <code>min
     </li><li name="molecule.expression.AggregateKeywords.rand" visbl="pub" class="indented0 " data-isabs="true" fullComment="yes" group="aggregates">
       <a id="randextendsAnyRef"></a><a id="rand:rand"></a>
       <span class="permalink">
-      <a href="../../molecule/expression/AggregateKeywords.html#randextendsAnyRef" title="Permalink">
+      <a href="../../molecule/expression/AggregateKeywords$rand.html" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -517,7 +517,7 @@ Person.age(random).get.head === <span class="num">34</span> <span class="cmt">//
     </li><li name="molecule.expression.AggregateKeywords.rands" visbl="pub" class="indented0 " data-isabs="true" fullComment="yes" group="Ungrouped">
       <a id="randsextendsAnyRef"></a><a id="rands:rands"></a>
       <span class="permalink">
-      <a href="../../molecule/expression/AggregateKeywords.html#randsextendsAnyRef" title="Permalink">
+      <a href="../../molecule/expression/AggregateKeywords$rands.html" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -533,7 +533,7 @@ Person.age(random).get.head === <span class="num">34</span> <span class="cmt">//
     </li><li name="molecule.expression.AggregateKeywords.sample" visbl="pub" class="indented0 " data-isabs="true" fullComment="yes" group="aggregates">
       <a id="sampleextendsAnyRef"></a><a id="sample:sample"></a>
       <span class="permalink">
-      <a href="../../molecule/expression/AggregateKeywords.html#sampleextendsAnyRef" title="Permalink">
+      <a href="../../molecule/expression/AggregateKeywords$sample.html" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -553,7 +553,7 @@ Person.age(sample).get.head === <span class="num">42</span> <span class="cmt">//
     </li><li name="molecule.expression.AggregateKeywords.samples" visbl="pub" class="indented0 " data-isabs="true" fullComment="yes" group="Ungrouped">
       <a id="samplesextendsAnyRef"></a><a id="samples:samples"></a>
       <span class="permalink">
-      <a href="../../molecule/expression/AggregateKeywords.html#samplesextendsAnyRef" title="Permalink">
+      <a href="../../molecule/expression/AggregateKeywords$samples.html" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -569,7 +569,7 @@ Person.age(sample).get.head === <span class="num">42</span> <span class="cmt">//
     </li><li name="molecule.expression.AggregateKeywords.stddev" visbl="pub" class="indented0 " data-isabs="true" fullComment="yes" group="aggrNumber">
       <a id="stddevextendsAnyRef"></a><a id="stddev:stddev"></a>
       <span class="permalink">
-      <a href="../../molecule/expression/AggregateKeywords.html#stddevextendsAnyRef" title="Permalink">
+      <a href="../../molecule/expression/AggregateKeywords$stddev.html" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -588,7 +588,7 @@ Match.score(stddev).get.head === <span class="num">1.247219128924647</span></pre
     </li><li name="molecule.expression.AggregateKeywords.sum" visbl="pub" class="indented0 " data-isabs="true" fullComment="yes" group="aggrNumber">
       <a id="sumextendsAnyRef"></a><a id="sum:sum"></a>
       <span class="permalink">
-      <a href="../../molecule/expression/AggregateKeywords.html#sumextendsAnyRef" title="Permalink">
+      <a href="../../molecule/expression/AggregateKeywords$sum.html" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -607,7 +607,7 @@ Match.score(sum).get.head === <span class="num">7</span></pre></div><dl class="p
     </li><li name="molecule.expression.AggregateKeywords.variance" visbl="pub" class="indented0 " data-isabs="true" fullComment="yes" group="aggrNumber">
       <a id="varianceextendsAnyRef"></a><a id="variance:variance"></a>
       <span class="permalink">
-      <a href="../../molecule/expression/AggregateKeywords.html#varianceextendsAnyRef" title="Permalink">
+      <a href="../../molecule/expression/AggregateKeywords$variance.html" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -626,7 +626,7 @@ Match.score(variance).get.head === <span class="num">1.5555555555555556</span></
     </li><li name="molecule.expression.AggregateKeywordsSchema.AggregateSchema00" visbl="pub" class="indented0 " data-isabs="true" fullComment="no" group="Ungrouped">
       <a id="AggregateSchema00[Ns0]extendsAnyRef"></a><a id="AggregateSchema00[Ns0]:AggregateSchema00[Ns0]"></a>
       <span class="permalink">
-      <a href="../../molecule/expression/AggregateKeywordsSchema$.html#AggregateSchema00[Ns0]extendsAnyRef" title="Permalink">
+      <a href="../../molecule/expression/AggregateKeywordsSchema$$AggregateSchema00.html" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -642,7 +642,7 @@ Match.score(variance).get.head === <span class="num">1.5555555555555556</span></
     </li><li name="molecule.expression.AggregateKeywordsSchema.AggregateSchema01" visbl="pub" class="indented0 " data-isabs="true" fullComment="no" group="Ungrouped">
       <a id="AggregateSchema01[Ns1[_],A]extendsAnyRef"></a><a id="AggregateSchema01[Ns1[_],A]:AggregateSchema01[Ns1,A]"></a>
       <span class="permalink">
-      <a href="../../molecule/expression/AggregateKeywordsSchema$.html#AggregateSchema01[Ns1[_],A]extendsAnyRef" title="Permalink">
+      <a href="../../molecule/expression/AggregateKeywordsSchema$$AggregateSchema01.html" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -658,7 +658,7 @@ Match.score(variance).get.head === <span class="num">1.5555555555555556</span></
     </li><li name="molecule.expression.AggregateKeywordsSchema.AggregateSchema02" visbl="pub" class="indented0 " data-isabs="true" fullComment="no" group="Ungrouped">
       <a id="AggregateSchema02[Ns2[_,_],A,B]extendsAnyRef"></a><a id="AggregateSchema02[Ns2[_,_],A,B]:AggregateSchema02[Ns2,A,B]"></a>
       <span class="permalink">
-      <a href="../../molecule/expression/AggregateKeywordsSchema$.html#AggregateSchema02[Ns2[_,_],A,B]extendsAnyRef" title="Permalink">
+      <a href="../../molecule/expression/AggregateKeywordsSchema$$AggregateSchema02.html" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -674,7 +674,7 @@ Match.score(variance).get.head === <span class="num">1.5555555555555556</span></
     </li><li name="molecule.expression.AggregateKeywordsSchema.AggregateSchema03" visbl="pub" class="indented0 " data-isabs="true" fullComment="no" group="Ungrouped">
       <a id="AggregateSchema03[Ns3[_,_,_],A,B,C]extendsAnyRef"></a><a id="AggregateSchema03[Ns3[_,_,_],A,B,C]:AggregateSchema03[Ns3,A,B,C]"></a>
       <span class="permalink">
-      <a href="../../molecule/expression/AggregateKeywordsSchema$.html#AggregateSchema03[Ns3[_,_,_],A,B,C]extendsAnyRef" title="Permalink">
+      <a href="../../molecule/expression/AggregateKeywordsSchema$$AggregateSchema03.html" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -690,7 +690,7 @@ Match.score(variance).get.head === <span class="num">1.5555555555555556</span></
     </li><li name="molecule.expression.AggregateKeywordsSchema.AggregateSchema04" visbl="pub" class="indented0 " data-isabs="true" fullComment="no" group="Ungrouped">
       <a id="AggregateSchema04[Ns4[_,_,_,_],A,B,C,D]extendsAnyRef"></a><a id="AggregateSchema04[Ns4[_,_,_,_],A,B,C,D]:AggregateSchema04[Ns4,A,B,C,D]"></a>
       <span class="permalink">
-      <a href="../../molecule/expression/AggregateKeywordsSchema$.html#AggregateSchema04[Ns4[_,_,_,_],A,B,C,D]extendsAnyRef" title="Permalink">
+      <a href="../../molecule/expression/AggregateKeywordsSchema$$AggregateSchema04.html" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -706,7 +706,7 @@ Match.score(variance).get.head === <span class="num">1.5555555555555556</span></
     </li><li name="molecule.expression.AggregateKeywordsSchema.AggregateSchema05" visbl="pub" class="indented0 " data-isabs="true" fullComment="no" group="Ungrouped">
       <a id="AggregateSchema05[Ns5[_,_,_,_,_],A,B,C,D,E]extendsAnyRef"></a><a id="AggregateSchema05[Ns5[_,_,_,_,_],A,B,C,D,E]:AggregateSchema05[Ns5,A,B,C,D,E]"></a>
       <span class="permalink">
-      <a href="../../molecule/expression/AggregateKeywordsSchema$.html#AggregateSchema05[Ns5[_,_,_,_,_],A,B,C,D,E]extendsAnyRef" title="Permalink">
+      <a href="../../molecule/expression/AggregateKeywordsSchema$$AggregateSchema05.html" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -722,7 +722,7 @@ Match.score(variance).get.head === <span class="num">1.5555555555555556</span></
     </li><li name="molecule.expression.AggregateKeywordsSchema.AggregateSchema06" visbl="pub" class="indented0 " data-isabs="true" fullComment="no" group="Ungrouped">
       <a id="AggregateSchema06[Ns6[_,_,_,_,_,_],A,B,C,D,E,F]extendsAnyRef"></a><a id="AggregateSchema06[Ns6[_,_,_,_,_,_],A,B,C,D,E,F]:AggregateSchema06[Ns6,A,B,C,D,E,F]"></a>
       <span class="permalink">
-      <a href="../../molecule/expression/AggregateKeywordsSchema$.html#AggregateSchema06[Ns6[_,_,_,_,_,_],A,B,C,D,E,F]extendsAnyRef" title="Permalink">
+      <a href="../../molecule/expression/AggregateKeywordsSchema$$AggregateSchema06.html" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -738,7 +738,7 @@ Match.score(variance).get.head === <span class="num">1.5555555555555556</span></
     </li><li name="molecule.expression.AggregateKeywordsSchema.AggregateSchema07" visbl="pub" class="indented0 " data-isabs="true" fullComment="no" group="Ungrouped">
       <a id="AggregateSchema07[Ns7[_,_,_,_,_,_,_],A,B,C,D,E,F,G]extendsAnyRef"></a><a id="AggregateSchema07[Ns7[_,_,_,_,_,_,_],A,B,C,D,E,F,G]:AggregateSchema07[Ns7,A,B,C,D,E,F,G]"></a>
       <span class="permalink">
-      <a href="../../molecule/expression/AggregateKeywordsSchema$.html#AggregateSchema07[Ns7[_,_,_,_,_,_,_],A,B,C,D,E,F,G]extendsAnyRef" title="Permalink">
+      <a href="../../molecule/expression/AggregateKeywordsSchema$$AggregateSchema07.html" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -754,7 +754,7 @@ Match.score(variance).get.head === <span class="num">1.5555555555555556</span></
     </li><li name="molecule.expression.AggregateKeywordsSchema.AggregateSchema08" visbl="pub" class="indented0 " data-isabs="true" fullComment="no" group="Ungrouped">
       <a id="AggregateSchema08[Ns8[_,_,_,_,_,_,_,_],A,B,C,D,E,F,G,H]extendsAnyRef"></a><a id="AggregateSchema08[Ns8[_,_,_,_,_,_,_,_],A,B,C,D,E,F,G,H]:AggregateSchema08[Ns8,A,B,C,D,E,F,G,H]"></a>
       <span class="permalink">
-      <a href="../../molecule/expression/AggregateKeywordsSchema$.html#AggregateSchema08[Ns8[_,_,_,_,_,_,_,_],A,B,C,D,E,F,G,H]extendsAnyRef" title="Permalink">
+      <a href="../../molecule/expression/AggregateKeywordsSchema$$AggregateSchema08.html" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -770,7 +770,7 @@ Match.score(variance).get.head === <span class="num">1.5555555555555556</span></
     </li><li name="molecule.expression.AggregateKeywordsSchema.AggregateSchema09" visbl="pub" class="indented0 " data-isabs="true" fullComment="no" group="Ungrouped">
       <a id="AggregateSchema09[Ns9[_,_,_,_,_,_,_,_,_],A,B,C,D,E,F,G,H,I]extendsAnyRef"></a><a id="AggregateSchema09[Ns9[_,_,_,_,_,_,_,_,_],A,B,C,D,E,F,G,H,I]:AggregateSchema09[Ns9,A,B,C,D,E,F,G,H,I]"></a>
       <span class="permalink">
-      <a href="../../molecule/expression/AggregateKeywordsSchema$.html#AggregateSchema09[Ns9[_,_,_,_,_,_,_,_,_],A,B,C,D,E,F,G,H,I]extendsAnyRef" title="Permalink">
+      <a href="../../molecule/expression/AggregateKeywordsSchema$$AggregateSchema09.html" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -786,7 +786,7 @@ Match.score(variance).get.head === <span class="num">1.5555555555555556</span></
     </li><li name="molecule.expression.AggregateKeywordsSchema.AggregateSchema10" visbl="pub" class="indented0 " data-isabs="true" fullComment="no" group="Ungrouped">
       <a id="AggregateSchema10[Ns10[_,_,_,_,_,_,_,_,_,_],A,B,C,D,E,F,G,H,I,J]extendsAnyRef"></a><a id="AggregateSchema10[Ns10[_,_,_,_,_,_,_,_,_,_],A,B,C,D,E,F,G,H,I,J]:AggregateSchema10[Ns10,A,B,C,D,E,F,G,H,I,J]"></a>
       <span class="permalink">
-      <a href="../../molecule/expression/AggregateKeywordsSchema$.html#AggregateSchema10[Ns10[_,_,_,_,_,_,_,_,_,_],A,B,C,D,E,F,G,H,I,J]extendsAnyRef" title="Permalink">
+      <a href="../../molecule/expression/AggregateKeywordsSchema$$AggregateSchema10.html" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -802,7 +802,7 @@ Match.score(variance).get.head === <span class="num">1.5555555555555556</span></
     </li><li name="molecule.expression.AggregateKeywordsSchema.AggregateSchema11" visbl="pub" class="indented0 " data-isabs="true" fullComment="no" group="Ungrouped">
       <a id="AggregateSchema11[Ns11[_,_,_,_,_,_,_,_,_,_,_],A,B,C,D,E,F,G,H,I,J,K]extendsAnyRef"></a><a id="AggregateSchema11[Ns11[_,_,_,_,_,_,_,_,_,_,_],A,B,C,D,E,F,G,H,I,J,K]:AggregateSchema11[Ns11,A,B,C,D,E,F,G,H,I,J,K]"></a>
       <span class="permalink">
-      <a href="../../molecule/expression/AggregateKeywordsSchema$.html#AggregateSchema11[Ns11[_,_,_,_,_,_,_,_,_,_,_],A,B,C,D,E,F,G,H,I,J,K]extendsAnyRef" title="Permalink">
+      <a href="../../molecule/expression/AggregateKeywordsSchema$$AggregateSchema11.html" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -818,7 +818,7 @@ Match.score(variance).get.head === <span class="num">1.5555555555555556</span></
     </li><li name="molecule.expression.AggregateKeywordsSchema.AggregateSchema12" visbl="pub" class="indented0 " data-isabs="true" fullComment="no" group="Ungrouped">
       <a id="AggregateSchema12[Ns12[_,_,_,_,_,_,_,_,_,_,_,_],A,B,C,D,E,F,G,H,I,J,K,L]extendsAnyRef"></a><a id="AggregateSchema12[Ns12[_,_,_,_,_,_,_,_,_,_,_,_],A,B,C,D,E,F,G,H,I,J,K,L]:AggregateSchema12[Ns12,A,B,C,D,E,F,G,H,I,J,K,L]"></a>
       <span class="permalink">
-      <a href="../../molecule/expression/AggregateKeywordsSchema$.html#AggregateSchema12[Ns12[_,_,_,_,_,_,_,_,_,_,_,_],A,B,C,D,E,F,G,H,I,J,K,L]extendsAnyRef" title="Permalink">
+      <a href="../../molecule/expression/AggregateKeywordsSchema$$AggregateSchema12.html" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -834,7 +834,7 @@ Match.score(variance).get.head === <span class="num">1.5555555555555556</span></
     </li><li name="molecule.expression.AggregateKeywordsSchema.AggregateSchema13" visbl="pub" class="indented0 " data-isabs="true" fullComment="no" group="Ungrouped">
       <a id="AggregateSchema13[Ns13[_,_,_,_,_,_,_,_,_,_,_,_,_],A,B,C,D,E,F,G,H,I,J,K,L,M]extendsAnyRef"></a><a id="AggregateSchema13[Ns13[_,_,_,_,_,_,_,_,_,_,_,_,_],A,B,C,D,E,F,G,H,I,J,K,L,M]:AggregateSchema13[Ns13,A,B,C,D,E,F,G,H,I,J,K,L,M]"></a>
       <span class="permalink">
-      <a href="../../molecule/expression/AggregateKeywordsSchema$.html#AggregateSchema13[Ns13[_,_,_,_,_,_,_,_,_,_,_,_,_],A,B,C,D,E,F,G,H,I,J,K,L,M]extendsAnyRef" title="Permalink">
+      <a href="../../molecule/expression/AggregateKeywordsSchema$$AggregateSchema13.html" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -850,7 +850,7 @@ Match.score(variance).get.head === <span class="num">1.5555555555555556</span></
     </li><li name="molecule.expression.AggregateKeywordsSchema.AggregateSchema14" visbl="pub" class="indented0 " data-isabs="true" fullComment="no" group="Ungrouped">
       <a id="AggregateSchema14[Ns14[_,_,_,_,_,_,_,_,_,_,_,_,_,_],A,B,C,D,E,F,G,H,I,J,K,L,M,N]extendsAnyRef"></a><a id="AggregateSchema14[Ns14[_,_,_,_,_,_,_,_,_,_,_,_,_,_],A,B,C,D,E,F,G,H,I,J,K,L,M,N]:AggregateSchema14[Ns14,A,B,C,D,E,F,G,H,I,J,K,L,M,N]"></a>
       <span class="permalink">
-      <a href="../../molecule/expression/AggregateKeywordsSchema$.html#AggregateSchema14[Ns14[_,_,_,_,_,_,_,_,_,_,_,_,_,_],A,B,C,D,E,F,G,H,I,J,K,L,M,N]extendsAnyRef" title="Permalink">
+      <a href="../../molecule/expression/AggregateKeywordsSchema$$AggregateSchema14.html" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -866,7 +866,7 @@ Match.score(variance).get.head === <span class="num">1.5555555555555556</span></
     </li><li name="molecule.expression.AggregateKeywordsSchema.AggregateSchema15" visbl="pub" class="indented0 " data-isabs="true" fullComment="no" group="Ungrouped">
       <a id="AggregateSchema15[Ns15[_,_,_,_,_,_,_,_,_,_,_,_,_,_,_],A,B,C,D,E,F,G,H,I,J,K,L,M,N,O]extendsAnyRef"></a><a id="AggregateSchema15[Ns15[_,_,_,_,_,_,_,_,_,_,_,_,_,_,_],A,B,C,D,E,F,G,H,I,J,K,L,M,N,O]:AggregateSchema15[Ns15,A,B,C,D,E,F,G,H,I,J,K,L,M,N,O]"></a>
       <span class="permalink">
-      <a href="../../molecule/expression/AggregateKeywordsSchema$.html#AggregateSchema15[Ns15[_,_,_,_,_,_,_,_,_,_,_,_,_,_,_],A,B,C,D,E,F,G,H,I,J,K,L,M,N,O]extendsAnyRef" title="Permalink">
+      <a href="../../molecule/expression/AggregateKeywordsSchema$$AggregateSchema15.html" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -882,7 +882,7 @@ Match.score(variance).get.head === <span class="num">1.5555555555555556</span></
     </li><li name="molecule.expression.AggregateKeywordsSchema.AggregateSchema16" visbl="pub" class="indented0 " data-isabs="true" fullComment="no" group="Ungrouped">
       <a id="AggregateSchema16[Ns16[_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_],A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P]extendsAnyRef"></a><a id="AggregateSchema16[Ns16[_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_],A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P]:AggregateSchema16[Ns16,A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P]"></a>
       <span class="permalink">
-      <a href="../../molecule/expression/AggregateKeywordsSchema$.html#AggregateSchema16[Ns16[_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_],A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P]extendsAnyRef" title="Permalink">
+      <a href="../../molecule/expression/AggregateKeywordsSchema$$AggregateSchema16.html" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -898,7 +898,7 @@ Match.score(variance).get.head === <span class="num">1.5555555555555556</span></
     </li><li name="molecule.expression.AggregateKeywordsSchema.AggregateSchema17" visbl="pub" class="indented0 " data-isabs="true" fullComment="no" group="Ungrouped">
       <a id="AggregateSchema17[Ns17[_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_],A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q]extendsAnyRef"></a><a id="AggregateSchema17[Ns17[_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_],A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q]:AggregateSchema17[Ns17,A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q]"></a>
       <span class="permalink">
-      <a href="../../molecule/expression/AggregateKeywordsSchema$.html#AggregateSchema17[Ns17[_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_],A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q]extendsAnyRef" title="Permalink">
+      <a href="../../molecule/expression/AggregateKeywordsSchema$$AggregateSchema17.html" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -914,7 +914,7 @@ Match.score(variance).get.head === <span class="num">1.5555555555555556</span></
     </li><li name="molecule.expression.AggregateKeywordsSchema.AggregateSchema18" visbl="pub" class="indented0 " data-isabs="true" fullComment="no" group="Ungrouped">
       <a id="AggregateSchema18[Ns18[_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_],A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R]extendsAnyRef"></a><a id="AggregateSchema18[Ns18[_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_],A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R]:AggregateSchema18[Ns18,A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R]"></a>
       <span class="permalink">
-      <a href="../../molecule/expression/AggregateKeywordsSchema$.html#AggregateSchema18[Ns18[_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_],A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R]extendsAnyRef" title="Permalink">
+      <a href="../../molecule/expression/AggregateKeywordsSchema$$AggregateSchema18.html" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -930,7 +930,7 @@ Match.score(variance).get.head === <span class="num">1.5555555555555556</span></
     </li><li name="molecule.expression.AggregateKeywordsSchema.AggregateSchema19" visbl="pub" class="indented0 " data-isabs="true" fullComment="no" group="Ungrouped">
       <a id="AggregateSchema19[Ns19[_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_],A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S]extendsAnyRef"></a><a id="AggregateSchema19[Ns19[_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_],A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S]:AggregateSchema19[Ns19,A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S]"></a>
       <span class="permalink">
-      <a href="../../molecule/expression/AggregateKeywordsSchema$.html#AggregateSchema19[Ns19[_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_],A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S]extendsAnyRef" title="Permalink">
+      <a href="../../molecule/expression/AggregateKeywordsSchema$$AggregateSchema19.html" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -946,7 +946,7 @@ Match.score(variance).get.head === <span class="num">1.5555555555555556</span></
     </li><li name="molecule.expression.AggregateKeywordsSchema.AggregateSchema20" visbl="pub" class="indented0 " data-isabs="true" fullComment="no" group="Ungrouped">
       <a id="AggregateSchema20[Ns20[_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_],A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T]extendsAnyRef"></a><a id="AggregateSchema20[Ns20[_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_],A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T]:AggregateSchema20[Ns20,A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T]"></a>
       <span class="permalink">
-      <a href="../../molecule/expression/AggregateKeywordsSchema$.html#AggregateSchema20[Ns20[_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_],A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T]extendsAnyRef" title="Permalink">
+      <a href="../../molecule/expression/AggregateKeywordsSchema$$AggregateSchema20.html" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -962,7 +962,7 @@ Match.score(variance).get.head === <span class="num">1.5555555555555556</span></
     </li><li name="molecule.expression.AggregateKeywordsSchema.AggregateSchema21" visbl="pub" class="indented0 " data-isabs="true" fullComment="no" group="Ungrouped">
       <a id="AggregateSchema21[Ns21[_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_],A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U]extendsAnyRef"></a><a id="AggregateSchema21[Ns21[_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_],A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U]:AggregateSchema21[Ns21,A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U]"></a>
       <span class="permalink">
-      <a href="../../molecule/expression/AggregateKeywordsSchema$.html#AggregateSchema21[Ns21[_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_],A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U]extendsAnyRef" title="Permalink">
+      <a href="../../molecule/expression/AggregateKeywordsSchema$$AggregateSchema21.html" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -978,7 +978,7 @@ Match.score(variance).get.head === <span class="num">1.5555555555555556</span></
     </li><li name="molecule.expression.AggregateKeywordsSchema.AggregateSchema22" visbl="pub" class="indented0 " data-isabs="true" fullComment="no" group="Ungrouped">
       <a id="AggregateSchema22[Ns22[_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_],A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V]extendsAnyRef"></a><a id="AggregateSchema22[Ns22[_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_],A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V]:AggregateSchema22[Ns22,A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V]"></a>
       <span class="permalink">
-      <a href="../../molecule/expression/AggregateKeywordsSchema$.html#AggregateSchema22[Ns22[_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_],A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V]extendsAnyRef" title="Permalink">
+      <a href="../../molecule/expression/AggregateKeywordsSchema$$AggregateSchema22.html" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -1078,13 +1078,13 @@ Match.score(variance).get.head === <span class="num">1.5555555555555556</span></
         <span class="name">clone</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.AnyRef">AnyRef</span></span>
       </span>
       
-      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../../java/lang/index.html" class="extype" name="java.lang">java.lang</a>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
-                <span class="name">@native</span><span class="args">()</span>
-              
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<span class="extype" name="java.lang">lang</span>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
                 <span class="name">@throws</span><span class="args">(<span>
       
       <span class="defval" name="classOf[java.lang.CloneNotSupportedException]">...</span>
     </span>)</span>
+              
+                <span class="name">@native</span><span class="args">()</span>
               
         </dd></dl></div>
     </li><li name="scala.AnyRef#eq" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
@@ -1134,7 +1134,7 @@ Match.score(variance).get.head === <span class="num">1.5555555555555556</span></
         <span class="name">finalize</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
       </span>
       
-      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../../java/lang/index.html" class="extype" name="java.lang">java.lang</a>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<span class="extype" name="java.lang">lang</span>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
                 <span class="name">@throws</span><span class="args">(<span>
       
       <span class="symbol">classOf[java.lang.Throwable]</span>
@@ -1341,12 +1341,12 @@ Match.score(variance).get.head === <span class="num">1.5555555555555556</span></
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
-                <span class="name">@native</span><span class="args">()</span>
-              
                 <span class="name">@throws</span><span class="args">(<span>
       
       <span class="defval" name="classOf[java.lang.InterruptedException]">...</span>
     </span>)</span>
+              
+                <span class="name">@native</span><span class="args">()</span>
               
         </dd></dl></div>
     </li>

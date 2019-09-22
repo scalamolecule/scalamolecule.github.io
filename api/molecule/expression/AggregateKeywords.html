@@ -3,22 +3,22 @@
         <head>
           <meta http-equiv="X-UA-Compatible" content="IE=edge" />
           <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-          <title>Molecule 0.18.6 - molecule.expression.AggregateKeywords</title>
-          <meta name="description" content="Molecule 0.18.6 - molecule.expression.AggregateKeywords" />
-          <meta name="keywords" content="Molecule 0.18.6 molecule.expression.AggregateKeywords" />
+          <title>Molecule 0.19.0 - molecule.expression.AggregateKeywords</title>
+          <meta name="description" content="Molecule 0.19.0 - molecule.expression.AggregateKeywords" />
+          <meta name="keywords" content="Molecule 0.19.0 molecule.expression.AggregateKeywords" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
+      
       <link href="../../lib/index.css" media="screen" type="text/css" rel="stylesheet" />
       <link href="../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
       <link href="../../lib/diagrams.css" media="screen" type="text/css" rel="stylesheet" id="diagrams-css" />
-      <script type="text/javascript" src="../../lib/jquery.js"></script>
+      <script type="text/javascript" src="../../lib/jquery.min.js"></script>
       <script type="text/javascript" src="../../lib/jquery.panzoom.min.js"></script>
       <script type="text/javascript" src="../../lib/jquery.mousewheel.min.js"></script>
       <script type="text/javascript" src="../../lib/index.js"></script>
       <script type="text/javascript" src="../../index.js"></script>
       <script type="text/javascript" src="../../lib/scheduler.js"></script>
       <script type="text/javascript" src="../../lib/template.js"></script>
-      <script type="text/javascript" src="../../lib/tools.tooltip.js"></script>
       <script type="text/javascript" src="../../lib/modernizr.custom.js"></script><script type="text/javascript" src="../../lib/diagrams.js" id="diagrams-js"></script>
       <script type="text/javascript">
         /* this variable can be used by the JS to determine the path to the root document */
@@ -28,7 +28,7 @@
         </head>
         <body>
       <div id="search">
-        <span id="doc-title">Molecule<span id="doc-version">0.18.6</span></span>
+        <span id="doc-title">Molecule<span id="doc-version">0.19.0</span></span>
         <span class="close-results"><span class="left">&lt;</span> Back</span>
         <div id="textfilter">
           <span class="input">
@@ -56,7 +56,7 @@
                 <li name="_root_.root" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="_root_"></a><a id="root:_root_"></a>
       <span class="permalink">
-      <a href="index.html#_root_" title="Permalink">
+      <a href="../../index.html" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -75,7 +75,7 @@
     </li><li name="_root_.molecule" visbl="pub" class="indented1 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="molecule"></a><a id="molecule:molecule"></a>
       <span class="permalink">
-      <a href="index.html#molecule" title="Permalink">
+      <a href="../../molecule/index.html" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -153,7 +153,7 @@
     </li><li name="molecule.expression" visbl="pub" class="indented2 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="expression"></a><a id="expression:expression"></a>
       <span class="permalink">
-      <a href="../molecule/index.html#expression" title="Permalink">
+      <a href="../../molecule/expression/index.html" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -170,7 +170,7 @@
 Refine attribute matches with various <a href="AttrExpressions.html" class="extype" name="molecule.expression.AttrExpressions">attribute expressions</a>:</p><pre>Person.age(<span class="num">42</span>)                           <span class="cmt">// equality</span>
 Person.name.contains(<span class="lit">"John"</span>)             <span class="cmt">// fulltext search</span>
 Person.age.!=(<span class="num">42</span>)                        <span class="cmt">// negation (or `not`)</span>
-Person.age.&lt;(<span class="num">42</span>)                         <span class="cmt">// comparison (< > <= >=)</span>
+Person.age.&lt;(<span class="num">42</span>)                         <span class="cmt">// comparison (&lt; &gt; &lt;= &gt;=)</span>
 Person.name(<span class="lit">"John"</span> or <span class="lit">"Jonas"</span>)           <span class="cmt">// OR-logic</span>
 Person.age()                             <span class="cmt">// apply empty value to retract value(s) in updates</span>
 Person.hobbies.assert(<span class="lit">"golf"</span>)               <span class="cmt">// add value(s) to card-many attributes</span>
@@ -339,7 +339,7 @@ Person.age(variance).get.head === <span class="num">228.2222222222</span>   <spa
               <ol><li name="molecule.expression.AggregateKeywords.avg" visbl="pub" class="indented0 " data-isabs="true" fullComment="yes" group="aggrNumber">
       <a id="avgextendsAnyRef"></a><a id="avg:avg"></a>
       <span class="permalink">
-      <a href="../../molecule/expression/AggregateKeywords.html#avgextendsAnyRef" title="Permalink">
+      <a href="../../molecule/expression/AggregateKeywords$avg.html" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -358,7 +358,7 @@ Match.score(avg).get.head === <span class="num">2.3333333333333335</span> <span 
     </li><li name="molecule.expression.AggregateKeywords.count" visbl="pub" class="indented0 " data-isabs="true" fullComment="yes" group="aggregates">
       <a id="countextendsAnyRef"></a><a id="count:count"></a>
       <span class="permalink">
-      <a href="../../molecule/expression/AggregateKeywords.html#countextendsAnyRef" title="Permalink">
+      <a href="../../molecule/expression/AggregateKeywords$count.html" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -385,7 +385,7 @@ Person.firstName.age(count).get === <span class="std">List</span>(
     </li><li name="molecule.expression.AggregateKeywords.countDistinct" visbl="pub" class="indented0 " data-isabs="true" fullComment="yes" group="aggregates">
       <a id="countDistinctextendsAnyRef"></a><a id="countDistinct:countDistinct"></a>
       <span class="permalink">
-      <a href="../../molecule/expression/AggregateKeywords.html#countDistinctextendsAnyRef" title="Permalink">
+      <a href="../../molecule/expression/AggregateKeywords$countDistinct.html" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -412,7 +412,7 @@ Person.firstName.age(countDistinct).get === <span class="std">List</span>(
     </li><li name="molecule.expression.AggregateKeywords.distinct" visbl="pub" class="indented0 " data-isabs="true" fullComment="yes" group="aggregates">
       <a id="distinctextendsAnyRef"></a><a id="distinct:distinct"></a>
       <span class="permalink">
-      <a href="../../molecule/expression/AggregateKeywords.html#distinctextendsAnyRef" title="Permalink">
+      <a href="../../molecule/expression/AggregateKeywords$distinct.html" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -439,7 +439,7 @@ Person.firstName.age(distinct) insert <span class="std">List</span>(
     </li><li name="molecule.expression.AggregateKeywords.max" visbl="pub" class="indented0 " data-isabs="true" fullComment="yes" group="aggregates">
       <a id="maxextendsAnyRef"></a><a id="max:max"></a>
       <span class="permalink">
-      <a href="../../molecule/expression/AggregateKeywords.html#maxextendsAnyRef" title="Permalink">
+      <a href="../../molecule/expression/AggregateKeywords$max.html" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -459,7 +459,7 @@ Person.age(max).get.head === <span class="num">70</span></pre><p>Apply <code>max
     </li><li name="molecule.expression.AggregateKeywords.maxs" visbl="pub" class="indented0 " data-isabs="true" fullComment="no" group="Ungrouped">
       <a id="maxsextendsAnyRef"></a><a id="maxs:maxs"></a>
       <span class="permalink">
-      <a href="../../molecule/expression/AggregateKeywords.html#maxsextendsAnyRef" title="Permalink">
+      <a href="../../molecule/expression/AggregateKeywords$maxs.html" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -475,7 +475,7 @@ Person.age(max).get.head === <span class="num">70</span></pre><p>Apply <code>max
     </li><li name="molecule.expression.AggregateKeywords.median" visbl="pub" class="indented0 " data-isabs="true" fullComment="yes" group="aggrNumber">
       <a id="medianextendsAnyRef"></a><a id="median:median"></a>
       <span class="permalink">
-      <a href="../../molecule/expression/AggregateKeywords.html#medianextendsAnyRef" title="Permalink">
+      <a href="../../molecule/expression/AggregateKeywords$median.html" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -499,7 +499,7 @@ Match.score(median).get.head === <span class="num">2</span> <span class="cmt">//
     </li><li name="molecule.expression.AggregateKeywords.min" visbl="pub" class="indented0 " data-isabs="true" fullComment="yes" group="aggregates">
       <a id="minextendsAnyRef"></a><a id="min:min"></a>
       <span class="permalink">
-      <a href="../../molecule/expression/AggregateKeywords.html#minextendsAnyRef" title="Permalink">
+      <a href="../../molecule/expression/AggregateKeywords$min.html" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -519,7 +519,7 @@ Person.age(min).get.head === <span class="num">25</span></pre><p>Apply <code>min
     </li><li name="molecule.expression.AggregateKeywords.mins" visbl="pub" class="indented0 " data-isabs="true" fullComment="no" group="Ungrouped">
       <a id="minsextendsAnyRef"></a><a id="mins:mins"></a>
       <span class="permalink">
-      <a href="../../molecule/expression/AggregateKeywords.html#minsextendsAnyRef" title="Permalink">
+      <a href="../../molecule/expression/AggregateKeywords$mins.html" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -535,7 +535,7 @@ Person.age(min).get.head === <span class="num">25</span></pre><p>Apply <code>min
     </li><li name="molecule.expression.AggregateKeywords.rand" visbl="pub" class="indented0 " data-isabs="true" fullComment="yes" group="aggregates">
       <a id="randextendsAnyRef"></a><a id="rand:rand"></a>
       <span class="permalink">
-      <a href="../../molecule/expression/AggregateKeywords.html#randextendsAnyRef" title="Permalink">
+      <a href="../../molecule/expression/AggregateKeywords$rand.html" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -555,7 +555,7 @@ Person.age(random).get.head === <span class="num">34</span> <span class="cmt">//
     </li><li name="molecule.expression.AggregateKeywords.rands" visbl="pub" class="indented0 " data-isabs="true" fullComment="no" group="Ungrouped">
       <a id="randsextendsAnyRef"></a><a id="rands:rands"></a>
       <span class="permalink">
-      <a href="../../molecule/expression/AggregateKeywords.html#randsextendsAnyRef" title="Permalink">
+      <a href="../../molecule/expression/AggregateKeywords$rands.html" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -571,7 +571,7 @@ Person.age(random).get.head === <span class="num">34</span> <span class="cmt">//
     </li><li name="molecule.expression.AggregateKeywords.sample" visbl="pub" class="indented0 " data-isabs="true" fullComment="yes" group="aggregates">
       <a id="sampleextendsAnyRef"></a><a id="sample:sample"></a>
       <span class="permalink">
-      <a href="../../molecule/expression/AggregateKeywords.html#sampleextendsAnyRef" title="Permalink">
+      <a href="../../molecule/expression/AggregateKeywords$sample.html" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -591,7 +591,7 @@ Person.age(sample).get.head === <span class="num">42</span> <span class="cmt">//
     </li><li name="molecule.expression.AggregateKeywords.samples" visbl="pub" class="indented0 " data-isabs="true" fullComment="no" group="Ungrouped">
       <a id="samplesextendsAnyRef"></a><a id="samples:samples"></a>
       <span class="permalink">
-      <a href="../../molecule/expression/AggregateKeywords.html#samplesextendsAnyRef" title="Permalink">
+      <a href="../../molecule/expression/AggregateKeywords$samples.html" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -607,7 +607,7 @@ Person.age(sample).get.head === <span class="num">42</span> <span class="cmt">//
     </li><li name="molecule.expression.AggregateKeywords.stddev" visbl="pub" class="indented0 " data-isabs="true" fullComment="yes" group="aggrNumber">
       <a id="stddevextendsAnyRef"></a><a id="stddev:stddev"></a>
       <span class="permalink">
-      <a href="../../molecule/expression/AggregateKeywords.html#stddevextendsAnyRef" title="Permalink">
+      <a href="../../molecule/expression/AggregateKeywords$stddev.html" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -626,7 +626,7 @@ Match.score(stddev).get.head === <span class="num">1.247219128924647</span></pre
     </li><li name="molecule.expression.AggregateKeywords.sum" visbl="pub" class="indented0 " data-isabs="true" fullComment="yes" group="aggrNumber">
       <a id="sumextendsAnyRef"></a><a id="sum:sum"></a>
       <span class="permalink">
-      <a href="../../molecule/expression/AggregateKeywords.html#sumextendsAnyRef" title="Permalink">
+      <a href="../../molecule/expression/AggregateKeywords$sum.html" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -645,7 +645,7 @@ Match.score(sum).get.head === <span class="num">7</span></pre></div><dl class="p
     </li><li name="molecule.expression.AggregateKeywords.variance" visbl="pub" class="indented0 " data-isabs="true" fullComment="yes" group="aggrNumber">
       <a id="varianceextendsAnyRef"></a><a id="variance:variance"></a>
       <span class="permalink">
-      <a href="../../molecule/expression/AggregateKeywords.html#varianceextendsAnyRef" title="Permalink">
+      <a href="../../molecule/expression/AggregateKeywords$variance.html" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -748,13 +748,13 @@ Match.score(variance).get.head === <span class="num">1.5555555555555556</span></
         <span class="name">clone</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.AnyRef">AnyRef</span></span>
       </span>
       
-      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../../java/lang/index.html" class="extype" name="java.lang">java.lang</a>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
-                <span class="name">@native</span><span class="args">()</span>
-              
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<span class="extype" name="java.lang">lang</span>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
                 <span class="name">@throws</span><span class="args">(<span>
       
       <span class="defval" name="classOf[java.lang.CloneNotSupportedException]">...</span>
     </span>)</span>
+              
+                <span class="name">@native</span><span class="args">()</span>
               
         </dd></dl></div>
     </li><li name="scala.AnyRef#eq" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
@@ -804,7 +804,7 @@ Match.score(variance).get.head === <span class="num">1.5555555555555556</span></
         <span class="name">finalize</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
       </span>
       
-      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../../java/lang/index.html" class="extype" name="java.lang">java.lang</a>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<span class="extype" name="java.lang">lang</span>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
                 <span class="name">@throws</span><span class="args">(<span>
       
       <span class="symbol">classOf[java.lang.Throwable]</span>
@@ -1011,12 +1011,12 @@ Match.score(variance).get.head === <span class="num">1.5555555555555556</span></
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
-                <span class="name">@native</span><span class="args">()</span>
-              
                 <span class="name">@throws</span><span class="args">(<span>
       
       <span class="defval" name="classOf[java.lang.InterruptedException]">...</span>
     </span>)</span>
+              
+                <span class="name">@native</span><span class="args">()</span>
               
         </dd></dl></div>
     </li>
