@@ -3,9 +3,9 @@
         <head>
           <meta http-equiv="X-UA-Compatible" content="IE=edge" />
           <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-          <title>Molecule 0.19.0 - molecule.util.fns</title>
-          <meta name="description" content="Molecule 0.19.0 - molecule.util.fns" />
-          <meta name="keywords" content="Molecule 0.19.0 molecule.util.fns" />
+          <title>Molecule 0.19.1 - molecule.util.fns</title>
+          <meta name="description" content="Molecule 0.19.1 - molecule.util.fns" />
+          <meta name="keywords" content="Molecule 0.19.1 molecule.util.fns" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       
@@ -28,7 +28,7 @@
         </head>
         <body>
       <div id="search">
-        <span id="doc-title">Molecule<span id="doc-version">0.19.0</span></span>
+        <span id="doc-title">Molecule<span id="doc-version">0.19.1</span></span>
         <span class="close-results"><span class="left">&lt;</span> Back</span>
         <div id="textfilter">
           <span class="input">
@@ -168,6 +168,14 @@
       <p class="shortcomment cmt">Internal database functions for Datomic.</p><div class="fullcomment"><div class="comment cmt"><p>Internal database functions for Datomic.</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../index.html" class="extype" name="molecule">molecule</a></dd></dl></div>
     </li><li class="current-entities indented2">
                         <span class="separator"></span>
+                        <a class="trait" href="DateHandling.html" title=""></a>
+                        <a href="DateHandling.html" title="">DateHandling</a>
+                      </li><li class="current-entities indented2">
+                        <span class="separator"></span>
+                        <a class="trait" href="RegexMatching.html" title=""></a>
+                        <a href="RegexMatching.html" title="">RegexMatching</a>
+                      </li><li class="current-entities indented2">
+                        <span class="separator"></span>
                         <a class="object" href="" title=""></a>
                         <a href="" title="">fns</a>
                       </li>
@@ -193,7 +201,7 @@
         <span class="kind">object</span>
       </span>
       <span class="symbol">
-        <span class="name">fns</span>
+        <span class="name">fns</span><span class="result"> extends <a href="DateHandling.html" class="extype" name="molecule.util.DateHandling">DateHandling</a></span>
       </span>
       </h4>
 
@@ -202,7 +210,7 @@
           <span class="toggle">
             Linear Supertypes
           </span>
-          <div class="superTypes hiddenContent"><span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
+          <div class="superTypes hiddenContent"><a href="DateHandling.html" class="extype" name="molecule.util.DateHandling">DateHandling</a>, <a href="RegexMatching.html" class="extype" name="molecule.util.RegexMatching">RegexMatching</a>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
         
 
@@ -228,7 +236,7 @@
                   <span class="filtertype">Inherited<br />
                   </span>
                   <ol id="linearization">
-                    <li class="in" name="molecule.util.fns"><span>fns</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                    <li class="in" name="molecule.util.fns"><span>fns</span></li><li class="in" name="molecule.util.DateHandling"><span>DateHandling</span></li><li class="in" name="molecule.util.RegexMatching"><span>RegexMatching</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
                   </ol>
                 </div><div class="ancestors">
               <span class="filtertype"></span>
@@ -248,7 +256,26 @@
         <div id="allMembers">
         
 
-        
+        <div id="types" class="types members">
+              <h3>Type Members</h3>
+              <ol><li name="molecule.util.RegexMatching.Regex" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="RegexextendsAnyRef"></a><a id="Regex:Regex"></a>
+      <span class="permalink">
+      <a href="../../molecule/util/RegexMatching$Regex.html" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">implicit </span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a title="" href="RegexMatching$Regex.html"><span class="name">Regex</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="RegexMatching.html" class="extype" name="molecule.util.RegexMatching">RegexMatching</a></dd></dl></div>
+    </li></ol>
+            </div>
 
         
 
@@ -359,10 +386,10 @@
                 <span class="name">@native</span><span class="args">()</span>
               
         </dd></dl></div>
-    </li><li name="molecule.util.fns#date" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="date(s:String):java.util.Date"></a><a id="date(String):Date"></a>
+    </li><li name="molecule.util.DateHandling#date2datomicStr" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="date2datomicStr(date:java.util.Date,zoneOffset:java.time.ZoneOffset):String"></a><a id="date2datomicStr(Date,ZoneOffset):String"></a>
       <span class="permalink">
-      <a href="../../molecule/util/fns$.html#date(s:String):java.util.Date" title="Permalink">
+      <a href="../../molecule/util/fns$.html#date2datomicStr(date:java.util.Date,zoneOffset:java.time.ZoneOffset):String" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -371,10 +398,42 @@
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">date</span><span class="params">(<span name="s">s: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <span class="extype" name="java.util.Date">Date</span></span>
+        <span class="name">date2datomicStr</span><span class="params">(<span name="date">date: <span class="extype" name="java.util.Date">Date</span></span>, <span name="zoneOffset">zoneOffset: <span class="extype" name="java.time.ZoneOffset">ZoneOffset</span> = <span class="symbol">localZoneOffset</span></span>)</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="DateHandling.html" class="extype" name="molecule.util.DateHandling">DateHandling</a></dd></dl></div>
+    </li><li name="molecule.util.fns#date2str" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="date2str(d:java.util.Date):String"></a><a id="date2str(Date):String"></a>
+      <span class="permalink">
+      <a href="../../molecule/util/fns$.html#date2str(d:java.util.Date):String" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">date2str</span><span class="params">(<span name="d">d: <span class="extype" name="java.util.Date">Date</span></span>)</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
       </span>
       
       
+    </li><li name="molecule.util.DateHandling#date2str" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="date2str(date:java.util.Date,zoneOffset:java.time.ZoneOffset):String"></a><a id="date2str(Date,ZoneOffset):String"></a>
+      <span class="permalink">
+      <a href="../../molecule/util/fns$.html#date2str(date:java.util.Date,zoneOffset:java.time.ZoneOffset):String" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">date2str</span><span class="params">(<span name="date">date: <span class="extype" name="java.util.Date">Date</span></span>, <span name="zoneOffset">zoneOffset: <span class="extype" name="java.time.ZoneOffset">ZoneOffset</span> = <span class="symbol">localZoneOffset</span></span>)</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="DateHandling.html" class="extype" name="molecule.util.DateHandling">DateHandling</a></dd></dl></div>
     </li><li name="scala.AnyRef#eq" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="eq(x$1:AnyRef):Boolean"></a><a id="eq(AnyRef):Boolean"></a>
       <span class="permalink">
@@ -407,6 +466,22 @@
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="molecule.util.DateHandling#expandDateStr" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="expandDateStr(dateStr:String):String"></a><a id="expandDateStr(String):String"></a>
+      <span class="permalink">
+      <a href="../../molecule/util/fns$.html#expandDateStr(dateStr:String):String" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">expandDateStr</span><span class="params">(<span name="dateStr">dateStr: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="DateHandling.html" class="extype" name="molecule.util.DateHandling">DateHandling</a></dd></dl></div>
     </li><li name="scala.AnyRef#finalize" visbl="prt" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="finalize():Unit"></a>
       <span class="permalink">
@@ -569,6 +644,54 @@
       </span>
       
       
+    </li><li name="molecule.util.fns#str2date" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="str2date(s:String):java.util.Date"></a><a id="str2date(String):Date"></a>
+      <span class="permalink">
+      <a href="../../molecule/util/fns$.html#str2date(s:String):java.util.Date" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">str2date</span><span class="params">(<span name="s">s: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <span class="extype" name="java.util.Date">Date</span></span>
+      </span>
+      
+      
+    </li><li name="molecule.util.DateHandling#str2date" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="str2date(s:String,zoneOffset:java.time.ZoneOffset):java.util.Date"></a><a id="str2date(String,ZoneOffset):Date"></a>
+      <span class="permalink">
+      <a href="../../molecule/util/fns$.html#str2date(s:String,zoneOffset:java.time.ZoneOffset):java.util.Date" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">str2date</span><span class="params">(<span name="s">s: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="zoneOffset">zoneOffset: <span class="extype" name="java.time.ZoneOffset">ZoneOffset</span> = <span class="symbol">localZoneOffset</span></span>)</span><span class="result">: <span class="extype" name="java.util.Date">Date</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="DateHandling.html" class="extype" name="molecule.util.DateHandling">DateHandling</a></dd></dl></div>
+    </li><li name="molecule.util.DateHandling#str2zdt" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="str2zdt(s:String,zoneOffset:java.time.ZoneOffset):java.time.ZonedDateTime"></a><a id="str2zdt(String,ZoneOffset):ZonedDateTime"></a>
+      <span class="permalink">
+      <a href="../../molecule/util/fns$.html#str2zdt(s:String,zoneOffset:java.time.ZoneOffset):java.time.ZonedDateTime" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">str2zdt</span><span class="params">(<span name="s">s: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="zoneOffset">zoneOffset: <span class="extype" name="java.time.ZoneOffset">ZoneOffset</span> = <span class="symbol">localZoneOffset</span></span>)</span><span class="result">: <span class="extype" name="java.time.ZonedDateTime">ZonedDateTime</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="DateHandling.html" class="extype" name="molecule.util.DateHandling">DateHandling</a></dd></dl></div>
     </li><li name="scala.AnyRef#synchronized" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="synchronized[T0](x$1:=&gt;T0):T0"></a><a id="synchronized[T0](⇒T0):T0"></a>
       <span class="permalink">
@@ -601,6 +724,22 @@
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="molecule.util.DateHandling#truncateDateStr" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="truncateDateStr(dateStr:String):String"></a><a id="truncateDateStr(String):String"></a>
+      <span class="permalink">
+      <a href="../../molecule/util/fns$.html#truncateDateStr(dateStr:String):String" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">truncateDateStr</span><span class="params">(<span name="dateStr">dateStr: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="DateHandling.html" class="extype" name="molecule.util.DateHandling">DateHandling</a></dd></dl></div>
     </li><li name="scala.AnyRef#wait" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="wait():Unit"></a>
       <span class="permalink">
@@ -679,7 +818,11 @@
         </div>
 
         <div id="inheritedMembers">
-        <div class="parent" name="scala.AnyRef">
+        <div class="parent" name="molecule.util.DateHandling">
+              <h3>Inherited from <a href="DateHandling.html" class="extype" name="molecule.util.DateHandling">DateHandling</a></h3>
+            </div><div class="parent" name="molecule.util.RegexMatching">
+              <h3>Inherited from <a href="RegexMatching.html" class="extype" name="molecule.util.RegexMatching">RegexMatching</a></h3>
+            </div><div class="parent" name="scala.AnyRef">
               <h3>Inherited from <span class="extype" name="scala.AnyRef">AnyRef</span></h3>
             </div><div class="parent" name="scala.Any">
               <h3>Inherited from <span class="extype" name="scala.Any">Any</span></h3>
