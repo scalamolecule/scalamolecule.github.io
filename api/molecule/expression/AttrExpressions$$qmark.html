@@ -3,9 +3,9 @@
         <head>
           <meta http-equiv="X-UA-Compatible" content="IE=edge" />
           <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-          <title>Molecule 0.19.1 - molecule.expression.AttrExpressions.?</title>
-          <meta name="description" content="Molecule 0.19.1 - molecule.expression.AttrExpressions. " />
-          <meta name="keywords" content="Molecule 0.19.1 molecule.expression.AttrExpressions. " />
+          <title>Molecule 0.20.0 - molecule.expression.AttrExpressions.?</title>
+          <meta name="description" content="Molecule 0.20.0 - molecule.expression.AttrExpressions. " />
+          <meta name="keywords" content="Molecule 0.20.0 molecule.expression.AttrExpressions. " />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       
@@ -28,7 +28,7 @@
         </head>
         <body>
       <div id="search">
-        <span id="doc-title">Molecule<span id="doc-version">0.19.1</span></span>
+        <span id="doc-title">Molecule<span id="doc-version">0.20.0</span></span>
         <span class="close-results"><span class="left">&lt;</span> Back</span>
         <div id="textfilter">
           <span class="input">
@@ -312,7 +312,7 @@ At runtime the input molecule expects input for the attribute in place of the <c
 <span class="kw">val</span> ageOfPersons = m(Person.name_(?).age) <span class="cmt">// awaiting name of type String</span>
 
 <span class="cmt">// At runtime, "Ben" is applied as input replacing the `?` placeholder and we can get the age.</span>
-ageOfPersons(<span class="lit">"Ben"</span>).get === <span class="std">List</span>(<span class="num">42</span>)</pre></div><dl class="attributes block"> <dt>Source</dt><dd><a href="https://github.com/scalamolecule/molecule/tree/master/core/src/main/scala/molecule/expression/AttrExpressions.scala#L1" target="_blank">AttrExpressions.scala</a></dd><dt>Note</dt><dd><span class="cmt"><p>Data can only be retrieved from input molecules once they have been resolved with input.<br>
+ageOfPersons(<span class="lit">"Ben"</span>).get === <span class="std">List</span>(<span class="num">42</span>)</pre></div><dl class="attributes block"> <dt>Source</dt><dd><a href="https://github.com/scalamolecule/molecule/tree/master/core/jvm/src/main/scala/molecule/expression/AttrExpressions.scala#L1" target="_blank">AttrExpressions.scala</a></dd><dt>Note</dt><dd><span class="cmt"><p>Data can only be retrieved from input molecules once they have been resolved with input.<br>
       Input molecule queries are cached and optimized by Datomic.</p></span></dd></dl><div class="toggleContainer block">
           <span class="toggle">
             Linear Supertypes

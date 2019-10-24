@@ -3,9 +3,9 @@
         <head>
           <meta http-equiv="X-UA-Compatible" content="IE=edge" />
           <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-          <title>Molecule 0.19.1 - molecule.expression.AggregateKeywords.max</title>
-          <meta name="description" content="Molecule 0.19.1 - molecule.expression.AggregateKeywords.max" />
-          <meta name="keywords" content="Molecule 0.19.1 molecule.expression.AggregateKeywords.max" />
+          <title>Molecule 0.20.0 - molecule.expression.AggregateKeywords.max</title>
+          <meta name="description" content="Molecule 0.20.0 - molecule.expression.AggregateKeywords.max" />
+          <meta name="keywords" content="Molecule 0.20.0 molecule.expression.AggregateKeywords.max" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       
@@ -28,7 +28,7 @@
         </head>
         <body>
       <div id="search">
-        <span id="doc-title">Molecule<span id="doc-version">0.19.1</span></span>
+        <span id="doc-title">Molecule<span id="doc-version">0.20.0</span></span>
         <span class="close-results"><span class="left">&lt;</span> Back</span>
         <div id="textfilter">
           <span class="input">
@@ -334,7 +334,7 @@ Person.age(variance).get.head === <span class="num">228.2222222222</span>   <spa
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Maximum attribute value(s).
 <br><br>
 Apply <code>max</code> keyword to attribute to return the maximum attribute value of entities matching the molecule.</p><pre>Person.age.insert(<span class="num">25</span>, <span class="num">34</span>, <span class="num">37</span>, <span class="num">42</span>, <span class="num">70</span>)
-Person.age(max).get.head === <span class="num">70</span></pre><p>Apply <code>max(n)</code> to return Vector of the n biggest values.</p><pre>Person.age(max(<span class="num">3</span>)).get.head === Vector(<span class="num">37</span>, <span class="num">42</span>, <span class="num">70</span>)</pre></div><dl class="attributes block"> <dt>Source</dt><dd><a href="https://github.com/scalamolecule/molecule/tree/master/core/src/main/scala/molecule/expression/AggregateKeywords.scala#L1" target="_blank">AggregateKeywords.scala</a></dd><dt>Note</dt><dd><span class="cmt"><p><code>max</code>/<code>max(n)</code> supports all value types (via comparators).
+Person.age(max).get.head === <span class="num">70</span></pre><p>Apply <code>max(n)</code> to return Vector of the n biggest values.</p><pre>Person.age(max(<span class="num">3</span>)).get.head === Vector(<span class="num">37</span>, <span class="num">42</span>, <span class="num">70</span>)</pre></div><dl class="attributes block"> <dt>Source</dt><dd><a href="https://github.com/scalamolecule/molecule/tree/master/core/jvm/src/main/scala/molecule/expression/AggregateKeywords.scala#L1" target="_blank">AggregateKeywords.scala</a></dd><dt>Note</dt><dd><span class="cmt"><p><code>max</code>/<code>max(n)</code> supports all value types (via comparators).
       <br><code>max(n)</code> Can at most return the number of values that match.</p></span></dd></dl><div class="toggleContainer block">
           <span class="toggle">
             Linear Supertypes

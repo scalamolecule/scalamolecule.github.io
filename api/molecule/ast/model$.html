@@ -3,9 +3,9 @@
         <head>
           <meta http-equiv="X-UA-Compatible" content="IE=edge" />
           <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-          <title>Molecule 0.19.1 - molecule.ast.model</title>
-          <meta name="description" content="Molecule 0.19.1 - molecule.ast.model" />
-          <meta name="keywords" content="Molecule 0.19.1 molecule.ast.model" />
+          <title>Molecule 0.20.0 - molecule.ast.model</title>
+          <meta name="description" content="Molecule 0.20.0 - molecule.ast.model" />
+          <meta name="keywords" content="Molecule 0.20.0 molecule.ast.model" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       
@@ -28,7 +28,7 @@
         </head>
         <body>
       <div id="search">
-        <span id="doc-title">Molecule<span id="doc-version">0.19.1</span></span>
+        <span id="doc-title">Molecule<span id="doc-version">0.20.0</span></span>
         <span class="close-results"><span class="left">&lt;</span> Back</span>
         <div id="textfilter">
           <span class="input">
@@ -221,7 +221,7 @@
         <span class="kind">object</span>
       </span>
       <span class="symbol">
-        <span class="name">model</span><span class="result"> extends <span class="extype" name="molecule.util.Helpers">Helpers</span></span>
+        <span class="name">model</span><span class="result"> extends <a href="../util/Helpers.html" class="extype" name="molecule.util.Helpers">Helpers</a></span>
       </span>
       </h4>
 
@@ -231,11 +231,11 @@
 Molecule transforms custom boilerplate DSL constructs to Datomic queries in 3 steps:
 <br><br>
 Custom DSL molecule --&gt; Model --&gt; Query --&gt; Datomic query string
-</p></div><dl class="attributes block"> <dt>Source</dt><dd><a href="https://github.com/scalamolecule/molecule/tree/master/core/src/main/scala/molecule/ast/model.scala#L1" target="_blank">model.scala</a></dd></dl><div class="toggleContainer block">
+</p></div><dl class="attributes block"> <dt>Source</dt><dd><a href="https://github.com/scalamolecule/molecule/tree/master/core/shared/src/main/scala/molecule/ast/model.scala#L1" target="_blank">model.scala</a></dd></dl><div class="toggleContainer block">
           <span class="toggle">
             Linear Supertypes
           </span>
-          <div class="superTypes hiddenContent"><span class="extype" name="molecule.util.Helpers">Helpers</span>, <a href="../util/DateHandling.html" class="extype" name="molecule.util.DateHandling">DateHandling</a>, <a href="../util/RegexMatching.html" class="extype" name="molecule.util.RegexMatching">RegexMatching</a>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
+          <div class="superTypes hiddenContent"><a href="../util/Helpers.html" class="extype" name="molecule.util.Helpers">Helpers</a>, <a href="../util/DateHandling.html" class="extype" name="molecule.util.DateHandling">DateHandling</a>, <a href="../util/RegexMatching.html" class="extype" name="molecule.util.RegexMatching">RegexMatching</a>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div><div class="toggleContainer block diagram-container" id="content-diagram-container">
                 <span class="toggle diagram-link">
                   Content Hierarchy
@@ -1288,7 +1288,39 @@ Model is thus derived from custom meta-DSL constructs (&quot;molecules&quot;).
         <span class="name">cast</span><span class="params">(<span name="value">value: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
       </span>
       
-      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd><dt>Definition Classes</dt><dd>Helpers</dd></dl></div>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd><dt>Definition Classes</dt><dd><a href="../util/Helpers.html" class="extype" name="molecule.util.Helpers">Helpers</a></dd></dl></div>
+    </li><li name="molecule.ast.model#cast2" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="cast2(tpe:String,value:Any):String"></a><a id="cast2(String,Any):String"></a>
+      <span class="permalink">
+      <a href="../../molecule/ast/model$.html#cast2(tpe:String,value:Any):String" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">cast2</span><span class="params">(<span name="tpe">tpe: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="value">value: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      
+      
+    </li><li name="molecule.util.Helpers#clean" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="clean(attr:String):String"></a><a id="clean(String):String"></a>
+      <span class="permalink">
+      <a href="../../molecule/ast/model$.html#clean(attr:String):String" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">clean</span><span class="params">(<span name="attr">attr: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../util/Helpers.html" class="extype" name="molecule.util.Helpers">Helpers</a></dd></dl></div>
     </li><li name="scala.AnyRef#clone" visbl="prt" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="clone():Object"></a><a id="clone():AnyRef"></a>
       <span class="permalink">
@@ -1341,7 +1373,7 @@ Model is thus derived from custom meta-DSL constructs (&quot;molecules&quot;).
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">date2datomicStr</span><span class="params">(<span name="date">date: <span class="extype" name="java.util.Date">Date</span></span>, <span name="zoneOffset">zoneOffset: <span class="extype" name="java.time.ZoneOffset">ZoneOffset</span> = <span class="symbol">localZoneOffset</span></span>)</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+        <span class="name">date2datomicStr</span><span class="params">(<span name="date">date: <span class="extype" name="java.util.Date">Date</span></span>, <span name="zoneOffset">zoneOffset: <span class="extype" name="java.time.ZoneOffset">ZoneOffset</span> = <span class="symbol"><span class="name"><a href="../util/DateHandling.html#localZoneOffset:java.time.ZoneOffset">localZoneOffset</a></span></span></span>)</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../util/DateHandling.html" class="extype" name="molecule.util.DateHandling">DateHandling</a></dd></dl></div>
@@ -1357,7 +1389,23 @@ Model is thus derived from custom meta-DSL constructs (&quot;molecules&quot;).
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">date2str</span><span class="params">(<span name="date">date: <span class="extype" name="java.util.Date">Date</span></span>, <span name="zoneOffset">zoneOffset: <span class="extype" name="java.time.ZoneOffset">ZoneOffset</span> = <span class="symbol">localZoneOffset</span></span>)</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+        <span class="name">date2str</span><span class="params">(<span name="date">date: <span class="extype" name="java.util.Date">Date</span></span>, <span name="zoneOffset">zoneOffset: <span class="extype" name="java.time.ZoneOffset">ZoneOffset</span> = <span class="symbol"><span class="name"><a href="../util/DateHandling.html#localZoneOffset:java.time.ZoneOffset">localZoneOffset</a></span></span></span>)</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../util/DateHandling.html" class="extype" name="molecule.util.DateHandling">DateHandling</a></dd></dl></div>
+    </li><li name="molecule.util.DateHandling#daylight" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="daylight(ms:Long):Int"></a><a id="daylight(Long):Int"></a>
+      <span class="permalink">
+      <a href="../../molecule/ast/model$.html#daylight(ms:Long):Int" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">daylight</span><span class="params">(<span name="ms">ms: <span class="extype" name="scala.Long">Long</span></span>)</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../util/DateHandling.html" class="extype" name="molecule.util.DateHandling">DateHandling</a></dd></dl></div>
@@ -1424,7 +1472,7 @@ Model is thus derived from custom meta-DSL constructs (&quot;molecules&quot;).
         <span class="name">f</span><span class="params">(<span name="a">a: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <span class="extype" name="scala.Any">Any</span></span>
       </span>
       
-      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd><dt>Definition Classes</dt><dd>Helpers</dd></dl></div>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd><dt>Definition Classes</dt><dd><a href="../util/Helpers.html" class="extype" name="molecule.util.Helpers">Helpers</a></dd></dl></div>
     </li><li name="scala.AnyRef#finalize" visbl="prt" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="finalize():Unit"></a>
       <span class="permalink">
@@ -1466,6 +1514,22 @@ Model is thus derived from custom meta-DSL constructs (&quot;molecules&quot;).
                 <span class="name">@native</span><span class="args">()</span>
               
         </dd></dl></div>
+    </li><li name="molecule.ast.model#getSeq2" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="getSeq2[T](tpe:String,values:Seq[T]):String"></a><a id="getSeq2[T](String,Seq[T]):String"></a>
+      <span class="permalink">
+      <a href="../../molecule/ast/model$.html#getSeq2[T](tpe:String,values:Seq[T]):String" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getSeq2</span><span class="tparams">[<span name="T">T</span>]</span><span class="params">(<span name="tpe">tpe: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="values">values: <span class="extype" name="scala.Seq">Seq</span>[<span class="extype" name="molecule.ast.model.getSeq2.T">T</span>]</span>)</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      
+      
     </li><li name="scala.AnyRef#hashCode" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="hashCode():Int"></a>
       <span class="permalink">
@@ -1501,6 +1565,38 @@ Model is thus derived from custom meta-DSL constructs (&quot;molecules&quot;).
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="molecule.util.DateHandling#localOffset" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="localOffset:String"></a>
+      <span class="permalink">
+      <a href="../../molecule/ast/model$.html#localOffset:String" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">lazy val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">localOffset</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../util/DateHandling.html" class="extype" name="molecule.util.DateHandling">DateHandling</a></dd></dl></div>
+    </li><li name="molecule.util.DateHandling#localZoneOffset" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="localZoneOffset:java.time.ZoneOffset"></a><a id="localZoneOffset:ZoneOffset"></a>
+      <span class="permalink">
+      <a href="../../molecule/ast/model$.html#localZoneOffset:java.time.ZoneOffset" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">lazy val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">localZoneOffset</span><span class="result">: <span class="extype" name="java.time.ZoneOffset">ZoneOffset</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../util/DateHandling.html" class="extype" name="molecule.util.DateHandling">DateHandling</a></dd></dl></div>
     </li><li name="scala.AnyRef#ne" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="ne(x$1:AnyRef):Boolean"></a><a id="ne(AnyRef):Boolean"></a>
       <span class="permalink">
@@ -1570,7 +1666,23 @@ Model is thus derived from custom meta-DSL constructs (&quot;molecules&quot;).
         <span class="name">o</span><span class="params">(<span name="opt">opt: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Any">Any</span>]</span>)</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
       </span>
       
-      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd><dt>Definition Classes</dt><dd>Helpers</dd></dl></div>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd><dt>Definition Classes</dt><dd><a href="../util/Helpers.html" class="extype" name="molecule.util.Helpers">Helpers</a></dd></dl></div>
+    </li><li name="molecule.util.Helpers#os" visbl="prt" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="os(opt:Option[Set[_]]):String"></a><a id="os(Option[Set[_]]):String"></a>
+      <span class="permalink">
+      <a href="../../molecule/ast/model$.html#os(opt:Option[Set[_]]):String" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">os</span><span class="params">(<span name="opt">opt: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Predef.Set">Set</span>[_]]</span>)</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd><dt>Definition Classes</dt><dd><a href="../util/Helpers.html" class="extype" name="molecule.util.Helpers">Helpers</a></dd></dl></div>
     </li><li name="molecule.util.Helpers#seq" visbl="prt" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="seq[T](values:Seq[T]):String"></a><a id="seq[T](Seq[T]):String"></a>
       <span class="permalink">
@@ -1586,7 +1698,7 @@ Model is thus derived from custom meta-DSL constructs (&quot;molecules&quot;).
         <span class="name">seq</span><span class="tparams">[<span name="T">T</span>]</span><span class="params">(<span name="values">values: <span class="extype" name="scala.Seq">Seq</span>[<span class="extype" name="molecule.util.Helpers.seq.T">T</span>]</span>)</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
       </span>
       
-      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd><dt>Definition Classes</dt><dd>Helpers</dd></dl></div>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd><dt>Definition Classes</dt><dd><a href="../util/Helpers.html" class="extype" name="molecule.util.Helpers">Helpers</a></dd></dl></div>
     </li><li name="molecule.util.DateHandling#str2date" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="str2date(s:String,zoneOffset:java.time.ZoneOffset):java.util.Date"></a><a id="str2date(String,ZoneOffset):Date"></a>
       <span class="permalink">
@@ -1599,7 +1711,7 @@ Model is thus derived from custom meta-DSL constructs (&quot;molecules&quot;).
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">str2date</span><span class="params">(<span name="s">s: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="zoneOffset">zoneOffset: <span class="extype" name="java.time.ZoneOffset">ZoneOffset</span> = <span class="symbol">localZoneOffset</span></span>)</span><span class="result">: <span class="extype" name="java.util.Date">Date</span></span>
+        <span class="name">str2date</span><span class="params">(<span name="s">s: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="zoneOffset">zoneOffset: <span class="extype" name="java.time.ZoneOffset">ZoneOffset</span> = <span class="symbol"><span class="name"><a href="../util/DateHandling.html#localZoneOffset:java.time.ZoneOffset">localZoneOffset</a></span></span></span>)</span><span class="result">: <span class="extype" name="java.util.Date">Date</span></span>
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../util/DateHandling.html" class="extype" name="molecule.util.DateHandling">DateHandling</a></dd></dl></div>
@@ -1615,7 +1727,7 @@ Model is thus derived from custom meta-DSL constructs (&quot;molecules&quot;).
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">str2zdt</span><span class="params">(<span name="s">s: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="zoneOffset">zoneOffset: <span class="extype" name="java.time.ZoneOffset">ZoneOffset</span> = <span class="symbol">localZoneOffset</span></span>)</span><span class="result">: <span class="extype" name="java.time.ZonedDateTime">ZonedDateTime</span></span>
+        <span class="name">str2zdt</span><span class="params">(<span name="s">s: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="zoneOffset">zoneOffset: <span class="extype" name="java.time.ZoneOffset">ZoneOffset</span> = <span class="symbol"><span class="name"><a href="../util/DateHandling.html#localZoneOffset:java.time.ZoneOffset">localZoneOffset</a></span></span></span>)</span><span class="result">: <span class="extype" name="java.time.ZonedDateTime">ZonedDateTime</span></span>
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../util/DateHandling.html" class="extype" name="molecule.util.DateHandling">DateHandling</a></dd></dl></div>
@@ -1650,7 +1762,7 @@ Model is thus derived from custom meta-DSL constructs (&quot;molecules&quot;).
         <span class="name">time</span><span class="params">(<span name="n">n: <span class="extype" name="scala.Int">Int</span></span>, <span name="prev">prev: <span class="extype" name="scala.Int">Int</span> = <span class="symbol">0</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
       </span>
       
-      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd><dt>Definition Classes</dt><dd>Helpers</dd></dl></div>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd><dt>Definition Classes</dt><dd><a href="../util/Helpers.html" class="extype" name="molecule.util.Helpers">Helpers</a></dd></dl></div>
     </li><li name="scala.AnyRef#toString" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="toString():String"></a>
       <span class="permalink">
@@ -1698,7 +1810,23 @@ Model is thus derived from custom meta-DSL constructs (&quot;molecules&quot;).
         <span class="name">tupleToSeq</span><span class="params">(<span name="arg">arg: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <span class="extype" name="scala.Seq">Seq</span>[<span class="extype" name="scala.Any">Any</span>]</span>
       </span>
       
-      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd><dt>Definition Classes</dt><dd>Helpers</dd></dl></div>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd><dt>Definition Classes</dt><dd><a href="../util/Helpers.html" class="extype" name="molecule.util.Helpers">Helpers</a></dd></dl></div>
+    </li><li name="molecule.ast.model#tv" visbl="prt" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="tv(tpe:String,value:molecule.ast.model.Value):String"></a><a id="tv(String,Value):String"></a>
+      <span class="permalink">
+      <a href="../../molecule/ast/model$.html#tv(tpe:String,value:molecule.ast.model.Value):String" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">tv</span><span class="params">(<span name="tpe">tpe: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="value">value: <a href="model$$Value.html" class="extype" name="molecule.ast.model.Value">Value</a></span>)</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd></dl></div>
     </li><li name="scala.AnyRef#wait" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="wait():Unit"></a>
       <span class="permalink">
@@ -1767,6 +1895,22 @@ Model is thus derived from custom meta-DSL constructs (&quot;molecules&quot;).
                 <span class="name">@native</span><span class="args">()</span>
               
         </dd></dl></div>
+    </li><li name="molecule.util.DateHandling#zone" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="zone:java.time.ZoneId"></a><a id="zone:ZoneId"></a>
+      <span class="permalink">
+      <a href="../../molecule/ast/model$.html#zone:java.time.ZoneId" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">lazy val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">zone</span><span class="result">: <span class="extype" name="java.time.ZoneId">ZoneId</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../util/DateHandling.html" class="extype" name="molecule.util.DateHandling">DateHandling</a></dd></dl></div>
     </li><li name="molecule.ast.model.BiEdge" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="BiEdge"></a><a id="BiEdge:BiEdge"></a>
       <span class="permalink">
@@ -1930,7 +2074,7 @@ Model is thus derived from custom meta-DSL constructs (&quot;molecules&quot;).
     </li><li name="molecule.util.Helpers.mkDate" visbl="prt" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="mkDate"></a><a id="mkDate:mkDate"></a>
       <span class="permalink">
-      <a href="../../molecule/ast/model$.html#mkDate" title="Permalink">
+      <a href="../../molecule/util/Helpers$mkDate$.html" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -1939,10 +2083,10 @@ Model is thus derived from custom meta-DSL constructs (&quot;molecules&quot;).
         <span class="kind">object</span>
       </span>
       <span class="symbol">
-        <span class="name">mkDate</span>
+        <a title="" href="../util/Helpers$mkDate$.html"><span class="name">mkDate</span></a>
       </span>
       
-      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd><dt>Definition Classes</dt><dd>Helpers</dd></dl></div>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd><dt>Definition Classes</dt><dd><a href="../util/Helpers.html" class="extype" name="molecule.util.Helpers">Helpers</a></dd></dl></div>
     </li>
               </ol>
             </div>
@@ -1954,7 +2098,7 @@ Model is thus derived from custom meta-DSL constructs (&quot;molecules&quot;).
 
         <div id="inheritedMembers">
         <div class="parent" name="molecule.util.Helpers">
-              <h3>Inherited from <span class="extype" name="molecule.util.Helpers">Helpers</span></h3>
+              <h3>Inherited from <a href="../util/Helpers.html" class="extype" name="molecule.util.Helpers">Helpers</a></h3>
             </div><div class="parent" name="molecule.util.DateHandling">
               <h3>Inherited from <a href="../util/DateHandling.html" class="extype" name="molecule.util.DateHandling">DateHandling</a></h3>
             </div><div class="parent" name="molecule.util.RegexMatching">

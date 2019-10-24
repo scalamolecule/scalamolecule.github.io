@@ -3,9 +3,9 @@
         <head>
           <meta http-equiv="X-UA-Compatible" content="IE=edge" />
           <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-          <title>Molecule 0.19.1 - molecule.api.Molecule.insertAsync</title>
-          <meta name="description" content="Molecule 0.19.1 - molecule.api.Molecule.insertAsync" />
-          <meta name="keywords" content="Molecule 0.19.1 molecule.api.Molecule.insertAsync" />
+          <title>Molecule 0.20.0 - molecule.api.Molecule.insertAsync</title>
+          <meta name="description" content="Molecule 0.20.0 - molecule.api.Molecule.insertAsync" />
+          <meta name="keywords" content="Molecule 0.20.0 molecule.api.Molecule.insertAsync" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       
@@ -28,7 +28,7 @@
         </head>
         <body>
       <div id="search">
-        <span id="doc-title">Molecule<span id="doc-version">0.19.1</span></span>
+        <span id="doc-title">Molecule<span id="doc-version">0.20.0</span></span>
         <span class="close-results"><span class="left">&lt;</span> Back</span>
         <div id="textfilter">
           <span class="input">
@@ -162,17 +162,10 @@
         <span class="kind">package</span>
       </span>
       <span class="symbol">
-        <a title="Public interface to be imported to use Molecule." href="index.html"><span class="name">api</span></a>
+        <a title="" href="index.html"><span class="name">api</span></a>
       </span>
       
-      <p class="shortcomment cmt">Public interface to be imported to use Molecule.</p><div class="fullcomment"><div class="comment cmt"><p>Public interface to be imported to use Molecule.</p><p>To make the Molecule macro materializations as fast as possible we try to
-import as few macro implicits as possible. If your application code build molecules
-with at the most 10 attributes, then you can do the following import to start using Molecule:</p><pre><span class="kw">import</span> molecule.api.out10._</pre><p><code>out</code> means &quot;output molecule&quot; , and <code>10</code> the maximum arity or number of attributes
-of your molecules.</p><p>If you use input molecules awaiting an input then you can add <code>inX</code> where X is
-how many inputs (1, 2 or 3) you will use, for instance:</p><pre><span class="kw">import</span> molecule.api.in2_out10._</pre><p>This way we keep the implicit macro def lookups to a minimum and compilation speed
-as fast as possible.</p><p>Arities can be changed anytime you like. But not to a lower arity than that of the
-molecules you use in scope of the import.
-</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../index.html" class="extype" name="molecule">molecule</a></dd></dl></div>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../index.html" class="extype" name="molecule">molecule</a></dd></dl></div>
     </li><li name="molecule.api.Molecule" visbl="pub" class="indented3 " data-isabs="true" fullComment="yes" group="Ungrouped">
       <a id="Molecule[Tpl]extendsMoleculeBasewithCastHelpers[Tpl]withJsonBuilderwithGetArray[Tpl]withGetIterable[Tpl]withGetList[Tpl]withGetRawwithGetJsonwithGetAsyncArray[Tpl]withGetAsyncIterable[Tpl]withGetAsyncList[Tpl]withGetAsyncRawwithGetAsyncJsonwithShowDebug[Tpl]"></a><a id="Molecule[Tpl]:Molecule[Tpl]"></a>
       <span class="permalink">
@@ -299,8 +292,8 @@ molecules you use in scope of the import.
                         <a href="" title="Asynchronously insert one or more rows of data matching molecule.">insertAsync</a>
                       </li><li class="current-entities indented3">
                         <span class="separator"></span>
-                        <a class="object" href="Molecule$mkDate$.html" title=""></a>
-                        <a href="Molecule$mkDate$.html" title="">mkDate</a>
+                        <a class="object" href="../util/Helpers$mkDate$.html" title=""></a>
+                        <a href="../util/Helpers$mkDate$.html" title="">mkDate</a>
                       </li>
               </ul>
             </div>
@@ -356,7 +349,7 @@ or an Iterable (List, Set etc) of tuples:</p><pre><span class="cmt">// Insert si
     (<span class="lit">"Liz"</span>, <span class="num">37</span>)
   )
 }</pre><p>The insert operation is asynchronous and non-blocking. Internally calls Datomic's asynchronous API.
-</p></div><dl class="attributes block"> <dt>Source</dt><dd><a href="https://github.com/scalamolecule/molecule/tree/master/core/src/main/scala/molecule/api/Molecule.scala#L1" target="_blank">Molecule.scala</a></dd></dl><div class="toggleContainer block">
+</p></div><dl class="attributes block"> <dt>Source</dt><dd><a href="https://github.com/scalamolecule/molecule/tree/master/core/jvm/src/main/scala/molecule/api/Molecule.scala#L1" target="_blank">Molecule.scala</a></dd></dl><div class="toggleContainer block">
           <span class="toggle">
             Linear Supertypes
           </span>

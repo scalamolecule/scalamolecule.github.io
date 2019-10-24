@@ -3,9 +3,9 @@
         <head>
           <meta http-equiv="X-UA-Compatible" content="IE=edge" />
           <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-          <title>Molecule 0.19.1 - molecule.facade</title>
-          <meta name="description" content="Molecule 0.19.1 - molecule.facade" />
-          <meta name="keywords" content="Molecule 0.19.1 molecule.facade" />
+          <title>Molecule 0.20.0 - molecule.facade</title>
+          <meta name="description" content="Molecule 0.20.0 - molecule.facade" />
+          <meta name="keywords" content="Molecule 0.20.0 molecule.facade" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       
@@ -28,7 +28,7 @@
         </head>
         <body>
       <div id="search">
-        <span id="doc-title">Molecule<span id="doc-version">0.19.1</span></span>
+        <span id="doc-title">Molecule<span id="doc-version">0.20.0</span></span>
         <span class="close-results"><span class="left">&lt;</span> Back</span>
         <div id="textfilter">
           <span class="input">
@@ -162,17 +162,10 @@
         <span class="kind">package</span>
       </span>
       <span class="symbol">
-        <a title="Public interface to be imported to use Molecule." href="../api/index.html"><span class="name">api</span></a>
+        <a title="" href="../api/index.html"><span class="name">api</span></a>
       </span>
       
-      <p class="shortcomment cmt">Public interface to be imported to use Molecule.</p><div class="fullcomment"><div class="comment cmt"><p>Public interface to be imported to use Molecule.</p><p>To make the Molecule macro materializations as fast as possible we try to
-import as few macro implicits as possible. If your application code build molecules
-with at the most 10 attributes, then you can do the following import to start using Molecule:</p><pre><span class="kw">import</span> molecule.api.out10._</pre><p><code>out</code> means &quot;output molecule&quot; , and <code>10</code> the maximum arity or number of attributes
-of your molecules.</p><p>If you use input molecules awaiting an input then you can add <code>inX</code> where X is
-how many inputs (1, 2 or 3) you will use, for instance:</p><pre><span class="kw">import</span> molecule.api.in2_out10._</pre><p>This way we keep the implicit macro def lookups to a minimum and compilation speed
-as fast as possible.</p><p>Arities can be changed anytime you like. But not to a lower arity than that of the
-molecules you use in scope of the import.
-</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../index.html" class="extype" name="molecule">molecule</a></dd></dl></div>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../index.html" class="extype" name="molecule">molecule</a></dd></dl></div>
     </li><li name="molecule.ast" visbl="pub" class="indented2 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="ast"></a><a id="ast:ast"></a>
       <span class="permalink">
@@ -308,11 +301,7 @@ Person.age(variance).get.head === <span class="num">228.2222222222</span>   <spa
         <span class="name">facade</span>
       </span>
       
-      <p class="shortcomment cmt">Molecule facades to Datomic.</p><div class="fullcomment"><div class="comment cmt"><p>Molecule facades to Datomic.
-<br><br>
-Facades are not trying to cover all Datomic methods but rather
-only interfaces relevant to Molecule.
-</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../index.html" class="extype" name="molecule">molecule</a></dd></dl></div>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../index.html" class="extype" name="molecule">molecule</a></dd></dl></div>
     </li><li name="molecule.facade.exception" visbl="pub" class="indented3 " data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="exception"></a><a id="exception:exception"></a>
       <span class="permalink">
@@ -369,11 +358,10 @@ only interfaces relevant to Molecule.
         <span class="kind">package</span>
       </span>
       <span class="symbol">
-        <a title="Interfaces to get generic information about data and schema." href="../generic/index.html"><span class="name">generic</span></a>
+        <a title="" href="../generic/index.html"><span class="name">generic</span></a>
       </span>
       
-      <p class="shortcomment cmt">Interfaces to get generic information about data and schema.</p><div class="fullcomment"><div class="comment cmt"><p>Interfaces to get generic information about data and schema.</p><ul><li><a href="../generic/datom/index.html" class="extype" name="molecule.generic.datom">Datom</a> - Datom attributes in molecules</li><li><a href="../generic/Log.html" class="extype" name="molecule.generic.Log">Log</a> - Datoms sorted by transaction/time</li><li><a href="../generic/index/EAVT.html" class="extype" name="molecule.generic.index.EAVT">EAVT</a> - Datoms sorted by Entity-Attribute-Value-Transaction</li><li><a href="../generic/index/AVET.html" class="extype" name="molecule.generic.index.AVET">AVET</a> - Datoms sorted by Attribute-Value-Entity-Transaction</li><li><a href="../generic/index/AEVT.html" class="extype" name="molecule.generic.index.AEVT">AEVT</a> - Datoms sorted by Attribute-Entity-Value-Transaction</li><li><a href="../generic/index/VAET.html" class="extype" name="molecule.generic.index.VAET">VAET</a> - &quot;Reverse index&quot; for reverse lookup of ref types</li><li><a href="../generic/schema/index.html" class="extype" name="molecule.generic.schema">Schema</a> - Meta information about the current database schema.
-</li></ul></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../index.html" class="extype" name="molecule">molecule</a></dd></dl></div>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../index.html" class="extype" name="molecule">molecule</a></dd></dl></div>
     </li><li name="molecule.input" visbl="pub" class="indented2 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="input"></a><a id="input:input"></a>
       <span class="permalink">
@@ -429,10 +417,10 @@ ageOfPersons(<span class="lit">"Liz"</span>).get === <span class="std">List</spa
         <span class="kind">package</span>
       </span>
       <span class="symbol">
-        <a title="Internal macros generating molecule code from custom DSL molecule constructs." href="../macros/index.html"><span class="name">macros</span></a>
+        <a title="" href="../macros/index.html"><span class="name">macros</span></a>
       </span>
       
-      <p class="shortcomment cmt">Internal macros generating molecule code from custom DSL molecule constructs.</p><div class="fullcomment"><div class="comment cmt"><p>Internal macros generating molecule code from custom DSL molecule constructs.</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../index.html" class="extype" name="molecule">molecule</a></dd></dl></div>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../index.html" class="extype" name="molecule">molecule</a></dd></dl></div>
     </li><li name="molecule.ops" visbl="pub" class="indented2 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="ops"></a><a id="ops:ops"></a>
       <span class="permalink">
@@ -529,16 +517,7 @@ Custom DSL molecule --&gt; Model --&gt; Query --&gt; Datomic query string</p></d
       </h4>
 
       
-          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Molecule facades to Datomic.
-<br><br>
-Facades are not trying to cover all Datomic methods but rather
-only interfaces relevant to Molecule.
-</p></div><dl class="attributes block"> <dt>Source</dt><dd><a href="https://github.com/scalamolecule/molecule/tree/master/core/src/main/scala/molecule/facade/package.scala#L1" target="_blank">package.scala</a></dd></dl><div class="toggleContainer block">
-          <span class="toggle">
-            Linear Supertypes
-          </span>
-          <div class="superTypes hiddenContent"><span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
-        </div></div>
+          <div id="comment" class="fullcommenttop"></div>
         
 
       <div id="mbrsel">
@@ -556,22 +535,10 @@ only interfaces relevant to Molecule.
             <ol>
               
               <li class="alpha in"><span>Alphabetic</span></li>
-              <li class="inherit out"><span>By Inheritance</span></li>
+              
             </ol>
           </div>
-          <div class="ancestors">
-                  <span class="filtertype">Inherited<br />
-                  </span>
-                  <ol id="linearization">
-                    <li class="in" name="molecule.facade"><span>facade</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
-                  </ol>
-                </div><div class="ancestors">
-              <span class="filtertype"></span>
-              <ol>
-                <li class="hideall out"><span>Hide All</span></li>
-                <li class="showall in"><span>Show All</span></li>
-              </ol>
-            </div>
+          
           <div id="visbl">
               <span class="filtertype">Visibility</span>
               <ol><li class="public in"><span>Public</span></li><li class="all out"><span>All</span></li></ol>
@@ -586,7 +553,7 @@ only interfaces relevant to Molecule.
         <div id="types" class="types members">
               <h3>Type Members</h3>
               <ol><li name="molecule.facade.Conn" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="ConnextendsHelpers"></a><a id="Conn:Conn"></a>
+      <a id="ConnextendsHelperswithBridgeDatomicFuture"></a><a id="Conn:Conn"></a>
       <span class="permalink">
       <a href="../../molecule/facade/Conn.html" title="Permalink">
         <i class="material-icons"></i>
@@ -597,7 +564,7 @@ only interfaces relevant to Molecule.
         <span class="kind">class</span>
       </span>
       <span class="symbol">
-        <a title="Facade to Datomic Connection." href="Conn.html"><span class="name">Conn</span></a><span class="result"> extends <span class="extype" name="molecule.util.Helpers">Helpers</span></span>
+        <a title="Facade to Datomic Connection." href="Conn.html"><span class="name">Conn</span></a><span class="result"> extends <a href="../util/Helpers.html" class="extype" name="molecule.util.Helpers">Helpers</a> with <a href="../util/BridgeDatomicFuture.html" class="extype" name="molecule.util.BridgeDatomicFuture">BridgeDatomicFuture</a></span>
       </span>
       
       <p class="shortcomment cmt">Facade to Datomic Connection.</p><div class="fullcomment"><div class="comment cmt"><p>Facade to Datomic Connection.
@@ -672,11 +639,7 @@ only interfaces relevant to Molecule.
         </div>
 
         <div id="inheritedMembers">
-        <div class="parent" name="scala.AnyRef">
-              <h3>Inherited from <span class="extype" name="scala.AnyRef">AnyRef</span></h3>
-            </div><div class="parent" name="scala.Any">
-              <h3>Inherited from <span class="extype" name="scala.Any">Any</span></h3>
-            </div>
+        
         
         </div>
 
