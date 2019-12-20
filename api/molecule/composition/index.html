@@ -3,9 +3,9 @@
         <head>
           <meta http-equiv="X-UA-Compatible" content="IE=edge" />
           <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-          <title>Molecule 0.20.0 - molecule.composition</title>
-          <meta name="description" content="Molecule 0.20.0 - molecule.composition" />
-          <meta name="keywords" content="Molecule 0.20.0 molecule.composition" />
+          <title>Molecule 0.21.0 - molecule.composition</title>
+          <meta name="description" content="Molecule 0.21.0 - molecule.composition" />
+          <meta name="keywords" content="Molecule 0.21.0 molecule.composition" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       
@@ -28,7 +28,7 @@
         </head>
         <body>
       <div id="search">
-        <span id="doc-title">Molecule<span id="doc-version">0.20.0</span></span>
+        <span id="doc-title">Molecule<span id="doc-version">0.21.0</span></span>
         <span class="close-results"><span class="left">&lt;</span> Back</span>
         <div id="textfilter">
           <span class="input">
@@ -218,6 +218,22 @@ Molecule macros can then type-safely deduct the type structure of composed molec
       </span>
       
       <p class="shortcomment cmt">Methods to build transaction, composite and nested molecules.</p><div class="fullcomment"><div class="comment cmt"><p>Methods to build transaction, composite and nested molecules.</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../index.html" class="extype" name="molecule">molecule</a></dd></dl></div>
+    </li><li name="molecule.composition.nested" visbl="pub" class="indented3 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="nested"></a><a id="nested:nested"></a>
+      <span class="permalink">
+      <a href="../../molecule/composition/nested/index.html" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <a title="" href="nested/index.html"><span class="name">nested</span></a>
+      </span>
+      
+      
     </li><li class="current-entities indented2">
                         <a class="object" href="Composite$.html" title="+ methods on composite molecule to add sub-molecule."></a>
                         <a class="trait" href="Composite.html" title="Add sub-molecule to composite molecule."></a>
@@ -250,10 +266,6 @@ Molecule macros can then type-safely deduct the type structure of composed molec
                         <a class="object" href="Composite_In_3$.html" title="+ methods on composite molecule awaiting 3 inputs to add sub-molecule."></a>
                         <a class="trait" href="Composite_In_3.html" title="Add sub-molecule to composite input molecule awaiting 3 inputs."></a>
                         <a href="Composite_In_3.html" title="Add sub-molecule to composite input molecule awaiting 3 inputs.">Composite_In_3</a>
-                      </li><li class="current-entities indented2">
-                        <a class="object" href="Nested$.html" title="* methods to add nested molecule."></a>
-                        <a class="trait" href="Nested.html" title="Add nested molecule."></a>
-                        <a href="Nested.html" title="Add nested molecule.">Nested</a>
                       </li><li class="current-entities indented2">
                         <a class="object" href="Nested_In_1$.html" title="* methods to add nested molecule to molecule awaiting 1 input."></a>
                         <a class="trait" href="Nested_In_1.html" title="Add nested molecule to input molecule awaiting 1 input."></a>
@@ -833,35 +845,6 @@ m(Article.name(?).author(?) + Tag.category.weight(?) + Publisher.name)
     ((<span class="lit">"Battle of Waterloo"</span>, <span class="lit">"Ben Bridge"</span>), (<span class="lit">"History"</span>, <span class="num">5</span>), <span class="lit">"Bestseller Publications Inc."</span>)
   )</pre></div><dl class="attributes block"> <dt>See also</dt><dd><span class="cmt"><p><a href="http://www.scalamolecule.org/manual/relationships/composites/" target="_blank">Manual</a>
     | <a href="https://github.com/scalamolecule/molecule/blob/master/coretests/src/test/scala/molecule/coretests/ref/Composite.scala" target="_blank">Tests</a></p></span></dd></dl></div>
-    </li><li name="molecule.composition.Nested" visbl="pub" class="indented0 " data-isabs="true" fullComment="yes" group="Ungrouped">
-      <a id="NestedextendsAnyRef"></a><a id="Nested:Nested"></a>
-      <span class="permalink">
-      <a href="../../molecule/composition/Nested.html" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">trait</span>
-      </span>
-      <span class="symbol">
-        <a title="Add nested molecule." href="Nested.html"><span class="name">Nested</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
-      </span>
-      
-      <p class="shortcomment cmt">Add nested molecule.</p><div class="fullcomment"><div class="comment cmt"><p>Add nested molecule.
-<br><br>
-Related data of cardinality-many referenced entities can be queried in a &quot;flat&quot; way:</p><pre>m(Order.no.LineItem.product.price.quantity).get === <span class="std">List</span>(
-  (<span class="num">23</span>, <span class="lit">"Chocolate"</span>, <span class="num">48.00</span>, <span class="num">1</span>),
-  (<span class="num">23</span>, <span class="lit">"Whisky"</span>, <span class="num">38.00</span>, <span class="num">2</span>)
-)</pre><p>For convenience, Molecule offers to automatically nest the same data so that
-redundancy is avoided and we can work straight on the hierarchical data:</p><pre>m(Order.no * LineItem.product.price.quantity).get === <span class="std">List</span>(
-  (<span class="num">23</span>, <span class="std">List</span>((<span class="lit">"Chocolate"</span>, <span class="num">48.00</span>, <span class="num">1</span>), (<span class="lit">"Whisky"</span>, <span class="num">38.00</span>, <span class="num">2</span>)))
-)</pre><p>Nested molecules can nest up to 7 levels deep.
-<br><br>
-Internally, Molecule adds entity ids to each level in the query to be able to group data on each level by a unique entity id.</p></div><dl class="attributes block"> <dt>See also</dt><dd><span class="cmt"><p><a href="http://www.scalamolecule.org/manual/relationships/card-many/" target="_blank">Manual</a>
-    | Tests: <a href="https://github.com/scalamolecule/molecule/blob/master/coretests/src/test/scala/molecule/coretests/ref/NestedRef.scala#L1" target="_blank">nested</a>,
-    <a href="https://github.com/scalamolecule/molecule/blob/master/coretests/src/test/scala/molecule/coretests/json/NestedJson.scala#L1" target="_blank">nested json</a>,
-    <a href="https://github.com/scalamolecule/molecule/blob/master/coretests/src/test/scala/molecule/coretests/json/NestedTypes.scala#L1" target="_blank">nested json types</a></p></span></dd></dl></div>
     </li><li name="molecule.composition.Nested_In_1" visbl="pub" class="indented0 " data-isabs="true" fullComment="yes" group="Ungrouped">
       <a id="Nested_In_1extendsAnyRef"></a><a id="Nested_In_1:Nested_In_1"></a>
       <span class="permalink">
@@ -1081,22 +1064,6 @@ Person.name.Tx(MyMetaData.action_(<span class="lit">"add member"</span>)).get ==
       </span>
       
       <p class="shortcomment cmt"><code>+</code> methods on composite molecule awaiting 3 inputs to add sub-molecule.</p>
-    </li><li name="molecule.composition.Nested" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="Nested"></a><a id="Nested:Nested"></a>
-      <span class="permalink">
-      <a href="../../molecule/composition/Nested$.html" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">object</span>
-      </span>
-      <span class="symbol">
-        <a title="* methods to add nested molecule." href="Nested$.html"><span class="name">Nested</span></a>
-      </span>
-      
-      <p class="shortcomment cmt"><code>*</code> methods to add nested molecule.</p>
     </li><li name="molecule.composition.Nested_In_1" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="Nested_In_1"></a><a id="Nested_In_1:Nested_In_1"></a>
       <span class="permalink">
