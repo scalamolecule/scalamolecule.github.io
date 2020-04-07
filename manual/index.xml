@@ -95,6 +95,17 @@ val persons: List[(String, Int)] = m(Person.name.age).get This fetches a List of
     </item>
     
     <item>
+      <title>Performance</title>
+      <link>http://scalamolecule.org/manual/quick-start/performance/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://scalamolecule.org/manual/quick-start/performance/</guid>
+      <description>Automatic Query optimization Molecule transparently optimize all queries sent to Datomic.
+Most selective Clauses are automatically grouped first in the :where section of the Datomic query as per the recommendation in Datomic Best Practices.
+This brings dramatic performance gains of in some cases beyond 100x compared to un-optimized queries. The optimization happens automatically in the background so that you can focus entirely on your domain without concern for the optimal order of attributes in your molecules.</description>
+    </item>
+    
+    <item>
       <title>Cardinality many</title>
       <link>http://scalamolecule.org/manual/relationships/card-many/</link>
       <pubDate>Sun, 24 Jul 2016 22:06:44 +0100</pubDate>

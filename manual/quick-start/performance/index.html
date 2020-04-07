@@ -6,7 +6,7 @@
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
     <link href='http://fonts.googleapis.com/css?family=Merriweather+Sans:400,300,300italic,400italic,700,700italic,800,800italic'
           rel='stylesheet' type='text/css'>
-    <title>Datomic</title>
+    <title>Performance</title>
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/highlight/styles/solarized_light.css" rel="stylesheet"/>
     <link rel="stylesheet" type="text/css" href="/vendor/font-awesome/css/font-awesome.min.css">
@@ -31,7 +31,7 @@
         
         
         
-        <li class="dropdown active">
+        <li class="dropdown ">
             <a data-toggle="dropdown" href="/compare/" target="_top"
                onclick="javascript:top.location = '\/compare\/';return true;">Compare</a>
             
@@ -118,7 +118,7 @@
         </li>
         
         
-        <li class="dropdown ">
+        <li class="dropdown active">
             <a data-toggle="dropdown" href="/manual/" target="_top"
                onclick="javascript:top.location = '\/manual\/';return true;">Manual</a>
             
@@ -828,298 +828,18 @@
 <div class="container" style="padding-top:20px">
 
     <div class="col-sm-10 column" style="padding-left:8px;">
-        <h1 id="compare-with-datomicdatalog">Compare with Datomic/Datalog</h1>
-<p>Even though Molecule is adapting to Datomic we&rsquo;ll have a look the other way around to see how Datomic compares to Molecule.</p>
-<p><a href="https://github.com/scalamolecule/molecule/blob/master/examples/src/test/scala/molecule/coretests/examples/seattle/SeattleQueryTests.scala">Follow along in the code</a> from which we will pick a few examples based on the Seattle tutorial examples.</p>
-<h3 id="querying-_for_-attribute-values">Querying <em>for</em> attribute values</h3>
-<p>The most basic query is to ask for entities with some attribute values:</p>
-<pre><code>// Datalog
-[:find  ?b ?c (distinct ?d)
- :where [?a :Community/name ?b]
-        [?a :Community/url ?c]
-        [?a :Community/category ?d]]
-</code></pre><p>In Molecule we simply use the namespace name and add the attribute names:</p>
-<pre><code>// Molecule
-Community.name.url.category
-</code></pre><p>Datalog has a <code>:find</code> and <code>:where</code> section similar to <code>select</code> and <code>where</code> in the SQL world. The <code>:find</code> section defines which values to return and the where section defines one or more clauses filtering the result set.</p>
-<p>In this case we asked for the values of variable <code>?b</code>, <code>?c</code> and <code>?d</code> each one bound in its where clause. With molecule we use the three attribute names all associated to the <code>Community</code> namespace.</p>
-<h3 id="querying-_by_-attribute-values">Querying <em>by</em> attribute values</h3>
-<p>Let&rsquo;s query by an enumerated value for the <code>type</code> attribute:</p>
-<pre><code>[:find  ?b
- :where [?a :Community/name ?b]
-        [?a :Community/type &quot;:Community.type/twitter&quot;]]
-</code></pre><pre><code>Community.name.type_(&quot;twitter&quot;)
-</code></pre><p>Note how we add an underscore to the <code>type</code> attribute to tell Molecule that we want to omit returning this value in the result set (since it will have the value &ldquo;twitter&rdquo; for all returned entities).</p>
-<p>Since the <code>type</code> attribute is defined as en enumeration Molecule checks the &ldquo;twitter&rdquo; value at <em>compile time</em> against the defined enumeration values that we have definied in our schema for the <code>Community</code> namespace to ensure that &ldquo;twitter&rdquo; is one of the enums. If it is not, our molecule won&rsquo;t compile and we&rsquo;ll get an error showing the available enum values.</p>
-<p>For a many-cardinality attribute like <code>category</code> Datalog applies logical OR with Datalog rules:</p>
-<pre><code>[:find  ?b
- :in    $ %
- :where [?a :Community/name ?b]
-        (rule1 ?a)]
+        <h1 id="automatic-query-optimization">Automatic Query optimization</h1>
+<p>Molecule transparently optimize all queries sent to Datomic.</p>
+<p>Most selective
+Clauses are automatically grouped first in the :where section of the Datomic query as per
+the recommendation in <a href="https://docs.datomic.com/on-prem/best-practices.html#most-selective-clauses-first">Datomic Best Practices</a>.</p>
+<p>This brings dramatic performance gains of in some cases beyond 100x compared to
+un-optimized queries. The optimization happens automatically in the background
+so that you can focus entirely on your domain without concern for the optimal
+order of attributes in your molecules.</p>
+<h3 id="next">Next&hellip;</h3>
+<p><a href="/manual/setup/">Setup molecule</a></p>
 
-INPUTS:
-List(
-  1 datomic.db.Db@xxx
-  2 [[(rule1 ?a) [?a :Community/category &quot;news&quot;]]
-     [(rule1 ?a) [?a :Community/category &quot;arts&quot;]]]
-)
-</code></pre><p>In Molecule we can apply the two values either separated with <code>or</code> or commas:</p>
-<pre><code>Community.name.category_(&quot;news&quot; or &quot;arts&quot;)
-
-// Same as
-Community.name.category_(&quot;news&quot;, &quot;arts&quot;)
-</code></pre><h3 id="querying-across-references">Querying across references</h3>
-<pre><code>[:find  ?b ?e2
- :where [?a :Community/name ?b]
-        [?a :Community/neighborhood ?c]
-        [?c :Neighborhood/district ?d]
-        [?d :District/region ?e]
-        [?e :db/ident ?e1]
-        [(.getName ^clojure.lang.Keyword ?e1) ?e2]]
-</code></pre><pre><code>Community.name.Neighborhood.District.region
-</code></pre><h3 id="parameterizing-queries">Parameterizing queries</h3>
-<p>Community input molecule awaiting some type value</p>
-<pre><code>[:find  ?b ?c2
- :in    $ ?c
- :where [?a :Community/name ?b]
-        [?a :Community/type ?c]
-        [?c :db/ident ?c1]
-        [(.getName ^clojure.lang.Keyword ?c1) ?c2]]
-
-INPUTS:
-List(
-  1 datomic.db.Db@xxx
-  2 :Community.type/twitter
-)
-</code></pre><pre><code>val communitiesOfType  = m(Community.name.type(?))
-val twitterCommunities = communitiesOfType(&quot;twitter&quot;)
-</code></pre><p>Multiple input values for one attribute - logical OR</p>
-<pre><code>[:find  ?b ?c2
- :in    $ ?c
- :where [?a :Community/name ?b]
-        [?a :Community/type ?c]
-        [?c :db/ident ?c1]
-        [(.getName ^clojure.lang.Keyword ?c1) ?c2]]
-
-INPUTS:
-List(
-  1 datomic.db.Db@xxx
-  2 :Community.type/twitter
-)
-</code></pre><pre><code>m(Community.name.`type`(?)).apply(&quot;facebook_page&quot; or &quot;twitter&quot;)
-</code></pre><p>Single tuple of input values for two attributes - logical AND</p>
-<pre><code>[:find  ?b
- :in    $ [[ ?c ?d ]]
- :where [?a :Community/name ?b]
-        [?a :Community/type ?c]
-        [?a :Community/orgtype ?d]]
-
-INPUTS:
-List(
-  1 datomic.db.Db@xxx
-  2 [[:Community.type/email_list, :Community.orgtype/community]]
-)
-</code></pre><pre><code>m(Community.name.type_(?).orgtype_(?))(&quot;email_list&quot; and &quot;community&quot;)
-</code></pre><p>Multiple tuple of input values for two attributes - logical AND</p>
-<pre><code>[:find  ?b ?c2 ?d2
- :in    $ [[ ?c ?d ]]
- :where [?a :Community/name ?b]
-        [?a :Community/type ?c]
-        [?c :db/ident ?c1]
-        [(.getName ^clojure.lang.Keyword ?c1) ?c2]
-        [?a :Community/orgtype ?d]
-        [?d :db/ident ?d1]
-        [(.getName ^clojure.lang.Keyword ?d1) ?d2]]
-
-INPUTS:
-List(
-  1 datomic.db.Db@xxx
-  2 [[:Community.type/email_list, :Community.orgtype/community], 
-     [:Community.type/website, :Community.orgtype/commercial]]
-)
-</code></pre><pre><code>m(Community.name.`type`(?).orgtype(?))
-.apply(Seq((&quot;email_list&quot;, &quot;community&quot;), (&quot;website&quot;, &quot;commercial&quot;)))
-</code></pre><h3 id="invoking-functions-in-queries">Invoking functions in queries</h3>
-<pre><code>[:find  ?b
- :where [?a :Community/name ?b]
-        [(.compareTo ^String ?b &quot;C&quot;) ?b2]
-        [(&lt; ?b2 0)]]
-</code></pre><pre><code>Community.name.&lt;(&quot;C&quot;)
-</code></pre><h3 id="fulltext-search">Fulltext search</h3>
-<pre><code>[:find  ?b
- :where [(fulltext $ :Community/name &quot;Wallingford&quot;) [[ ?a ?b ]]]]
-</code></pre><pre><code>Community.name.contains(&quot;Wallingford&quot;)
-</code></pre><p>Fulltext search on many-attribute (<code>category</code>)</p>
-<pre><code>[:find  ?b (distinct ?d)
- :where [?a :Community/name ?b]
-        [?a :Community/type &quot;:Community.type/website&quot;]
-        [(fulltext $ :Community/category &quot;food&quot;) [[ ?a ?d ]]]]
-</code></pre><pre><code>Community.name.type_(&quot;website&quot;).category.contains(&quot;food&quot;)
-</code></pre><h3 id="querying-with-rules-logical-or">Querying with rules (logical OR)</h3>
-<p>Social media communities</p>
-<pre><code>[:find  ?b
- :in    $ %
- :where [?a :Community/name ?b]
-        (rule1 ?a)]
-
-INPUTS:
-List(
-  1 datomic.db.Db@xxx
-  2 [[(rule1 ?a) [?a :Community/type &quot;:Community.type/twitter&quot;]]
-     [(rule1 ?a) [?a :Community/type &quot;:Community.type/facebook_page&quot;]]]
-)
-</code></pre><pre><code>Community.name.type_(&quot;twitter&quot; or &quot;facebook_page&quot;)
-</code></pre><p>Social media communities in southern regions</p>
-<pre><code>[:find  ?b
- :in    $ %
- :where [?a :Community/name ?b]
-        (rule1 ?a)
-        [?a :Community/neighborhood ?d]
-        [?d :Neighborhood/district ?e]
-        (rule2 ?e)]
-
-INPUTS:
-List(
-  1 datomic.db.Db@xxx
-  2 [[(rule1 ?a) [?a :Community/type &quot;:Community.type/twitter&quot;]]
-     [(rule1 ?a) [?a :Community/type &quot;:Community.type/facebook_page&quot;]]
-     [(rule2 ?e) [?e :District/region &quot;:District.region/sw&quot;]]
-     [(rule2 ?e) [?e :District/region &quot;:District.region/s&quot;]]
-     [(rule2 ?e) [?e :District/region &quot;:District.region/se&quot;]]]
-)
-</code></pre><pre><code>Community.name.type_(&quot;twitter&quot; or &quot;facebook_page&quot;)
-  .Neighborhood.District.region_(&quot;sw&quot; or &quot;s&quot; or &quot;se&quot;)
-</code></pre><p>Parameterized</p>
-<pre><code>[:find  ?b
- :in    $ %
- :where [?a :Community/name ?b]
-        [?a :Community/type ?c]
-        [?a :Community/neighborhood ?d]
-        [?d :Neighborhood/district ?e]
-        [?e :District/region ?f]
-        (rule1 ?a)
-        (rule2 ?e)]
-
-INPUTS:
-List(
-  1 datomic.db.Db@xxx
-  2 [[(rule1 ?a) [?a :Community/type &quot;:Community.type/twitter&quot;]]
-     [(rule1 ?a) [?a :Community/type &quot;:Community.type/facebook_page&quot;]]
-     [(rule2 ?e) [?e :District/region &quot;:District.region/sw&quot;]]
-     [(rule2 ?e) [?e :District/region &quot;:District.region/s&quot;]]
-     [(rule2 ?e) [?e :District/region &quot;:District.region/se&quot;]]]
-)
-</code></pre><pre><code>m(Community.name.type_(?).Neighborhood.District.region_(?))
-  .apply((&quot;twitter&quot; or &quot;facebook_page&quot;) and (&quot;sw&quot; or &quot;s&quot; or &quot;se&quot;)
-</code></pre><h3 id="working-with-time">Working with time</h3>
-<pre><code>[:find  ?b
- :where [?a :db/txInstant ?b]]
-</code></pre><pre><code>Db.txInstant
-</code></pre><h3 id="inserting-data">Inserting data</h3>
-<pre><code>List(
-  List(  :db/add,   #db/id[:db.part/user -1000001],   :Community/name        ,   AAA                             )
-  List(  :db/add,   #db/id[:db.part/user -1000001],   :Community/url         ,   myUrl                           )
-  List(  :db/add,   #db/id[:db.part/user -1000001],   :Community/type        ,   :Community.type/twitter         )
-  List(  :db/add,   #db/id[:db.part/user -1000001],   :Community/orgtype     ,   :Community.orgtype/personal     )
-  List(  :db/add,   #db/id[:db.part/user -1000001],   :Community/category    ,   my                              )
-  List(  :db/add,   #db/id[:db.part/user -1000001],   :Community/category    ,   favorites                       )
-  List(  :db/add,   #db/id[:db.part/user -1000001],   :Community/neighborhood,   #db/id[:db.part/user -1000002]  )
-  List(  :db/add,   #db/id[:db.part/user -1000002],   :Neighborhood/name     ,   myNeighborhood                  )
-  List(  :db/add,   #db/id[:db.part/user -1000002],   :Neighborhood/district ,   #db/id[:db.part/user -1000003]  )
-  List(  :db/add,   #db/id[:db.part/user -1000003],   :District/name         ,   myDistrict                      )
-  List(  :db/add,   #db/id[:db.part/user -1000003],   :District/region       ,   :District.region/nw             )
-)
-</code></pre><pre><code>Community
-  .name(&quot;AAA&quot;)
-  .url(&quot;myUrl&quot;)
-  .`type`(&quot;twitter&quot;)
-  .orgtype(&quot;personal&quot;)
-  .category(&quot;my&quot;, &quot;favorites&quot;)
-  .Neighborhood.name(&quot;myNeighborhood&quot;)
-  .District.name(&quot;myDistrict&quot;).region(&quot;nw&quot;).save
-</code></pre><p>Multiple entities:</p>
-<pre><code>List(
-  List(  :db/add,   #db/id[:db.part/user -1000001],   :Community/name        ,   DDD Blogging Georgetown                        )
-  List(  :db/add,   #db/id[:db.part/user -1000001],   :Community/url         ,   http://www.blogginggeorgetown.com/             )
-  List(  :db/add,   #db/id[:db.part/user -1000001],   :Community/type        ,   :Community.type/blog                           )
-  List(  :db/add,   #db/id[:db.part/user -1000001],   :Community/orgtype     ,   :Community.orgtype/commercial                  )
-  List(  :db/add,   #db/id[:db.part/user -1000001],   :Community/category    ,   DD cat 1                                       )
-  List(  :db/add,   #db/id[:db.part/user -1000001],   :Community/category    ,   DD cat 2                                       )
-  List(  :db/add,   #db/id[:db.part/user -1000001],   :Community/neighborhood,   #db/id[:db.part/user -1000002]                 )
-  List(  :db/add,   #db/id[:db.part/user -1000002],   :Neighborhood/name     ,   DD Georgetown                                  )
-  List(  :db/add,   #db/id[:db.part/user -1000002],   :Neighborhood/district ,   #db/id[:db.part/user -1000003]                 )
-  List(  :db/add,   #db/id[:db.part/user -1000003],   :District/name         ,   Greater Duwamish                               )
-  List(  :db/add,   #db/id[:db.part/user -1000003],   :District/region       ,   :District.region/s                             )
-  
-  List(  :db/add,   #db/id[:db.part/user -1000004],   :Community/name        ,   DDD Interbay District Blog                     )
-  List(  :db/add,   #db/id[:db.part/user -1000004],   :Community/url         ,   http://interbayneighborhood.neighborlogs.com/  )
-  List(  :db/add,   #db/id[:db.part/user -1000004],   :Community/type        ,   :Community.type/blog                           )
-  List(  :db/add,   #db/id[:db.part/user -1000004],   :Community/orgtype     ,   :Community.orgtype/community                   )
-  List(  :db/add,   #db/id[:db.part/user -1000004],   :Community/category    ,   DD cat 3                                       )
-  List(  :db/add,   #db/id[:db.part/user -1000004],   :Community/neighborhood,   #db/id[:db.part/user -1000005]                 )
-  List(  :db/add,   #db/id[:db.part/user -1000005],   :Neighborhood/name     ,   DD Interbay                                    )
-  List(  :db/add,   #db/id[:db.part/user -1000005],   :Neighborhood/district ,   #db/id[:db.part/user -1000006]                 )
-  List(  :db/add,   #db/id[:db.part/user -1000006],   :District/name         ,   Magnolia/Queen Anne                            )
-  List(  :db/add,   #db/id[:db.part/user -1000006],   :District/region       ,   :District.region/w                             )
-)
-</code></pre><pre><code>Community.name.url.`type`.orgtype.category.Neighborhood.name.District.name.region insert List(
-  (&quot;DDD Blogging Georgetown&quot;, &quot;http://www.blogginggeorgetown.com/&quot;, &quot;blog&quot;, &quot;commercial&quot;, Set(&quot;DD cat 1&quot;, &quot;DD cat 2&quot;), &quot;DD Georgetown&quot;, &quot;Greater Duwamish&quot;, &quot;s&quot;),
-  (&quot;DDD Interbay District Blog&quot;, &quot;http://interbayneighborhood.neighborlogs.com/&quot;, &quot;blog&quot;, &quot;community&quot;, Set(&quot;DD cat 3&quot;), &quot;DD Interbay&quot;, &quot;Magnolia/Queen Anne&quot;, &quot;w&quot;)
-)
-</code></pre><h3 id="updating-data">Updating data</h3>
-<p>Updating one-attribute</p>
-<pre><code>List(
-  List(  :db/add,   17592186045649,   :Community/name,   belltown 2  )
-  List(  :db/add,   17592186045649,   :Community/url ,   url 2       )
-)
-</code></pre><pre><code>Community(belltownId).name(&quot;belltown 2&quot;).url(&quot;url 2&quot;).update
-</code></pre><p>Updating many-attribute</p>
-<pre><code>List(
-  List(  :db/retract,   17592186045649,   :Community/category,   news       )
-  List(  :db/add    ,   17592186045649,   :Community/category,   Cool news  )
-)
-</code></pre><pre><code>Community(belltownId).category(&quot;news&quot; -&gt; &quot;Cool news&quot;).update
-</code></pre><p>Update multiple values of many-attribute</p>
-<pre><code>List(
-  List(  :db/retract,   17592186045649,   :Community/category,   Cool news          )
-  List(  :db/add    ,   17592186045649,   :Community/category,   Super cool news    )
-  List(  :db/retract,   17592186045649,   :Community/category,   events             )
-  List(  :db/add    ,   17592186045649,   :Community/category,   Super cool events  )
-)
-</code></pre><pre><code>Community(belltownId).category(
-  &quot;Cool news&quot; -&gt; &quot;Super cool news&quot;,
-  &quot;events&quot; -&gt; &quot;Super cool events&quot;
-).update
-</code></pre><p>Update multiple values of many-attribute</p>
-<pre><code>List(
-  List(  :db/retract,   17592186045649,   :Community/category,   Cool news          )
-  List(  :db/add    ,   17592186045649,   :Community/category,   Super cool news    )
-  List(  :db/retract,   17592186045649,   :Community/category,   events             )
-  List(  :db/add    ,   17592186045649,   :Community/category,   Super cool events  )
-)
-</code></pre><pre><code>Community(belltownId).category(
-  &quot;Cool news&quot; -&gt; &quot;Super cool news&quot;,
-  &quot;events&quot; -&gt; &quot;Super cool events&quot;
-).update
-</code></pre><p>Add a value to a many-attribute</p>
-<pre><code>List(
-  List(  :db/add,   17592186045649,   :Community/category,   extra category  )
-)
-</code></pre><pre><code>Community(belltownId).category.assert(&quot;extra category&quot;).update
-</code></pre><p>Remove value from a many-attribute</p>
-<pre><code>List(
-  List(  :db/retract,   17592186045649,   :Community/category,   Super cool events  )
-)
-</code></pre><pre><code>Community(belltownId).category.retract(&quot;Super cool events&quot;).update
-</code></pre><p>Mixing updates and deletes</p>
-<pre><code>List(
-  List(  :db/add    ,   17592186045649,   :Community/name    ,   belltown 3                      )
-  List(  :db/retract,   17592186045649,   :Community/url     ,   http://www.belltownpeople.com/  )
-  List(  :db/retract,   17592186045649,   :Community/category,   events                          )
-  List(  :db/retract,   17592186045649,   :Community/category,   news                            )
-)
-</code></pre><pre><code>Community(belltownId).name(&quot;belltown 3&quot;).url().category().update
-</code></pre>
     </div>
 
     <div class="col-sm-2 column" style="padding-left:20px;padding-top:22px;padding-right: 0px;">
@@ -1127,8 +847,24 @@ List(
 
   <div style="position:absolute;top: 15px; left: 0px;">
     
+    <a class="navigation-control up" href="/manual/" style="position:absolute; top:0px; left: 56px">
+      <span class="glyphicon glyphicon-chevron-up"></span>
+    </a>
     
     
+    <a class="navigation-control left" href="/manual/quick-start/introduction" style="position:absolute; top: 15px; left: 20px">
+      <span class="glyphicon glyphicon-chevron-left"></span>
+    </a>
+    
+    
+    <a class="navigation-control right" href="/manual/setup" style="position:absolute; top: 15px; left: 89px">
+      <span class="glyphicon glyphicon-chevron-right"></span>
+    </a>
+    
+    
+    <a class="navigation-control right" href="/manual/setup" style="position:absolute; top: 30px; left: 54px;">
+      <span class="glyphicon glyphicon-chevron-down"></span>
+    </a>
     
   </div>
 
@@ -1137,21 +873,15 @@ List(
     
     
     
-    <li><a href="/compare/">Compare</a></li>
-    
-    
-    
-    
-    <li class="active"><b>Datomic</b></li>
-    
-    
-    
-    
-    <li><a href="/compare/sql/">SQL</a></li>
+    <li><a href="/manual/">Quick start</a></li>
     
     <ul class="level2">
       
-      <li><a href="/compare/sql/slick/">Slick</a></li>
+      <li><a href="/manual/quick-start/introduction/">Introduction</a></li>
+      
+      
+      
+      <li class="active"><b>Performance</b></li>
       
       
     </ul>
@@ -1159,7 +889,204 @@ List(
     
     
     
-    <li><a href="/compare/gremlin/">Gremlin</a></li>
+    <li><a href="/manual/setup/">Setup</a></li>
+    
+    
+    
+    
+    <li><a href="/manual/schema/">Schema</a></li>
+    
+    <ul class="level2">
+      
+      <li><a href="/manual/schema/transaction/">Transaction</a></li>
+      
+      
+    </ul>
+    
+    
+    
+    
+    <li><a href="/manual/attributes/">Attributes</a></li>
+    
+    <ul class="level2">
+      
+      <li><a href="/manual/attributes/basics/">Building molecules</a></li>
+      
+      
+      
+      <li><a href="/manual/attributes/modes/">Mandatory/Tacit/Optional</a></li>
+      
+      
+      
+      <li><a href="/manual/attributes/mapped/">Map attributes</a></li>
+      
+      
+      
+      <li><a href="/manual/attributes/expressions/">Expressions</a></li>
+      
+      
+      
+      <li><a href="/manual/attributes/aggregates/">Aggregates</a></li>
+      
+      
+      
+      <li><a href="/manual/attributes/parameterized/">Parameterized</a></li>
+      
+      
+    </ul>
+    
+    
+    
+    
+    <li><a href="/manual/entities/">Entities</a></li>
+    
+    
+    
+    
+    <li><a href="/manual/relationships/">Relationships</a></li>
+    
+    <ul class="level2">
+      
+      <li><a href="/manual/relationships/card-one/">Cardinality one</a></li>
+      
+      
+      
+      <li><a href="/manual/relationships/card-many/">Cardinality many</a></li>
+      
+      
+      
+      <li><a href="/manual/relationships/composites/">Composites</a></li>
+      
+      
+      
+      <li><a href="/manual/relationships/bidirectional/">Bidirectional</a></li>
+      
+      
+      
+      <li><a href="/manual/relationships/self-join/">Self-join</a></li>
+      
+      
+    </ul>
+    
+    
+    
+    
+    <li><a href="/manual/crud/">&#34;CRUD&#34;</a></li>
+    
+    <ul class="level2">
+      
+      <li><a href="/manual/crud/save/">Save</a></li>
+      
+      
+      
+      <li><a href="/manual/crud/insert/">Insert</a></li>
+      
+      
+      
+      <li><a href="/manual/crud/get/">Get</a></li>
+      
+      
+      
+      <li><a href="/manual/crud/get-json/">Get Json</a></li>
+      
+      
+      
+      <li><a href="/manual/crud/update/">Update</a></li>
+      
+      
+      
+      <li><a href="/manual/crud/retract/">Retract</a></li>
+      
+      
+    </ul>
+    
+    
+    
+    
+    <li><a href="/manual/transactions/">Transactions</a></li>
+    
+    <ul class="level2">
+      
+      <li><a href="/manual/transactions/tx-bundle/">Tx bundle</a></li>
+      
+      
+      
+      <li><a href="/manual/transactions/tx-functions/">Tx functions</a></li>
+      
+      
+      
+      <li><a href="/manual/transactions/tx-meta-data/">Tx meta data</a></li>
+      
+      
+    </ul>
+    
+    
+    
+    
+    <li><a href="/manual/time/">Time</a></li>
+    
+    <ul class="level2">
+      
+      <li><a href="/manual/time/asof-since/">AsOf/Since</a></li>
+      
+      
+      
+      <li><a href="/manual/time/history/">History</a></li>
+      
+      
+      
+      <li><a href="/manual/time/with/">With</a></li>
+      
+      
+      
+      <li><a href="/manual/time/testing/">Testing</a></li>
+      
+      
+    </ul>
+    
+    
+    
+    
+    <li><a href="/manual/generic/">Generic</a></li>
+    
+    <ul class="level2">
+      
+      <li><a href="/manual/generic/datom/">Datom</a></li>
+      
+      
+      
+      <li><a href="/manual/generic/indexes/">Indexes</a></li>
+      
+      
+      
+      <li><a href="/manual/generic/log/">Log</a></li>
+      
+      
+      
+      <li><a href="/manual/generic/schema/">Schema</a></li>
+      
+      
+    </ul>
+    
+    
+    
+    
+    <li><a href="/manual/debug/">Debug</a></li>
+    
+    <ul class="level2">
+      
+      <li><a href="/manual/debug/datalog/">Datalog/data</a></li>
+      
+      
+      
+      <li><a href="/manual/debug/debug-transactions/">Transactions</a></li>
+      
+      
+      
+      <li><a href="/manual/debug/err/">Errors</a></li>
+      
+      
+    </ul>
     
     
     
