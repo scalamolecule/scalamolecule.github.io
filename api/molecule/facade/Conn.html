@@ -3,9 +3,9 @@
         <head>
           <meta http-equiv="X-UA-Compatible" content="IE=edge" />
           <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-          <title>Molecule 0.21.0 - molecule.facade.Conn</title>
-          <meta name="description" content="Molecule 0.21.0 - molecule.facade.Conn" />
-          <meta name="keywords" content="Molecule 0.21.0 molecule.facade.Conn" />
+          <title>Molecule 0.22.0 - molecule.facade.Conn</title>
+          <meta name="description" content="Molecule 0.22.0 - molecule.facade.Conn" />
+          <meta name="keywords" content="Molecule 0.22.0 molecule.facade.Conn" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       
@@ -28,7 +28,7 @@
         </head>
         <body>
       <div id="search">
-        <span id="doc-title">Molecule<span id="doc-version">0.21.0</span></span>
+        <span id="doc-title">Molecule<span id="doc-version">0.22.0</span></span>
         <span class="close-results"><span class="left">&lt;</span> Back</span>
         <div id="textfilter">
           <span class="input">
@@ -721,6 +721,22 @@
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../util/DateHandling.html" class="extype" name="molecule.util.DateHandling">DateHandling</a></dd></dl></div>
+    </li><li name="molecule.facade.Conn#log" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="log:org.slf4j.Logger"></a><a id="log:Logger"></a>
+      <span class="permalink">
+      <a href="../../molecule/facade/Conn.html#log:org.slf4j.Logger" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">log</span><span class="result">: <span class="extype" name="org.slf4j.Logger">Logger</span></span>
+      </span>
+      
+      
     </li><li name="scala.AnyRef#ne" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="ne(x$1:AnyRef):Boolean"></a><a id="ne(AnyRef):Boolean"></a>
       <span class="permalink">
@@ -892,9 +908,9 @@ conn.q(<span class="lit">""</span><span class="lit">"[:find  ?b ?c
   <span class="std">List</span>(<span class="lit">"Ben"</span>, <span class="num">42</span>)
 )</pre></div><dl class="paramcmts block"><dt class="param">query</dt><dd class="cmt"><p>Datomic query string</p></dd><dt class="param">inputs</dt><dd class="cmt"><p>Optional input(s) to query</p></dd><dt>returns</dt><dd class="cmt"><p>List[List[AnyRef]]</p></dd></dl></div>
     </li><li name="molecule.facade.Conn#qRaw" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="qRaw(db:datomic.Database,query:String,inputs:Seq[Any]):java.util.Collection[java.util.List[AnyRef]]"></a><a id="qRaw(Database,String,Seq[Any]):Collection[List[AnyRef]]"></a>
+      <a id="qRaw(db:datomic.Database,query:String,inputs0:Seq[Any]):java.util.Collection[java.util.List[AnyRef]]"></a><a id="qRaw(Database,String,Seq[Any]):Collection[List[AnyRef]]"></a>
       <span class="permalink">
-      <a href="../../molecule/facade/Conn.html#qRaw(db:datomic.Database,query:String,inputs:Seq[Any]):java.util.Collection[java.util.List[AnyRef]]" title="Permalink">
+      <a href="../../molecule/facade/Conn.html#qRaw(db:datomic.Database,query:String,inputs0:Seq[Any]):java.util.Collection[java.util.List[AnyRef]]" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -903,7 +919,7 @@ conn.q(<span class="lit">""</span><span class="lit">"[:find  ?b ?c
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">qRaw</span><span class="params">(<span name="db">db: <span class="extype" name="datomic.Database">Database</span></span>, <span name="query">query: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="inputs">inputs: <span class="extype" name="scala.Seq">Seq</span>[<span class="extype" name="scala.Any">Any</span>]</span>)</span><span class="result">: <span class="extype" name="java.util.Collection">Collection</span>[<span class="extype" name="java.util.List">List</span>[<span class="extype" name="scala.AnyRef">AnyRef</span>]]</span>
+        <span class="name">qRaw</span><span class="params">(<span name="db">db: <span class="extype" name="datomic.Database">Database</span></span>, <span name="query">query: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="inputs0">inputs0: <span class="extype" name="scala.Seq">Seq</span>[<span class="extype" name="scala.Any">Any</span>]</span>)</span><span class="result">: <span class="extype" name="java.util.Collection">Collection</span>[<span class="extype" name="java.util.List">List</span>[<span class="extype" name="scala.AnyRef">AnyRef</span>]]</span>
       </span>
       
       <p class="shortcomment cmt">Query Datomic directly with db value and optional Scala inputs and get raw Java result.</p><div class="fullcomment"><div class="comment cmt"><p>Query Datomic directly with db value and optional Scala inputs and get raw Java result.</p><pre><span class="cmt">// Sample data</span>
@@ -930,7 +946,7 @@ conn.q(conn.db,
          | :where [?a :Ns/str ?b]
          |        [?a :Ns/int ?c]]"</span><span class="lit">""</span>.stripMargin,
        <span class="std">Seq</span>(<span class="num">42</span>) <span class="cmt">// input values in list</span>
- ).toString === <span class="lit">""</span><span class="lit">"[["</span>Ben<span class="lit">" 42]]"</span><span class="lit">""</span></pre></div><dl class="paramcmts block"><dt class="param">db</dt><dd class="cmt"><p>Any Datomic Database value (could be asOf(x) etc)</p></dd><dt class="param">query</dt><dd class="cmt"><p>Datomic query string</p></dd><dt class="param">inputs</dt><dd class="cmt"><p>Seq of optional input(s) to query</p></dd><dt>returns</dt><dd class="cmt"><p>java.util.Collection[java.util.List[AnyRef]]</p></dd></dl></div>
+ ).toString === <span class="lit">""</span><span class="lit">"[["</span>Ben<span class="lit">" 42]]"</span><span class="lit">""</span></pre></div><dl class="paramcmts block"><dt class="param">db</dt><dd class="cmt"><p>Any Datomic Database value (could be asOf(x) etc)</p></dd><dt class="param">query</dt><dd class="cmt"><p>Datomic query string</p></dd><dt class="param">inputs0</dt><dd class="cmt"><p>Seq of optional input(s) to query</p></dd><dt>returns</dt><dd class="cmt"><p>java.util.Collection[java.util.List[AnyRef]]</p></dd></dl></div>
     </li><li name="molecule.facade.Conn#qRaw" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="qRaw(query:String,inputs:Any*):java.util.Collection[java.util.List[AnyRef]]"></a><a id="qRaw(String,Any*):Collection[List[AnyRef]]"></a>
       <span class="permalink">

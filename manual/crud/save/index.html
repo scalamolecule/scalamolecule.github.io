@@ -803,7 +803,7 @@
             <div class="col-md-2 column" style="padding-top:20px;padding-right:0px;">
                 <ul class="nav nav-pills" style="float:right;">
                     <li>
-                        <a href="/changelog" style="margin-top:-2px;">v0.21.0</a>
+                        <a href="/changelog" style="margin-top:-2px;">v0.22.0</a>
                     </li>
                     <li>
                         <div style="padding-left:14px;">
@@ -826,45 +826,27 @@
 <div class="container" style="padding-top:20px">
 
     <div class="col-sm-10 column" style="padding-left:8px;">
-        
-
-<h1 id="save">Save</h1>
-
+        <h1 id="save">Save</h1>
 <p><a href="https://github.com/scalamolecule/molecule/blob/master/coretests/src/test/scala/molecule/coretests/crud/Save.scala">Tests&hellip;</a></p>
-
 <p>In Molecule we can populate a molecule with data and save it:</p>
-
-<pre><code class="language-scala">Person.name(&quot;Fred&quot;).likes(&quot;pizza&quot;).age(38).save
-</code></pre>
-
-<p>This will assert 3 facts in Datomic that all share the id of the new entity id <code>fredId</code> that is automatically created by Datomic:</p>
-
+<pre><code>Person.name(&quot;Fred&quot;).likes(&quot;pizza&quot;).age(38).save
+</code></pre><p>This will assert 3 facts in Datomic that all share the id of the new entity id <code>fredId</code> that is automatically created by Datomic:</p>
 <pre><code>fredId    :Person/name    &quot;Fred&quot;
 fredId    :Person/likes   &quot;pizza&quot;
 fredId    :Person/age     38
-</code></pre>
-
-<h3 id="type-safety">Type-safety</h3>
-
+</code></pre><h3 id="type-safety">Type-safety</h3>
 <p>Type-safety is guaranteed since each attribute only accepts values of its defined type.</p>
-
 <h3 id="asynchronous-save">Asynchronous save</h3>
-
 <p>All transactional operators have an asynchronous equivalent. Saving data asynchronously with
 <code>saveAsync</code> uses Datomic&rsquo;s asynchronous API and returns a <code>Future</code> with a <code>TxReport</code>.</p>
-
 <p>Here, we map over the result of saving asynchronously:</p>
-
-<pre><code class="language-scala">// Map over a Future
+<pre><code>// Map over a Future
 Person.name(&quot;Fred&quot;).likes(&quot;pizza&quot;).age(42).saveAsync.map { tx =&gt; // tx report from successful save transaction
   // (synchronous get)
   Person.name.likes.age.get.head === (&quot;Ben&quot;, &quot;pizza&quot;, 42)
 }
-</code></pre>
-
-<p>Or we could defer the resolution of the <code>Future</code></p>
-
-<pre><code class="language-scala">val futureSave: Future[TxReport] = Person.name(&quot;Fred&quot;).likes(&quot;pizza&quot;).age(42).saveAsync
+</code></pre><p>Or we could defer the resolution of the <code>Future</code></p>
+<pre><code>val futureSave: Future[TxReport] = Person.name(&quot;Fred&quot;).likes(&quot;pizza&quot;).age(42).saveAsync
 for {
   _ &lt;- futureSave
   result &lt;- Person.name.likes.age.getAsync
@@ -872,36 +854,23 @@ for {
   // Data was saved
   result.head === (&quot;Ben&quot;, &quot;pizza&quot;, 42)
 }
-</code></pre>
-
-<p>For brevity, the following examples use the synchronous <code>save</code> operation.</p>
-
+</code></pre><p>For brevity, the following examples use the synchronous <code>save</code> operation.</p>
 <h3 id="related-data">Related data</h3>
-
 <p>We can even save related date in the same operation</p>
-
-<pre><code class="language-scala">Person.name(&quot;Fred&quot;).likes(&quot;pizza&quot;).age(38).Home.street(&quot;Baker St. 7&quot;).city(&quot;Boston&quot;).save
-</code></pre>
-
-<p>In this case, 6 facts will be asserted for the entity of Fred. A <code>:Person/home</code> ref attribute will resolve to the
+<pre><code>Person.name(&quot;Fred&quot;).likes(&quot;pizza&quot;).age(38).Home.street(&quot;Baker St. 7&quot;).city(&quot;Boston&quot;).save
+</code></pre><p>In this case, 6 facts will be asserted for the entity of Fred. A <code>:Person/home</code> ref attribute will resolve to the
 value of a new Address entity with id <code>addrId</code> and thereby establish the relationship from Fred to his Address:</p>
-
 <pre><code>fredId    :Person/name    &quot;Fred&quot;
 fredId    :Person/likes   &quot;pizza&quot;
 fredId    :Person/age     38
 fredId    :Person/home    addrId
 addrId    :Addr/street    &quot;Baker St. 7&quot;
 addrId    :Addr/city      &quot;Boston&quot;
-</code></pre>
-
-<p>And we could go on with further relationships&hellip;</p>
-
+</code></pre><p>And we could go on with further relationships&hellip;</p>
 <h3 id="cardinality-many-values">Cardinality many values</h3>
-
 <p>Cardinality many attributes like for instance <code>hobbies</code> hold <code>Set</code>s of values. But we can apply values in
 various ways:</p>
-
-<pre><code class="language-scala">// Vararg
+<pre><code>// Vararg
 Person.hobbies(&quot;golf&quot;, &quot;chess&quot;).save
 
 // Set
@@ -911,49 +880,29 @@ Person.hobbies(set).save
 // Seq/List
 val seq = Seq(&quot;golf&quot;, &quot;chess&quot;)
 Person.hobbies(seq).save
-</code></pre>
-
-<h2 id="optional-values">Optional values</h2>
-
+</code></pre><h2 id="optional-values">Optional values</h2>
 <p>An optional value (<code>optionalLikes</code>) from a form submission for instance can be applied to an optional attribute (<code>likes$</code>):</p>
-
-<pre><code class="language-scala">Person.name(aName).likes$(optionalLikes).age(anAge).save
-</code></pre>
-
-<p>When this molecule is saved, only 2 facts will be asserted:</p>
-
+<pre><code>Person.name(aName).likes$(optionalLikes).age(anAge).save
+</code></pre><p>When this molecule is saved, only 2 facts will be asserted:</p>
 <pre><code>fredId    :Person/name    &quot;Fred&quot;
 fredId    :Person/age     38
-</code></pre>
-
-<p>This is different from SQL where we would save a NULL value in a <code>likes</code> column.</p>
-
+</code></pre><p>This is different from SQL where we would save a NULL value in a <code>likes</code> column.</p>
 <p>Molecule lets us fetch data sets with optional facts asserted for an attribute as optional values:</p>
-
-<pre><code class="language-scala">Person.name.likes$.age.get === List(
+<pre><code>Person.name.likes$.age.get === List(
   (&quot;Fred&quot;, None, 38),
   (&quot;Pete&quot;, Some(&quot;sushi&quot;), 17)
 )
-</code></pre>
-
-<p>If we specifically want to find Persons that have no <code>likes</code> asserted we can say</p>
-
-<pre><code class="language-scala">Person.name.likes_(nil).age.get === List(
+</code></pre><p>If we specifically want to find Persons that have no <code>likes</code> asserted we can say</p>
+<pre><code>Person.name.likes_(nil).age.get === List(
   (&quot;Fred&quot;, 38)
   // Pete not returned since he likes something
 )
-</code></pre>
-
-<p>.. or</p>
-
-<pre><code class="language-scala">Person.name.likes$(None).age.get === List(
+</code></pre><p>.. or</p>
+<pre><code>Person.name.likes$(None).age.get === List(
   (&quot;Fred&quot;, None, 38)
   // Pete not returned since he likes something
 )
-</code></pre>
-
-<h3 id="next">Next</h3>
-
+</code></pre><h3 id="next">Next</h3>
 <p><a href="/manual/crud/insert">Create / Insert&hellip;</a></p>
 
     </div>

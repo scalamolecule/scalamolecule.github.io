@@ -803,7 +803,7 @@
             <div class="col-md-2 column" style="padding-top:20px;padding-right:0px;">
                 <ul class="nav nav-pills" style="float:right;">
                     <li>
-                        <a href="/changelog" style="margin-top:-2px;">v0.21.0</a>
+                        <a href="/changelog" style="margin-top:-2px;">v0.22.0</a>
                     </li>
                     <li>
                         <div style="padding-left:14px;">
@@ -826,94 +826,35 @@
 <div class="container" style="padding-top:20px">
 
     <div class="col-sm-10 column" style="padding-left:8px;">
-        
-
-<h1 id="schema-api">Schema API</h1>
-
+        <h1 id="schema-api">Schema API</h1>
 <p><a href="https://github.com/scalamolecule/molecule/tree/master/coretests/src/test/scala/molecule/coretests/generic/SchemaTest.scala">Tests&hellip;</a></p>
-
 <p>The generic Schema interface provides attributes to build a Schema molecule that query the Schema
 structure of the current database. Datomic&rsquo;s bootstrapped attributes are transparently filtered out so that only
 schema data of the current database is returned.</p>
-
 <h3 id="generic-schema-attributes">Generic Schema attributes</h3>
-
 <p>The following Schema attributes can be used to build Schema molecules:</p>
-
-<p><table>
-<th>
-    <tr><td><i><b>Attribute</i></b>         &nbsp;&nbsp;</td> <td><b><i>Description</i></b></td> <td><b><i>Example value</i></b></td></tr>
-</th>
-<tr><td><code>id</code>         &nbsp;&nbsp;</td> <td>Attribute definition entity id</td><td><code>Long</code></td></tr>
-<tr><td><code>a</code>          &nbsp;&nbsp;</td> <td>(Partition-)Namespace-prefixed attribute name &nbsp;&nbsp;&nbsp;</td> <td>&ldquo;:ind_Person/name&rdquo; or &ldquo;:Person/name&rdquo; if no partitions</td></tr>
-<tr><td><code>part</code>       &nbsp;&nbsp;</td> <td>Partition name.</td> <td>&ldquo;ind&rdquo; or &ldquo;&rdquo; if no partitions</td></tr>
-<tr><td><code>nsFull</code>     &nbsp;&nbsp;</td> <td>Namespace name with partition prefix</td> <td>&ldquo;ind_Person&rdquo; or &ldquo;Person&rdquo; if no partitions</td></tr>
-<tr><td><code>ns</code>         &nbsp;&nbsp;</td> <td>Namespace name</td> <td>&ldquo;Person&rdquo;</td></tr>
-<tr><td><code>attr</code>       &nbsp;&nbsp;</td> <td>Attribute name</td> <td>&ldquo;name&rdquo;</td></tr>
-<tr><td><code>tpe</code>        &nbsp;&nbsp;</td> <td>Attribute Datomic type</td> <td>See types below </td></tr>
-<tr><td><code>card</code>       &nbsp;&nbsp;</td> <td>Attribute cardinality</td> <td>&ldquo;one&rdquo;/&ldquo;many&rdquo;</td></tr>
-<tr><td><code>doc</code>        &nbsp;&nbsp;</td> <td>Attribute documentation string</td> <td><code>String</code></td></tr>
-<tr><td><code>index</code>      &nbsp;&nbsp;</td> <td>Attribute index status</td> <td>true / not set</td></tr>
-<tr><td><code>unique</code>     &nbsp;&nbsp;</td> <td>Attribute uniqueness status</td> <td>true / not set</td></tr>
-<tr><td><code>fulltext</code>   &nbsp;&nbsp;</td> <td>Attribute fulltext search status</td> <td>true / not set</td></tr>
-<tr><td><code>isComponent</code>&nbsp;&nbsp;</td> <td>Attribute isComponent status</td> <td>true / not set</td></tr>
-<tr><td><code>noHistory</code>  &nbsp;&nbsp;</td> <td>Attribute noHistory status</td> <td>true / not set</td></tr>
-<tr><td><code>enum</code>       &nbsp;&nbsp;</td> <td>Attribute enum values</td> <td><code>String</code></td></tr>
-<tr><td><code>t</code>          &nbsp;&nbsp;</td> <td>Attribute definition transaction point in time</td> <td><code>Long</code> / <code>Int</code></td></tr>
-<tr><td><code>tx</code>         &nbsp;&nbsp;</td> <td>Attribute definition transaction entity id</td> <td><code>Long</code></td></tr>
-<tr><td><code>txInstant</code>  &nbsp;&nbsp;</td> <td>Attribute definition transaction wall-clock time</td> <td><code>java.util.Date</code></td></tr>
-</table>&nbsp; <!-- hack to force markdown handling inside table --></p>
-
+<!-- raw HTML omitted -->
 <h3 id="querying-the-schema-structure">Querying the Schema structure</h3>
-
-<pre><code class="language-scala">// List of attribute entity ids
+<pre><code>// List of attribute entity ids
 val attrIds: Seq[Long] = Schema.id.get
-</code></pre>
-
-<h3 id="partition-namespace-attribute-names">Partition/Namespace/Attribute names</h3>
-
-<pre><code class="language-scala">// Attribute name elements
+</code></pre><h3 id="partitionnamespaceattribute-names">Partition/Namespace/Attribute names</h3>
+<pre><code>// Attribute name elements
 Schema.a.part.ns.nsFull.attr.get === List (
   (&quot;:sales_Customer/name&quot;, &quot;sales&quot;, &quot;Customer&quot;, &quot;sales_Customer&quot;, &quot;name&quot;),
   (&quot;:accounting_Invoice/invoiceLine&quot;, &quot;accounting&quot;, &quot;Invoice&quot;, &quot;accounting_Invoice&quot;, &quot;invoiceLine&quot;),
   // etc..
 )
-</code></pre>
-
-<h3 id="types-and-cardinality">Types and cardinality</h3>
-
-<pre><code class="language-scala">// Datomic type and cardinality of attributes
+</code></pre><h3 id="types-and-cardinality">Types and cardinality</h3>
+<pre><code>// Datomic type and cardinality of attributes
 Schema.a.tpe.card.get === List (
   (&quot;:sales_Customer/name&quot;, &quot;string&quot;, &quot;one&quot;),
   (&quot;:accounting_Invoice/invoiceLine&quot;, &quot;ref&quot;, &quot;many&quot;)
 )
-</code></pre>
-
-<p>Scala <code>Int</code> and <code>Long</code> are both represented as Datomic type <code>long</code>:</p>
-
-<p><table>
-<th>
-    <tr><td><b>Datomic type</b>&nbsp;&nbsp;&nbsp;&nbsp;</td> <td><b>Scala type</b></td></tr>
-</th>
-<tr><td><i>string                   </i></td> <td><code>String</code></td></tr>
-<tr><td><i>long                     </i></td> <td><code>Int</code></td></tr>
-<tr><td><i>long                     </i></td> <td><code>Long</code></td></tr>
-<tr><td><i>float                    </i></td> <td><code>Float</code></td></tr>
-<tr><td><i>double                   </i></td> <td><code>Double</code></td></tr>
-<tr><td><i>bigint                   </i></td> <td><code>BigInt</code></td></tr>
-<tr><td><i>bigdec                   </i></td> <td><code>BigDecimal</code></td></tr>
-<tr><td><i>boolean&nbsp;&nbsp;&nbsp;</i></td> <td><code>Boolean</code></td></tr>
-<tr><td><i>instant                  </i></td> <td><code>java.util.Date</code></td></tr>
-<tr><td><i>uuid                     </i></td> <td><code>java.util.UUID</code></td></tr>
-<tr><td><i>uri                      </i></td> <td><code>java.net.URI</code></td></tr>
-<tr><td><i>ref                      </i></td> <td><code>Long</code></td></tr>
-</table>&nbsp; <!-- hack to force markdown handling inside table --></p>
-
+</code></pre><p>Scala <code>Int</code> and <code>Long</code> are both represented as Datomic type <code>long</code>:</p>
+<!-- raw HTML omitted -->
 <h3 id="optional-docs-and-attribute-options">Optional docs and attribute options</h3>
-
 <p>These can be retrieved as mandatory or optional attribute values</p>
-
-<pre><code class="language-scala">Schema.a
+<pre><code>Schema.a
       .index
       .doc$
       .unique$
@@ -938,31 +879,20 @@ Schema.a.tpe.card.get === List (
     None                    // History is preserved (noHistory not set)
     ),
 )
-</code></pre>
-
-<h3 id="enum-values">Enum values</h3>
-
+</code></pre><h3 id="enum-values">Enum values</h3>
 <p>Enumerated values can be defined in the schema and then retrieved generically with <code>Schema.enum</code>:</p>
-
-<pre><code class="language-scala">// Defined enum values
+<pre><code>// Defined enum values
 Schema.a.enum.get.groupBy(_._1).map(g =&gt; g._1 -&gt; g._2) === Map(
   &quot;:Person/gender&quot; -&gt; List(&quot;female&quot;, &quot;male&quot;),
   &quot;:Interests/sports&quot; -&gt; List(&quot;golf&quot;, &quot;basket&quot;, &quot;badminton&quot;)
 )
-</code></pre>
-
-<h3 id="schema-transaction-times">Schema transaction times</h3>
-
+</code></pre><h3 id="schema-transaction-times">Schema transaction times</h3>
 <p>&ldquo;In what transaction/when were the attributes created in the schema?&rdquo;</p>
-
-<pre><code class="language-scala">Schema.t.tx.txInstant.get === List(
+<pre><code>Schema.t.tx.txInstant.get === List(
   (t1, tx1, &lt;Date: 2018-11-07 09:28:10&gt;), // Initial schema transaction
   (t2, tx2, &lt;Date: 2019-01-12 12:43:27&gt;), // Additional schema attribute definitions...
 )
-</code></pre>
-
-<h3 id="next">Next</h3>
-
+</code></pre><h3 id="next">Next</h3>
 <p><a href="/manual/debug">Debug&hellip;</a></p>
 
     </div>

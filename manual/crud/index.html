@@ -803,7 +803,7 @@
             <div class="col-md-2 column" style="padding-top:20px;padding-right:0px;">
                 <ul class="nav nav-pills" style="float:right;">
                     <li>
-                        <a href="/changelog" style="margin-top:-2px;">v0.21.0</a>
+                        <a href="/changelog" style="margin-top:-2px;">v0.22.0</a>
                     </li>
                     <li>
                         <div style="padding-left:14px;">
@@ -826,24 +826,16 @@
 <div class="container" style="padding-top:20px">
 
     <div class="col-sm-10 column" style="padding-left:8px;">
-        
-
-<h1 id="crud">&ldquo;CRUD&rdquo;</h1>
-
+        <h1 id="crud">&ldquo;CRUD&rdquo;</h1>
 <p><a href="https://github.com/scalamolecule/molecule/tree/master/coretests/src/test/scala/molecule/coretests/crud">Tests&hellip;</a></p>
-
 <p>The classical Create-Read-Update-Delete operations on data are a bit different using Datomic since it never
 overwrites or deletes data. Facts are only
 <em>asserted</em> or <em>retracted</em> in Datomic.</p>
-
 <p>Molecule tries to bridge the vocabulary between these two worlds.</p>
-
 <h2 id="transactions-return-txreport">Transactions return TxReport</h2>
-
 <p>All transactional operations on molecules return a <code>TxReport</code> with information about the transaction
 like what data was transacted and what entities were created and a timestamp of the transaction:</p>
-
-<pre><code class="language-scala">val tx: TxReport = Person.name(&quot;Fred&quot;).likes(&quot;pizza&quot;).age(38).save
+<pre><code>val tx: TxReport = Person.name(&quot;Fred&quot;).likes(&quot;pizza&quot;).age(38).save
 
 // Entity id created - useful when we know one entity was created
 val fredId: Long = tx.eid // (same as tx.eids.head)
@@ -862,112 +854,67 @@ val txEntityId: Long = tx.tx
 
 // Transaction Entity
 val txEntity: datomicEntity = tx.txE
-</code></pre>
-
-<h3 id="async-api">Async API</h3>
-
+</code></pre><h3 id="async-api">Async API</h3>
 <p>All getters and operators below have an <a href="/manual/attributes/basics">asynchronous equivalent</a>. Synchronous getters/operators shown for brevity.</p>
-
 <h2 id="create">Create</h2>
-
 <p>In Molecule you can either <code>save</code> a populated molecule or <code>insert</code> multiple tuples of data that match an &ldquo;insert-moleceule&rdquo;</p>
-
 <h4 id="save"><code>save</code></h4>
-
 <p>3 facts asserted for a new entity:</p>
-
-<pre><code class="language-scala">Person.name(&quot;Fred&quot;).likes(&quot;pizza&quot;).age(38).save // or saveAsync
-</code></pre>
-
-<p>More on <a href="/manual/crud/save/">save</a>&hellip;</p>
-
+<pre><code>Person.name(&quot;Fred&quot;).likes(&quot;pizza&quot;).age(38).save // or saveAsync
+</code></pre><p>More on <a href="/manual/crud/save/">save</a>&hellip;</p>
 <h4 id="insert"><code>insert</code></h4>
-
 <p>3 facts asserted for each of 3 new entities:</p>
-
-<pre><code class="language-scala">Person.name.age.likes insert List( // or insertAsync
+<pre><code>Person.name.age.likes insert List( // or insertAsync
   (&quot;Fred&quot;, 38, &quot;pizza&quot;),
   (&quot;Lisa&quot;, 7, &quot;sushi&quot;),
   (&quot;Ben&quot;, 5, &quot;pizza&quot;)
 )
-</code></pre>
-
-<p>More on <a href="/manual/crud/insert/">insert</a>&hellip;</p>
-
-<h2 id="read-get">Read / get</h2>
-
+</code></pre><p>More on <a href="/manual/crud/insert/">insert</a>&hellip;</p>
+<h2 id="read--get">Read / get</h2>
 <p>To read data from the database we call <code>get</code> on a molecule</p>
-
 <h4 id="get"><code>get</code></h4>
-
-<pre><code class="language-scala">Person.name.age.likes.get === List( // or getAsync
+<pre><code>Person.name.age.likes.get === List( // or getAsync
   (&quot;Fred&quot;, 38, &quot;pizza&quot;),
   (&quot;Lisa&quot;, 7, &quot;sushi&quot;),
   (&quot;Ben&quot;, 5, &quot;pizza&quot;)
 )
-</code></pre>
-
-<p>More on <a href="/manual/crud/get/">get</a>&hellip;</p>
-
+</code></pre><p>More on <a href="/manual/crud/get/">get</a>&hellip;</p>
 <h3 id="time-getters">Time getters</h3>
-
 <p>Since data is only appended in Datomic we can also go back in time to look at our data!</p>
-
 <pre><code>&lt;molecule&gt;.getAsOf(t)      // or getAsynAsOf(t)
 &lt;molecule&gt;.getSince(t)     // or getAsyncSince(t)
 &lt;molecule&gt;.getWith(txData) // or getAsyncWith(txData)
 &lt;molecule&gt;.getHistory      // or getAsyncHistory
-</code></pre>
-
-<p>These are such cool features that we have a whole section about <a href="/manual/time">time</a>&hellip;</p>
-
-<h2 id="update-retract-assert">&ldquo;Update&rdquo; (retract + assert)</h2>
-
+</code></pre><p>These are such cool features that we have a whole section about <a href="/manual/time">time</a>&hellip;</p>
+<h2 id="update-retract--assert">&ldquo;Update&rdquo; (retract + assert)</h2>
 <p>In Datomic an update retracts the old fact and asserts the new fact.</p>
-
 <p>For convenience, Molecule lets you think in terms of a classical &ldquo;update&rdquo; although two operations are performed
 in the background. The old fact is still
 in the database and available with the time getters.</p>
-
 <h4 id="update"><code>update</code></h4>
-
-<pre><code class="language-scala">Person(fredId).likes(&quot;pasta&quot;).update // Retracts &quot;pizza&quot; and Asserts &quot;pasta&quot;
+<pre><code>Person(fredId).likes(&quot;pasta&quot;).update // Retracts &quot;pizza&quot; and Asserts &quot;pasta&quot;
 
 // Current value is now &quot;pasta&quot;
 Person(fredId).likes.get.head === &quot;pasta&quot;
-</code></pre>
-
-<p>More on <a href="/manual/crud/update/">update</a>&hellip;</p>
-
+</code></pre><p>More on <a href="/manual/crud/update/">update</a>&hellip;</p>
 <h2 id="retract-delete">Retract (&ldquo;delete&rdquo;)</h2>
-
 <p>As mentioned, data is not deleted in Datomic. So it would be outright wrong to say that we &ldquo;delete&rdquo; data. Therefore,
 Molecule uses the Datomic terminology of &ldquo;retracting&rdquo; data which is like saying &ldquo;this is no longer valid&rdquo;.
 Retracted data is no longer showing up when we query with <code>get</code> but it will be visible with the time getters.</p>
-
 <p>To retract individual attribute values of an entity we apply an empty value and <code>update</code>:</p>
-
-<pre><code class="language-scala">// Retract what Fred likes by applying an empty value
+<pre><code>// Retract what Fred likes by applying an empty value
 Person(fredId).likes().update
 
 // Fred now doesn't have any preference (but his old preference is still in history)
 Person(fred).name.likes$.get.head === (&quot;Fred&quot;, None)
-</code></pre>
-
-<h4 id="retract-entity"><code>retract</code> entity</h4>
-
+</code></pre><h4 id="retract-entity"><code>retract</code> entity</h4>
 <p>We can retract an entity (a group of facts with a common entity id) by calling <code>retract</code> on a <code>Long</code> entity id:</p>
-
-<pre><code class="language-scala">fredId.retract
+<pre><code>fredId.retract
 
 // Fred is retracted from current view (but still in history)
 Person(fredId).name.likes.get === Nil
-</code></pre>
-
-<p>More on <a href="/manual/crud/retract/">retract</a>&hellip;</p>
-
+</code></pre><p>More on <a href="/manual/crud/retract/">retract</a>&hellip;</p>
 <h3 id="next">Next</h3>
-
 <p><a href="/manual/crud/save">Create / Save&hellip;</a></p>
 
     </div>

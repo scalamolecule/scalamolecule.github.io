@@ -3,9 +3,9 @@
         <head>
           <meta http-equiv="X-UA-Compatible" content="IE=edge" />
           <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-          <title>Molecule 0.21.0 - molecule.ast.MoleculeBase</title>
-          <meta name="description" content="Molecule 0.21.0 - molecule.ast.MoleculeBase" />
-          <meta name="keywords" content="Molecule 0.21.0 molecule.ast.MoleculeBase" />
+          <title>Molecule 0.22.0 - molecule.ast.MoleculeBase</title>
+          <meta name="description" content="Molecule 0.22.0 - molecule.ast.MoleculeBase" />
+          <meta name="keywords" content="Molecule 0.22.0 molecule.ast.MoleculeBase" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       
@@ -28,7 +28,7 @@
         </head>
         <body>
       <div id="search">
-        <span id="doc-title">Molecule<span id="doc-version">0.21.0</span></span>
+        <span id="doc-title">Molecule<span id="doc-version">0.22.0</span></span>
         <span class="close-results"><span class="left">&lt;</span> Back</span>
         <div id="textfilter">
           <span class="input">
@@ -353,6 +353,48 @@ Custom DSL molecule --&gt; Model --&gt; Query --&gt; Datomic query string
       </span>
       
       <p class="shortcomment cmt">Internal <a href="query$$Query.html" class="extype" name="molecule.ast.query.Query">Query</a> representation of molecule.</p><div class="fullcomment"><div class="comment cmt"><p>Internal <a href="query$$Query.html" class="extype" name="molecule.ast.query.Query">Query</a> representation of molecule.
+<br><br>
+Molecule transforms custom boilerplate DSL constructs to Datomic queries in 3 steps:
+<br><br>
+Custom DSL molecule --&gt; Model --&gt; Query --&gt; Datomic query string
+</p></div></div>
+    </li><li name="molecule.ast.MoleculeBase#_rawNestedQuery" visbl="pub" class="indented0 " data-isabs="true" fullComment="yes" group="internal">
+      <a id="_rawNestedQuery:Option[molecule.ast.query.Query]"></a><a id="_rawNestedQuery:Option[Query]"></a>
+      <span class="permalink">
+      <a href="../../molecule/ast/MoleculeBase.html#_rawNestedQuery:Option[molecule.ast.query.Query]" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">_rawNestedQuery</span><span class="result">: <span class="extype" name="scala.Option">Option</span>[<a href="query$$Query.html" class="extype" name="molecule.ast.query.Query">Query</a>]</span>
+      </span>
+      
+      <p class="shortcomment cmt">Internal un-optimized optional <a href="query$$Query.html" class="extype" name="molecule.ast.query.Query">Query</a> representation of nested molecule with added entity search for each level.</p><div class="fullcomment"><div class="comment cmt"><p>Internal un-optimized optional <a href="query$$Query.html" class="extype" name="molecule.ast.query.Query">Query</a> representation of nested molecule with added entity search for each level.
+<br><br>
+Molecule transforms custom boilerplate DSL constructs to Datomic queries in 3 steps:
+<br><br>
+Custom DSL molecule --&gt; Model --&gt; Query --&gt; Datomic query string
+</p></div></div>
+    </li><li name="molecule.ast.MoleculeBase#_rawQuery" visbl="pub" class="indented0 " data-isabs="true" fullComment="yes" group="internal">
+      <a id="_rawQuery:molecule.ast.query.Query"></a><a id="_rawQuery:Query"></a>
+      <span class="permalink">
+      <a href="../../molecule/ast/MoleculeBase.html#_rawQuery:molecule.ast.query.Query" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">_rawQuery</span><span class="result">: <a href="query$$Query.html" class="extype" name="molecule.ast.query.Query">Query</a></span>
+      </span>
+      
+      <p class="shortcomment cmt">Internal un-optimized <a href="query$$Query.html" class="extype" name="molecule.ast.query.Query">Query</a> representation molecule.</p><div class="fullcomment"><div class="comment cmt"><p>Internal un-optimized <a href="query$$Query.html" class="extype" name="molecule.ast.query.Query">Query</a> representation molecule.
 <br><br>
 Molecule transforms custom boilerplate DSL constructs to Datomic queries in 3 steps:
 <br><br>

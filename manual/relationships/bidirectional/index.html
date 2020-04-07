@@ -803,7 +803,7 @@
             <div class="col-md-2 column" style="padding-top:20px;padding-right:0px;">
                 <ul class="nav nav-pills" style="float:right;">
                     <li>
-                        <a href="/changelog" style="margin-top:-2px;">v0.21.0</a>
+                        <a href="/changelog" style="margin-top:-2px;">v0.22.0</a>
                     </li>
                     <li>
                         <div style="padding-left:14px;">
@@ -826,88 +826,48 @@
 <div class="container" style="padding-top:20px">
 
     <div class="col-sm-10 column" style="padding-left:8px;">
-        
-
-<h1 id="bidirectional-references">Bidirectional references</h1>
-
+        <h1 id="bidirectional-references">Bidirectional references</h1>
 <p><a href="https://github.com/scalamolecule/molecule/blob/master/coretests/src/test/scala/molecule/coretests/bidirectionals/self/OneSelf.scala">Tests&hellip;</a></p>
-
 <h3 id="unidirectional-reference-limitations">Unidirectional reference limitations</h3>
-
 <p>Normal Datomic references are unidirectional. If we add a friend reference from Ann to Ben</p>
-
-<pre><code class="language-scala">Person.name(&quot;Ann&quot;).Friends.name(&quot;Ben&quot;).save
-</code></pre>
-
-<p>Then we can naturally query to get friends of Ann</p>
-
-<pre><code class="language-scala">Person.name_(&quot;Ann&quot;).Friends.name.get === List(&quot;Ben&quot;)
-</code></pre>
-
-<p>But what if we want to find friends of Ben? This will give us nothing since our reference only went from Ann to Ben:</p>
-
-<pre><code class="language-scala">Person.name_(&quot;Ben&quot;).Friends.name.get === List()
-</code></pre>
-
-<p>Instead we would have to think backwards to get the back reference &ldquo;who referenced Ben?&rdquo;:</p>
-
-<pre><code class="language-scala"> Person.name.Friends.name_(&quot;Ben&quot;).get === List(&quot;Ann&quot;)
-</code></pre>
-
-<p>Since we can&rsquo;t know from which person a friendship reference is made we will always have to query
+<pre><code>Person.name(&quot;Ann&quot;).Friends.name(&quot;Ben&quot;).save
+</code></pre><p>Then we can naturally query to get friends of Ann</p>
+<pre><code>Person.name_(&quot;Ann&quot;).Friends.name.get === List(&quot;Ben&quot;)
+</code></pre><p>But what if we want to find friends of Ben? This will give us nothing since our reference only went from Ann to Ben:</p>
+<pre><code>Person.name_(&quot;Ben&quot;).Friends.name.get === List()
+</code></pre><p>Instead we would have to think backwards to get the back reference &ldquo;who referenced Ben?&quot;:</p>
+<pre><code> Person.name.Friends.name_(&quot;Ben&quot;).get === List(&quot;Ann&quot;)
+</code></pre><p>Since we can&rsquo;t know from which person a friendship reference is made we will always have to query
 separately in both directions. If we were to traverse say 3 levels into a friendship graph we would end
- up with 6 queries - one in each direction for all three levels. It can quickly become a pain.</p>
-
+up with 6 queries - one in each direction for all three levels. It can quickly become a pain.</p>
 <h3 id="bidirectional-refs-to-the-rescue">Bidirectional refs to the rescue&hellip;</h3>
-
 <p>By defining a relationship in Molecule as bidirectional:</p>
-
-<pre><code class="language-scala">val friends = manyBi[Person]
-</code></pre>
-
-<p>we can start treating friendship relationships uniformly in both directions and get the intuitively
+<pre><code>val friends = manyBi[Person]
+</code></pre><p>we can start treating friendship relationships uniformly in both directions and get the intuitively
 expected results</p>
-
-<pre><code class="language-scala"> Person.name_(&quot;Ann&quot;).Friends.name.get === List(&quot;Ben&quot;)
+<pre><code> Person.name_(&quot;Ann&quot;).Friends.name.get === List(&quot;Ben&quot;)
  Person.name_(&quot;Ben&quot;).Friends.name.get === List(&quot;Ann&quot;)
-</code></pre>
-
-<p>And the graph example becomes easy</p>
-
-<pre><code class="language-scala"> Person.name_(&quot;Ann&quot;).Friends.Friends.Friends.name.get === List(...)
+</code></pre><p>And the graph example becomes easy</p>
+<pre><code> Person.name_(&quot;Ann&quot;).Friends.Friends.Friends.name.get === List(...)
  
  // Or without recycling to Ann
  Person.name_(&quot;Ann&quot;).Friends.Friends.name_.not(&quot;Ann&quot;).Friends.name.not(&quot;Ann&quot;).get === List(...)
-</code></pre>
-
-<h2 id="direct-bidirectional-refs">Direct bidirectional refs</h2>
-
+</code></pre><h2 id="direct-bidirectional-refs">Direct bidirectional refs</h2>
 <p>Single direct references to another entity can either go to the same namespace or to another namespace:</p>
-
-<h3 id="a-a-self-join">A &lt;&mdash;&gt; A / Self-join</h3>
-
+<h3 id="a-----a--self-join">A &lt;&mdash;&gt; A / Self-join</h3>
 <p>The friendship reference we saw above is a classic &ldquo;self-join&rdquo; in that it&rsquo;s a cardinality-many relationship
 between same-kinds: Persons.</p>
-
 <p>A cardinality-one example would be</p>
-
-<pre><code class="language-scala">val spouse = oneBi[Person]
-</code></pre>
-
-<p>where the relationship goes in both directions but only between two persons. If Ann is spouse to Ben, then Ben
+<pre><code>val spouse = oneBi[Person]
+</code></pre><p>where the relationship goes in both directions but only between two persons. If Ann is spouse to Ben, then Ben
 is also spouse to Ann and we want to be able to query that information uniformly in both directions:</p>
-
-<pre><code class="language-scala"> Person.name_(&quot;Ann&quot;).Spouse.name.get === List(&quot;Ben&quot;)
+<pre><code> Person.name_(&quot;Ann&quot;).Spouse.name.get === List(&quot;Ben&quot;)
  Person.name_(&quot;Ben&quot;).Spouse.name.get === List(&quot;Ann&quot;)
-</code></pre>
-
-<h3 id="a-b">A &lt;&mdash;&gt; B</h3>
-
+</code></pre><h3 id="a-----b">A &lt;&mdash;&gt; B</h3>
 <p>In a zoo we could (admittedly a bit contrively) say that the caretakers are buddies with the animals they take care of,
 and reversely the caretakers would be &ldquo;buddies&rdquo; of the animals. We define such bidirectional relationship with a
 reference from each namespace to the other:</p>
-
-<pre><code class="language-scala">object Person extends Person
+<pre><code>object Person extends Person
 trait Person {
   val buddies = manyBi[Animal.buddies.type]
   
@@ -920,22 +880,15 @@ trait Animal {
   
   val name = oneString
 }
-</code></pre>
-
-<p>Each <code>manyBi</code> reference definition takes a type parameter that points back to the other definition. This is so that
- Molecule can keep track of the references back and forth.</p>
-
+</code></pre><p>Each <code>manyBi</code> reference definition takes a type parameter that points back to the other definition. This is so that
+Molecule can keep track of the references back and forth.</p>
 <p>As with friends we can now query uniformly no matter from which end the reference was entered:</p>
-
-<pre><code class="language-scala"> Person.name_(&quot;Joe&quot;).Buddies.name.get === List(&quot;Leo&quot;, &quot;Gus&quot;)
+<pre><code> Person.name_(&quot;Joe&quot;).Buddies.name.get === List(&quot;Leo&quot;, &quot;Gus&quot;)
  Animal.name_(&quot;Leo&quot;).Buddies.name.get === List(&quot;Joe&quot;)
  Animal.name_(&quot;Gus&quot;).Buddies.name.get === List(&quot;Joe&quot;)
-</code></pre>
-
-<p>An interesting aspect is that we can give the reference attributes different names on each end. Say Persons have 1 Pet
+</code></pre><p>An interesting aspect is that we can give the reference attributes different names on each end. Say Persons have 1 Pet
 and we model that as a bidirectional cardinality-one reference:</p>
-
-<pre><code class="language-scala">object Person extends Person
+<pre><code>object Person extends Person
 trait Person {
   val pet = oneBi[Animal.master.type]
   
@@ -946,34 +899,21 @@ object Animal extends Animal
 trait Animal {
   val master = oneBi[Person.pet.type]
 }
-</code></pre>
-
-<p>If we then enter a pet ownership</p>
-
-<pre><code class="language-scala">Person.name(&quot;Liz&quot;).Pet.name(&quot;Rex&quot;).save
-</code></pre>
-
-<p>then we can get access to that information uniformly from both ends even though different attribute names are used:</p>
-
-<pre><code class="language-scala"> Person.name_(&quot;Liz&quot;).Pet.name.get === List(&quot;Rex&quot;)
+</code></pre><p>If we then enter a pet ownership</p>
+<pre><code>Person.name(&quot;Liz&quot;).Pet.name(&quot;Rex&quot;).save
+</code></pre><p>then we can get access to that information uniformly from both ends even though different attribute names are used:</p>
+<pre><code> Person.name_(&quot;Liz&quot;).Pet.name.get === List(&quot;Rex&quot;)
  Animal.name_(&quot;Rex&quot;).Master.name.get === List(&quot;Liz&quot;)
-</code></pre>
-
-<h2 id="property-edges">Property edges</h2>
-
+</code></pre><h2 id="property-edges">Property edges</h2>
 <p>Taking bidirectionality to the next level involves &ldquo;property edges&rdquo;, a term taken from graph theory where an edge/relationship
 between two vertices/entities has some property values attached to it. Molecule models this by using a bidirectional reference between one entity
 and a (property edge) entity, and then between this property edge entity and another entity.</p>
-
 <p>This is actually what we do all the time with references except that they are normally unidirectional! In order to make them bidirectional
 Molecule offers a convenient solution:</p>
-
-<h3 id="a-edge-properties-a">A &lt;&mdash;&gt; Edge.properties&hellip; &lt;&mdash;&gt; A</h3>
-
+<h3 id="a-----edgeproperties-----a">A &lt;&mdash;&gt; Edge.properties&hellip; &lt;&mdash;&gt; A</h3>
 <p>If we want to express &ldquo;how well&rdquo; two persons know each other we could model the above friendship example instead with at property edge
 having a <code>weight</code> property:</p>
-
-<pre><code class="language-scala">// Entity
+<pre><code>// Entity
 object Person extends Person
 trait Person {
   // A ==&gt; edge -- a
@@ -991,29 +931,18 @@ trait Knows {
   // Property
   val weight = oneInt
 }
-</code></pre>
-
-<p>Now we use the <code>manyBiEdge</code> definition that takes a type parameter pointing to the reference in the edge namespace that points back here. In the
+</code></pre><p>Now we use the <code>manyBiEdge</code> definition that takes a type parameter pointing to the reference in the edge namespace that points back here. In the
 edge namespace we define the reference back with the <code>target</code> definition.</p>
-
 <p>Now we can add some weighed friendships:</p>
-
-<pre><code class="language-scala">Person.name.Knows.*(Knows.weight.Person.name).insert(&quot;Ann&quot;, List((7, &quot;Ben&quot;), (8, &quot;Joe&quot;)))
-</code></pre>
-
-<p>And uniformly retrieve that information from any end:</p>
-
-<pre><code class="language-scala">Person.name_(&quot;Ann&quot;).Knows.*(Knows.weight.Person.name).get.head === List((7, &quot;Ben&quot;), (8, &quot;Joe&quot;))
+<pre><code>Person.name.Knows.*(Knows.weight.Person.name).insert(&quot;Ann&quot;, List((7, &quot;Ben&quot;), (8, &quot;Joe&quot;)))
+</code></pre><p>And uniformly retrieve that information from any end:</p>
+<pre><code>Person.name_(&quot;Ann&quot;).Knows.*(Knows.weight.Person.name).get.head === List((7, &quot;Ben&quot;), (8, &quot;Joe&quot;))
 Person.name_(&quot;Ben&quot;).Knows.*(Knows.weight.Person.name).get.head === List((7, &quot;Ann&quot;))
 Person.name_(&quot;Joe&quot;).Knows.*(Knows.weight.Person.name).get.head === List((8, &quot;Ann&quot;))
-</code></pre>
-
-<h3 id="a-edge-properties-b">A &lt;&mdash;&gt; Edge.properties&hellip; &lt;&mdash;&gt; B</h3>
-
+</code></pre><h3 id="a-----edgeproperties-----b">A &lt;&mdash;&gt; Edge.properties&hellip; &lt;&mdash;&gt; B</h3>
 <p>Let&rsquo;s add weight to the relationships between caretakers and animals. The edge namespace now has to reference both the Person and Animal
 namespaces:</p>
-
-<pre><code class="language-scala">// Entity A
+<pre><code>// Entity A
 object Person extends Person
 trait Person {
   // Ref to edge
@@ -1047,50 +976,30 @@ trait Animal {
   
   val name = oneString
 }
-</code></pre>
-
-<p>Adding data from one end (we could as well have done it from the Animal end)</p>
-
-<pre><code class="language-scala">Person.name.CloseTo.*(CloseTo.weight.Animal.name) insert List((&quot;Joe&quot;, List((7, &quot;Gus&quot;), (6, &quot;Leo&quot;))))
-</code></pre>
-
-<p>We can now uniformly retrieve the weighed friendship information from any end:</p>
-
-<pre><code class="language-scala">// Querying from Person
+</code></pre><p>Adding data from one end (we could as well have done it from the Animal end)</p>
+<pre><code>Person.name.CloseTo.*(CloseTo.weight.Animal.name) insert List((&quot;Joe&quot;, List((7, &quot;Gus&quot;), (6, &quot;Leo&quot;))))
+</code></pre><p>We can now uniformly retrieve the weighed friendship information from any end:</p>
+<pre><code>// Querying from Person
 Person.name_(&quot;Joe&quot;).CloseTo.*(CloseTo.weight.Animal.name).get.head === List((7, &quot;Gus&quot;), (8, &quot;Leo&quot;))
 
 // Querying from Animal
 Animal.name_(&quot;Gus&quot;).CloseTo.*(CloseTo.weight.Person.name).get.head === List((7, &quot;Joe&quot;))
 Animal.name_(&quot;Leo&quot;).CloseTo.*(CloseTo.weight.Person.name).get.head === List((8, &quot;Joe&quot;))
-</code></pre>
-
-<h3 id="how-it-works">How it works</h3>
-
+</code></pre><h3 id="how-it-works">How it works</h3>
 <p>For each bidirectional reference created, Molecule creates a reverse reference:</p>
-
 <pre><code>Ann --&gt; Ben
 Ben &lt;-- Ann // reverse ref
-</code></pre>
-
-<p>and for edges a full reverse edge entity with properties is created:</p>
-
+</code></pre><p>and for edges a full reverse edge entity with properties is created:</p>
 <pre><code>Ann --&gt; annLovesBen (7) --&gt;  Ben
   \                         /
     &lt;-- benLovesAnn (7) &lt;--       // reverse edge
-</code></pre>
-
-<p>Since Molecule is a closed eco-system it can manage this redundancy with 100% control. The advantages
+</code></pre><p>Since Molecule is a closed eco-system it can manage this redundancy with 100% control. The advantages
 of uniform queries should easily outweigh the impact of a bit of additional information for the reverse references.</p>
-
 <h3 id="more-examples">More examples&hellip;</h3>
-
 <p>Please have a look at the implementation of the
 <a href="https://github.com/scalamolecule/molecule/blob/master/examples/src/test/scala/molecule/examples/gremlin/gettingStarted/">Gremlin graph</a>.</p>
-
 <p>(All getters have an <a href="/manual/attributes/basics">asynchronous equivalent</a>. Synchronous getters shown for brevity)</p>
-
 <h3 id="next">Next</h3>
-
 <p><a href="/manual/relationships/self-join">Self-join&hellip;</a></p>
 
     </div>

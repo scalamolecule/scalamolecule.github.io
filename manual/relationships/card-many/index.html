@@ -803,7 +803,7 @@
             <div class="col-md-2 column" style="padding-top:20px;padding-right:0px;">
                 <ul class="nav nav-pills" style="float:right;">
                     <li>
-                        <a href="/changelog" style="margin-top:-2px;">v0.21.0</a>
+                        <a href="/changelog" style="margin-top:-2px;">v0.22.0</a>
                     </li>
                     <li>
                         <div style="padding-left:14px;">
@@ -826,15 +826,10 @@
 <div class="container" style="padding-top:20px">
 
     <div class="col-sm-10 column" style="padding-left:8px;">
-        
-
-<h1 id="card-many-relationships">Card-many relationships</h1>
-
+        <h1 id="card-many-relationships">Card-many relationships</h1>
 <p><a href="https://github.com/scalamolecule/molecule/blob/master/coretests/src/test/scala/molecule/coretests/ref/Relations.scala">Tests&hellip;</a></p>
-
 <p>Cardinality-many relationships in Molecule are modelled with the <code>many[&lt;RefNamespace&gt;]</code> syntax:</p>
-
-<pre><code class="language-scala">object OrderDefinition {
+<pre><code>object OrderDefinition {
 
   trait Order {
     val id    = oneString
@@ -847,46 +842,30 @@
     val price   = oneDouble
   }
 }
-</code></pre>
-
-<p>An <code>Order</code> can have multiple <code>LineItem</code>s so we define a cardinality-many ref attribute <code>items</code> that points to the <code>LineItem</code> namespace.</p>
-
+</code></pre><p>An <code>Order</code> can have multiple <code>LineItem</code>s so we define a cardinality-many ref attribute <code>items</code> that points to the <code>LineItem</code> namespace.</p>
 <p>Note how we also make LineItems a component with the <code>isComponent</code> option. That means that <code>LineItem</code>s are <em>owned</em> by an <code>Order</code> and will get automatically
 retracted if the <code>Order</code> is retracted. Subsequent component-defined referenced entities will be recursively retracted too.</p>
-
 <p>Now we can get an Order and its Line Items:</p>
-
-<pre><code class="language-scala">Order.id.Items.qty.product.price.get === List(
+<pre><code>Order.id.Items.qty.product.price.get === List(
   (&quot;order1&quot;, 3, &quot;Milk&quot;, 12.00),
   (&quot;order1&quot;, 2, &quot;Coffee&quot;, 46.00),
   (&quot;order2&quot;, 4, &quot;Bread&quot;, 5.00)
 )
-</code></pre>
-
-<p>The Order data is repeated for each line Item which is kind of redundant. We can avoid that with a &ldquo;nested&rdquo; Molecule instead:</p>
-
+</code></pre><p>The Order data is repeated for each line Item which is kind of redundant. We can avoid that with a &ldquo;nested&rdquo; Molecule instead:</p>
 <h2 id="nested-data">Nested data</h2>
-
 <p><a href="https://github.com/scalamolecule/molecule/blob/master/coretests/src/test/scala/molecule/coretests/ref/nested/NestedRef.scala">Tests&hellip;</a></p>
-
 <p>We can nest the result from the above example with the Molecule operator <code>*</code> indicating &ldquo;with many&rdquo;:</p>
-
-<pre><code class="language-scala">m(Order.id.Items * LineItem.qty.product.price).get === List(
+<pre><code>m(Order.id.Items * LineItem.qty.product.price).get === List(
   (&quot;order1&quot;, List(
     (3, &quot;Milk&quot;, 12.00), 
     (2, &quot;Coffee&quot;, 46.00))),
   (&quot;order2&quot;, List(
     (4, &quot;Bread&quot;, 5.00)))
 )
-</code></pre>
-
-<p>Now each Order has its own list of typed Line Item data and there is no Order redundancy.</p>
-
+</code></pre><p>Now each Order has its own list of typed Line Item data and there is no Order redundancy.</p>
 <h3 id="optional-nested-data">Optional nested data</h3>
-
 <p>Optional nested data can be queried with the <code>*?</code> operator:</p>
-
-<pre><code class="language-scala">m(Ns.int.Refs1 * Ref1.str1) insert List(
+<pre><code>m(Ns.int.Refs1 * Ref1.str1) insert List(
   (1, List(&quot;a&quot;, &quot;b&quot;)),
   (2, List()) // (no nested data)
 )
@@ -901,19 +880,12 @@ m(Ns.int.Refs1 *? Ref1.str1).get === List(
   (1, List(&quot;a&quot;, &quot;b&quot;)),
   (2, List())
 )
-</code></pre>
-
-<p>Molecule can nest data structures up to 7 levels deep.</p>
-
+</code></pre><p>Molecule can nest data structures up to 7 levels deep.</p>
 <p>All getters have an <a href="/manual/attributes/basics">asynchronous equivalent</a>. Synchronous getters shown for brevity.</p>
-
 <h3 id="entity-api">Entity API</h3>
-
 <p><a href="https://github.com/scalamolecule/molecule/blob/master/examples/src/test/scala/molecule/examples/dayOfDatomic/ProductsAndOrders.scala">Tests&hellip;</a></p>
-
 <p>We can get a similar - but un-typed - nested hierarchy of data with the Entity API by calling <code>touch</code> on an order id:</p>
-
-<pre><code class="language-scala">// Touch entity facts hierarchy recursively
+<pre><code>// Touch entity facts hierarchy recursively
 orderId.touch === Map(
   &quot;:db/id&quot; -&gt; 101L,
   &quot;:Order/id&quot; -&gt; &quot;order1&quot;,
@@ -928,10 +900,7 @@ orderId.touch === Map(
       &quot;:LineItem/qty&quot; -&gt; 2, 
       &quot;:LineItem/product&quot; -&gt; &quot;Coffee&quot;,
       &quot;:LineItem/price&quot; -&gt; 46.0)))
-</code></pre>
-
-<h3 id="next">Next</h3>
-
+</code></pre><h3 id="next">Next</h3>
 <p><a href="/manual/relationships/composites">Composites&hellip;</a></p>
 
     </div>

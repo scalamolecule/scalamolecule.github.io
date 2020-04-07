@@ -803,7 +803,7 @@
             <div class="col-md-2 column" style="padding-top:20px;padding-right:0px;">
                 <ul class="nav nav-pills" style="float:right;">
                     <li>
-                        <a href="/changelog" style="margin-top:-2px;">v0.21.0</a>
+                        <a href="/changelog" style="margin-top:-2px;">v0.22.0</a>
                     </li>
                     <li>
                         <div style="padding-left:14px;">
@@ -826,53 +826,30 @@
 <div class="container" style="padding-top:20px">
 
     <div class="col-sm-10 column" style="padding-left:8px;">
-        
-
-<h1 id="compare-with-datomic-datalog">Compare with Datomic/Datalog</h1>
-
+        <h1 id="compare-with-datomicdatalog">Compare with Datomic/Datalog</h1>
 <p>Even though Molecule is adapting to Datomic we&rsquo;ll have a look the other way around to see how Datomic compares to Molecule.</p>
-
 <p><a href="https://github.com/scalamolecule/molecule/blob/master/examples/src/test/scala/molecule/coretests/examples/seattle/SeattleQueryTests.scala">Follow along in the code</a> from which we will pick a few examples based on the Seattle tutorial examples.</p>
-
-<h3 id="querying-for-attribute-values">Querying <em>for</em> attribute values</h3>
-
+<h3 id="querying-_for_-attribute-values">Querying <em>for</em> attribute values</h3>
 <p>The most basic query is to ask for entities with some attribute values:</p>
-
 <pre><code>// Datalog
 [:find  ?b ?c (distinct ?d)
  :where [?a :Community/name ?b]
         [?a :Community/url ?c]
         [?a :Community/category ?d]]
-</code></pre>
-
-<p>In Molecule we simply use the namespace name and add the attribute names:</p>
-
-<pre><code class="language-scala">// Molecule
+</code></pre><p>In Molecule we simply use the namespace name and add the attribute names:</p>
+<pre><code>// Molecule
 Community.name.url.category
-</code></pre>
-
-<p>Datalog has a <code>:find</code> and <code>:where</code> section similar to <code>select</code> and <code>where</code> in the SQL world. The <code>:find</code> section defines which values to return and the where section defines one or more clauses filtering the result set.</p>
-
+</code></pre><p>Datalog has a <code>:find</code> and <code>:where</code> section similar to <code>select</code> and <code>where</code> in the SQL world. The <code>:find</code> section defines which values to return and the where section defines one or more clauses filtering the result set.</p>
 <p>In this case we asked for the values of variable <code>?b</code>, <code>?c</code> and <code>?d</code> each one bound in its where clause. With molecule we use the three attribute names all associated to the <code>Community</code> namespace.</p>
-
-<h3 id="querying-by-attribute-values">Querying <em>by</em> attribute values</h3>
-
+<h3 id="querying-_by_-attribute-values">Querying <em>by</em> attribute values</h3>
 <p>Let&rsquo;s query by an enumerated value for the <code>type</code> attribute:</p>
-
 <pre><code>[:find  ?b
  :where [?a :Community/name ?b]
         [?a :Community/type &quot;:Community.type/twitter&quot;]]
-</code></pre>
-
-<pre><code class="language-scala">Community.name.type_(&quot;twitter&quot;)
-</code></pre>
-
-<p>Note how we add an underscore to the <code>type</code> attribute to tell Molecule that we want to omit returning this value in the result set (since it will have the value &ldquo;twitter&rdquo; for all returned entities).</p>
-
+</code></pre><pre><code>Community.name.type_(&quot;twitter&quot;)
+</code></pre><p>Note how we add an underscore to the <code>type</code> attribute to tell Molecule that we want to omit returning this value in the result set (since it will have the value &ldquo;twitter&rdquo; for all returned entities).</p>
 <p>Since the <code>type</code> attribute is defined as en enumeration Molecule checks the &ldquo;twitter&rdquo; value at <em>compile time</em> against the defined enumeration values that we have definied in our schema for the <code>Community</code> namespace to ensure that &ldquo;twitter&rdquo; is one of the enums. If it is not, our molecule won&rsquo;t compile and we&rsquo;ll get an error showing the available enum values.</p>
-
 <p>For a many-cardinality attribute like <code>category</code> Datalog applies logical OR with Datalog rules:</p>
-
 <pre><code>[:find  ?b
  :in    $ %
  :where [?a :Community/name ?b]
@@ -884,18 +861,12 @@ List(
   2 [[(rule1 ?a) [?a :Community/category &quot;news&quot;]]
      [(rule1 ?a) [?a :Community/category &quot;arts&quot;]]]
 )
-</code></pre>
-
-<p>In Molecule we can apply the two values either separated with <code>or</code> or commas:</p>
-
-<pre><code class="language-scala">Community.name.category_(&quot;news&quot; or &quot;arts&quot;)
+</code></pre><p>In Molecule we can apply the two values either separated with <code>or</code> or commas:</p>
+<pre><code>Community.name.category_(&quot;news&quot; or &quot;arts&quot;)
 
 // Same as
 Community.name.category_(&quot;news&quot;, &quot;arts&quot;)
-</code></pre>
-
-<h3 id="querying-across-references">Querying across references</h3>
-
+</code></pre><h3 id="querying-across-references">Querying across references</h3>
 <pre><code>[:find  ?b ?e2
  :where [?a :Community/name ?b]
         [?a :Community/neighborhood ?c]
@@ -903,15 +874,9 @@ Community.name.category_(&quot;news&quot;, &quot;arts&quot;)
         [?d :District/region ?e]
         [?e :db/ident ?e1]
         [(.getName ^clojure.lang.Keyword ?e1) ?e2]]
-</code></pre>
-
-<pre><code class="language-scala">Community.name.Neighborhood.District.region
-</code></pre>
-
-<h3 id="parameterizing-queries">Parameterizing queries</h3>
-
+</code></pre><pre><code>Community.name.Neighborhood.District.region
+</code></pre><h3 id="parameterizing-queries">Parameterizing queries</h3>
 <p>Community input molecule awaiting some type value</p>
-
 <pre><code>[:find  ?b ?c2
  :in    $ ?c
  :where [?a :Community/name ?b]
@@ -924,14 +889,9 @@ List(
   1 datomic.db.Db@xxx
   2 :Community.type/twitter
 )
-</code></pre>
-
-<pre><code class="language-scala">val communitiesOfType  = m(Community.name.type(?))
+</code></pre><pre><code>val communitiesOfType  = m(Community.name.type(?))
 val twitterCommunities = communitiesOfType(&quot;twitter&quot;)
-</code></pre>
-
-<p>Multiple input values for one attribute - logical OR</p>
-
+</code></pre><p>Multiple input values for one attribute - logical OR</p>
 <pre><code>[:find  ?b ?c2
  :in    $ ?c
  :where [?a :Community/name ?b]
@@ -944,13 +904,8 @@ List(
   1 datomic.db.Db@xxx
   2 :Community.type/twitter
 )
-</code></pre>
-
-<pre><code class="language-scala">m(Community.name.`type`(?)).apply(&quot;facebook_page&quot; or &quot;twitter&quot;)
-</code></pre>
-
-<p>Single tuple of input values for two attributes - logical AND</p>
-
+</code></pre><pre><code>m(Community.name.`type`(?)).apply(&quot;facebook_page&quot; or &quot;twitter&quot;)
+</code></pre><p>Single tuple of input values for two attributes - logical AND</p>
 <pre><code>[:find  ?b
  :in    $ [[ ?c ?d ]]
  :where [?a :Community/name ?b]
@@ -962,13 +917,8 @@ List(
   1 datomic.db.Db@xxx
   2 [[:Community.type/email_list, :Community.orgtype/community]]
 )
-</code></pre>
-
-<pre><code class="language-scala">m(Community.name.type_(?).orgtype_(?))(&quot;email_list&quot; and &quot;community&quot;)
-</code></pre>
-
-<p>Multiple tuple of input values for two attributes - logical AND</p>
-
+</code></pre><pre><code>m(Community.name.type_(?).orgtype_(?))(&quot;email_list&quot; and &quot;community&quot;)
+</code></pre><p>Multiple tuple of input values for two attributes - logical AND</p>
 <pre><code>[:find  ?b ?c2 ?d2
  :in    $ [[ ?c ?d ]]
  :where [?a :Community/name ?b]
@@ -985,47 +935,26 @@ List(
   2 [[:Community.type/email_list, :Community.orgtype/community], 
      [:Community.type/website, :Community.orgtype/commercial]]
 )
-</code></pre>
-
-<pre><code class="language-scala">m(Community.name.`type`(?).orgtype(?))
+</code></pre><pre><code>m(Community.name.`type`(?).orgtype(?))
 .apply(Seq((&quot;email_list&quot;, &quot;community&quot;), (&quot;website&quot;, &quot;commercial&quot;)))
-</code></pre>
-
-<h3 id="invoking-functions-in-queries">Invoking functions in queries</h3>
-
+</code></pre><h3 id="invoking-functions-in-queries">Invoking functions in queries</h3>
 <pre><code>[:find  ?b
  :where [?a :Community/name ?b]
         [(.compareTo ^String ?b &quot;C&quot;) ?b2]
         [(&lt; ?b2 0)]]
-</code></pre>
-
-<pre><code class="language-scala">Community.name.&lt;(&quot;C&quot;)
-</code></pre>
-
-<h3 id="fulltext-search">Fulltext search</h3>
-
+</code></pre><pre><code>Community.name.&lt;(&quot;C&quot;)
+</code></pre><h3 id="fulltext-search">Fulltext search</h3>
 <pre><code>[:find  ?b
  :where [(fulltext $ :Community/name &quot;Wallingford&quot;) [[ ?a ?b ]]]]
-</code></pre>
-
-<pre><code class="language-scala">Community.name.contains(&quot;Wallingford&quot;)
-</code></pre>
-
-<p>Fulltext search on many-attribute (<code>category</code>)</p>
-
+</code></pre><pre><code>Community.name.contains(&quot;Wallingford&quot;)
+</code></pre><p>Fulltext search on many-attribute (<code>category</code>)</p>
 <pre><code>[:find  ?b (distinct ?d)
  :where [?a :Community/name ?b]
         [?a :Community/type &quot;:Community.type/website&quot;]
         [(fulltext $ :Community/category &quot;food&quot;) [[ ?a ?d ]]]]
-</code></pre>
-
-<pre><code class="language-scala">Community.name.type_(&quot;website&quot;).category.contains(&quot;food&quot;)
-</code></pre>
-
-<h3 id="querying-with-rules-logical-or">Querying with rules (logical OR)</h3>
-
+</code></pre><pre><code>Community.name.type_(&quot;website&quot;).category.contains(&quot;food&quot;)
+</code></pre><h3 id="querying-with-rules-logical-or">Querying with rules (logical OR)</h3>
 <p>Social media communities</p>
-
 <pre><code>[:find  ?b
  :in    $ %
  :where [?a :Community/name ?b]
@@ -1037,13 +966,8 @@ List(
   2 [[(rule1 ?a) [?a :Community/type &quot;:Community.type/twitter&quot;]]
      [(rule1 ?a) [?a :Community/type &quot;:Community.type/facebook_page&quot;]]]
 )
-</code></pre>
-
-<pre><code class="language-scala">Community.name.type_(&quot;twitter&quot; or &quot;facebook_page&quot;)
-</code></pre>
-
-<p>Social media communities in southern regions</p>
-
+</code></pre><pre><code>Community.name.type_(&quot;twitter&quot; or &quot;facebook_page&quot;)
+</code></pre><p>Social media communities in southern regions</p>
 <pre><code>[:find  ?b
  :in    $ %
  :where [?a :Community/name ?b]
@@ -1061,14 +985,9 @@ List(
      [(rule2 ?e) [?e :District/region &quot;:District.region/s&quot;]]
      [(rule2 ?e) [?e :District/region &quot;:District.region/se&quot;]]]
 )
-</code></pre>
-
-<pre><code class="language-scala">Community.name.type_(&quot;twitter&quot; or &quot;facebook_page&quot;)
+</code></pre><pre><code>Community.name.type_(&quot;twitter&quot; or &quot;facebook_page&quot;)
   .Neighborhood.District.region_(&quot;sw&quot; or &quot;s&quot; or &quot;se&quot;)
-</code></pre>
-
-<p>Parameterized</p>
-
+</code></pre><p>Parameterized</p>
 <pre><code>[:find  ?b
  :in    $ %
  :where [?a :Community/name ?b]
@@ -1088,23 +1007,13 @@ List(
      [(rule2 ?e) [?e :District/region &quot;:District.region/s&quot;]]
      [(rule2 ?e) [?e :District/region &quot;:District.region/se&quot;]]]
 )
-</code></pre>
-
-<pre><code class="language-scala">m(Community.name.type_(?).Neighborhood.District.region_(?))
+</code></pre><pre><code>m(Community.name.type_(?).Neighborhood.District.region_(?))
   .apply((&quot;twitter&quot; or &quot;facebook_page&quot;) and (&quot;sw&quot; or &quot;s&quot; or &quot;se&quot;)
-</code></pre>
-
-<h3 id="working-with-time">Working with time</h3>
-
+</code></pre><h3 id="working-with-time">Working with time</h3>
 <pre><code>[:find  ?b
  :where [?a :db/txInstant ?b]]
-</code></pre>
-
-<pre><code class="language-scala">Db.txInstant
-</code></pre>
-
-<h3 id="inserting-data">Inserting data</h3>
-
+</code></pre><pre><code>Db.txInstant
+</code></pre><h3 id="inserting-data">Inserting data</h3>
 <pre><code>List(
   List(  :db/add,   #db/id[:db.part/user -1000001],   :Community/name        ,   AAA                             )
   List(  :db/add,   #db/id[:db.part/user -1000001],   :Community/url         ,   myUrl                           )
@@ -1118,9 +1027,7 @@ List(
   List(  :db/add,   #db/id[:db.part/user -1000003],   :District/name         ,   myDistrict                      )
   List(  :db/add,   #db/id[:db.part/user -1000003],   :District/region       ,   :District.region/nw             )
 )
-</code></pre>
-
-<pre><code class="language-scala">Community
+</code></pre><pre><code>Community
   .name(&quot;AAA&quot;)
   .url(&quot;myUrl&quot;)
   .`type`(&quot;twitter&quot;)
@@ -1128,10 +1035,7 @@ List(
   .category(&quot;my&quot;, &quot;favorites&quot;)
   .Neighborhood.name(&quot;myNeighborhood&quot;)
   .District.name(&quot;myDistrict&quot;).region(&quot;nw&quot;).save
-</code></pre>
-
-<p>Multiple entities:</p>
-
+</code></pre><p>Multiple entities:</p>
 <pre><code>List(
   List(  :db/add,   #db/id[:db.part/user -1000001],   :Community/name        ,   DDD Blogging Georgetown                        )
   List(  :db/add,   #db/id[:db.part/user -1000001],   :Community/url         ,   http://www.blogginggeorgetown.com/             )
@@ -1156,103 +1060,64 @@ List(
   List(  :db/add,   #db/id[:db.part/user -1000006],   :District/name         ,   Magnolia/Queen Anne                            )
   List(  :db/add,   #db/id[:db.part/user -1000006],   :District/region       ,   :District.region/w                             )
 )
-</code></pre>
-
-<pre><code class="language-scala">Community.name.url.`type`.orgtype.category.Neighborhood.name.District.name.region insert List(
+</code></pre><pre><code>Community.name.url.`type`.orgtype.category.Neighborhood.name.District.name.region insert List(
   (&quot;DDD Blogging Georgetown&quot;, &quot;http://www.blogginggeorgetown.com/&quot;, &quot;blog&quot;, &quot;commercial&quot;, Set(&quot;DD cat 1&quot;, &quot;DD cat 2&quot;), &quot;DD Georgetown&quot;, &quot;Greater Duwamish&quot;, &quot;s&quot;),
   (&quot;DDD Interbay District Blog&quot;, &quot;http://interbayneighborhood.neighborlogs.com/&quot;, &quot;blog&quot;, &quot;community&quot;, Set(&quot;DD cat 3&quot;), &quot;DD Interbay&quot;, &quot;Magnolia/Queen Anne&quot;, &quot;w&quot;)
 )
-</code></pre>
-
-<h3 id="updating-data">Updating data</h3>
-
+</code></pre><h3 id="updating-data">Updating data</h3>
 <p>Updating one-attribute</p>
-
 <pre><code>List(
   List(  :db/add,   17592186045649,   :Community/name,   belltown 2  )
   List(  :db/add,   17592186045649,   :Community/url ,   url 2       )
 )
-</code></pre>
-
-<pre><code class="language-scala">Community(belltownId).name(&quot;belltown 2&quot;).url(&quot;url 2&quot;).update
-</code></pre>
-
-<p>Updating many-attribute</p>
-
+</code></pre><pre><code>Community(belltownId).name(&quot;belltown 2&quot;).url(&quot;url 2&quot;).update
+</code></pre><p>Updating many-attribute</p>
 <pre><code>List(
   List(  :db/retract,   17592186045649,   :Community/category,   news       )
   List(  :db/add    ,   17592186045649,   :Community/category,   Cool news  )
 )
-</code></pre>
-
-<pre><code class="language-scala">Community(belltownId).category(&quot;news&quot; -&gt; &quot;Cool news&quot;).update
-</code></pre>
-
-<p>Update multiple values of many-attribute</p>
-
+</code></pre><pre><code>Community(belltownId).category(&quot;news&quot; -&gt; &quot;Cool news&quot;).update
+</code></pre><p>Update multiple values of many-attribute</p>
 <pre><code>List(
   List(  :db/retract,   17592186045649,   :Community/category,   Cool news          )
   List(  :db/add    ,   17592186045649,   :Community/category,   Super cool news    )
   List(  :db/retract,   17592186045649,   :Community/category,   events             )
   List(  :db/add    ,   17592186045649,   :Community/category,   Super cool events  )
 )
-</code></pre>
-
-<pre><code class="language-scala">Community(belltownId).category(
+</code></pre><pre><code>Community(belltownId).category(
   &quot;Cool news&quot; -&gt; &quot;Super cool news&quot;,
   &quot;events&quot; -&gt; &quot;Super cool events&quot;
 ).update
-</code></pre>
-
-<p>Update multiple values of many-attribute</p>
-
+</code></pre><p>Update multiple values of many-attribute</p>
 <pre><code>List(
   List(  :db/retract,   17592186045649,   :Community/category,   Cool news          )
   List(  :db/add    ,   17592186045649,   :Community/category,   Super cool news    )
   List(  :db/retract,   17592186045649,   :Community/category,   events             )
   List(  :db/add    ,   17592186045649,   :Community/category,   Super cool events  )
 )
-</code></pre>
-
-<pre><code class="language-scala">Community(belltownId).category(
+</code></pre><pre><code>Community(belltownId).category(
   &quot;Cool news&quot; -&gt; &quot;Super cool news&quot;,
   &quot;events&quot; -&gt; &quot;Super cool events&quot;
 ).update
-</code></pre>
-
-<p>Add a value to a many-attribute</p>
-
+</code></pre><p>Add a value to a many-attribute</p>
 <pre><code>List(
   List(  :db/add,   17592186045649,   :Community/category,   extra category  )
 )
-</code></pre>
-
-<pre><code class="language-scala">Community(belltownId).category.assert(&quot;extra category&quot;).update
-</code></pre>
-
-<p>Remove value from a many-attribute</p>
-
+</code></pre><pre><code>Community(belltownId).category.assert(&quot;extra category&quot;).update
+</code></pre><p>Remove value from a many-attribute</p>
 <pre><code>List(
   List(  :db/retract,   17592186045649,   :Community/category,   Super cool events  )
 )
-</code></pre>
-
-<pre><code class="language-scala">Community(belltownId).category.retract(&quot;Super cool events&quot;).update
-</code></pre>
-
-<p>Mixing updates and deletes</p>
-
+</code></pre><pre><code>Community(belltownId).category.retract(&quot;Super cool events&quot;).update
+</code></pre><p>Mixing updates and deletes</p>
 <pre><code>List(
   List(  :db/add    ,   17592186045649,   :Community/name    ,   belltown 3                      )
   List(  :db/retract,   17592186045649,   :Community/url     ,   http://www.belltownpeople.com/  )
   List(  :db/retract,   17592186045649,   :Community/category,   events                          )
   List(  :db/retract,   17592186045649,   :Community/category,   news                            )
 )
+</code></pre><pre><code>Community(belltownId).name(&quot;belltown 3&quot;).url().category().update
 </code></pre>
-
-<pre><code class="language-scala">Community(belltownId).name(&quot;belltown 3&quot;).url().category().update
-</code></pre>
-
     </div>
 
     <div class="col-sm-2 column" style="padding-left:20px;padding-top:22px;padding-right: 0px;">

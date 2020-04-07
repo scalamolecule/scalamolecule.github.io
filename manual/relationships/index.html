@@ -803,7 +803,7 @@
             <div class="col-md-2 column" style="padding-top:20px;padding-right:0px;">
                 <ul class="nav nav-pills" style="float:right;">
                     <li>
-                        <a href="/changelog" style="margin-top:-2px;">v0.21.0</a>
+                        <a href="/changelog" style="margin-top:-2px;">v0.22.0</a>
                     </li>
                     <li>
                         <div style="padding-left:14px;">
@@ -826,38 +826,22 @@
 <div class="container" style="padding-top:20px">
 
     <div class="col-sm-10 column" style="padding-left:8px;">
-        
-
-<h1 id="relationships">Relationships</h1>
-
+        <h1 id="relationships">Relationships</h1>
 <p><a href="https://github.com/scalamolecule/molecule/blob/master/coretests/src/test/scala/molecule/coretests/ref/Relations.scala">Tests&hellip;</a></p>
-
 <p>To understand how Molecule treats relationships it is valuable to get an idea of how they work in Datomic.</p>
-
 <h3 id="ref-attributes-connect-entities">Ref attributes connect entities</h3>
-
 <p>A relationship in Datomic is simply when a ref attribute of entity A has an entity B id value. Then there is a relationship from A to B!</p>
-
 <p>In the following example, entity <code>101</code> has a ref attribute <code>:Person/home</code> with a value <code>102</code>. That makes the relationship between
 entity <code>101</code> and entity <code>102</code>, or that Fred has an Address:</p>
-
-<p><img src="/img/relationships/ref.jpg" alt="" /></p>
-
+<p><img src="/img/relationships/ref.jpg" alt=""></p>
 <p>We can illustrate the same data as two entities (groups of facts with a shared entity id) with the link between them:</p>
-
-<p><img src="/img/relationships/entityref.jpg" alt="" /></p>
-
+<p><img src="/img/relationships/entityref.jpg" alt=""></p>
 <p><a href="/manual/relationships/card-one/">Card-one relationships</a>&hellip;</p>
-
 <h3 id="card-many-ref-attributes">Card-many ref attributes</h3>
-
 <p>Since datomic has cardinality many attributes, ref attributes can also be of cardinality many.</p>
-
 <p>We could for instance have a classic Order/LineItems card-many example where the <code>:Order/items</code> card-many ref attribute has two
 LineItem entity id values <code>102</code> and <code>103</code>:</p>
-
-<p><img src="/img/relationships/entityrefs.jpg" alt="" /></p>
-
+<p><img src="/img/relationships/entityrefs.jpg" alt=""></p>
 <p><a href="/manual/relationships/card-many/">Card-many relationships</a>&hellip;</p>
 
     </div>

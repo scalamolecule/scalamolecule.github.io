@@ -803,7 +803,7 @@
             <div class="col-md-2 column" style="padding-top:20px;padding-right:0px;">
                 <ul class="nav nav-pills" style="float:right;">
                     <li>
-                        <a href="/changelog" style="margin-top:-2px;">v0.21.0</a>
+                        <a href="/changelog" style="margin-top:-2px;">v0.22.0</a>
                     </li>
                     <li>
                         <div style="padding-left:14px;">
@@ -826,25 +826,18 @@
 <div class="container" style="padding-top:20px">
 
     <div class="col-sm-10 column" style="padding-left:8px;">
-        
-
-<h1 id="get-read-data">Get (read) Data</h1>
-
+        <h1 id="get-read-data">Get (read) Data</h1>
 <p>We get/read data from the database by calling <code>get</code> on a molecule. This returns a <code>List</code> of tuples that match
 the molecule attributes (except for arity-1):</p>
-
-<pre><code class="language-scala">val persons1attr: List[String] = Person.name.get
+<pre><code>val persons1attr: List[String] = Person.name.get
 
 val persons2attrs: List[(String, Int)] = Person.name.age.get
 
 val persons3attrs: List[(String, Int, String)] = Person.name.age.likes.get
 
 // Etc.. to arity 22
-</code></pre>
-
-<p>Data can be returned in 5 different formats:</p>
-
-<pre><code class="language-scala">// List for convenient access to smaller data sets
+</code></pre><p>Data can be returned in 5 different formats:</p>
+<pre><code>// List for convenient access to smaller data sets
 val list : List[(String, Int)] = m(Person.name.age).get
 
 // Mutable Array for fastest retrieval and traversing
@@ -858,54 +851,35 @@ val json: String = m(Person.name.age).getJson
 
 // Raw untyped Datomic data if data doesn't need to be typed
 val raw: java.util.Collection[java.util.List[AnyRef]] = m(Person.name.age).getRaw
-</code></pre>
-
-<h2 id="async-api">Async API</h2>
-
+</code></pre><h2 id="async-api">Async API</h2>
 <p>Molecule provide all operations both synchronously and asynchronously, so the 5 getter methods also has
 equivalent asynchronous methods returning data in a Future:</p>
-
-<pre><code class="language-scala">val list    : Future[List[(String, Int)]] = m(Person.name.age).getAsync
+<pre><code>val list    : Future[List[(String, Int)]] = m(Person.name.age).getAsync
 val array   : Future[Array[(String, Int)]] = m(Person.name.age).getAsyncArray
 val iterable: Future[Iterable[(String, Int)]] = m(Person.name.age).getAsyncIterable
 val json    : Future[String] = m(Person.name.age).getAsyncJson
 val raw     : Future[java.util.Collection[java.util.List[AnyRef]]] = m(Person.name.age).getAsyncRaw
-</code></pre>
-
-<h2 id="with-entity-id">With entity id</h2>
-
+</code></pre><h2 id="with-entity-id">With entity id</h2>
 <p>Attributes of some entity are easily fetched by applying an entity id to the first namespace in the molecule</p>
-
-<pre><code class="language-scala">Person(fredId).name.age.likes.get.head === List(&quot;Fred&quot;, 38, &quot;pizza&quot;)
-</code></pre>
-
-<p>The entity id is used for the first attribute of the molecule, here <code>name</code> having entity id <code>fredId</code>.</p>
-
+<pre><code>Person(fredId).name.age.likes.get.head === List(&quot;Fred&quot;, 38, &quot;pizza&quot;)
+</code></pre><p>The entity id is used for the first attribute of the molecule, here <code>name</code> having entity id <code>fredId</code>.</p>
 <p><code>Person</code> is just the namespace for the following attributes, so that we get <code>:Person/name</code>, <code>:Person/age</code>, <code>:Person/likes</code> etc..</p>
-
 <h2 id="2-steps-with-entity-api">2-steps with Entity API</h2>
-
 <p>Molecules can get optional attributes which make them flexible to get irregular data sets. We could for instance fetch some
 Persons where some of them has no <code>likes</code> asserted:</p>
-
-<pre><code class="language-scala">Person.name.age.likes$.get === List(
+<pre><code>Person.name.age.likes$.get === List(
   (&quot;Fred&quot;, 38, Some(&quot;pizza&quot;)),
   (&quot;Lisa&quot;, 7, None),
   (&quot;Ben&quot;, 5, Some(&quot;pizza&quot;))
 )
-</code></pre>
-
-<p>An alternative is to get the data in 2 steps:</p>
-
+</code></pre><p>An alternative is to get the data in 2 steps:</p>
 <ol>
 <li>Define the shape of the data set with a molecule and get the entity ids</li>
 <li>Get attribute values using the entity api</li>
 </ol>
-
 <p>This way we can for instance in the first step get the mandatory data (<code>name</code> and <code>age</code>) with a molecule and then in a second step
 ask for optional data (<code>likes</code>) for each entity:</p>
-
-<pre><code class="language-scala">// Step 1
+<pre><code>// Step 1
 val seed: List[(Long, String, Int)] = Person.e.name.age.get
 
 // Step 2
@@ -913,13 +887,9 @@ val data: List[(String, Int, Option[String])] = seed.map { case (e, name, age) =
   // Add optional `likes` value via entity api
   (name, age, e[String](&quot;:Person/likes&quot;))
 }
-</code></pre>
-
-<p>For this simple example, the original molecule with an optional <code>likes</code> attribute would of course have been sufficient and
+</code></pre><p>For this simple example, the original molecule with an optional <code>likes</code> attribute would of course have been sufficient and
 more concise. But for more complex interconnected data this approach can be a good extra tool in the toolbox.</p>
-
 <h3 id="next">Next</h3>
-
 <p><a href="/manual/crud/get-json">Get Json&hellip;</a></p>
 
     </div>

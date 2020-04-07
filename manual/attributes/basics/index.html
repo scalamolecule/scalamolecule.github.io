@@ -803,7 +803,7 @@
             <div class="col-md-2 column" style="padding-top:20px;padding-right:0px;">
                 <ul class="nav nav-pills" style="float:right;">
                     <li>
-                        <a href="/changelog" style="margin-top:-2px;">v0.21.0</a>
+                        <a href="/changelog" style="margin-top:-2px;">v0.22.0</a>
                     </li>
                     <li>
                         <div style="padding-left:14px;">
@@ -826,35 +826,20 @@
 <div class="container" style="padding-top:20px">
 
     <div class="col-sm-10 column" style="padding-left:8px;">
-        
-
-<h1 id="building-molecules">Building molecules</h1>
-
+        <h1 id="building-molecules">Building molecules</h1>
 <p><a href="https://github.com/scalamolecule/molecule/blob/master/coretests/src/test/scala/molecule/coretests/attr/Attribute.scala">Tests&hellip;</a></p>
-
 <p>When we have defined a schema, Molecule generates the necessary boilerplate code so that we can build &ldquo;molecular data
- structures&rdquo; by building sequences of Attributes separated with dots (the &ldquo;builder pattern&rdquo;).</p>
-
+structures&rdquo; by building sequences of Attributes separated with dots (the &ldquo;builder pattern&rdquo;).</p>
 <p>We could for instance build a molecule representing the data structure of Persons with name, age and gender Attributes:</p>
-
-<pre><code class="language-scala">Person.name.age.gender // etc
-</code></pre>
-
-<p>The fundamental building blocks are Namespaces like <code>Person</code> and Attributes like <code>name</code>, <code>age</code> and <code>gender</code>. Namespaces
- are simply prefixes to Attribute names to avoid name clashes and to group our Attributes in meaningful ways according to our domain.</p>
-
+<pre><code>Person.name.age.gender // etc
+</code></pre><p>The fundamental building blocks are Namespaces like <code>Person</code> and Attributes like <code>name</code>, <code>age</code> and <code>gender</code>. Namespaces
+are simply prefixes to Attribute names to avoid name clashes and to group our Attributes in meaningful ways according to our domain.</p>
 <p>As you see we start our molecule from some Namespace and then build on Attribute by Attribute.</p>
-
 <h2 id="sync-api-for-returning-data">Sync API for returning data</h2>
-
 <p>Molecule returns all result sets as a List of tuples of values (with <code>get</code>).</p>
-
-<pre><code class="language-scala">val persons: List[(String, Int)] = Person.name.age.get
-</code></pre>
-
-<p>Data can be returned in 5 different formats:</p>
-
-<pre><code class="language-scala">// List for convenient access to smaller data sets
+<pre><code>val persons: List[(String, Int)] = Person.name.age.get
+</code></pre><p>Data can be returned in 5 different formats:</p>
+<pre><code>// List for convenient access to smaller data sets
 val list : List[(String, Int)] = m(Person.name.age).get
 
 // Mutable Array for fastest retrieval and traversing of large data sets
@@ -868,58 +853,37 @@ val json: String = m(Person.name.age).getJson
 
 // Raw untyped Datomic data if data doesn't need to be typed
 val raw: java.util.Collection[java.util.List[AnyRef]] = m(Person.name.age).getRaw
-</code></pre>
-
-<h2 id="async-api">Async API</h2>
-
+</code></pre><h2 id="async-api">Async API</h2>
 <p>Molecule provide all operations both synchronously and asynchronously, so the 5 getter methods also has
 equivalent asynchronous methods returning data in a Future:</p>
-
-<pre><code class="language-scala">val list    : Future[List[(String, Int)]] = m(Person.name.age).getAsync
+<pre><code>val list    : Future[List[(String, Int)]] = m(Person.name.age).getAsync
 val array   : Future[Array[(String, Int)]] = m(Person.name.age).getAsyncArray
 val iterable: Future[Iterable[(String, Int)]] = m(Person.name.age).getAsyncIterable
 val json    : Future[String] = m(Person.name.age).getAsyncJson
 val raw     : Future[java.util.Collection[java.util.List[AnyRef]]] = m(Person.name.age).getAsyncRaw
-</code></pre>
-
-<h3 id="molecule-max-size">Molecule max size</h3>
-
+</code></pre><h3 id="molecule-max-size">Molecule max size</h3>
 <p>The size of molecules are limited to Scala&rsquo;s arity limit of 22 for tuples.</p>
-
 <p>If we need to insert more than 22 attribute values we can easily do this by using the entity id to
 work with further attributes/values:</p>
-
-<pre><code class="language-scala">// Insert maximum of 22 facts and return the created entity id
+<pre><code>// Insert maximum of 22 facts and return the created entity id
 val eid = Ns.a1.a2.a3.a4.a5.a6.a7.a8.a9.a10.a11.a12.a13.a14.a15.a16.a17.a18.a19.a20.a21.a22.insert(
     1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22
 ).eid
 
 // Use entity id to continue adding more values for the same entity if necessary
 Ns.a23.a24.a25.insert(eid, 23, 24, 25)
-</code></pre>
-
-<p>Likewise we can retrieve more than 22 values in 2 steps</p>
-
-<pre><code class="language-scala">val first22values = Ns(eid).a1.a2.a3.a4.a5.a6.a7.a8.a9.a10.a11.a12.a13.a14.a15.a16.a17.a18.a19.a20.a21.a22.get
+</code></pre><p>Likewise we can retrieve more than 22 values in 2 steps</p>
+<pre><code>val first22values = Ns(eid).a1.a2.a3.a4.a5.a6.a7.a8.a9.a10.a11.a12.a13.a14.a15.a16.a17.a18.a19.a20.a21.a22.get
 
 // Use entity id to continue adding more values
 val next3values = Ns(eid).a23.a24.a25.get
-</code></pre>
-
-<h2 id="cardinality">Cardinality</h2>
-
+</code></pre><h2 id="cardinality">Cardinality</h2>
 <p>The attributes <code>name</code>, <code>age</code> and <code>gender</code> that we saw above are typical cardinality-one attributes each with one value.</p>
-
 <p>Datomic also has cardinality-many attributes that have a <code>Set</code> of values. This means that the same value cannot be saved
 multiple times, or that only unique values are saved. An example could be a cardinality-many attribute <code>hobbies</code> of a <code>Person</code>:</p>
-
-<pre><code class="language-scala">Person.name.hobbies.get.head === (&quot;Fred&quot;, Set(&quot;Trains&quot;, &quot;Chess&quot;))
-</code></pre>
-
-<p>In the <a href="/manual/crud/update/">Update</a> section of CRUD we will see how multiple values are managed with Molecule.</p>
-
+<pre><code>Person.name.hobbies.get.head === (&quot;Fred&quot;, Set(&quot;Trains&quot;, &quot;Chess&quot;))
+</code></pre><p>In the <a href="/manual/crud/update/">Update</a> section of CRUD we will see how multiple values are managed with Molecule.</p>
 <h3 id="next">Next</h3>
-
 <p><a href="/manual/attributes/modes">Mandatory/Tacit/Optional attributes&hellip;</a></p>
 
     </div>

@@ -803,7 +803,7 @@
             <div class="col-md-2 column" style="padding-top:20px;padding-right:0px;">
                 <ul class="nav nav-pills" style="float:right;">
                     <li>
-                        <a href="/changelog" style="margin-top:-2px;">v0.21.0</a>
+                        <a href="/changelog" style="margin-top:-2px;">v0.22.0</a>
                     </li>
                     <li>
                         <div style="padding-left:14px;">
@@ -826,42 +826,26 @@
 <div class="container" style="padding-top:20px">
 
     <div class="col-sm-10 column" style="padding-left:8px;">
-        
-
-<h1 id="contents">Common errors and solutions</h1>
-
+        <h1 id="contents">Common errors and solutions</h1>
 <p>As errors and solutions are encountered this list is updated to help developers working with Molecule.</p>
-
 <h4 id="compile-time">Compile time</h4>
-
 <ul>
 <li><a href="#101">Inferred: Cannot resolve overloaded method &lsquo;inputMolecule&rsquo;
-<br>Compiled: overloaded method value apply with alternatives:</a></li>
+<!-- raw HTML omitted -->Compiled: overloaded method value apply with alternatives:</a></li>
 </ul>
-
 <h4 id="runtime">Runtime</h4>
-
 <ul>
 <li><a href="#201">JdbcSQLException: Connection is broken: &ldquo;java.net.ConnectException: Connection refused</a></li>
 </ul>
-
 <h3 id="101"><a href="#contents">☝︎</a> Cannot resolve overloaded method &lsquo;inputMolecule&rsquo;</h3>
-
 <p>When forgetting to explicitly calling <code>m</code> on an input molecule</p>
-
-<pre><code class="language-scala">val inputMolecule = Community.name(?)
+<pre><code>val inputMolecule = Community.name(?)
 inputMolecule(&quot;Ben&quot;) // will not compile and likely be inferred as an error in your IDE
-</code></pre>
-
-<p>Input molecule needs to be declared explicitly with the <code>m</code> method</p>
-
-<pre><code class="language-scala">val inputMolecule = m(Community.name(?))
+</code></pre><p>Input molecule needs to be declared explicitly with the <code>m</code> method</p>
+<pre><code>val inputMolecule = m(Community.name(?))
 // Now we can apply value to input molecule
 inputMolecule(&quot;Ben&quot;)
-</code></pre>
-
-<h3 id="201"><a href="#contents">☝︎</a> JdbcSQLException: Connection is broken: &ldquo;java.net.ConnectException: Connection refused</h3>
-
+</code></pre><h3 id="201"><a href="#contents">☝︎</a> JdbcSQLException: Connection is broken: &ldquo;java.net.ConnectException: Connection refused</h3>
 <p>Datomic transactor is not running - start it.</p>
 
     </div>

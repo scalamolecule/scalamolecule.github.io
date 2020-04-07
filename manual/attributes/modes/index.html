@@ -803,7 +803,7 @@
             <div class="col-md-2 column" style="padding-top:20px;padding-right:0px;">
                 <ul class="nav nav-pills" style="float:right;">
                     <li>
-                        <a href="/changelog" style="margin-top:-2px;">v0.21.0</a>
+                        <a href="/changelog" style="margin-top:-2px;">v0.22.0</a>
                     </li>
                     <li>
                         <div style="padding-left:14px;">
@@ -826,61 +826,34 @@
 <div class="container" style="padding-top:20px">
 
     <div class="col-sm-10 column" style="padding-left:8px;">
-        
-
-<h1 id="3-attribute-modes">3 attribute modes</h1>
-
+        <h1 id="3-attribute-modes">3 attribute modes</h1>
 <p>(All getters have an <a href="/manual/attributes/basics">asynchronous equivalent</a>. Synchronous getters shown for brevity)</p>
-
 <h4 id="1-mandatory-attr">1. Mandatory <code>attr</code></h4>
-
 <p>When we use a molecule to query the Datomic database we ask for entities having all our Attributes associated with them.</p>
-
 <p><em>Note that this is different from selecting rows from a sql table where you can also get null values back!</em></p>
-
 <p>If for instance we have entities representing Persons in our data set that haven&rsquo;t got any age Attribute associated
 with them then this query will <em>not</em> return those entities:</p>
-
-<pre><code class="language-scala">val persons = Person.name.age.get
-</code></pre>
-
-<p>Basically we look for <strong>matches</strong> to our molecule data structure.</p>
-
-<h4 id="2-tacit-attr">2. Tacit <code>attr_</code></h4>
-
+<pre><code>val persons = Person.name.age.get
+</code></pre><p>Basically we look for <strong>matches</strong> to our molecule data structure.</p>
+<h4 id="2-tacit-attr_">2. Tacit <code>attr_</code></h4>
 <p>Sometimes we want to grap entities that we <em>know</em> have certain attributes, but without returning those values.
 We call the un-returning attributes &ldquo;tacit attributes&rdquo;.</p>
-
 <p>If for instance we wanted to find all names of Persons that have an age attribute set but we don&rsquo;t need to return those age
- values, then we can add an underscore <code>_</code> after the <code>age</code> Attribute:</p>
-
-<pre><code class="language-scala">val names = Person.name.age_.get
-</code></pre>
-
-<p>This will return names of person entities having both a name and age Attribute set. Note how the age values are no
+values, then we can add an underscore <code>_</code> after the <code>age</code> Attribute:</p>
+<pre><code>val names = Person.name.age_.get
+</code></pre><p>This will return names of person entities having both a name and age Attribute set. Note how the age values are no
 longer returned from the type signatures:</p>
-
-<pre><code class="language-scala">val persons: List[(String, Int)] = Person.name.age.get
+<pre><code>val persons: List[(String, Int)] = Person.name.age.get
 val names  : List[String]        = Person.name.age_.get
-</code></pre>
-
-<p>This way we can switch on and off individual attributes from the result set without affecting the data structures
+</code></pre><p>This way we can switch on and off individual attributes from the result set without affecting the data structures
 we look for.</p>
-
 <h4 id="3-optional-attr">3. Optional <code>attr$</code></h4>
-
 <p><a href="https://github.com/scalamolecule/molecule/blob/master/coretests/src/test/scala/molecule/coretests/attr/OptionalValues.scala">tests..</a></p>
-
 <p>If an attribute value is only sometimes set, we can ask for it&rsquo;s optional value by adding a dollar sign <code>$</code> after the attribute:</p>
-
-<pre><code class="language-scala">val names: List[(String, Option[String], String)] = Person.firstName.middleName$.lastName.get
-</code></pre>
-
-<p>That way we can get all person names with or without middleNames. As you can see from the return type, the middle
+<pre><code>val names: List[(String, Option[String], String)] = Person.firstName.middleName$.lastName.get
+</code></pre><p>That way we can get all person names with or without middleNames. As you can see from the return type, the middle
 name is wrapped in an <code>Option</code>.</p>
-
 <h3 id="next">Next</h3>
-
 <p><a href="/manual/attributes/mapped">Map attributes&hellip;</a></p>
 
     </div>

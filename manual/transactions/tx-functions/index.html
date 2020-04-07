@@ -803,7 +803,7 @@
             <div class="col-md-2 column" style="padding-top:20px;padding-right:0px;">
                 <ul class="nav nav-pills" style="float:right;">
                     <li>
-                        <a href="/changelog" style="margin-top:-2px;">v0.21.0</a>
+                        <a href="/changelog" style="margin-top:-2px;">v0.22.0</a>
                     </li>
                     <li>
                         <div style="padding-left:14px;">
@@ -826,16 +826,10 @@
 <div class="container" style="padding-top:20px">
 
     <div class="col-sm-10 column" style="padding-left:8px;">
-        
-
-<h1 id="transaction-functions">Transaction functions</h1>
-
+        <h1 id="transaction-functions">Transaction functions</h1>
 <p><a href="https://github.com/scalamolecule/molecule/blob/master/coretests/src/test/scala/molecule/coretests/transaction/TxFunctions.scala">Tests&hellip;</a></p>
-
 <h2 id="atomic-processing-within-the-transaction">Atomic processing within the transaction</h2>
-
 <p>Transaction functions</p>
-
 <ul>
 <li>run on the transactor inside of transactions</li>
 <li>can atomically analyze and transform database values</li>
@@ -843,15 +837,11 @@
 <li>must have no side effect</li>
 <li>must return transaction data (<code>Seq[Seq[Statement]]</code>)</li>
 </ul>
-
 <p>Since tx functions have access to the tx database value they are essential to guaranteeing atomicity in updates for instance. You can
 query the current db value within the transaction logic and thus be sure certain assertions hold before doing some operation.</p>
-
 <h2 id="using-tx-functions">Using tx functions</h2>
-
 <p>Molecule facilitates writing tx functions by annotating one or more objects that contain tx function methods:</p>
-
-<pre><code class="language-scala">import molecule.macros.TxFns
+<pre><code>import molecule.macros.TxFns
 
 @TxFns
 object myTxFunctions {
@@ -870,75 +860,50 @@ object myTxFunctions {
 @TxFns
 object myTxFunctionsSomewhereElse {...}
 etc...
-</code></pre>
-
-<p>The macro annotation <code>@TxFns</code> creates an internal &ldquo;twin&rdquo; method at compile time for each Scala tx function that you define.
+</code></pre><p>The macro annotation <code>@TxFns</code> creates an internal &ldquo;twin&rdquo; method at compile time for each Scala tx function that you define.
 The twin method basically adapts to the way Datomic expects tx functions and automatically gets saved into the Datomic
 database transparently without any work on your part.</p>
-
 <h3 id="enabling-the-macro-annotation">Enabling the macro annotation</h3>
-
 <p>To use the <code>@TxFns</code> macro annotation, you&rsquo;ll need to include the Macro Paradise compiler plugin in your build:</p>
-
-<pre><code class="language-scala">
+<pre><code>
 libraryDependencies ++= Seq(
   ...,
   compilerPlugin(&quot;org.scalamacros&quot; % &quot;paradise&quot; % &quot;2.1.1&quot; cross CrossVersion.patch)
 )
-</code></pre>
-
-<blockquote>
+</code></pre><blockquote>
 <p>Macro annotations have been considered experimental in Scala and for version 2.12 requires an
 import of the scala paradise plugin. In version 2.13 they have been incorporated into the core
 language itself and importing the paradise plugin will no longer be necessary.</p>
 </blockquote>
-
 <h3 id="tx-functions-on-the-transactor-classpath">Tx functions on the transactor classpath</h3>
-
 <p>The tx functions also need to be visible to the transactor process meaning that the compiled tx function container
 must be on the classpath of the transactor. This will depend on the Datomic setup you are using:</p>
-
-<h4 id="local-dev-in-memory">Local dev / in-memory</h4>
-
+<h4 id="local-dev--in-memory">Local dev / in-memory</h4>
 <p>No need to prepare anything since transaction functions defined within the project
 will be available on the classpath for the Transactor managed by the Peer.</p>
-
-<h4 id="starter-pro-pro">Starter pro / pro</h4>
-
+<h4 id="starter-pro--pro">Starter pro / pro</h4>
 <p>Set Datomic classpath variable to where your tx functions are before starting the transactor</p>
-
 <pre><code>&gt; cd DATOMIC_HOME
 &gt; export DATOMIC_EXT_CLASSPATH=/Users/mg/molecule/molecule/coretests/target/scala-2.12/test-classes/
 &gt; bin/transactor ...
-</code></pre>
-
-<h4 id="free">Free</h4>
-
+</code></pre><h4 id="free">Free</h4>
 <p>The Free version can&rsquo;t set the classpath variable so we need to provide the tx functions manually
 by making a jar of our classes, move it to the transactor bin folder and start the transactor:</p>
-
 <pre><code>&gt; cd ~/molecule/molecule/coretests/target/scala-2.12/test-classes  [path to your compiled classes] 
 &gt; jar cvf scala-fns.jar .
 &gt; mv ~/molecule/molecule/coretests/target/scala-2.12/test-classes/scala-fns.jar DATOMIC_HOME/bin/
 &gt; bin/transactor ...
-</code></pre>
-
-<h2 id="tx-function-example">Tx function example</h2>
-
+</code></pre><h2 id="tx-function-example">Tx function example</h2>
 <p>A typical example of needing access to the tx database value before doing an operation on it could be
 to transfer money from one account to another.</p>
-
 <h3 id="enforcing-atomic-constraints">Enforcing atomic constraints</h3>
-
 <p>We want to be sure that there is enough available funds
 before we do the transfer. If we had done the lookup of the current balance outside a transaction we
 could risk that the balance was updated inbetween our lookup and doing the transfer. With a tx function
 we can avoid this by having access to the tx database value <em>within the transaction itself</em>. This will give us
 the necessary atomicity of the whole transfer. The transfer will only happen if there are enough funds available.</p>
-
 <p>Let&rsquo;s look at a simple tx function implementation:</p>
-
-<pre><code class="language-scala">@TxFns
+<pre><code>@TxFns
 object myTxFunctions {
 
   // Pass in entity ids of from/to accounts and the amount to be transferred
@@ -957,46 +922,31 @@ object myTxFunctions {
     Account(from).balance(newFromBalance).getUpdateTx ++ Account(to).balance(newToBalance).getUpdateTx
   }
 }
-</code></pre>
-
-<p>The signature of a tx functions must include an implicit <code>Conn</code> parameter. This makes sure that the
+</code></pre><p>The signature of a tx functions must include an implicit <code>Conn</code> parameter. This makes sure that the
 macro annotation can inject a database value in the generated transparent twin function for Datomic.</p>
-
 <p>We first check the available-funds constraint by looking up the current balance and throw an
 exception if there is not enough money available. Throwing an exception inside a tx function
 will cancel the whole transaction and thereby guarantee atomicity.</p>
-
 <p>Tx functions need to return transaction statements. We use Molecule&rsquo;s tx methods on
 molecules for the equivalent operations to get the necessary statements. So, to get the transaction statements
 of an update we simply replace a normal <code>update</code> call too <code>getUpdateTx</code> which will give us the transaction
 statements produced:</p>
-
-<pre><code class="language-scala">// Isolated update transaction (not in tx function)
+<pre><code>// Isolated update transaction (not in tx function)
 Account(from).balance(newFromBalance).update
 
 // .. equivalent to the transaction statements returned by `getUpdateTx` 
 Account(from).balance(newFromBalance).getUpdateTx
-</code></pre>
-
-<h3 id="tx-functions-have-to-be-pure">Tx functions have to be pure</h3>
-
+</code></pre><h3 id="tx-functions-have-to-be-pure">Tx functions have to be pure</h3>
 <p>Tx functions can&rsquo;t modify the database within the body of the tx method. You couldn&rsquo;t for instance
 do an update within the method body. Any operations on the database have to be encoded in the returned
 transaction statements.</p>
-
 <h2 id="invoking-tx-functions">Invoking tx functions</h2>
-
 <p>We call the transaction function inside a <code>transact</code> method:</p>
-
-<pre><code class="language-scala">transact(transfer(fromAccount, toAccount, okAmount))
-</code></pre>
-
-<p><code>transact</code> is a macro that needs the tx function invocation itself as its argument in order to be able
+<pre><code>transact(transfer(fromAccount, toAccount, okAmount))
+</code></pre><p><code>transact</code> is a macro that needs the tx function invocation itself as its argument in order to be able
 to analyze the tx function at compile time.</p>
-
 <p>So our complete example could look like this:</p>
-
-<pre><code class="language-scala">// Initial balances
+<pre><code>// Initial balances
 Account(fromAccount).balance.get.head === 100
 Account(toAccount).balance.get.head === 700
 
@@ -1006,11 +956,8 @@ transact(transfer(fromAccount, toAccount, 20))
 // Balances after transfer
 Account(fromAccount).balance.get.head === 80
 Account(toAccount).balance.get.head === 720
-</code></pre>
-
-<h3 id="error-handling-ensuring-atomicity">Error handling - ensuring atomicity</h3>
-
-<pre><code class="language-scala">// Trying to transfer a too big amount will throw an exception 
+</code></pre><h3 id="error-handling---ensuring-atomicity">Error handling - ensuring atomicity</h3>
+<pre><code>// Trying to transfer a too big amount will throw an exception 
 (transact(transfer(fromAccount, toAccount, 500)) must throwA[TxFnException])
   .message === s&quot;Got the exception molecule.macros.exception.TxFnException: &quot; +
   s&quot;Can't transfer 500 from account $fromAccount having a balance of only 100.&quot;
@@ -1018,13 +965,9 @@ Account(toAccount).balance.get.head === 720
 // No data has been changed
 Account(fromAccount).balance.get.head === 100
 Account(toAccount).balance.get.head === 700
-</code></pre>
-
-<h3 id="async-invocations">Async invocations</h3>
-
+</code></pre><h3 id="async-invocations">Async invocations</h3>
 <p>Tx functions can also be invoked asynchronously:</p>
-
-<pre><code class="language-scala">Await.result(
+<pre><code>Await.result(
   transactAsync(transfer(fromAccount, toAccount, 20)) map { txReport =&gt;
     // (for brevity we check the current balances synchronously)
     Account(fromAccount).balance.get.head === 80
@@ -1032,18 +975,13 @@ Account(toAccount).balance.get.head === 700
   },
   2.seconds
 )
-</code></pre>
-
-<p>For brevity examples show synchronous invocations but could as well have used async invocations.</p>
-
+</code></pre><p>For brevity examples show synchronous invocations but could as well have used async invocations.</p>
 <h2 id="composing-tx-functions">Composing tx functions</h2>
-
 <p>A tx function can be called from another tx function. We can thus compose more complex tx functions
 from &ldquo;sub tx functions&rdquo;. We could for instance de-compose our previous transfer tx function into
 two sub tx functions <code>withdraw</code> and <code>deposit</code> and then call those from a <code>transferComposed</code>
 tx function:</p>
-
-<pre><code class="language-scala">// &quot;Sub&quot; tx fn - can be used on its own or in other tx functions
+<pre><code>// &quot;Sub&quot; tx fn - can be used on its own or in other tx functions
 def withdraw(from: Long, amount: Int)(implicit conn: Conn): Seq[Seq[Statement]] = {
   val curFromBalance = Account(from).balance.get.headOption.getOrElse(0)
   if (curFromBalance &lt; amount)
@@ -1067,29 +1005,21 @@ def transferComposed(from: Long, to: Long, amount: Int)(implicit conn: Conn): Se
   // If they were called independently outside a tx function, atomicity wouldn't be guaranteed.
   withdraw(from, amount) ++ deposit(to, amount)
 }
-</code></pre>
-
-<h2 id="adding-tx-meta-data-to-tx-function-invocations">Adding tx meta data to tx function invocations</h2>
-
+</code></pre><h2 id="adding-tx-meta-data-to-tx-function-invocations">Adding tx meta data to tx function invocations</h2>
 <p>Tx meta data can be added to a tx function invocation by adding one or more tx meta data molecules with
 applied tx meta data to the <code>transact</code>/<code>transactAsync</code> method. Say we want to add meta information about
 &ldquo;who did the transfer&rdquo; then we can add it to the transaction entity like this:</p>
-
-<pre><code class="language-scala">// Add tx meta data that John did the transfer
+<pre><code>// Add tx meta data that John did the transfer
 transact(transfer(fromAccount, toAccount, 20), Person.name(&quot;John&quot;))
 
 // We can then query for the transfer that John did
 Account(fromAccount).balance.Tx(Person.name_(&quot;John&quot;)).get.head === 80
 Account(toAccount).balance.Tx(Person.name_(&quot;John&quot;)).get.head === 720
-</code></pre>
-
-<p>Note how the tx meta data applies to both accounts since they were both modified in the same
+</code></pre><p>Note how the tx meta data applies to both accounts since they were both modified in the same
 transaction that the tx meta data was applied to.</p>
-
 <p>We can add arbitrary and possibly unrelated tx meta data to a tx function invocation by applying
 two or more tx meta data molecules:</p>
-
-<pre><code class="language-scala">// Add tx meta data that John did the transfer and that it is a scheduled transfer
+<pre><code>// Add tx meta data that John did the transfer and that it is a scheduled transfer
 transact(
   transfer(fromAccount, toAccount, 20), 
   Person.name(&quot;John&quot;), 
@@ -1102,14 +1032,10 @@ Account(fromAccount).balance
 Account(toAccount).balance
   .Tx(Person.name_(&quot;John&quot;))
   .Tx(UseCase.name_(&quot;Scheduled transfer&quot;)).get.head === 720
-</code></pre>
-
-<h2 id="debugging-tx-function-invocations">Debugging tx function invocations</h2>
-
+</code></pre><h2 id="debugging-tx-function-invocations">Debugging tx function invocations</h2>
 <p>If you want to see the <code>Statement</code>s produced by a tx function you can invoke it
 within <code>debugTransact</code> without affecting the live database:</p>
-
-<pre><code class="language-scala">// Print debug info for tx function invocation
+<pre><code>// Print debug info for tx function invocation
 debugTransact(transfer(fromAccount, toAccount, 20))
 
 // Prints produced tx statements to output:
@@ -1132,28 +1058,21 @@ debugTransact(transfer(fromAccount, toAccount, 20))
        5     added: false,  -t: 13194139534345,  -e: 17592186045447,  -a: 64,  -v: 700)
 ========================================================================
 */
-</code></pre>
-
-<p>Two groups of data are shown. The first group is an internal representation in Molecule showing the operations.
+</code></pre><p>Two groups of data are shown. The first group is an internal representation in Molecule showing the operations.
 The second group shows the datoms produced in the transaction. For ease of reading, &ldquo;-&rdquo; (minus) is prepended
 the prefixes (t, e, a, v) for the datoms that are retractions - where <code>added</code> is false. The abbreviations
 represents the parts of the Datom:</p>
-
 <ul>
 <li><code>added</code>: operation, can be true for asserted or false for retracted</li>
 <li><code>t</code>: transaction entity id</li>
 <li><code>e</code>: entity</li>
 <li><code>a</code>: attribute</li>
-<li><code>v</code>: value<br /></li>
+<li><code>v</code>: value</li>
 </ul>
-
 <p>Updating the from-account balance from 100 to 80 for instance creates two Datoms,
 one retracting the old value 100 and one asserting the new value 80.</p>
-
 <p>(The numbers on the left are simply index numbers and not part of the transactional data)</p>
-
 <h3 id="next">Next</h3>
-
 <p><a href="/manual/transactions/tx-meta-data">Transaction meta data&hellip;</a></p>
 
     </div>

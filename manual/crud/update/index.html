@@ -803,7 +803,7 @@
             <div class="col-md-2 column" style="padding-top:20px;padding-right:0px;">
                 <ul class="nav nav-pills" style="float:right;">
                     <li>
-                        <a href="/changelog" style="margin-top:-2px;">v0.21.0</a>
+                        <a href="/changelog" style="margin-top:-2px;">v0.22.0</a>
                     </li>
                     <li>
                         <div style="padding-left:14px;">
@@ -826,154 +826,91 @@
 <div class="container" style="padding-top:20px">
 
     <div class="col-sm-10 column" style="padding-left:8px;">
-        
-
-<h1 id="update-data">Update data</h1>
-
+        <h1 id="update-data">Update data</h1>
 <p>An &ldquo;update&rdquo; is a two-step process in Datomic:</p>
-
 <ol>
 <li>Retract old fact</li>
 <li>Assert new fact</li>
 </ol>
-
 <p>Datomic doesn&rsquo;t overwrite data. &ldquo;Retract&rdquo; is a statement that says &ldquo;this data is no longer current&rdquo; which means
 that it won&rsquo;t turn up when you query for it <em>as of now</em>. If you query for it <em>as of before</em> you will see it!</p>
-
 <p>Being able to see how data develops over time is a brillant core feature of Datomic. We don&rsquo;t need to administrate
 cumbersome historical changes manually. Auditing is built-in at the core of Datomic.</p>
-
 <h2 id="cardinality-one">Cardinality one</h2>
-
 <p>We need an entity id to update data so we get it first with the special generic Molecule attribute <code>e</code> (for <em><strong>e</strong>ntity</em>):</p>
-
-<pre><code class="language-scala">val fredId = Person.e.name_(&quot;Fred&quot;).get.head
-</code></pre>
-
-<h4 id="apply-value"><code>apply(&lt;value&gt;)</code></h4>
-
+<pre><code>val fredId = Person.e.name_(&quot;Fred&quot;).get.head
+</code></pre><h4 id="applyvalue"><code>apply(&lt;value&gt;)</code></h4>
 <p>Now we can update the entity Fred&rsquo;s age by applying the new value 39 to the <code>age</code> attribute:</p>
-
-<pre><code class="language-scala">Person(fredId).age(39).update
-</code></pre>
-
-<p>Molecule uses the <code>fredId</code> to</p>
-
+<pre><code>Person(fredId).age(39).update
+</code></pre><p>Molecule uses the <code>fredId</code> to</p>
 <ol>
 <li>find the current <code>age</code> attribute value (38) and retract that value</li>
 <li>assert the new <code>age</code> attribute value 39</li>
 </ol>
-
 <h4 id="apply"><code>apply()</code></h4>
-
 <p>We can retract (&ldquo;delete&rdquo;) an attribute value by applying no value</p>
-
-<pre><code class="language-scala">Person(fredId).age().update
-</code></pre>
-
-<p>This will retract the <code>age</code> value 39 of the Fred entity.</p>
-
+<pre><code>Person(fredId).age().update
+</code></pre><p>This will retract the <code>age</code> value 39 of the Fred entity.</p>
 <h2 id="cardinality-many">Cardinality-many</h2>
-
 <p>A cardinality many attribute like <code>hobbies</code> holds a <code>Set</code> of values:</p>
-
-<pre><code class="language-scala">Person(fredId).hobbies.get.head === Set(&quot;golf&quot;, &quot;cars&quot;)
-</code></pre>
-
-<h3 id="only-unique-values">Only unique values</h3>
-
+<pre><code>Person(fredId).hobbies.get.head === Set(&quot;golf&quot;, &quot;cars&quot;)
+</code></pre><h3 id="only-unique-values">Only unique values</h3>
 <p>Since cardinality many attributes hold Sets, Molecule rejects duplicate values in all cardinality-many operations
 shown below.</p>
-
 <p>Duplicate variables or primitive values will throw a compile-time error. Duplicate values that
 can only be discovered at runtime will throw an IllegalArgumentException at runtime.</p>
-
 <h3 id="operations-on-card-many-attrs">Operations on card-many attrs</h3>
-
 <p>All operations generally accepts varargs or <code>Lists</code> of the type of the attribute. So even if the attribute holds
 a <code>Set</code> of values we can also supply a <code>Seq</code> of values.</p>
-
 <h4 id="assert-add"><code>assert</code> (&ldquo;add&rdquo;)</h4>
-
-<pre><code class="language-scala">// Assert vararg values
+<pre><code>// Assert vararg values
 Person(fredId).hobbies.assert(&quot;walks&quot;, &quot;jogging&quot;).update
 Person(fredId).hobbies.get.head === Set(&quot;golf&quot;, &quot;cars&quot;, &quot;walks&quot;, &quot;jogging&quot;)
 
 // Add Set of values
 Person(fredId).hobbies.assert(Set(&quot;skating&quot;, &quot;biking&quot;)).update
 Person(fredId).hobbies.get.head === Set(&quot;golf&quot;, &quot;cars&quot;, &quot;walks&quot;, &quot;jogging&quot;, &quot;skating&quot;, &quot;biking&quot;)
-</code></pre>
-
-<h4 id="replace-retract-assert"><code>replace</code> (retract + assert)</h4>
-
+</code></pre><h4 id="replace-retract--assert"><code>replace</code> (retract + assert)</h4>
 <p>Since Cardinality-many attributes have multiple values we need to specify which of those values we want to replace:</p>
-
-<pre><code class="language-scala">// Cardinality-many attribute value updated
+<pre><code>// Cardinality-many attribute value updated
 Person(fredId).hobbies.replace(&quot;skating&quot; -&gt; &quot;surfing&quot;).update
 Person(fredId).hobbies.get.head === Set(&quot;golf&quot;, &quot;cars&quot;, &quot;walks&quot;, &quot;jogging&quot;, &quot;surfing&quot;, &quot;biking&quot;)
-</code></pre>
-
-<p>Here we tell that the &ldquo;skating&rdquo; value should now be &ldquo;surfing&rdquo;. The old value is retracted and the new
+</code></pre><p>Here we tell that the &ldquo;skating&rdquo; value should now be &ldquo;surfing&rdquo;. The old value is retracted and the new
 value asserted so that we can go back in time and see what the values were before our update.</p>
-
 <p>Update several values in one go</p>
-
-<pre><code class="language-scala">Person(fredId).hobbies(
+<pre><code>Person(fredId).hobbies(
   &quot;golf&quot; -&gt; &quot;badminton&quot;,
   &quot;cars&quot; -&gt; &quot;trains&quot;).update
 Person(fredId).hobbies.get.head === Set(&quot;badminton&quot;, &quot;trains&quot;, &quot;walks&quot;, &quot;jogging&quot;, &quot;surfing&quot;, &quot;biking&quot;)
-</code></pre>
-
-<h4 id="retract"><code>retract</code></h4>
-
+</code></pre><h4 id="retract"><code>retract</code></h4>
 <p>We can retract one or more values from the set of values</p>
-
-<pre><code class="language-scala">Person(fredId).hobbies.retract(&quot;badminton&quot;).update
+<pre><code>Person(fredId).hobbies.retract(&quot;badminton&quot;).update
 Person(fredId).hobbies.get.head === Set(&quot;trains&quot;, &quot;walks&quot;, &quot;jogging&quot;, &quot;surfing&quot;, &quot;biking&quot;)
 
 Person(fredId).hobbies.retract(List(&quot;walks&quot;, &quot;surfing&quot;)).update
 Person(fredId).hobbies.get.head === Set(&quot;trains&quot;, &quot;jogging&quot;, &quot;biking&quot;)
-</code></pre>
-
-<p>The retracted facts can still be tracked in the history of the database.</p>
-
+</code></pre><p>The retracted facts can still be tracked in the history of the database.</p>
 <h4 id="apply-1"><code>apply</code></h4>
-
 <p>As with cardinality one attributes we can <code>apply</code> completely new values to an attribute. All old values are retracted.
 It&rsquo;s like an &ldquo;overwrite all&rdquo; operation except that we can see the retracted old values in the history of
 the database.</p>
-
-<pre><code class="language-scala">Person(fredId).hobbies(&quot;meditaion&quot;).update
+<pre><code>Person(fredId).hobbies(&quot;meditaion&quot;).update
 Person(fredId).hobbies.get.head === Set(&quot;meditation&quot;)
-</code></pre>
-
-<h4 id="apply-2"><code>apply()</code></h4>
-
+</code></pre><h4 id="apply-2"><code>apply()</code></h4>
 <p>Applying nothing (empty parenthesises) retracts all values of an attribute</p>
-
-<pre><code class="language-scala">Person(fredId).hobbies().update
+<pre><code>Person(fredId).hobbies().update
 Person(fredId).hobbies.get === Nil
-</code></pre>
-
-<h2 id="update-multiple-entities">Update multiple entities</h2>
-
+</code></pre><h2 id="update-multiple-entities">Update multiple entities</h2>
 <p>Update multiple entities in one transaction so that they have the same values:</p>
-
-<pre><code class="language-scala">// Both Bob and Ann turned 25 and became cool club members
+<pre><code>// Both Bob and Ann turned 25 and became cool club members
 Person(bobId, annId).age(25).memberOf(&quot;cool club&quot;).update
-</code></pre>
-
-<p>See <a href="https://github.com/scalamolecule/molecule/blob/master/coretests/src/test/scala/molecule/coretests/crud/UpdateMultipleEntities.scala">tests</a>
+</code></pre><p>See <a href="https://github.com/scalamolecule/molecule/blob/master/coretests/src/test/scala/molecule/coretests/crud/UpdateMultipleEntities.scala">tests</a>
 for variations of updating multiple entities.</p>
-
 <h2 id="asynchronous-update">Asynchronous update</h2>
-
 <p>All transactional operators have an asynchronous equivalent. Updating data asynchronously with
 <code>updateAsync</code> uses Datomic&rsquo;s asynchronous API and returns a <code>Future</code> with a <code>TxReport</code>.</p>
-
 <p>Here, we map over the result of updating an entity asynchronously:</p>
-
-<pre><code class="language-scala">for {
+<pre><code>for {
   // Initial data
   saveTx &lt;- Person.name.age insertAsync List((&quot;Ben&quot;, 42), (&quot;Liz&quot;, 37))
   List(ben, liz) = saveTx.eids
@@ -987,11 +924,8 @@ for variations of updating multiple entities.</p>
   // Liz had a birthday
   result === List((&quot;Ben&quot;, 42), (&quot;Liz&quot;, 38))
 }
-</code></pre>
-
-<h3 id="updating-multiple-entities-asynchronously">Updating multiple entities asynchronously</h3>
-
-<pre><code class="language-scala">// Initial data
+</code></pre><h3 id="updating-multiple-entities-asynchronously">Updating multiple entities asynchronously</h3>
+<pre><code>// Initial data
 Ns.str.int insertAsync List(
   (&quot;a&quot;, 1),
   (&quot;b&quot;, 2),
@@ -1018,21 +952,15 @@ Ns.str.int insertAsync List(
     )
   }
 }
-</code></pre>
-
-<h3 id="tests">Tests</h3>
-
+</code></pre><h3 id="tests">Tests</h3>
 <p>Update-tests with:</p>
-
 <ul>
 <li><a href="https://github.com/scalamolecule/molecule/tree/master/coretests/src/test/scala/molecule/coretests/crud/update">Various types</a></li>
 <li><a href="https://github.com/scalamolecule/molecule/tree/master/coretests/src/test/scala/molecule/coretests/crud/updateMap">Map attribute</a></li>
 <li><a href="https://github.com/scalamolecule/molecule/blob/master/coretests/src/test/scala/molecule/coretests/crud/UpdateMultipleAttributes.scala">Multiple attributes</a></li>
 <li><a href="https://github.com/scalamolecule/molecule/blob/master/coretests/src/test/scala/molecule/coretests/crud/UpdateMultipleEntities.scala">Multiple entities</a></li>
 </ul>
-
 <h3 id="next">Next</h3>
-
 <p><a href="/manual/crud/retract">Delete / retract&hellip;</a></p>
 
     </div>

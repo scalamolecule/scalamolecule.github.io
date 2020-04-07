@@ -803,7 +803,7 @@
             <div class="col-md-2 column" style="padding-top:20px;padding-right:0px;">
                 <ul class="nav nav-pills" style="float:right;">
                     <li>
-                        <a href="/changelog" style="margin-top:-2px;">v0.21.0</a>
+                        <a href="/changelog" style="margin-top:-2px;">v0.22.0</a>
                     </li>
                     <li>
                         <div style="padding-left:14px;">
@@ -826,23 +826,16 @@
 <div class="container" style="padding-top:20px">
 
     <div class="col-sm-10 column" style="padding-left:8px;">
-        
-
-<h1 id="boilerplate-code-generation">Boilerplate code generation</h1>
-
+        <h1 id="boilerplate-code-generation">Boilerplate code generation</h1>
 <p>An attribute definition like</p>
-
-<pre><code class="language-scala">@InOut(3, 8)
+<pre><code>@InOut(3, 8)
 trait SeattleDefinition {
   trait Community {
     val name = oneString.fulltext
   }
 }
-</code></pre>
-
-<p>would generate the following boilerplate code</p>
-
-<pre><code class="language-scala">object Community extends Community_0 {
+</code></pre><p>would generate the following boilerplate code</p>
+<pre><code>object Community extends Community_0 {
   def apply(e: Long): Community_0 = ???
 }
 
@@ -866,48 +859,29 @@ trait Community_1[A] extends Community with Out_1[Community_1, Community_2, Comm
 trait Community_2[A, B] extends Community with Out_2[Community_2, Community_3, Community_In_1_2, Community_In_1_3, A, B] {
   // etc up to arity 8...
 
-</code></pre>
-
-<p>The type information passed on from each step of building a molecule enables our IDE to infer the type of our molecule
+</code></pre><p>The type information passed on from each step of building a molecule enables our IDE to infer the type of our molecule
 and suggest possible further building blocks.</p>
-
 <h3 id="input-molecules">Input molecules</h3>
-
 <p>The <code>Community_In_1_0</code> is a trait that the builder jumps to if we make en input molecule like <code>Community.name(?)</code>.
 From there on Molecule knows that we expect to receive an input for the placeholder <code>?</code>.</p>
-
 <h3 id="arity">Arity</h3>
-
 <p>The annotation <code>@InOut(3,8)</code> on the schema trait tells molecule how long molecules we expect to create. This is to
 not always generate the possible arity of 22 which causes a significant chunk of boilerplate code!</p>
-
 <p>We also have to remember that this is not a limitation of <em>how many attribute values</em> we can find but rather a
 limitation of how many <em>where clauses</em> we can have since each added attribute to our molecules generates it&rsquo;s
 corresponding where clause. In that respect it seems a very seldom necessity to have 22 where clauses!</p>
-
 <h3 id="entity-api">Entity API</h3>
-
 <p>A way to gather additional/optional values from a query is to use the entity API by applying an attribute name
 to an entity id from the query:</p>
-
-<pre><code class="language-scala">communityId(&quot;:Community/url&quot;) === Some(&quot;http://eastballard.com/&quot;)
-</code></pre>
-
-<p>This gives us an optional value back if an attribute value has been asserted for this entity.</p>
-
+<pre><code>communityId(&quot;:Community/url&quot;) === Some(&quot;http://eastballard.com/&quot;)
+</code></pre><p>This gives us an optional value back if an attribute value has been asserted for this entity.</p>
 <p><a href="https://github.com/scalamolecule/molecule/blob/master/examples/src/test/scala/molecule/examples/seattle/SeattleTests.scala#L24-L52">See entity api example</a></p>
-
 <h3 id="tacit-attributes">Tacit attributes</h3>
-
 <p>The <code>name_</code> attributes are &ldquo;tacit&rdquo; attributes that cause a :where clause in the query but doesn&rsquo;t return any data
 (no variable in the :find section of the produced query). This is to be able to skip returning data of attributes
 that we for instance apply a constant value to</p>
-
-<pre><code class="language-scala">Person.name.age_(28).get // no need to return age values (all 28)
-</code></pre>
-
-<h3 id="type-inferring">Type inferring</h3>
-
+<pre><code>Person.name.age_(28).get // no need to return age values (all 28)
+</code></pre><h3 id="type-inferring">Type inferring</h3>
 <p>The end user doesn&rsquo;t have to know about any of the generated boilerplate code since the IDE will take care of
 inferring and suggesting the possible types to proceed with.</p>
 

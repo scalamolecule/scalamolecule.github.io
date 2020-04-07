@@ -803,7 +803,7 @@
             <div class="col-md-2 column" style="padding-top:20px;padding-right:0px;">
                 <ul class="nav nav-pills" style="float:right;">
                     <li>
-                        <a href="/changelog" style="margin-top:-2px;">v0.21.0</a>
+                        <a href="/changelog" style="margin-top:-2px;">v0.22.0</a>
                     </li>
                     <li>
                         <div style="padding-left:14px;">
@@ -826,50 +826,29 @@
 <div class="container" style="padding-top:20px">
 
     <div class="col-sm-10 column" style="padding-left:8px;">
-        
-
-<h1 id="transaction-meta-data">Transaction meta data</h1>
-
+        <h1 id="transaction-meta-data">Transaction meta data</h1>
 <p><a href="https://github.com/scalamolecule/molecule/blob/master/coretests/src/test/scala/molecule/coretests/transaction/TxMetaData.scala">Tests&hellip;</a></p>
-
 <p>As we saw, a <a href="/manual/transactions/">transaction</a> in Datomic is also an entity with a timestamp fact. Since it&rsquo;s an entity as
 any of our own entities, we can even add more facts that simply share the entity id of the transaction:</p>
-
-<p><img src="/img/transactions/2.jpg" alt="" /></p>
-
+<p><img src="/img/transactions/2.jpg" alt=""></p>
 <h2 id="save">Save</h2>
-
 <p>Depending on our domain we can tailor any tx meta data that we find valuable to associate with some transactions.
 We could for instance be interested in &ldquo;who did it&rdquo; and &ldquo;in what use case&rdquo; it happened and create some generic attributes
- <code>user</code> and <code>uc</code> in an <code>Audit</code> namespace:</p>
-
-<pre><code class="language-scala">trait Audit {
+<code>user</code> and <code>uc</code> in an <code>Audit</code> namespace:</p>
+<pre><code>trait Audit {
   val user = oneString
   val uc   = oneString
 }
-</code></pre>
-
-<p>Then we can assert values of those attributes together with a <code>save</code> operation for instance by applying an <code>Audit</code> meta molecule</p>
-
-<pre><code class="language-scala">Audit.user(&quot;Lisa&quot;).uc(&quot;survey&quot;)
-</code></pre>
-
-<p>..to the generic <code>Tx</code> namespace:</p>
-
-<pre><code class="language-scala">Person.name(&quot;Fred&quot;).likes(&quot;pizza&quot;).Tx(Audit.user(&quot;Lisa&quot;).uc(&quot;survey&quot;)).save
-</code></pre>
-
-<p>This could read: <em>&ldquo;A person Fred liking pizza was saved by Lisa as part of a survey&rdquo;</em></p>
-
+</code></pre><p>Then we can assert values of those attributes together with a <code>save</code> operation for instance by applying an <code>Audit</code> meta molecule</p>
+<pre><code>Audit.user(&quot;Lisa&quot;).uc(&quot;survey&quot;)
+</code></pre><p>..to the generic <code>Tx</code> namespace:</p>
+<pre><code>Person.name(&quot;Fred&quot;).likes(&quot;pizza&quot;).Tx(Audit.user(&quot;Lisa&quot;).uc(&quot;survey&quot;)).save
+</code></pre><p>This could read: <em>&ldquo;A person Fred liking pizza was saved by Lisa as part of a survey&rdquo;</em></p>
 <p>Molecule simply saves the tx meta data attributes <code>user</code> and <code>uc</code> with the transaction entity id <code>tx4</code> as their entity id:</p>
-
-<p><img src="/img/transactions/5.jpg" alt="" /></p>
-
+<p><img src="/img/transactions/5.jpg" alt=""></p>
 <h2 id="get">Get</h2>
-
 <p>Now we can query the tx meta data in various ways:</p>
-
-<pre><code class="language-scala">// How was Fred added?
+<pre><code>// How was Fred added?
 // Fred was added by Lisa as part of a survey
 Person(e5).name.Tx(Audit.user.uc).get === List((&quot;Fred&quot;, &quot;Lisa&quot;, &quot;survey&quot;))
 
@@ -883,24 +862,16 @@ Person.name.Tx(Audit.uc_(&quot;survey&quot;)).get === List(&quot;Fred&quot;)
 Person.likes.Tx(Audit.user_(&quot;Lisa&quot;).uc_(&quot;survey&quot;)).get === List(&quot;pizza&quot;)
 
 // etc..
-</code></pre>
-
-<h2 id="insert">Insert</h2>
-
+</code></pre><h2 id="insert">Insert</h2>
 <p>If we insert multiple entities in a transaction, the transaction data is only asserted once:</p>
-
-<pre><code class="language-scala">Person.name.likes.Tx(Audit.user_(&quot;Lisa&quot;).uc_(&quot;survey&quot;)) insert List(
+<pre><code>Person.name.likes.Tx(Audit.user_(&quot;Lisa&quot;).uc_(&quot;survey&quot;)) insert List(
   (&quot;John&quot;, &quot;sushi&quot;),
   (&quot;Pete&quot;, &quot;burgers&quot;),
   (&quot;Mona&quot;, &quot;snacks&quot;)
 )
-</code></pre>
-
-<h3 id="composites">Composites</h3>
-
+</code></pre><h3 id="composites">Composites</h3>
 <p>Similarly we can insert composite molecules composed of sub-molecules/sub-tuples of data - and some tx meta data:</p>
-
-<pre><code class="language-scala">Article.name.author + 
+<pre><code>Article.name.author + 
   Tag.name.weight
   .Tx(MetaData.submitter_(&quot;Brenda Johnson&quot;).usecase_(&quot;AddArticles&quot;)) insert List(
   // 2 rows of data (Articles) 
@@ -908,75 +879,45 @@ Person.likes.Tx(Audit.user_(&quot;Lisa&quot;).uc_(&quot;survey&quot;)).get === L
   ((&quot;Battle of Waterloo&quot;, &quot;Ben Bridge&quot;), (&quot;serious&quot;, 5)),
   ((&quot;Best jokes ever&quot;, &quot;John Cleese&quot;), (&quot;fun&quot;, 3))
 )
-</code></pre>
-
-<p><em>&ldquo;Get serious articles that Brenda submitted&rdquo;</em>:</p>
-
-<pre><code class="language-scala">m(Article.name.author + 
+</code></pre><p><em>&ldquo;Get serious articles that Brenda submitted&rdquo;</em>:</p>
+<pre><code>m(Article.name.author + 
   Tag.name_(&quot;serious&quot;).weight.&gt;=(4)
   .Tx(MetaData.submitter_(&quot;Brenda Johnson&quot;))).get === List(
   ((&quot;Battle of Waterloo&quot;, &quot;Ben Bridge&quot;), 5)
 )
-</code></pre>
-
-<h2 id="update">Update</h2>
-
+</code></pre><h2 id="update">Update</h2>
 <p>Transaction meta data can be attached to updates too so that we can for instance follow who changed data in our system.</p>
-
-<pre><code class="language-scala">Person(johnId).likes(&quot;pasta&quot;).Tx(Audit.user_(&quot;Ben&quot;).uc_(&quot;survey-follow-up&quot;)).update
-</code></pre>
-
-<p>Now when we look at a list of Persons and what they like we can see that some likes were from an original survey and one is
+<pre><code>Person(johnId).likes(&quot;pasta&quot;).Tx(Audit.user_(&quot;Ben&quot;).uc_(&quot;survey-follow-up&quot;)).update
+</code></pre><p>Now when we look at a list of Persons and what they like we can see that some likes were from an original survey and one is
 from a follow-up survey that Ben did:</p>
-
-<pre><code class="language-scala">Person.name.likes.Tx(Audit.user.uc).get === List(
+<pre><code>Person.name.likes.Tx(Audit.user.uc).get === List(
   (&quot;John&quot;, &quot;pasta&quot;, &quot;Ben&quot;, &quot;survey-follow-up&quot;),
   (&quot;Pete&quot;, &quot;burgers&quot;, &quot;Lisa&quot;, &quot;survey&quot;),
   (&quot;Mona&quot;, &quot;snacks&quot;, &quot;Lisa&quot;, &quot;survey&quot;)
 )
-</code></pre>
-
-<h2 id="retract">Retract</h2>
-
-<p>It&rsquo;s valuable also to have meta data about retractions so that we can afterwards ask questions like &ldquo;Who deleted this?&rdquo;.</p>
-
+</code></pre><h2 id="retract">Retract</h2>
+<p>It&rsquo;s valuable also to have meta data about retractions so that we can afterwards ask questions like &ldquo;Who deleted this?&quot;.</p>
 <h3 id="single-attribute">Single attribute</h3>
-
 <p>To retract an attribute value we apply an empty arg list to the attribute and <code>update</code>. Here we also apply some tx meta data
 about who took away the <code>likes</code> value for Pete:</p>
-
-<pre><code class="language-scala">Person(peteId).likes().Tx(Audit.user_(&quot;Ben&quot;).uc_(&quot;survey-follow-up&quot;)).update
-</code></pre>
-
-<p>We can follow the <code>likes</code> of Pete through <a href="/manual/time/history/">history</a> and see that Ben retracted his <code>likes</code> value in a survey follow-up:</p>
-
-<pre><code class="language-scala">Person(peteId).likes.t.op.Tx(Audit.user.uc)).getHistory.toSeq.sortBy(r =&gt; (r._2, r._3)) === List(
+<pre><code>Person(peteId).likes().Tx(Audit.user_(&quot;Ben&quot;).uc_(&quot;survey-follow-up&quot;)).update
+</code></pre><p>We can follow the <code>likes</code> of Pete through <a href="/manual/time/history/">history</a> and see that Ben retracted his <code>likes</code> value in a survey follow-up:</p>
+<pre><code>Person(peteId).likes.t.op.Tx(Audit.user.uc)).getHistory.toSeq.sortBy(r =&gt; (r._2, r._3)) === List(
   // Pete's liking was saved by Lisa as part of survey
   (&quot;burgers&quot;, 1028, true, &quot;Lisa&quot;, &quot;survey&quot;),
   
   // Pete's liking was retracted by Ben in a survey follow-up
   (&quot;burgers&quot;, 1030, false, &quot;Ben&quot;, &quot;survey-follow-up&quot;)
 )
-</code></pre>
-
-<p>The entity Pete still exists but now has no current liking:</p>
-
-<pre><code class="language-scala">Person(peteId).name.likes$.get.head === (&quot;Pete&quot;, None) 
-</code></pre>
-
-<h3 id="entities">Entities</h3>
-
+</code></pre><p>The entity Pete still exists but now has no current liking:</p>
+<pre><code>Person(peteId).name.likes$.get.head === (&quot;Pete&quot;, None) 
+</code></pre><h3 id="entities">Entities</h3>
 <p>Using the <code>retract</code> method
 (available via <code>import molecule.imports._</code>) we can retract one or more entity ids along with a tx meta data:</p>
-
-<pre><code class="language-scala">retract(johnId, Audit.user(&quot;Mona&quot;).uc(&quot;clean-up&quot;))
-</code></pre>
-
-<p>The <code>Audit.user(&quot;Mona&quot;).uc(&quot;clean-up&quot;)</code> molecule has the tx meta data that we save with the transaction entity.</p>
-
+<pre><code>retract(johnId, Audit.user(&quot;Mona&quot;).uc(&quot;clean-up&quot;))
+</code></pre><p>The <code>Audit.user(&quot;Mona&quot;).uc(&quot;clean-up&quot;)</code> molecule has the tx meta data that we save with the transaction entity.</p>
 <p>John has now ben both saved, updated and retracted:</p>
-
-<pre><code class="language-scala">Person(johnId).likes.t.op.Tx(Audit.user.uc)).getHistory.toSeq.sortBy(r =&gt; (r._2, r._3)) === List(
+<pre><code>Person(johnId).likes.t.op.Tx(Audit.user.uc)).getHistory.toSeq.sortBy(r =&gt; (r._2, r._3)) === List(
   // John's liking was saved by Lisa as part of survey
   (&quot;sushi&quot;, 1028, true, &quot;Lisa&quot;, &quot;survey&quot;), // sushi asserted
   
@@ -987,15 +928,9 @@ about who took away the <code>likes</code> value for Pete:</p>
   // John's liking (actually whole entity) was retracted by Mona in a clean-up
   (&quot;pasta&quot;, 1033, false, &quot;Mona&quot;, &quot;clean-up&quot;) // pasta retracted
 )
-</code></pre>
-
-<p>The entity John now currently doesn&rsquo;t exists (although still in history)</p>
-
-<pre><code class="language-scala">Person(johnId).name.likes$.get === Nil 
-</code></pre>
-
-<h3 id="next">Next</h3>
-
+</code></pre><p>The entity John now currently doesn&rsquo;t exists (although still in history)</p>
+<pre><code>Person(johnId).name.likes$.get === Nil 
+</code></pre><h3 id="next">Next</h3>
 <p><a href="/manual/time">Time&hellip;</a></p>
 
     </div>

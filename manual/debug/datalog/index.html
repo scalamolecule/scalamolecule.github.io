@@ -803,7 +803,7 @@
             <div class="col-md-2 column" style="padding-top:20px;padding-right:0px;">
                 <ul class="nav nav-pills" style="float:right;">
                     <li>
-                        <a href="/changelog" style="margin-top:-2px;">v0.21.0</a>
+                        <a href="/changelog" style="margin-top:-2px;">v0.22.0</a>
                     </li>
                     <li>
                         <div style="padding-left:14px;">
@@ -826,12 +826,8 @@
 <div class="container" style="padding-top:20px">
 
     <div class="col-sm-10 column" style="padding-left:8px;">
-        
-
-<h1 id="show-datalog-queries-and-data">Show Datalog queries and data</h1>
-
+        <h1 id="show-datalog-queries-and-data">Show Datalog queries and data</h1>
 <p>All molecule query commands have a corresponding debug command that will print debugging information to console.</p>
-
 <ul>
 <li>&lt;molecule&gt;.<code>debugGet</code></li>
 <li>&lt;molecule&gt;.<code>debugGetHistory</code></li>
@@ -839,13 +835,10 @@
 <li>&lt;molecule&gt;.<code>debugGetSince(...)</code></li>
 <li>&lt;molecule&gt;.<code>debugGetWith(...)</code></li>
 </ul>
-
 <h2 id="debugget"><code>debugGet</code></h2>
-
 <p>Simply replace a <code>get</code> command on a molecule with <code>debugGet</code> to print debugging data when running the code in
 a test for instance:</p>
-
-<pre><code class="language-scala">// Molecule to be debugged
+<pre><code>// Molecule to be debugged
 Community.name.Neighborhood.District.region_(&quot;ne&quot; or &quot;sw&quot;).get(3) === List(
   &quot;Beach Drive Blog&quot;, 
   &quot;KOMO Communities - Green Lake&quot;, 
@@ -854,10 +847,7 @@ Community.name.Neighborhood.District.region_(&quot;ne&quot; or &quot;sw&quot;).g
 
 // Debug `get`
 Community.name.Neighborhood.District.region_(&quot;ne&quot; or &quot;sw&quot;).debugGet
-</code></pre>
-
-<p>This will print out the results of each stage of DSL transformation namely Model &#10230; Query &#10230; Datalog Query &#10230; Data:</p>
-
+</code></pre><p>This will print out the results of each stage of DSL transformation namely Model ⟶ Query ⟶ Datalog Query ⟶ Data:</p>
 <pre><code>--------------------------------------------------------------------------
 Model(List(
   Atom(&quot;Community&quot;, &quot;name&quot;, &quot;String&quot;, 1, VarValue, None, Seq(), Seq()),
@@ -941,19 +931,13 @@ OUTPUTS:
 42  [&quot;Maple Leaf Life&quot;]
 (showing up to 500 rows)
 --------------------------------------------------------------------------
-</code></pre>
-
-<p>While the Model and Query are internal representations of the molecule, the Datalog query shows you what Molecule
+</code></pre><p>While the Model and Query are internal representations of the molecule, the Datalog query shows you what Molecule
 sends to Datomic.</p>
-
 <p>Using debugGet can also be a quick way to test if a required data set is correctly returned with some molecule.</p>
-
 <h3 id="experiment-with-datalog-query">Experiment with Datalog query</h3>
-
 <p>If you want to experiment with changing the raw Datalog query, you can copy an paste the Datalog query
 from console into the query call on the connection object:</p>
-
-<pre><code class="language-scala">conn.q(
+<pre><code>conn.q(
   // Datalog query:
   &quot;&quot;&quot;[:find  ?b
     | :in    $ %
@@ -967,10 +951,7 @@ from console into the query call on the connection object:</p>
     | [(rule1 ?d) [?d :District/region &quot;:District.region/sw&quot;]]
     |]&quot;&quot;&quot;.stripMargin
 ) foreach println
-</code></pre>
-
-<p>Which will print the raw Datomic rows of data to console:</p>
-
+</code></pre><p>Which will print the raw Datomic rows of data to console:</p>
 <pre><code>List(Beach Drive Blog)
 List(KOMO Communities - Green Lake)
 List(Delridge Produce Cooperative)
@@ -978,14 +959,10 @@ List(Alki News)
 List(Longfellow Creek Community Website)
 List(Laurelhurst Community Club)
 // etc...
-</code></pre>
-
-<h2 id="debuggethistory"><code>debugGetHistory</code></h2>
-
+</code></pre><h2 id="debuggethistory"><code>debugGetHistory</code></h2>
 <p>When examining data spanning multiple transactions, the time filter debug commands can be very useful. Say we have
 3 transactions:</p>
-
-<pre><code class="language-scala">val tx1 = Ns.str(&quot;a&quot;).int(1).save
+<pre><code>val tx1 = Ns.str(&quot;a&quot;).int(1).save
 val e1  = tx1.eid
 val t1  = tx1.t // 1028
 
@@ -994,15 +971,9 @@ val t2  = tx2.t // 1030
 
 val tx3 = Ns(e1).int(2).update
 val t3  = tx3.t // 1031
-</code></pre>
-
-<p>Then we can for instance debug the history of the <code>:Ns/str</code> attribute by calling the <code>debugGetHistory</code> method:</p>
-
-<pre><code class="language-scala">Ns(e1).str.t.op.debugGetHistory
-</code></pre>
-
-<p>And get the transformations and resulting data</p>
-
+</code></pre><p>Then we can for instance debug the history of the <code>:Ns/str</code> attribute by calling the <code>debugGetHistory</code> method:</p>
+<pre><code>Ns(e1).str.t.op.debugGetHistory
+</code></pre><p>And get the transformations and resulting data</p>
 <pre><code>--------------------------------------------------------------------------
 Model(List(
   Meta(&quot;?&quot;, &quot;e_&quot;, &quot;Long&quot;, Eq(Seq(17592186045445L))),
@@ -1040,19 +1011,11 @@ OUTPUTS:
 3  [&quot;a&quot; 1030 false]
 (showing up to 500 rows)
 --------------------------------------------------------------------------
-</code></pre>
-
-<p>We can see that the value &ldquo;a&rdquo; was asserted in transaction 1028, retracted in 1030 and the new value &ldquo;b&rdquo; asserted in 1030.</p>
-
+</code></pre><p>We can see that the value &ldquo;a&rdquo; was asserted in transaction 1028, retracted in 1030 and the new value &ldquo;b&rdquo; asserted in 1030.</p>
 <h2 id="debuggetasof"><code>debugGetAsOf(..)</code></h2>
-
 <p>Using the same example transaction above we can debug data at a certain point in time by calling <code>debugGetAsOf(t)</code>:</p>
-
-<pre><code class="language-scala">Ns(e1).t.a.v.op.debugGetAsOf(t1)
-</code></pre>
-
-<p>And get</p>
-
+<pre><code>Ns(e1).t.a.v.op.debugGetAsOf(t1)
+</code></pre><p>And get</p>
 <pre><code>--------------------------------------------------------------------------
 Model(List(
   Meta(&quot;?&quot;, &quot;e_&quot;, &quot;Long&quot;, Eq(Seq(17592186045445L))),
@@ -1088,19 +1051,11 @@ OUTPUTS:
 1  [&quot;a&quot; 1028 true]
 (showing up to 500 rows)
 --------------------------------------------------------------------------
-</code></pre>
-
-<p>Showing the <code>:Ns/str</code> value at transaction 1028</p>
-
+</code></pre><p>Showing the <code>:Ns/str</code> value at transaction 1028</p>
 <h2 id="debuggetsince"><code>debugGetSince(..)</code></h2>
-
 <p>Likewise we can get changes of attribute <code>:Ns/int</code> since transaction t1/1028</p>
-
-<pre><code class="language-scala">Ns(e1).int.t.op.debugGetSince(t1)
-</code></pre>
-
-<p>And see that <code>:Ns/int</code> value 2 was asserted in transaction 1031:</p>
-
+<pre><code>Ns(e1).int.t.op.debugGetSince(t1)
+</code></pre><p>And see that <code>:Ns/int</code> value 2 was asserted in transaction 1031:</p>
 <pre><code>--------------------------------------------------------------------------
 Model(List(
   Meta(&quot;?&quot;, &quot;e_&quot;, &quot;Long&quot;, Eq(Seq(17592186045445L))),
@@ -1136,14 +1091,10 @@ OUTPUTS:
 1  [2 1031 true]
 (showing up to 500 rows)
 --------------------------------------------------------------------------
-</code></pre>
-
-<h2 id="debuggetwith-txdata"><code>debugGetWith(txData..)</code></h2>
-
+</code></pre><h2 id="debuggetwithtxdata"><code>debugGetWith(txData..)</code></h2>
 <p>The <code>with</code> time filter is a bit special since transactional data is supplied to the method. So the
 <code>debugGetWith(..)</code> method will also display the transactional data:</p>
-
-<pre><code class="language-scala">// Normal `getWith` call with some sample data
+<pre><code>// Normal `getWith` call with some sample data
 val fred = Ns.str(&quot;Fred&quot;).int(42).save.eid
 Ns.str.int.debugGetWith(
   Ns.str(&quot;John&quot;).int(44).getSaveTx,
@@ -1153,11 +1104,8 @@ Ns.str.int.debugGetWith(
   ),
   Ns(fred).int(43).getUpdateTx
 )
-</code></pre>
-
-<p>Will print Model &#10230; Query &#10230; Datalog Query &#10230; Data + statements for the
+</code></pre><p>Will print Model ⟶ Query ⟶ Datalog Query ⟶ Data + statements for the
 3 transaction molecules applied:</p>
-
 <pre><code>--------------------------------------------------------------------------
 Model(List(
   Atom(&quot;Ns&quot;, &quot;str&quot;, &quot;String&quot;, 1, VarValue, None, Seq(), Seq()),
@@ -1209,10 +1157,7 @@ OUTPUTS:
   1          List(
     1          :db/add    17592186045451                   :Ns/int              43))
 ================================================================================================================
-</code></pre>
-
-<h3 id="next">Next</h3>
-
+</code></pre><h3 id="next">Next</h3>
 <p><a href="/manual/debug/debug-transactions">Debug transactions&hellip;</a></p>
 
     </div>

@@ -803,7 +803,7 @@
             <div class="col-md-2 column" style="padding-top:20px;padding-right:0px;">
                 <ul class="nav nav-pills" style="float:right;">
                     <li>
-                        <a href="/changelog" style="margin-top:-2px;">v0.21.0</a>
+                        <a href="/changelog" style="margin-top:-2px;">v0.22.0</a>
                     </li>
                     <li>
                         <div style="padding-left:14px;">
@@ -826,88 +826,50 @@
 <div class="container" style="padding-top:20px">
 
     <div class="col-sm-10 column" style="padding-left:8px;">
-        
-
-<h1 id="retract-data">Retract data</h1>
-
+        <h1 id="retract-data">Retract data</h1>
 <p><a href="https://github.com/scalamolecule/molecule/blob/master/coretests/src/test/scala/molecule/coretests/crud/Retract.scala">Tests&hellip;</a></p>
-
 <p>In Datomic, retracting a fact saves a retracted Datom with the <code>added</code> operation set to <code>false</code>. Retracted datoms will not
 show up in queries of the current data. But if you query historical data with for instance <a href="/manual/time/asof-since/">asOf</a>
 you&rsquo;ll see what the value was before it was retracted. This mechanism provides Datomic with built-in auditing of
 all of its data since none is deleted!</p>
-
 <h2 id="retract-facts">Retract facts</h2>
-
 <p>To retract individual attributre values apply empty parenthesises to
 the attribute we want to retract and then update the molecule:</p>
-
-<pre><code class="language-scala">Community(belltownId).name().category().update
-</code></pre>
-
-<p>Here we retracted the <code>name</code> and <code>category</code> attribute values of the Belltown Community entity:</p>
-
+<pre><code>Community(belltownId).name().category().update
+</code></pre><p>Here we retracted the <code>name</code> and <code>category</code> attribute values of the Belltown Community entity:</p>
 <h2 id="retract-an-entity">Retract an entity</h2>
-
 <p>To delete a whole entity with all its attribute values we can call <code>retract</code> on a <code>Long</code> entity id</p>
-
-<pre><code class="language-scala">fredId.retract
-</code></pre>
-
-<p>All attributes having the entity id <code>fredId</code> are retracted.</p>
-
+<pre><code>fredId.retract
+</code></pre><p>All attributes having the entity id <code>fredId</code> are retracted.</p>
 <h3 id="add-tx-meta-data-to-retraction-on-entity-id">Add Tx meta data to retraction on entity id</h3>
-
 <p>Associate transaction meta data to a retraction on an entity id</p>
-
-<pre><code class="language-scala">fredId.Tx(MyUseCase.name(&quot;Terminate membership&quot;)).retract
-</code></pre>
-
-<p>We can then afterwards use the tx meta data to get information of retracted data:</p>
-
-<pre><code class="language-scala">// Who got their membership terminated and when?
+<pre><code>fredId.Tx(MyUseCase.name(&quot;Terminate membership&quot;)).retract
+</code></pre><p>We can then afterwards use the tx meta data to get information of retracted data:</p>
+<pre><code>// Who got their membership terminated and when?
 Person.e.name.t.op(false).Tx(MyUseCase.name_(&quot;Termminate membership&quot;)).getHistory === List(
   (fredId, &quot;Fred&quot;, t3, false) // Fred terminated his membership at transaction t3 and was retracted
 )
-</code></pre>
-
-<h2 id="retract-multiple-entities">Retract multiple entities</h2>
-
+</code></pre><h2 id="retract-multiple-entities">Retract multiple entities</h2>
 <p>Alternatively we can use the <code>retract</code> method (available via <code>import molecule.imports._</code>)</p>
-
-<pre><code class="language-scala">retract(fredId)
-</code></pre>
-
-<p>This <code>retract</code> method can also retract multiple entities</p>
-
-<pre><code class="language-scala">val eids: List[Long] = // some entity ids 
+<pre><code>retract(fredId)
+</code></pre><p>This <code>retract</code> method can also retract multiple entities</p>
+<pre><code>val eids: List[Long] = // some entity ids 
 
 // Retract all supplied entity ids
 retract(eids)
-</code></pre>
-
-<h3 id="add-tx-meta-data-to-retraction-of-multiple-entity-ids">Add Tx meta data to retraction of multiple entity ids</h3>
-
+</code></pre><h3 id="add-tx-meta-data-to-retraction-of-multiple-entity-ids">Add Tx meta data to retraction of multiple entity ids</h3>
 <p>.. and even associate transaction meta data to the retraction</p>
-
-<pre><code class="language-scala">// Retract multiple entity ids and some tx meta data about the transaction
+<pre><code>// Retract multiple entity ids and some tx meta data about the transaction
 retract(eids, MyUseCase.name(&quot;Terminate membership&quot;))
-</code></pre>
-
-<p>Again, we can then afterwards use the tx meta data to get information of retracted data:</p>
-
-<pre><code class="language-scala">// Who got their membership terminated and when?
+</code></pre><p>Again, we can then afterwards use the tx meta data to get information of retracted data:</p>
+<pre><code>// Who got their membership terminated and when?
 Person.e.name.t.op(false).Tx(MyUseCase.name_(&quot;Termminate membership&quot;)).getHistory === List(
   (fredId, &quot;Fred&quot;, t3, false), // Fred terminated his membership at transaction t3 and was retracted
   (lisaId, &quot;Lisa&quot;, t5, false)  // Lisa terminated her membership at transaction t5 and was retracted
 )
-</code></pre>
-
-<h2 id="retract-component-entity">Retract component entity</h2>
-
+</code></pre><h2 id="retract-component-entity">Retract component entity</h2>
 <p>If a ref attribute is defined with the option <code>isComponent</code> then it &ldquo;owns&rdquo; its related entities - or &ldquo;subcomponents&rdquo;, as when an <code>Order</code> own its <code>LineItem</code>s.</p>
-
-<pre><code class="language-scala">object ProductsOrderDefinition {
+<pre><code>object ProductsOrderDefinition {
 
   trait Order {
     val id    = oneInt
@@ -920,30 +882,20 @@ Person.e.name.t.op(false).Tx(MyUseCase.name_(&quot;Termminate membership&quot;))
     val qty     = oneInt
   }
 }
-</code></pre>
-
-<p>If we retract such <code>Order</code>, then all
+</code></pre><p>If we retract such <code>Order</code>, then all
 of its related <code>LineItem</code>s are also retracted:</p>
-
-<pre><code class="language-scala">orderId.retract // All related `LineItem`s are also retracted!
+<pre><code>orderId.retract // All related `LineItem`s are also retracted!
 
 // or
 retract(orderId)
-</code></pre>
-
-<p>Component entities are recursively retracted! So if <code>LineItem</code> would have had subcomponents then those would have been retracted too when the order
+</code></pre><p>Component entities are recursively retracted! So if <code>LineItem</code> would have had subcomponents then those would have been retracted too when the order
 was retracted - and so on down the hierarchy of subcomponents.</p>
-
 <h2 id="asynchronous-retract">Asynchronous retract</h2>
-
 <p>All transactional operators have an asynchronous equivalent.</p>
-
 <p>Retracting entities asynchronously uses
 Datomic&rsquo;s asynchronous API and returns a <code>Future</code> with a <code>TxReport</code>.</p>
-
 <p>Here, we map over the result of retracting an entity asynchronously (in the inner mapping):</p>
-
-<pre><code class="language-scala">// Initial data
+<pre><code>// Initial data
 Ns.int.insertAsync(1, 2).map { tx =&gt; // tx report from successful insert transaction
   // 2 inserted entities
   val List(e1, e2) = tx.eids
@@ -955,11 +907,8 @@ Ns.int.insertAsync(1, 2).map { tx =&gt; // tx report from successful insert tran
     Ns.int.get === List(2)
   }
 }
-</code></pre>
-
-<p>Retract multiple entities asynchronously:</p>
-
-<pre><code class="language-scala">// Initial data
+</code></pre><p>Retract multiple entities asynchronously:</p>
+<pre><code>// Initial data
 Ns.int.insertAsync(1, 2, 3).map { tx =&gt; // tx report from successful insert transaction
   // 2 inserted entities
   val List(e1, e2, e3) = tx.eids
@@ -971,10 +920,7 @@ Ns.int.insertAsync(1, 2, 3).map { tx =&gt; // tx report from successful insert t
     Ns.int.get === List(3)
   }
 }
-</code></pre>
-
-<h3 id="next">Next</h3>
-
+</code></pre><h3 id="next">Next</h3>
 <p><a href="/manual/transactions">Transactions&hellip;</a></p>
 
     </div>

@@ -803,7 +803,7 @@
             <div class="col-md-2 column" style="padding-top:20px;padding-right:0px;">
                 <ul class="nav nav-pills" style="float:right;">
                     <li>
-                        <a href="/changelog" style="margin-top:-2px;">v0.21.0</a>
+                        <a href="/changelog" style="margin-top:-2px;">v0.22.0</a>
                     </li>
                     <li>
                         <div style="padding-left:14px;">
@@ -826,14 +826,9 @@
 <div class="container" style="padding-top:20px">
 
     <div class="col-sm-10 column" style="padding-left:8px;">
-        
-
-<h1 id="top">Molecule changelog</h1>
-
+        <h1 id="top">Molecule changelog</h1>
 <p><a href="https://github.com/scalamolecule/molecule/releases">Github releases</a></p>
-
 <p>Main changes:</p>
-
 <ul>
 <li>2019-10-24 v0.20.0 <a href="#31">Molecule for Scala.js</a></li>
 <li>2019-10-20 v0.19.1 <a href="#30">Date handling corrected</a></li>
@@ -867,29 +862,19 @@
 <li>2014-12-25 v0.2.0 <a href="#2">Implemented Day-Of-Datomic and MBrainz</a></li>
 <li>2014-07-02 v0.1.0 <a href="#1">Initial commit - Seattle tutorial</a></li>
 </ul>
-
 <h2 id="31"><a href="#top">☝︎</a> Molecule for Scala.js</h2>
-
 <p><em>2019-10-24 v0.20.0</em></p>
-
 <p>Molecule AST&rsquo;s and generic interfaces compiled for Scala.js.</p>
-
 <p>See the <a href="https://github.com/scalamolecule/molecule-admin">molecule-admin</a> project for
 an example of how Molecule is used both on the server and client side.</p>
-
 <h2 id="30"><a href="#top">☝︎</a> Date handling corrected</h2>
-
 <p><em>2019-10-20 v0.19.1</em></p>
-
 <ul>
 <li>Bug fixes: Date formatting with correct timezone and daylight savings</li>
 <li>Bug fix: duplicate optional attributes allowed</li>
 </ul>
-
 <h2 id="29"><a href="#top">☝︎</a> Cross-compiling to Scala 2.13.1 and 2.12.10</h2>
-
 <p><em>2019-09-22 v0.19.0</em></p>
-
 <ul>
 <li>Molecule now cross-compiles to Scala 2.12.10 and 2.13.1</li>
 <li>Generic entity id <code>e</code> can now be used together with aggregates.</li>
@@ -900,57 +885,37 @@ an example of how Molecule is used both on the server and client side.</p>
 <li>bug fix: generic attr before ref.</li>
 <li>Internal model semantics clarification, changing <code>ns</code> to <code>nsFull</code>.</li>
 </ul>
-
 <h2 id="28"><a href="#top">☝︎</a> Adapting to sbt-molecule 0.8.1</h2>
-
 <p><em>2019-05-17 v0.18.5</em></p>
-
 <p>Adapting to <code>sbt-molecule</code> 0.8.1 that now no longer adds MapK attributes to the schema creation file.</p>
-
 <h2 id="27"><a href="#top">☝︎</a> Aggregates implemented for card-many attributes</h2>
-
 <p><em>2019-05.13 v0.18.4</em></p>
-
 <ul>
 <li>Card-many attribute values can now be aggregated.</li>
 </ul>
-
 <h2 id="26"><a href="#top">☝︎</a> Bug fixes</h2>
-
 <p><em>2019-04-02 v0.18.3</em></p>
-
 <p>Bugfixes:</p>
-
 <ul>
 <li>Card-many ref attributes now have the same api as other card-many attributes (Set&rsquo;s of values can now be applied to both types).</li>
 <li>Variable resolution on fulltext searches added.</li>
-<li>Text attributes can now handle text input with quotation marks.<br /></li>
+<li>Text attributes can now handle text input with quotation marks.</li>
 <li>Touching entity ids with <code>Entity</code> now correctly handles all types.</li>
 </ul>
-
 <p>Improvement:</p>
-
 <ul>
 <li>For a more direct query evaluation, applying a single value to an attribute is now <code>ground</code>ed to a variable instead of using <code>comparison</code>.</li>
 </ul>
-
 <h2 id="25"><a href="#top">☝︎</a> Meta becomes Generic</h2>
-
 <p><em>2019-03-10 v0.18.2</em></p>
-
 <h2 id="24"><a href="#top">☝︎</a> Shift Meta semantics</h2>
-
 <p><em>2019-03-09 v0.18.1</em></p>
-
 <h2 id="23"><a href="#top">☝︎</a> Synchronized internal naming scheme + bug fixes</h2>
-
 <p><em>2019-03-07 v0.18.0</em></p>
-
 <p>In order to synchronize scala molecule boilerplate code and its internal representation,
 namespace names are now capitalized also in molecule model/query/datalog. This
 applies when no custom partitions are defined (and namespaces not partition-prefixed):</p>
-
-<pre><code class="language-scala">// Namespace names are now capitalized in the model
+<pre><code>// Namespace names are now capitalized in the model
 m(Community.name)._model === Model(List(
   Atom(&quot;Community&quot;, &quot;name&quot;, &quot;String&quot;, 1, VarValue) // &quot;Community&quot; now uppercase
 ))
@@ -967,18 +932,13 @@ Schema.a.part.ns.nsFull.attr.get === List((
 // Produced Datalog queries will also use the uppercase namespace name 
 [:find  ?b
  :where [?a :Community/name ?b]]
-</code></pre>
-
-<p>This change takes away the need to lower/capitalize namespace names back and forth
+</code></pre><p>This change takes away the need to lower/capitalize namespace names back and forth
 between the source code representation and molecule model/query/datalog representations.
 It also makes it easier to distinguish between namespace/attribute names in internal
 molecule representations.</p>
-
 <h3 id="unaffected-with-custom-partitions">Unaffected with custom partitions</h3>
-
 <p>As before, custom partition-prefixed namespaces are unaffected:</p>
-
-<pre><code class="language-scala">// Namespace names are now capitalized in the model
+<pre><code>// Namespace names are now capitalized in the model
 m(accounting_Invoice.invoiceLine)._model === Model(List(
   Atom(&quot;accounting_Invoice&quot;, &quot;invoiceLine&quot;, &quot;ref&quot;, 1, VarValue)
 ))
@@ -995,20 +955,14 @@ Schema.a.part.ns.nsFull.attr.get === List((
 // Datalog query 
 [:find  ?b
  :where [?a :accounting_Invoice/invoiceLine ?b]]
-</code></pre>
-
-<h3 id="working-with-non-molecule-datomic-databases">Working with non-molecule Datomic databases</h3>
-
+</code></pre><h3 id="working-with-non-molecule-datomic-databases">Working with non-molecule Datomic databases</h3>
 <p>For the end user internal uppercase namespace names have no impact unless you are working
 with externally defined Datomic databases or data sets that can have lowercase namespace
 names defined.</p>
-
 <p>The sbt-plugin (as of version 0.8) now generates two additional schema transaction files
 that can be transacted with the external lowercase database so that you can use your
 uppercase Molecule code with it:</p>
-
-<h4 id="molecule-schema-uppercase-external-data-lowercase">Molecule schema (uppercase) + external data (lowercase)</h4>
-
+<h4 id="molecule-schema-uppercase--external-data-lowercase">Molecule schema (uppercase) + external data (lowercase)</h4>
 <p>When importing external data
 (<a href="https://github.com/scalamolecule/molecule/blob/master/examples/src/test/scala/molecule/examples/seattle/SeattleTests.scala#L367-L368">example</a>)
 from a database with lowercase namespace names then you can
@@ -1016,79 +970,48 @@ transact lowercase attribute aliases
 (<a href="https://github.com/scalamolecule/molecule/blob/master/examples/src/test/scala/molecule/examples/seattle/SeattleSpec.scala#L18">example</a>)
 so that your uppercase Molecule code can recognize the
 imported lowercase data:</p>
-
-<pre><code class="language-scala">conn.datomicConn.transact(SchemaUpperToLower.namespaces)
-</code></pre>
-
-<h4 id="external-schema-lowercase-external-data-lowercase">External schema (lowercase) + external data (lowercase)</h4>
-
+<pre><code>conn.datomicConn.transact(SchemaUpperToLower.namespaces)
+</code></pre><h4 id="external-schema-lowercase--external-data-lowercase">External schema (lowercase) + external data (lowercase)</h4>
 <p>If both external schema and data is created with lowercase namespace names, then you can transact
 uppercase attribute aliases with the live database so that it will recognize your uppercase
 molecule code
 (<a href="https://github.com/scalamolecule/molecule/blob/master/examples/src/test/scala/molecule/examples/mbrainz/MBrainz.scala#L38">example</a>):</p>
-
-<pre><code class="language-scala">conn.datomicConn.transact(MBrainzSchemaLowerToUpper.namespaces)
-</code></pre>
-
-<h2 id="22"><a href="#top">☝︎</a> Datoms, Indexes, Log, Schema and debugging</h2>
-
+<pre><code>conn.datomicConn.transact(MBrainzSchemaLowerToUpper.namespaces)
+</code></pre><h2 id="22"><a href="#top">☝︎</a> Datoms, Indexes, Log, Schema and debugging</h2>
 <p><em>2019-01-15 v0.17.0</em></p>
-
 <p>7 Generic APIs introduced/streamlined to access data and schema generically. Some examples:</p>
-
 <h4 id="datoms">Datoms</h4>
-
 <p>Entity id of Ben with generic datom attribute <code>e</code> on a custom molecule&hellip;</p>
-
-<pre><code class="language-scala">Person.e.name.get.head === (benEntityId, &quot;Ben&quot;)
-</code></pre>
-
-<h4 id="eavt-index">EAVT index</h4>
-
+<pre><code>Person.e.name.get.head === (benEntityId, &quot;Ben&quot;)
+</code></pre><h4 id="eavt-index">EAVT index</h4>
 <p>Attributes/values of entity id <code>e1</code>&hellip;</p>
-
-<pre><code class="language-scala">EAVT(e1).e.a.v.t.get === List(
+<pre><code>EAVT(e1).e.a.v.t.get === List(
   (e1, &quot;:person/name&quot;, &quot;Ben&quot;, t1),
   (e1, &quot;:person/age&quot;, 42, t2),
   (e1, &quot;:golf/score&quot;, 5.7, t2)
 )
-</code></pre>
-
-<h4 id="avet-index">AVET index</h4>
-
+</code></pre><h4 id="avet-index">AVET index</h4>
 <p>Values and entity associations for attribute <code>:person/age</code>&hellip;</p>
-
-<pre><code class="language-scala">AVET(&quot;:person/age&quot;).v.e.t.get === List(
+<pre><code>AVET(&quot;:person/age&quot;).v.e.t.get === List(
   (42, e1, t2),
   (37, e2, t5),
   (14, e3, t7)
 )
-</code></pre>
-
-<p>Datomic&rsquo;s <a href="http://docs.datomic.com/on-prem/javadoc/datomic/Database.html#indexRange(java.lang.Object,%20java.lang.Object,%20java.lang.Object)">indexRange API</a>
+</code></pre><p>Datomic&rsquo;s <a href="http://docs.datomic.com/on-prem/javadoc/datomic/Database.html#indexRange(java.lang.Object,%20java.lang.Object,%20java.lang.Object)">indexRange API</a>
 is also implemented&hellip;</p>
-
-<pre><code class="language-scala">// Entities and transactions of age attribute with values between 14 and 37
+<pre><code>// Entities and transactions of age attribute with values between 14 and 37
 AVET.range(&quot;:person/age&quot;, Some(14), Some(37)).v.e.t.get === List(
   (14, e4, t7) // 14 is included in value range
 )
-</code></pre>
-
-<h4 id="aevt-index">AEVT index</h4>
-
+</code></pre><h4 id="aevt-index">AEVT index</h4>
 <p>Entity ids, values and transaction t&rsquo;s of attribute <code>:person/name</code>:</p>
-
-<pre><code class="language-scala">AEVT(&quot;:person/name&quot;).e.v.t.get === List(
+<pre><code>AEVT(&quot;:person/name&quot;).e.v.t.get === List(
   (e1, &quot;Ben&quot;, t2),
   (e2, &quot;Liz&quot;, t5)
 )
-</code></pre>
-
-<h4 id="vaet-index">VAET index</h4>
-
+</code></pre><h4 id="vaet-index">VAET index</h4>
 <p>Reverse index for ref attributes&hellip;</p>
-
-<pre><code class="language-scala">// Say we have 3 entities pointing to one entity:
+<pre><code>// Say we have 3 entities pointing to one entity:
 Release.e.name.Artists.e.name.get === List(
   (r1, &quot;Abbey Road&quot;, a1, &quot;The Beatles&quot;),
   (r2, &quot;Magical Mystery Tour&quot;, a1, &quot;The Beatles&quot;),
@@ -1101,13 +1024,9 @@ VAET(a1).v.a.e.get === List(
   (a1, &quot;:release/artists&quot;, r2),
   (a1, &quot;:release/artists&quot;, r3)
 )
-</code></pre>
-
-<h4 id="log-index">Log index</h4>
-
+</code></pre><h4 id="log-index">Log index</h4>
 <p>Access to datoms index sorted by transaction/time:</p>
-
-<pre><code class="language-scala">// Data from transaction t1 (inclusive) until t4 (exclusive)
+<pre><code>// Data from transaction t1 (inclusive) until t4 (exclusive)
 Log(Some(t1), Some(t4)).t.e.a.v.op.get === List(
   (t1, e1, &quot;:person/name&quot;, &quot;Ben&quot;, true),
   (t1, e1, &quot;:person/age&quot;, 41, true),
@@ -1118,47 +1037,30 @@ Log(Some(t1), Some(t4)).t.e.a.v.op.get === List(
   (t3, e1, &quot;:person/age&quot;, 41, false),
   (t3, e1, &quot;:person/age&quot;, 42, true)
 )
-</code></pre>
-
-<h4 id="schema">Schema</h4>
-
+</code></pre><h4 id="schema">Schema</h4>
 <p>Programatically explore your <code>Schema</code> structure&hellip;</p>
-
-<pre><code class="language-scala">// Datomic type and cardinality of attributes
+<pre><code>// Datomic type and cardinality of attributes
 Schema.a.tpe.card.get === List (
   (&quot;:sales_customer/name&quot;, &quot;string&quot;, &quot;one&quot;),
   (&quot;:accounting_invoice/invoiceLine&quot;, &quot;ref&quot;, &quot;many&quot;),
 )
-</code></pre>
-
-<h3 id="debugging">Debugging</h3>
-
+</code></pre><h3 id="debugging">Debugging</h3>
 <p>Various debugging methods to explore molecule queries and transactional commands.</p>
-
 <h2 id="21"><a href="#top">☝︎</a> Sbt-molecule plugin compilation speed optimizations</h2>
-
 <p><em>2018-11-25 v0.16.1</em></p>
-
 <p>Minor upgrade to match <a href="https://github.com/scalamolecule/sbt-molecule">sbt-molecule</a> plugin v0.7.0.</p>
-
 <p>When compiling a molecule project with <code>sbt compile</code>, compilation of boilerplate
 code is now 4-5x faster than with v0.6.2. Using lazy vals for attributes and
 methods for reference namespaces did the trick.</p>
-
 <p>Since attributes are now defined as lazy vals in boilerplate code, we can no longer
 override some super/base structure where we earlier saved the doc comments. Alternatively
 we could add doc comments to all arities of boilerplate attributes. But that would be
 a lot of redundancy. Combined with the massive compilation speed improvement doc comments
 are therefore skipped.</p>
-
 <h2 id="20"><a href="#top">☝︎</a> Async API + tx functions</h2>
-
 <p><em>2018-11-25 <a href="https://github.com/scalamolecule/molecule/releases/tag/v0.16.0">v0.16.0</a></em></p>
-
-<h3 id="sync-asyncapis">Sync/AsyncAPIs</h3>
-
+<h3 id="syncasyncapis">Sync/AsyncAPIs</h3>
 <p>All getter methods now have an asynchronous equivalent method that returns a Scala Future with the data:</p>
-
 <ul>
 <li><code>get</code> / <code>getAsync</code> - Default List of typed tuples for convenient access to smaller data sets.</li>
 <li><code>getArray</code> / <code>getAsyncArray</code> - Array of typed tuples for fast retrieval and traversing of large data sets.</li>
@@ -1166,36 +1068,27 @@ are therefore skipped.</p>
 <li><code>getJson</code> / <code>getAsyncJson</code> - Json formatted result data</li>
 <li><code>getRaw</code> / <code>getAsyncRaw</code> - Raw untyped data from Datomic</li>
 </ul>
-
 <p>All transactional operations on molecules now similarly have async implementations returning a Future with
 a <code>TxReport</code> containing data about the transaction.</p>
-
 <ul>
 <li><code>save</code> / <code>saveAsync</code></li>
 <li><code>insert</code> / <code>insertAsync</code></li>
 <li><code>update</code> / <code>updateAsync</code></li>
 <li><code>retract</code> / <code>retractAsync</code></li>
 </ul>
-
 <h3 id="tx-functions">Tx functions</h3>
-
 <p>Molecule now implements typed transaction functions.</p>
-
 <p>Within the tx function you have access to the transaction database value so that you can ensure any
 synchronization constraints before returning the resulting tx statements to be transacted. To abort
 the whole transaction if a constraint is not met, simply throw an exception. Either all tx statements
 will transact successfully or none will thereby ensuring atomicity of the transaction.</p>
-
 <p>Any complexity of logic can be performed within a tx function as long as no side effects are produced
 (like trying to update the database within the tx method body).</p>
-
 <h3 id="tx-function-definitions">Tx function definitions</h3>
-
 <p>Tx functions in Datomic are untyped (takes arguments of type <code>Object</code>). But Molecule allows you to
 define typed tx methods inside a <code>@TxFns</code>-annotated object that will automatically create equivalent &ldquo;twin&rdquo;
 functions with the shape that Datomic expects and save them in the Datamic database transparently for you.</p>
-
-<pre><code class="language-scala">@TxFns
+<pre><code>@TxFns
 object myTxFns {
   // Constraint check before multiple updates
   def transfer(from: Long, to: Long, amount: Int)(implicit conn: Conn): Seq[Seq[Statement]] = {
@@ -1214,23 +1107,15 @@ object myTxFns {
     Ns(from).int(newFromBalance).getUpdateTx ++ Ns(to).int(newToBalance).getUpdateTx
   }
 }
-</code></pre>
-
-<p>Tx function are invoked in application code with the <code>transact</code> or <code>transactAsync</code> method:</p>
-
-<pre><code class="language-scala">transact(transfer(fromAccount, toAccount, 20))
-</code></pre>
-
-<p><code>transact</code> (or <code>transactAsync</code>) is a macro that analyzes the tx function signature to be able to
+</code></pre><p>Tx function are invoked in application code with the <code>transact</code> or <code>transactAsync</code> method:</p>
+<pre><code>transact(transfer(fromAccount, toAccount, 20))
+</code></pre><p><code>transact</code> (or <code>transactAsync</code>) is a macro that analyzes the tx function signature to be able to
 invoke its generated twin method within Datomic.</p>
-
 <h3 id="bundled-transactions">Bundled transactions</h3>
-
 <p>If the transactional logic is not dependent on access to the transaction database value,
 multiple &ldquo;bundled&rdquo; tx statements can now be created by adding molecule tx statements to
 one of the bundling <code>transact</code> or <code>transactAsync</code> methods:</p>
-
-<pre><code class="language-scala">transact(
+<pre><code>transact(
   // retract
   e1.getRetractTx,
   // save
@@ -1240,60 +1125,41 @@ one of the bundling <code>transact</code> or <code>transactAsync</code> methods:
   // update
   Ns(e2).int(20).getUpdateTx
 )
-</code></pre>
-
-<p>Tx statement getters for the molecule operations are used to get the tx statements to be transacted
+</code></pre><p>Tx statement getters for the molecule operations are used to get the tx statements to be transacted
 in one transaction. As with tx functions, only all tx statements will atomically transact or none will
 if there is some transactional error.</p>
-
 <h3 id="composite-syntax">Composite syntax</h3>
-
 <p>Composite molecules are now tied together with <code>+</code> instead of <code>~</code>.</p>
-
-<pre><code class="language-scala">m(Ref2.int2 + Ns.int).get.sorted === Seq(
+<pre><code>m(Ref2.int2 + Ns.int).get.sorted === Seq(
   (1, 11),
   (2, 22)
 )
-</code></pre>
-
-<p>This change was made to avoid collision with the upcoming splice operator <code>~</code> in the next
+</code></pre><p>This change was made to avoid collision with the upcoming splice operator <code>~</code> in the next
 major version of Scala/Dotty (see <a href="https://www.scala-lang.org/blog/2018/04/30/in-a-nutshell.html">MACROS: THE PLAN FOR SCALA 3</a>)</p>
-
 <p>Composite inserts previously had its own special insert method but now shares syntax
 with other inserts</p>
-
-<pre><code class="language-scala">val List(e1, e2) = Ref2.int2 + Ns.int insert Seq(
+<pre><code>val List(e1, e2) = Ref2.int2 + Ns.int insert Seq(
   // Two rows of data
   (1, 11),
   (2, 22)
 ) eids
-</code></pre>
-
-<h2 id="19"><a href="#top">☝︎</a> 10x-100x Compilation speed boost!</h2>
-
+</code></pre><h2 id="19"><a href="#top">☝︎</a> 10x-100x Compilation speed boost!</h2>
 <p><em>2018-10-25 <a href="https://github.com/scalamolecule/molecule/releases/tag/v0.15.0">v0.15.0</a></em></p>
-
 <p>The core macro transformation engine has been re-written from the ground up and
 <a href="http://www.lihaoyi.com/post/MicrooptimizingyourScalacode.html#bit-packing">micro-optimizations</a>
 applied wherever possible. This has resulted in dramatic compilation speed improvements, some several orders of magnitude!</p>
-
 <p>Macro materialization of molecules earlier produced a lot of code that has now been moved out to static methods. An absolute
 minimal amount of code is now generated minimizing the job of the macros and the compiler. As an example, the
 <a href="https://github.com/scalamolecule/molecule/blob/master/examples/src/test/scala/molecule/examples/seattle/SeattleTests.scala">Seattle tests</a>
 file sometimes took up to 70 seconds to compile and now average around 4 seconds. Some long molecules with close to 22
 attributes almost never finished compiling but now take about 2 seconds to compile! This is good news since users of
 Molecule can therefore now freely create as large molecules as they please without any speed penalty.</p>
-
 <h3 id="5-optimized-getter-groups">5 optimized getter groups</h3>
-
 <p>Type casting of returned data from Datomic was earlier not completely optimized. Taking advice from
 <a href="http://www.lihaoyi.com/post/BenchmarkingScalaCollections.html">Haoyi&rsquo;s &ldquo;Benchmarking Scala Collections&rdquo;</a>
 Molecule now also returns super fast mutable pre-allocated Arrays of typed data for large data sets.</p>
-
 <p>Json has also been thoroughly optimized to build as fast as possible directly from raw Datomic data.</p>
-
 <p>So Molecule now offers 5 optimized <a href="http://www.scalamolecule.org/api/molecule/action/get/">getter groups</a>:</p>
-
 <ul>
 <li><code>get</code> - Default List of typed tuples for convenient access to smaller data sets.</li>
 <li><code>getArray</code> - Array of typed tuples for fast retrieval and traversing of large data sets.</li>
@@ -1301,9 +1167,7 @@ Molecule now also returns super fast mutable pre-allocated Arrays of typed data 
 <li><code>getJson</code> - Json formatted result data</li>
 <li><code>getRaw</code> - Raw untyped data from Datomic</li>
 </ul>
-
 <p>Each getter group comes with all time-related variations:</p>
-
 <ul>
 <li><code>get</code></li>
 <li><code>getAsOf(t)</code></li>
@@ -1311,33 +1175,22 @@ Molecule now also returns super fast mutable pre-allocated Arrays of typed data 
 <li><code>getWith(txData)</code></li>
 <li><code>getHistory</code> (only implemented for List getter)</li>
 </ul>
-
 <h2 id="18"><a href="#top">☝︎</a> Scala docs and semantic updates</h2>
-
 <p><em>2018-09-06 <a href="https://github.com/scalamolecule/molecule/releases/tag/v0.14.0">v0.14.0</a></em></p>
-
 <p>Major overhaul of Molecule:</p>
-
 <h3 id="thorough-scala-docs-api-documentation">Thorough Scala docs API documentation</h3>
-
 <p>All relevant public interfaces have been documented in the new <a href="http://www.scalamolecule.org/api/molecule">Scala docs</a>.
 Shortcuts to Scala docs sub packages and documents are also directly available via &ldquo;API docs&rdquo; in the menu on the
 <a href="http://www.scalamolecule.org">Molecule website</a>.</p>
-
 <p>To aid constructing molecules in your code, all attributes defined now also have Scala docs automatically defined
 by the <a href="https://github.com/scalamolecule">sbt-molecule plugin</a> upon compilation.</p>
-
 <h3 id="input-molecules-correctly-implemented">Input molecules correctly implemented</h3>
-
 <p>Input molecules are now semantically correctly implemented and thoroughly tested
 (<a href="https://github.com/scalamolecule/molecule/blob/master/coretests/src/test/scala/molecule/coretests/input1">1 input</a>,
 <a href="https://github.com/scalamolecule/molecule/blob/master/coretests/src/test/scala/molecule/coretests/input2">2 inputs</a>,
 <a href="https://github.com/scalamolecule/molecule/blob/master/coretests/src/test/scala/molecule/coretests/input3">3 inputs</a>).</p>
-
 <h3 id="interfaces-updated-and-streamlined">Interfaces updated and streamlined</h3>
-
 <p>The standard getters return Lists of tuples of type-casted tuples.</p>
-
 <ul>
 <li><code>get</code></li>
 <li><code>getAsOf(t)</code></li>
@@ -1345,10 +1198,8 @@ by the <a href="https://github.com/scalamolecule">sbt-molecule plugin</a> upon c
 <li><code>getHistory</code></li>
 <li><code>getWith(txData)</code></li>
 </ul>
-
 <p>If large data sets are expected, an Iterable of tuples of lazily type-cased tuples can be retrieved instead.
 Data is type-casted on each call to <code>next</code> on the iterator.</p>
-
 <ul>
 <li><code>getIterable</code></li>
 <li><code>getIterableAsOf(t)</code></li>
@@ -1356,9 +1207,7 @@ Data is type-casted on each call to <code>next</code> on the iterator.</p>
 <li><code>getIterableHistory</code></li>
 <li><code>getIterableWith(txData)</code></li>
 </ul>
-
 <p>If typed data is not required we can get the raw untyped java collections of Lists of objects.</p>
-
 <ul>
 <li><code>getRaw</code></li>
 <li><code>getRawAsOf(t)</code></li>
@@ -1366,54 +1215,36 @@ Data is type-casted on each call to <code>next</code> on the iterator.</p>
 <li><code>getRawHistory</code></li>
 <li><code>getRawWith(txData)</code></li>
 </ul>
-
 <h3 id="breaking-changes">Breaking changes</h3>
-
 <p>The whole directory layout of the Molecule library has been re-arranged and optimized, including many interfaces.
 So you might have to change some method names if you have used earlier versions of Molecule.</p>
-
 <h2 id="17"><a href="#top">☝︎</a> Native Json output</h2>
-
 <p><em>2017-11-13 <a href="https://github.com/scalamolecule/molecule/releases/tag/v0.13.0">v0.13.0</a></em></p>
-
 <p>We can now get data in json format directly from the database by calling <code>getJson</code> on a molecule. So instead of converting
 tuples of data to json with some 3rd party library we can call <code>getJson</code> and pass the json data string directly to an
 Angular table for instance.</p>
-
 <p>Internally, Molecule builds the json string in a StringBuffer directly from the raw data coming from Datomic
 (with regards to types being quoted or not). This should make it the fastest way of supplying json data when needed.</p>
-
 <h3 id="flat-data">Flat data</h3>
-
 <p>Normal &ldquo;flat&rdquo; molecules creates json with a row on each line in the output:</p>
-
-<pre><code class="language-scala">Person.name.age.getJson ===
+<pre><code>Person.name.age.getJson ===
   &quot;&quot;&quot;[
     |{&quot;name&quot;: &quot;Fred&quot;, &quot;age&quot;: 38},
     |{&quot;name&quot;: &quot;Lisa&quot;, &quot;age&quot;: 35}
     |]&quot;&quot;&quot;.stripMargin
-</code></pre>
-
-<h3 id="composite-data">Composite data</h3>
-
+</code></pre><h3 id="composite-data">Composite data</h3>
 <p>Composite data has potential field name clashes so each sub part of the composite is rendered
 as a separate json object tied together in an array for each row:</p>
-
-<pre><code class="language-scala">m(Person.name.age ~ Category.name.importance).getJson ===
+<pre><code>m(Person.name.age ~ Category.name.importance).getJson ===
   &quot;&quot;&quot;[
     |[{&quot;name&quot;: &quot;Fred&quot;, &quot;age&quot;: 38}, {&quot;name&quot;: &quot;Marketing&quot;, &quot;importance&quot;: 6}],
     |[{&quot;name&quot;: &quot;Lisa&quot;, &quot;age&quot;: 35}, {&quot;name&quot;: &quot;Management&quot;, &quot;importance&quot;: 7}]
     |]&quot;&quot;&quot;.stripMargin
-</code></pre>
-
-<p>Note how a field <code>name</code> appears in each sub object. Since the molecule is defined in client code it is presumed that
+</code></pre><p>Note how a field <code>name</code> appears in each sub object. Since the molecule is defined in client code it is presumed that
 the semantics of eventual duplicate field names are also handled by client code.</p>
-
 <h3 id="nested-data">Nested data</h3>
-
 <p>Nested date is rendered as a json array with json objects for each nested row:</p>
-
-<pre><code class="language-scala">(Invoice.no.customer.InvoiceLines * InvoiceLine.item.qty.amount).getJson ===
+<pre><code>(Invoice.no.customer.InvoiceLines * InvoiceLine.item.qty.amount).getJson ===
   &quot;&quot;&quot;[
     |{&quot;no&quot;: 1, &quot;customer&quot;: &quot;Johnson&quot;, &quot;invoiceLines&quot;: [
     |   {&quot;item&quot;: &quot;apples&quot;, &quot;qty&quot;: 10, &quot;amount&quot;: 12.0},
@@ -1422,58 +1253,37 @@ the semantics of eventual duplicate field names are also handled by client code.
     |   {&quot;item&quot;: &quot;bananas&quot;, &quot;qty&quot;: 3, &quot;amount&quot;: 3.0},
     |   {&quot;item&quot;: &quot;oranges&quot;, &quot;qty&quot;: 1, &quot;amount&quot;: 0.5}]}
     |]&quot;&quot;&quot;.stripMargin
-</code></pre>
-
-<h2 id="16"><a href="#top">☝︎</a> Optional values in save-molecules</h2>
-
+</code></pre><h2 id="16"><a href="#top">☝︎</a> Optional values in save-molecules</h2>
 <p><em>2017-05-28 <a href="https://github.com/scalamolecule/molecule/releases/tag/v0.12.0">v0.12.0</a></em></p>
-
 <p>Often, form submissions have some optional field values. Molecule now allow us to <code>save</code> molecules with both mandatory
 and optional attributes.</p>
-
 <p>We could for instance have <code>aName</code>,  <code>optionalLikes</code> and <code>anAge</code> values from a form submission that we want to save.
 We can now apply those values directly to a mandatory <code>name</code> attribute, an optional <code>likes$</code> attribute (<code>$</code> appended
 makes it optional) and a mandatory <code>age</code> attribute of a save-molecule and then save it:</p>
-
-<pre><code class="language-scala">Person
+<pre><code>Person
   .name(aName)
   .likes$(optionalLikes)
   .age(anAge)
   .save
-</code></pre>
-
-<p>We can also, as before, <em>insert</em> the data using an &ldquo;insert-molecule&rdquo; as a template:</p>
-
-<pre><code class="language-scala">Person.name.likes$.age.insert(
+</code></pre><p>We can also, as before, <em>insert</em> the data using an &ldquo;insert-molecule&rdquo; as a template:</p>
+<pre><code>Person.name.likes$.age.insert(
   aName, optionalLikes, anAge
 )
-</code></pre>
-
-<p>It can be a matter of taste if you want to <code>save</code> or <code>insert</code> - but now you can choose :-)</p>
-
+</code></pre><p>It can be a matter of taste if you want to <code>save</code> or <code>insert</code> - but now you can choose :-)</p>
 <h2 id="15"><a href="#top">☝︎</a> Time API</h2>
-
 <p><em>2017-05-19 <a href="https://github.com/scalamolecule/molecule/releases/tag/v0.11.0">v0.11.0</a></em></p>
-
 <p>Datomic has some extremely powerful time functionality that Molecule now makes available in an intuitive way:</p>
-
 <h3 id="ad-hoc-time-queries">Ad-hoc time queries</h3>
-
 <p>Ad-hoc time queries against our database can now be made with the following time-aware getter methods on a molecule:</p>
-
-<pre><code class="language-scala">Person.name.age.getAsOf(t) === ... // Persons as of a point in time `t`
+<pre><code>Person.name.age.getAsOf(t) === ... // Persons as of a point in time `t`
 
 Person.name.age.getSince(t) === ... // Persons added after a point in time `t`
 
 Person(fredId).age.getHistory === ... // Current and previous ages of Fred in the db
-</code></pre>
-
-<p><code>t</code> can be a transaction entity id (<code>Long</code>), a transaction number (<code>Long</code>) or a <code>java.util.Date</code>.</p>
-
+</code></pre><p><code>t</code> can be a transaction entity id (<code>Long</code>), a transaction number (<code>Long</code>) or a <code>java.util.Date</code>.</p>
 <p>If we want to test the outcome of some transaction without affecting the production db we can apply transaction data to
 the <code>getWith(txData)</code> method:</p>
-
-<pre><code class="language-scala">Person.name.age.getWith(
+<pre><code>Person.name.age.getWith(
   // Testing adding some transactional data to the current db
   Person.name(&quot;John&quot;).age(42).saveTx, // Save transaction data
   Person.name.age.insertTx(
@@ -1482,26 +1292,18 @@ the <code>getWith(txData)</code> method:</p>
   Person(fredId).age(28).updateTx, // Update transaction data
   someEntityId.retractTx // Retraction transaction data
 ) === ... // Persons from db including transactions tested 
-</code></pre>
-
-<p>By adding the <code>Tx</code> suffix to the standard molecule commands (<code>save</code>, <code>insert</code>, <code>update</code> or <code>retract</code>)
+</code></pre><p>By adding the <code>Tx</code> suffix to the standard molecule commands (<code>save</code>, <code>insert</code>, <code>update</code> or <code>retract</code>)
 we can get the transactional data that those operations would normally transact directly. Here, <code>&lt;command&gt;Tx</code> methods
 on transaction molecules just return the transaction data so that we can apply it to the <code>getWith(txData)</code> method.
 This make it convenient for us to ask speculative questions like &ldquo;what would I get if I did those transactions&rdquo;.</p>
-
 <p>For more complex test scenarios we can now use a test database:</p>
-
 <h3 id="test-db">Test db</h3>
-
 <p>All molecules expect an implicit connection object to be in scope. If we then set a temporary test database on such <code>conn</code> object
 we can subsequentially freely perform tests against this temporary database as though it was a &ldquo;branch&rdquo; (think git).</p>
-
 <p>When the connection/db goes out of scope it is simply garbage collected automatically by the JVM. At any point we can also
 explicitly go back to continuing using our live production db.</p>
-
 <p>To make a few tests with our filtered db we can now do like this:</p>
-
-<pre><code class="language-scala">// Current state
+<pre><code>// Current state
 Person(fredId).name.age.get.head === (&quot;Fred&quot;, 27)
 
 // Create &quot;branch&quot; of our production db as it is right now
@@ -1519,20 +1321,14 @@ conn.useLiveDb
 
 // Production state is unchanged!
 Person(fredId).name.age.get.head === (&quot;Fred&quot;, 27)
-</code></pre>
-
-<h3 id="test-db-with-domain-classes">Test db with domain classes</h3>
-
+</code></pre><h3 id="test-db-with-domain-classes">Test db with domain classes</h3>
 <p>When molecules are used inside domain classes we want to test the domain operations also without affecting the state of our production database.
 And also ideally without having to create mockups of our domain objects. This is now possible by setting a temporary test database on the implicit
 connection object that all molecules expect to be present in their scope - which includes the molecules inside domain classes.</p>
-
 <p>When we test against a temporary database, Molecule internally uses the <code>with</code> function of Datomic to apply transaction data to a &ldquo;branch&rdquo; of
 the database that is simply garbage collected when it goes out of scope!</p>
-
 <p>To make a few tests on a domain object that have molecule calls internally we can now do like this:</p>
-
-<pre><code class="language-scala">// Some domain object that we want to test
+<pre><code>// Some domain object that we want to test
 val domainObj = MyDomainClass(params..) // having molecule transactions inside...
 domainObj.myState === &quot;some state&quot;
 
@@ -1551,147 +1347,95 @@ conn.useLiveDb
 
 // Production state is unchanged!
 domainObj.myState == &quot;some state&quot;
-</code></pre>
-
-<p>Since internal domain methods will in turn call other domain methods that also expects an implicit conn object then the same test db is even
+</code></pre><p>Since internal domain methods will in turn call other domain methods that also expects an implicit conn object then the same test db is even
 propragated recursively inside the chain of domain operations.</p>
-
 <h3 id="multiple-time-views">Multiple time views</h3>
-
 <p>We can apply the above approach with several time views of our database:</p>
-
-<pre><code class="language-scala">conn.testDbAsOfNow
+<pre><code>conn.testDbAsOfNow
 conn.testDbAsOf(t)
 conn.testDbSince(t)
 conn.testWith(txData)
-</code></pre>
-
-<p>This make it possible to run arbitrarily complex test scenarios directly against our production data at any point in time without having to do
+</code></pre><p>This make it possible to run arbitrarily complex test scenarios directly against our production data at any point in time without having to do
 any manual setup or tear-down of mock domain/database objects!</p>
-
 <h2 id="14"><a href="#top">☝︎</a> Entity selection retrieval and manipulation</h2>
-
 <p><em>2016-10-19 <a href="https://github.com/scalamolecule/molecule/releases/tag/v0.10.0">v0.10.0</a></em></p>
-
 <p>Molecule now allows retrieving attribute values of selected entities:</p>
+<div class="highlight"><pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#8b008b;font-weight:bold">val</span> <span style="color:#008b45;font-weight:bold">List</span>(e1, e2, e3) <span style="color:#8b008b;font-weight:bold">=</span> <span style="color:#008b45;font-weight:bold">Ns</span>.int.insert(<span style="color:#b452cd">1</span>, <span style="color:#b452cd">2</span>, <span style="color:#b452cd">3</span>).eids
 
-<pre><code class="language-scala">val List(e1, e2, e3) = Ns.int.insert(1, 2, 3).eids
+<span style="color:#228b22">// Use selected entity ids to access attributes of those entities
+</span><span style="color:#228b22"></span><span style="color:#008b45;font-weight:bold">Ns</span>(e1, e2).int.get === <span style="color:#008b45;font-weight:bold">List</span>(<span style="color:#b452cd">1</span>, <span style="color:#b452cd">2</span>)
 
-// Use selected entity ids to access attributes of those entities
-Ns(e1, e2).int.get === List(1, 2)
+<span style="color:#228b22">// Or use a variable with a collection of entity ids
+</span><span style="color:#228b22"></span><span style="color:#8b008b;font-weight:bold">val</span> e23 <span style="color:#8b008b;font-weight:bold">=</span> <span style="color:#008b45;font-weight:bold">Seq</span>(e2, e3)
+<span style="color:#008b45;font-weight:bold">Ns</span>(e23).int.get === <span style="color:#008b45;font-weight:bold">List</span>(<span style="color:#b452cd">2</span>, <span style="color:#b452cd">3</span>)
+</code></pre></div><p>Likewise we can update attribute values of selected entities (group editing):</p>
+<div class="highlight"><pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#8b008b;font-weight:bold">val</span> <span style="color:#008b45;font-weight:bold">List</span>(a, b, c) <span style="color:#8b008b;font-weight:bold">=</span> <span style="color:#008b45;font-weight:bold">Ns</span>.str.int insert <span style="color:#008b45;font-weight:bold">List</span>((<span style="color:#cd5555">&#34;a&#34;</span>, <span style="color:#b452cd">1</span>), (<span style="color:#cd5555">&#34;b&#34;</span>, <span style="color:#b452cd">2</span>), (<span style="color:#cd5555">&#34;c&#34;</span>, <span style="color:#b452cd">3</span>)) eids
 
-// Or use a variable with a collection of entity ids
-val e23 = Seq(e2, e3)
-Ns(e23).int.get === List(2, 3)
-</code></pre>
-
-<p>Likewise we can update attribute values of selected entities (group editing):</p>
-
-<pre><code class="language-scala">val List(a, b, c) = Ns.str.int insert List((&quot;a&quot;, 1), (&quot;b&quot;, 2), (&quot;c&quot;, 3)) eids
-
-// Apply value to attribute of multiple entities
-Ns(a, b).int(4).update
-Ns.str.int.get.sorted === List((&quot;a&quot;, 4), (&quot;b&quot;, 4), (&quot;c&quot;, 3))
-</code></pre>
-
-<p>See more examples
+<span style="color:#228b22">// Apply value to attribute of multiple entities
+</span><span style="color:#228b22"></span><span style="color:#008b45;font-weight:bold">Ns</span>(a, b).int(<span style="color:#b452cd">4</span>).update
+<span style="color:#008b45;font-weight:bold">Ns</span>.str.int.get.sorted === <span style="color:#008b45;font-weight:bold">List</span>((<span style="color:#cd5555">&#34;a&#34;</span>, <span style="color:#b452cd">4</span>), (<span style="color:#cd5555">&#34;b&#34;</span>, <span style="color:#b452cd">4</span>), (<span style="color:#cd5555">&#34;c&#34;</span>, <span style="color:#b452cd">3</span>))
+</code></pre></div><p>See more examples
 <a href="https://github.com/scalamolecule/molecule/blob/master/coretest/src/test/scala/molecule/attr/EntitySelection.scala">here</a> and
 <a href="https://github.com/scalamolecule/molecule/blob/master/coretest/src/test/scala/molecule/manipulation/UpdateMultipleEntities.scala">here</a>.</p>
-
 <p>Datomic encourages multi-step queries where you find some entities ids with one query and then pass those ids on as input
 to the following query. Since we don&rsquo;t have the cost of round-trips to a database server, this is a powerful technique
 that Molecule now supports with ease.</p>
-
 <h2 id="13"><a href="#top">☝︎</a> Bidirectional references</h2>
-
 <p><em>2016-07-24 <a href="https://github.com/scalamolecule/molecule/releases/tag/v0.9.0">v0.9.0</a></em></p>
-
 <p>Major upgrade of Molecule introducing <em>Bidirectional</em> references.</p>
-
 <p>Normal Datomic references are unidirectional. If we add a friend reference from Ann to Ben</p>
-
-<pre><code class="language-scala">Person.name(&quot;Ann&quot;).Friends.name(&quot;Ben&quot;).save
-</code></pre>
-
-<p>Then we can naturally query to get friends of Ann</p>
-
-<pre><code class="language-scala">Person.name_(&quot;Ann&quot;).Friends.name.get === List(&quot;Ben&quot;)
-</code></pre>
-
-<p>But what if we want to find friends of Ben? This will give us nothing:</p>
-
-<pre><code class="language-scala">Person.name_(&quot;Ben&quot;).Friends.name.get === List()
-</code></pre>
-
-<p>Instead we would have to think backwards to get the back reference</p>
-
-<pre><code class="language-scala"> Person.name.Friends.name_(&quot;Ben&quot;).get === List(&quot;Ann&quot;)
-</code></pre>
-
-<p>If we want to traverse deeper into a friendship graph we would have to query both forward and backward for each step in the graph
+<div class="highlight"><pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#008b45;font-weight:bold">Person</span>.name(<span style="color:#cd5555">&#34;Ann&#34;</span>).<span style="color:#008b45;font-weight:bold">Friends</span>.name(<span style="color:#cd5555">&#34;Ben&#34;</span>).save
+</code></pre></div><p>Then we can naturally query to get friends of Ann</p>
+<div class="highlight"><pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#008b45;font-weight:bold">Person</span>.name_(<span style="color:#cd5555">&#34;Ann&#34;</span>).<span style="color:#008b45;font-weight:bold">Friends</span>.name.get === <span style="color:#008b45;font-weight:bold">List</span>(<span style="color:#cd5555">&#34;Ben&#34;</span>)
+</code></pre></div><p>But what if we want to find friends of Ben? This will give us nothing:</p>
+<div class="highlight"><pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#008b45;font-weight:bold">Person</span>.name_(<span style="color:#cd5555">&#34;Ben&#34;</span>).<span style="color:#008b45;font-weight:bold">Friends</span>.name.get === <span style="color:#008b45;font-weight:bold">List</span>()
+</code></pre></div><p>Instead we would have to think backwards to get the back reference</p>
+<div class="highlight"><pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"> <span style="color:#008b45;font-weight:bold">Person</span>.name.<span style="color:#008b45;font-weight:bold">Friends</span>.name_(<span style="color:#cd5555">&#34;Ben&#34;</span>).get === <span style="color:#008b45;font-weight:bold">List</span>(<span style="color:#cd5555">&#34;Ann&#34;</span>)
+</code></pre></div><p>If we want to traverse deeper into a friendship graph we would have to query both forward and backward for each step in the graph
 which would quickly become a pain. With Molecules new bidirectional references we can uniformly query from both ends:</p>
-
-<pre><code class="language-scala"> Person.name_(&quot;Ann&quot;).Friends.name.get === List(&quot;Ben&quot;)
- Person.name_(&quot;Ben&quot;).Friends.name.get === List(&quot;Ann&quot;)
-</code></pre>
-
-<p>Please see <a href="http://www.scalamolecule.org/manual/query/bidirectional%20refs/">Bidirectional refs</a> for more information and the
-<a href="https://github.com/scalamolecule/molecule/blob/master/examples/src/test/scala/molecule/examples/gremlin/gettingStarted/">Gremlin graph examples</a>.
-- This release also adds support for BigInts and BigDecimals. Only bytes is not supported now due to the limited
-  capabilities this type has in Datomic.
-- Input molecules can now also include nested data structures.</p>
-
+<div class="highlight"><pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"> <span style="color:#008b45;font-weight:bold">Person</span>.name_(<span style="color:#cd5555">&#34;Ann&#34;</span>).<span style="color:#008b45;font-weight:bold">Friends</span>.name.get === <span style="color:#008b45;font-weight:bold">List</span>(<span style="color:#cd5555">&#34;Ben&#34;</span>)
+ <span style="color:#008b45;font-weight:bold">Person</span>.name_(<span style="color:#cd5555">&#34;Ben&#34;</span>).<span style="color:#008b45;font-weight:bold">Friends</span>.name.get === <span style="color:#008b45;font-weight:bold">List</span>(<span style="color:#cd5555">&#34;Ann&#34;</span>)
+</code></pre></div><p>Please see <a href="http://www.scalamolecule.org/manual/query/bidirectional%20refs/">Bidirectional refs</a> for more information and the
+<a href="https://github.com/scalamolecule/molecule/blob/master/examples/src/test/scala/molecule/examples/gremlin/gettingStarted/">Gremlin graph examples</a>.</p>
+<ul>
+<li>This release also adds support for BigInts and BigDecimals. Only bytes is not supported now due to the limited
+capabilities this type has in Datomic.</li>
+<li>Input molecules can now also include nested data structures.</li>
+</ul>
 <h2 id="12"><a href="#top">☝︎</a> Composites &amp; Tx meta data</h2>
-
 <p><em>2016-06-13 <a href="https://github.com/scalamolecule/molecule/releases/tag/v0.8.0">v0.8.0</a></em></p>
-
 <p><a href="http://www.scalamolecule.org/manual/query/composites/">Composites</a> and
 <a href="http://www.scalamolecule.org/manual/query/txMetaData/">Transaction meta data</a> are two new major functionalities added to Molecule.</p>
-
 <p>Merge up to 22 sub-molecules as a Composite. Composite inserts create entities with data of attributes type-checking against
 each sub-molecule. Sub-molecules don&rsquo;t need to be related. The created entity is what ties it all together which is a core
 feature of Datomic that sets it apart from table/join-thinking.</p>
-
 <p>An obvious candidate for composites is cross-cutting data that could be applied to any entity of our domain - like Tags. No need anymore
 to litter all parts of your domain with refs to Tags. Keep your domain namespaces intrinsic and compose instead!</p>
-
 <p>Even transaction meta data can now be applied:</p>
-
-<pre><code class="language-scala">// Insert comma-separated molecules that become one composite molecule
-insert(
-  Article.name.author, Tag.name.weight
+<div class="highlight"><pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#228b22">// Insert comma-separated molecules that become one composite molecule
+</span><span style="color:#228b22"></span>insert(
+  <span style="color:#008b45;font-weight:bold">Article</span>.name.author, <span style="color:#008b45;font-weight:bold">Tag</span>.name.weight
 )(
-  // 2 entities/&quot;rows&quot; created 
-  ((&quot;Battle of Waterloo&quot;, &quot;Ben Bridge&quot;), (&quot;serious&quot;, 5)),
-  ((&quot;Best jokes ever&quot;, &quot;John Cleese&quot;), (&quot;fun&quot;, 3))
+  <span style="color:#228b22">// 2 entities/&#34;rows&#34; created 
+</span><span style="color:#228b22"></span>  ((<span style="color:#cd5555">&#34;Battle of Waterloo&#34;</span>, <span style="color:#cd5555">&#34;Ben Bridge&#34;</span>), (<span style="color:#cd5555">&#34;serious&#34;</span>, <span style="color:#b452cd">5</span>)),
+  ((<span style="color:#cd5555">&#34;Best jokes ever&#34;</span>, <span style="color:#cd5555">&#34;John Cleese&#34;</span>), (<span style="color:#cd5555">&#34;fun&#34;</span>, <span style="color:#b452cd">3</span>))
 )(
-  // Transaction meta data is saved with the tx entity created
-  MetaData.submitter_(&quot;Brenda Johnson&quot;).usecase_(&quot;AddReviews&quot;)
+  <span style="color:#228b22">// Transaction meta data is saved with the tx entity created
+</span><span style="color:#228b22"></span>  <span style="color:#008b45;font-weight:bold">MetaData</span>.submitter_(<span style="color:#cd5555">&#34;Brenda Johnson&#34;</span>).usecase_(<span style="color:#cd5555">&#34;AddReviews&#34;</span>)
 )
-</code></pre>
-
-<p>And we can then query the composed molecule:</p>
-
-<pre><code class="language-scala">// Important articles submitted by Brenda Johnson
-// In queries we tie composite molecule parts together with `~`
-m(Article.name.author ~ Tag.weight.&gt;=(4).tx_(MetaData.submitter_(&quot;Brenda Johnson&quot;))).get === List(
-  ((&quot;Battle of Waterloo&quot;, &quot;Ben Bridge&quot;), 5)
+</code></pre></div><p>And we can then query the composed molecule:</p>
+<div class="highlight"><pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#228b22">// Important articles submitted by Brenda Johnson
+</span><span style="color:#228b22">// In queries we tie composite molecule parts together with `~`
+</span><span style="color:#228b22"></span>m(<span style="color:#008b45;font-weight:bold">Article</span>.name.author ~ <span style="color:#008b45;font-weight:bold">Tag</span>.weight.&gt;=(<span style="color:#b452cd">4</span>).tx_(<span style="color:#008b45;font-weight:bold">MetaData</span>.submitter_(<span style="color:#cd5555">&#34;Brenda Johnson&#34;</span>))).get === <span style="color:#008b45;font-weight:bold">List</span>(
+  ((<span style="color:#cd5555">&#34;Battle of Waterloo&#34;</span>, <span style="color:#cd5555">&#34;Ben Bridge&#34;</span>), <span style="color:#b452cd">5</span>)
 )
-</code></pre>
-
-<h2 id="11"><a href="#top">☝︎</a> sbt-molecule plugin code generation</h2>
-
+</code></pre></div><h2 id="11"><a href="#top">☝︎</a> sbt-molecule plugin code generation</h2>
 <p><em>2016-06-04 <a href="https://github.com/scalamolecule/molecule/releases/tag/v0.7.0">v0.7.0</a></em></p>
-
 <p>Previous fragile build system now standardized to use the new <a href="https://github.com/scalamolecule/sbt-molecule">sbt-molecule plugin</a>
 to generate and package Molecule boilerplate code.</p>
-
 <p>Several updates to <a href="http://www.scalamolecule.org">scalamolecule.org</a>.</p>
-
 <h2 id="10"><a href="#top">☝︎</a> Various improvements and bug fixes</h2>
-
 <p><em>2016-05-30 <a href="https://github.com/scalamolecule/molecule/releases/tag/v0.6.2">v0.6.2</a></em></p>
-
 <ul>
 <li>HList support dropped (was very incomplete anyway)</li>
 <li><a href="https://github.com/scalamolecule/molecule/commit/70a951c5742ffe3925d777c0dfc284f223414445">Support for inserting more than 22 facts for a single namespace</a></li>
@@ -1700,188 +1444,136 @@ to generate and package Molecule boilerplate code.</p>
 <li><a href="https://github.com/scalamolecule/molecule/commit/a4680b2ec483ec66ce4128e4cdd9657a9ad09fdb">Negation now takes Seq of values</a></li>
 <li>Upgrade to sbt 0.13.11 using a build.sbt file</li>
 </ul>
-
 <h2 id="9"><a href="#top">☝︎</a> Keyed attribute maps</h2>
-
 <p><em>2016-04-25 <a href="https://github.com/scalamolecule/molecule/releases/tag/v0.6.1">v0.6.1</a></em></p>
-
 <p>Each defined attribute map now adds an additional attribute with a &ldquo;K&rdquo; appended to the attribute name. This &ldquo;Keyed attribute map&rdquo; expects
 a key and will then return the single value type instead of a Map of key/values:</p>
-
-<pre><code class="language-Scala">// Normal attribute map returning maps of key/values
-Ns.int.greetings(&quot;en&quot;).get === List(
-  (1, Map(&quot;en&quot; -&gt; &quot;Hi there&quot;)),
-  (2, Map(&quot;en&quot; -&gt; &quot;Hi&quot;)),
-  (3, Map(&quot;en&quot; -&gt; &quot;Hello&quot;))
+<div class="highlight"><pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Scala" data-lang="Scala"><span style="color:#228b22">// Normal attribute map returning maps of key/values
+</span><span style="color:#228b22"></span><span style="color:#008b45;font-weight:bold">Ns</span>.int.greetings(<span style="color:#cd5555">&#34;en&#34;</span>).get === <span style="color:#008b45;font-weight:bold">List</span>(
+  (<span style="color:#b452cd">1</span>, <span style="color:#008b45;font-weight:bold">Map</span>(<span style="color:#cd5555">&#34;en&#34;</span> -&gt; <span style="color:#cd5555">&#34;Hi there&#34;</span>)),
+  (<span style="color:#b452cd">2</span>, <span style="color:#008b45;font-weight:bold">Map</span>(<span style="color:#cd5555">&#34;en&#34;</span> -&gt; <span style="color:#cd5555">&#34;Hi&#34;</span>)),
+  (<span style="color:#b452cd">3</span>, <span style="color:#008b45;font-weight:bold">Map</span>(<span style="color:#cd5555">&#34;en&#34;</span> -&gt; <span style="color:#cd5555">&#34;Hello&#34;</span>))
 )
 
-// &quot;Keyed attribute map&quot; returning values directly (matching the key)
-Ns.int.greetingsK(&quot;en&quot;).get === List(
-  (1, &quot;Hi there&quot;),
-  (2, &quot;Hi&quot;),
-  (3, &quot;Hello&quot;)
+<span style="color:#228b22">// &#34;Keyed attribute map&#34; returning values directly (matching the key)
+</span><span style="color:#228b22"></span><span style="color:#008b45;font-weight:bold">Ns</span>.int.greetingsK(<span style="color:#cd5555">&#34;en&#34;</span>).get === <span style="color:#008b45;font-weight:bold">List</span>(
+  (<span style="color:#b452cd">1</span>, <span style="color:#cd5555">&#34;Hi there&#34;</span>),
+  (<span style="color:#b452cd">2</span>, <span style="color:#cd5555">&#34;Hi&#34;</span>),
+  (<span style="color:#b452cd">3</span>, <span style="color:#cd5555">&#34;Hello&#34;</span>)
 )
-</code></pre>
-
-<p>This makes it more convenient to get to the values directly instead of having to extract them from returned Maps.</p>
-
+</code></pre></div><p>This makes it more convenient to get to the values directly instead of having to extract them from returned Maps.</p>
 <h2 id="8"><a href="#top">☝︎</a> Map Attributes - Multilingual support</h2>
-
 <p><em>2015-12-14 <a href="https://github.com/scalamolecule/molecule/releases/tag/v0.5.0">v0.5.0</a></em></p>
-
 <p>Molecule now supports an easy way to handle multilingual values; say, names of greetings in different languages for various entities - all
 with one &ldquo;Map Attribute&rdquo; like <code>greetings</code>:</p>
-
-<pre><code class="language-Scala">Ns.int.greetings insert List(
-  (1, Map(&quot;en&quot; -&gt; &quot;Hi there&quot;)),
-  (2, Map(&quot;fr&quot; -&gt; &quot;Bonjour&quot;, &quot;en&quot; -&gt; &quot;Hi&quot;)),
-  (3, Map(&quot;en&quot; -&gt; &quot;Hello&quot;)),
-  (4, Map(&quot;da&quot; -&gt; &quot;Hej&quot;))
+<div class="highlight"><pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Scala" data-lang="Scala"><span style="color:#008b45;font-weight:bold">Ns</span>.int.greetings insert <span style="color:#008b45;font-weight:bold">List</span>(
+  (<span style="color:#b452cd">1</span>, <span style="color:#008b45;font-weight:bold">Map</span>(<span style="color:#cd5555">&#34;en&#34;</span> -&gt; <span style="color:#cd5555">&#34;Hi there&#34;</span>)),
+  (<span style="color:#b452cd">2</span>, <span style="color:#008b45;font-weight:bold">Map</span>(<span style="color:#cd5555">&#34;fr&#34;</span> -&gt; <span style="color:#cd5555">&#34;Bonjour&#34;</span>, <span style="color:#cd5555">&#34;en&#34;</span> -&gt; <span style="color:#cd5555">&#34;Hi&#34;</span>)),
+  (<span style="color:#b452cd">3</span>, <span style="color:#008b45;font-weight:bold">Map</span>(<span style="color:#cd5555">&#34;en&#34;</span> -&gt; <span style="color:#cd5555">&#34;Hello&#34;</span>)),
+  (<span style="color:#b452cd">4</span>, <span style="color:#008b45;font-weight:bold">Map</span>(<span style="color:#cd5555">&#34;da&#34;</span> -&gt; <span style="color:#cd5555">&#34;Hej&#34;</span>))
 )
-</code></pre>
-
-<p>Other types are supported too. So we could for instance have timezones as Float values for different countries etc.</p>
-
+</code></pre></div><p>Other types are supported too. So we could for instance have timezones as Float values for different countries etc.</p>
 <p>Each key is prepended to its value and saved as a cardinality many value (&ldquo;en@Hi there&rdquo;) in Datomic. When we then retrieve the values,
 Molecule automatically splits the values into typed key/value pairs in a map so that we can conveniently continue to work with them in Scala:</p>
-
-<pre><code class="language-Scala">Ns.int.greetings.get === List(
-  (1, Map(&quot;en&quot; -&gt; &quot;Hi there&quot;)),
-  (2, Map(&quot;fr&quot; -&gt; &quot;Bonjour&quot;, &quot;en&quot; -&gt; &quot;Hi&quot;)),
-  (3, Map(&quot;en&quot; -&gt; &quot;Hello&quot;)),
-  (4, Map(&quot;da&quot; -&gt; &quot;Hej&quot;))
+<div class="highlight"><pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Scala" data-lang="Scala"><span style="color:#008b45;font-weight:bold">Ns</span>.int.greetings.get === <span style="color:#008b45;font-weight:bold">List</span>(
+  (<span style="color:#b452cd">1</span>, <span style="color:#008b45;font-weight:bold">Map</span>(<span style="color:#cd5555">&#34;en&#34;</span> -&gt; <span style="color:#cd5555">&#34;Hi there&#34;</span>)),
+  (<span style="color:#b452cd">2</span>, <span style="color:#008b45;font-weight:bold">Map</span>(<span style="color:#cd5555">&#34;fr&#34;</span> -&gt; <span style="color:#cd5555">&#34;Bonjour&#34;</span>, <span style="color:#cd5555">&#34;en&#34;</span> -&gt; <span style="color:#cd5555">&#34;Hi&#34;</span>)),
+  (<span style="color:#b452cd">3</span>, <span style="color:#008b45;font-weight:bold">Map</span>(<span style="color:#cd5555">&#34;en&#34;</span> -&gt; <span style="color:#cd5555">&#34;Hello&#34;</span>)),
+  (<span style="color:#b452cd">4</span>, <span style="color:#008b45;font-weight:bold">Map</span>(<span style="color:#cd5555">&#34;da&#34;</span> -&gt; <span style="color:#cd5555">&#34;Hej&#34;</span>))
 )
 
-// English values only (find all values having &quot;en&quot; as key)
-Ns.int.greetings(&quot;en&quot;).get === List(
-  (1, Map(&quot;en&quot; -&gt; &quot;Hi there&quot;)),
-  (2, Map(&quot;en&quot; -&gt; &quot;Hi&quot;)),
-  (3, Map(&quot;en&quot; -&gt; &quot;Hello&quot;))
+<span style="color:#228b22">// English values only (find all values having &#34;en&#34; as key)
+</span><span style="color:#228b22"></span><span style="color:#008b45;font-weight:bold">Ns</span>.int.greetings(<span style="color:#cd5555">&#34;en&#34;</span>).get === <span style="color:#008b45;font-weight:bold">List</span>(
+  (<span style="color:#b452cd">1</span>, <span style="color:#008b45;font-weight:bold">Map</span>(<span style="color:#cd5555">&#34;en&#34;</span> -&gt; <span style="color:#cd5555">&#34;Hi there&#34;</span>)),
+  (<span style="color:#b452cd">2</span>, <span style="color:#008b45;font-weight:bold">Map</span>(<span style="color:#cd5555">&#34;en&#34;</span> -&gt; <span style="color:#cd5555">&#34;Hi&#34;</span>)),
+  (<span style="color:#b452cd">3</span>, <span style="color:#008b45;font-weight:bold">Map</span>(<span style="color:#cd5555">&#34;en&#34;</span> -&gt; <span style="color:#cd5555">&#34;Hello&#34;</span>))
 )
 
-// English values containing the substring &quot;Hi&quot;
-Ns.int.greetings(&quot;en&quot; -&gt; &quot;Hi&quot;).get === List(
-  (1, Map(&quot;en&quot; -&gt; &quot;Hi there&quot;)),
-  (2, Map(&quot;en&quot; -&gt; &quot;Oh, Hi&quot;))
+<span style="color:#228b22">// English values containing the substring &#34;Hi&#34;
+</span><span style="color:#228b22"></span><span style="color:#008b45;font-weight:bold">Ns</span>.int.greetings(<span style="color:#cd5555">&#34;en&#34;</span> -&gt; <span style="color:#cd5555">&#34;Hi&#34;</span>).get === <span style="color:#008b45;font-weight:bold">List</span>(
+  (<span style="color:#b452cd">1</span>, <span style="color:#008b45;font-weight:bold">Map</span>(<span style="color:#cd5555">&#34;en&#34;</span> -&gt; <span style="color:#cd5555">&#34;Hi there&#34;</span>)),
+  (<span style="color:#b452cd">2</span>, <span style="color:#008b45;font-weight:bold">Map</span>(<span style="color:#cd5555">&#34;en&#34;</span> -&gt; <span style="color:#cd5555">&#34;Oh, Hi&#34;</span>))
 )
 
-// All values containing the substring &quot;He&quot;
-Ns.int.greetings(&quot;_&quot; -&gt; &quot;He&quot;).get === List(
-  (3, Map(&quot;en&quot; -&gt; &quot;Hello&quot;)),
-  (4, Map(&quot;da&quot; -&gt; &quot;Hej&quot;))
+<span style="color:#228b22">// All values containing the substring &#34;He&#34;
+</span><span style="color:#228b22"></span><span style="color:#008b45;font-weight:bold">Ns</span>.int.greetings(<span style="color:#cd5555">&#34;_&#34;</span> -&gt; <span style="color:#cd5555">&#34;He&#34;</span>).get === <span style="color:#008b45;font-weight:bold">List</span>(
+  (<span style="color:#b452cd">3</span>, <span style="color:#008b45;font-weight:bold">Map</span>(<span style="color:#cd5555">&#34;en&#34;</span> -&gt; <span style="color:#cd5555">&#34;Hello&#34;</span>)),
+  (<span style="color:#b452cd">4</span>, <span style="color:#008b45;font-weight:bold">Map</span>(<span style="color:#cd5555">&#34;da&#34;</span> -&gt; <span style="color:#cd5555">&#34;Hej&#34;</span>))
 )
-</code></pre>
-
-<h2 id="7"><a href="#top">☝︎</a> Nested adjacent references</h2>
-
+</code></pre></div><h2 id="7"><a href="#top">☝︎</a> Nested adjacent references</h2>
 <p><em>2015-11-14 <a href="https://github.com/scalamolecule/molecule/releases/tag/v0.4.3">v0.4.3</a></em></p>
-
 <p>If we insert a nested data structure like this:</p>
-
-<pre><code class="language-Scala">m(Ns.str.Refs1 * (Ref1.int1.Refs2 * Ref2.int2)) insert List(
-  (&quot;a&quot;, List(
-    (1, List(11)))),
-  (&quot;b&quot;, List(
-    (2, List(21, 22)),
-    (3, List(31)))))
-</code></pre>
-
-<p>we can now query for each <code>Ns.str</code> paired with all its nested <code>Ref2.int2</code>&rsquo;s:</p>
-
-<pre><code class="language-Scala">m(Ns.str.Refs1 * Ref1.Refs2.int2).get === List(
-  (&quot;a&quot;, List(11)),
-  (&quot;b&quot;, List(22, 21, 31)))
-</code></pre>
-
-<p>Resolution is recursive, so Molecule handles arbitrarily deep nested data structures.</p>
-
+<div class="highlight"><pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Scala" data-lang="Scala">m(<span style="color:#008b45;font-weight:bold">Ns</span>.str.<span style="color:#008b45;font-weight:bold">Refs1</span> * (<span style="color:#008b45;font-weight:bold">Ref1</span>.int1.<span style="color:#008b45;font-weight:bold">Refs2</span> * <span style="color:#008b45;font-weight:bold">Ref2</span>.int2)) insert <span style="color:#008b45;font-weight:bold">List</span>(
+  (<span style="color:#cd5555">&#34;a&#34;</span>, <span style="color:#008b45;font-weight:bold">List</span>(
+    (<span style="color:#b452cd">1</span>, <span style="color:#008b45;font-weight:bold">List</span>(<span style="color:#b452cd">11</span>)))),
+  (<span style="color:#cd5555">&#34;b&#34;</span>, <span style="color:#008b45;font-weight:bold">List</span>(
+    (<span style="color:#b452cd">2</span>, <span style="color:#008b45;font-weight:bold">List</span>(<span style="color:#b452cd">21</span>, <span style="color:#b452cd">22</span>)),
+    (<span style="color:#b452cd">3</span>, <span style="color:#008b45;font-weight:bold">List</span>(<span style="color:#b452cd">31</span>)))))
+</code></pre></div><p>we can now query for each <code>Ns.str</code> paired with all its nested <code>Ref2.int2</code>'s:</p>
+<div class="highlight"><pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Scala" data-lang="Scala">m(<span style="color:#008b45;font-weight:bold">Ns</span>.str.<span style="color:#008b45;font-weight:bold">Refs1</span> * <span style="color:#008b45;font-weight:bold">Ref1</span>.<span style="color:#008b45;font-weight:bold">Refs2</span>.int2).get === <span style="color:#008b45;font-weight:bold">List</span>(
+  (<span style="color:#cd5555">&#34;a&#34;</span>, <span style="color:#008b45;font-weight:bold">List</span>(<span style="color:#b452cd">11</span>)),
+  (<span style="color:#cd5555">&#34;b&#34;</span>, <span style="color:#008b45;font-weight:bold">List</span>(<span style="color:#b452cd">22</span>, <span style="color:#b452cd">21</span>, <span style="color:#b452cd">31</span>)))
+</code></pre></div><p>Resolution is recursive, so Molecule handles arbitrarily deep nested data structures.</p>
 <h2 id="6"><a href="#top">☝︎</a> Back references in nested inserts/gets</h2>
-
 <p><em>2015-11-13 <a href="https://github.com/scalamolecule/molecule/releases/tag/v0.4.2">v0.4.2</a></em></p>
-
 <p>Now we can insert/get related values from multiple related namespaces in one go:</p>
-
-<pre><code class="language-scala">m(lit_Book.title.Author.name._Book.Reviewers * gen_Person.name) insert List(
-  (&quot;book&quot;, &quot;John&quot;, List(&quot;Marc&quot;))
+<div class="highlight"><pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala">m(lit_Book.title.<span style="color:#008b45;font-weight:bold">Author</span>.name.<span style="color:#008b45;font-weight:bold">_Book</span>.<span style="color:#008b45;font-weight:bold">Reviewers</span> * gen_Person.name) insert <span style="color:#008b45;font-weight:bold">List</span>(
+  (<span style="color:#cd5555">&#34;book&#34;</span>, <span style="color:#cd5555">&#34;John&#34;</span>, <span style="color:#008b45;font-weight:bold">List</span>(<span style="color:#cd5555">&#34;Marc&#34;</span>))
 )
-m(lit_Book.title.Author.name._Book.Reviewers * gen_Person.name).get === List(
-  (&quot;book&quot;, &quot;John&quot;, List(&quot;Marc&quot;))
+m(lit_Book.title.<span style="color:#008b45;font-weight:bold">Author</span>.name.<span style="color:#008b45;font-weight:bold">_Book</span>.<span style="color:#008b45;font-weight:bold">Reviewers</span> * gen_Person.name).get === <span style="color:#008b45;font-weight:bold">List</span>(
+  (<span style="color:#cd5555">&#34;book&#34;</span>, <span style="color:#cd5555">&#34;John&#34;</span>, <span style="color:#008b45;font-weight:bold">List</span>(<span style="color:#cd5555">&#34;Marc&#34;</span>))
 )
-</code></pre>
-
-<p>From the <code>Book</code> namespace we reference first the <code>Author</code> namespace and then go back to the <code>Book</code> namespace again with
+</code></pre></div><p>From the <code>Book</code> namespace we reference first the <code>Author</code> namespace and then go back to the <code>Book</code> namespace again with
 the <code>_Book</code> back reference so that we can then reference the <code>Reviewers</code> namespace. Like multiple connected &ldquo;arms&rdquo; of a complex molecule.</p>
-
 <h2 id="5"><a href="#top">☝︎</a> Differentiating between optional values in insert/get</h2>
-
 <p><em>2015-10-28 <a href="https://github.com/scalamolecule/molecule/releases/tag/v0.4.1">v0.4.1</a></em></p>
-
 <p>Single optional values should be retrievable. But when inserting we want to avoid creating orphan referenced entities with
 no asserted attribute values. Example from
 <a href="https://github.com/scalamolecule/molecule/blob/8e5c0437c245201f5e174cb407ae74cdbc654257/coretest/src/test/scala/molecule/Relations.scala#L196-L236">Relations</a> test:</p>
+<div class="highlight"><pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#cd5555">&#34;No mandatory attributes after card-one ref&#34;</span> in <span style="color:#8b008b;font-weight:bold">new</span> <span style="color:#008b45;font-weight:bold">CoreSetup</span> {
+  m(<span style="color:#008b45;font-weight:bold">Ns</span>.str.<span style="color:#008b45;font-weight:bold">Ref1</span>.int1) insert <span style="color:#008b45;font-weight:bold">List</span>(
+    (<span style="color:#cd5555">&#34;a&#34;</span>, <span style="color:#b452cd">1</span>),
+    (<span style="color:#cd5555">&#34;b&#34;</span>, <span style="color:#b452cd">2</span>))
 
-<pre><code class="language-scala">&quot;No mandatory attributes after card-one ref&quot; in new CoreSetup {
-  m(Ns.str.Ref1.int1) insert List(
-    (&quot;a&quot;, 1),
-    (&quot;b&quot;, 2))
+  <span style="color:#228b22">// Ok to ask for an optional referenced value
+</span><span style="color:#228b22"></span>  m(<span style="color:#008b45;font-weight:bold">Ns</span>.str.<span style="color:#008b45;font-weight:bold">Ref1</span>.int1$).get === <span style="color:#008b45;font-weight:bold">List</span>(
+    (<span style="color:#cd5555">&#34;a&#34;</span>, <span style="color:#008b45;font-weight:bold">Some</span>(<span style="color:#b452cd">1</span>)),
+    (<span style="color:#cd5555">&#34;b&#34;</span>, <span style="color:#008b45;font-weight:bold">Some</span>(<span style="color:#b452cd">2</span>)))
 
-  // Ok to ask for an optional referenced value
-  m(Ns.str.Ref1.int1$).get === List(
-    (&quot;a&quot;, Some(1)),
-    (&quot;b&quot;, Some(2)))
-
-  // But in insert molecules we don't want to create referenced orphan entities
-  (m(Ns.str.Ref1.int1$).insert must throwA[RuntimeException]).message === &quot;Got the exception&quot; +
-    &quot;java.lang.RuntimeException: &quot; +
-    &quot;[output.Molecule:modelCheck (4)] Namespace `Ref1` in insert molecule&quot; + 
-    &quot;has no mandatory attributes. Please add at least one.&quot;
+  <span style="color:#228b22">// But in insert molecules we don&#39;t want to create referenced orphan entities
+</span><span style="color:#228b22"></span>  (m(<span style="color:#008b45;font-weight:bold">Ns</span>.str.<span style="color:#008b45;font-weight:bold">Ref1</span>.int1$).insert must throwA[<span style="color:#00688b;font-weight:bold">RuntimeException</span>]).message === <span style="color:#cd5555">&#34;Got the exception&#34;</span> +
+    <span style="color:#cd5555">&#34;java.lang.RuntimeException: &#34;</span> +
+    <span style="color:#cd5555">&#34;[output.Molecule:modelCheck (4)] Namespace `Ref1` in insert molecule&#34;</span> + 
+    <span style="color:#cd5555">&#34;has no mandatory attributes. Please add at least one.&#34;</span>
 }
-</code></pre>
-
-<h2 id="4"><a href="#top">☝︎</a> Optional values (like Null)</h2>
-
+</code></pre></div><h2 id="4"><a href="#top">☝︎</a> Optional values (like Null)</h2>
 <p><em>2015-10-25 <a href="https://github.com/scalamolecule/molecule/releases/tag/v0.4.0">v0.4.0</a></em></p>
-
 <p>Molecule now supports optional values:</p>
-
-<pre><code class="language-scala">val names = Person.firstName.middleName$.lastName.get map { 
-  case (firstName, Some(middleName), lastName) =&gt; s&quot;$firstName $middleName $lastName&quot; 
-  case (firstName, None, lastName)             =&gt; s&quot;$firstName $lastName&quot; 
+<div class="highlight"><pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#8b008b;font-weight:bold">val</span> names <span style="color:#8b008b;font-weight:bold">=</span> <span style="color:#008b45;font-weight:bold">Person</span>.firstName.middleName$.lastName.get map { 
+  <span style="color:#8b008b;font-weight:bold">case</span> (firstName, <span style="color:#008b45;font-weight:bold">Some</span>(middleName), lastName) <span style="color:#8b008b;font-weight:bold">=&gt;</span> <span style="color:#cd5555">s&#34;</span><span style="color:#cd5555">$firstName</span><span style="color:#cd5555"> </span><span style="color:#cd5555">$middleName</span><span style="color:#cd5555"> </span><span style="color:#cd5555">$lastName</span><span style="color:#cd5555">&#34;</span> 
+  <span style="color:#8b008b;font-weight:bold">case</span> (firstName, <span style="color:#008b45;font-weight:bold">None</span>, lastName)             <span style="color:#8b008b;font-weight:bold">=&gt;</span> <span style="color:#cd5555">s&#34;</span><span style="color:#cd5555">$firstName</span><span style="color:#cd5555"> </span><span style="color:#cd5555">$lastName</span><span style="color:#cd5555">&#34;</span> 
 }
-</code></pre>
-
-<p>Also when inserting varying data sets, this comes in handy, like for instance if middle names are sometimes present and sometimes not:</p>
-
-<pre><code class="language-scala">Person.firstName.middleName$.lastName insert List(
-  (&quot;John&quot;, None, &quot;Doe&quot;),
-  (&quot;Lisa&quot;, Some(&quot;van&quot;), &quot;Hauen&quot;)
+</code></pre></div><p>Also when inserting varying data sets, this comes in handy, like for instance if middle names are sometimes present and sometimes not:</p>
+<div class="highlight"><pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#008b45;font-weight:bold">Person</span>.firstName.middleName$.lastName insert <span style="color:#008b45;font-weight:bold">List</span>(
+  (<span style="color:#cd5555">&#34;John&#34;</span>, <span style="color:#008b45;font-weight:bold">None</span>, <span style="color:#cd5555">&#34;Doe&#34;</span>),
+  (<span style="color:#cd5555">&#34;Lisa&#34;</span>, <span style="color:#008b45;font-weight:bold">Some</span>(<span style="color:#cd5555">&#34;van&#34;</span>), <span style="color:#cd5555">&#34;Hauen&#34;</span>)
 )
-</code></pre>
-
-<p>See more examples of even deeply nested optional values in the
+</code></pre></div><p>See more examples of even deeply nested optional values in the
 <a href="https://github.com/scalamolecule/molecule/blob/80765bfbae17657cd0fa0fa099a6ba22f41a179f/coretest/src/test/scala/molecule/OptionalValues.scala">OptionalValues</a> tests.</p>
-
 <h2 id="3"><a href="#top">☝︎</a> Nested data structures</h2>
-
 <p><em>2015-10-04 <a href="https://github.com/scalamolecule/molecule/releases/tag/v0.3.0">v0.3.0</a></em></p>
-
 <p><a href="https://github.com/scalamolecule/molecule/blob/master/examples/src/test/scala/molecule/examples/dayOfDatomic/ProductsAndOrders.scala">Products and Orders</a>
 shows how Molecule can now retrieve nested data structures at up to 10 levels deep (more can be implemented if necessary). This means
 that you don&rsquo;t need to manually organize the flat output from Datomic into hierarchical data structures yourself when you query for
 one-many or many-many data. Molecule does it for you.</p>
-
 <h2 id="2"><a href="#top">☝︎</a> Implemented Day-Of-Datomic and MBrainz</h2>
-
 <p><em>2014-12-25 <a href="https://github.com/scalamolecule/molecule/releases/tag/v0.2.0">v0.2.0</a></em></p>
-
 <ul>
 <li>Nested molecules</li>
 <li>Transitive molecules</li>
 <li>Simplifying API</li>
 </ul>
-
 <h2 id="1"><a href="#top">☝︎</a> Initial commit - <a href="/resources/tutorials/seattle/">Seattle tutorial</a></h2>
-
 <p><em>2014-07-02 <a href="https://github.com/scalamolecule/molecule/releases/tag/v0.1.0">v0.1.0</a></em></p>
 
     </div>

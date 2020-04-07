@@ -803,7 +803,7 @@
             <div class="col-md-2 column" style="padding-top:20px;padding-right:0px;">
                 <ul class="nav nav-pills" style="float:right;">
                     <li>
-                        <a href="/changelog" style="margin-top:-2px;">v0.21.0</a>
+                        <a href="/changelog" style="margin-top:-2px;">v0.22.0</a>
                     </li>
                     <li>
                         <div style="padding-left:14px;">
@@ -826,24 +826,16 @@
 <div class="container" style="padding-top:20px">
 
     <div class="col-sm-10 column" style="padding-left:8px;">
-        
-
-<h1 id="log-api">Log API</h1>
-
+        <h1 id="log-api">Log API</h1>
 <p><a href="https://github.com/scalamolecule/molecule/tree/master/coretests/src/test/scala/molecule/coretests/generic/Log.scala">Tests&hellip;</a></p>
-
 <p><em>Some index descriptions in the following sections respectfully quoted from the
 <a href="https://docs.datomic.com/on-prem/indexes.html">Datomic documentation</a>.</em></p>
-
 <p>Datomic&rsquo;s database log is a recording of all transaction data in historic order, organized for efficient access by transaction.
 The Log is therefore an efficient source of finding data by transaction time.</p>
-
 <h3 id="tx-range-and-generic-log-attributes">Tx range and generic Log attributes</h3>
-
 <p>The Molecule Log implementation takes two arguments to define a range of transactions between <code>from</code> (inclusive) and
 <code>until</code> (exclusive). One or more generic attributes are then added to the Log molecule to define what data to return. The
 following standard generic attributes can be combined to match the required data structure:</p>
-
 <ul>
 <li><code>e</code> - Entity id (<code>Long</code>)</li>
 <li><code>a</code> - Attribute (<code>String</code>)</li>
@@ -853,11 +845,9 @@ following standard generic attributes can be combined to match the required data
 <li><code>txInstant</code> - Transaction wall-clock time (<code>java.util.Date</code>)</li>
 <li><code>op</code> - Operation: assertion / retraction (<code>Boolean</code> true/false)</li>
 </ul>
-
 <p>Contrary to Datomic&rsquo;s Log implementation, Molecule returns data as a flat list of tuples of data that matches
 the generic attributes in the Log molecule. This is to transparently sharing the same semantics as other molecules.</p>
-
-<pre><code class="language-scala">// Data from transaction t1 (inclusive) until t4 (exclusive)
+<pre><code>// Data from transaction t1 (inclusive) until t4 (exclusive)
 Log(Some(t1), Some(t4)).t.e.a.v.op.get === List(
   (t1, e1, &quot;:Person/name&quot;, &quot;Ben&quot;, true),
   (t1, e1, &quot;:Person/age&quot;, 41, true),
@@ -868,13 +858,9 @@ Log(Some(t1), Some(t4)).t.e.a.v.op.get === List(
   (t3, e1, &quot;:Person/age&quot;, 41, false),
   (t3, e1, &quot;:Person/age&quot;, 42, true)
 )
-</code></pre>
-
-<h3 id="from-beginning">From beginning</h3>
-
+</code></pre><h3 id="from-beginning">From beginning</h3>
 <p>If the <code>from</code> argument is <code>None</code> data from the beginning of the log is matched:</p>
-
-<pre><code class="language-scala">Log(None, Some(t3)).v.e.t.get === List(
+<pre><code>Log(None, Some(t3)).v.e.t.get === List(
   (t1, e1, &quot;:Person/name&quot;, &quot;Ben&quot;, true),
   (t1, e1, &quot;:Person/age&quot;, 41, true),
 
@@ -883,13 +869,9 @@ Log(Some(t1), Some(t4)).t.e.a.v.op.get === List(
 
   // t3 not included
 )
-</code></pre>
-
-<h3 id="until-end">Until end</h3>
-
+</code></pre><h3 id="until-end">Until end</h3>
 <p>If the <code>until</code> argument is <code>None</code> data from until the end of the log is matched:</p>
-
-<pre><code class="language-scala">Log(Some(t2), None).v.e.t.get === List(
+<pre><code>Log(Some(t2), None).v.e.t.get === List(
   // t1 not included
 
   (t2, e2, &quot;:Person/name&quot;, &quot;Liz&quot;, true),
@@ -898,10 +880,7 @@ Log(Some(t1), Some(t4)).t.e.a.v.op.get === List(
   (t3, e1, &quot;:Person/age&quot;, 41, false),
   (t3, e1, &quot;:Person/age&quot;, 42, true)
 )
-</code></pre>
-
-<h3 id="next">Next</h3>
-
+</code></pre><h3 id="next">Next</h3>
 <p><a href="/manual/generic/schema">Schema&hellip;</a></p>
 
     </div>

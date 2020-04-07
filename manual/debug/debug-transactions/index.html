@@ -803,7 +803,7 @@
             <div class="col-md-2 column" style="padding-top:20px;padding-right:0px;">
                 <ul class="nav nav-pills" style="float:right;">
                     <li>
-                        <a href="/changelog" style="margin-top:-2px;">v0.21.0</a>
+                        <a href="/changelog" style="margin-top:-2px;">v0.22.0</a>
                     </li>
                     <li>
                         <div style="padding-left:14px;">
@@ -826,12 +826,8 @@
 <div class="container" style="padding-top:20px">
 
     <div class="col-sm-10 column" style="padding-left:8px;">
-        
-
-<h1 id="debug-transactions">Debug transactions</h1>
-
+        <h1 id="debug-transactions">Debug transactions</h1>
 <p>Transactional operations can be debugged with the following methods:</p>
-
 <ul>
 <li>&lt;molecule&gt;.<code>debugSave</code></li>
 <li>&lt;molecule&gt;.<code>debugInsert(data...)</code></li>
@@ -840,25 +836,18 @@
 <li>&lt;entityId&gt;.Tx(transactionMolecule).<code>debugRetract</code></li>
 <li><code>debugRetract(entityIds, txMetaDataMolecules*)</code></li>
 </ul>
-
 <p>Calling these debug methods will print the produced transaction statements to console only and not perform
 any transaction on the database.</p>
-
 <h2 id="debug-save">Debug Save</h2>
-
 <p>If we are about to save a molecule we can instead call <code>debugSave</code> on the same molecule to see what transaction
 statements Molecule will send to Datomic.</p>
-
-<pre><code class="language-scala">// Normal save
+<pre><code>// Normal save
 Ns.str(&quot;273 Broadway&quot;).Ref1.int1(10700).str1(&quot;New York&quot;).Ref2.str2(&quot;USA&quot;).save
 
 // Debugging the save transaction statements
 Ns.str(&quot;273 Broadway&quot;).Ref1.int1(10700).str1(&quot;New York&quot;).Ref2.str2(&quot;USA&quot;).debugSave
-</code></pre>
-
-<p>Transactional data in Molecule is based on the Model representation that is transformed to an intermediate
+</code></pre><p>Transactional data in Molecule is based on the Model representation that is transformed to an intermediate
 transaction representation, the &ldquo;Statements Model&rdquo;, and then finally the Datomic transaction statements.</p>
-
 <pre><code>## 1 ## output.Molecule.debugSave 
 ================================================================================================================
 1          Model(
@@ -885,17 +874,10 @@ transaction representation, the &ldquo;Statements Model&rdquo;, and then finally
   5          :db/add    #db/id[:db.part/user -1001201]   :Ref1/ref2           #db/id[:db.part/user -1001204]
   6          :db/add    #db/id[:db.part/user -1001204]   :Ref2/str2           USA)
 ================================================================================================================
-</code></pre>
-
-<h3 id="debug-save-with-tx-meta-data">Debug save with tx meta data</h3>
-
+</code></pre><h3 id="debug-save-with-tx-meta-data">Debug save with tx meta data</h3>
 <p>Debug save with transaction meta data by calling <code>debugSave</code>.</p>
-
-<pre><code class="language-scala">Ns.int(1).Tx(Ns.str_(&quot;meta data&quot;)).debugSave
-</code></pre>
-
-<p>The following is then printed to console:</p>
-
+<pre><code>Ns.int(1).Tx(Ns.str_(&quot;meta data&quot;)).debugSave
+</code></pre><p>The following is then printed to console:</p>
 <pre><code>## 1 ## output.Molecule.debugSave 
 ================================================================================================================
 1          Model(
@@ -911,17 +893,12 @@ transaction representation, the &ldquo;Statements Model&rdquo;, and then finally
   1          :db/add    #db/id[:db.part/user -1000590]   :Ns/int              1
   2          :db/add    datomic.tx                       :Ns/str              meta data)
 ================================================================================================================
-</code></pre>
-
-<p>Note how the <code>:Ns/str</code> attribute meta value &ldquo;meta data&rdquo; is asserted with the current transaction entity
+</code></pre><p>Note how the <code>:Ns/str</code> attribute meta value &ldquo;meta data&rdquo; is asserted with the current transaction entity
 (identified by <code>datomic.tx</code>).</p>
-
 <h2 id="debug-insert">Debug insert</h2>
-
 <p>If we for instance have a nested insert it could be valuable to break it down and see what transaction
 statements Molecule produces by applying the same insertion data to the <code>debugInsert</code> method:</p>
-
-<pre><code class="language-scala">// Nested insert
+<pre><code>// Nested insert
 m(Ns.str.Refs1 * Ref1.int1.str1).insert(
   &quot;order&quot;, List((4, &quot;product1&quot;), (7, &quot;product2&quot;))
 )
@@ -930,10 +907,7 @@ m(Ns.str.Refs1 * Ref1.int1.str1).insert(
 m(Ns.str.Refs1 * Ref1.int1.str1).debugInsert(
   &quot;order&quot;, List((4, &quot;product1&quot;), (7, &quot;product2&quot;))
 )
-</code></pre>
-
-<p>The following is then printed to console:</p>
-
+</code></pre><p>The following is then printed to console:</p>
 <pre><code>## 1 ## output.Molecule._debugInsert 
 ================================================================================================================
 1          Model(
@@ -973,12 +947,8 @@ m(Ns.str.Refs1 * Ref1.int1.str1).debugInsert(
     6          :db/add    #db/id[:db.part/user -1001478]   :Ref1/int1           7
     7          :db/add    #db/id[:db.part/user -1001478]   :Ref1/str1           product2))
 ================================================================================================================
-</code></pre>
-
-<p>Note how the order entity (-1001476) is referencing each created nested order line entity.</p>
-
+</code></pre><p>Note how the order entity (-1001476) is referencing each created nested order line entity.</p>
 <p><code>debugInsert</code> creates 5 representations from the insert molecule:</p>
-
 <ul>
 <li>Model</li>
 <li>Statements model</li>
@@ -986,21 +956,16 @@ m(Ns.str.Refs1 * Ref1.int1.str1).debugInsert(
 <li>Untupled data</li>
 <li>Datomic transactions</li>
 </ul>
-
 <h2 id="debug-update">Debug update</h2>
-
-<pre><code class="language-scala">// Initial data
+<pre><code>// Initial data
 val eid = Ns.int(1).str(&quot;a&quot;).save.eid
 // Update - note how we try to update to the same `str` value
 Ns(eid).int(2).str(&quot;a&quot;).update
 
 // Debugging the update
 Ns(eid).int(2).str(&quot;a&quot;).debugUpdate
-</code></pre>
-
-<p>Calling <code>debugUpdate</code> on the update molecule shows us, that the <code>str</code> data statement is not passed to
+</code></pre><p>Calling <code>debugUpdate</code> on the update molecule shows us, that the <code>str</code> data statement is not passed to
 Datomic since the same value is already asserted.</p>
-
 <pre><code>## 1 ## output.Molecule.debugUpdate 
 ================================================================================================================
 1          Model(
@@ -1015,12 +980,9 @@ Datomic since the same value is already asserted.</p>
 3          List(
   1          :db/add    17592186045445                   :Ns/int              2)
 ================================================================================================================
-</code></pre>
-
-<p>Datomic will internally create a retraction of the old value 1 for the attribute <code>:Ns/int</code>. We can confirm this
+</code></pre><p>Datomic will internally create a retraction of the old value 1 for the attribute <code>:Ns/int</code>. We can confirm this
 by debugging the history data:</p>
-
-<pre><code class="language-scala">Ns(eid).a.v.t.op.debugGetHistory
+<pre><code>Ns(eid).a.v.t.op.debugGetHistory
 
 --------------------------------------------------------------------------
 // Model, Query, Datalog...
@@ -1032,55 +994,34 @@ OUTPUTS:
 4  [&quot;:Ns/int&quot; 1 1028 true]
 (showing up to 500 rows)
 --------------------------------------------------------------------------
-</code></pre>
-
-<h2 id="debug-retract-entity">Debug retract entity</h2>
-
+</code></pre><h2 id="debug-retract-entity">Debug retract entity</h2>
 <p>A single entity can be retracted by simply calling the implicit <code>retract</code> method on an entity id. To see
 what transaction statements this produces, call <code>debugRetract</code> instead:</p>
-
-<pre><code class="language-scala">eid.debugRetract
-</code></pre>
-
-<p>This shows that a single transaction is produced to retract the entity:</p>
-
-<pre><code class="language-scala">## 1 ## Debug `retract` on entity 
+<pre><code>eid.debugRetract
+</code></pre><p>This shows that a single transaction is produced to retract the entity:</p>
+<pre><code>## 1 ## Debug `retract` on entity 
 ================================================================================================================
 1          List(
   1          List(
     1          :db.fn/retractEntity   17592186045445))
 ================================================================================================================
-</code></pre>
-
-<h3 id="add-tx-meta-data-to-retraction-on-entity-id">Add Tx meta data to retraction on entity id</h3>
-
+</code></pre><h3 id="add-tx-meta-data-to-retraction-on-entity-id">Add Tx meta data to retraction on entity id</h3>
 <p>We can add transaction meta data to the entity retraction in order to be able to later track what kind of
 retraction that happened.</p>
-
-<pre><code class="language-scala">eid.Tx(Ns.str(&quot;meta&quot;)).debugRetract
-</code></pre>
-
-<p>We see that the additional datom with the meta value &ldquo;meta&rdquo; was associated with the transaction entity (datomic.tx)
+<pre><code>eid.Tx(Ns.str(&quot;meta&quot;)).debugRetract
+</code></pre><p>We see that the additional datom with the meta value &ldquo;meta&rdquo; was associated with the transaction entity (datomic.tx)
 where the retraction of the entity is performed.</p>
-
-<pre><code class="language-scala">================================================================================================================
+<pre><code>================================================================================================================
 1          List(
   1          List(
     1          :db.fn/retractEntity   17592186045445
     2          :db/add    datomic.tx                       :Ns/str              meta))
 ================================================================================================================
-</code></pre>
-
-<h2 id="debug-retract-multiple-entities">Debug retract multiple entities</h2>
-
+</code></pre><h2 id="debug-retract-multiple-entities">Debug retract multiple entities</h2>
 <p>Debug retracting multiple entities with <code>debugRetract</code></p>
-
-<pre><code class="language-scala">debugRetract(Seq(e1, e2))
-</code></pre>
-
-<p>Two entity retraction statements produced.</p>
-
-<pre><code class="language-scala">## 1 ## molecule.Datomic.debugRetract 
+<pre><code>debugRetract(Seq(e1, e2))
+</code></pre><p>Two entity retraction statements produced.</p>
+<pre><code>## 1 ## molecule.Datomic.debugRetract 
 ================================================================================================================
 1          Model(
 )
@@ -1093,19 +1034,12 @@ where the retraction of the entity is performed.</p>
     1          :db.fn/retractEntity   17592186045445
     2          :db.fn/retractEntity   17592186045446))
 ================================================================================================================
-</code></pre>
-
-<h3 id="add-tx-meta-data-to-retraction-of-multiple-entity-ids">Add Tx meta data to retraction of multiple entity ids</h3>
-
+</code></pre><h3 id="add-tx-meta-data-to-retraction-of-multiple-entity-ids">Add Tx meta data to retraction of multiple entity ids</h3>
 <p>Let&rsquo;s add some transaction meta data to the retraction</p>
-
-<pre><code class="language-scala">debugRetract(Seq(e1, e2), Ref1.str1(&quot;Some tx info&quot;))
-</code></pre>
-
-<p>Then we can see how the <code>:Ref1/str1</code> attribute value &ldquo;Some tx info&rdquo; is added as a statement to the transaction
+<pre><code>debugRetract(Seq(e1, e2), Ref1.str1(&quot;Some tx info&quot;))
+</code></pre><p>Then we can see how the <code>:Ref1/str1</code> attribute value &ldquo;Some tx info&rdquo; is added as a statement to the transaction
 that retracts the two entities:</p>
-
-<pre><code class="language-scala">## 1 ## molecule.Datomic.debugRetract 
+<pre><code>## 1 ## molecule.Datomic.debugRetract 
 ================================================================================================================
 1          Model(
   1          TxMetaData(
@@ -1120,10 +1054,7 @@ that retracts the two entities:</p>
     2          :db.fn/retractEntity   17592186045446
     3          :db/add    datomic.tx                       :Ref1/str1           Some tx info))
 ================================================================================================================
-</code></pre>
-
-<h3 id="next">Next</h3>
-
+</code></pre><h3 id="next">Next</h3>
 <p><a href="/manual/debug/err">Debug errors&hellip;</a></p>
 
     </div>

@@ -803,7 +803,7 @@
             <div class="col-md-2 column" style="padding-top:20px;padding-right:0px;">
                 <ul class="nav nav-pills" style="float:right;">
                     <li>
-                        <a href="/changelog" style="margin-top:-2px;">v0.21.0</a>
+                        <a href="/changelog" style="margin-top:-2px;">v0.22.0</a>
                     </li>
                     <li>
                         <div style="padding-left:14px;">
@@ -826,25 +826,16 @@
 <div class="container" style="padding-top:20px">
 
     <div class="col-sm-10 column" style="padding-left:8px;">
-        
-
-<h1 id="composites">Composites</h1>
-
+        <h1 id="composites">Composites</h1>
 <p><a href="https://github.com/scalamolecule/molecule/blob/master/coretests/src/test/scala/molecule/coretests/ref/Composite.scala">Tests&hellip;</a></p>
-
 <p>As we saw earlier, <a href="/manual/entities/">Entities</a> are simply groups of facts that share an entity id:</p>
-
-<p><img src="/img/entity/entity5.jpg" alt="" /></p>
-
+<p><img src="/img/entity/entity5.jpg" alt=""></p>
 <p>The last fact is kind of a black sheep though since the <code>:Site/cat</code> attribute is not in the <code>Person</code> namespace.</p>
-
 <h3 id="avoid-non-intrinsic-pollution">Avoid non-intrinsic pollution</h3>
-
 <p>Since entities can have attributes from <strong>any</strong> namespace we have a challenge of how to model this in our
 schema definiton. It would be quick and easy to just make a relationship from a <code>Person</code> namespace to
 the <code>Site</code> namespace:</p>
-
-<pre><code class="language-scala">object YourDomainDefinition {
+<pre><code>object YourDomainDefinition {
   trait Person {
     val name  = oneString
     val likes = oneString
@@ -860,17 +851,11 @@ the <code>Site</code> namespace:</p>
     val cat    = oneString
   }
 }
-</code></pre>
-
-<p>Then we could easily build a molecule to get the <code>Site</code> category:</p>
-
-<pre><code class="language-scala">Person.name.likes.age.Site.cat.get.head === (&quot;Fred&quot;, &quot;pizza&quot;, 38, &quot;customer&quot;)
-</code></pre>
-
-<p>Modelling-wise this is just not the best idea since we could easily end up making lots of redundant relationships from
+</code></pre><p>Then we could easily build a molecule to get the <code>Site</code> category:</p>
+<pre><code>Person.name.likes.age.Site.cat.get.head === (&quot;Fred&quot;, &quot;pizza&quot;, 38, &quot;customer&quot;)
+</code></pre><p>Modelling-wise this is just not the best idea since we could easily end up making lots of redundant relationships from
 various namespaces to <code>Site</code>:</p>
-
-<pre><code class="language-scala">object YourDomainDefinition {
+<pre><code>object YourDomainDefinition {
   trait Person {
     val site  = one[Site]
   }
@@ -886,70 +871,44 @@ various namespaces to <code>Site</code>:</p>
     val cat    = oneString
   }
 }
-</code></pre>
-
-<p>Relationships to <code>Site</code> are simply not <em>intrinsic</em> to or a natural core part of neither <code>Person</code>, <code>Company</code> or <code>Project</code>.
+</code></pre><p>Relationships to <code>Site</code> are simply not <em>intrinsic</em> to or a natural core part of neither <code>Person</code>, <code>Company</code> or <code>Project</code>.
 Littering non-intrinsic relationships to <code>Site</code> - and possibly other cross-cutting namespaces like <code>Tags</code>, <code>Likes</code> etc - all
 over the place quickly clutters and pollutes our domain model.</p>
-
 <p>Instead we want to create an &ldquo;associative relationship&rdquo; to <code>Site</code>. This is what Datomic allow us to do by letting an entity id
 tie <em>any</em> attributes together as we see in the list of facts at the top of this page.</p>
-
 <h2 id="composite-modelling">Composite modelling</h2>
-
 <p>In Molecule we model associative relationships as Composites by chaining &ldquo;sub-molecules&rdquo; with the <code>+</code> operator:</p>
-
-<pre><code class="language-scala">m(Person.name.likes.age + Site.cat).get === List(
+<pre><code>m(Person.name.likes.age + Site.cat).get === List(
   ((&quot;Fred&quot;, &quot;pizza&quot;, 38), &quot;customer&quot;)
 )
-</code></pre>
-
-<p>We make a composite molecule from two sub-molecules <code>Person.name.likes.age</code> and <code>Site.cat</code>.</p>
-
+</code></pre><p>We make a composite molecule from two sub-molecules <code>Person.name.likes.age</code> and <code>Site.cat</code>.</p>
 <p>The composite result set is a list of tuples with
 a sub-tuple for each sub-molecule.</p>
-
 <p>Since in this case the last sub-molecule only has one attribute value &ldquo;customer&rdquo; a single value for that is returned. If it
 had 2 attributes we would get a sub-tuple for that too:</p>
-
-<pre><code class="language-scala">m(Person.name.likes.age + Site.cat.status).get === List(
+<pre><code>m(Person.name.likes.age + Site.cat.status).get === List(
   ((&quot;Fred&quot;, &quot;pizza&quot;, 38), (&quot;customer&quot;, &quot;good&quot;))
 )
-</code></pre>
-
-<p>And so on..</p>
-
-<pre><code class="language-scala">m(Person.name.likes.age + Site.cat.status + Loc.tags + Emotion.like).get === List(
+</code></pre><p>And so on..</p>
+<pre><code>m(Person.name.likes.age + Site.cat.status + Loc.tags + Emotion.like).get === List(
   ((&quot;Fred&quot;, &quot;pizza&quot;, 38), (&quot;customer&quot;, &quot;good&quot;), Set(&quot;inner city&quot;, &quot;hipster&quot;), true)
 )
-</code></pre>
-
-<p>We can compose up to 22 sub-molecules (!) which should give us plenty of room to model even the most complex
+</code></pre><p>We can compose up to 22 sub-molecules (!) which should give us plenty of room to model even the most complex
 composite aspects of our domain.</p>
-
 <h3 id="with-expressions">&hellip;with expressions</h3>
-
-<p><em>&ldquo;Which positive elder hipster customers like what?&rdquo;</em></p>
-
-<pre><code class="language-scala">m(Person.name.likes.age_.&gt;(35) 
+<p><em>&ldquo;Which positive elder hipster customers like what?&quot;</em></p>
+<pre><code>m(Person.name.likes.age_.&gt;(35) 
  + Site.cat_(&quot;customer&quot;)
  + Loc.tags_(&quot;hipster&quot;) 
  + Emotion.like_(true)).get === List(
   (&quot;Fred&quot;, &quot;pizza&quot;)
 )
-</code></pre>
-
-<p>The combinations are quite endless - while you can keep your domain model/schema clean and intrinsic!</p>
-
+</code></pre><p>The combinations are quite endless - while you can keep your domain model/schema clean and intrinsic!</p>
 <h2 id="arity-22-molecules">Arity 22+ molecules</h2>
-
 <p>Since composites are composed of up to 22 sub-molecules we could potentially insert and retrieve
 mega composite molecules with up to 22 x 22 = 484 attributes!</p>
-
 <p>(All getters have an <a href="/manual/attributes/basics">asynchronous equivalent</a>. Synchronous getters shown for brevity)</p>
-
 <h3 id="next">Next</h3>
-
 <p><a href="/manual/relationships/bidirectional">Bidirectional references&hellip;</a></p>
 
     </div>

@@ -803,7 +803,7 @@
             <div class="col-md-2 column" style="padding-top:20px;padding-right:0px;">
                 <ul class="nav nav-pills" style="float:right;">
                     <li>
-                        <a href="/changelog" style="margin-top:-2px;">v0.21.0</a>
+                        <a href="/changelog" style="margin-top:-2px;">v0.22.0</a>
                     </li>
                     <li>
                         <div style="padding-left:14px;">
@@ -826,29 +826,20 @@
 <div class="container" style="padding-top:20px">
 
     <div class="col-sm-10 column" style="padding-left:8px;">
-        
-
-<h1 id="testing">Testing</h1>
-
+        <h1 id="testing">Testing</h1>
 <p><a href="https://github.com/scalamolecule/molecule/blob/master/coretests/src/test/scala/molecule/coretests/time/TestDbAsOf.scala">TestDbAsOf</a>,
 <a href="https://github.com/scalamolecule/molecule/tree/master/coretests/src/test/scala/molecule/coretests/time/TestDbSince.scala">TestDbSince</a> and
 <a href="https://github.com/scalamolecule/molecule/tree/master/coretests/src/test/scala/molecule/coretests/time/TestDbWith.scala">TestDbWith</a></p>
-
 <p>For more complex test scenarios we can use a &ldquo;test database&rdquo; where we can freely make multiple separate molecule queries against
 a temporary filtered database.</p>
-
 <h3 id="test-db">Test db</h3>
-
 <p>All molecules expect an implicit connection object to be in scope. If we then set a temporary test database on
 such <code>conn</code> object we can subsequentially freely perform tests against this temporary filtered database as though
 it was a &ldquo;branch&rdquo; (think git).</p>
-
 <p>When the connection/db goes out of scope it is simply garbage collected automatically by the JVM. At any point we can also
- explicitly go back to continuing using our live production db.</p>
-
+explicitly go back to continuing using our live production db.</p>
 <p>To make a few tests with our filtered db we call <code>conn.testDbAsOfNow</code>:</p>
-
-<pre><code class="language-scala">// Current state
+<pre><code>// Current state
 Person(fredId).name.age.get.head === (&quot;Fred&quot;, 27)
 
 // Create &quot;branch&quot; of our production db as it is right now
@@ -866,23 +857,17 @@ conn.useLiveDb
 
 // Production state is unchanged!
 Person(fredId).name.age.get.head === (&quot;Fred&quot;, 27)
-</code></pre>
-
-<h3 id="test-db-with-domain-classes">Test db with domain classes</h3>
-
+</code></pre><h3 id="test-db-with-domain-classes">Test db with domain classes</h3>
 <p>When molecules are used inside domain classes we want to test the domain operations also without
 affecting the state of our production database. And also ideally without having to create mockups of our domain objects.
 This is now possible by setting a temporary test database
 on the implicit connection object that all molecules expect to be present in their scope - which includes the molecules inside
- domain classes.</p>
-
+domain classes.</p>
 <p>When we test against a temporary filtered database, Molecule internally uses the <code>with</code> function of Datomic to
 apply transaction data to a filtered database that is simply garbage collected when it
 goes out of scope!</p>
-
 <p>To make a few tests on a domain object that have molecule calls internally we can now do like this:</p>
-
-<pre><code class="language-scala">// Some domain object that we want to test
+<pre><code>// Some domain object that we want to test
 val domainObj = MyDomainClass(params..) // having molecule transactions inside...
 domainObj.myState === &quot;some state&quot;
 
@@ -901,22 +886,15 @@ conn.useLiveDb
 
 // Production state is unchanged!
 domainObj.myState == &quot;some state&quot;
-</code></pre>
-
-<p>Since internal domain methods will in turn call other domain methods that also expects an implicit conn object then
+</code></pre><p>Since internal domain methods will in turn call other domain methods that also expects an implicit conn object then
 the same test db is even propragated recursively inside the chain of domain operations.</p>
-
 <h3 id="multiple-time-views">Multiple time views</h3>
-
 <p>We can apply the above approach with various time views of our database:</p>
-
-<pre><code class="language-scala">conn.testDbAsOfNow
+<pre><code>conn.testDbAsOfNow
 conn.testDbAsOf(t)
 conn.testDbSince(t)
 conn.testWith(txData)
-</code></pre>
-
-<p>This make it possible to run arbitrarily complex test scenarios directly against our production data at any point in time without
+</code></pre><p>This make it possible to run arbitrarily complex test scenarios directly against our production data at any point in time without
 having to do any manual setup or tear-down of mock domain/database objects!</p>
 
     </div>

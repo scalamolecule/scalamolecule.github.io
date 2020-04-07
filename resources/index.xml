@@ -35,7 +35,7 @@ Attendees came with great suggestions for improvements that were incorporated in
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://scalamolecule.org/resources/tutorials/</guid>
-      <description> Molecule tutorials  Seattle tutorial - all-round introduction to using Molecule   </description>
+      <description>Molecule tutorials  Seattle tutorial - all-round introduction to using Molecule  </description>
     </item>
     
     <item>
@@ -44,7 +44,7 @@ Attendees came with great suggestions for improvements that were incorporated in
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://scalamolecule.org/resources/videos/</guid>
-      <description> Molecule videos  Scala Meetup presentation 2017-04-25 by Marc Grue  Part 1: Datomic data model Part 2: Building a DSL with Scala macros Part 3: Tour of Molecule features Part 4: Molecule domain modelling   </description>
+      <description>Molecule videos  Scala Meetup presentation 2017-04-25 by Marc Grue  Part 1: Datomic data model Part 2: Building a DSL with Scala macros Part 3: Tour of Molecule features Part 4: Molecule domain modelling    </description>
     </item>
     
   </channel>

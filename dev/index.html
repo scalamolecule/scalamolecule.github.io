@@ -803,7 +803,7 @@
             <div class="col-md-2 column" style="padding-top:20px;padding-right:0px;">
                 <ul class="nav nav-pills" style="float:right;">
                     <li>
-                        <a href="/changelog" style="margin-top:-2px;">v0.21.0</a>
+                        <a href="/changelog" style="margin-top:-2px;">v0.22.0</a>
                     </li>
                     <li>
                         <div style="padding-left:14px;">
@@ -826,82 +826,45 @@
 <div class="container" style="padding-top:20px">
 
 <div class="col-sm-10 column" style="padding-left:8px;">
-	
-
-<h1 id="developer">Developer</h1>
-
+	<h1 id="developer">Developer</h1>
 <p>The basic philosophy of Molecule is to think from the User&rsquo;s perspective towards a technical solution.</p>
-
 <p>The priority is always to make it as easy as possible for the end User to make Datomic queries, no matter
 how challenging on the Molecule backend.</p>
-
 <p>When we asked</p>
-
-<p><em>&ldquo;how can I most intuitively and with most minimal code query for persons?&rdquo;</em></p>
-
+<p><em>&ldquo;how can I most intuitively and with most minimal code query for persons?&quot;</em></p>
 <p>we first tried something like this</p>
-
-<pre><code class="language-scala">import Person._
+<pre><code>import Person._
 m(firstName ~ lastName ~ age) // all fields of a `Person` trait...
-</code></pre>
-
-<p>But it quickly became un-intuitive with relations, expressions etc.</p>
-
+</code></pre><p>But it quickly became un-intuitive with relations, expressions etc.</p>
 <h3 id="builder-pattern">Builder pattern</h3>
-
 <p>Instead we settled on using the builder pattern with <code>.</code>s</p>
-
-<pre><code class="language-scala">Person.firstName.lastName.age
-</code></pre>
-
-<p>We can&rsquo;t think of a more minimal Scala representation of &ldquo;finding persons&rdquo;.</p>
-
+<pre><code>Person.firstName.lastName.age
+</code></pre><p>We can&rsquo;t think of a more minimal Scala representation of &ldquo;finding persons&rdquo;.</p>
 <h3 id="generated-boilerplate-code">Generated boilerplate code</h3>
-
 <p>The builder pattern has shown a surprising strong capacity to express a wide range of query constructs. But it also
- requires an extensive amount of boilerplace code to work.</p>
-
+requires an extensive amount of boilerplace code to work.</p>
 <p>We therefore generate all boilerplate code automatically when we compile our project with <code>sbt compile</code>.</p>
-
 <h3 id="scala-macro-transformations">Scala macro transformations</h3>
-
 <p>Our generated boilerplate code allow us to build molecules attribute by attribute:</p>
-
-<pre><code class="language-scala">val personsMolecule = m(Person.name.age)
-</code></pre>
-
-<p>The <code>m</code>olecule method transforms our source code <em>at compile time</em> through a series of states:</p>
-
+<pre><code>val personsMolecule = m(Person.name.age)
+</code></pre><p>The <code>m</code>olecule method transforms our source code <em>at compile time</em> through a series of states:</p>
 <ol>
 <li>Source code</li>
 <li>Model AST</li>
 <li>Query AST</li>
 <li>Datomic query string</li>
 </ol>
-
 <p>The end result is simply a Datomic query string:</p>
-
-<pre><code class="language-scala">&quot;[:find ?b ?c :where [?a :Person/name ?b] [?a :Person/age ?c]]&quot;
-</code></pre>
-
-<p>Since the query is created at compile time it&rsquo;s all ready to fetch our data <em>at runtime</em> with no performance impact:</p>
-
-<pre><code class="language-scala">val data = personsMolecule.get
-</code></pre>
-
-<p>Given implicit conversions we could even unify the two steps:</p>
-
-<pre><code class="language-scala">val persons = Person.name.age.get
-</code></pre>
-
-<p>The query would still be created at compile time and fetching data at runtime.</p>
-
+<pre><code>&quot;[:find ?b ?c :where [?a :Person/name ?b] [?a :Person/age ?c]]&quot;
+</code></pre><p>Since the query is created at compile time it&rsquo;s all ready to fetch our data <em>at runtime</em> with no performance impact:</p>
+<pre><code>val data = personsMolecule.get
+</code></pre><p>Given implicit conversions we could even unify the two steps:</p>
+<pre><code>val persons = Person.name.age.get
+</code></pre><p>The query would still be created at compile time and fetching data at runtime.</p>
 <h3 id="closed-eco-system">Closed eco-system</h3>
-
 <p>Since we create our molecules from our self-generated boilerplate code our macros have full knowledge about the
 possible constructs we can expect. We are therefore in full control of the entire &ldquo;eco-system&rdquo; from molecule
- to Datomic query. Non-valid molecules simply won&rsquo;t compile. And we can infer all type information from our molecules.</p>
-
+to Datomic query. Non-valid molecules simply won&rsquo;t compile. And we can infer all type information from our molecules.</p>
 <p><a href="/dev/transformation">Read more about the macro transformations&hellip;</a></p>
 
 </div>

@@ -803,7 +803,7 @@
             <div class="col-md-2 column" style="padding-top:20px;padding-right:0px;">
                 <ul class="nav nav-pills" style="float:right;">
                     <li>
-                        <a href="/changelog" style="margin-top:-2px;">v0.21.0</a>
+                        <a href="/changelog" style="margin-top:-2px;">v0.22.0</a>
                     </li>
                     <li>
                         <div style="padding-left:14px;">
@@ -826,194 +826,108 @@
 <div class="container" style="padding-top:20px">
 
     <div class="col-sm-10 column" style="padding-left:8px;">
-        
-
-<h1 id="sql-vs-molecule-examples">SQL vs. Molecule examples</h1>
-
+        <h1 id="sql-vs-molecule-examples">SQL vs. Molecule examples</h1>
 <p>We&rsquo;ll make a similar comparison to SQL as <a href="http://slick.lightbend.com/doc/3.2.3/sql-to-slick.html#select">Slick</a> does:</p>
-
-<h4 id="select">SELECT *</h4>
-
+<h4 id="select-">SELECT *</h4>
 <pre><code>sql&quot;select * from PERSON&quot;.as[Person].list
-</code></pre>
-
-<p>In molecule we would declare each attribute we are interested in also to infer the exact return type</p>
-
-<pre><code class="language-scala">val persons: List[(String, Int)] = Person.name.age.get
-</code></pre>
-
-<h4 id="select-1">SELECT</h4>
-
+</code></pre><p>In molecule we would declare each attribute we are interested in also to infer the exact return type</p>
+<pre><code>val persons: List[(String, Int)] = Person.name.age.get
+</code></pre><h4 id="select">SELECT</h4>
 <pre><code>sql&quot;&quot;&quot;
   select AGE, concat(concat(concat(NAME,' ('),ID),')')
   from PERSON
 &quot;&quot;&quot;.as[(Int,String)].list
-</code></pre>
-
-<p>With Molecule we would concatenate <code>name</code> and <code>id</code> with the returned result set:</p>
-
-<pre><code class="language-scala">Person.age.name.e.get map { case (age, name, id) =&gt; (age, s&quot;$name ($id)&quot; }
-</code></pre>
-
-<p>Actually, Molecule treats attributes as mandatory values whereas Select-attributes in a SQL query could be Null values (if allowed). Molecule can also ask for optional values too if a <code>$</code> sign is appended to an attribute name:</p>
-
-<pre><code class="language-scala">Person.age.firstName.middleName$.lastName.e.get map { 
+</code></pre><p>With Molecule we would concatenate <code>name</code> and <code>id</code> with the returned result set:</p>
+<pre><code>Person.age.name.e.get map { case (age, name, id) =&gt; (age, s&quot;$name ($id)&quot; }
+</code></pre><p>Actually, Molecule treats attributes as mandatory values whereas Select-attributes in a SQL query could be Null values (if allowed). Molecule can also ask for optional values too if a <code>$</code> sign is appended to an attribute name:</p>
+<pre><code>Person.age.firstName.middleName$.lastName.e.get map { 
   case (age, firstName, Some(middleName), lastName, id) =&gt; (age, s&quot;$firstName $middleName $lastName ($id)&quot; 
   case (age, firstName, None, lastName, id)             =&gt; (age, s&quot;$firstName $lastName ($id)&quot; 
 }
-</code></pre>
-
-<h4 id="where">WHERE</h4>
-
-<pre><code class="language-scala">sql&quot;select * from PERSON where AGE &gt;= 18 AND NAME = 'C. Vogt'&quot;.as[Person].list
-</code></pre>
-
-<p>Molecule filter values by applying a required value to an attribute or supply a value to compare against (<code>&gt;=(18)</code>):</p>
-
-<pre><code class="language-scala">Person.age.&gt;=(18).name(&quot;C. Vogt&quot;).get
-</code></pre>
-
-<p>(Again we would define which attribute values we want to return)</p>
-
+</code></pre><h4 id="where">WHERE</h4>
+<pre><code>sql&quot;select * from PERSON where AGE &gt;= 18 AND NAME = 'C. Vogt'&quot;.as[Person].list
+</code></pre><p>Molecule filter values by applying a required value to an attribute or supply a value to compare against (<code>&gt;=(18)</code>):</p>
+<pre><code>Person.age.&gt;=(18).name(&quot;C. Vogt&quot;).get
+</code></pre><p>(Again we would define which attribute values we want to return)</p>
 <h4 id="order-by">ORDER BY</h4>
-
-<pre><code class="language-scala">sql&quot;select * from PERSON order by AGE asc, NAME&quot;.as[Person].list
-</code></pre>
-
-<p>Ordering is applied on the result set:</p>
-
-<pre><code class="language-scala">Person.age.name.get.toSeq.sortBy(_._1)
-</code></pre>
-
-<h4 id="aggregations">Aggregations</h4>
-
-<pre><code class="language-scala">sql&quot;select max(AGE) from PERSON&quot;.as[Option[Int]].first
-</code></pre>
-
-<p>Aggregate functions like <code>max</code> are all applied as a keyword value to an attribute.</p>
-
-<pre><code class="language-scala">Person.age(max).get
+<pre><code>sql&quot;select * from PERSON order by AGE asc, NAME&quot;.as[Person].list
+</code></pre><p>Ordering is applied on the result set:</p>
+<pre><code>Person.age.name.get.toSeq.sortBy(_._1)
+</code></pre><h4 id="aggregations">Aggregations</h4>
+<pre><code>sql&quot;select max(AGE) from PERSON&quot;.as[Option[Int]].first
+</code></pre><p>Aggregate functions like <code>max</code> are all applied as a keyword value to an attribute.</p>
+<pre><code>Person.age(max).get
 // or get a range of top values
 Person.age(max(3)).get
-</code></pre>
-
-<p>We can aggregate values also with the counterpart <code>min</code> or get a random value with <code>rand</code>. Or perform aggregate calculations with <code>count</code>, <code>countDistinct</code>, <code>sum</code>, <code>avg</code>, <code>median</code>, <code>variance</code> and <code>stddev</code> which are all built functions in Datomic.</p>
-
+</code></pre><p>We can aggregate values also with the counterpart <code>min</code> or get a random value with <code>rand</code>. Or perform aggregate calculations with <code>count</code>, <code>countDistinct</code>, <code>sum</code>, <code>avg</code>, <code>median</code>, <code>variance</code> and <code>stddev</code> which are all built functions in Datomic.</p>
 <h4 id="group-by">GROUP BY</h4>
-
-<pre><code class="language-scala">sql&quot;&quot;&quot;
+<pre><code>sql&quot;&quot;&quot;
   select ADDRESS_ID, AVG(AGE)
   from PERSON
   group by ADDRESS_ID
 &quot;&quot;&quot;.as[(Int,Option[Int])].list
-</code></pre>
-
-<p>Molecule automatically group by attributes not having an aggregate expression. In this case the query will group by <code>address</code> and calculate the average <code>age</code> for persons living there.</p>
-
-<pre><code class="language-scala">Person.address.age(avg).get
-</code></pre>
-
-<h4 id="having">HAVING</h4>
-
-<pre><code class="language-scala">sql&quot;&quot;&quot;
+</code></pre><p>Molecule automatically group by attributes not having an aggregate expression. In this case the query will group by <code>address</code> and calculate the average <code>age</code> for persons living there.</p>
+<pre><code>Person.address.age(avg).get
+</code></pre><h4 id="having">HAVING</h4>
+<pre><code>sql&quot;&quot;&quot;
   select ADDRESS_ID
   from PERSON
   group by ADDRESS_ID
   having avg(AGE) &gt; 50
 &quot;&quot;&quot;.as[Int].list
-</code></pre>
-
-<pre><code class="language-scala">Person.address.age(avg).get.toSeq.filter(_._2 &gt; 50)
-</code></pre>
-
-<h4 id="implicit-join">Implicit join</h4>
-
-<pre><code class="language-scala">sql&quot;&quot;&quot;
+</code></pre><pre><code>Person.address.age(avg).get.toSeq.filter(_._2 &gt; 50)
+</code></pre><h4 id="implicit-join">Implicit join</h4>
+<pre><code>sql&quot;&quot;&quot;
   select P.NAME, A.CITY
   from PERSON P, ADDRESS A
   where P.ADDRESS_ID = A.id
 &quot;&quot;&quot;.as[(String,String)].list
-</code></pre>
-
-<pre><code class="language-scala">Person.name.Address.city.get
-</code></pre>
-
-<h4 id="explicit-join">Explicit join</h4>
-
-<pre><code class="language-scala">sql&quot;&quot;&quot;
+</code></pre><pre><code>Person.name.Address.city.get
+</code></pre><h4 id="explicit-join">Explicit join</h4>
+<pre><code>sql&quot;&quot;&quot;
   select P.NAME, A.CITY
   from PERSON P
   join ADDRESS A on P.ADDRESS_ID = A.id
 &quot;&quot;&quot;.as[(String,String)].list
-</code></pre>
-
-<pre><code class="language-scala">Person.name.Address.city.get
-</code></pre>
-
-<h4 id="left-right-outer-join">left/right/outer join</h4>
-
-<pre><code class="language-scala">sql&quot;&quot;&quot;
+</code></pre><pre><code>Person.name.Address.city.get
+</code></pre><h4 id="leftrightouter-join">left/right/outer join</h4>
+<pre><code>sql&quot;&quot;&quot;
   select P.NAME,A.CITY
   from ADDRESS A
   left join PERSON P on P.ADDRESS_ID = A.id
 &quot;&quot;&quot;.as[(Option[String],String)].list
-</code></pre>
-
-<pre><code class="language-scala">// Add `$` to attribute name to get optional values
+</code></pre><pre><code>// Add `$` to attribute name to get optional values
 val persons: List[(Option[String], String)] = Person.name$.Address.city.get
-</code></pre>
-
-<h4 id="subquery">Subquery</h4>
-
-<pre><code class="language-scala">sql&quot;&quot;&quot;
+</code></pre><h4 id="subquery">Subquery</h4>
+<pre><code>sql&quot;&quot;&quot;
   select *
   from PERSON P
   where P.ADDRESS_ID in (select ID
                  from ADDRESS
                  where CITY = 'New York City')
 &quot;&quot;&quot;.as[Person].list
-</code></pre>
-
-<pre><code class="language-scala">Person.age.name.Address.city_(&quot;New York City&quot;).get
-</code></pre>
-
-<h4 id="insert">INSERT</h4>
-
-<pre><code class="language-scala">sqlu&quot;&quot;&quot;
+</code></pre><pre><code>Person.age.name.Address.city_(&quot;New York City&quot;).get
+</code></pre><h4 id="insert">INSERT</h4>
+<pre><code>sqlu&quot;&quot;&quot;
   insert into PERSON (NAME, AGE, ADDRESS_ID) values ('M Odersky', 12345, 1)
 &quot;&quot;&quot;.first
-</code></pre>
-
-<pre><code class="language-scala">Person.name(&quot;M Odersky&quot;).age(12345).address(1).save
-</code></pre>
-
-<h4 id="update">UPDATE</h4>
-
-<pre><code class="language-scala">sqlu&quot;&quot;&quot;
+</code></pre><pre><code>Person.name(&quot;M Odersky&quot;).age(12345).address(1).save
+</code></pre><h4 id="update">UPDATE</h4>
+<pre><code>sqlu&quot;&quot;&quot;
   update PERSON set NAME='M. Odersky', AGE=54321 where NAME='M Odersky'
 &quot;&quot;&quot;.first
-</code></pre>
-
-<pre><code class="language-scala">// Find entity id with generic Molecule attribute `e`
+</code></pre><pre><code>// Find entity id with generic Molecule attribute `e`
 // Omit `name` value by adding underscore `_` to attribute name   
 val oderskyId = Person.e.name_(&quot;M Odersky&quot;).get.head
 Person(oderskyId).name(&quot;M. Odersky&quot;).age(54321).update
-</code></pre>
-
-<h4 id="delete">DELETE</h4>
-
-<pre><code class="language-scala">sqlu&quot;&quot;&quot;
+</code></pre><h4 id="delete">DELETE</h4>
+<pre><code>sqlu&quot;&quot;&quot;
   delete PERSON where NAME='M. Odersky'
 &quot;&quot;&quot;.first
-</code></pre>
-
-<pre><code class="language-scala">// Retract entity
+</code></pre><pre><code>// Retract entity
 Person.e.name_(&quot;M. Odersky&quot;).get.head.retract
-</code></pre>
-
-<h4 id="case">CASE</h4>
-
-<pre><code class="language-scala">sql&quot;&quot;&quot;
+</code></pre><h4 id="case">CASE</h4>
+<pre><code>sql&quot;&quot;&quot;
   select
     case 
       when ADDRESS_ID = 1 then 'A'
@@ -1021,14 +935,11 @@ Person.e.name_(&quot;M. Odersky&quot;).get.head.retract
     end
   from PERSON P
 &quot;&quot;&quot;.as[Option[String]].list
-</code></pre>
-
-<pre><code class="language-scala">Person.address(1 or 2).get map {
+</code></pre><pre><code>Person.address(1 or 2).get map {
   case 1 =&gt; &quot;A&quot;
   case 2 =&gt; &quot;B&quot;
 }
 </code></pre>
-
     </div>
 
     <div class="col-sm-2 column" style="padding-left:20px;padding-top:22px;padding-right: 0px;">

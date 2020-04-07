@@ -803,7 +803,7 @@
             <div class="col-md-2 column" style="padding-top:20px;padding-right:0px;">
                 <ul class="nav nav-pills" style="float:right;">
                     <li>
-                        <a href="/changelog" style="margin-top:-2px;">v0.21.0</a>
+                        <a href="/changelog" style="margin-top:-2px;">v0.22.0</a>
                     </li>
                     <li>
                         <div style="padding-left:14px;">
@@ -826,24 +826,15 @@
 <div class="container" style="padding-top:20px">
 
     <div class="col-sm-10 column" style="padding-left:8px;">
-        
-
-<h1 id="history">History</h1>
-
+        <h1 id="history">History</h1>
 <p><a href="https://github.com/scalamolecule/molecule/tree/master/coretests/src/test/scala/molecule/coretests/time/GetHistory.scala">Tests&hellip;</a></p>
-
 <p>The history perspective gives us all the assertions and retractions that has happened over time.</p>
-
-<p><img src="/img/time/history.png" alt="" /></p>
-
+<p><img src="/img/time/history.png" alt=""></p>
 <h2 id="assertions-and-retractions">Assertions and retractions</h2>
-
 <p>Normally we get a snapshot of the database at a certain point in time. But when we call the <code>getHistory</code> method
 on a molecule we get all the assertions and retractions that has happened over time for the attributes of the molecule.</p>
-
 <p>As an example we can imagine Fred being added in tx3 and then updated in tx6.</p>
-
-<pre><code class="language-scala">// tx 3 (save)
+<pre><code>// tx 3 (save)
 val result3 = Person.name(&quot;Fred&quot;).likes(&quot;pizza&quot;).save
 val tx3 = result3.tx
 val fred = result3.eid
@@ -851,82 +842,54 @@ val fred = result3.eid
 // tx 6 (update)
 val result6 = Person(fred).likes(&quot;pasta&quot;).update
 val tx6 = result6.tx
-</code></pre>
-
-<p>The two transactions (save + update) produces the following 4 facts in the database:</p>
-
-<p><img src="/img/time/4.png" alt="" /></p>
-
+</code></pre><p>The two transactions (save + update) produces the following 4 facts in the database:</p>
+<p><img src="/img/time/4.png" alt=""></p>
 <h2 id="generic-attributes">Generic attributes</h2>
-
 <h4 id="tx-op"><code>tx</code>, <code>op</code></h4>
-
 <p>The 4th column in the facts schema above shows the transaction entity id that is saved with each fact.
 We get this value by appending the &ldquo;generic attribute&rdquo; <code>tx</code> after an attribute.</p>
-
 <p>The 5th column shows the operation performed. <code>true</code> for added/asserted and <code>false</code> for retracted. We get this value by adding
 the generic attribute <code>op</code> after an attribute.</p>
-
 <p>Let&rsquo;s see the transaction values and operations over time for the attribute <code>likes</code>:</p>
-
-<pre><code class="language-scala">Person(fred).likes.tx.op.getHistory.toSeq.sortBy(r =&gt; (r._2, r._3)) === List(
+<pre><code>Person(fred).likes.tx.op.getHistory.toSeq.sortBy(r =&gt; (r._2, r._3)) === List(
   (&quot;pizza&quot;, tx3, true), // 2nd fact
   (&quot;pizza&quot;, tx6, false),// 3rd fact
   (&quot;pasta&quot;, tx6, true)  // 4th fact
 )
-</code></pre>
-
-<p>Since output order is not guaranteed by Datomic we sort by transaction and then operation to get a chronological view
+</code></pre><p>Since output order is not guaranteed by Datomic we sort by transaction and then operation to get a chronological view
 of the historical data (Datomic of course keeps internal order). For brevity we omit the sorting in the following examples.</p>
-
 <h4 id="t-txinstant"><code>t</code>, <code>txInstant</code></h4>
-
 <p>Instead of getting the transaction entity id with <code>tx</code> we could also get the transaction value (an auto-incremented internal
 number for each transaction) with the generic attribute <code>t</code>:</p>
-
-<pre><code class="language-scala">Person(fred).likes.t.op.getHistory === List(
+<pre><code>Person(fred).likes.t.op.getHistory === List(
   (&quot;pizza&quot;, t3, true), 
   (&quot;pizza&quot;, t6, false),
   (&quot;pasta&quot;, t6, true)  
 )
-</code></pre>
-
-<p>.. or the time/date of the transaction with <code>txInstant</code>:</p>
-
-<pre><code class="language-scala">Person(fred).likes.txInstant.op.getHistory === List(
+</code></pre><p>.. or the time/date of the transaction with <code>txInstant</code>:</p>
+<pre><code>Person(fred).likes.txInstant.op.getHistory === List(
   (&quot;pizza&quot;, date3, true), 
   (&quot;pizza&quot;, date6, false),
   (&quot;pasta&quot;, date6, true)  
 )
-</code></pre>
-
-<p>.. or all at once:</p>
-
-<pre><code class="language-scala">Person(fred).likes.tx.t.txInstant.op.getHistory === List(
+</code></pre><p>.. or all at once:</p>
+<pre><code>Person(fred).likes.tx.t.txInstant.op.getHistory === List(
   (&quot;pizza&quot;, tx3, t3, date3, true), 
   (&quot;pizza&quot;, tx6, t6, date6, false),
   (&quot;pasta&quot;, tx6, t6, date6, true)  
 )
-</code></pre>
-
-<h4 id="a-v"><code>a</code>, <code>v</code></h4>
-
+</code></pre><h4 id="a-v"><code>a</code>, <code>v</code></h4>
 <p>We can even use a generic attribute <code>a</code> for the attribute name and <code>v</code> for the value of an attribute. This allow us to for instance
 track changes to all atrributes of an entity:</p>
-
-<pre><code class="language-scala">Person(fred).a.v.t.op.getHistory === List(
+<pre><code>Person(fred).a.v.t.op.getHistory === List(
   (&quot;:Person/name&quot;, &quot;Fred&quot;, t3, true), 
   (&quot;:Person/likes&quot;, &quot;pizza&quot;, t3, true), 
   (&quot;:Person/likes&quot;, &quot;pizza&quot;, t6, false),
   (&quot;:Person/likes&quot;, &quot;pasta&quot;, t6, true)  
 )
-</code></pre>
-
-<h3 id="expressions">Expressions</h3>
-
+</code></pre><h3 id="expressions">Expressions</h3>
 <p>We can apply values to generic attributes in history queries to narrow our results:</p>
-
-<pre><code class="language-scala">// &quot;What has been retracted for the entity `fred`&quot;
+<pre><code>// &quot;What has been retracted for the entity `fred`&quot;
 // - Fred disliked &quot;pizza&quot; at date6
 Person(fred).a.v.txInstant.op_(false).getHistory === List(
   (&quot;:Person/likes&quot;, &quot;pizza&quot;, date6, false) 
@@ -938,36 +901,23 @@ Person(fred).a.v.tx(tx3).op.getHistory === List(
   (&quot;:Person/name&quot;, &quot;Fred&quot;, t3, true), 
   (&quot;:Person/likes&quot;, &quot;pizza&quot;, t3, true)
 )
-</code></pre>
-
-<h2 id="combining-with-tx-meta-data">Combining with tx meta data</h2>
-
+</code></pre><h2 id="combining-with-tx-meta-data">Combining with tx meta data</h2>
 <p>Things become really interesting when we combine history with tx meta data since we can then go back and see what a
 transaction was about and what changes were involved.</p>
-
 <p>Here some examples from the <a href="https://github.com/scalamolecule/molecule/blob/master/examples/src/test/scala/molecule/examples/dayOfDatomic/Provenance.scala">Provenance</a>
 examples from the Day of Datomic tutorials:</p>
-
-<p><em>&ldquo;Who created/updated stories?&rdquo;</em></p>
-
-<pre><code class="language-scala">Story.url_(ecURL).title.op.tx_(MetaData.usecase.User.firstName).history.get.reverse === List(
+<p><em>&ldquo;Who created/updated stories?&quot;</em></p>
+<pre><code>Story.url_(ecURL).title.op.tx_(MetaData.usecase.User.firstName).history.get.reverse === List(
   (&quot;ElastiCache in 6 minutes&quot;, true, &quot;AddStories&quot;, &quot;Stu&quot;),  // Stu adds the story
   (&quot;ElastiCache in 6 minutes&quot;, false, &quot;UpdateStory&quot;, &quot;Ed&quot;), // retraction automatically added by Datomic
   (&quot;ElastiCache in 5 minutes&quot;, true, &quot;UpdateStory&quot;, &quot;Ed&quot;)   // Ed's update of the title
 )
-</code></pre>
-
-<p>And we can narrow with expressions:</p>
-
-<p><em>&ldquo;What did Ed retract and in what use cases?&rdquo;</em></p>
-
-<pre><code class="language-scala">Story.url_(ecURL).title.op_(false).tx_(MetaData.usecase.User.firstName_(&quot;Ed&quot;)).getHistory === List(
+</code></pre><p>And we can narrow with expressions:</p>
+<p><em>&ldquo;What did Ed retract and in what use cases?&quot;</em></p>
+<pre><code>Story.url_(ecURL).title.op_(false).tx_(MetaData.usecase.User.firstName_(&quot;Ed&quot;)).getHistory === List(
   (&quot;ElastiCache in 6 minutes&quot;, &quot;UpdateStory&quot;) 
 )
-</code></pre>
-
-<h3 id="next">Next</h3>
-
+</code></pre><h3 id="next">Next</h3>
 <p><a href="/manual/time/with">With&hellip;</a></p>
 
     </div>

@@ -803,7 +803,7 @@
             <div class="col-md-2 column" style="padding-top:20px;padding-right:0px;">
                 <ul class="nav nav-pills" style="float:right;">
                     <li>
-                        <a href="/changelog" style="margin-top:-2px;">v0.21.0</a>
+                        <a href="/changelog" style="margin-top:-2px;">v0.22.0</a>
                     </li>
                     <li>
                         <div style="padding-left:14px;">
@@ -826,40 +826,25 @@
 <div class="container" style="padding-top:20px">
 
     <div class="col-sm-10 column" style="padding-left:8px;">
-        
-
-<h1 id="macro-transformation">Macro transformation</h1>
-
+        <h1 id="macro-transformation">Macro transformation</h1>
 <p>Molecule performs a series of transformation of the molecules we write so that they in the end become a Datomic query:</p>
-
 <h3 id="1-source-code">1. Source code</h3>
-
 <p>To find southern media communities we could make the following molecule</p>
-
-<pre><code class="language-scala">Community.name.`type`(&quot;twitter&quot; or &quot;facebook_page&quot;)
+<pre><code>Community.name.`type`(&quot;twitter&quot; or &quot;facebook_page&quot;)
   .Neighborhood.District.region(&quot;sw&quot; or &quot;s&quot; or &quot;se&quot;)
-</code></pre>
-
-<h3 id="2-model-ast">2. Model AST</h3>
-
+</code></pre><h3 id="2-model-ast">2. Model AST</h3>
 <p>The source code of our molecule is then pattern matched in <a href="https://github.com/scalamolecule/molecule/blob/master/core/src/main/scala/molecule/transform/Dsl2Model.scala">Dsl2Model</a> element by element in order to create an abstracted Model of <code>Atom</code>s and <code>Bond</code>s:</p>
-
-<pre><code class="language-scala">Model(List(
+<pre><code>Model(List(
   Atom(&quot;Community&quot;, &quot;name&quot;, &quot;String&quot;, 1, VarValue, None),
   Atom(&quot;Community&quot;, &quot;type_&quot;, &quot;String&quot;, 1, Eq(List(&quot;twitter&quot;, &quot;facebook_page&quot;)), Some(&quot;:Community.type/&quot;)),
   Bond(&quot;Community&quot;, &quot;neighborhood&quot;, &quot;Neighborhood&quot;),
   Bond(&quot;Neighborhood&quot;, &quot;district&quot;, &quot;District&quot;),
   Atom(&quot;District&quot;, &quot;region_&quot;, &quot;String&quot;, 1, Eq(List(&quot;sw&quot;, &quot;s&quot;, &quot;se&quot;)), Some(&quot;:District.region/&quot;)))
 )
-</code></pre>
-
-<p>This simple <a href="https://github.com/scalamolecule/molecule/blob/master/core/src/main/scala/molecule/ast/model.scala">Model AST</a> has shown to cover a surprising wide spectre of queries.</p>
-
+</code></pre><p>This simple <a href="https://github.com/scalamolecule/molecule/blob/master/core/src/main/scala/molecule/ast/model.scala">Model AST</a> has shown to cover a surprising wide spectre of queries.</p>
 <h3 id="3-query-ast">3. Query AST</h3>
-
 <p>Our model is then transformed in <a href="https://github.com/scalamolecule/molecule/blob/master/core/src/main/scala/molecule/transform/Model2Query.scala">Model2Query</a> to a Query AST which is a little more elaborate:</p>
-
-<pre><code class="language-scala">Query(
+<pre><code>Query(
   Find(List(
     Var(&quot;b&quot;))),
   In(List(), List(
@@ -880,37 +865,13 @@
     DataClause(ImplDS, Var(&quot;d&quot;), KW(&quot;Neighborhood&quot;, &quot;district&quot;, &quot;District&quot;), Var(&quot;e&quot;), Empty),
     RuleInvocation(&quot;rule2&quot;, List(Var(&quot;e&quot;)))))
 )
-</code></pre>
-
-<p>As you see this <a href="https://github.com/scalamolecule/molecule/blob/master/core/src/main/scala/molecule/ast/query.scala">Query AST</a> is tailored to Datomic.</p>
-
+</code></pre><p>As you see this <a href="https://github.com/scalamolecule/molecule/blob/master/core/src/main/scala/molecule/ast/query.scala">Query AST</a> is tailored to Datomic.</p>
 <p>In principle we should be able to use the same model to create other Query abstractions tailored to other database systems!&hellip;</p>
-
 <h3 id="4-datomic-query-string">4. Datomic query string</h3>
-
 <p>Finally Molecule transforms our Query AST in <a href="https://github.com/scalamolecule/molecule/blob/master/core/src/main/scala/molecule/transform/Query2String.scala">Query2String</a> to a Datomic query text strings:</p>
-
-<pre>
-[:find  ?b
- :in    $ %
- :where [?a :Community/name ?b]
-        (rule1 ?a)
-        [?a :Community/neighborhood ?d]
-        [?d :Neighborhood/district ?e]
-        (rule2 ?e)]
-
-INPUTS:
-List(
-  1 datomic.db.Db@xxx
-  2 [[(rule1 ?a) [?a :Community/type ":Community.type/twitter"]]
-     [(rule1 ?a) [?a :Community/type ":Community.type/facebook_page"]]
-     [(rule2 ?e) [?e :District/region ":District.region/sw"]]
-     [(rule2 ?e) [?e :District/region ":District.region/s"]]
-     [(rule2 ?e) [?e :District/region ":District.region/se"]]]
-</pre>
-
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 <p>All 3 transformations happen at compile time and therefore have no impact on the runtime performance.</p>
-
 <p>See more examples of <a href="https://github.com/scalamolecule/molecule/blob/master/examples/src/test/scala/molecule/examples/seattle/SeattleTransformationTests.scala">transformation of the Seattle molecules</a>&hellip;</p>
 
     </div>

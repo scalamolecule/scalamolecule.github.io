@@ -803,7 +803,7 @@
             <div class="col-md-2 column" style="padding-top:20px;padding-right:0px;">
                 <ul class="nav nav-pills" style="float:right;">
                     <li>
-                        <a href="/changelog" style="margin-top:-2px;">v0.21.0</a>
+                        <a href="/changelog" style="margin-top:-2px;">v0.22.0</a>
                     </li>
                     <li>
                         <div style="padding-left:14px;">
@@ -826,45 +826,29 @@
 <div class="container" style="padding-top:20px">
 
     <div class="col-sm-10 column" style="padding-left:8px;">
-        
-
-<h1 id="asof-since">AsOf / Since</h1>
-
+        <h1 id="asof--since">AsOf / Since</h1>
 <p><a href="https://github.com/scalamolecule/molecule/tree/master/coretests/src/test/scala/molecule/coretests/time">Tests&hellip;</a></p>
-
 <p><code>getAsOf(t)</code> and <code>getSince</code> are complementary functions that either get us a snapshop of the database at some
 point in time or a current snapshot filtered with only changes after a point in time. Like before/after scenarios.</p>
-
 <h2 id="asof">AsOf</h2>
-
 <p><a href="https://github.com/scalamolecule/molecule/blob/master/coretests/src/test/scala/molecule/coretests/time/GetAsOf.scala">AsOf test&hellip;</a></p>
-
 <p>Calling <code>getAsOf(t)</code> on a molecule gives us the data as of a certain point in time like <code>t4</code>:</p>
-
-<p><img src="/img/time/as-of.png" alt="" /></p>
-
-<p><br></p>
-
+<p><img src="/img/time/as-of.png" alt=""></p>
+<!-- raw HTML omitted -->
 <p>As we saw in <a href="/manual/time#pointintime">point in time</a>, a <code>t</code> can be either a transaction entity
 id like <code>txE4</code>, a transaction number <code>t4</code>, the resulting transaction report <code>tx4</code> from some transactional
 operation or a <code>java.util.Date</code> like <code>date4</code>. So we could get to the same data in 4 different ways:</p>
-
-<pre><code class="language-scala">Person.name.age.getAsOf(txE4) === ... // Persons as of transaction entity id `txE4` (inclusive)
+<pre><code>Person.name.age.getAsOf(txE4) === ... // Persons as of transaction entity id `txE4` (inclusive)
  
 Person.name.age.getAsOf(t4) === ... // Persons as of transaction value `t4` (inclusive) 
 
 Person.name.age.getAsOf(tx4) === ... // Persons as of transaction report `tx4` (inclusive) 
 
 Person.name.age.getAsOf(date4) === ... // Persons as of some Date `date4` (inclusive) 
-</code></pre>
-
-<p>Note that <code>t</code> is &ldquo;inclusive&rdquo; meaning that it is how the database looked right <em>after</em> transaction
+</code></pre><p>Note that <code>t</code> is &ldquo;inclusive&rdquo; meaning that it is how the database looked right <em>after</em> transaction
 <code>txE4</code>/<code>t4</code>/<code>tx4</code>/<code>date4</code>.</p>
-
 <h3 id="asof-apis">AsOf APIs</h3>
-
 <p>Data AsOf some point in time <code>t</code> can be returned as</p>
-
 <ul>
 <li><code>List</code> for convenient access to smaller data sets</li>
 <li><code>Array</code> for fastest retrieval and traversing of large typed data sets</li>
@@ -872,86 +856,38 @@ Person.name.age.getAsOf(date4) === ... // Persons as of some Date `date4` (inclu
 <li>Json (<code>String</code>)</li>
 <li>Raw (<code>java.util.Collection[java.util.List[AnyRef]]</code>) for fast access to untyped data</li>
 </ul>
-
 <p>where <code>t</code> can be any of:</p>
-
 <ul>
 <li>Transaction entity id (<code>Long</code>)</li>
 <li>Transaction number (<code>Long</code>)</li>
 <li>Transaction report (<code>molecule.facade.TxReport</code>)</li>
 <li>Date (<code>java.util.Date</code>)</li>
 </ul>
-
 <p>Combine the needed return type with some representation of <code>t</code> and optionally a row limit by calling one of the
 corresponding <code>AsOf</code> implementations. All return type/parameter combinations have a synchronous and asynchronous
 implementation:</p>
-
-<div class="container" style="margin-left: -30px">
-    <div class="col-sm-3 column ">
-        <ul>
-            <li><code>getAsOf(t)</code> (List)</li>
-            <li><code>getArrayAsOf(t)</code></li>
-            <li><code>getIterableAsOf(t)</code></li>
-            <li><code>getJsonAsOf(t)</code></li>
-            <li><code>getRawAsOf(t)</code></li>
-        </ul>
-        <ul>
-            <li><code>getAsOf(t, limit)</code> (List)</li>
-            <li><code>getArrayAsOf(t, limit)</code></li>
-            <li><code>getJsonAsOf(t, limit)</code></li>
-            <li><code>getRawAsOf(t, limit)</code></li>
-        </ul>
-    </div>
-    <div class="col-sm-5 column ">
-        <ul>
-            <li><code>getAsyncAsOf(t)</code> (List)</li>
-            <li><code>getAsyncArrayAsOf(t)</code></li>
-            <li><code>getAsyncIterableAsOf(t)</code></li>
-            <li><code>getAsyncJsonAsOf(t)</code></li>
-            <li><code>getAsyncRawAsOf(t)</code></li>
-        </ul>
-        <ul>
-            <li><code>getAsyncAsOf(t, limit)</code> (List)</li>
-            <li><code>getAsyncArrayAsOf(t, limit)</code></li>
-            <li><code>getAsyncJsonAsOf(t, limit)</code></li>
-            <li><code>getAsyncRawAsOf(t, limit)</code></li>
-        </ul>
-    </div>
-</div>
-
+<!-- raw HTML omitted -->
 <p><code>getIterableAsOf(t, limit)</code> and <code>getAsyncIterableAsOf(t, limit)</code> are not implemented since the data is
 lazily evaluated with calls to <code>next</code> on the <code>Iterator</code>.</p>
-
 <h2 id="since">Since</h2>
-
 <p><a href="https://github.com/scalamolecule/molecule/blob/master/coretests/src/test/scala/molecule/coretests/time/GetSince.scala">Since tests&hellip;</a></p>
-
 <p>As a complementary function to <code>getAsOf(t)</code> we have <code>getSince(t)</code> that gives us a snapshot of
 the current database filtered with only changes added <em>after/since</em> <code>t</code>:</p>
-
-<p><img src="/img/time/since.png" alt="" /></p>
-
-<p><br></p>
-
+<p><img src="/img/time/since.png" alt=""></p>
+<!-- raw HTML omitted -->
 <p>Contrary to the getAsOf(t) method, the <code>t</code> is <em>not</em> included in <code>getSince(t)</code>.</p>
-
 <p><code>t</code> can be either a transaction entity id like <code>txE4</code>, a transaction number <code>t4</code>, the resulting transaction
 report <code>tx4</code> from some transactional operation or a <code>java.util.Date</code> like <code>date4</code>. So we could get to the same data
 in 4 different ways:</p>
-
-<pre><code class="language-scala">Person.name.age.getSince(txE4) === ... // Persons added since/after transaction entity id `txE4` (exclusive)
+<pre><code>Person.name.age.getSince(txE4) === ... // Persons added since/after transaction entity id `txE4` (exclusive)
  
 Person.name.age.getSince(t4) === ... // Persons added since/after transaction value `t4` (exclusive) 
 
 Person.name.age.getSince(tx4) === ... // Persons added since/after transaction report `tx4` (exclusive)
 
 Person.name.age.getSince(date4) === ... // Persons added since/after some Date `date4` (exclusive) 
-</code></pre>
-
-<h3 id="since-apis">Since APIs</h3>
-
+</code></pre><h3 id="since-apis">Since APIs</h3>
 <p>Data Since some point in time <code>t</code> can be returned as</p>
-
 <ul>
 <li><code>List</code> for convenient access to smaller data sets</li>
 <li><code>Array</code> for fastest retrieval and traversing of large typed data sets</li>
@@ -959,65 +895,26 @@ Person.name.age.getSince(date4) === ... // Persons added since/after some Date `
 <li>Json (<code>String</code>)</li>
 <li>Raw (<code>java.util.Collection[java.util.List[AnyRef]]</code>) for fast access to untyped data</li>
 </ul>
-
 <p>where <code>t</code> can be any of:</p>
-
 <ul>
 <li>Transaction entity id (<code>Long</code>)</li>
 <li>Transaction number (<code>Long</code>)</li>
 <li>Transaction report (<code>molecule.facade.TxReport</code>)</li>
 <li>Date (<code>java.util.Date</code>)</li>
 </ul>
-
 <p>Combine the needed return type with some representation of <code>t</code> and optionally a row limit by calling one of the
 corresponding <code>Since</code> implementations. All return type/parameter combinations have a synchronous and asynchronous
 implementation:</p>
-
-<div class="container" style="margin-left: -30px">
-    <div class="col-sm-3 column ">
-        <ul>
-            <li><code>getSince(t)</code> (List)</li>
-            <li><code>getArraySince(t)</code></li>
-            <li><code>getIterableSince(t)</code></li>
-            <li><code>getJsonSince(t)</code></li>
-            <li><code>getRawSince(t)</code></li>
-        </ul>
-        <ul>
-            <li><code>getSince(t, limit)</code> (List)</li>
-            <li><code>getArraySince(t, limit)</code></li>
-            <li><code>getJsonSince(t, limit)</code></li>
-            <li><code>getRawSince(t, limit)</code></li>
-        </ul>
-    </div>
-    <div class="col-sm-5 column ">
-        <ul>
-            <li><code>getAsyncSince(t)</code> (List)</li>
-            <li><code>getAsyncArraySince(t)</code></li>
-            <li><code>getAsyncIterableSince(t)</code></li>
-            <li><code>getAsyncJsonSince(t)</code></li>
-            <li><code>getAsyncRawSince(t)</code></li>
-        </ul>
-        <ul>
-            <li><code>getAsyncSince(t, limit)</code> (List)</li>
-            <li><code>getAsyncArraySince(t, limit)</code></li>
-            <li><code>getAsyncJsonSince(t, limit)</code></li>
-            <li><code>getAsyncRawSince(t, limit)</code></li>
-        </ul>
-    </div>
-</div>
-
+<!-- raw HTML omitted -->
 <p><code>getIterableSince(t, limit)</code> and <code>getAsyncIterableSince(t, limit)</code> are not implemented since the data is
 lazily evaluated with calls to <code>next</code> on the <code>Iterator</code>.</p>
-
 <blockquote>
 <p>The asynchronous implementations simply wraps the synchronous result in a Future as any
 other database server would normally do internally. The difference is that the Peer (the &ldquo;database server&rdquo;)
 runs in the same process as our application code which makes it natural to do the Future-wrapping
 in Molecule as part of running our application.</p>
 </blockquote>
-
 <h3 id="next">Next</h3>
-
 <p><a href="/manual/time/history">History&hellip;</a></p>
 
     </div>

@@ -803,7 +803,7 @@
             <div class="col-md-2 column" style="padding-top:20px;padding-right:0px;">
                 <ul class="nav nav-pills" style="float:right;">
                     <li>
-                        <a href="/changelog" style="margin-top:-2px;">v0.21.0</a>
+                        <a href="/changelog" style="margin-top:-2px;">v0.22.0</a>
                     </li>
                     <li>
                         <div style="padding-left:14px;">
@@ -826,98 +826,50 @@
 <div class="container" style="padding-top:20px">
 
     <div class="col-sm-10 column" style="padding-left:8px;">
-        
-
-<h1 id="slick-vs-molecule-examples">Slick vs. Molecule examples</h1>
-
+        <h1 id="slick-vs-molecule-examples">Slick vs. Molecule examples</h1>
 <p>Using examples from <a href="http://slick.lightbend.com/doc/3.2.3/sql-to-slick.html#select">Coming from SQL to Slick</a>:</p>
-
 <h4 id="select-all-table-values">Select all table values</h4>
-
 <pre><code>// Slick
 people.result
-</code></pre>
-
-<p>In molecule we would declare each attribute we are interested in also to infer the exact return type</p>
-
-<pre><code class="language-scala">// Molecule
+</code></pre><p>In molecule we would declare each attribute we are interested in also to infer the exact return type</p>
+<pre><code>// Molecule
 Person.name.age.get
-</code></pre>
-
-<h4 id="select-certain-columns">Select certain columns</h4>
-
+</code></pre><h4 id="select-certain-columns">Select certain columns</h4>
 <pre><code>people.map(p =&gt; (p.age, p.name ++ &quot; (&quot; ++ p.id.asColumnOf[String] ++ &quot;)&quot;)).result
-</code></pre>
-
-<p>With Molecule we would concatenate <code>name</code> and <code>id</code> with the returned result set:</p>
-
-<pre><code class="language-scala">Person.age.name.e.get map { case (age, name, id) =&gt; (age, s&quot;$name ($id)&quot; }
-</code></pre>
-
-<h4 id="filter-where">filter / WHERE</h4>
-
-<pre><code class="language-scala">people.filter(p =&gt; p.age &gt;= 18 &amp;&amp; p.name === &quot;C. Vogt&quot;).result
-</code></pre>
-
-<p>Molecule filter values by applying a required value to an attribute or supply a value to compare against (<code>&gt;=(18)</code>):</p>
-
-<pre><code class="language-scala">Person.age.&gt;=(18).name(&quot;C. Vogt&quot;).get
-</code></pre>
-
-<p>(Again we would define which attribute values we want to return)</p>
-
-<h4 id="sortby-order-by">sortBy / ORDER BY</h4>
-
-<pre><code class="language-scala">people.sortBy(p =&gt; (p.age.asc, p.name)).result
-</code></pre>
-
-<p>Ordering is applied on the result set in the application code:</p>
-
-<pre><code class="language-scala">Person.age.name.get.sortBy(_._1)
-</code></pre>
-
-<h4 id="aggregations">Aggregations</h4>
-
-<pre><code class="language-scala">people.map(_.age).max.result
-</code></pre>
-
-<p>Aggregate functions like <code>max</code> are all applied as a keyword value to an attribute.</p>
-
-<pre><code class="language-scala">Person.age(max).get
+</code></pre><p>With Molecule we would concatenate <code>name</code> and <code>id</code> with the returned result set:</p>
+<pre><code>Person.age.name.e.get map { case (age, name, id) =&gt; (age, s&quot;$name ($id)&quot; }
+</code></pre><h4 id="filter--where">filter / WHERE</h4>
+<pre><code>people.filter(p =&gt; p.age &gt;= 18 &amp;&amp; p.name === &quot;C. Vogt&quot;).result
+</code></pre><p>Molecule filter values by applying a required value to an attribute or supply a value to compare against (<code>&gt;=(18)</code>):</p>
+<pre><code>Person.age.&gt;=(18).name(&quot;C. Vogt&quot;).get
+</code></pre><p>(Again we would define which attribute values we want to return)</p>
+<h4 id="sortby--order-by">sortBy / ORDER BY</h4>
+<pre><code>people.sortBy(p =&gt; (p.age.asc, p.name)).result
+</code></pre><p>Ordering is applied on the result set in the application code:</p>
+<pre><code>Person.age.name.get.sortBy(_._1)
+</code></pre><h4 id="aggregations">Aggregations</h4>
+<pre><code>people.map(_.age).max.result
+</code></pre><p>Aggregate functions like <code>max</code> are all applied as a keyword value to an attribute.</p>
+<pre><code>Person.age(max).get
 
 // or get a range of top values
 Person.age(max(3)).get
-</code></pre>
-
-<p>We can aggregate values also with the counterpart <code>min</code> or get a random value with <code>rand</code>. Or perform aggregate calculations with <code>count</code>, <code>countDistinct</code>, <code>sum</code>, <code>avg</code>, <code>median</code>, <code>variance</code> and <code>stddev</code> which are all built functions in Datomic.</p>
-
-<h4 id="groupby-group-by">groupBy / GROUP BY</h4>
-
-<pre><code class="language-scala">people.groupBy(p =&gt; p.addressId)
+</code></pre><p>We can aggregate values also with the counterpart <code>min</code> or get a random value with <code>rand</code>. Or perform aggregate calculations with <code>count</code>, <code>countDistinct</code>, <code>sum</code>, <code>avg</code>, <code>median</code>, <code>variance</code> and <code>stddev</code> which are all built functions in Datomic.</p>
+<h4 id="groupby--group-by">groupBy / GROUP BY</h4>
+<pre><code>people.groupBy(p =&gt; p.addressId)
        .map{ case (addressId, group) =&gt; (addressId, group.map(_.age).avg) }
        .list
-</code></pre>
-
-<p>Molecule automatically group by attributes not having an aggregate expression. In this case the query will group by <code>address</code> and calculate the average <code>age</code> for persons living there.</p>
-
-<pre><code class="language-scala">Person.address.age(avg).get
-</code></pre>
-
-<h4 id="groupby-filter-having">groupBy+filter / HAVING</h4>
-
-<pre><code class="language-scala">people.groupBy(p =&gt; p.addressId)
+</code></pre><p>Molecule automatically group by attributes not having an aggregate expression. In this case the query will group by <code>address</code> and calculate the average <code>age</code> for persons living there.</p>
+<pre><code>Person.address.age(avg).get
+</code></pre><h4 id="groupbyfilter--having">groupBy+filter / HAVING</h4>
+<pre><code>people.groupBy(p =&gt; p.addressId)
        .map{ case (addressId, group) =&gt; (addressId, group.map(_.age).avg) }
        .filter{ case (addressId, avgAge) =&gt; avgAge &gt; 50 }
        .map(_._1)
        .result
-</code></pre>
-
-<pre><code class="language-scala">Person.address.age(avg).get.filter(_._2 &gt; 50)
-</code></pre>
-
-<h4 id="implicit-join">Implicit join</h4>
-
-<pre><code class="language-scala">people.flatMap(p =&gt;
+</code></pre><pre><code>Person.address.age(avg).get.filter(_._2 &gt; 50)
+</code></pre><h4 id="implicit-join">Implicit join</h4>
+<pre><code>people.flatMap(p =&gt;
   addresses.filter(a =&gt; p.addressId === a.id)
            .map(a =&gt; (p.name, a.city))
 ).result
@@ -927,85 +879,47 @@ Person.age(max(3)).get
      a &lt;- addresses if p.addressId === a.id
  ) yield (p.name, a.city)
 ).result
-</code></pre>
-
-<pre><code class="language-scala">Person.name.Address.city.get
-</code></pre>
-
-<h4 id="explicit-join">Explicit join</h4>
-
-<pre><code class="language-scala">(people join addresses on (_.addressId === _.id))
+</code></pre><pre><code>Person.name.Address.city.get
+</code></pre><h4 id="explicit-join">Explicit join</h4>
+<pre><code>(people join addresses on (_.addressId === _.id))
   .map{ case (p, a) =&gt; (p.name, a.city) }.result
-</code></pre>
-
-<pre><code class="language-scala">Person.name.Address.city.get
-</code></pre>
-
-<h4 id="left-right-outer-join">left/right/outer join</h4>
-
-<pre><code class="language-scala">(addresses joinLeft people on (_.id === _.addressId))
+</code></pre><pre><code>Person.name.Address.city.get
+</code></pre><h4 id="leftrightouter-join">left/right/outer join</h4>
+<pre><code>(addresses joinLeft people on (_.id === _.addressId))
   .map{ case (a, p) =&gt; (p.map(_.name), a.city) }.result
-</code></pre>
-
-<pre><code class="language-scala">// Add `$` to attribute name to get optional values
+</code></pre><pre><code>// Add `$` to attribute name to get optional values
 Person.name$.Address.city.get
-</code></pre>
-
-<h4 id="subquery">Subquery</h4>
-
-<pre><code class="language-scala">val address_ids = addresses.filter(_.city === &quot;New York City&quot;).map(_.id)
+</code></pre><h4 id="subquery">Subquery</h4>
+<pre><code>val address_ids = addresses.filter(_.city === &quot;New York City&quot;).map(_.id)
 people.filter(_.id in address_ids).result // &lt;- run as one query
-</code></pre>
-
-<pre><code class="language-scala">Person.age.name.Address.city_(&quot;New York City&quot;).get
-</code></pre>
-
-<h4 id="insert">insert</h4>
-
-<pre><code class="language-scala">people.map(p =&gt; (p.name, p.age, p.addressId))
+</code></pre><pre><code>Person.age.name.Address.city_(&quot;New York City&quot;).get
+</code></pre><h4 id="insert">insert</h4>
+<pre><code>people.map(p =&gt; (p.name, p.age, p.addressId))
        .insert((&quot;M Odersky&quot;,12345,1))
-</code></pre>
-
-<pre><code class="language-scala">Person.name(&quot;M Odersky&quot;).age(12345).address(1).save
-</code></pre>
-
-<h4 id="update">update</h4>
-
-<pre><code class="language-scala">people.filter(_.name === &quot;M Odersky&quot;)
+</code></pre><pre><code>Person.name(&quot;M Odersky&quot;).age(12345).address(1).save
+</code></pre><h4 id="update">update</h4>
+<pre><code>people.filter(_.name === &quot;M Odersky&quot;)
        .map(p =&gt; (p.name,p.age))
        .update((&quot;M. Odersky&quot;,54321))
-</code></pre>
-
-<pre><code class="language-scala">// Find entity id with meta Molecule attribute `e`
+</code></pre><pre><code>// Find entity id with meta Molecule attribute `e`
 // Omit `name` value by adding underscore `_` to attribute name   
 val oderskyId = Person.e.name_(&quot;M Odersky&quot;).get.head
 Person(oderskyId).name(&quot;M. Odersky&quot;).age(54321).update
-</code></pre>
-
-<h4 id="delete">delete</h4>
-
-<pre><code class="language-scala">people.filter(p =&gt; p.name === &quot;M. Odersky&quot;)
+</code></pre><h4 id="delete">delete</h4>
+<pre><code>people.filter(p =&gt; p.name === &quot;M. Odersky&quot;)
        .delete
-</code></pre>
-
-<pre><code class="language-scala">Person.e.name_(&quot;M. Odersky&quot;).get.head.retract
-</code></pre>
-
-<h4 id="case">case</h4>
-
-<pre><code class="language-scala">people.map(p =&gt;
+</code></pre><pre><code>Person.e.name_(&quot;M. Odersky&quot;).get.head.retract
+</code></pre><h4 id="case">case</h4>
+<pre><code>people.map(p =&gt;
   Case
     If(p.addressId === 1) Then &quot;A&quot;
     If(p.addressId === 2) Then &quot;B&quot;
 ).list
-</code></pre>
-
-<pre><code class="language-scala">Person.address(1 or 2).get map {
+</code></pre><pre><code>Person.address(1 or 2).get map {
   case 1 =&gt; &quot;A&quot;
   case 2 =&gt; &quot;B&quot;
 }
 </code></pre>
-
     </div>
 
     <div class="col-sm-2 column" style="padding-left:20px;padding-top:22px;padding-right: 0px;">

@@ -803,7 +803,7 @@
             <div class="col-md-2 column" style="padding-top:20px;padding-right:0px;">
                 <ul class="nav nav-pills" style="float:right;">
                     <li>
-                        <a href="/changelog" style="margin-top:-2px;">v0.21.0</a>
+                        <a href="/changelog" style="margin-top:-2px;">v0.22.0</a>
                     </li>
                     <li>
                         <div style="padding-left:14px;">
@@ -826,33 +826,24 @@
 <div class="container" style="padding-top:20px">
 
     <div class="col-sm-10 column" style="padding-left:8px;">
-        
-
-<h1 id="transaction-bundle">Transaction bundle</h1>
-
+        <h1 id="transaction-bundle">Transaction bundle</h1>
 <p><a href="https://github.com/scalamolecule/molecule/blob/master/coretests/src/test/scala/molecule/coretests/transaction/TxBundle.scala">Tests&hellip;</a></p>
-
 <h2 id="multiple-actions-in-one-atomic-transaction">Multiple actions in one atomic transaction</h2>
-
 <p><a href="/manual/crud/save">save</a>,
 <a href="/manual/crud/insert">insert</a>,
 <a href="/manual/crud/update">update</a> and
 <a href="/manual/crud/retract">retract</a> operations on molecules each execute in their own transaction. By bundling
 transactions statements from several of those operations we can execute a single transaction that will guarantee atomicity. The bundled
- transaction will either complete as a whole or abort if there are any transactional errors.</p>
-
+transaction will either complete as a whole or abort if there are any transactional errors.</p>
 <p>Each of the above operations has an equivalent method for getting the transaction statements it produces:</p>
-
 <ul>
-<li><code>&lt;molecule&gt;.getSaveTx</code><br /></li>
-<li><code>&lt;molecule&gt;.getInsertTx</code><br /></li>
-<li><code>&lt;molecule&gt;.getUpdateTx</code><br /></li>
+<li><code>&lt;molecule&gt;.getSaveTx</code></li>
+<li><code>&lt;molecule&gt;.getInsertTx</code></li>
+<li><code>&lt;molecule&gt;.getUpdateTx</code></li>
 <li><code>&lt;entityId&gt;.getRetractTx</code></li>
 </ul>
-
 <p>We can use those methods to build a bundled transaction to atomically perform 4 operations in one transaction:</p>
-
-<pre><code class="language-scala">// Some initial data
+<pre><code>// Some initial data
 val List(e1, e2, e3) = Ns.int insert List(1, 2, 3) eids
 
 // Transact multiple molecule statements in one bundled transaction
@@ -875,11 +866,8 @@ Ns.int.get.sorted === List(
   5, 6, // inserted
   20 // 2 updated
 )
-</code></pre>
-
-<p>Bundled transactions can also use Datomic&rsquo;s asynchronous API by calling <code>transactAsync</code>:</p>
-
-<pre><code class="language-scala">Await.result(
+</code></pre><p>Bundled transactions can also use Datomic&rsquo;s asynchronous API by calling <code>transactAsync</code>:</p>
+<pre><code>Await.result(
   transactAsync(
     e1.getRetractTx,
     Ns.int(4).getSaveTx,
@@ -892,13 +880,9 @@ Ns.int.get.sorted === List(
   },
   2.seconds
 )
-</code></pre>
-
-<h3 id="debugging-bundled-transactions">Debugging bundled transactions</h3>
-
+</code></pre><h3 id="debugging-bundled-transactions">Debugging bundled transactions</h3>
 <p>If you want to see the transactional output from a bundled transaction you can call <code>debugTransaction</code> on some bundled transaction data:</p>
-
-<pre><code class="language-scala">// Print debug info for group transaction without affecting live db
+<pre><code>// Print debug info for group transaction without affecting live db
 debugTransact(
   // retract
   e1.getRetractTx,
@@ -941,13 +925,10 @@ debugTransact(
          7     added: false,  -t: 13194139534345,  -e: 17592186045446,  -a: 64,  -v: 2)
   ========================================================================
 */
-</code></pre>
-
-<p>Two groups of data are shown. The first group is an internal representation in Molecule showing the operations.
+</code></pre><p>Two groups of data are shown. The first group is an internal representation in Molecule showing the operations.
 The second group shows the datoms produced in the transaction. For ease of reading, &ldquo;-&rdquo; (minus) is prepended
 the prefixes (t, e, a, v) for the datoms that are retractions - where <code>added</code> is false.  The abbreviations
 represents the parts of the Datom:</p>
-
 <ul>
 <li><code>added</code>: operation, can be true for asserted or false for retracted</li>
 <li><code>t</code>: transaction entity id</li>
@@ -955,13 +936,9 @@ represents the parts of the Datom:</p>
 <li><code>a</code>: attribute</li>
 <li><code>v</code>: value</li>
 </ul>
-
 <p>Updating 2 to 20 for instance creates two Datoms, one retracting the old value 2 and one asserting the new value 20.</p>
-
 <p>(The numbers on the left are simply index numbers and not part of the transactional data)</p>
-
 <h3 id="next">Next</h3>
-
 <p><a href="/manual/transactions/tx-functions">Transaction functions&hellip;</a></p>
 
     </div>

@@ -803,7 +803,7 @@
             <div class="col-md-2 column" style="padding-top:20px;padding-right:0px;">
                 <ul class="nav nav-pills" style="float:right;">
                     <li>
-                        <a href="/changelog" style="margin-top:-2px;">v0.21.0</a>
+                        <a href="/changelog" style="margin-top:-2px;">v0.22.0</a>
                     </li>
                     <li>
                         <div style="padding-left:14px;">
@@ -826,129 +826,73 @@
 <div class="container" style="padding-top:20px">
 
     <div class="col-sm-10 column" style="padding-left:8px;">
-        
-
-<h1 id="expressions">Expressions</h1>
-
+        <h1 id="expressions">Expressions</h1>
 <p><a href="https://github.com/scalamolecule/molecule/tree/master/coretests/src/test/scala/molecule/coretests/expression">Tests&hellip;</a></p>
-
 <p>(All getters have an <a href="/manual/attributes/basics">asynchronous equivalent</a>. Synchronous getters shown for brevity)</p>
-
 <h3 id="equality">Equality</h3>
-
 <p><a href="https://github.com/scalamolecule/molecule/blob/master/coretests/src/test/scala/molecule/coretests/equality">Tests&hellip;</a></p>
-
 <p>We can apply values to Attributes in order to filter the data structures we are looking for. We could for instance find people who like pizza:</p>
-
-<pre><code class="language-scala">Person.likes.apply(&quot;pizza&quot;)
-</code></pre>
-
-<p>or simply</p>
-
-<pre><code class="language-scala">Person.likes(&quot;pizza&quot;)
-</code></pre>
-
-<p>Since the applied value &ldquo;pizza&rdquo; ensures that the attributes returned has this value we will get redundant information back for the <code>likes</code>
+<pre><code>Person.likes.apply(&quot;pizza&quot;)
+</code></pre><p>or simply</p>
+<pre><code>Person.likes(&quot;pizza&quot;)
+</code></pre><p>Since the applied value &ldquo;pizza&rdquo; ensures that the attributes returned has this value we will get redundant information back for the <code>likes</code>
 attribute (&ldquo;pizza&rdquo; is returned for all persons):</p>
-
-<pre><code class="language-scala">Person.name.likes(&quot;pizza&quot;).get === List(
+<pre><code>Person.name.likes(&quot;pizza&quot;).get === List(
   (&quot;Fred&quot;, &quot;pizza&quot;),
   (&quot;Ben&quot;, &quot;pizza&quot;)
 )
-</code></pre>
-
-<p>This is an ideomatic place to use a tacit attribute <code>likes_</code> to say &ldquo;Give me names of persons that like pizza&rdquo; without returning the <code>likes</code> value &ldquo;pizza&rdquo;
+</code></pre><p>This is an ideomatic place to use a tacit attribute <code>likes_</code> to say &ldquo;Give me names of persons that like pizza&rdquo; without returning the <code>likes</code> value &ldquo;pizza&rdquo;
 over and over again. Then we get a nice list of only the pizza likers:</p>
-
-<pre><code class="language-scala">Person.name.likes_(&quot;pizza&quot;).get === List(
+<pre><code>Person.name.likes_(&quot;pizza&quot;).get === List(
   &quot;Fred&quot;, &quot;Ben&quot;
 )
-</code></pre>
-
-<p><em>Note that since we get an arity-1 result back it is simply a list of those values.</em></p>
-
+</code></pre><p><em>Note that since we get an arity-1 result back it is simply a list of those values.</em></p>
 <p>We can apply OR-logic to find a selection of alternatives</p>
-
-<pre><code class="language-scala">Person.age(40 or 41 or 42)
+<pre><code>Person.age(40 or 41 or 42)
 // .. same as
 Person.age(40, 41, 42)
 // .. same as
 Person.age(List(40, 41, 42))
-</code></pre>
-
-<h3 id="fulltext-search">Fulltext search</h3>
-
+</code></pre><h3 id="fulltext-search">Fulltext search</h3>
 <p><a href="https://github.com/scalamolecule/molecule/blob/master/coretests/src/test/scala/molecule/coretests/expression/Fulltext.scala">Tests&hellip;</a></p>
-
 <p>If we add the <code>fulltext</code> option to a String attribute definition Datomic will index the text strings saved so that we can do
 fulltext searches across all values. We could for instance search for Community names containing the word &ldquo;Town&rdquo; in their name:</p>
-
-<pre><code class="language-scala">Community.name.contains(&quot;Town&quot;)
-</code></pre>
-
-<p>Note that only full words are considered, so &ldquo;Tow&rdquo; won&rsquo;t match. Searches are case-insensitive.</p>
-
+<pre><code>Community.name.contains(&quot;Town&quot;)
+</code></pre><p>Note that only full words are considered, so &ldquo;Tow&rdquo; won&rsquo;t match. Searches are case-insensitive.</p>
 <p>Also the following common words are not considered:</p>
-
 <pre><code>&quot;a&quot;, &quot;an&quot;, &quot;and&quot;, &quot;are&quot;, &quot;as&quot;, &quot;at&quot;, &quot;be&quot;, &quot;but&quot;, &quot;by&quot;,
 &quot;for&quot;, &quot;if&quot;, &quot;in&quot;, &quot;into&quot;, &quot;is&quot;, &quot;it&quot;,
 &quot;no&quot;, &quot;not&quot;, &quot;of&quot;, &quot;on&quot;, &quot;or&quot;, &quot;such&quot;,
 &quot;that&quot;, &quot;the&quot;, &quot;their&quot;, &quot;then&quot;, &quot;there&quot;, &quot;these&quot;,
 &quot;they&quot;, &quot;this&quot;, &quot;to&quot;, &quot;was&quot;, &quot;will&quot;, &quot;with&quot;
-</code></pre>
-
-<h3 id="negation">Negation</h3>
-
+</code></pre><h3 id="negation">Negation</h3>
 <p><a href="https://github.com/scalamolecule/molecule/blob/master/coretests/src/test/scala/molecule/coretests/expression/Negation.scala">Tests&hellip;</a></p>
-
 <p>We can exclude a certain attribute value like in &ldquo;Persons that are not 42 years old&rdquo;:</p>
-
-<pre><code class="language-scala">Person.age.!=(42)
+<pre><code>Person.age.!=(42)
 // or
 Person.age.not(42)
-</code></pre>
-
-<p>Negate multiple values</p>
-
-<pre><code class="language-scala">Person.age.!=(40 or 41 or 42)
+</code></pre><p>Negate multiple values</p>
+<pre><code>Person.age.!=(40 or 41 or 42)
 Person.age.!=(40, 41, 42)
 Person.age.!=(List(40, 41, 42))
-</code></pre>
-
-<h3 id="comparison">Comparison</h3>
-
+</code></pre><h3 id="comparison">Comparison</h3>
 <p><a href="https://github.com/scalamolecule/molecule/blob/master/coretests/src/test/scala/molecule/coretests/expression/Comparison.scala">Tests&hellip;</a></p>
-
 <p>We can filer attribute values that satisfy comparison expressions:</p>
-
-<pre><code class="language-scala">Person.age.&lt;(42)
+<pre><code>Person.age.&lt;(42)
 Person.age.&gt;(42)
 Person.age.&lt;=(42)
 Person.age.&gt;=(42)
-</code></pre>
-
-<p>Comparison of all types are performed with java&rsquo;s <code>compareTo</code> method. Text strings can for instance also be sorted by a letter:</p>
-
-<pre><code class="language-scala">Community.name.&lt;(&quot;C&quot;).get(3) === List(
+</code></pre><p>Comparison of all types are performed with java&rsquo;s <code>compareTo</code> method. Text strings can for instance also be sorted by a letter:</p>
+<pre><code>Community.name.&lt;(&quot;C&quot;).get(3) === List(
   &quot;ArtsWest&quot;, &quot;All About South Park&quot;, &quot;Ballard Neighbor Connection&quot;)
-</code></pre>
-
-<h3 id="null">Null</h3>
-
+</code></pre><h3 id="null">Null</h3>
 <p><a href="https://github.com/scalamolecule/molecule/blob/master/coretests/src/test/scala/molecule/coretests/expression/Null.scala">Tests&hellip;</a></p>
-
 <p>We can look for non-asserted attributes (Null values) as in &ldquo;Persons that have no age asserted&rdquo; by applying an empty value to an attribute:</p>
-
-<pre><code class="language-scala">Person.name.age_() === // all persons where age hasn't been asserted
-</code></pre>
-
-<p>Note that the <code>age_</code> attribute has to be tacit (with an underscore) since we naturally can&rsquo;t return missing values.</p>
-
+<pre><code>Person.name.age_() === // all persons where age hasn't been asserted
+</code></pre><p>Note that the <code>age_</code> attribute has to be tacit (with an underscore) since we naturally can&rsquo;t return missing values.</p>
 <h2 id="applying-variables">Applying variables</h2>
-
 <p>Even though Molecule introspects molecule constructions at compile time we can still use (runtime) variables for our expressions:</p>
-
-<pre><code class="language-scala">val youngAge = 25
+<pre><code>val youngAge = 25
 val goodAge = 42
 Person.age(goodAge)
 Person.age.&gt;(goodAge)
@@ -956,24 +900,14 @@ Person.age.&lt;=(goodAge)
 Person.age.&gt;=(goodAge)
 Person.age.!=(goodAge)
 Person.age.!=(youngAge or goodAge)
-</code></pre>
-
-<p>Technically, Molecule saves the <code>TermName</code> like &lsquo;goodAge&rsquo; of the variable for later resolution at runtime so that we can
+</code></pre><p>Technically, Molecule saves the <code>TermName</code> like &lsquo;goodAge&rsquo; of the variable for later resolution at runtime so that we can
 freely use variables in our expressions.</p>
-
 <p>For now Molecule can&rsquo;t though evaluate arbitrary applied expressions like this one:</p>
-
-<pre><code class="language-scala">Person.birthday(new java.util.Date(&quot;2017-05-10&quot;))
-</code></pre>
-
-<p>In this case we could instead apply the expression result to a variable and use that in the molecule:</p>
-
-<pre><code class="language-scala">val date = new java.util.Date(&quot;2017-05-10&quot;)
+<pre><code>Person.birthday(new java.util.Date(&quot;2017-05-10&quot;))
+</code></pre><p>In this case we could instead apply the expression result to a variable and use that in the molecule:</p>
+<pre><code>val date = new java.util.Date(&quot;2017-05-10&quot;)
 Person.birthday(date)
-</code></pre>
-
-<h3 id="next">Next</h3>
-
+</code></pre><h3 id="next">Next</h3>
 <p><a href="/manual/attributes/aggregates">Aggregate attributes&hellip;</a></p>
 
     </div>

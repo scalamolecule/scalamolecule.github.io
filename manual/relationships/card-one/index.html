@@ -803,7 +803,7 @@
             <div class="col-md-2 column" style="padding-top:20px;padding-right:0px;">
                 <ul class="nav nav-pills" style="float:right;">
                     <li>
-                        <a href="/changelog" style="margin-top:-2px;">v0.21.0</a>
+                        <a href="/changelog" style="margin-top:-2px;">v0.22.0</a>
                     </li>
                     <li>
                         <div style="padding-left:14px;">
@@ -826,15 +826,10 @@
 <div class="container" style="padding-top:20px">
 
     <div class="col-sm-10 column" style="padding-left:8px;">
-        
-
-<h1 id="card-one-relationships">Card-one relationships</h1>
-
+        <h1 id="card-one-relationships">Card-one relationships</h1>
 <p><a href="https://github.com/scalamolecule/molecule/blob/master/coretests/src/test/scala/molecule/coretests/ref/Relations.scala">Tests&hellip;</a></p>
-
 <p>In Molecule we model a cardinality-one relationship in our <a href="/manual/schema/">schema definition file</a> with the <code>one[&lt;RefNamespace&gt;]</code> syntax:</p>
-
-<pre><code class="language-scala">object YourDomainDefinition {
+<pre><code>object YourDomainDefinition {
   trait Person {
     val name = oneString
     val home = one[Addr]
@@ -844,58 +839,34 @@
     val city   = oneString
   }
 }
-</code></pre>
-
-<p>The ref attribute <code>home</code> is a card-one relationship to namespace <code>Addr</code>. When our schema is then translated to
+</code></pre><p>The ref attribute <code>home</code> is a card-one relationship to namespace <code>Addr</code>. When our schema is then translated to
 Molecule boilerplate code our <code>home</code> ref attribute is accessible as a value by using its lower case name (<code>home</code> instead of <code>Home</code>):</p>
-
-<pre><code class="language-scala">Person.name.home.get === List((&quot;Fred&quot;, 102))
-</code></pre>
-
-<p>This can be practical when we want to get a related entity id like <code>102</code> in this case.</p>
-
+<pre><code>Person.name.home.get === List((&quot;Fred&quot;, 102))
+</code></pre><p>This can be practical when we want to get a related entity id like <code>102</code> in this case.</p>
 <h3 id="ref-namespace">Ref namespace</h3>
-
 <p>More often though we want to collect the values of the referenced entity attributes. Molecule therefore also creates an Uppercase method <code>Home</code> that allow us to
 add attributes from the <code>Home</code> (<code>Addr</code>) namespace:</p>
-
-<pre><code class="language-scala">Person.name.Home.street.city.get.head === (&quot;Fred&quot;, &quot;Baker St. 7&quot;, &quot;Boston&quot;)
-</code></pre>
-
-<p>Describing the relationship we can simply say that a &ldquo;Person has an Address&rdquo;. It&rsquo;s important to understand though that the namespace names <code>Person</code> and
+<pre><code>Person.name.Home.street.city.get.head === (&quot;Fred&quot;, &quot;Baker St. 7&quot;, &quot;Boston&quot;)
+</code></pre><p>Describing the relationship we can simply say that a &ldquo;Person has an Address&rdquo;. It&rsquo;s important to understand though that the namespace names <code>Person</code> and
 <code>Addr</code> are not like SQL tables. So there is no &ldquo;instance of a Person&rdquo; but rather <em>&ldquo;an <strong>entity</strong> with some Person attribute values&rdquo;</em> (and maybe other attribute values).
 It&rsquo;s the entity id that tie groups of facts/attribute values together.</p>
-
 <h3 id="one-to-one-or-one-to-many">One-to-one or one-to-many</h3>
-
 <p>If Fred is living by himself on Baker St. 7 we could talk about a one-to-one relationship between him and his address.</p>
-
 <p>But if several people live on the same address each person entity would reference the same address entity and we would then see
 each persons relation to the address as a one-to-many relationship since other persons also share the address:</p>
-
-<pre><code class="language-scala">Person.name.home.get === List(
+<pre><code>Person.name.home.get === List(
   (&quot;Fred&quot;, 102),
   (&quot;Lisa&quot;, 102),
   (&quot;Mona&quot;, 102)
 )
-</code></pre>
-
-<p>Wether a relationship is a one-to-one or one-to-many relationship is therefore determined by the data and not the schema.</p>
-
+</code></pre><p>Wether a relationship is a one-to-one or one-to-many relationship is therefore determined by the data and not the schema.</p>
 <h3 id="relationship-graph">Relationship graph</h3>
-
 <p>Relationships can nest arbitrarily deep. We could for instance in the <code>Addr</code> namespace have a relationship to a <code>Country</code> namespace
 and then get the country <code>name</code> too:</p>
-
-<pre><code class="language-scala">Person.name.Home.street.city.Country.name.get.head === (&quot;Fred&quot;, &quot;Baker St. 7&quot;, &quot;Boston&quot;, &quot;USA&quot;)
-</code></pre>
-
-<p>And so on&hellip;</p>
-
+<pre><code>Person.name.Home.street.city.Country.name.get.head === (&quot;Fred&quot;, &quot;Baker St. 7&quot;, &quot;Boston&quot;, &quot;USA&quot;)
+</code></pre><p>And so on&hellip;</p>
 <p>(All getters have an <a href="/manual/attributes/basics">asynchronous equivalent</a>. Synchronous getters shown for brevity)</p>
-
 <h3 id="next">Next</h3>
-
 <p><a href="/manual/relationships/card-many/">Card-many relationships&hellip;</a></p>
 
     </div>

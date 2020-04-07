@@ -803,7 +803,7 @@
             <div class="col-md-2 column" style="padding-top:20px;padding-right:0px;">
                 <ul class="nav nav-pills" style="float:right;">
                     <li>
-                        <a href="/changelog" style="margin-top:-2px;">v0.21.0</a>
+                        <a href="/changelog" style="margin-top:-2px;">v0.22.0</a>
                     </li>
                     <li>
                         <div style="padding-left:14px;">
@@ -826,11 +826,8 @@
 <div class="container" style="padding-top:20px">
 
     <div class="col-sm-10 column" style="padding-left:8px;">
-        
-
-<h1 id="molecule-presentation-sample-code-snippets">Molecule presentation sample code snippets</h1>
-
-<pre><code class="language-scala">Person.id.nameMap.get.head === (101, Map(
+        <h1 id="molecule-presentation-sample-code-snippets">Molecule presentation sample code snippets</h1>
+<pre><code>Person.id.nameMap.get.head === (101, Map(
     &quot;en&quot; -&gt; &quot;Dmitri Shostakovich&quot;,
     &quot;de&quot; -&gt; &quot;Dmitri Schostakowitsch&quot;,
     &quot;fr&quot; -&gt; &quot;Dmitri Chostakovitch&quot;
@@ -846,9 +843,7 @@ Person.id.nameMap_(&quot;.*Shosta.*&quot;).get.head === 101
 // By key and value
 Person.id.nameMap_(&quot;en&quot; -&gt; &quot;Dmitri Shostakovich&quot;).get.head === 101
 Person.id.nameMap_(&quot;en&quot;)(&quot;.*Shosta.*&quot;).get.head === 101
-</code></pre>
-
-<pre><code class="language-scala">Person.id.nameMap.get.head === (101, Map(
+</code></pre><pre><code>Person.id.nameMap.get.head === (101, Map(
     &quot;en&quot; -&gt; &quot;Dmitri Shostakovich&quot;,
     &quot;de&quot; -&gt; &quot;Dmitri Schostakowitsch&quot;,
     &quot;fr&quot; -&gt; &quot;Dmitri Chostakovitch&quot;
@@ -860,9 +855,7 @@ Person.nameMapK(&quot;fr&quot;).get.head === &quot;Dmitri Chostakovitch&quot;
 // By value
 Person.id.nameMap_(&quot;Dmitri Chostakovitch&quot;).get.head === 101
 Person.id.nameMap_(&quot;.*Shosta.*&quot;).get.head === 101
-</code></pre>
-
-<pre><code class="language-scala">Person.id.nameMap.get.head === (101, Map(
+</code></pre><pre><code>Person.id.nameMap.get.head === (101, Map(
     &quot;en&quot; -&gt; &quot;Dmitri Shostakovich&quot;,
     &quot;de&quot; -&gt; &quot;Dmitri Schostakowitsch&quot;,
     &quot;fr&quot; -&gt; &quot;Dmitri Chostakovitch&quot;
@@ -870,9 +863,7 @@ Person.id.nameMap_(&quot;.*Shosta.*&quot;).get.head === 101
   
 // By key
 Person.nameMapK(&quot;fr&quot;).get.head === &quot;Dmitri Chostakovitch&quot;
-</code></pre>
-
-<pre><code class="language-scala">Person.id.nameMap.get.head === (101, Map(
+</code></pre><pre><code>Person.id.nameMap.get.head === (101, Map(
     &quot;en&quot; -&gt; &quot;Dmitri Shostakovich&quot;,
     &quot;de&quot; -&gt; &quot;Dmitri Schostakowitsch&quot;,
     &quot;fr&quot; -&gt; &quot;Dmitri Chostakovitch&quot;
@@ -881,18 +872,14 @@ Person.nameMapK(&quot;fr&quot;).get.head === &quot;Dmitri Chostakovitch&quot;
 // By key
 Person.nameMapK(&quot;fr&quot;).get.head === &quot;Dmitri Chostakovitch&quot;
 Person.nameMapK(&quot;fr|en&quot;).get.head === &quot;Dmitri Chostakovitch&quot;
-</code></pre>
-
-<pre><code class="language-scala">Person.name
+</code></pre><pre><code>Person.name
   .Home.street.city._Person
   .Work.street.city.get.head === (
   &quot;Fred&quot;, 
   &quot;Baker st. 7&quot;, &quot;Boston&quot;, 
   &quot;Downtown 1&quot;, &quot;Boston&quot;
 )
-</code></pre>
-
-<pre><code class="language-scala">Person.name
+</code></pre><pre><code>Person.name
   .Home.street.city._Person
   .Cottage.street.city._Person
   .Work.street.city.get.head === (
@@ -901,29 +888,15 @@ Person.nameMapK(&quot;fr|en&quot;).get.head === &quot;Dmitri Chostakovitch&quot;
   &quot;Mountain way 32&quot;, &quot;Woods town&quot;, 
   &quot;Downtown 1&quot;, &quot;Boston&quot;
 )
-</code></pre>
-
-<pre><code class="language-scala">Person.name.Home.street.city.get.head === (
+</code></pre><pre><code>Person.name.Home.street.city.get.head === (
   &quot;Fred&quot;, &quot;Baker St. 7&quot;, &quot;Boston&quot;
 )
-</code></pre>
-
-<pre><code class="language-scala">Person.name.age.get  // &quot;We need an M2 with a 'get' method!&quot;
-</code></pre>
-
-<pre><code class="language-scala">Person.name.age
-</code></pre>
-
-<pre><code class="language-scala">Person.name.age  // extends M2[String, Int])
-</code></pre>
-
-<pre><code class="language-scala">m(Person.name.age).get     ...or...       Person.name.age.get
-</code></pre>
-
-<pre><code class="language-scala">implicit def m[A, B](dsl: M2[A, B]): Molecule2[A, B] = macro from2attr[A, B]
-</code></pre>
-
-<pre><code class="language-scala">implicit def m[A, B](dsl: M2[A, B]): Molecule2[A, B] = macro from2attr[A, B]
+</code></pre><pre><code>Person.name.age.get  // &quot;We need an M2 with a 'get' method!&quot;
+</code></pre><pre><code>Person.name.age
+</code></pre><pre><code>Person.name.age  // extends M2[String, Int])
+</code></pre><pre><code>m(Person.name.age).get     ...or...       Person.name.age.get
+</code></pre><pre><code>implicit def m[A, B](dsl: M2[A, B]): Molecule2[A, B] = macro from2attr[A, B]
+</code></pre><pre><code>implicit def m[A, B](dsl: M2[A, B]): Molecule2[A, B] = macro from2attr[A, B]
 
 // Macro implementation (simplified)
 def from2attr[A, B](dsl: M2[A, B]): Molecule2[A, B] = {
@@ -938,9 +911,7 @@ def from2attr[A, B](dsl: M2[A, B]): Molecule2[A, B] = {
     }
   &quot;&quot;&quot;
 }
-</code></pre>
-
-<pre><code class="language-scala">
+</code></pre><pre><code>
 
 // Macro implementation (simplified)
 def from2attr[A, B](dsl: M2[A, B]): Molecule2[A, B] = {
@@ -955,9 +926,7 @@ def from2attr[A, B](dsl: M2[A, B]): Molecule2[A, B] = {
     }
   &quot;&quot;&quot;
 }
-</code></pre>
-
-<pre><code class="language-scala">
+</code></pre><pre><code>
 
 
 
@@ -972,9 +941,7 @@ def from2attr[A, B](dsl: M2[A, B]): Molecule2[A, B] = {
     }
   &quot;&quot;&quot;
 
-</code></pre>
-
-<pre><code class="language-scala">
+</code></pre><pre><code>
 
 
 
@@ -989,9 +956,7 @@ def from2attr[A, B](dsl: M2[A, B]): Molecule2[A, B] = {
     }
   &quot;&quot;&quot;
 
-</code></pre>
-
-<pre><code class="language-scala">implicit def m[A, B](dsl: M2[A, B]): Molecule2[A, B] = macro from2attr[A, B]
+</code></pre><pre><code>implicit def m[A, B](dsl: M2[A, B]): Molecule2[A, B] = macro from2attr[A, B]
 
 def from2attr[A: c.WeakTypeTag, B: c.WeakTypeTag]
     (c: Context)
@@ -1010,16 +975,10 @@ def from2attr[A: c.WeakTypeTag, B: c.WeakTypeTag]
     &quot;&quot;&quot;
   )
 }
-</code></pre>
-
-<pre><code class="language-scala">val (email, oldPassw) = User(eid).email.passw.get.head
-</code></pre>
-
-<pre><code class="language-scala">val encryptedNewPassw = encrypt(newPassw)
+</code></pre><pre><code>val (email, oldPassw) = User(eid).email.passw.get.head
+</code></pre><pre><code>val encryptedNewPassw = encrypt(newPassw)
 User(eid).passw(encryptedNewPassw).save
-</code></pre>
-
-<pre><code class="language-scala">// Actions
+</code></pre><pre><code>// Actions
 val saveJohn      = Person.str(&quot;John&quot;).int(44).saveTx
 val insertMembers = Person.str.int insertTx List((&quot;Lisa&quot;, 23), (&quot;Pete&quot;, 24))
 val updateFred    = Person(fred).int(43).updateTx
@@ -1039,9 +998,7 @@ base.getWith(insertMembers, saveJohn, updateFred) === expected
 base.getWith(insertMembers, updateFred, saveJohn) === expected
 base.getWith(updateFred, saveJohn, insertMembers) === expected
 base.getWith(updateFred, insertMembers, saveJohn) === expected
-</code></pre>
-
-<pre><code class="language-scala">// Actions
+</code></pre><pre><code>// Actions
 val saveJohn      = Person.str(&quot;John&quot;).int(44).saveTx
 val insertMembers = Person.str.int insertTx List((&quot;Lisa&quot;, 23), (&quot;Pete&quot;, 24))
 val updateFred    = Person(fred).int(43).updateTx
@@ -1061,9 +1018,7 @@ base.getWith(insertMembers, saveJohn, updateFred).get.toSeq.sorted === expected
 base.getWith(insertMembers, updateFred, saveJohn).get.toSeq.sorted === expected
 base.getWith(updateFred, saveJohn, insertMembers).get.toSeq.sorted === expected
 base.getWith(updateFred, insertMembers, saveJohn).get.toSeq.sorted === expected
-</code></pre>
-
-<pre><code class="language-scala">val fred = Person.name(&quot;Fred&quot;).age(42).save.eid
+</code></pre><pre><code>val fred = Person.name(&quot;Fred&quot;).age(42).save.eid
 Person.name.age.get === List((&quot;Fred&quot;, 42))
 
 Person.name.age.getWith(
@@ -1082,9 +1037,7 @@ Person.name.age.getWith(
 
 // Nothing changed
 Person.name.age.get === List((&quot;Fred&quot;, 42))
-</code></pre>
-
-<pre><code class="language-scala">val fred = Person.name(&quot;Fred&quot;).age(42).save.eid
+</code></pre><pre><code>val fred = Person.name(&quot;Fred&quot;).age(42).save.eid
 Person.name.age.get === List((&quot;Fred&quot;, 42))
 
 Person.name.age.getWith(
@@ -1100,9 +1053,7 @@ Person.name.age.getWith(
 
 // Nothing changed
 Person.name.age.get === List((&quot;Fred&quot;, 42))
-</code></pre>
-
-<pre><code class="language-scala">val fred = Person.name(&quot;Fred&quot;).age(42).save.eid
+</code></pre><pre><code>val fred = Person.name(&quot;Fred&quot;).age(42).save.eid
 Person.name.age.get === List((&quot;Fred&quot;, 42))
 
 Person.name.age.getWith(
@@ -1114,9 +1065,7 @@ Person.name.age.getWith(
 
 // Nothing changed
 Person.name.age.get === List((&quot;Fred&quot;, 42))
-</code></pre>
-
-<pre><code class="language-scala">val fred = Person.name(&quot;Fred&quot;).age(42).save.eid
+</code></pre><pre><code>val fred = Person.name(&quot;Fred&quot;).age(42).save.eid
 Person.name.age.get === List((&quot;Fred&quot;, 42))
 
 Person.name.age.getWith(
@@ -1127,9 +1076,7 @@ Person.name.age.getWith(
 
 // Nothing changed
 Person.name.age.get === List((&quot;Fred&quot;, 42))
-</code></pre>
-
-<pre><code>List(
+</code></pre><pre><code>List(
   [:db/add, 17592186045445, :Ns/int, 43]
 )
 List(
@@ -1145,14 +1092,10 @@ List(
 List(
     [:db/add, 17592186045445, :Ns/int, 43]
 )
-</code></pre>
-
-<pre><code>List(
+</code></pre><pre><code>List(
   [:db/add, 17592186045445, :Ns/int, 43]
 )
-</code></pre>
-
-<pre><code class="language-scala">val fred = Person.name(&quot;Fred&quot;).age(42).save.eid
+</code></pre><pre><code>val fred = Person.name(&quot;Fred&quot;).age(42).save.eid
 Person.name.age.get === List((&quot;Fred&quot;, 42))
 
 Person.name.age.getWith ( // previously `imagine`
@@ -1163,9 +1106,7 @@ Person.name.age.getWith ( // previously `imagine`
 
 // Nothing changed
 Person.name.age.get === List((&quot;Fred&quot;, 42))
-</code></pre>
-
-<pre><code class="language-scala">val tx1 = Person.likes(&quot;pizza&quot;).save
+</code></pre><pre><code>val tx1 = Person.likes(&quot;pizza&quot;).save
 val tx2 = Person.likes(&quot;pasta&quot;).save
 val tx3 = Person.likes(&quot;sushi&quot;).save
 val tx4 = Person.likes(&quot;burger&quot;).save
@@ -1173,9 +1114,7 @@ val tx4 = Person.likes(&quot;burger&quot;).save
 // Values since tx2 (tx2 itself excluded)
 // (previously `since(tx2).get`)
 Person.likes.getSince(tx2) === List(&quot;sushi&quot;, &quot;burger&quot;)  
-</code></pre>
-
-<pre><code class="language-scala">Person.e.likes.op.txInstant
+</code></pre><pre><code>Person.e.likes.op.txInstant
   .tx_(Audit.user.uc).getHistory === List(
   (fred, &quot;pizza&quot;, true, &quot;2017-04-25 13:52:07&quot;, &quot;Lisa&quot;, &quot;survey&quot;),
   (fred, &quot;pizza&quot;, false, &quot;2017-04-26 18:35:41&quot;, &quot;Peter&quot;, &quot;interview&quot;),
@@ -1192,9 +1131,7 @@ Person.e.likes_(&quot;pizza&quot;).op_(false).txInstant
   .tx_(Audit.uc_(&quot;interview&quot;)).getHistory === List(
   (fred, &quot;2017-04-26 18:35:41&quot;)
 )
-</code></pre>
-
-<pre><code class="language-scala">Person.e.likes.op.txInstant
+</code></pre><pre><code>Person.e.likes.op.txInstant
   .tx_(Audit.user.uc).getHistory === List(
   (fred, &quot;pizza&quot;, true, &quot;2017-04-25 13:52:07&quot;, &quot;Lisa&quot;, &quot;survey&quot;),
   (fred, &quot;pizza&quot;, false, &quot;2017-04-26 18:35:41&quot;, &quot;Peter&quot;, &quot;interview&quot;),
@@ -1206,25 +1143,19 @@ Person.e.likes.op.txInstant
   (fred, &quot;pizza&quot;, false, &quot;2017-04-26 18:35:41&quot;),
   (fred, &quot;pasta&quot;, true, &quot;2017-04-26 18:35:41&quot;)
 )
-</code></pre>
-
-<pre><code class="language-scala">Person.e.likes.op.txInstant
+</code></pre><pre><code>Person.e.likes.op.txInstant
   .tx_(Audit.user.uc).getHistory === List(
   (fred, &quot;pizza&quot;, true, &quot;2017-04-25 13:52:07&quot;, &quot;Lisa&quot;, &quot;survey&quot;),
   (fred, &quot;pizza&quot;, false, &quot;2017-04-26 18:35:41&quot;, &quot;Peter&quot;, &quot;interview&quot;),
   (fred, &quot;pasta&quot;, true, &quot;2017-04-26 18:35:41&quot;, &quot;Peter&quot;, &quot;interview&quot;)
 )
-</code></pre>
-
-<pre><code class="language-scala">Person.name.likes.op.txInstant
+</code></pre><pre><code>Person.name.likes.op.txInstant
   .tx_(Audit.user.uc).getHistory === List(
   (&quot;Fred&quot;, &quot;pizza&quot;, true, &quot;2017-04-25 13:52:07&quot;, &quot;Lisa&quot;, &quot;survey&quot;),
   (&quot;Fred&quot;, &quot;pizza&quot;, false, &quot;2017-04-26 18:35:41&quot;, &quot;Peter&quot;, &quot;interview&quot;),
   (&quot;Fred&quot;, &quot;pasta&quot;, true, &quot;2017-04-26 18:35:41&quot;, &quot;Peter&quot;, &quot;interview&quot;)
 )
-</code></pre>
-
-<pre><code class="language-scala">Person(fred).likes.op
+</code></pre><pre><code>Person(fred).likes.op
   .tx_(Audit.user.uc).getHistory === List(
   (&quot;pizza&quot;, true),
   (&quot;pizza&quot;, false),
@@ -1235,9 +1166,7 @@ Person.name.likes.op_(false).txInstant
   .tx_(Audit.user.uc).getHistory === List(
   (&quot;Fred&quot;, &quot;pizza&quot;, &quot;2017-04-26 18:35:41&quot;, &quot;Peter&quot;, &quot;interview&quot;)
 )
-</code></pre>
-
-<pre><code class="language-scala">Person(fred).likes.op.getHistory === List(
+</code></pre><pre><code>Person(fred).likes.op.getHistory === List(
   (&quot;pizza&quot;, true),
   (&quot;pizza&quot;, false),
   (&quot;pasta&quot;, true)
@@ -1250,9 +1179,7 @@ Person(fred).likes.op_(false).getHistory === List(&quot;pizza&quot;)
 Person.name_(&quot;Fred&quot;).likes.op_(false).txInstant.getHistory === List(
   (&quot;pizza&quot;, &quot;2017-04-26 18:35:41&quot;)
 )
-</code></pre>
-
-<pre><code class="language-scala">Person(fred).likes.op.getHistory === List(
+</code></pre><pre><code>Person(fred).likes.op.getHistory === List(
   (&quot;pizza&quot;, true),
   (&quot;pizza&quot;, false),
   (&quot;pasta&quot;, true)
@@ -1265,9 +1192,7 @@ Person(fred).likes.op_(false).getHistory === List(&quot;pizza&quot;)
 Person.e.likes.op_(false).txInstant.getHistory === List(
   (fred, &quot;pizza&quot;, &quot;2017-04-26 18:35:41&quot;)
 )
-</code></pre>
-
-<pre><code class="language-scala">Person(fred).likes.op.getHistory === List(
+</code></pre><pre><code>Person(fred).likes.op.getHistory === List(
   (&quot;pizza&quot;, true),
   (&quot;pizza&quot;, false),
   (&quot;pasta&quot;, true)
@@ -1280,9 +1205,7 @@ Person(fred).likes.op_(false).getHistory === List(&quot;pizza&quot;)
 Person.name.likes.op_(false).txInstant.getHistory === List(
   (&quot;Fred&quot;, &quot;pizza&quot;, &quot;2017-04-26 18:35:41&quot;)
 )
-</code></pre>
-
-<pre><code class="language-scala">Person(fred).likes.op.getHistory === List(
+</code></pre><pre><code>Person(fred).likes.op.getHistory === List(
   (&quot;pizza&quot;, true),
   (&quot;pizza&quot;, false),
   (&quot;pasta&quot;, true)
@@ -1291,62 +1214,46 @@ Person.name.likes.op_(false).txInstant.getHistory === List(
 Person(fred).likes.getHistory === List(&quot;pizza&quot;, &quot;pasta&quot;)
 
 Person(fred).likes.op_(false).getHistory === List(&quot;pizza&quot;)
-</code></pre>
-
-<pre><code class="language-scala">Person(fred).likes.op.getHistory === List(
+</code></pre><pre><code>Person(fred).likes.op.getHistory === List(
   (&quot;pizza&quot;, true),
   (&quot;pizza&quot;, false),
   (&quot;pasta&quot;, true)
 )
 
 Person(fred).likes.getHistory === List(&quot;pizza&quot;, &quot;pasta&quot;)
-</code></pre>
-
-<pre><code class="language-scala">Db.e.a.v.tx.t.txInstant.op.getHistory === List(
+</code></pre><pre><code>Db.e.a.v.tx.t.txInstant.op.getHistory === List(
   (fred, &quot;:Person/name&quot;,  &quot;Fred&quot;,  tx1, t1, date1, true),
   (fred, &quot;:Person/likes&quot;, &quot;pizza&quot;, tx1, t1, date1, true),
   (fred, &quot;:Person/likes&quot;, &quot;pizza&quot;, tx2, t2, date2, false),
   (fred, &quot;:Person/likes&quot;, &quot;pasta&quot;, tx2, t2, date2, true)
 )
-</code></pre>
-
-<pre><code class="language-scala">Person(fred).a.v.tx.t.txInstant.op.getHistory === List(
+</code></pre><pre><code>Person(fred).a.v.tx.t.txInstant.op.getHistory === List(
   (&quot;:Person/name&quot;,  &quot;Fred&quot;,  tx1, t1, date1, true),
   (&quot;:Person/likes&quot;, &quot;pizza&quot;, tx1, t1, date1, true),
   (&quot;:Person/likes&quot;, &quot;pizza&quot;, tx2, t2, date2, false),
   (&quot;:Person/likes&quot;, &quot;pasta&quot;, tx2, t2, date2, true)
 )
-</code></pre>
-
-<pre><code class="language-scala">Person.e.likes.tx.t.txInstant.op.getHistory === List(
+</code></pre><pre><code>Person.e.likes.tx.t.txInstant.op.getHistory === List(
   (fred, &quot;pizza&quot;, tx1, t1, date1, true),
   (fred, &quot;pizza&quot;, tx2, t2, date2, false),
   (fred, &quot;pasta&quot;, tx2, t2, date2, true)
 )
-</code></pre>
-
-<pre><code class="language-scala">Person(fred).likes.t.op.getHistory === List(
+</code></pre><pre><code>Person(fred).likes.t.op.getHistory === List(
   (&quot;pizza&quot;, t1, true),
   (&quot;pizza&quot;, t2, false),
   (&quot;pasta&quot;, t2, true)
 )
-</code></pre>
-
-<pre><code class="language-scala">Person(fred).likes.op.getHistory === List(
+</code></pre><pre><code>Person(fred).likes.op.getHistory === List(
   (&quot;pizza&quot;, true),
   (&quot;pizza&quot;, false),
   (&quot;pasta&quot;, true)
 )
-</code></pre>
-
-<pre><code class="language-scala">Person(fred).likes.op.getHistory === List( // previously `history.get`
+</code></pre><pre><code>Person(fred).likes.op.getHistory === List( // previously `history.get`
   (&quot;pizza&quot;, true),
   (&quot;pizza&quot;, false),
   (&quot;pasta&quot;, true)
 )
-</code></pre>
-
-<pre><code class="language-scala">val result = Person.name(&quot;Fred&quot;).likes(&quot;pizza&quot;).save
+</code></pre><pre><code>val result = Person.name(&quot;Fred&quot;).likes(&quot;pizza&quot;).save
 val fred   = result.eid
 val t1     = result.t
 Person(fred).likes.get.head === &quot;pizza&quot;
@@ -1356,72 +1263,40 @@ Person(fred).likes.get.head === &quot;pasta&quot;
 
 Person(fred).likes.getAsOf(t1).head === &quot;pizza&quot; // previously `asOf(t1).get`
 Person(fred).likes.getAsOf(t2).head === &quot;pasta&quot;
-</code></pre>
-
-<pre><code class="language-scala">val result = Person.name(&quot;Fred&quot;).likes(&quot;pizza&quot;).save
+</code></pre><pre><code>val result = Person.name(&quot;Fred&quot;).likes(&quot;pizza&quot;).save
 val fred   = result.eid
 val t1     = result.t
 Person(fred).likes.get.head === &quot;pizza&quot;
 
 val t2 = Person(fred).likes(&quot;pasta&quot;).update.t
 Person(fred).likes.get.head === &quot;pasta&quot;
-</code></pre>
-
-<pre><code class="language-scala">val result = Person.name(&quot;Fred&quot;).likes(&quot;pizza&quot;).save
+</code></pre><pre><code>val result = Person.name(&quot;Fred&quot;).likes(&quot;pizza&quot;).save
 val fred   = result.eid
 val t1     = result.t
 Person(fred).likes.get.head === &quot;pizza&quot;
-</code></pre>
-
-<pre><code class="language-scala">Person.likes.tx_(Audit.user_(&quot;Lisa&quot;).uc_(&quot;survey&quot;)).get === List(&quot;pizza&quot;)
-</code></pre>
-
-<pre><code class="language-scala">Person.name.tx_(Audit.uc_(&quot;survey&quot;)).get === List(&quot;Fred&quot;)
-</code></pre>
-
-<pre><code class="language-scala">Person(e5).name.txInstant.tx(Audit.user.uc).get === List( 
+</code></pre><pre><code>Person.likes.tx_(Audit.user_(&quot;Lisa&quot;).uc_(&quot;survey&quot;)).get === List(&quot;pizza&quot;)
+</code></pre><pre><code>Person.name.tx_(Audit.uc_(&quot;survey&quot;)).get === List(&quot;Fred&quot;)
+</code></pre><pre><code>Person(e5).name.txInstant.tx(Audit.user.uc).get === List( 
   (&quot;Fred&quot;, &quot;Tue Apr 26 18:35:41 CEST 2017&quot;, &quot;Lisa&quot;, &quot;survey&quot;))
-</code></pre>
-
-<pre><code class="language-scala">Person(e5).name.tx(Audit.user.uc).get === List(
+</code></pre><pre><code>Person(e5).name.tx(Audit.user.uc).get === List(
   (&quot;Fred&quot;, &quot;Lisa&quot;, &quot;survey&quot;))
-</code></pre>
-
-<pre><code class="language-scala">Person(e5).name.tx_(Audit.user.uc).get === List((&quot;Fred&quot;, &quot;Lisa&quot;, &quot;survey&quot;))
-</code></pre>
-
-<pre><code class="language-scala">Person.name(&quot;Fred&quot;).likes(&quot;pizza&quot;)
+</code></pre><pre><code>Person(e5).name.tx_(Audit.user.uc).get === List((&quot;Fred&quot;, &quot;Lisa&quot;, &quot;survey&quot;))
+</code></pre><pre><code>Person.name(&quot;Fred&quot;).likes(&quot;pizza&quot;)
   .tx_(Audit.user_(&quot;Lisa&quot;).uc_(&quot;survey&quot;)).save
-</code></pre>
-
-<pre><code class="language-scala">trait Audit {
+</code></pre><pre><code>trait Audit {
   val user = oneString
   val uc   = oneString
 }
-</code></pre>
-
-<pre><code class="language-scala">Person(e5).name_.txInstant.get.head === date1
+</code></pre><pre><code>Person(e5).name_.txInstant.get.head === date1
 Person(e5).name_.tx.get.head === t4
-</code></pre>
-
-<pre><code class="language-scala">Person(e5).name_.txInstant.get.head === date1  // Tue Apr 26 18:35:41
-</code></pre>
-
-<pre><code class="language-scala">Person(e5).name_.tx.get.head === tx4  // 13194139534340L
-</code></pre>
-
-<pre><code class="language-scala">val e5 = Person.name(&quot;Fred&quot;).likes(&quot;pizza&quot;).save.eid
-</code></pre>
-
-<pre><code class="language-scala">Person.name(&quot;Fred&quot;).likes(&quot;pizza&quot;).save
-</code></pre>
-
-<pre><code class="language-scala">// Property graph
+</code></pre><pre><code>Person(e5).name_.txInstant.get.head === date1  // Tue Apr 26 18:35:41
+</code></pre><pre><code>Person(e5).name_.tx.get.head === tx4  // 13194139534340L
+</code></pre><pre><code>val e5 = Person.name(&quot;Fred&quot;).likes(&quot;pizza&quot;).save.eid
+</code></pre><pre><code>Person.name(&quot;Fred&quot;).likes(&quot;pizza&quot;).save
+</code></pre><pre><code>// Property graph
 Person.name_(&quot;Ann&quot;).Knows.weight.Person.name.get === List((7, &quot;Ben&quot;))
 Person.name_(&quot;Ben&quot;).Knows.weight.Person.name.get === List((7, &quot;Ann&quot;))
-</code></pre>
-
-<pre><code class="language-scala">Person.name.Knows.*(Knows.weight.Person.name).insert(
+</code></pre><pre><code>Person.name.Knows.*(Knows.weight.Person.name).insert(
   &quot;Ann&quot;, List((7, &quot;Ben&quot;), (8, &quot;Joe&quot;)))
 
 Person.name_(&quot;Ann&quot;).Knows.weight.Person.name.get === 
@@ -1432,9 +1307,7 @@ Person.name_(&quot;Ben&quot;).Knows.weight.Person.name.get ===
 
 Person.name_(&quot;Joe&quot;).Knows.weight.Person.name.get === 
   List((8, &quot;Ann&quot;))
-</code></pre>
-
-<pre><code class="language-scala">// Entity
+</code></pre><pre><code>// Entity
 object Person extends Person
 trait Person {
   val knows = 
@@ -1452,9 +1325,7 @@ trait Knows {
   // Property
   val weight = oneInt
 }
-</code></pre>
-
-<pre><code class="language-scala">// Entity
+</code></pre><pre><code>// Entity
 object Person extends Person
 trait Person {
   // A ==&gt; edge -- a
@@ -1472,74 +1343,50 @@ trait Knows {
   // Property
   val weight = oneInt
 }
-</code></pre>
-
-<pre><code class="language-scala">// Graph
+</code></pre><pre><code>// Graph
 Person.name(&quot;Ann&quot;).Friends.name(&quot;Ben&quot;).save
 Person.name(&quot;Ben&quot;).Friends.name(&quot;Joe&quot;).save
 
 Person.name_(&quot;Ann&quot;).Friends.Friends.name.not(&quot;Ann&quot;).get === List(&quot;Joe&quot;)
 Person.name_(&quot;Joe&quot;).Friends.Friends.name.not(&quot;Joe&quot;).get === List(&quot;Ann&quot;)
-</code></pre>
-
-<pre><code class="language-scala">// Graph
+</code></pre><pre><code>// Graph
 Person.name(&quot;Ann&quot;).Friends.name(&quot;Ben&quot;).save
 Person.name(&quot;Ben&quot;).Friends.name(&quot;Joe&quot;).save
 
 //                    Ben   Ann/Joe
 Person.name_(&quot;Ann&quot;).Friends.Friends.name.get === List(&quot;Ann&quot;, &quot;Joe&quot;)
-</code></pre>
-
-<pre><code class="language-scala">Person.name(&quot;Ann&quot;).Friends.name(&quot;Ben&quot;).save
+</code></pre><pre><code>Person.name(&quot;Ann&quot;).Friends.name(&quot;Ben&quot;).save
 
 Person.name_(&quot;Ann&quot;).Friends.name.get === List(&quot;Ben&quot;)
 Person.name_(&quot;Ben&quot;).Friends.name.get === List(&quot;Ann&quot;)
 
 Ann --&gt; Ben
 Ben &lt;-- Ann // reverse ref
-</code></pre>
-
-<pre><code class="language-scala">trait Person {
+</code></pre><pre><code>trait Person {
   val name    = oneString
   val friends = manyBi[Person]
 }
-</code></pre>
-
-<pre><code class="language-scala">Person.name.Friends.name_(&quot;Ben&quot;).get === List(&quot;Ann&quot;)
-</code></pre>
-
-<pre><code class="language-scala">Person.name_(&quot;Ben&quot;).Friends.name.get === List()
-</code></pre>
-
-<pre><code class="language-scala">Person.name_(&quot;Ann&quot;).Friends.name.get === List(&quot;Ben&quot;)
-</code></pre>
-
-<pre><code class="language-scala">Person.name(&quot;Ann&quot;).Friends.name(&quot;Ben&quot;).save
+</code></pre><pre><code>Person.name.Friends.name_(&quot;Ben&quot;).get === List(&quot;Ann&quot;)
+</code></pre><pre><code>Person.name_(&quot;Ben&quot;).Friends.name.get === List()
+</code></pre><pre><code>Person.name_(&quot;Ann&quot;).Friends.name.get === List(&quot;Ben&quot;)
+</code></pre><pre><code>Person.name(&quot;Ann&quot;).Friends.name(&quot;Ben&quot;).save
 
 Person.name_(&quot;Ann&quot;).Friends.name.get === List(&quot;Ben&quot;)
 Person.name_(&quot;Ben&quot;).Friends.name.get === List()
 
 Person.name.Friends.name_(&quot;Ben&quot;).get === List(&quot;Ann&quot;)
-</code></pre>
-
-<pre><code class="language-scala">Person.name(&quot;Ann&quot;).Friends.name(&quot;Ben&quot;).save
+</code></pre><pre><code>Person.name(&quot;Ann&quot;).Friends.name(&quot;Ben&quot;).save
 
 Person.name_(&quot;Ann&quot;).Friends.name.get === List(&quot;Ben&quot;)
 Person.name_(&quot;Ben&quot;).Friends.name.get === List()
-</code></pre>
-
-<pre><code class="language-scala">Person.name(&quot;Ann&quot;).Friends.name(&quot;Ben&quot;).save
+</code></pre><pre><code>Person.name(&quot;Ann&quot;).Friends.name(&quot;Ben&quot;).save
 
 Person.name_(&quot;Ann&quot;).Friends.name.get === List(&quot;Ben&quot;)
-</code></pre>
-
-<pre><code class="language-scala">trait Person {
+</code></pre><pre><code>trait Person {
   val name    = oneString
   val friends = many[Person]
 }
-</code></pre>
-
-<pre><code class="language-scala">trait Person {
+</code></pre><pre><code>trait Person {
   // A ==&gt; a
   val spouse  = oneBi[Person]
   val friends = manyBi[Person]
@@ -1558,15 +1405,11 @@ Person.name_(&quot;Ann&quot;).Friends.name.get === List(&quot;Ben&quot;)
 
   val name = oneString
 }
-</code></pre>
-
-<pre><code class="language-scala">// Mix input, static expressions and relationships...
+</code></pre><pre><code>// Mix input, static expressions and relationships...
 val americansYoungerThan = m(Person.id.age_.&lt;(?).Country.name_(&quot;USA&quot;))
 val americanKids         = americansYoungerThan(13).get
 val americanBabies       = americansYoungerThan(1).get
-</code></pre>
-
-<pre><code class="language-scala">// Multiple input parameters + logic
+</code></pre><pre><code>// Multiple input parameters + logic
 val person = m(Person.id.name_(?).age_(?))
 
 // AND
@@ -1575,43 +1418,31 @@ val john42 = person(&quot;John&quot; and 42).get.head
 // AND/OR
 val john42orJonas38  = person((&quot;John&quot; and 42) or (&quot;Jonas&quot; and 38)).get 
 val john42orJonas38b = person((&quot;John&quot;, 42), (&quot;Jonas&quot;, 38)).get
-</code></pre>
-
-<pre><code class="language-scala">// Mix input, static expressions and relationships...
+</code></pre><pre><code>// Mix input, static expressions and relationships...
 val americansYoungerThan = m(Person.id.age_.&lt;(?).Country.name_(&quot;USA&quot;))
 val americanKids         = americansYoungerThan(13).get
 val americanBabies       = americansYoungerThan(1).get
-</code></pre>
-
-<pre><code class="language-scala">// Multiple input parameters + logic
+</code></pre><pre><code>// Multiple input parameters + logic
 val person = m(Person.id.name_(?).age_(?))
 
 // AND
 val john42 = person(&quot;John&quot; and 42).get.head
-</code></pre>
-
-<pre><code class="language-scala">// 1 input parameter
+</code></pre><pre><code>// 1 input parameter
 val person = m(Person.id.name_(?))
 
 val john     = person(&quot;John&quot;).get.head
 val students = person(allStudentNames).get.head
-</code></pre>
-
-<pre><code class="language-scala">val persons = datomic.Peer.q(
+</code></pre><pre><code>val persons = datomic.Peer.q(
   &quot;&quot;&quot;
     |[:find ?id
     | :in $ ?names
     | :where
     |   [?e :Person/name ?names]]
   &quot;&quot;&quot;.stripMargin, conn.db, &quot;John&quot;)
-</code></pre>
-
-<pre><code class="language-scala">fredId.retract
+</code></pre><pre><code>fredId.retract
 
 Person.name(&quot;Fred&quot;).get.size === 0 
-</code></pre>
-
-<pre><code class="language-scala">Person.id.nameMap.insert(
+</code></pre><pre><code>Person.id.nameMap.insert(
   101,
   Map(
     &quot;en&quot; -&gt; &quot;Dmitri Shostakovich&quot;,
@@ -1620,20 +1451,14 @@ Person.name(&quot;Fred&quot;).get.size === 0
     &quot;es&quot; -&gt; &quot;Dmitri Shostakóvich&quot;
   )
 )
-</code></pre>
-
-<pre><code class="language-scala">trait Person {
+</code></pre><pre><code>trait Person {
   val id      = oneInt
   val nameMap = mapString
 }
-</code></pre>
-
-<pre><code class="language-scala">fredId.retract
+</code></pre><pre><code>fredId.retract
 
 Person.name(&quot;Fred&quot;).get.size === 0 
-</code></pre>
-
-<pre><code class="language-scala">Person(bob).hobbies.add(&quot;stars&quot;).update
+</code></pre><pre><code>Person(bob).hobbies.add(&quot;stars&quot;).update
 Person(bob).hobbies.get.head === Set(&quot;golf&quot;, &quot;cars&quot;, &quot;stars&quot;)
 
 Person(bob).hobbies.replace(&quot;cars&quot; -&gt; &quot;trains&quot;).update
@@ -1647,32 +1472,22 @@ Person(bob).hobbies.get.head === Set(&quot;skiing&quot;, &quot;stamps&quot;)
 
 Person(bob).hobbies().update
 Person(bob).hobbies.get.head === Set()
-</code></pre>
-
-<pre><code class="language-scala">// Assert new fact
+</code></pre><pre><code>// Assert new fact
 Person(fred).likes(&quot;pasta&quot;).update
 Person(fred).likes$.get.head === Some(&quot;pasta&quot;)
 
 // Retract old fact
 Person(fred).likes().update
 Person(fred).likes$.get.head === None
-</code></pre>
-
-<pre><code class="language-scala">// Assert new fact
+</code></pre><pre><code>// Assert new fact
 Person(fred).likes(&quot;pasta&quot;).update
 Person(fred).likes$.get.head === Some(&quot;pasta&quot;)
-</code></pre>
-
-<pre><code class="language-scala">Person(fred).likes(&quot;pasta&quot;).update
+</code></pre><pre><code>Person(fred).likes(&quot;pasta&quot;).update
 Person(fred).likes$.get.head === Some(&quot;pasta&quot;)
-</code></pre>
-
-<pre><code class="language-scala">// Re-use insert molecules
+</code></pre><pre><code>// Re-use insert molecules
 val insertPerson = Person.name.likes$.age.insert
 val fredId = insertPerson(&quot;Fred&quot;, Some(&quot;pizza&quot;), 38).eid 
-</code></pre>
-
-<pre><code class="language-scala">Person.name.age.likes$ insert List(
+</code></pre><pre><code>Person.name.age.likes$ insert List(
   (&quot;Fred&quot;, 38, Some(&quot;pizza&quot;)),
   (&quot;Lisa&quot;, 7, None),
   (&quot;Ben&quot;, 5, Some(&quot;pizza&quot;))
@@ -1682,36 +1497,26 @@ val fredId = insertPerson(&quot;Fred&quot;, Some(&quot;pizza&quot;), 38).eid
 val insertPerson = Person.name.age.likes$.insert
 val fred = insertPerson(&quot;Fred&quot;, 38, Some(&quot;pizza&quot;)).eid
 val ben  = insertPerson(&quot;Lisa&quot;, 7, None).eid
-</code></pre>
-
-<pre><code class="language-scala">Person.name.likes$.age insert List(
+</code></pre><pre><code>Person.name.likes$.age insert List(
   (&quot;Fred&quot;, Some(&quot;pizza&quot;), 38),
   (&quot;Lisa&quot;, None, 7),
   (&quot;Ben&quot;, Some(&quot;pizza&quot;), 5)
 )
-</code></pre>
-
-<pre><code class="language-scala">Person
+</code></pre><pre><code>Person
   .name(&quot;Fred&quot;)
   .age(38)
   .likes(&quot;pizza&quot;).save
-</code></pre>
-
-<pre><code class="language-scala">Person.name.age.likes$.get === List(
+</code></pre><pre><code>Person.name.age.likes$.get === List(
   (&quot;Fred&quot;, 38, Some(&quot;pizza&quot;)),
   (&quot;Lisa&quot;, 7, None),
   (&quot;Ben&quot;, 5, Some(&quot;pizza&quot;))
 )
-</code></pre>
-
-<pre><code class="language-scala">Person.name.age.likes$ insert List(
+</code></pre><pre><code>Person.name.age.likes$ insert List(
   (&quot;Fred&quot;, 38, Some(&quot;pizza&quot;)),
   (&quot;Lisa&quot;, 7, None),
   (&quot;Ben&quot;, 5, Some(&quot;pizza&quot;))
 )
-</code></pre>
-
-<pre><code class="language-scala">// Save 1 molecule
+</code></pre><pre><code>// Save 1 molecule
 Person.name(&quot;Fred&quot;).likes(&quot;pizza&quot;).age(38).save
 
 // Insert
@@ -1720,37 +1525,23 @@ Person.name.likes$.age insert List(
   (&quot;Lisa&quot;, None, 7),
   (&quot;Ben&quot;, Some(&quot;pizza&quot;), 5)
 )
-</code></pre>
-
-<pre><code class="language-scala">Person.name(&quot;Fred&quot;).likes(&quot;pizza&quot;).age(38).save
-</code></pre>
-
-<pre><code class="language-scala">m(Person.name.likes.age ~ Site.cat.status ~ Loc.tag).get === List(
+</code></pre><pre><code>Person.name(&quot;Fred&quot;).likes(&quot;pizza&quot;).age(38).save
+</code></pre><pre><code>m(Person.name.likes.age ~ Site.cat.status ~ Loc.tag).get === List(
   ((&quot;Fred&quot;, &quot;pizza&quot;, 38), (&quot;customer&quot;, &quot;good&quot;), &quot;city&quot;)
 )
-</code></pre>
-
-<pre><code class="language-scala">m(Person.name.likes.age ~ Site.cat.status).get === List(
+</code></pre><pre><code>m(Person.name.likes.age ~ Site.cat.status).get === List(
   ((&quot;Fred&quot;, &quot;pizza&quot;, 38), (&quot;customer&quot;, &quot;good&quot;))
 )
-</code></pre>
-
-<pre><code class="language-scala">m(Person.name.likes.age ~ Site.cat).get === List(
+</code></pre><pre><code>m(Person.name.likes.age ~ Site.cat).get === List(
   ((&quot;Fred&quot;, &quot;pizza&quot;, 38), &quot;customer&quot;)
 )
-</code></pre>
-
-<pre><code class="language-scala">m(Person.name.likes.age ~ Site.cat).get === List(
+</code></pre><pre><code>m(Person.name.likes.age ~ Site.cat).get === List(
   ((&quot;Fred&quot;, &quot;pizza&quot;, 38), &quot;customer&quot;)
 )
 
 val ((name, likes, age), cat) = m(Person.name.likes.age ~ Site.cat).get.head
-</code></pre>
-
-<pre><code class="language-scala">Person.name.likes.age ~ Site.cat
-</code></pre>
-
-<pre><code class="language-scala">object YourDomainDefinition {
+</code></pre><pre><code>Person.name.likes.age ~ Site.cat
+</code></pre><pre><code>object YourDomainDefinition {
   trait Person {
     val name  = oneString
     val likes = oneString
@@ -1761,12 +1552,8 @@ val ((name, likes, age), cat) = m(Person.name.likes.age ~ Site.cat).get.head
     val status = oneString
   }
 }
-</code></pre>
-
-<pre><code class="language-scala">Person.name.likes.age.Site.cat
-</code></pre>
-
-<pre><code class="language-scala">object YourDomainDefinition {
+</code></pre><pre><code>Person.name.likes.age.Site.cat
+</code></pre><pre><code>object YourDomainDefinition {
   trait Person {
     val name  = oneString
     val likes = oneString
@@ -1778,12 +1565,8 @@ val ((name, likes, age), cat) = m(Person.name.likes.age ~ Site.cat).get.head
     val status = oneString
   }
 }
-</code></pre>
-
-<pre><code class="language-scala">Person.name.likes.age.Site.cat
-</code></pre>
-
-<pre><code class="language-scala">object YourDomainDefinition {
+</code></pre><pre><code>Person.name.likes.age.Site.cat
+</code></pre><pre><code>object YourDomainDefinition {
   trait Person {
     val name  = oneString
     val likes = oneString
@@ -1795,12 +1578,8 @@ val ((name, likes, age), cat) = m(Person.name.likes.age ~ Site.cat).get.head
     val status = oneString
   }
 }
-</code></pre>
-
-<pre><code class="language-scala">Person.name.likes.age .. ? .. Site.cat
-</code></pre>
-
-<pre><code class="language-scala">object YourDomainDefinition {
+</code></pre><pre><code>Person.name.likes.age .. ? .. Site.cat
+</code></pre><pre><code>object YourDomainDefinition {
   trait Person {
     val name  = oneString
     val likes = oneString
@@ -1811,9 +1590,7 @@ val ((name, likes, age), cat) = m(Person.name.likes.age ~ Site.cat).get.head
     val status = oneString
   }
 }
-</code></pre>
-
-<pre><code class="language-scala">fredId.touch === Map( // Map[String, Any]
+</code></pre><pre><code>fredId.touch === Map( // Map[String, Any]
   &quot;:db/id&quot; -&gt; 101L,
   &quot;:Person/name&quot; -&gt; &quot;Fred&quot;,
   &quot;:Person/likes&quot; -&gt; &quot;pizza&quot;,
@@ -1822,18 +1599,14 @@ val ((name, likes, age), cat) = m(Person.name.likes.age ~ Site.cat).get.head
 )
 
 val siteCat_? : Option[String] = fredId[String](&quot;:Site/cat&quot;)
-</code></pre>
-
-<pre><code class="language-scala">fredId.touch === Map(
+</code></pre><pre><code>fredId.touch === Map(
   &quot;:db/id&quot; -&gt; 101L,
   &quot;:Person/name&quot; -&gt; &quot;Fred&quot;,
   &quot;:Person/likes&quot; -&gt; &quot;pizza&quot;,
   &quot;:Person/age&quot;	-&gt; 38,
   &quot;:Site/cat&quot; -&gt; &quot;customer&quot;
 )
-</code></pre>
-
-<pre><code class="language-scala">m(Order.orderid.LineItems * (
+</code></pre><pre><code>m(Order.orderid.LineItems * (
   LineItem.product.price.quantity.Comments * (
     Comment.text.descr.Authors * Person.name))).get === List(
       (23, List(
@@ -1846,9 +1619,7 @@ val siteCat_? : Option[String] = fredId[String](&quot;:Site/cat&quot;)
           (&quot;best&quot;, &quot;2c&quot;, List(&quot;test&quot;))))
       ))
     )
-</code></pre>
-
-<pre><code class="language-scala">// Touch entity facts hierarchy recursively
+</code></pre><pre><code>// Touch entity facts hierarchy recursively
 orderId.touch === Map(
   &quot;:db/id&quot; -&gt; 101L,
   &quot;:Order/lineItems&quot; -&gt; List(
@@ -1865,9 +1636,7 @@ orderId.touch === Map(
 
 // Optional typed attribute value
 fredId[String](&quot;:Person/likes&quot;) === Some(&quot;pizza&quot;)
-</code></pre>
-
-<pre><code class="language-scala">// Nested molecule
+</code></pre><pre><code>// Nested molecule
 m(Order.id.Items * LineItem.qty.product.price).get === List(
   (1, List(
     (3, &quot;Milk&quot;, 12.0), 
@@ -1888,9 +1657,7 @@ m(Order.id.Items * LineItem.qty.product.price).get === List(
       &quot;:LineItem/qty&quot; -&gt; 2, 
       &quot;:LineItem/product&quot; -&gt; &quot;Coffee&quot;,
       &quot;:LineItem/price&quot; -&gt; 46.0)))
-</code></pre>
-
-<pre><code class="language-scala">// Adjacent facts
+</code></pre><pre><code>// Adjacent facts
 Order.id.Items.qty.product.price.get === List(
   (1, 3, &quot;Milk&quot;, 12.0),
   (1, 2, &quot;Coffee&quot;, 46.0)
@@ -1902,16 +1669,12 @@ m(Order.id.Items * LineItem.qty.product.price).get === List(
     (3, &quot;Milk&quot;, 12.0), 
     (2, &quot;Coffee&quot;, 46.0)))
 )
-</code></pre>
-
-<pre><code class="language-scala">// Adjacent facts
+</code></pre><pre><code>// Adjacent facts
 Order.id.Items.qty.product.price.get === List(
   (1, 3, &quot;Milk&quot;, 12.0),
   (1, 2, &quot;Coffee&quot;, 46.0)
 )
-</code></pre>
-
-<pre><code class="language-scala">object OrderDefinition {
+</code></pre><pre><code>object OrderDefinition {
 
   trait Order {
     val id    = oneInt
@@ -1924,9 +1687,7 @@ Order.id.Items.qty.product.price.get === List(
     val price   = oneDouble
   }
 }
-</code></pre>
-
-<pre><code class="language-scala">object ProductsOrderDefinition {
+</code></pre><pre><code>object ProductsOrderDefinition {
 
   trait Order {
     val id    = oneInt
@@ -1943,12 +1704,8 @@ Order.id.Items.qty.product.price.get === List(
     val description = oneString
   }
 }
-</code></pre>
-
-<pre><code class="language-scala">Person.name.Home.street.city. ..??
-</code></pre>
-
-<pre><code class="language-scala">object YourDomainDefinition {
+</code></pre><pre><code>Person.name.Home.street.city. ..??
+</code></pre><pre><code>object YourDomainDefinition {
   trait Person {
     val name = oneString
     val age  = oneInt
@@ -1959,9 +1716,7 @@ Order.id.Items.qty.product.price.get === List(
     val city   = oneString
   }
 }
-</code></pre>
-
-<pre><code class="language-scala">object YourDomainDefinition {
+</code></pre><pre><code>object YourDomainDefinition {
   trait Person {
     val name = oneString
     val age  = oneInt
@@ -1973,21 +1728,13 @@ Order.id.Items.qty.product.price.get === List(
     val city   = oneString
   }
 }
-</code></pre>
-
-<pre><code class="language-scala">Person.name.Home.street.city
+</code></pre><pre><code>Person.name.Home.street.city
 Person.name.Work.street.city
-</code></pre>
-
-<pre><code class="language-scala">Person.name.Home.street.city
-</code></pre>
-
-<pre><code class="language-scala">Person.name.Home.street.city.get.head === (
+</code></pre><pre><code>Person.name.Home.street.city
+</code></pre><pre><code>Person.name.Home.street.city.get.head === (
   &quot;Fred&quot;, &quot;Baker St. 7&quot;, &quot;Boston&quot;
 )
-</code></pre>
-
-<pre><code class="language-scala">Person.name.age(5 or 6 or 7).get === List(
+</code></pre><pre><code>Person.name.age(5 or 6 or 7).get === List(
   (&quot;Lisa&quot;, 7),
   (&quot;Ben&quot;, 5)
 )
@@ -1999,9 +1746,7 @@ Person.name.age(Seq(5, 6, 7)).get === List(
   (&quot;Lisa&quot;, 7),
   (&quot;Ben&quot;, 5)
 )
-</code></pre>
-
-<pre><code class="language-scala">Person.age(min).get.head           === 5 
+</code></pre><pre><code>Person.age(min).get.head           === 5 
 Person.age(max).get.head           === 38 
 Person.age(sum).get.head           === 50 
 Person.age(count).get.head         === 3 
@@ -2016,9 +1761,7 @@ Person.age(min(2)).get.head    === Vector(5, 7)
 Person.age(max(2)).get.head    === Vector(38, 7) 
 Person.age(rand(2)).get.head   === Stream(5, ?) 
 Person.age(sample(2)).get.head === Vector(7, 38) 
-</code></pre>
-
-<pre><code class="language-scala">Person.name.age.&gt;(7).get === List(
+</code></pre><pre><code>Person.name.age.&gt;(7).get === List(
   (&quot;Fred&quot;, 38)
 )
 Person.name.age.&gt;=(7).get === List(
@@ -2032,14 +1775,10 @@ Person.name.age.&lt;=(7).get === List(
   (&quot;Lisa&quot;, 7),
   (&quot;Ben&quot;, 5)
 )
-</code></pre>
-
-<pre><code class="language-scala">Person.name.likes_(nil).get === List(
+</code></pre><pre><code>Person.name.likes_(nil).get === List(
   &quot;Lisa&quot;
 )
-</code></pre>
-
-<pre><code class="language-scala">Person.name.age.not(38).get === List(
+</code></pre><pre><code>Person.name.age.not(38).get === List(
   (&quot;Lisa&quot;, 7),
   (&quot;Ben&quot;, 5)
 )
@@ -2047,63 +1786,43 @@ Person.name.age.!=(38).get === List(
   (&quot;Lisa&quot;, 7),
   (&quot;Ben&quot;, 5)
 )
-</code></pre>
-
-<pre><code class="language-scala">// Equality - exact matches only
+</code></pre><pre><code>// Equality - exact matches only
 Person.name(&quot;Fred&quot;).age.get === List()
 
 Person.name(&quot;Fred Ben&quot;).age.get === List(
   (&quot;Fred Ben&quot;, 38)
 )
-</code></pre>
-
-<pre><code class="language-scala">Person.name.contains(&quot;Ben&quot;).get === List(
+</code></pre><pre><code>Person.name.contains(&quot;Ben&quot;).get === List(
   &quot;Fred Ben&quot;, &quot;Ben&quot;
 )
 
 Person.name.contains(&quot;Be&quot;).get === List()
-</code></pre>
-
-<pre><code class="language-scala">Person.name.age_(38).get === List(
+</code></pre><pre><code>Person.name.age_(38).get === List(
   &quot;Fred&quot;
 )
-</code></pre>
-
-<pre><code class="language-scala">Person.name.likes_(&quot;pizza&quot;).get === List(
+</code></pre><pre><code>Person.name.likes_(&quot;pizza&quot;).get === List(
   &quot;Fred&quot;, &quot;Ben&quot;
 )
-</code></pre>
-
-<pre><code class="language-scala">Person.name.likes(&quot;pizza&quot;).get === List(
+</code></pre><pre><code>Person.name.likes(&quot;pizza&quot;).get === List(
   (&quot;Fred&quot;, &quot;pizza&quot;),
   (&quot;Ben&quot;, &quot;pizza&quot;)
 )
-</code></pre>
-
-<pre><code class="language-scala">Person.name.get === List(
+</code></pre><pre><code>Person.name.get === List(
   &quot;Fred&quot;, &quot;Lisa&quot;, &quot;Ben&quot;
 )
-</code></pre>
-
-<pre><code class="language-scala">Person.name.get: List[String] === List(
+</code></pre><pre><code>Person.name.get: List[String] === List(
   &quot;Fred&quot;, &quot;Lisa&quot;, &quot;Ben&quot;
 )
-</code></pre>
-
-<pre><code class="language-scala">Person.name.age.get: List[(String, Int)] === List(
+</code></pre><pre><code>Person.name.age.get: List[(String, Int)] === List(
   (&quot;Fred&quot;, 38),
   (&quot;Lisa&quot;, 7),
   (&quot;Ben&quot;, 5)
 )
-</code></pre>
-
-<pre><code class="language-scala">Person.name.age.likes.get === List(
+</code></pre><pre><code>Person.name.age.likes.get === List(
   (&quot;Fred&quot;, 38, &quot;pizza&quot;),
   (&quot;Ben&quot;, 5, &quot;pizza&quot;)
 )
-</code></pre>
-
-<hr />
+</code></pre><hr>
 
     </div>
 

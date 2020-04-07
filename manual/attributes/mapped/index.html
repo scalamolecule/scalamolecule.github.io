@@ -803,7 +803,7 @@
             <div class="col-md-2 column" style="padding-top:20px;padding-right:0px;">
                 <ul class="nav nav-pills" style="float:right;">
                     <li>
-                        <a href="/changelog" style="margin-top:-2px;">v0.21.0</a>
+                        <a href="/changelog" style="margin-top:-2px;">v0.22.0</a>
                     </li>
                     <li>
                         <div style="padding-left:14px;">
@@ -826,19 +826,13 @@
 <div class="container" style="padding-top:20px">
 
     <div class="col-sm-10 column" style="padding-left:8px;">
-        
-
-<h1 id="map-attributes">Map Attributes</h1>
-
+        <h1 id="map-attributes">Map Attributes</h1>
 <p><a href="https://github.com/scalamolecule/molecule/tree/master/coretests/src/test/scala/molecule/coretests/attrMap">Tests&hellip;</a></p>
-
 <p>Mapped values can be saved with mapped attributes in Molecule. It&rsquo;s a special Molecule construct that makes
 it easy to save for instance multi-lingual data without having to create language-variations of each attribute.
 But they can also be used for any other key-value indexed data.</p>
-
 <p>Say you want to save famous Persons names in multiple languages. Then you could use a mapString:</p>
-
-<pre><code class="language-scala">// In definition file
+<pre><code>// In definition file
 val name = mapString
  
 // Insert mapped data
@@ -861,19 +855,13 @@ Person.id.name.get.head === (1,
     &quot;es&quot; -&gt; &quot;Dmitri Shostakóvich&quot;
   )
 )
-</code></pre>
-
-<p>Molecule concatenates the key and value of each pair to one of several values of an underlying cardinality-many attribute. When
+</code></pre><p>Molecule concatenates the key and value of each pair to one of several values of an underlying cardinality-many attribute. When
 data is then retrieved Molecule splits the concatenated string into a typed pair. This all happens automatically and let&rsquo;s us focus
- on their use in our code.</p>
-
+on their use in our code.</p>
 <p>All getters have an <a href="/manual/attributes/basics">asynchronous equivalent</a>. Synchronous getters shown for brevity.</p>
-
 <p>There&rsquo;s a broad range of ways we can query mapped attributes and you can see a lot of examples of their use in
 the <a href="https://github.com/scalamolecule/molecule/tree/master/coretests/src/test/scala/molecule/coretests/attrMap"><code>attrMap</code> test cases</a>.</p>
-
 <h3 id="next">Next</h3>
-
 <p><a href="/manual/attributes/expressions">Attribute expressions&hellip;</a></p>
 
     </div>

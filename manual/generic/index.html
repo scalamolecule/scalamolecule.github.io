@@ -803,7 +803,7 @@
             <div class="col-md-2 column" style="padding-top:20px;padding-right:0px;">
                 <ul class="nav nav-pills" style="float:right;">
                     <li>
-                        <a href="/changelog" style="margin-top:-2px;">v0.21.0</a>
+                        <a href="/changelog" style="margin-top:-2px;">v0.22.0</a>
                     </li>
                     <li>
                         <div style="padding-left:14px;">
@@ -826,38 +826,23 @@
 <div class="container" style="padding-top:20px">
 
     <div class="col-sm-10 column" style="padding-left:8px;">
-        
-
-<h1 id="generic-attributes">Generic attributes</h1>
-
+        <h1 id="generic-attributes">Generic attributes</h1>
 <p><a href="https://github.com/scalamolecule/molecule/tree/master/coretests/src/test/scala/molecule/coretests/generic">Tests&hellip;</a></p>
-
 <p>Molecule provides access to generic data about data and Schema with the following 7 generic interfaces (each with a little example -
 read more by clicking on each title):</p>
-
-<h3 id="datom-datom"><a href="datom">Datom</a></h3>
-
+<h3 id="datomdatom"><a href="datom">Datom</a></h3>
 <p>Get id of Ben entity with generic Datom attribute <code>e</code></p>
-
-<pre><code class="language-scala">Person.e.name.get.head === (benEntityId, &quot;Ben&quot;)
-</code></pre>
-
-<h3 id="eavt-index-indexes"><a href="indexes">EAVT Index</a></h3>
-
+<pre><code>Person.e.name.get.head === (benEntityId, &quot;Ben&quot;)
+</code></pre><h3 id="eavt-indexindexes"><a href="indexes">EAVT Index</a></h3>
 <p>Attributes and values of entity e1</p>
-
-<pre><code class="language-scala">EAVT(e1).a.v.get === List(
+<pre><code>EAVT(e1).a.v.get === List(
   (&quot;:Person/name&quot;, &quot;Ben&quot;),
   (&quot;:Person/age&quot;, 42),
   (&quot;:Golf/score&quot;, 5.7)
 )
-</code></pre>
-
-<h3 id="avet-index-indexes"><a href="indexes">AVET Index</a></h3>
-
+</code></pre><h3 id="avet-indexindexes"><a href="indexes">AVET Index</a></h3>
 <p>Values, entities and transactions where attribute :Person/age is involved</p>
-
-<pre><code class="language-scala">AVET(&quot;:Person/age&quot;).e.v.t.get === List(
+<pre><code>AVET(&quot;:Person/age&quot;).e.v.t.get === List(
   (42, e1, t2),
   (37, e2, t5)
   (14, e3, t7),
@@ -868,34 +853,22 @@ AVET.range(&quot;:Person/age&quot;, Some(14), Some(40)).v.e.t.get === List(
   (14, e4, t7),
   (37, e2, t5)
 )
-</code></pre>
-
-<h3 id="aevt-index-indexes"><a href="indexes">AEVT Index</a></h3>
-
+</code></pre><h3 id="aevt-indexindexes"><a href="indexes">AEVT Index</a></h3>
 <p>Entities, values and transactions where attribute :Person/name is involved</p>
-
-<pre><code class="language-scala">AEVT(&quot;:Person/name&quot;).e.v.t.get === List(
+<pre><code>AEVT(&quot;:Person/name&quot;).e.v.t.get === List(
   (e1, &quot;Ben&quot;, t2),
   (e2, &quot;Liz&quot;, t5)
 )
-</code></pre>
-
-<h3 id="vaet-index-indexes"><a href="indexes">VAET Index</a></h3>
-
+</code></pre><h3 id="vaet-indexindexes"><a href="indexes">VAET Index</a></h3>
 <p>Get entities pointing to entity a1</p>
-
-<pre><code class="language-scala">VAET(a1).v.a.e.get === List(
+<pre><code>VAET(a1).v.a.e.get === List(
   (a1, &quot;:Release/artists&quot;, r1),
   (a1, &quot;:Release/artists&quot;, r2),
   (a1, &quot;:Release/artists&quot;, r3),
 )
-</code></pre>
-
-<h3 id="log-log"><a href="log">Log</a></h3>
-
+</code></pre><h3 id="loglog"><a href="log">Log</a></h3>
 <p>Data from transaction t1 until t4 (exclusive)</p>
-
-<pre><code class="language-scala">Log(Some(t1), Some(t4)).t.e.a.v.op.get === List(
+<pre><code>Log(Some(t1), Some(t4)).t.e.a.v.op.get === List(
   (t1, e1, &quot;:Person/name&quot;, &quot;Ben&quot;, true),
   (t1, e1, &quot;:Person/age&quot;, 41, true),
 
@@ -905,21 +878,14 @@ AVET.range(&quot;:Person/age&quot;, Some(14), Some(40)).v.e.t.get === List(
   (t3, e1, &quot;:Person/age&quot;, 41, false),
   (t3, e1, &quot;:Person/age&quot;, 42, true)
 )
-</code></pre>
-
-<h3 id="schema-schema"><a href="schema">Schema</a></h3>
-
+</code></pre><h3 id="schemaschema"><a href="schema">Schema</a></h3>
 <p>Get entities pointing to entity a1</p>
-
-<pre><code class="language-scala">Schema.part.ns.attr.fulltext$.doc.get === List(
+<pre><code>Schema.part.ns.attr.fulltext$.doc.get === List(
   (&quot;ind&quot;, &quot;person&quot;, &quot;name&quot;, Some(true), &quot;Person name&quot;), // fulltext search enabled
   (&quot;ind&quot;, &quot;person&quot;, &quot;age&quot;, None, &quot;Person age&quot;),
   (&quot;cat&quot;, &quot;sport&quot;, &quot;name&quot;, None, &quot;Sport category name&quot;)
 )
-</code></pre>
-
-<h3 id="next">Next</h3>
-
+</code></pre><h3 id="next">Next</h3>
 <p><a href="/manual/generic/datom">Datom&hellip;</a></p>
 
     </div>

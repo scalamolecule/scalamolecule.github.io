@@ -803,7 +803,7 @@
             <div class="col-md-2 column" style="padding-top:20px;padding-right:0px;">
                 <ul class="nav nav-pills" style="float:right;">
                     <li>
-                        <a href="/changelog" style="margin-top:-2px;">v0.21.0</a>
+                        <a href="/changelog" style="margin-top:-2px;">v0.22.0</a>
                     </li>
                     <li>
                         <div style="padding-left:14px;">
@@ -826,58 +826,37 @@
 <div class="container" style="padding-top:20px">
 
 <div class="col-sm-10 column" style="padding-left:8px;">
-	
-
-<h1 id="other-databases-vs-molecule">Other databases vs. Molecule</h1>
-
+	<h1 id="other-databases-vs-molecule">Other databases vs. Molecule</h1>
 <p>Every database/abstraction layer has its strengths and weaknesses and we&rsquo;ll try here to compare existing systems with Molecule with some examples of how they accomplish similar tasks.</p>
-
-<h3 id="others-consume-molecule-declares-data-structures">Others <em>consume</em>, Molecule <em>declares</em> data structures</h3>
-
+<h3 id="others-_consume_-molecule-_declares_-data-structures">Others <em>consume</em>, Molecule <em>declares</em> data structures</h3>
 <p>Many systems lets you define data objects matching your domain that are then <em>consumed</em> by the host language (Scala) in combination with DSLs.</p>
-
 <p>If we take <a href="http://slick.typesafe.com/doc/3.0.0-M1/queries.html#joining-and-zipping">Slick</a> for instance we could say that it &ldquo;<em>consumes</em>&rdquo; the data objects <code>coffees</code> and <code>suppliers</code> in this Scala sequence comprehension:</p>
-
-<pre><code class="language-scala">// Slick
+<pre><code>// Slick
 val implCrossJoin = for {
   c &lt;- coffees
   s &lt;- suppliers
 } yield (c.name, s.name)
-</code></pre>
-
-<p>Whereas in Molecule, we only <em>declare</em> which attributes we are interested in. Molecule attributes <em>themselves</em> form the query - they are not <em>consumed</em> by an outer construct. That way, the domain terms directly form the query without additional keywords and constructs:</p>
-
-<pre><code class="language-scala">// Molecule
+</code></pre><p>Whereas in Molecule, we only <em>declare</em> which attributes we are interested in. Molecule attributes <em>themselves</em> form the query - they are not <em>consumed</em> by an outer construct. That way, the domain terms directly form the query without additional keywords and constructs:</p>
+<pre><code>// Molecule
 val coffeeSupliers = Coffees.name.Suppliers.name.get
-</code></pre>
-
-<p>We get the exact same type-inferred result back, a <code>List[(String, String)]</code></p>
-
+</code></pre><p>We get the exact same type-inferred result back, a <code>List[(String, String)]</code></p>
 <p><a href="http://squeryl.org/selects.html">Squeryl</a> also <em>consumes</em> data objects, now in a DSL construct:</p>
-
-<pre><code class="language-scala">// Squeryl
+<pre><code>// Squeryl
 def songs = from(MusicDb.songs)(s =&gt; where(s.artistId === id) select(s))
-</code></pre>
-
-<p>In Molecule we don&rsquo;t need to use keywords like <code>from</code>, <code>where</code> and <code>select</code> (apart from the final <code>get</code> method). We instead get song entities (<code>e</code>) filtered by Artist by simply applying a required value directly to the <code>artist</code> attribute:</p>
-
-<pre><code class="language-scala">// Molecule
+</code></pre><p>In Molecule we don&rsquo;t need to use keywords like <code>from</code>, <code>where</code> and <code>select</code> (apart from the final <code>get</code> method). We instead get song entities (<code>e</code>) filtered by Artist by simply applying a required value directly to the <code>artist</code> attribute:</p>
+<pre><code>// Molecule
 val songs = Song.e.artist(id).get
-</code></pre>
-
-<h3 id="more-databases-to-compare">More databases to compare&hellip;</h3>
-
+</code></pre><h3 id="more-databases-to-compare">More databases to compare&hellip;</h3>
 <p>Over time we&rsquo;ll compare Molecule with as many database systems as possible. Those not linked yet below are on our wish list:</p>
-
 <ul>
 <li><a href="/compare/datomic">Datomic</a></li>
 <li><a href="/compare/sql">SQL</a>
-
 <ul>
 <li><a href="/compare/sql/slick">Slick</a></li>
 <li>Squeryl</li>
 <li>Sqltyped tutorial</li>
-</ul></li>
+</ul>
+</li>
 <li>Mongodb</li>
 <li>Mongodb with Rogue</li>
 <li>Titan</li>
@@ -885,7 +864,6 @@ val songs = Song.e.artist(id).get
 <li><a href="/compare/gremlin">Gremlin</a></li>
 <li>More&hellip;?</li>
 </ul>
-
 <p>Please feel free to suggest a tutorial to &ldquo;translate&rdquo; to Molecule&hellip;</p>
 
 </div>

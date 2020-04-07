@@ -803,7 +803,7 @@
             <div class="col-md-2 column" style="padding-top:20px;padding-right:0px;">
                 <ul class="nav nav-pills" style="float:right;">
                     <li>
-                        <a href="/changelog" style="margin-top:-2px;">v0.21.0</a>
+                        <a href="/changelog" style="margin-top:-2px;">v0.22.0</a>
                     </li>
                     <li>
                         <div style="padding-left:14px;">
@@ -826,22 +826,14 @@
 <div class="container" style="padding-top:20px">
 
     <div class="col-sm-10 column" style="padding-left:8px;">
-        
-
-<h1 id="datom-api">Datom API</h1>
-
+        <h1 id="datom-api">Datom API</h1>
 <p><a href="https://github.com/scalamolecule/molecule/tree/master/coretests/src/test/scala/molecule/coretests/generic/Datom.scala">Tests&hellip;</a></p>
-
-<h3 id="datoms-quintuplets">Datoms / quintuplets</h3>
-
+<h3 id="datoms--quintuplets">Datoms / quintuplets</h3>
 <p>Attribute values are saved as quintuplets of information in Datomic:</p>
-
-<p><img src="/img/generic/datom.png" alt="" />
-<br><br></p>
-
+<p><img src="/img/generic/datom.png" alt="">
+<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
 <p>The Datom API in Molecule let us retrieve each element generically for any molecule we are working on by
 providing the following &ldquo;generic attributes&rdquo; that we can add to our custom molecules:</p>
-
 <ul>
 <li><code>e</code> - Entity id (<code>Long</code>)</li>
 <li><code>a</code> - Attribute (<code>String</code>)</li>
@@ -849,71 +841,48 @@ providing the following &ldquo;generic attributes&rdquo; that we can add to our 
 <li><code>t</code> - Transaction point in time (<code>Long</code> alternatively <code>Int</code>)</li>
 <li><code>op</code> - Operation: assertion / retraction (<code>Boolean</code> true/false)</li>
 </ul>
-
 <p>The Transaction value has two more representations</p>
-
 <ul>
 <li><code>tx</code> - Transaction entity id (<code>Long</code>)</li>
 <li><code>txInstant</code> - Transaction wall-clock time (<code>java.util.Date</code>)</li>
 </ul>
-
 <h3 id="mixing-custom-and-generic-attributes">Mixing custom and generic attributes</h3>
-
 <p>Generic attributes like <code>e</code> can be added to retrieve an entity id of a custom molecule:</p>
-
-<pre><code class="language-scala">// Get entity id of Ben with generic datom attribute `e` on a custom molecule
+<pre><code>// Get entity id of Ben with generic datom attribute `e` on a custom molecule
 Person.e.name.get.head === (benEntityId, &quot;Ben&quot;)
-</code></pre>
-
-<p>And we can get information about the transaction time of the assertion of some custom attribute value:</p>
-
-<pre><code class="language-scala">// When was Ben's age updated? Using `txInstant`
+</code></pre><p>And we can get information about the transaction time of the assertion of some custom attribute value:</p>
+<pre><code>// When was Ben's age updated? Using `txInstant`
 Person(benEntityId).age.txInstant.get.head === (42, &lt;April 4, 2019&gt;) // (Date)
-</code></pre>
-
-<p>With a history db we can access the transaction number <code>t</code> and
+</code></pre><p>With a history db we can access the transaction number <code>t</code> and
 assertion/retraction statusses with <code>op</code></p>
-
-<pre><code class="language-scala">// 
+<pre><code>// 
 Person(benEntityId).age.t.op.getHistory.sortBy(r =&gt; (r._2, r._3)) === List(
   (41, t1, true),  // age 41 asserted in transaction t1
   (41, t2, false), // age 41 retracted in transaction t2
   (42, t2, true)   // age 42 asserted in transaction t2
 )
-</code></pre>
-
-<h3 id="fully-generic-datom-molecules">Fully generic Datom molecules</h3>
-
+</code></pre><h3 id="fully-generic-datom-molecules">Fully generic Datom molecules</h3>
 <p>In molecule, attribute names (the <code>A</code> of the Datom) are modelled as our custom DSL attributes as we saw above when we retrieved the
 <code>Person.age</code> attribute value along with some generic datom data.</p>
-
 <p>Sometimes we will be interested in more generic data
 where we don&rsquo;t know in advance what attributes will be involved. Then we can use the generic Datom
 attribute <code>a</code> for Attribute name and <code>v</code> for value. We could for instance ask what we know about an entity over time
 in the database:</p>
-
-<pre><code class="language-scala">// What do we know about the fred entity?
+<pre><code>// What do we know about the fred entity?
 Person(fred).a.v.t.op.getHistory.sortBy(r =&gt; (r._2, r._3)) === List(
   (&quot;:Person/name&quot;, &quot;Fred&quot;, t3, true), 
   (&quot;:Person/likes&quot;, &quot;pizza&quot;, t3, true), 
   (&quot;:Person/likes&quot;, &quot;pizza&quot;, t6, false),
   (&quot;:Person/likes&quot;, &quot;pasta&quot;, t6, true)  
 )
-</code></pre>
-
-<h3 id="filtering-with-expressions">Filtering with expressions</h3>
-
+</code></pre><h3 id="filtering-with-expressions">Filtering with expressions</h3>
 <p>By applying values to generic attributes we can filter search results:</p>
-
-<pre><code class="language-scala">// What was asserted/retracted in transaction tx3 about what Fred likes? 
+<pre><code>// What was asserted/retracted in transaction tx3 about what Fred likes? 
 Person(fred).likes.tx(tx6).op.getHistory.sortBy(r =&gt; (r._2, r._3)) === List(
   (&quot;pizza&quot;, t6, false), // Fred no longer likes pizza
   (&quot;pasta&quot;, t6, true)   // Fred now likes pasta
 )
-</code></pre>
-
-<h3 id="next">Next</h3>
-
+</code></pre><h3 id="next">Next</h3>
 <p><a href="/manual/generic/indexes">Indexes&hellip;</a></p>
 
     </div>

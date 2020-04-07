@@ -803,7 +803,7 @@
             <div class="col-md-2 column" style="padding-top:20px;padding-right:0px;">
                 <ul class="nav nav-pills" style="float:right;">
                     <li>
-                        <a href="/changelog" style="margin-top:-2px;">v0.21.0</a>
+                        <a href="/changelog" style="margin-top:-2px;">v0.22.0</a>
                     </li>
                     <li>
                         <div style="padding-left:14px;">
@@ -826,36 +826,25 @@
 <div class="container" style="padding-top:20px">
 
     <div class="col-sm-10 column" style="padding-left:8px;">
-        
-
-<h1 id="index-apis">Index APIs</h1>
-
+        <h1 id="index-apis">Index APIs</h1>
 <p><a href="https://github.com/scalamolecule/molecule/tree/master/coretests/src/test/scala/molecule/coretests/generic/Index.scala">Tests&hellip;</a></p>
-
 <p><em>Some index descriptions in the following sections respectfully quoted from the
 <a href="https://docs.datomic.com/on-prem/indexes.html">Datomic documentation</a>.</em></p>
-
 <p>Datomic maintains four indexes that contain ordered sets of datoms. Each of these indexes is named based on
 the sort order used.  E, A, and V are always sorted in ascending order, while T is always in descending order:</p>
-
 <ul>
 <li><strong>EAVT</strong> - Datoms sorted by Entity-Attribute-Value-Transaction.</li>
 <li><strong>AVET</strong> - Datoms sorted by Attribute-Value-Entity-Transaction.</li>
 <li><strong>AEVT</strong> - Datoms sorted by Attribute-Entity-Value-Transaction.</li>
 <li><strong>VAET</strong> - &ldquo;Reverse index&rdquo; for reverse lookup of ref types.</li>
 </ul>
-
 <p>Molecule provides access to each index by instantiating a corresponding Index object with one or more
 arguments and then adding generic attributes matching the data to be returned.</p>
-
 <p>Contrary to Datomic&rsquo;s datoms API that returns Datoms, Molecule returns tuples of data matching the
 generic attributes added to the Index object. This way, Index molecules transparently share the same
 return type semantics as normal molecules.</p>
-
 <h3 id="generic-index-attributes">Generic Index attributes</h3>
-
 <p>The following standard generic Index attributes can be used to build Index molecules:</p>
-
 <ul>
 <li><code>e</code> - Entity id (<code>Long</code>)</li>
 <li><code>a</code> - Attribute (<code>String</code>)</li>
@@ -865,15 +854,12 @@ return type semantics as normal molecules.</p>
 <li><code>txInstant</code> - Transaction wall-clock time (<code>java.util.Date</code>)</li>
 <li><code>op</code> - Operation: assertion / retraction (<code>Boolean</code> true/false)</li>
 </ul>
-
 <h2 id="eavt">EAVT</h2>
-
 <p>The EAVT index provides efficient access to everything about a given entity.
 Conceptually this is very similar to row access style in a SQL database,
 except that entities can possess arbitrary attributes rather then being limited
 to a predefined set of columns.</p>
-
-<pre><code class="language-scala">// Create EAVT Index molecule with 1 entity id argument
+<pre><code>// Create EAVT Index molecule with 1 entity id argument
 EAVT(e1).e.a.v.t.get === List(
   (e1, &quot;:Person/name&quot;, &quot;Ben&quot;, t1),
   (e1, &quot;:Person/age&quot;, 42, t2),
@@ -891,13 +877,9 @@ EAVT(e1).a.v.get === List(
 EAVT(e1, &quot;:Person/age&quot;).a.v.get === List(
   (&quot;:Person/age&quot;, 42)
 )
-</code></pre>
-
-<h2 id="avet">AVET</h2>
-
+</code></pre><h2 id="avet">AVET</h2>
 <p>The AVET index provides efficient access to particular combinations of attribute and value.</p>
-
-<pre><code class="language-scala">// Create AVET Index molecule with 1 entity id argument
+<pre><code>// Create AVET Index molecule with 1 entity id argument
 AVET(&quot;:Person/age&quot;).v.e.t.get === List(
   (42, e1, t2),
   (37, e2, t5),
@@ -908,12 +890,9 @@ AVET(&quot;:Person/age&quot;).v.e.t.get === List(
 AVET(&quot;:Person/age&quot;, 42).e.t.get === List( (e1, t2) )
 AVET(&quot;:Person/age&quot;, 42, e1).e.v.get === List( (e1, t2) )
 AVET(&quot;:Person/age&quot;, 42, e1, t2).e.v.get === List( (e1, t2) )
-</code></pre>
-
-<p>The AVET Index can be filtered by a range of values between <code>from</code> (inclusive) and
+</code></pre><p>The AVET Index can be filtered by a range of values between <code>from</code> (inclusive) and
 <code>until</code> (exclusive) for an attribute:</p>
-
-<pre><code class="language-scala">AVET.range(&quot;:Person/age&quot;, Some(14), Some(37)).v.e.t.get === List(
+<pre><code>AVET.range(&quot;:Person/age&quot;, Some(14), Some(37)).v.e.t.get === List(
   (14, e4, t7) // 14 is included in value range
                // 37 not included in value range
                // 42 outside value range
@@ -930,14 +909,10 @@ AVET.range(&quot;:Person/age&quot;, Some(20), None).v.e.t.get === List(
   (37, e2, t5),
   (42, e1, t2)
 )
-</code></pre>
-
-<h2 id="aevt">AEVT</h2>
-
+</code></pre><h2 id="aevt">AEVT</h2>
 <p>The AEVT index provides efficient access to all values for a given attribute,
 comparable to traditional column access style.</p>
-
-<pre><code class="language-scala">// Create AEVT Index molecule with 1 entity id argument
+<pre><code>// Create AEVT Index molecule with 1 entity id argument
 AEVT(&quot;:Person/name&quot;).e.v.t.get === List(
   (e1, &quot;Ben&quot;, t2),
   (e2, &quot;Liz&quot;, t5)
@@ -947,14 +922,10 @@ AEVT(&quot;:Person/name&quot;).e.v.t.get === List(
 AEVT(&quot;:Person/name&quot;, e1).e.v.get === List( (e1, &quot;Ben&quot;) )
 AEVT(&quot;:Person/name&quot;, e1, &quot;Ben&quot;).e.v.get === List( (e1, &quot;Ben&quot;) )
 AEVT(&quot;:Person/name&quot;, e1, &quot;Ben&quot;, t2).e.v.get === List( (e1, &quot;Ben&quot;) )
-</code></pre>
-
-<h2 id="vaet">VAET</h2>
-
+</code></pre><h2 id="vaet">VAET</h2>
 <p>The VAET index contains all and only datoms whose attribute has a :db/valueType of :db.type/ref.
 This is also known as the reverse index, since it allows efficient navigation of relationships in reverse.</p>
-
-<pre><code class="language-scala">// Say we have 3 entities pointing to one entity:
+<pre><code>// Say we have 3 entities pointing to one entity:
 Release.e.name.Artists.e.name.get === List(
   (r1, &quot;Abbey Road&quot;, a1, &quot;The Beatles&quot;),
   (r2, &quot;Magical Mystery Tour&quot;, a1, &quot;The Beatles&quot;),
@@ -972,10 +943,7 @@ VAET(a1).v.a.e.get === List(
 VAET(a1, &quot;:Release/artist&quot;).e.get === List(r1, r2, r3)
 VAET(a1, &quot;:Release/artist&quot;, r2).e.get === List(r2)
 VAET(a1, &quot;:Release/artist&quot;, r2, t7).e.get === List(r2)
-</code></pre>
-
-<h3 id="next">Next</h3>
-
+</code></pre><h3 id="next">Next</h3>
 <p><a href="/manual/generic/log">Log&hellip;</a></p>
 
     </div>

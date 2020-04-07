@@ -3,9 +3,9 @@
         <head>
           <meta http-equiv="X-UA-Compatible" content="IE=edge" />
           <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-          <title>Molecule 0.21.0 - molecule.input.InputMolecule_2.InputMolecule_2_14</title>
-          <meta name="description" content="Molecule 0.21.0 - molecule.input.InputMolecule 2.InputMolecule 2 14" />
-          <meta name="keywords" content="Molecule 0.21.0 molecule.input.InputMolecule 2.InputMolecule 2 14" />
+          <title>Molecule 0.22.0 - molecule.input.InputMolecule_2.InputMolecule_2_14</title>
+          <meta name="description" content="Molecule 0.22.0 - molecule.input.InputMolecule 2.InputMolecule 2 14" />
+          <meta name="keywords" content="Molecule 0.22.0 molecule.input.InputMolecule 2.InputMolecule 2 14" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       
@@ -28,7 +28,7 @@
         </head>
         <body>
       <div id="search">
-        <span id="doc-title">Molecule<span id="doc-version">0.21.0</span></span>
+        <span id="doc-title">Molecule<span id="doc-version">0.22.0</span></span>
         <span class="close-results"><span class="left">&lt;</span> Back</span>
         <div id="textfilter">
           <span class="input">
@@ -386,9 +386,9 @@ ageOfPersons(<span class="lit">"Liz"</span>).get === <span class="std">List</spa
         <div id="constructors" class="members">
               <h3>Instance Constructors</h3>
               <ol><li name="molecule.input.InputMolecule_2.InputMolecule_2_14#&lt;init&gt;" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="&lt;init&gt;(_model:molecule.ast.model.Model,queryData:(molecule.ast.query.Query,Option[molecule.ast.query.Query])):molecule.input.InputMolecule_2.InputMolecule_2_14[I1,I2,A,B,C,D,E,F,G,H,I,J,K,L,M,N]"></a><a id="&lt;init&gt;:InputMolecule_2_14[I1,I2,A,B,C,D,E,F,G,H,I,J,K,L,M,N]"></a>
+      <a id="&lt;init&gt;(_model:molecule.ast.model.Model,queryData:(molecule.ast.query.Query,Option[molecule.ast.query.Query],molecule.ast.query.Query,Option[molecule.ast.query.Query])):molecule.input.InputMolecule_2.InputMolecule_2_14[I1,I2,A,B,C,D,E,F,G,H,I,J,K,L,M,N]"></a><a id="&lt;init&gt;:InputMolecule_2_14[I1,I2,A,B,C,D,E,F,G,H,I,J,K,L,M,N]"></a>
       <span class="permalink">
-      <a href="../../molecule/input/InputMolecule_2$$InputMolecule_2_14.html#&lt;init&gt;(_model:molecule.ast.model.Model,queryData:(molecule.ast.query.Query,Option[molecule.ast.query.Query])):molecule.input.InputMolecule_2.InputMolecule_2_14[I1,I2,A,B,C,D,E,F,G,H,I,J,K,L,M,N]" title="Permalink">
+      <a href="../../molecule/input/InputMolecule_2$$InputMolecule_2_14.html#&lt;init&gt;(_model:molecule.ast.model.Model,queryData:(molecule.ast.query.Query,Option[molecule.ast.query.Query],molecule.ast.query.Query,Option[molecule.ast.query.Query])):molecule.input.InputMolecule_2.InputMolecule_2_14[I1,I2,A,B,C,D,E,F,G,H,I,J,K,L,M,N]" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -397,7 +397,7 @@ ageOfPersons(<span class="lit">"Liz"</span>).get === <span class="std">List</spa
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">InputMolecule_2_14</span><span class="params">(<span name="_model">_model: <a href="../ast/model$$Model.html" class="extype" name="molecule.ast.model.Model">Model</a></span>, <span name="queryData">queryData: (<a href="../ast/query$$Query.html" class="extype" name="molecule.ast.query.Query">Query</a>, <span class="extype" name="scala.Option">Option</span>[<a href="../ast/query$$Query.html" class="extype" name="molecule.ast.query.Query">Query</a>])</span>)</span>
+        <span class="name">InputMolecule_2_14</span><span class="params">(<span name="_model">_model: <a href="../ast/model$$Model.html" class="extype" name="molecule.ast.model.Model">Model</a></span>, <span name="queryData">queryData: (<a href="../ast/query$$Query.html" class="extype" name="molecule.ast.query.Query">Query</a>, <span class="extype" name="scala.Option">Option</span>[<a href="../ast/query$$Query.html" class="extype" name="molecule.ast.query.Query">Query</a>], <a href="../ast/query$$Query.html" class="extype" name="molecule.ast.query.Query">Query</a>, <span class="extype" name="scala.Option">Option</span>[<a href="../ast/query$$Query.html" class="extype" name="molecule.ast.query.Query">Query</a>])</span>)</span>
       </span>
       
       
@@ -582,6 +582,48 @@ Custom DSL molecule --&gt; Model --&gt; Query --&gt; Datomic query string
       </span>
       
       <p class="shortcomment cmt">Internal <a href="../ast/query$$Query.html" class="extype" name="molecule.ast.query.Query">Query</a> representation of molecule.</p><div class="fullcomment"><div class="comment cmt"><p>Internal <a href="../ast/query$$Query.html" class="extype" name="molecule.ast.query.Query">Query</a> representation of molecule.
+<br><br>
+Molecule transforms custom boilerplate DSL constructs to Datomic queries in 3 steps:
+<br><br>
+Custom DSL molecule --&gt; Model --&gt; Query --&gt; Datomic query string
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="molecule.input.InputMolecule_2.InputMolecule_2_14">InputMolecule_2_14</a> → <a href="../ast/MoleculeBase.html" class="extype" name="molecule.ast.MoleculeBase">MoleculeBase</a></dd></dl></div>
+    </li><li name="molecule.input.InputMolecule_2.InputMolecule_2_14#_rawNestedQuery" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="internal">
+      <a id="_rawNestedQuery:Option[molecule.ast.query.Query]"></a><a id="_rawNestedQuery:Option[Query]"></a>
+      <span class="permalink">
+      <a href="../../molecule/input/InputMolecule_2$$InputMolecule_2_14.html#_rawNestedQuery:Option[molecule.ast.query.Query]" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">_rawNestedQuery</span><span class="result">: <span class="extype" name="scala.Option">Option</span>[<a href="../ast/query$$Query.html" class="extype" name="molecule.ast.query.Query">Query</a>]</span>
+      </span>
+      
+      <p class="shortcomment cmt">Internal un-optimized optional <a href="../ast/query$$Query.html" class="extype" name="molecule.ast.query.Query">Query</a> representation of nested molecule with added entity search for each level.</p><div class="fullcomment"><div class="comment cmt"><p>Internal un-optimized optional <a href="../ast/query$$Query.html" class="extype" name="molecule.ast.query.Query">Query</a> representation of nested molecule with added entity search for each level.
+<br><br>
+Molecule transforms custom boilerplate DSL constructs to Datomic queries in 3 steps:
+<br><br>
+Custom DSL molecule --&gt; Model --&gt; Query --&gt; Datomic query string
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="molecule.input.InputMolecule_2.InputMolecule_2_14">InputMolecule_2_14</a> → <a href="../ast/MoleculeBase.html" class="extype" name="molecule.ast.MoleculeBase">MoleculeBase</a></dd></dl></div>
+    </li><li name="molecule.input.InputMolecule_2.InputMolecule_2_14#_rawQuery" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="internal">
+      <a id="_rawQuery:molecule.ast.query.Query"></a><a id="_rawQuery:Query"></a>
+      <span class="permalink">
+      <a href="../../molecule/input/InputMolecule_2$$InputMolecule_2_14.html#_rawQuery:molecule.ast.query.Query" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">_rawQuery</span><span class="result">: <a href="../ast/query$$Query.html" class="extype" name="molecule.ast.query.Query">Query</a></span>
+      </span>
+      
+      <p class="shortcomment cmt">Internal un-optimized <a href="../ast/query$$Query.html" class="extype" name="molecule.ast.query.Query">Query</a> representation molecule.</p><div class="fullcomment"><div class="comment cmt"><p>Internal un-optimized <a href="../ast/query$$Query.html" class="extype" name="molecule.ast.query.Query">Query</a> representation molecule.
 <br><br>
 Molecule transforms custom boilerplate DSL constructs to Datomic queries in 3 steps:
 <br><br>

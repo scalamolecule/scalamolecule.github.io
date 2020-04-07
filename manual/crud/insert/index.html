@@ -803,7 +803,7 @@
             <div class="col-md-2 column" style="padding-top:20px;padding-right:0px;">
                 <ul class="nav nav-pills" style="float:right;">
                     <li>
-                        <a href="/changelog" style="margin-top:-2px;">v0.21.0</a>
+                        <a href="/changelog" style="margin-top:-2px;">v0.22.0</a>
                     </li>
                     <li>
                         <div style="padding-left:14px;">
@@ -826,43 +826,26 @@
 <div class="container" style="padding-top:20px">
 
     <div class="col-sm-10 column" style="padding-left:8px;">
-        
-
-<h1 id="insert">Insert</h1>
-
+        <h1 id="insert">Insert</h1>
 <p><a href="https://github.com/scalamolecule/molecule/blob/master/coretests/src/test/scala/molecule/coretests/crud/Insert.scala">Tests&hellip;</a></p>
-
 <p>Data can be inserted by making a molecule that matches the values of each row.</p>
-
 <p>One row of data can be applied directly with matching arguments</p>
-
-<pre><code class="language-scala">Person.name.likes.age.insert(&quot;Fred&quot;, &quot;pizza&quot;, 38)
-</code></pre>
-
-<p>Multiple rows of data can be applied as any <code>Iterable</code> of tuples of data each matching the molecule attributes:</p>
-
-<pre><code class="language-scala">Person.name.likes.age insert List(
+<pre><code>Person.name.likes.age.insert(&quot;Fred&quot;, &quot;pizza&quot;, 38)
+</code></pre><p>Multiple rows of data can be applied as any <code>Iterable</code> of tuples of data each matching the molecule attributes:</p>
+<pre><code>Person.name.likes.age insert List(
   (&quot;Lisa&quot;, &quot;pizza&quot;, 7),
   (&quot;Ben&quot;, &quot;pasta&quot;, 5)
 )
-</code></pre>
-
-<h3 id="type-safety">Type-safety</h3>
-
+</code></pre><h3 id="type-safety">Type-safety</h3>
 <p>Type-safety is guaranteed since the type of each tuple of data is enforced by the compiler to conform to the molecule type.</p>
-
 <p>If the data set is not accepted type-wise, then either the molecule needs to be adjusted to match the type
 of data rows. Or, the data set might be irregular and have some variable size of tuples or varying types within tuples that
 need to be sorted out.</p>
-
 <h3 id="asynchronous-insert">Asynchronous insert</h3>
-
 <p>All transactional operators have an asynchronous equivalent. Inserting data asynchronously with
 <code>insertAsync</code> uses Datomic&rsquo;s asynchronous API and returns a <code>Future</code> with a <code>TxReport</code>.</p>
-
 <p>Here, we insert data as argument list/tuples asynchronously:</p>
-
-<pre><code class="language-scala">// Insert single row of data with individual args
+<pre><code>// Insert single row of data with individual args
 val singleInsertFuture: Future[TxReport] = Person.name.likes.age.insertAsync(&quot;Fred&quot;, &quot;pizza&quot;, 38)
 
 // Insert Iterable of multiple rows of data
@@ -883,67 +866,42 @@ for {
     (&quot;Ben&quot;, &quot;pasta&quot;, 5)
   )
 }
-</code></pre>
-
-<p>For brevity, the following examples use the synchronous <code>save</code> operation.</p>
-
+</code></pre><p>For brevity, the following examples use the synchronous <code>save</code> operation.</p>
 <h3 id="optional-values">Optional values</h3>
-
 <p><code>null</code> values are not allowed as data-input values whereas Optional values are:</p>
-
-<pre><code class="language-scala">Person.name.likes$.age insert List(
+<pre><code>Person.name.likes$.age insert List(
   (&quot;Fred&quot;, None, 38),
   (&quot;Pete&quot;, Some(&quot;sushi&quot;), 17)
 )
-</code></pre>
-
-<p>As with <code>save</code>, None values are simply not asserted. No <code>likes</code> value is asserted for Fred in the example above.</p>
-
+</code></pre><p>As with <code>save</code>, None values are simply not asserted. No <code>likes</code> value is asserted for Fred in the example above.</p>
 <h3 id="related-data">Related data</h3>
-
 <p>Related data can be inserted</p>
-
-<pre><code class="language-scala">Person.name.likes$.age.Home.street.city insert List(
+<pre><code>Person.name.likes$.age.Home.street.city insert List(
   (&quot;Fred&quot;, None, 38, &quot;Baker St. 7&quot;, &quot;Boston&quot;),
   (&quot;Pete&quot;, Some(&quot;sushi&quot;), 17, &quot;Sunset Boulevard 1042&quot;, &quot;Foxville&quot;)
 )
-</code></pre>
-
-<p>When the Fred entity is created, a Baker St Address entity is also created and a relationship from Fred to that Address
+</code></pre><p>When the Fred entity is created, a Baker St Address entity is also created and a relationship from Fred to that Address
 entity is created. The same for Pete, and so on&hellip;</p>
-
 <h3 id="composite-data">Composite data</h3>
-
 <p>Data with associative relationships can be inserted with a Composite molecule</p>
-
-<pre><code class="language-scala">Article.name.author + Tag.name.weight insert List(
+<pre><code>Article.name.author + Tag.name.weight insert List(
   ((&quot;Battle of Waterloo&quot;, &quot;Ben Bridge&quot;), (&quot;serious&quot;, 5)),
   ((&quot;Best jokes ever&quot;, &quot;John Cleese&quot;), (&quot;fun&quot;, 3))
 )
-</code></pre>
-
-<p>Note how each sub-molecule type-safely corresponds to each sub-tuple of data.</p>
-
+</code></pre><p>Note how each sub-molecule type-safely corresponds to each sub-tuple of data.</p>
 <p>Up to 22 sub-molecules can be associated in a single Composite which allows for wide data sets to be saved with up
 to 22 x 22 = 484 attributes per row of data!</p>
-
 <h3 id="data-variables">Data variables</h3>
-
 <p>Likewise we might often have the whole data set saved in a variable that we can insert too:</p>
-
-<pre><code class="language-scala">val data = List(
+<pre><code>val data = List(
   (&quot;Fred&quot;, None, 38),
   (&quot;Pete&quot;, Some(&quot;sushi&quot;), 17)
 )
 Person.name.likes$.age insert data
-</code></pre>
-
-<h3 id="entity-ids">Entity ids</h3>
-
+</code></pre><h3 id="entity-ids">Entity ids</h3>
 <p>If we have some previously saved entities we can also insert their ids. Here we save some Address entity ids
 with the ref attribute <code>home</code>:</p>
-
-<pre><code class="language-scala">val bakerSt7 = Addr.street(&quot;Baker St. 7&quot;).city(&quot;Boston&quot;).save.eid
+<pre><code>val bakerSt7 = Addr.street(&quot;Baker St. 7&quot;).city(&quot;Boston&quot;).save.eid
 val sunsetB = Addr.street(&quot;Sunset Boulevard 1042&quot;).city(&quot;Foxville&quot;).save.eid
 
 Person.name.likes$.age.home insert List(
@@ -952,24 +910,17 @@ Person.name.likes$.age.home insert List(
   (&quot;Ben&quot;, Some(&quot;pasta&quot;), 7, bakerSt7),
   (&quot;Pete&quot;, Some(&quot;sushi&quot;), 17, sunsetB)
 )
-</code></pre>
-
-<h2 id="insert-molecule-as-template">Insert-molecule as template</h2>
-
+</code></pre><h2 id="insert-molecule-as-template">Insert-molecule as template</h2>
 <p>We can assign an Insert-molecule to a variable in order to re-use it as a temple to insert data with various inputs.</p>
-
-<pre><code class="language-scala">// Insert-molecule
+<pre><code>// Insert-molecule
 val insertPerson = Person.name.likes.age.insert
 
 // Insert 3 persons re-using the insert-molecule
 insertPerson(&quot;Fred&quot;, &quot;pizza&quot;, 38)
 insertPerson(&quot;Lisa&quot;, &quot;pizza&quot;, 12)
 insertPerson(&quot;Ben&quot;, &quot;pasta&quot;, 7)
-</code></pre>
-
-<p>We can use insert-molecules with data assigned to variables too:</p>
-
-<pre><code class="language-scala">val insertPerson = Person.name.likes.age.insert
+</code></pre><p>We can use insert-molecules with data assigned to variables too:</p>
+<pre><code>val insertPerson = Person.name.likes.age.insert
 
 val personsData = List(
   (&quot;Fred&quot;, &quot;pizza&quot;, 38),
@@ -979,10 +930,7 @@ val personsData = List(
 
 // Re-use insert-molecules with larger data sets 
 insertPerson(personsData)
-</code></pre>
-
-<h3 id="next">Next</h3>
-
+</code></pre><h3 id="next">Next</h3>
 <p><a href="/manual/crud/get">Get&hellip;</a></p>
 
     </div>

@@ -803,7 +803,7 @@
             <div class="col-md-2 column" style="padding-top:20px;padding-right:0px;">
                 <ul class="nav nav-pills" style="float:right;">
                     <li>
-                        <a href="/changelog" style="margin-top:-2px;">v0.21.0</a>
+                        <a href="/changelog" style="margin-top:-2px;">v0.22.0</a>
                     </li>
                     <li>
                         <div style="padding-left:14px;">
@@ -826,34 +826,20 @@
 <div class="container" style="padding-top:20px">
 
     <div class="col-sm-10 column" style="padding-left:8px;">
-        
-
-<h1 id="attributes">Attributes</h1>
-
+        <h1 id="attributes">Attributes</h1>
 <p>Molecules are built by chaining attributes together with the builder pattern. Here are some groups of different attribute types and their use with links to their manual pages:</p>
-
-<p><br></p>
-
+<!-- raw HTML omitted -->
 <p><a href="/manual/attributes/basics">Attribute basics</a>, return types, arity, cardinality (<a href="https://github.com/scalamolecule/molecule/blob/master/coretests/src/test/scala/molecule/coretests/attr/Attribute.scala">tests</a>)</p>
-
-<pre><code class="language-scala">val persons: List[(String, Int)] = Person.name.age.get
-</code></pre>
-
-<p><br></p>
-
+<pre><code>val persons: List[(String, Int)] = Person.name.age.get
+</code></pre><!-- raw HTML omitted -->
 <p><a href="/manual/attributes/modes">Mandatory/Tacit/Optional</a> attributes (<a href="https://github.com/scalamolecule/molecule/blob/master/coretests/src/test/scala/molecule/coretests/attr/OptionalValues.scala">tests</a>)</p>
-
-<pre><code class="language-scala">Person.name.age.get  // all required values              (&quot;mandatory value&quot;)
+<pre><code>Person.name.age.get  // all required values              (&quot;mandatory value&quot;)
 Person.name.age_.get // age is required but not returned (&quot;tacit value&quot;)
 Person.name.age$.get // optional age returned            (&quot;optional value&quot;)
-</code></pre>
-
-<p><br></p>
-
+</code></pre><!-- raw HTML omitted -->
 <p><a href="/manual/attributes/mapped">Map attributes</a> - mapped attribute values
 (<a href="https://github.com/scalamolecule/molecule/tree/master/coretests/src/test/scala/molecule/coretests/attrMap">tests</a>)</p>
-
-<pre><code class="language-scala">Person.id.name.get.head === (
+<pre><code>Person.id.name.get.head === (
   1, 
   Map(
     &quot;en&quot; -&gt; &quot;Dmitri Shostakovich&quot;,
@@ -862,46 +848,33 @@ Person.name.age$.get // optional age returned            (&quot;optional value&q
     &quot;es&quot; -&gt; &quot;Dmitri Shostakóvich&quot;
   )
 )
-</code></pre>
-
-<p><br></p>
-
+</code></pre><!-- raw HTML omitted -->
 <p><a href="/manual/attributes/expressions">Expressions</a> - filter attribute values with expressions
 (<a href="https://github.com/scalamolecule/molecule/tree/master/coretests/src/test/scala/molecule/coretests/expression">tests</a>)</p>
-
-<pre><code class="language-scala">Person.age(42)                  // equality
+<pre><code>Person.age(42)                  // equality
 Person.name.contains(&quot;John&quot;)    // fulltext search
 Person.age.!=(42)               // negation
 Person.age.&lt;(42)                // comparison
 Person.age(nil)                 // nil (null)
 Person.name(&quot;John&quot; or &quot;Jonas&quot;)  // OR-logic
-</code></pre>
-
-<p><br></p>
-
+</code></pre><!-- raw HTML omitted -->
 <p><a href="/manual/attributes/aggregates">Aggregates</a> - aggregate attribute values
 (<a href="https://github.com/scalamolecule/molecule/blob/master/examples/src/test/scala/molecule/examples/dayOfDatomic/Aggregates.scala">tests</a>)</p>
-
-<pre><code class="language-scala">Person.age(min) 
+<pre><code>Person.age(min) 
 Person.age(max) 
 // rand, sample, count, countDistinct, sum, avg, median, variance, stddev
-</code></pre>
-
-<p><br></p>
-
+</code></pre><!-- raw HTML omitted -->
 <p><a href="/manual/attributes/parameterized">Parameterize</a> - re-use molecules and let Datomic cache queries and optimize performance
 (tests:
 <a href="https://github.com/scalamolecule/molecule/blob/master/coretests/src/test/scala/molecule/coretests/input1">1 input</a>,
 <a href="https://github.com/scalamolecule/molecule/blob/master/coretests/src/test/scala/molecule/coretests/input2">2 inputs</a>,
 <a href="https://github.com/scalamolecule/molecule/blob/master/coretests/src/test/scala/molecule/coretests/input3">3 inputs</a>)</p>
-
-<pre><code class="language-scala">val person = m(Person.name(?).age(?))
+<pre><code>val person = m(Person.name(?).age(?))
 
 // Re-use `person` input molecule
 val Johan  = person(&quot;John&quot;, 33).get.head
 val Lisa   = person(&quot;Lisa&quot;, 27).get.head
 </code></pre>
-
     </div>
 
     <div class="col-sm-2 column" style="padding-left:20px;padding-top:22px;padding-right: 0px;">

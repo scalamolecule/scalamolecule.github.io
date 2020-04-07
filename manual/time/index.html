@@ -803,7 +803,7 @@
             <div class="col-md-2 column" style="padding-top:20px;padding-right:0px;">
                 <ul class="nav nav-pills" style="float:right;">
                     <li>
-                        <a href="/changelog" style="margin-top:-2px;">v0.21.0</a>
+                        <a href="/changelog" style="margin-top:-2px;">v0.22.0</a>
                     </li>
                     <li>
                         <div style="padding-left:14px;">
@@ -826,20 +826,12 @@
 <div class="container" style="padding-top:20px">
 
     <div class="col-sm-10 column" style="padding-left:8px;">
-        
-
-<h1 id="time">Time</h1>
-
+        <h1 id="time">Time</h1>
 <p><a href="https://github.com/scalamolecule/molecule/tree/master/coretests/src/test/scala/molecule/coretests/time">Tests&hellip;</a></p>
-
 <p>Datomic has powerful ways of accessing the immutable data that accumulates over time in the database.</p>
-
 <p>Molecule maps those to 5 data getters that we can illustrate with a time line of transactions.</p>
-
-<p><img src="/img/time/all.png" alt="" /></p>
-
+<p><img src="/img/time/all.png" alt=""></p>
 <p>The 5 ways of getting data have the following semantics:</p>
-
 <ul>
 <li><code>get</code> - snapshot of tx 1-7 accumulated. This is the current view of the database (&ldquo;as of now&rdquo;) that we normally use.</li>
 <li><a href="/manual/time/asof-since/">☞ <code>getAsOf(t4)</code></a> - snapshot of tx 1-4 accumulated. How the db looked after tx 4 was transacted.</li>
@@ -847,160 +839,98 @@
 <li><a href="/manual/time/history/">☞ <code>getHistory</code></a> - all transactions! See all that has happened over time.</li>
 <li><a href="/manual/time/with/">☞ <code>getWith(tx8data)</code></a> - snapshot of tx 1-8 accumulated given some tx 8 data. &ldquo;What if&rdquo;-look into the future.</li>
 </ul>
-
 <h2 id="pointintime">Point in time</h2>
-
 <p>The two methods <code>getAsOf(t)</code> and <code>getSince(t)</code> takes a <em>point in time</em> in the database that can be supplied in
 4 different ways:</p>
-
 <h3 id="1-transaction-entity-id">1. Transaction entity id</h3>
-
 <p>A transaction entity id is the 4th value of Datomic quintuplets that tells us in what transaction
- this Datom/fact was asserted/retracted.</p>
-
-<p><img src="/img/time/1.png" alt="" /></p>
-
+this Datom/fact was asserted/retracted.</p>
+<p><img src="/img/time/1.png" alt=""></p>
 <p>In Molecule code we can get this information by adding the generic <code>tx</code> attribute after an attribute:</p>
-
-<pre><code class="language-scala">Person(e5).likes.tx.get.head === (&quot;pizza&quot;, tx4)
-</code></pre>
-
-<p>Here we get some transaction entity id <code>tx4</code> (a <code>Long</code> number) for the transaction where it
+<pre><code>Person(e5).likes.tx.get.head === (&quot;pizza&quot;, tx4)
+</code></pre><p>Here we get some transaction entity id <code>tx4</code> (a <code>Long</code> number) for the transaction where it
 was asserted that Person entity <code>fredId</code> likes pizza.</p>
-
 <p>Such transaction entity id can then be used as a point in time <code>t</code> for <code>getAsOf(t)</code> or <code>getSince(t)</code> in
 other queries.</p>
-
 <h3 id="2-transaction-value">2. Transaction value</h3>
-
 <p>An alternative to the transaction entity id is a &ldquo;transaction value&rdquo; that is an auto-incremented number
 that Datomic generates automatically in the background for each transaction taking place.
 This can be useful if we for instance want to examine &ldquo;the previous&rdquo; transaction.</p>
-
 <p>As when getting the transaction entity id with <code>tx</code> we can get the transaction value by appending
 the generic Molecule attribute <code>t</code> after some attribute:</p>
-
-<pre><code class="language-scala">val someT = Person(e5).likes_.t.get.head
-</code></pre>
-
-<p>Then we could ask &ldquo;was there another value in the previous transaction?&rdquo;</p>
-
-<pre><code class="language-scala">val previousT = someT - 1
+<pre><code>val someT = Person(e5).likes_.t.get.head
+</code></pre><p>Then we could ask &ldquo;was there another value in the previous transaction?&rdquo;</p>
+<pre><code>val previousT = someT - 1
 Person(e5).likes.getAsOf(previousT) === Nil // There were no `likes` value before...
-</code></pre>
-
-<p>Transaction values can be converted to transaction entity ids and vice versa if needed with the Datomic Peer methods <code>toTx</code> and <code>toT</code></p>
-
+</code></pre><p>Transaction values can be converted to transaction entity ids and vice versa if needed with the Datomic Peer methods <code>toTx</code> and <code>toT</code></p>
 <pre><code>// t -&gt; tx
 datomic.Peer.toTx(t1) === tx1
 
 // tx -&gt; t
 datomic.Peer.toT(tx2) === t2
-</code></pre>
-
-<h3 id="3-transaction-report">3. Transaction report</h3>
-
+</code></pre><h3 id="3-transaction-report">3. Transaction report</h3>
 <p>Each transaction returns a <code>TxReport</code> with information about the transaction and we can use the report itself as a point in time:</p>
-
-<pre><code class="language-scala">val txReport1 = Person.name(&quot;Fred&quot;).likes(&quot;pizza&quot;).save
+<pre><code>val txReport1 = Person.name(&quot;Fred&quot;).likes(&quot;pizza&quot;).save
 val fred = txReport1.eid // Getting created entity id from tx report
 
 val txReport2 = Person(fred).likes(&quot;sushi&quot;).update
 
 Person(fred).likes.get === List(&quot;sushi&quot;)
 Person(fred).likes.getAsOf(txReport1) === List(&quot;pizza&quot;)
-</code></pre>
-
-<h3 id="4-java-util-date">4. <code>java.util.Date</code></h3>
-
+</code></pre><h3 id="4-javautildate">4. <code>java.util.Date</code></h3>
 <p>Lastly we can also supply a human time/date of type <code>java.util.Date</code></p>
-
-<pre><code class="language-scala">val criticalDate = new Date(&quot;2017-04-26&quot;)
+<pre><code>val criticalDate = new Date(&quot;2017-04-26&quot;)
 Person(e5).likes.getAsOf(criticalDate) === List(&quot;pizza&quot;)
-</code></pre>
-
-<h2 id="data-getters">Data getters</h2>
-
-<h3 id="get-or-getasync-the-current-view"><code>get</code> or <code>getAsync</code> - the current view</h3>
-
+</code></pre><h2 id="data-getters">Data getters</h2>
+<h3 id="get-or-getasync---the-current-view"><code>get</code> or <code>getAsync</code> - the current view</h3>
 <p>Normally we get the current state of the database with the <code>get</code> method on a molecule.</p>
-
-<pre><code class="language-scala">// Sync
+<pre><code>// Sync
 val personsCurrently: List[(String, Int)] = Person.name.age.get
 
 // Async - wraps data in a Future
 val personsCurrentlyAsync: Future[List[(String, Int)]] = Person.name.age.getAsync
-</code></pre>
-
-<p>But we might be interested in how the data looked at another point in time:</p>
-
-<h3 id="getasof-t-manual-time-asof-since-or-getasyncasof-t-manual-time-asof-since"><a href="/manual/time/asof-since/">☞ <code>getAsOf(t)</code></a> or <a href="/manual/time/asof-since/"><code>getAsyncAsOf(t)</code></a></h3>
-
+</code></pre><p>But we might be interested in how the data looked at another point in time:</p>
+<h3 id="-getasoftmanualtimeasof-since-or-getasyncasoftmanualtimeasof-since"><a href="/manual/time/asof-since/">☞ <code>getAsOf(t)</code></a> or <a href="/manual/time/asof-since/"><code>getAsyncAsOf(t)</code></a></h3>
 <p>When we call <code>getAsOf(t)</code> on a molecule we get the data as it looked at some point in time <code>t</code>.</p>
-
 <p>We could for instance want to know what Persons existed in the database the 5th of November:</p>
-
-<pre><code class="language-scala">val personsAsOfNov5 = Person.name.age.getAsOf(nov5date) 
+<pre><code>val personsAsOfNov5 = Person.name.age.getAsOf(nov5date) 
 val personsAsOfNov5Async = Person.name.age.getAsyncAsOf(nov5date) 
-</code></pre>
-
-<h3 id="getsince-t-manual-time-asof-since-or-getsince-t-manual-time-asof-since"><a href="/manual/time/asof-since/">☞ <code>getSince(t)</code></a> or <a href="/manual/time/asof-since/"><code>getSince(t)</code></a></h3>
-
+</code></pre><h3 id="-getsincetmanualtimeasof-since-or-getsincetmanualtimeasof-since"><a href="/manual/time/asof-since/">☞ <code>getSince(t)</code></a> or <a href="/manual/time/asof-since/"><code>getSince(t)</code></a></h3>
 <p>Likewise we might want to know what Persons have been added <em>after</em> or <em>since</em> 5th of November. When
 we call <code>getSince(nov5date)</code> we will get a snapshot of the current
 database filtered with only the data added/retracted after November 5:</p>
-
-<pre><code class="language-scala">val personsAddedSinceNov5 = Person.name.age.getSince(nov5date)
+<pre><code>val personsAddedSinceNov5 = Person.name.age.getSince(nov5date)
 val personsAddedSinceNov5Async = Person.name.age.getAsyncSince(nov5date)
-</code></pre>
-
-<h3 id="gethistory-manual-time-history-or-getasynchistory-manual-time-history"><a href="/manual/time/history/">☞ <code>getHistory</code></a> or <a href="/manual/time/history/"><code>getAsyncHistory</code></a></h3>
-
+</code></pre><h3 id="-gethistorymanualtimehistory-or-getasynchistorymanualtimehistory"><a href="/manual/time/history/">☞ <code>getHistory</code></a> or <a href="/manual/time/history/"><code>getAsyncHistory</code></a></h3>
 <p>The <code>getHistory</code> can for instance tell us how a Persons age attribute value has changed over time</p>
-
-<pre><code class="language-scala">val currentAndPreviousAgesOfFred = Person(fredId).age.getHistory
+<pre><code>val currentAndPreviousAgesOfFred = Person(fredId).age.getHistory
 val currentAndPreviousAgesOfFredAsync = Person(fredId).age.getAsyncHistory
-</code></pre>
-
-<p>Note that this is not a snapshot in time but a series of all assertions and retractions over time that matches the query!</p>
-
-<h3 id="getwith-txtestdata-manual-time-with-or-getasyncwith-txtestdata-manual-time-with"><a href="/manual/time/with/">☞ <code>getWith(txTestData)</code></a> or <a href="/manual/time/with/"><code>getAsyncWith(txTestData)</code></a></h3>
-
+</code></pre><p>Note that this is not a snapshot in time but a series of all assertions and retractions over time that matches the query!</p>
+<h3 id="-getwithtxtestdatamanualtimewith-or-getasyncwithtxtestdatamanualtimewith"><a href="/manual/time/with/">☞ <code>getWith(txTestData)</code></a> or <a href="/manual/time/with/"><code>getAsyncWith(txTestData)</code></a></h3>
 <p>By supplying some test transaction data to <code>getWith(txTestData)</code> we filter the current database by applying
 the test transaction data. This is a very powerful way of testing future-like &ldquo;what-if&rdquo; scenarios.</p>
-
 <p>Transactional test data to be tested can be obtained by calling one of the following methods on some test-molecules:</p>
-
 <ul>
-<li><code>&lt;molecule&gt;.getSaveTx</code><br /></li>
-<li><code>&lt;molecule&gt;.getInsertTx</code><br /></li>
-<li><code>&lt;molecule&gt;.getUpdateTx</code><br /></li>
-
-<li><p><code>&lt;entityId&gt;.getRetractTx</code></p>
-
-<pre><code class="language-scala">// Apply one or more tx test data molecules
+<li><code>&lt;molecule&gt;.getSaveTx</code></li>
+<li><code>&lt;molecule&gt;.getInsertTx</code></li>
+<li><code>&lt;molecule&gt;.getUpdateTx</code></li>
+<li><code>&lt;entityId&gt;.getRetractTx</code></li>
+</ul>
+<pre><code>// Apply one or more tx test data molecules
 val personsWithNewData = Person.name.age.getWith(&lt;txTestData&gt;*) 
 val personsWithNewDataAsync = Person.name.age.getAsyncWith(&lt;txTestData&gt;*) 
-</code></pre></li>
-</ul>
-
-<p>The &ldquo;test db&rdquo; that such query works on is simply garbage collected when it goes out of scope. We therefore don&rsquo;t need
+</code></pre><p>The &ldquo;test db&rdquo; that such query works on is simply garbage collected when it goes out of scope. We therefore don&rsquo;t need
 to do any tear-down as we would normally need to when testing with a mutable database.</p>
-
 <h2 id="limit-returned-data">Limit returned data</h2>
-
 <p>The amount of data returned with</p>
-
 <ul>
 <li>get</li>
 <li>getAsOf</li>
 <li>getSince</li>
 <li>getWith</li>
 </ul>
-
 <p>can be limitted by adding a max row parameter:</p>
-
-<pre><code class="language-scala">val some30personsCurrently = Person.name.age.get(30)
+<pre><code>val some30personsCurrently = Person.name.age.get(30)
 
 val some20personsAsOfNov5Async = Person.name.age.getAsyncAsOf(nov5date, 20) 
 
@@ -1008,23 +938,16 @@ val some10personsAddedSinceNov5 = Person.name.age.getSince(nov5date, 10)
 
 // The `with` methods have the limit parameter as their first argument since the last argument is a vararg
 val some25personsWithNewData = Person.name.age.getWith(25, &lt;txTestData&gt;) 
-</code></pre>
-
-<p><code>getHistory(n: Int)</code> is not implemented since the whole data set normally needs to be sorted
+</code></pre><p><code>getHistory(n: Int)</code> is not implemented since the whole data set normally needs to be sorted
 to give chronological meaningful information.</p>
-
 <h4 id="why-not-an-offset-method-for-pagination">Why not an <code>offSet</code> method for pagination?</h4>
-
 <p>Since Datomic has no sorting option in queries (like <code>ORDER BY</code> in sql for instance),
 we sort data in application code. This sorting could be arbitrary complex and Molecule therefore
 has no &ldquo;standard&rdquo; sorting API implemented.</p>
-
 <p>Pagination is and example that needs sorting, and we do that in our application code on the
 server as it would be done on a sql database server too except that we apply our logic on the raw data
 ourselves. The limit option is therefore mainly implemented to be able to work on a smaller data set.</p>
-
 <h3 id="next">Next</h3>
-
 <p><a href="/manual/time/asof-since">AsOf / Since&hellip;</a></p>
 
     </div>

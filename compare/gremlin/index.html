@@ -803,7 +803,7 @@
             <div class="col-md-2 column" style="padding-top:20px;padding-right:0px;">
                 <ul class="nav nav-pills" style="float:right;">
                     <li>
-                        <a href="/changelog" style="margin-top:-2px;">v0.21.0</a>
+                        <a href="/changelog" style="margin-top:-2px;">v0.22.0</a>
                     </li>
                     <li>
                         <div style="padding-left:14px;">
@@ -826,26 +826,16 @@
 <div class="container" style="padding-top:20px">
 
     <div class="col-sm-10 column" style="padding-left:8px;">
-        
-
-<h1 id="gremlin-vs-molecule-examples">Gremlin vs. Molecule examples</h1>
-
+        <h1 id="gremlin-vs-molecule-examples">Gremlin vs. Molecule examples</h1>
 <p>Let&rsquo;s compare the queries/traversals in the <a href="http://tinkerpop.apache.org/docs/current/tutorials/getting-started/">Gremlin Getting Started Tutorial</a>
 with equivalent
 <a href="https://github.com/scalamolecule/molecule/blob/master/examples/src/test/scala/molecule/examples/gremlin/gettingStarted/Friends.scala">Molecule queries</a>.</p>
-
 <p>For the examples we&rsquo;ll use the same &ldquo;Modern&rdquo; graph as the tutorial:</p>
-
-<p><br></p>
-
-<p><img src="/img/compare/tinkerpop-modern.png" alt="" /></p>
-
-<p><br></p>
-
+<!-- raw HTML omitted -->
+<p><img src="/img/compare/tinkerpop-modern.png" alt=""></p>
+<!-- raw HTML omitted -->
 <h2 id="insert-data">Insert data</h2>
-
 <p>Gremlin is untyped, so data is inserted directly in a generic way where &ldquo;types&rdquo; are created on-the-go:</p>
-
 <pre><code>Graph graph = TinkerGraph.open(); (1)
 Vertex marko = graph.addVertex(T.label, &quot;person&quot;, T.id, 1, &quot;name&quot;, &quot;marko&quot;, &quot;age&quot;, 29); (2)
 Vertex vadas = graph.addVertex(T.label, &quot;person&quot;, T.id, 2, &quot;name&quot;, &quot;vadas&quot;, &quot;age&quot;, 27);
@@ -859,12 +849,9 @@ marko.addEdge(&quot;created&quot;, lop, T.id, 9, &quot;weight&quot;, 0.4f);
 josh.addEdge(&quot;created&quot;, ripple, T.id, 10, &quot;weight&quot;, 1.0f);
 josh.addEdge(&quot;created&quot;, lop, T.id, 11, &quot;weight&quot;, 0.4f);
 peter.addEdge(&quot;created&quot;, lop, T.id, 12, &quot;weight&quot;, 0.2f);
-</code></pre>
-
-<p>In Molecule we first define a schema. Since we won&rsquo;t use the <code>weight</code> properties yet, we&rsquo;ll start off defining a schema
+</code></pre><p>In Molecule we first define a schema. Since we won&rsquo;t use the <code>weight</code> properties yet, we&rsquo;ll start off defining a schema
 without those:</p>
-
-<pre><code class="language-scala">object ModernGraph1Definition {
+<pre><code>object ModernGraph1Definition {
 
   trait Person {
     val name = oneString
@@ -882,12 +869,9 @@ without those:</p>
     val lang = oneString
   }
 }
-</code></pre>
-
-<p>When we compile our project with <code>sbt compile</code>, the sbt-molecule plugin will generate the necessary boilerplate code so
+</code></pre><p>When we compile our project with <code>sbt compile</code>, the sbt-molecule plugin will generate the necessary boilerplate code so
 that we can enter typed data to populate the graph:</p>
-
-<pre><code class="language-scala">// Create database and save implicit connection
+<pre><code>// Create database and save implicit connection
 implicit val conn = recreateDbFrom(ModernGraph1Schema)
 
 // Software
@@ -906,194 +890,104 @@ val List(marko, vadas, josh, peter) = Person.name.age.software insert Seq(
 
 // Friendships
 Person(marko).friends(vadas, josh).update
-</code></pre>
-
-<p>We&rsquo;ll use the variables with entity ids above for the coming examples.</p>
-
+</code></pre><p>We&rsquo;ll use the variables with entity ids above for the coming examples.</p>
 <h2 id="the-first-5-minutes">The first 5 minutes</h2>
-
 <p>Now we are ready to make queries.</p>
-
 <h3 id="generic-vs-domain-language">Generic vs domain language</h3>
-
 <p>Since Gremlin traverses generic edges and vertices it is also communicating intentions in a generic way like the following
- &ldquo;query&rdquo;:</p>
-
+&ldquo;query&rdquo;:</p>
 <p><em>Get the value of the <code>name</code> property on vertex with the unique identifier of &ldquo;1&rdquo;.</em></p>
-
 <pre><code>gremlin&gt; g.V(1).values('name')
 ==&gt;marko
-</code></pre>
-
-<p>Since Molecule uses the domain terms as custom building blocks directly, we can formulate our intentions with
+</code></pre><p>Since Molecule uses the domain terms as custom building blocks directly, we can formulate our intentions with
 the language of our domain directly:</p>
-
 <p><em>What is the Person name of entity <code>marko</code>?</em></p>
-
-<pre><code class="language-scala">Person(marko).name.get.head === &quot;marko&quot;
-</code></pre>
-
-<h3 id="edges-entities">Edges / Entities</h3>
-
+<pre><code>Person(marko).name.get.head === &quot;marko&quot;
+</code></pre><h3 id="edges--entities">Edges / Entities</h3>
 <p><em>Get the edges with the label &ldquo;knows&rdquo; for the vertex with the unique identifier of &ldquo;1&rdquo;:</em></p>
-
 <pre><code>gremlin&gt; g.V(1).outE('knows')
 ==&gt;e[7][1-knows-&gt;2]
 ==&gt;e[8][1-knows-&gt;4]
-</code></pre>
-
-<p><em>Marko&rsquo;s friends</em></p>
-
-<pre><code class="language-scala">Person(marko).friends.get.head === Set(vadas, josh)
-</code></pre>
-
-<h3 id="values">Values</h3>
-
+</code></pre><p><em>Marko&rsquo;s friends</em></p>
+<pre><code>Person(marko).friends.get.head === Set(vadas, josh)
+</code></pre><h3 id="values">Values</h3>
 <p><em>Get the names of the people that the vertex with the unique identifier of &ldquo;1&rdquo; &ldquo;knows&rdquo;.</em></p>
-
 <pre><code>gremlin&gt; g.V(1).out('knows').values('name')
 ==&gt;vadas
 ==&gt;josh
-</code></pre>
-
-<p>In Molecule we can jump from one namespace like <code>Person</code> to <code>Friends</code> since there&rsquo;s a relationship defined
- between the two. That way we can get Marko&rsquo;s referenced Friends entities:</p>
-
-<pre><code class="language-scala">Person(marko).Friends.name.get.head === Set(&quot;vadas&quot;, &quot;josh&quot;)
-</code></pre>
-
-<p>Note though, that a namespace is not like a SQL table but rather just a meaningful prefix for a group of attributes.</p>
-
+</code></pre><p>In Molecule we can jump from one namespace like <code>Person</code> to <code>Friends</code> since there&rsquo;s a relationship defined
+between the two. That way we can get Marko&rsquo;s referenced Friends entities:</p>
+<pre><code>Person(marko).Friends.name.get.head === Set(&quot;vadas&quot;, &quot;josh&quot;)
+</code></pre><p>Note though, that a namespace is not like a SQL table but rather just a meaningful prefix for a group of attributes.</p>
 <h3 id="expressions">Expressions</h3>
-
 <p><em>Get the names of the people vertex &ldquo;1&rdquo; knows who are over the age of 30.</em></p>
-
 <pre><code>gremlin&gt; g.V(1).out('knows').has('age', gt(30)).values('name') //(7)
 ==&gt;josh
-</code></pre>
-
-<p><em>Names of Marko&rsquo;s friends over the age of 30.</em></p>
-
-<pre><code class="language-scala">Person(marko).Friends.name.age_.&gt;(30).get === Set(&quot;josh&quot;)
-</code></pre>
-
-<h2 id="the-next-15-minutes">The next 15 minutes</h2>
-
+</code></pre><p><em>Names of Marko&rsquo;s friends over the age of 30.</em></p>
+<pre><code>Person(marko).Friends.name.age_.&gt;(30).get === Set(&quot;josh&quot;)
+</code></pre><h2 id="the-next-15-minutes">The next 15 minutes</h2>
 <p><em>Find Marko in the graph</em></p>
-
 <pre><code>gremlin&gt; g.V().has('name','marko')
 ==&gt;v[1]
-</code></pre>
-
-<p>Prepending the generic attribute <code>e</code> before an attribute finds the entity that it belongs to:</p>
-
-<pre><code class="language-scala">Person.e.name_(&quot;marko&quot;).get.head === marko
-</code></pre>
-
-<p>We also append an underscore <code>_</code> to the <code>name</code> attribute so that it becomes <code>name_</code>. In Molecule this makes
+</code></pre><p>Prepending the generic attribute <code>e</code> before an attribute finds the entity that it belongs to:</p>
+<pre><code>Person.e.name_(&quot;marko&quot;).get.head === marko
+</code></pre><p>We also append an underscore <code>_</code> to the <code>name</code> attribute so that it becomes <code>name_</code>. In Molecule this makes
 the attribute &ldquo;tacit&rdquo;, or &ldquo;silent&rdquo;, meaning that we don&rsquo;t need to return its value &ldquo;marko&rdquo; since we&rsquo;re already
 applying it as a value that we expect the attribute to have.</p>
-
-<h3 id="traversing-relationships">Traversing / relationships</h3>
-
+<h3 id="traversing--relationships">Traversing / relationships</h3>
 <p><em>Gremlin has reached the &ldquo;software that Marko created&rdquo;, he has access to the properties of
 the &ldquo;software&rdquo; vertex and you can therefore ask Gremlin to extract the value of the &ldquo;name&rdquo; property</em></p>
-
 <pre><code>gremlin&gt; g.V().has('name','marko').out('created').values('name')
 ==&gt;lop
-</code></pre>
-
-<p><em>What software did Marko create?</em> - here we use a relationship again to get to the referenced Software entities and their names</p>
-
-<pre><code class="language-scala">Person.name_(&quot;marko&quot;).Software.name.get === Seq(&quot;lop&quot;)
-</code></pre>
-
-<h3 id="or-logic">OR logic</h3>
-
+</code></pre><p><em>What software did Marko create?</em> - here we use a relationship again to get to the referenced Software entities and their names</p>
+<pre><code>Person.name_(&quot;marko&quot;).Software.name.get === Seq(&quot;lop&quot;)
+</code></pre><h3 id="or-logic">OR logic</h3>
 <p><em>Find the &ldquo;age&rdquo; values of both &ldquo;vadas&rdquo; and &ldquo;marko&rdquo;</em></p>
-
 <pre><code>gremlin&gt; g.V().has('name',within('vadas','marko')).values('age')
 ==&gt;29
 ==&gt;27
-</code></pre>
-
-<p>To get both names we us Molecule&rsquo;s OR-logic by applying multiple values to an attribute.
+</code></pre><p>To get both names we us Molecule&rsquo;s OR-logic by applying multiple values to an attribute.
 <code>name</code> should be either &ldquo;marko&rdquo; OR &ldquo;vadas&rdquo; and we can use various syntaxes:</p>
-
-<pre><code class="language-scala">Person.name_(&quot;marko&quot;, &quot;vadas&quot;).age.get === Seq(27, 29)       // Vararg
+<pre><code>Person.name_(&quot;marko&quot;, &quot;vadas&quot;).age.get === Seq(27, 29)       // Vararg
 Person.name_(&quot;marko&quot; or &quot;vadas&quot;).age.get === Seq(27, 29)     // `or`
 Person.name_(Seq(&quot;marko&quot;, &quot;vadas&quot;)).age.get === Seq(27, 29)  // Seq
-</code></pre>
-
-<h3 id="aggregates">Aggregates</h3>
-
+</code></pre><h3 id="aggregates">Aggregates</h3>
 <p><em>Average age of &ldquo;vadas&rdquo; and &ldquo;marko&rdquo;</em></p>
-
 <pre><code>gremlin&gt; g.V().has('name',within('vadas','marko')).values('age').mean()
 ==&gt;28.0
-</code></pre>
-
-<p>Molecule implements Datomics aggregate functions by applying the keyword <code>avg</code> to a number attribute like <code>age</code></p>
-
-<pre><code class="language-scala">Person.name_(&quot;marko&quot;, &quot;vadas&quot;).age(avg).get.head === 28.0
-</code></pre>
-
-<h3 id="where-2-step-queries">Where / 2-step queries</h3>
-
-<p><em>&ldquo;Who are the people that marko develops software with?&rdquo;</em></p>
-
+</code></pre><p>Molecule implements Datomics aggregate functions by applying the keyword <code>avg</code> to a number attribute like <code>age</code></p>
+<pre><code>Person.name_(&quot;marko&quot;, &quot;vadas&quot;).age(avg).get.head === 28.0
+</code></pre><h3 id="where--2-step-queries">Where / 2-step queries</h3>
+<p><em>&ldquo;Who are the people that marko develops software with?&quot;</em></p>
 <pre><code>gremlin&gt; g.V().has('name','marko').out('created').in('created').values('name')
 ==&gt;marko
 ==&gt;josh
 ==&gt;peter
-</code></pre>
-
-<p>It&rsquo;s idiomatic with Datomic to split such query and use the output of
+</code></pre><p>It&rsquo;s idiomatic with Datomic to split such query and use the output of
 one query as input for the next one:</p>
-
-<pre><code class="language-scala">// First find ids of software projects that marko has participated in
+<pre><code>// First find ids of software projects that marko has participated in
 val markoSoftware = Person.name_(&quot;marko&quot;).software.get.head
 
 // Then find names of persons that have participated in those projects
 Person.name.software_(markoSoftware).get === Seq(&quot;peter&quot;, &quot;josh&quot;, &quot;marko&quot;)
-</code></pre>
-
-<p><br>
-Excluding marko from the result</p>
-
+</code></pre><!-- raw HTML omitted -->
 <pre><code>gremlin&gt; g.V().has('name','marko').as('exclude').out('created').in('created').where(neq('exclude')).values('name')
 ==&gt;josh
 ==&gt;peter
-</code></pre>
-
-<pre><code class="language-scala">Person.name.not(&quot;marko&quot;).software_(markoSoftware).get === Seq(&quot;peter&quot;, &quot;josh&quot;)
-</code></pre>
-
-<h3 id="group">Group</h3>
-
+</code></pre><pre><code>Person.name.not(&quot;marko&quot;).software_(markoSoftware).get === Seq(&quot;peter&quot;, &quot;josh&quot;)
+</code></pre><h3 id="group">Group</h3>
 <p><em>&ldquo;Group all the vertices in the graph by their vertex label&rdquo;</em></p>
-
 <pre><code>gremlin&gt; g.V().group().by(label).by('name')
 ==&gt;[software:[lop,ripple],person:[marko,vadas,josh,peter]]
-</code></pre>
-
-<p>Since Molecule is typed we would probably ask for specific <code>name</code> attribute values:</p>
-
-<pre><code class="language-scala">Person.name.get === Seq(&quot;peter&quot;, &quot;vadas&quot;, &quot;josh&quot;, &quot;marko&quot;)
+</code></pre><p>Since Molecule is typed we would probably ask for specific <code>name</code> attribute values:</p>
+<pre><code>Person.name.get === Seq(&quot;peter&quot;, &quot;vadas&quot;, &quot;josh&quot;, &quot;marko&quot;)
 Software.name.get === Seq(&quot;ripple&quot;, &quot;lop&quot;)
-</code></pre>
-
-<h2 id="bonus-molecules">Bonus molecules&hellip;</h2>
-
+</code></pre><h2 id="bonus-molecules">Bonus molecules&hellip;</h2>
 <p>Let&rsquo;s ask a few more complex questions - a reminder of the graph could be useful here</p>
-
-<p><br></p>
-
-<p><img src="/img/compare/tinkerpop-modern.png" alt="" /></p>
-
-<p><br></p>
-
-<pre><code class="language-scala">// Who knows young people?
+<!-- raw HTML omitted -->
+<p><img src="/img/compare/tinkerpop-modern.png" alt=""></p>
+<!-- raw HTML omitted -->
+<pre><code>// Who knows young people?
 // Since we save bidirectional references we get friendships in both directions:
 Person.name.Friends.name.age.&lt;(30).get === List(
   (&quot;vadas&quot;, &quot;marko&quot;, 29), // vadas knows marko who is 29
@@ -1105,15 +999,10 @@ Person.name.Friends.name.age.&lt;(30).get === List(
 Person.name.age.&gt;=(30).friends(count).age_.&lt;(30).get === List(
   (&quot;josh&quot;, 32, 1) // josh (32) knows 1 young person (Marko, 29)
 )
-</code></pre>
-
-<h3 id="more-examples">More examples</h3>
-
+</code></pre><h3 id="more-examples">More examples</h3>
 <p>See more Molecule query examples in
 the <a href="https://github.com/scalamolecule/molecule/blob/master/examples/src/test/scala/molecule/examples/gremlin/gettingStarted/Friends.scala">Friends</a> tests&hellip;</p>
-
 <h2 id="edge-property-queries">Edge property queries</h2>
-
 <p>The Gremlin tutorial doesn&rsquo;t actually use any of the <code>weight</code> properties so we
 made the <a href="https://github.com/scalamolecule/molecule/blob/master/examples/src/test/scala/molecule/examples/gremlin/gettingStarted/Knows.scala">Knows</a>
 test suite to see how we can work with edge property molecules.</p>

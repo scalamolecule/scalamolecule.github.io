@@ -803,7 +803,7 @@
             <div class="col-md-2 column" style="padding-top:20px;padding-right:0px;">
                 <ul class="nav nav-pills" style="float:right;">
                     <li>
-                        <a href="/changelog" style="margin-top:-2px;">v0.21.0</a>
+                        <a href="/changelog" style="margin-top:-2px;">v0.22.0</a>
                     </li>
                     <li>
                         <div style="padding-left:14px;">
@@ -826,71 +826,45 @@
 <div class="container" style="padding-top:20px">
 
     <div class="col-sm-10 column" style="padding-left:8px;">
-        
-
-<h1 id="with">With</h1>
-
+        <h1 id="with">With</h1>
 <p><a href="https://github.com/scalamolecule/molecule/tree/master/coretests/src/test/scala/molecule/coretests/time/GetWith.scala">Tests&hellip;</a></p>
-
 <p>By supplying some test transaction data to <code>getWith(testTxData)</code> we filter the current database with
 the test transaction data applied in-memory. This is a very powerful way of testing future-like &ldquo;what-if&rdquo; scenarios.</p>
-
-<p><img src="/img/time/with.png" alt="" /></p>
-
+<p><img src="/img/time/with.png" alt=""></p>
 <p>We could for instance add some transaction data <code>tx8</code> to a Person molecule to see if we would get the extected persons back:</p>
-
-<pre><code class="language-scala">Person.name.likes.getWith(&lt;tx8Data&gt;) === ... // Persons after applying tx8 
-</code></pre>
-
-<h3 id="applying-transaction-data">Applying transaction data</h3>
-
+<pre><code>Person.name.likes.getWith(&lt;tx8Data&gt;) === ... // Persons after applying tx8 
+</code></pre><h3 id="applying-transaction-data">Applying transaction data</h3>
 <p>To make it easier to supply transaction data to the <code>getWith(txData)</code> method, you can simply add <code>Tx</code> to a
 Molecule transaction function to get some valid transaction data:</p>
-
 <p>Transaction data is supplied to <code>getWith(txData)</code> by calling a transaction data getter on a molecule:</p>
-
-<pre><code class="language-scala">Person(fred).likes(&quot;sushi&quot;).getUpdateTx === List(
+<pre><code>Person(fred).likes(&quot;sushi&quot;).getUpdateTx === List(
   [:db/retract, 17592186045445, :Person/likes, &quot;pasta&quot;]
   [:db/add    , 17592186045445, :Person/likes, &quot;sushi&quot;]
 ) 
-</code></pre>
-
-<p><code>getUpdateTx</code> returns the transaction data that would have been used to update Fred. In that way we
-can supply this data to the <code>getWith(txData)</code> method to answer the question <em>&ldquo;What if we updated Fred?&rdquo;</em>.</p>
-
+</code></pre><p><code>getUpdateTx</code> returns the transaction data that would have been used to update Fred. In that way we
+can supply this data to the <code>getWith(txData)</code> method to answer the question <em>&ldquo;What if we updated Fred?&quot;</em>.</p>
 <p>When getting the transaction data from a simulated molecule transaction like this, we call it a &ldquo;transaction molecule&rdquo;:</p>
-
-<pre><code class="language-scala">Person.name.likes.getWith(
+<pre><code>Person.name.likes.getWith(
   Person(fred).likes(&quot;sushi&quot;).getUpdateTx // &quot;Transaction molecule&quot; with tx8 data
 ) === List(
   (&quot;Fred&quot;, &quot;sushi&quot;) // Expected result if applying tx8
 )
-</code></pre>
-
-<p>Fred will remain unaffected in the live database after <code>getWith(tx8)</code> has been called:</p>
-
-<pre><code class="language-scala">Person.name.likes.get.head === (&quot;Fred&quot;, &quot;pasta&quot;) 
-</code></pre>
-
-<p>The <code>getWith(txData)</code> works on a filtered database and is automatically garbage collected. So there is no need to
+</code></pre><p>Fred will remain unaffected in the live database after <code>getWith(tx8)</code> has been called:</p>
+<pre><code>Person.name.likes.get.head === (&quot;Fred&quot;, &quot;pasta&quot;) 
+</code></pre><p>The <code>getWith(txData)</code> works on a filtered database and is automatically garbage collected. So there is no need to
 set up and tear down database mockups!</p>
-
 <h3 id="transaction-molecules">Transaction molecules</h3>
-
 <p>We can generate transaction test data by invoking a transactional data getter on a molecule or in the case of
 retraction on an entity id. The tx getters return the transactional data that the 4 transaction functions
 <code>save</code>, <code>insert</code>, <code>update</code> or <code>retract</code> would normally have transacted.</p>
-
 <ul>
 <li><code>&lt;molecule&gt;.getInsertTx</code></li>
 <li><code>&lt;molecule&gt;.getSaveTx</code></li>
 <li><code>&lt;molecule&gt;.getUpdateTx</code></li>
 <li><code>&lt;entityId&gt;.getRetractTx</code></li>
 </ul>
-
 <p>Here&rsquo;s an example of combining transaction molecules of all types:</p>
-
-<pre><code class="language-scala">Person.name.age.getWith(
+<pre><code>Person.name.age.getWith(
   // Transaction molecules:
   Person.name(&quot;John&quot;).age(44).getSaveTx, // John saved
   Person.name.age getInsertTx List(   // Get insert tx with supplied data
@@ -907,17 +881,12 @@ retraction on an entity id. The tx getters return the transactional data that th
   (&quot;Fred&quot;, 43)  // Updated
   // (other person retracted)
 )
-</code></pre>
-
-<p>This allow us to test any transactions and build complex &ldquo;what-if&rdquo; test scenarios without affecting our
+</code></pre><p>This allow us to test any transactions and build complex &ldquo;what-if&rdquo; test scenarios without affecting our
 live database.</p>
-
 <h3 id="modularizing-tx-data">Modularizing tx data</h3>
-
 <p>Assigning transaction molecules to variables can help us modularize tests where we could for instance
 be interested in seeing if various orders of transactions will produce the same result:</p>
-
-<pre><code class="language-scala">val save    = Person.name(&quot;John&quot;).age(44).getSaveTx
+<pre><code>val save    = Person.name(&quot;John&quot;).age(44).getSaveTx
 val insert  = Person.name.age getInsertTx List((&quot;Lisa&quot;, 23), (&quot;Pete&quot;, 24))
 val update  = Person(fred).age(43).getUpdateTx
 val retract = someOtherPersonId.getRetractTx
@@ -932,14 +901,9 @@ val expectedResult = List(
 Person.name.age.getWith(save, insert, update, retract) === expectedResult 
 Person.name.age.getWith(insert, update, retract, save) === expectedResult
 // etc..
-</code></pre>
-
-<p>Since you can apply any number of transaction molecules, the testing options are extremely powerful.</p>
-
+</code></pre><p>Since you can apply any number of transaction molecules, the testing options are extremely powerful.</p>
 <h3 id="with-apis">With APIs</h3>
-
 <p>Data With some <code>txTestData</code> can be returned as</p>
-
 <ul>
 <li><code>List</code> for convenient access to smaller data sets</li>
 <li><code>Array</code> for fastest retrieval and traversing of large typed data sets</li>
@@ -947,60 +911,22 @@ Person.name.age.getWith(insert, update, retract, save) === expectedResult
 <li>Json (<code>String</code>)</li>
 <li>Raw (<code>java.util.Collection[java.util.List[AnyRef]]</code>) for fast access to untyped data</li>
 </ul>
-
 <p>where <code>txTestData</code> can be either:</p>
-
 <ul>
 <li>One or more transaction molecules, each returning <code>Seq[Seq[Statement]]</code></li>
 <li>Raw transaction data from edn file (<code>java.util.List[_]</code>)</li>
 </ul>
-
 <p>Combine the needed return type with some transactional data <code>txTestData</code> and optionally a row limit
 by calling one of the corresponding <code>With</code> implementations. All return type/parameter combinations
 have a synchronous and asynchronous implementation:</p>
-
-<div class="container" style="margin-left: -30px">
-    <div class="col-sm-4 column ">
-        <ul>
-            <li><code>getWith(txTestData)</code> (List)</li>
-            <li><code>getArrayWith(txTestData)</code></li>
-            <li><code>getIterableWith(txTestData)</code></li>
-            <li><code>getJsonWith(txTestData)</code></li>
-            <li><code>getRawWith(txTestData)</code></li>
-        </ul>
-        <ul>
-            <li><code>getWith(txTestData, limit)</code> (List)</li>
-            <li><code>getArrayWith(txTestData, limit)</code></li>
-            <li><code>getJsonWith(txTestData, limit)</code></li>
-            <li><code>getRawWith(txTestData, limit)</code></li>
-        </ul>
-    </div>
-    <div class="col-sm-5 column ">
-        <ul>
-            <li><code>getAsyncWith(txTestData)</code> (List)</li>
-            <li><code>getAsyncArrayWith(txTestData)</code></li>
-            <li><code>getAsyncIterableWith(txTestData)</code></li>
-            <li><code>getAsyncJsonWith(txTestData)</code></li>
-            <li><code>getAsyncRawWith(txTestData)</code></li>
-        </ul>
-        <ul>
-            <li><code>getAsyncWith(txTestData, limit)</code> (List)</li>
-            <li><code>getAsyncArrayWith(txTestData, limit)</code></li>
-            <li><code>getAsyncJsonWith(txTestData, limit)</code></li>
-            <li><code>getAsyncRawWith(txTestData, limit)</code></li>
-        </ul>
-    </div>
-</div>
-
+<!-- raw HTML omitted -->
 <blockquote>
 <p>The asynchronous implementations simply wraps the synchronous result in a Future as any
 other database server would normally do internally. The difference is that the Peer (the &ldquo;database server&rdquo;)
 runs in the same process as our application code which makes it natural to do the Future-wrapping
 in Molecule as part of running our application.</p>
 </blockquote>
-
 <h3 id="next">Next</h3>
-
 <p><a href="/manual/time/testing/">Testing&hellip;</a></p>
 
     </div>
