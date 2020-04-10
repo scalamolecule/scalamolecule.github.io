@@ -805,7 +805,7 @@
             <div class="col-md-2 column" style="padding-top:20px;padding-right:0px;">
                 <ul class="nav nav-pills" style="float:right;">
                     <li>
-                        <a href="/changelog" style="margin-top:-2px;">v0.22.0</a>
+                        <a href="/changelog" style="margin-top:-2px;">v0.22.1</a>
                     </li>
                     <li>
                         <div style="padding-left:14px;">
@@ -830,8 +830,10 @@
     <div class="col-sm-10 column" style="padding-left:8px;">
         <h1 id="top">Molecule changelog</h1>
 <p><a href="https://github.com/scalamolecule/molecule/releases">Github releases</a></p>
-<p>Main changes:</p>
 <ul>
+<li>2020-04-10 v0.22.1 <a href="#34">Bugfix: Query optimization resolves fulltext search correctly</a></li>
+<li>2020-04-07 v0.22.0 <a href="#33">Automatic Query optimization</a></li>
+<li>2019-12-20 v0.21.0 <a href="#32">Optional nested data</a></li>
 <li>2019-10-24 v0.20.0 <a href="#31">Molecule for Scala.js</a></li>
 <li>2019-10-20 v0.19.1 <a href="#30">Date handling corrected</a></li>
 <li>2019-09-22 v0.19.0 <a href="#29">Cross-compiling to Scala 2.13.1 and 2.12.10</a></li>
@@ -864,7 +866,46 @@
 <li>2014-12-25 v0.2.0 <a href="#2">Implemented Day-Of-Datomic and MBrainz</a></li>
 <li>2014-07-02 v0.1.0 <a href="#1">Initial commit - Seattle tutorial</a></li>
 </ul>
-<h2 id="31"><a href="#top">☝︎</a> Molecule for Scala.js</h2>
+<h2 id="34"><a href="#top">☝︎</a> Bugfix: Query optimization resolves fulltext search correctly</h2>
+<p><em>2020-04-10 v0.22.1</em></p>
+<h2 id="33"><a href="#top">☝︎</a> Automatic Query optimization</h2>
+<p><em>2020-04-07 v0.22.0</em></p>
+<p>Molecule now transparently optimize all queries sent to Datomic.</p>
+<p>Most selective
+Clauses are automatically grouped first in the :where section of the Datomic query as per
+the recommendation in <a href="https://docs.datomic.com/on-prem/best-practices.html#most-selective-clauses-first">Datomic Best Practices</a>.</p>
+<p>This brings dramatic performance gains of in some cases beyond 100x compared to
+un-optimized queries. The optimization happens automatically in the background
+so that you can focus entirely on your domain without concern for the optimal
+order of attributes in your molecules.</p>
+<p>Bug fixes:</p>
+<ul>
+<li>Correct resolution of multiple attrs in refs in tx meta data</li>
+<li>Optimization of Index/Log operations</li>
+<li>Optional card-many attributes now return all values (not Datomic default max 1000)</li>
+<li>Correctly converting Iterables in raw queries</li>
+<li>Re-use attr variable in query when applying multiple aggregates to the same attr</li>
+<li>Fulltext search allowed on optional attributes</li>
+</ul>
+<h2 id="32"><a href="#top">☝︎</a> Optional nested data</h2>
+<p><em>2019-12-20 v0.21.0</em></p>
+<p>Optional nested data can now be queried with the <code>*?</code> operator:</p>
+<div class="highlight"><pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala">m(<span style="color:#008b45;font-weight:bold">Ns</span>.int.<span style="color:#008b45;font-weight:bold">Refs1</span> * <span style="color:#008b45;font-weight:bold">Ref1</span>.str1) insert <span style="color:#008b45;font-weight:bold">List</span>(
+  (<span style="color:#b452cd">1</span>, <span style="color:#008b45;font-weight:bold">List</span>(<span style="color:#cd5555">&#34;a&#34;</span>, <span style="color:#cd5555">&#34;b&#34;</span>)),
+  (<span style="color:#b452cd">2</span>, <span style="color:#008b45;font-weight:bold">List</span>()) <span style="color:#228b22">// (no nested data)
+</span><span style="color:#228b22"></span>)
+
+<span style="color:#228b22">// Mandatory nested data
+</span><span style="color:#228b22"></span>m(<span style="color:#008b45;font-weight:bold">Ns</span>.int.<span style="color:#008b45;font-weight:bold">Refs1</span> * <span style="color:#008b45;font-weight:bold">Ref1</span>.str1).get === <span style="color:#008b45;font-weight:bold">List</span>(
+  (<span style="color:#b452cd">1</span>, <span style="color:#008b45;font-weight:bold">List</span>(<span style="color:#cd5555">&#34;a&#34;</span>, <span style="color:#cd5555">&#34;b&#34;</span>))
+)
+
+<span style="color:#228b22">// Optional nested data
+</span><span style="color:#228b22"></span>m(<span style="color:#008b45;font-weight:bold">Ns</span>.int.<span style="color:#008b45;font-weight:bold">Refs1</span> *? <span style="color:#008b45;font-weight:bold">Ref1</span>.str1).get === <span style="color:#008b45;font-weight:bold">List</span>(
+  (<span style="color:#b452cd">1</span>, <span style="color:#008b45;font-weight:bold">List</span>(<span style="color:#cd5555">&#34;a&#34;</span>, <span style="color:#cd5555">&#34;b&#34;</span>)),
+  (<span style="color:#b452cd">2</span>, <span style="color:#008b45;font-weight:bold">List</span>())
+)
+</code></pre></div><h2 id="31"><a href="#top">☝︎</a> Molecule for Scala.js</h2>
 <p><em>2019-10-24 v0.20.0</em></p>
 <p>Molecule AST&rsquo;s and generic interfaces compiled for Scala.js.</p>
 <p>See the <a href="https://github.com/scalamolecule/molecule-admin">molecule-admin</a> project for
