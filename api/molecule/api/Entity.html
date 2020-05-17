@@ -3,9 +3,9 @@
         <head>
           <meta http-equiv="X-UA-Compatible" content="IE=edge" />
           <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-          <title>Molecule 0.22.1 - molecule.api.Entity</title>
-          <meta name="description" content="Molecule 0.22.1 - molecule.api.Entity" />
-          <meta name="keywords" content="Molecule 0.22.1 molecule.api.Entity" />
+          <title>Molecule 0.22.2 - molecule.api.Entity</title>
+          <meta name="description" content="Molecule 0.22.2 - molecule.api.Entity" />
+          <meta name="keywords" content="Molecule 0.22.2 molecule.api.Entity" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       
@@ -28,7 +28,7 @@
         </head>
         <body>
       <div id="search">
-        <span id="doc-title">Molecule<span id="doc-version">0.22.1</span></span>
+        <span id="doc-title">Molecule<span id="doc-version">0.22.2</span></span>
         <span class="close-results"><span class="left">&lt;</span> Back</span>
         <div id="textfilter">
           <span class="input">
@@ -701,9 +701,9 @@ In the meanwhile, Future-wrapped methods in this package can be used.</p><p>Mole
         <div id="constructors" class="members">
               <h3>Instance Constructors</h3>
               <ol><li name="molecule.api.Entity#&lt;init&gt;" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="&lt;init&gt;(entity:datomic.Entity,conn:molecule.facade.Conn,id:Object):molecule.api.Entity"></a><a id="&lt;init&gt;:Entity"></a>
+      <a id="&lt;init&gt;(entity:datomic.Entity,conn:molecule.facade.Conn,id:Object,showKW:Boolean):molecule.api.Entity"></a><a id="&lt;init&gt;:Entity"></a>
       <span class="permalink">
-      <a href="../../molecule/api/Entity.html#&lt;init&gt;(entity:datomic.Entity,conn:molecule.facade.Conn,id:Object):molecule.api.Entity" title="Permalink">
+      <a href="../../molecule/api/Entity.html#&lt;init&gt;(entity:datomic.Entity,conn:molecule.facade.Conn,id:Object,showKW:Boolean):molecule.api.Entity" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -712,10 +712,12 @@ In the meanwhile, Future-wrapped methods in this package can be used.</p><p>Mole
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">Entity</span><span class="params">(<span name="entity">entity: <span class="extype" name="datomic.Entity">datomic.Entity</span></span>, <span name="conn">conn: <a href="../facade/Conn.html" class="extype" name="molecule.facade.Conn">Conn</a></span>, <span name="id">id: <span class="extype" name="scala.AnyRef">AnyRef</span></span>)</span>
+        <span class="name">Entity</span><span class="params">(<span name="entity">entity: <span class="extype" name="datomic.Entity">datomic.Entity</span></span>, <span name="conn">conn: <a href="../facade/Conn.html" class="extype" name="molecule.facade.Conn">Conn</a></span>, <span name="id">id: <span class="extype" name="scala.AnyRef">AnyRef</span></span>, <span name="showKW">showKW: <span class="extype" name="scala.Boolean">Boolean</span> = <span class="symbol">true</span></span>)</span>
       </span>
       
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">entity</dt><dd class="cmt"><p>datomic.Entity</p></dd><dt class="param">conn</dt><dd class="cmt"><p>Implicit <a href="../facade/Conn.html" class="extype" name="molecule.facade.Conn">Conn</a> in scope</p></dd><dt class="param">id</dt><dd class="cmt"><p>Entity id of type Object</p></dd></dl></div>
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">entity</dt><dd class="cmt"><p>datomic.Entity</p></dd><dt class="param">conn</dt><dd class="cmt"><p>Implicit <a href="../facade/Conn.html" class="extype" name="molecule.facade.Conn">Conn</a> in scope</p></dd><dt class="param">id</dt><dd class="cmt"><p>Entity id of type Object</p></dd><dt class="param">showKW</dt><dd class="cmt"><p>If a ref id points to an attribute definition, whether to show
+              the attribute keyword (like <code>:Ns.enum/enumValue</code>) or its
+              representation as a Long number</p></dd></dl></div>
     </li></ol>
             </div>
 
