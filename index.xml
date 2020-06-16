@@ -6,7 +6,7 @@
     <description>Recent content in Home on Molecule</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 20 Oct 2019 02:13:50 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 16 Jun 2020 02:13:50 +0000</lastBuildDate>
     
 	<atom:link href="http://scalamolecule.org/index.xml" rel="self" type="application/rss+xml" />
     
@@ -623,11 +623,11 @@ Next Debug Datalog/data&amp;hellip;</description>
     <item>
       <title>Changelog</title>
       <link>http://scalamolecule.org/changelog/</link>
-      <pubDate>Sun, 20 Oct 2019 02:13:50 +0000</pubDate>
+      <pubDate>Tue, 16 Jun 2020 02:13:50 +0000</pubDate>
       
       <guid>http://scalamolecule.org/changelog/</guid>
       <description>Molecule changelog Github releases
- 2020-05-17 v0.22.2 Upgrade to ScalaJS 1.1.0 2020-04-10 v0.22.1 Bugfix: Query optimization resolves fulltext search correctly 2020-04-07 v0.22.0 Automatic Query optimization 2019-12-20 v0.21.0 Optional nested data 2019-10-24 v0.20.0 Molecule for Scala.js 2019-10-20 v0.19.1 Date handling corrected 2019-09-22 v0.19.0 Cross-compiling to Scala 2.13.1 and 2.12.10 2019-05-17 v0.18.5 Adapting to sbt-molecule 0.8.1 2019-05-13 v0.18.4 Aggregates for card-many attributes 2019-04-02 v0.18.3 Bug fixes 2019-03-10 v0.18.2 Meta becomes Generic 2019-03-09 v0.</description>
+ 2020-06-16 v0.22.5 Apply Iterable instead of Seq to values 2020-06-11 v0.22.4 Time zones in distribution 2020-06-08 v0.22.3 Resolve mutable identifiers in Scala 2.13 2020-05-17 v0.22.2 Upgrade to ScalaJS 1.1.0 2020-04-10 v0.22.1 Bugfix: Query optimization resolves fulltext search correctly 2020-04-07 v0.22.0 Automatic Query optimization 2019-12-20 v0.21.0 Optional nested data 2019-10-24 v0.20.0 Molecule for Scala.js 2019-10-20 v0.19.1 Date handling corrected 2019-09-22 v0.19.0 Cross-compiling to Scala 2.13.1 and 2.</description>
     </item>
     
     <item>

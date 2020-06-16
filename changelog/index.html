@@ -805,7 +805,7 @@
             <div class="col-md-2 column" style="padding-top:20px;padding-right:0px;">
                 <ul class="nav nav-pills" style="float:right;">
                     <li>
-                        <a href="/changelog" style="margin-top:-2px;">v0.22.3</a>
+                        <a href="/changelog" style="margin-top:-2px;">v0.22.5</a>
                     </li>
                     <li>
                         <div style="padding-left:14px;">
@@ -831,6 +831,9 @@
         <h1 id="top">Molecule changelog</h1>
 <p><a href="https://github.com/scalamolecule/molecule/releases">Github releases</a></p>
 <ul>
+<li>2020-06-16 v0.22.5 <a href="#38">Apply <code>Iterable</code> instead of <code>Seq</code> to values</a></li>
+<li>2020-06-11 v0.22.4 <a href="#37">Time zones in distribution</a></li>
+<li>2020-06-08 v0.22.3 <a href="#36">Resolve mutable identifiers in Scala 2.13</a></li>
 <li>2020-05-17 v0.22.2 <a href="#35">Upgrade to ScalaJS 1.1.0</a></li>
 <li>2020-04-10 v0.22.1 <a href="#34">Bugfix: Query optimization resolves fulltext search correctly</a></li>
 <li>2020-04-07 v0.22.0 <a href="#33">Automatic Query optimization</a></li>
@@ -867,7 +870,19 @@
 <li>2014-12-25 v0.2.0 <a href="#2">Implemented Day-Of-Datomic and MBrainz</a></li>
 <li>2014-07-02 v0.1.0 <a href="#1">Initial commit - Seattle tutorial</a></li>
 </ul>
-<h2 id="35"><a href="#top">☝︎</a> # Upgrade to ScalaJS 1.1.0</h2>
+<h2 id="38"><a href="#top">☝︎</a> Apply <code>Iterable</code> instead of <code>Seq</code> to values</h2>
+<p><em>2020-06-16 v0.22.5</em></p>
+<h2 id="37"><a href="#top">☝︎</a> Time zones in distribution</h2>
+<p><em>2020-06-11 v0.22.4</em></p>
+<p>Include transpiled <a href="http://cquiroz.github.io/scala-java-time/">scala-java-time</a> time zones for ScalaJS code.
+This allows dependent ScalaJS projects to have time zones available in client code that depends on <code>molecule</code>
+(<a href="https://github.com/scalamolecule/molecule-admin/blob/master/shared/src/test/scala/moleculeadmin/sharedtest/util/DateTransformation.scala">DateTransformatin</a>
+in <a href="https://github.com/scalamolecule/molecule-admin">molecule-admin</a> being an example).</p>
+<h2 id="36"><a href="#top">☝︎</a> Resolve mutable identifiers in Scala 2.13</h2>
+<p><em>2020-06-08 v0.22.3</em></p>
+<p>Pattern match against unified interfaces in <code>molecule.ops.ModelOps</code> matching
+both immutable and mutable collections.</p>
+<h2 id="35"><a href="#top">☝︎</a> Upgrade to ScalaJS 1.1.0</h2>
 <p><em>2020-05-17 v0.22.2</em></p>
 <h2 id="34"><a href="#top">☝︎</a> Bugfix: Query optimization resolves fulltext search correctly</h2>
 <p><em>2020-04-10 v0.22.1</em></p>
@@ -893,22 +908,22 @@ order of attributes in your molecules.</p>
 <h2 id="32"><a href="#top">☝︎</a> Optional nested data</h2>
 <p><em>2019-12-20 v0.21.0</em></p>
 <p>Optional nested data can now be queried with the <code>*?</code> operator:</p>
-<div class="highlight"><pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala">m(<span style="color:#008b45;font-weight:bold">Ns</span>.int.<span style="color:#008b45;font-weight:bold">Refs1</span> * <span style="color:#008b45;font-weight:bold">Ref1</span>.str1) insert <span style="color:#008b45;font-weight:bold">List</span>(
-  (<span style="color:#b452cd">1</span>, <span style="color:#008b45;font-weight:bold">List</span>(<span style="color:#cd5555">&#34;a&#34;</span>, <span style="color:#cd5555">&#34;b&#34;</span>)),
-  (<span style="color:#b452cd">2</span>, <span style="color:#008b45;font-weight:bold">List</span>()) <span style="color:#228b22">// (no nested data)
-</span><span style="color:#228b22"></span>)
-
-<span style="color:#228b22">// Mandatory nested data
-</span><span style="color:#228b22"></span>m(<span style="color:#008b45;font-weight:bold">Ns</span>.int.<span style="color:#008b45;font-weight:bold">Refs1</span> * <span style="color:#008b45;font-weight:bold">Ref1</span>.str1).get === <span style="color:#008b45;font-weight:bold">List</span>(
-  (<span style="color:#b452cd">1</span>, <span style="color:#008b45;font-weight:bold">List</span>(<span style="color:#cd5555">&#34;a&#34;</span>, <span style="color:#cd5555">&#34;b&#34;</span>))
+<pre><code>m(Ns.int.Refs1 * Ref1.str1) insert List(
+  (1, List(&quot;a&quot;, &quot;b&quot;)),
+  (2, List()) // (no nested data)
 )
 
-<span style="color:#228b22">// Optional nested data
-</span><span style="color:#228b22"></span>m(<span style="color:#008b45;font-weight:bold">Ns</span>.int.<span style="color:#008b45;font-weight:bold">Refs1</span> *? <span style="color:#008b45;font-weight:bold">Ref1</span>.str1).get === <span style="color:#008b45;font-weight:bold">List</span>(
-  (<span style="color:#b452cd">1</span>, <span style="color:#008b45;font-weight:bold">List</span>(<span style="color:#cd5555">&#34;a&#34;</span>, <span style="color:#cd5555">&#34;b&#34;</span>)),
-  (<span style="color:#b452cd">2</span>, <span style="color:#008b45;font-weight:bold">List</span>())
+// Mandatory nested data
+m(Ns.int.Refs1 * Ref1.str1).get === List(
+  (1, List(&quot;a&quot;, &quot;b&quot;))
 )
-</code></pre></div><h2 id="31"><a href="#top">☝︎</a> Molecule for Scala.js</h2>
+
+// Optional nested data
+m(Ns.int.Refs1 *? Ref1.str1).get === List(
+  (1, List(&quot;a&quot;, &quot;b&quot;)),
+  (2, List())
+)
+</code></pre><h2 id="31"><a href="#top">☝︎</a> Molecule for Scala.js</h2>
 <p><em>2019-10-24 v0.20.0</em></p>
 <p>Molecule AST&rsquo;s and generic interfaces compiled for Scala.js.</p>
 <p>See the <a href="https://github.com/scalamolecule/molecule-admin">molecule-admin</a> project for
