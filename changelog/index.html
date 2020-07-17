@@ -805,7 +805,7 @@
             <div class="col-md-2 column" style="padding-top:20px;padding-right:0px;">
                 <ul class="nav nav-pills" style="float:right;">
                     <li>
-                        <a href="/changelog" style="margin-top:-2px;">v0.22.6</a>
+                        <a href="/changelog" style="margin-top:-2px;">v0.22.7</a>
                     </li>
                     <li>
                         <div style="padding-left:14px;">
@@ -831,6 +831,7 @@
         <h1 id="top">Molecule changelog</h1>
 <p><a href="https://github.com/scalamolecule/molecule/releases">Github releases</a></p>
 <ul>
+<li>2020-07-17 v0.22.7 <a href="#40">Allow all implicit widening conversions for numeric variables</a></li>
 <li>2020-07-17 v0.22.6 <a href="#39">BigDecimal accepting non-decimal numbers correctly</a></li>
 <li>2020-06-16 v0.22.5 <a href="#38">Apply <code>Iterable</code> instead of <code>Seq</code> to values</a></li>
 <li>2020-06-11 v0.22.4 <a href="#37">Time zones in distribution</a></li>
@@ -871,7 +872,26 @@
 <li>2014-12-25 v0.2.0 <a href="#2">Implemented Day-Of-Datomic and MBrainz</a></li>
 <li>2014-07-02 v0.1.0 <a href="#1">Initial commit - Seattle tutorial</a></li>
 </ul>
-<h2 id="39"><a href="#top">☝︎</a> BigDecimal accepting non-decimal numbers correctly</h2>
+<h2 id="40"><a href="#top">☝︎</a> Allow all implicit widening conversions for numeric variables</h2>
+<p><em>2020-07-17 v0.22.7</em></p>
+<p>Implicit widening conversion of numeric variables is now allowed in Molecule:</p>
+<div class="highlight"><pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#8b008b;font-weight:bold">val</span> int   <span style="color:#8b008b;font-weight:bold">=</span> <span style="color:#b452cd">1</span>
+<span style="color:#8b008b;font-weight:bold">val</span> long  <span style="color:#8b008b;font-weight:bold">=</span> <span style="color:#b452cd">1L</span>
+<span style="color:#8b008b;font-weight:bold">val</span> float <span style="color:#8b008b;font-weight:bold">=</span> <span style="color:#b452cd">1</span>f
+
+<span style="color:#228b22">// -&gt; Float
+</span><span style="color:#228b22"></span><span style="color:#008b45;font-weight:bold">Ns</span>.float(int).get === <span style="color:#008b45;font-weight:bold">List</span>(<span style="color:#b452cd">1.0f</span>)
+<span style="color:#008b45;font-weight:bold">Ns</span>.float(long).get === <span style="color:#008b45;font-weight:bold">List</span>(<span style="color:#b452cd">1.0f</span>)
+
+<span style="color:#228b22">// -&gt; Double
+</span><span style="color:#228b22"></span><span style="color:#008b45;font-weight:bold">Ns</span>.double(int).get === <span style="color:#008b45;font-weight:bold">List</span>(<span style="color:#b452cd">1.0</span>)
+<span style="color:#008b45;font-weight:bold">Ns</span>.double(long).get === <span style="color:#008b45;font-weight:bold">List</span>(<span style="color:#b452cd">1.0</span>)
+<span style="color:#008b45;font-weight:bold">Ns</span>.double(float).get === <span style="color:#008b45;font-weight:bold">List</span>(<span style="color:#b452cd">1.0</span>)
+</code></pre></div><p>The widening feature is deprecated in Scala and will thus be gone when removed from Scala.</p>
+<p>Variables with Int values can now also be applied to Long attributes:</p>
+<div class="highlight"><pre style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#8b008b;font-weight:bold">val</span> int <span style="color:#8b008b;font-weight:bold">=</span> <span style="color:#b452cd">1</span>
+<span style="color:#008b45;font-weight:bold">Ns</span>.long(int).get === <span style="color:#008b45;font-weight:bold">List</span>(<span style="color:#b452cd">1L</span>)
+</code></pre></div><h2 id="39"><a href="#top">☝︎</a> BigDecimal accepting non-decimal numbers correctly</h2>
 <p><em>2020-07-17 v0.22.6</em></p>
 <p>Implicit conversion of for instance applied Integers to BigDecimal would end up
 missing the decimal point and thus not be saved correctly in Datomic. Now correct
