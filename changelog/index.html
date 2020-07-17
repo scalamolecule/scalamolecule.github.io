@@ -805,7 +805,7 @@
             <div class="col-md-2 column" style="padding-top:20px;padding-right:0px;">
                 <ul class="nav nav-pills" style="float:right;">
                     <li>
-                        <a href="/changelog" style="margin-top:-2px;">v0.22.5</a>
+                        <a href="/changelog" style="margin-top:-2px;">v0.22.6</a>
                     </li>
                     <li>
                         <div style="padding-left:14px;">
@@ -831,6 +831,7 @@
         <h1 id="top">Molecule changelog</h1>
 <p><a href="https://github.com/scalamolecule/molecule/releases">Github releases</a></p>
 <ul>
+<li>2020-07-17 v0.22.6 <a href="#39">BigDecimal accepting non-decimal numbers correctly</a></li>
 <li>2020-06-16 v0.22.5 <a href="#38">Apply <code>Iterable</code> instead of <code>Seq</code> to values</a></li>
 <li>2020-06-11 v0.22.4 <a href="#37">Time zones in distribution</a></li>
 <li>2020-06-08 v0.22.3 <a href="#36">Resolve mutable identifiers in Scala 2.13</a></li>
@@ -870,6 +871,11 @@
 <li>2014-12-25 v0.2.0 <a href="#2">Implemented Day-Of-Datomic and MBrainz</a></li>
 <li>2014-07-02 v0.1.0 <a href="#1">Initial commit - Seattle tutorial</a></li>
 </ul>
+<h2 id="39"><a href="#top">☝︎</a> BigDecimal accepting non-decimal numbers correctly</h2>
+<p><em>2020-07-17 v0.22.6</em></p>
+<p>Implicit conversion of for instance applied Integers to BigDecimal would end up
+missing the decimal point and thus not be saved correctly in Datomic. Now correct
+conversion is ensured both for inserting, updating and querying BigDecimals.</p>
 <h2 id="38"><a href="#top">☝︎</a> Apply <code>Iterable</code> instead of <code>Seq</code> to values</h2>
 <p><em>2020-06-16 v0.22.5</em></p>
 <h2 id="37"><a href="#top">☝︎</a> Time zones in distribution</h2>
