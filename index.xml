@@ -216,7 +216,7 @@ If for instance we have entities representing Persons in our data set that haven
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://scalamolecule.org/resources/videos/2017-04-25_Marc_Grue/</guid>
-      <description>Molecule video presentation  Part 1: Datomic data model Part 2: Building a DSL with Scala macros Part 3: Tour of Molecule features Part 4: Molecule domain modelling  Molecule presentation in 4 parts by creator Marc Grue at a Scala MeetUp in Gothenburg 2017-04-25.
+      <description>Molecule video presentation  Part 1: Datomic Data Model Part 2: Building a DSL with Scala macros Part 3: Tour of Molecule features Part 4: Molecule domain modelling  Molecule presentation in 4 parts by creator Marc Grue at a Scala MeetUp in Gothenburg 2017-04-25.
 Attendees came with great suggestions for improvements that were incorporated in Molecule v0.11. Some of the slides in the videos below are updated to show the new API of v0.</description>
     </item>
     
@@ -298,7 +298,7 @@ Graph graph = TinkerGraph.open(); (1) Vertex marko = graph.addVertex(T.label, &a
       <guid>http://scalamolecule.org/dev/transformation/</guid>
       <description>Macro transformation Molecule performs a series of transformation of the molecules we write so that they in the end become a Datomic query:
 1. Source code To find southern media communities we could make the following molecule
-Community.name.`type`(&amp;quot;twitter&amp;quot; or &amp;quot;facebook_page&amp;quot;) .Neighborhood.District.region(&amp;quot;sw&amp;quot; or &amp;quot;s&amp;quot; or &amp;quot;se&amp;quot;) 2. Model AST The source code of our molecule is then pattern matched in Dsl2Model element by element in order to create an abstracted Model of Atoms and Bonds:</description>
+Community.name.`type`(&amp;quot;twitter&amp;quot; or &amp;quot;facebook_page&amp;quot;) .Neighborhood.District.region(&amp;quot;sw&amp;quot; or &amp;quot;s&amp;quot; or &amp;quot;se&amp;quot;) 2. Model AST The source code of our molecule is then pattern matched in Molecule2Model element by element in order to create an abstracted Model of Atoms and Bonds:</description>
     </item>
     
     <item>
@@ -687,7 +687,7 @@ Inspired by  Rogue, type-safe Scala DSL for MongoDB Datomisca, a Scala API for D
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://scalamolecule.org/resources/videos/</guid>
-      <description>Molecule videos  Scala Meetup presentation 2017-04-25 by Marc Grue  Part 1: Datomic data model Part 2: Building a DSL with Scala macros Part 3: Tour of Molecule features Part 4: Molecule domain modelling    </description>
+      <description>Molecule videos  Scala Meetup presentation 2017-04-25 by Marc Grue  Part 1: Datomic Data Model Part 2: Building a DSL with Scala macros Part 3: Tour of Molecule features Part 4: Molecule domain modelling    </description>
     </item>
     
   </channel>

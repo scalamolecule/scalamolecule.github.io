@@ -30,7 +30,7 @@ object Community extends Community_0 { def apply(e: Long): Community_0 = ??? } t
       <guid>http://scalamolecule.org/dev/transformation/</guid>
       <description>Macro transformation Molecule performs a series of transformation of the molecules we write so that they in the end become a Datomic query:
 1. Source code To find southern media communities we could make the following molecule
-Community.name.`type`(&amp;quot;twitter&amp;quot; or &amp;quot;facebook_page&amp;quot;) .Neighborhood.District.region(&amp;quot;sw&amp;quot; or &amp;quot;s&amp;quot; or &amp;quot;se&amp;quot;) 2. Model AST The source code of our molecule is then pattern matched in Dsl2Model element by element in order to create an abstracted Model of Atoms and Bonds:</description>
+Community.name.`type`(&amp;quot;twitter&amp;quot; or &amp;quot;facebook_page&amp;quot;) .Neighborhood.District.region(&amp;quot;sw&amp;quot; or &amp;quot;s&amp;quot; or &amp;quot;se&amp;quot;) 2. Model AST The source code of our molecule is then pattern matched in Molecule2Model element by element in order to create an abstracted Model of Atoms and Bonds:</description>
     </item>
     
   </channel>

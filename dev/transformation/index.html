@@ -835,7 +835,7 @@
 <pre><code>Community.name.`type`(&quot;twitter&quot; or &quot;facebook_page&quot;)
   .Neighborhood.District.region(&quot;sw&quot; or &quot;s&quot; or &quot;se&quot;)
 </code></pre><h3 id="2-model-ast">2. Model AST</h3>
-<p>The source code of our molecule is then pattern matched in <a href="https://github.com/scalamolecule/molecule/blob/master/core/src/main/scala/molecule/transform/Dsl2Model.scala">Dsl2Model</a> element by element in order to create an abstracted Model of <code>Atom</code>s and <code>Bond</code>s:</p>
+<p>The source code of our molecule is then pattern matched in <a href="https://github.com/scalamolecule/molecule/blob/master/core/src/main/scala/molecule/transform/Molecule2Model.scala">Molecule2Model</a> element by element in order to create an abstracted Model of <code>Atom</code>s and <code>Bond</code>s:</p>
 <pre><code>Model(List(
   Atom(&quot;Community&quot;, &quot;name&quot;, &quot;String&quot;, 1, VarValue, None),
   Atom(&quot;Community&quot;, &quot;type_&quot;, &quot;String&quot;, 1, Eq(List(&quot;twitter&quot;, &quot;facebook_page&quot;)), Some(&quot;:Community.type/&quot;)),
