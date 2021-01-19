@@ -331,14 +331,21 @@
 
     <div class="col-sm-10 " style="padding-left:8px;">
         <h1 id="transactions">Transactions</h1>
+<p>There are 4 basic transaction operations:</p>
+<ul>
+<li><code>save</code></li>
+<li><code>insert</code></li>
+<li><code>update</code></li>
+<li><code>retract</code></li>
+</ul>
 <h2 id="save">Save</h2>
 <p>In Molecule we can populate a molecule with data and save it:</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">(</span><span class="s">&#34;John&#34;</span><span class="o">).</span><span class="n">likes</span><span class="o">(</span><span class="s">&#34;pizza&#34;</span><span class="o">).</span><span class="n">age</span><span class="o">(</span><span class="mi">24</span><span class="o">).</span><span class="n">save</span>
 </code></pre></div><p>This will assert 3 facts in Datomic that all share the id of the new entity id <code>johnId</code> that is automatically created by Datomic:</p>
-<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="n">johnId</span>    <span class="k">:</span><span class="kt">Person/name</span>    <span class="err">&#34;</span><span class="kt">John</span><span class="err">&#34;</span>
-<span class="kt">johnId</span>    <span class="kt">:Person/likes</span>   <span class="err">&#34;</span><span class="kt">pizza</span><span class="err">&#34;</span>
-<span class="kt">johnId</span>    <span class="kt">:Person/age</span>     <span class="err">24</span>
-</code></pre></div><h3 id="type-safety">Type-safety</h3>
+<pre><code>johnId    :Person/name    &quot;John&quot;
+johnId    :Person/likes   &quot;pizza&quot;
+johnId    :Person/age     24
+</code></pre><h3 id="type-safety">Type-safety</h3>
 <p>Type-safety is guaranteed since each attribute only accepts values of its defined type.</p>
 <h3 id="asynchronous-save">Asynchronous save</h3>
 <p>All transactional operators have an asynchronous equivalent. Saving data asynchronously with <code>saveAsync</code> uses Datomic&rsquo;s asynchronous API and returns a <code>Future</code> with a <code>TxReport</code>.</p>
