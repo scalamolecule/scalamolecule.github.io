@@ -750,7 +750,7 @@ johnId    :Person/age     24
 <p>Alternatively we can get a transaction value <code>t</code></p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">(</span><span class="n">johnId</span><span class="o">).</span><span class="n">name_</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">head</span> <span class="o">===</span> <span class="n">t2</span>
 </code></pre></div><h3 id="transaction-time-txinstant">Transaction time <code>txInstant</code></h3>
-<p>With the transaction entity available we can then also get to the value of the timestamp fact of that transaction entity. For convenience Molecule has a generic <code>txIntstant</code> to lookup the timestamp which is a <code>date.util.Date</code>:</p>
+<p>With the transaction entity available we can then also get to the value of the timestamp fact of that transaction entity. For convenience Molecule has a generic <code>txIntstant</code> attribute to lookup the timestamp which is a <code>date.util.Date</code>:</p>
 <p><em>&ldquo;When was Johns name asserted?&quot;</em></p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">(</span><span class="n">johnId</span><span class="o">).</span><span class="n">name_</span><span class="o">.</span><span class="n">txInstant</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">head</span> <span class="o">===</span> <span class="n">date1</span>
 </code></pre></div><h3 id="transaction-data-per-attribute">Transaction data per attribute</h3>
