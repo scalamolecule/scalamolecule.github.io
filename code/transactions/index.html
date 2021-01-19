@@ -641,7 +641,7 @@ johnId    :Person/age     24
 </code></pre></div><p>All attributes having the entity id <code>johnId</code> are retracted.</p>
 <p>Add transaction meta-data to a retraction of an entity id:</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="n">johnId</span><span class="o">.</span><span class="nc">Tx</span><span class="o">(</span><span class="nc">MyUseCase</span><span class="o">.</span><span class="n">name</span><span class="o">(</span><span class="s">&#34;Terminate membership&#34;</span><span class="o">)).</span><span class="n">retract</span>
-</code></pre></div><p>We can then afterwards use the tx meta data to get information about the retraction:</p>
+</code></pre></div><p>We can then afterwards use the tx meta-data to get information about the retraction:</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="c1">// Who got their membership terminated and when?
 </span><span class="c1"></span><span class="nc">Person</span><span class="o">.</span><span class="n">e</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">op</span><span class="o">(</span><span class="kc">false</span><span class="o">)</span>
   <span class="o">.</span><span class="nc">Tx</span><span class="o">(</span><span class="nc">MyUseCase</span><span class="o">.</span><span class="n">name_</span><span class="o">(</span><span class="s">&#34;Termminate membership&#34;</span><span class="o">)).</span><span class="n">getHistory</span> <span class="o">===</span> <span class="nc">List</span><span class="o">(</span>
@@ -652,7 +652,7 @@ johnId    :Person/age     24
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="n">retract</span><span class="o">(</span><span class="n">johnId</span><span class="o">)</span>
 <span class="n">retract</span><span class="o">(</span><span class="n">johnId</span><span class="o">,</span> <span class="n">lisaId</span><span class="o">)</span> <span class="c1">// etc
 </span></code></pre></div><p>Optionally add Tx meta-data to describe the retraction:</p>
-<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="c1">// Retract multiple entity ids and some tx meta data about the transaction
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="c1">// Retract multiple entity ids and some tx meta-data about the transaction
 </span><span class="c1"></span><span class="n">retract</span><span class="o">(</span><span class="n">eids</span><span class="o">,</span> <span class="nc">MyUseCase</span><span class="o">.</span><span class="n">name</span><span class="o">(</span><span class="s">&#34;Terminate membership&#34;</span><span class="o">))</span>
 </code></pre></div><p>Again, we can then afterwards use the tx meta-data to get information about the retraction:</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="c1">// Who got their membership terminated and when?
@@ -878,11 +878,11 @@ johnId    :Person/age     24
 </ul>
 <p>Updating 2 to 20 for instance creates two Datoms, one retracting the old value 2 and one asserting the new value 20.</p>
 <p>(The numbers on the left are simply index numbers and not part of the transactional data)</p>
-<h2 id="tx-meta-data">Tx meta data</h2>
+<h2 id="tx-meta-data">Tx meta-data</h2>
 <p>A timestamp fact is transacted as part of all transactions in Datomic. Since a transaction is an entity itself, we can even add more facts that simply share the entity id of the transaction:</p>
 <p><img src="../../img/page/transactions/1.png" alt=""></p>
 <h3 id="save-1">Save</h3>
-<p>Depending on our domain we can tailor any tx meta data that we find valuable to associate with some transactions. We could for instance be interested in &ldquo;who did it&rdquo; and &ldquo;in what use case&rdquo; it happened and create some generic attributes <code>user</code> and <code>uc</code> in an <code>Audit</code> namespace:</p>
+<p>Depending on our domain we can tailor any tx meta-data that we find valuable to associate with a transaction. We could for instance be interested in &ldquo;who did it&rdquo; and &ldquo;in what use case&rdquo; it happened and create some generic attributes <code>user</code> and <code>uc</code> in an <code>Audit</code> namespace:</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">trait</span> <span class="nc">Audit</span> <span class="o">{</span>
   <span class="k">val</span> <span class="n">user</span> <span class="k">=</span> <span class="n">oneString</span>
   <span class="k">val</span> <span class="n">uc</span>   <span class="k">=</span> <span class="n">oneString</span>
@@ -892,10 +892,10 @@ johnId    :Person/age     24
 </code></pre></div><p>..to the generic <code>Tx</code> namespace:</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">(</span><span class="s">&#34;John&#34;</span><span class="o">).</span><span class="n">likes</span><span class="o">(</span><span class="s">&#34;pizza&#34;</span><span class="o">).</span><span class="nc">Tx</span><span class="o">(</span><span class="nc">Audit</span><span class="o">.</span><span class="n">user</span><span class="o">(</span><span class="s">&#34;Lisa&#34;</span><span class="o">).</span><span class="n">uc</span><span class="o">(</span><span class="s">&#34;survey&#34;</span><span class="o">)).</span><span class="n">save</span>
 </code></pre></div><p>This could read: <em>&ldquo;A person John liking pizza was saved by Lisa as part of a survey&rdquo;</em></p>
-<p>Molecule simply saves the tx meta data attributes <code>user</code> and <code>uc</code> with the transaction entity id <code>tx2</code> as their entity id:</p>
+<p>Molecule simply saves the tx meta-data attributes <code>user</code> and <code>uc</code> with the transaction entity id <code>tx2</code> as their entity id:</p>
 <p><img src="../../img/page/transactions/2.png" alt=""></p>
 <h3 id="get">Get</h3>
-<p>Now we can query the tx meta data in various ways:</p>
+<p>Now we can query the tx meta-data in various ways:</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="c1">// How was John added?
 </span><span class="c1">// John was added by Lisa as part of a survey
 </span><span class="c1"></span><span class="nc">Person</span><span class="o">(</span><span class="n">johnId</span><span class="o">).</span><span class="n">name</span><span class="o">.</span><span class="nc">Tx</span><span class="o">(</span><span class="nc">Audit</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">uc</span><span class="o">).</span><span class="n">get</span> <span class="o">===</span> <span class="nc">List</span><span class="o">(</span>
@@ -923,7 +923,7 @@ johnId    :Person/age     24
   <span class="o">(</span><span class="s">&#34;Mona&#34;</span><span class="o">,</span> <span class="s">&#34;snacks&#34;</span><span class="o">)</span>
 <span class="o">)</span>
 </code></pre></div><h3 id="composites">Composites</h3>
-<p>Similarly we can insert composite molecules composed of sub-molecules/sub-tuples of data - and some tx meta data:</p>
+<p>Similarly we can insert composite molecules composed of sub-molecules/sub-tuples of data - and some tx meta-data:</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Article</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">author</span> <span class="o">+</span> 
   <span class="nc">Tag</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">weight</span>
   <span class="o">.</span><span class="nc">Tx</span><span class="o">(</span><span class="nc">MetaData</span><span class="o">.</span><span class="n">submitter_</span><span class="o">(</span><span class="s">&#34;Brenda Johnson&#34;</span><span class="o">).</span><span class="n">usecase_</span><span class="o">(</span><span class="s">&#34;AddArticles&#34;</span><span class="o">))</span> <span class="n">insert</span> <span class="nc">List</span><span class="o">(</span>
@@ -939,7 +939,7 @@ johnId    :Person/age     24
   <span class="o">((</span><span class="s">&#34;Battle of Waterloo&#34;</span><span class="o">,</span> <span class="s">&#34;Ben Bridge&#34;</span><span class="o">),</span> <span class="mi">5</span><span class="o">)</span>
 <span class="o">)</span>
 </code></pre></div><h3 id="update-1">Update</h3>
-<p>Transaction meta data can be attached to updates too so that we can for instance follow who changed data in our system.</p>
+<p>Transaction meta-data can be attached to updates too so that we can for instance follow who changed data in our system.</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">(</span><span class="n">johnId</span><span class="o">).</span><span class="n">likes</span><span class="o">(</span><span class="s">&#34;pasta&#34;</span><span class="o">)</span>
   <span class="o">.</span><span class="nc">Tx</span><span class="o">(</span><span class="nc">Audit</span><span class="o">.</span><span class="n">user_</span><span class="o">(</span><span class="s">&#34;Ben&#34;</span><span class="o">).</span><span class="n">uc_</span><span class="o">(</span><span class="s">&#34;survey-follow-up&#34;</span><span class="o">)).</span><span class="n">update</span>
 </code></pre></div><p>Now when we look at a list of Persons and what they like we can see that some likes were from an original survey and one is from a follow-up survey that Ben did:</p>
@@ -949,9 +949,9 @@ johnId    :Person/age     24
   <span class="o">(</span><span class="s">&#34;Mona&#34;</span><span class="o">,</span> <span class="s">&#34;snacks&#34;</span><span class="o">,</span> <span class="s">&#34;Lisa&#34;</span><span class="o">,</span> <span class="s">&#34;survey&#34;</span><span class="o">)</span>
 <span class="o">)</span>
 </code></pre></div><h3 id="retract-2">Retract</h3>
-<p>It&rsquo;s valuable also to have meta data about retractions so that we can afterwards ask questions like &ldquo;Who deleted this?&rdquo;.</p>
+<p>It&rsquo;s valuable also to have meta-data about retractions so that we can afterwards ask questions like &ldquo;Who deleted this?&rdquo;.</p>
 <h3 id="single-attribute">Single attribute</h3>
-<p>To retract an attribute value we apply an empty arg list to the attribute and <code>update</code>. Here we also apply some tx meta data about who took away the <code>likes</code> value for Pete:</p>
+<p>To retract an attribute value we apply an empty arg list to the attribute and <code>update</code>. Here we also apply some tx meta-data about who took away the <code>likes</code> value for Pete:</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">(</span><span class="n">peteId</span><span class="o">).</span><span class="n">likes</span><span class="o">()</span>
   <span class="o">.</span><span class="nc">Tx</span><span class="o">(</span><span class="nc">Audit</span><span class="o">.</span><span class="n">user_</span><span class="o">(</span><span class="s">&#34;Ben&#34;</span><span class="o">).</span><span class="n">uc_</span><span class="o">(</span><span class="s">&#34;survey-follow-up&#34;</span><span class="o">)).</span><span class="n">update</span>
 </code></pre></div><p>We can follow the <code>likes</code> of Pete through <a href="../../code/time/#history">history</a> and see that Ben retracted his <code>likes</code> value in a survey follow-up:</p>
@@ -966,9 +966,9 @@ johnId    :Person/age     24
 </code></pre></div><p>The entity Pete still exists but now has no current liking:</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">(</span><span class="n">peteId</span><span class="o">).</span><span class="n">name</span><span class="o">.</span><span class="n">likes$</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">head</span> <span class="o">===</span> <span class="o">(</span><span class="s">&#34;Pete&#34;</span><span class="o">,</span> <span class="nc">None</span><span class="o">)</span> 
 </code></pre></div><h3 id="entities">Entities</h3>
-<p>Using the <code>retract</code> method we can retract one or more entity ids along with a tx meta data:</p>
+<p>Using the <code>retract</code> method we can retract one or more entity ids along with a tx meta-data:</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="n">retract</span><span class="o">(</span><span class="n">johnId</span><span class="o">,</span> <span class="nc">Audit</span><span class="o">.</span><span class="n">user</span><span class="o">(</span><span class="s">&#34;Mona&#34;</span><span class="o">).</span><span class="n">uc</span><span class="o">(</span><span class="s">&#34;clean-up&#34;</span><span class="o">))</span>
-</code></pre></div><p>The <code>Audit.user(&quot;Mona&quot;).uc(&quot;clean-up&quot;)</code> molecule has the tx meta data that we save with the transaction entity.</p>
+</code></pre></div><p>The <code>Audit.user(&quot;Mona&quot;).uc(&quot;clean-up&quot;)</code> molecule has the tx meta-data that we save with the transaction entity.</p>
 <p>John has now been both saved, updated and retracted:</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">(</span><span class="n">johnId</span><span class="o">).</span><span class="n">likes</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">op</span>
   <span class="o">.</span><span class="nc">Tx</span><span class="o">(</span><span class="nc">Audit</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">uc</span><span class="o">)).</span><span class="n">getHistory</span><span class="o">.</span><span class="n">toSeq</span><span class="o">.</span><span class="n">sortBy</span><span class="o">(</span><span class="n">r</span> <span class="k">=&gt;</span> <span class="o">(</span><span class="n">r</span><span class="o">.</span><span class="n">_2</span><span class="o">,</span> <span class="n">r</span><span class="o">.</span><span class="n">_3</span><span class="o">))</span> <span class="o">===</span> <span class="nc">List</span><span class="o">(</span>
@@ -1030,7 +1030,7 @@ johnId    :Person/age     24
     <li><a href="#retract-1">Retract</a></li>
     <li><a href="#tx-report">Tx report</a></li>
     <li><a href="#tx-bundle">Tx bundle</a></li>
-    <li><a href="#tx-meta-data">Tx meta data</a></li>
+    <li><a href="#tx-meta-data">Tx meta-data</a></li>
   </ul>
 </nav>
             
