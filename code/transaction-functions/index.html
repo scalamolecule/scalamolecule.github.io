@@ -355,18 +355,16 @@
   <span class="k">def</span> <span class="n">myTxFunction2</span><span class="o">(</span><span class="n">args</span><span class="o">...)(</span><span class="k">implicit</span> <span class="n">conn</span><span class="k">:</span> <span class="kt">Conn</span><span class="o">)</span><span class="k">:</span> <span class="kt">Seq</span><span class="o">[</span><span class="kt">Seq</span><span class="o">[</span><span class="kt">Statement</span><span class="o">]]</span> <span class="k">=</span> <span class="o">{</span>
     <span class="o">...</span>
   <span class="o">}</span>
-  <span class="n">etc</span><span class="o">...</span>
-<span class="o">}</span>
-
+  <span class="c1">// etc...
+</span><span class="c1"></span><span class="o">}</span>
 
 <span class="nd">@TxFns</span>
 <span class="k">object</span> <span class="nc">myTxFunctionsSomewhereElse</span> <span class="o">{...}</span>
 <span class="n">etc</span><span class="o">...</span>
 </code></pre></div><p>The macro annotation <code>@TxFns</code> creates an internal &ldquo;twin&rdquo; method at compile time for each Scala tx function that you define. The twin method basically adapts to the way Datomic expects tx functions and automatically gets saved into the Datomic database transparently without any work on your part.</p>
-<h3 id="enabling-the-macro-annotation">Enabling the macro annotation</h3>
-<p>To use the <code>@TxFns</code> macro annotation, you&rsquo;ll need to include the Macro Paradise compiler plugin in your build:</p>
-<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala">
-<span class="n">libraryDependencies</span> <span class="o">++=</span> <span class="nc">Seq</span><span class="o">(</span>
+<h4 id="enabling-the-macro-annotation-for-scala-212">Enabling the macro annotation for Scala 2.12</h4>
+<p>To use the <code>@TxFns</code> macro annotation with Scala 2.12, you&rsquo;ll need to include the Macro Paradise compiler plugin in your build:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="n">libraryDependencies</span> <span class="o">++=</span> <span class="nc">Seq</span><span class="o">(</span>
   <span class="o">...,</span>
   <span class="n">compilerPlugin</span><span class="o">(</span><span class="s">&#34;org.scalamacros&#34;</span> <span class="o">%</span> <span class="s">&#34;paradise&#34;</span> <span class="o">%</span> <span class="s">&#34;2.1.1&#34;</span> <span class="n">cross</span> <span class="nc">CrossVersion</span><span class="o">.</span><span class="n">patch</span><span class="o">)</span>
 <span class="o">)</span>
