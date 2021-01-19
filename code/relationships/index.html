@@ -840,7 +840,7 @@ Ben &lt;-- Ann // reverse ref
 <p>Littering non-intrinsic relationships to <code>Site</code> - and possibly other cross-cutting namespaces like <code>Tags</code>, <code>Likes</code> etc - all over the place, would quickly clutter and pollute our Data Model.</p>
 <p>Instead we want to create associative relationships to <code>Site</code>, <code>Tags</code>, <code>Likes</code> etc.</p>
 <h2 id="composite-molecules">Composite molecules</h2>
-<p>We call molecules with one or more associations a <em>composite</em> molecule, or simply a <em>composite</em>.</p>
+<p>We call a molecule with one or more associations a <em>composite</em> molecule, or simply a <em>composite</em>.</p>
 <p>A composite contains two or more <em>sub-molecules</em>. Sub-molecules are like normal molecules.</p>
 <p>When we get data with composites, each sub-molecule is returned as a sub-tuple, and a single value if it has only one attribute:</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="n">m</span><span class="o">(</span><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">likes</span><span class="o">.</span><span class="n">age</span> <span class="o">+</span> <span class="nc">Site</span><span class="o">.</span><span class="n">cat</span><span class="o">).</span><span class="n">get</span> <span class="o">===</span> <span class="nc">List</span><span class="o">(</span>
