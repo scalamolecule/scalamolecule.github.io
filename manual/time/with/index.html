@@ -839,15 +839,15 @@ the test transaction data applied in-memory. This is a very powerful way of test
 <p>To make it easier to supply transaction data to the <code>getWith(txData)</code> method, you can simply add <code>Tx</code> to a
 Molecule transaction function to get some valid transaction data:</p>
 <p>Transaction data is supplied to <code>getWith(txData)</code> by calling a transaction data getter on a molecule:</p>
-<pre><code>Person(fred).likes(&quot;sushi&quot;).getUpdateTx === List(
+<pre><code>Person(fred).likes(&quot;sushi&quot;).getUpdateStmts === List(
   [:db/retract, 17592186045445, :Person/likes, &quot;pasta&quot;]
   [:db/add    , 17592186045445, :Person/likes, &quot;sushi&quot;]
 ) 
-</code></pre><p><code>getUpdateTx</code> returns the transaction data that would have been used to update Fred. In that way we
+</code></pre><p><code>getUpdateStmts</code> returns the transaction data that would have been used to update Fred. In that way we
 can supply this data to the <code>getWith(txData)</code> method to answer the question <em>&ldquo;What if we updated Fred?&quot;</em>.</p>
 <p>When getting the transaction data from a simulated molecule transaction like this, we call it a &ldquo;transaction molecule&rdquo;:</p>
 <pre><code>Person.name.likes.getWith(
-  Person(fred).likes(&quot;sushi&quot;).getUpdateTx // &quot;Transaction molecule&quot; with tx8 data
+  Person(fred).likes(&quot;sushi&quot;).getUpdateStmts // &quot;Transaction molecule&quot; with tx8 data
 ) === List(
   (&quot;Fred&quot;, &quot;sushi&quot;) // Expected result if applying tx8
 )
@@ -860,21 +860,21 @@ set up and tear down database mockups!</p>
 retraction on an entity id. The tx getters return the transactional data that the 4 transaction functions
 <code>save</code>, <code>insert</code>, <code>update</code> or <code>retract</code> would normally have transacted.</p>
 <ul>
-<li><code>&lt;molecule&gt;.getInsertTx</code></li>
-<li><code>&lt;molecule&gt;.getSaveTx</code></li>
-<li><code>&lt;molecule&gt;.getUpdateTx</code></li>
-<li><code>&lt;entityId&gt;.getRetractTx</code></li>
+<li><code>&lt;molecule&gt;.getInsertStmts</code></li>
+<li><code>&lt;molecule&gt;.getSaveStmts</code></li>
+<li><code>&lt;molecule&gt;.getUpdateStmts</code></li>
+<li><code>&lt;entityId&gt;.getRetractStmts</code></li>
 </ul>
 <p>Here&rsquo;s an example of combining transaction molecules of all types:</p>
 <pre><code>Person.name.age.getWith(
   // Transaction molecules:
-  Person.name(&quot;John&quot;).age(44).getSaveTx, // John saved
-  Person.name.age getInsertTx List(   // Get insert tx with supplied data
+  Person.name(&quot;John&quot;).age(44).getSaveStmts, // John saved
+  Person.name.age getInsertStmts List(   // Get insert tx with supplied data
     (&quot;Lisa&quot;, 23),                     // Lisa and Pete inserted
     (&quot;Pete&quot;, 24)
   ),
-  Person(fred).age(43).getUpdateTx,   // Fred updated
-  someOtherPersonId.getRetractTx      // Some other person retracted (using id)    
+  Person(fred).age(43).getUpdateStmts,   // Fred updated
+  someOtherPersonId.getRetractStmts      // Some other person retracted (using id)
 ) === List(
   // Expected result
   (&quot;John&quot;, 44), // Saved
@@ -888,10 +888,10 @@ live database.</p>
 <h3 id="modularizing-tx-data">Modularizing tx data</h3>
 <p>Assigning transaction molecules to variables can help us modularize tests where we could for instance
 be interested in seeing if various orders of transactions will produce the same result:</p>
-<pre><code>val save    = Person.name(&quot;John&quot;).age(44).getSaveTx
-val insert  = Person.name.age getInsertTx List((&quot;Lisa&quot;, 23), (&quot;Pete&quot;, 24))
-val update  = Person(fred).age(43).getUpdateTx
-val retract = someOtherPersonId.getRetractTx
+<pre><code>val save    = Person.name(&quot;John&quot;).age(44).getSaveStmts
+val insert  = Person.name.age getInsertStmts List((&quot;Lisa&quot;, 23), (&quot;Pete&quot;, 24))
+val update  = Person(fred).age(43).getUpdateStmts
+val retract = someOtherPersonId.getRetractStmts
     
 val expectedResult = List(
     (&quot;John&quot;, 44),

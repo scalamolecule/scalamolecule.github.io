@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <link rel="shortcut icon" href="../../favicon.ico" type="image/x-icon"/>
+    <link href='http://fonts.googleapis.com/css?family=Merriweather+Sans:400,300,300italic,400italic,700,700italic,800,800italic'
+          rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Work+Sans:400,300,300italic,400italic,500,600,700,700italic,800,800italic'
+          rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Jura:400,300,300italic,400italic,500,600,700,700italic,800,800italic'
+          rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic,500,600,700,700italic,800,800italic'
+          rel='stylesheet' type='text/css'>
+    <title>Transactions</title>
+    <link href="../../css/bootstrap.min.css" rel="stylesheet">
+
+
+
+    <link href="../../css/highlight/styles/solarized_light.css" rel="stylesheet"/>
+    <link href="../../css/syntax-custom.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="../../vendor/font-awesome/css/font-awesome.min.css">
+
+    <link href="../../css/style.css" rel="stylesheet">
+
+
+
+
+    
+
+
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../../img/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../../img/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../../img/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="../../img/apple-touch-icon-57-precomposed.png">
+
+    
+    
+</head>
+<body data-spy="scroll" data-target="#myScrollspy" data-offset="110">
+<header class="bs-docs-header">
+    <div class="container-fluid" style="max-width:1170px">
+        <div class="col-sm-12 column" style="padding-left:0px; padding-right:0px;">
+            <div class="col-sm-9 column" style="padding-left:0px;height:50px;">
+
+    <ul class="nav nav-pills" style="margin-top:-6px;">
+        <li><a href="../../" style="padding-left: 6px; padding-right: 13px; vertical-align: top; margin-top: 7px;"><img
+                src="../../img/logo/MoleculeLogo150.png"></a></li>
+        
+        
+            
+            <li class="dropdown ">
+                <a href="../../intro/" target="_top">Intro</a>
+            </li>
+        
+            
+            <li class="dropdown ">
+                <a href="../../setup/" target="_top">Setup</a>
+            </li>
+        
+            
+            <li class="dropdown active">
+                <a href="../../code/" target="_top">Code</a>
+            </li>
+        
+            
+            <li class="dropdown ">
+                <a href="../../dev/" target="_top">Dev</a>
+            </li>
+        
+            
+            <li class="dropdown ">
+                <a href="../../community/" target="_top">Community</a>
+            </li>
+        
+    </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+            <div class="col-sm-3 column" style="padding-top:13px;padding-right:0px;text-align:right;display:inline-block">
+                <a href="https://javadoc.io/doc/org.scalamolecule/molecule_2.13/latest/index.html" target="_blank" style="margin-top:-2px;color:#999;padding-right:12px;">docs</a>
+                <a href="../../changelog" style="margin-top:-2px;color:#999">v0.24.0</a>
+                <a href="https://github.com/scalamolecule/molecule" target="_blank">
+                    <img src="../../vendor/GitHub-Mark/PNG/GitHub-Mark-Light-32px.png"
+                         style="margin-top:-4px;padding-left:15px;opacity:0.6;width:42px;">
+                </a>
+            </div>
+
+        </div>
+
+    </div>
+</header>
+
+<div class="wrapper">
+
+<div class="container-fluid" style="max-width:1170px">
+
+    <div class="col-sm-10 " style="padding-left:8px;">
+        <h1 id="transactions">Transactions</h1>
+<h2 id="save">Save</h2>
+<p>In Molecule we can populate a molecule with data and save it:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">(</span><span class="s">&#34;John&#34;</span><span class="o">).</span><span class="n">likes</span><span class="o">(</span><span class="s">&#34;pizza&#34;</span><span class="o">).</span><span class="n">age</span><span class="o">(</span><span class="mi">24</span><span class="o">).</span><span class="n">save</span>
+</code></pre></div><p>This will assert 3 facts in Datomic that all share the id of the new entity id <code>johnId</code> that is automatically created by Datomic:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="n">johnId</span>    <span class="k">:</span><span class="kt">Person/name</span>    <span class="err">&#34;</span><span class="kt">John</span><span class="err">&#34;</span>
+<span class="kt">johnId</span>    <span class="kt">:Person/likes</span>   <span class="err">&#34;</span><span class="kt">pizza</span><span class="err">&#34;</span>
+<span class="kt">johnId</span>    <span class="kt">:Person/age</span>     <span class="err">24</span>
+</code></pre></div><h3 id="type-safety">Type-safety</h3>
+<p>Type-safety is guaranteed since each attribute only accepts values of its defined type.</p>
+<h3 id="asynchronous-save">Asynchronous save</h3>
+<p>All transactional operators have an asynchronous equivalent. Saving data asynchronously with <code>saveAsync</code> uses Datomic&rsquo;s asynchronous API and returns a <code>Future</code> with a <code>TxReport</code>.</p>
+<p>Here, we map over the result of saving asynchronously:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="c1">// Map over a Future
+</span><span class="c1"></span><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">(</span><span class="s">&#34;John&#34;</span><span class="o">).</span><span class="n">likes</span><span class="o">(</span><span class="s">&#34;pizza&#34;</span><span class="o">).</span><span class="n">age</span><span class="o">(</span><span class="mi">24</span><span class="o">).</span><span class="n">saveAsync</span><span class="o">.</span><span class="n">map</span> <span class="o">{</span> <span class="n">tx</span> <span class="k">=&gt;</span> <span class="c1">// tx report from successful save transaction
+</span><span class="c1"></span>  <span class="c1">// (synchronous get)
+</span><span class="c1"></span>  <span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">likes</span><span class="o">.</span><span class="n">age</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">head</span> <span class="o">===</span> <span class="o">(</span><span class="s">&#34;Ben&#34;</span><span class="o">,</span> <span class="s">&#34;pizza&#34;</span><span class="o">,</span> <span class="mi">24</span><span class="o">)</span>
+<span class="o">}</span>
+</code></pre></div><p>Or we could defer the resolution of the <code>Future</code></p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">val</span> <span class="n">futureSave</span><span class="k">:</span> <span class="kt">Future</span><span class="o">[</span><span class="kt">TxReport</span><span class="o">]</span> <span class="k">=</span> <span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">(</span><span class="s">&#34;John&#34;</span><span class="o">).</span><span class="n">likes</span><span class="o">(</span><span class="s">&#34;pizza&#34;</span><span class="o">).</span><span class="n">age</span><span class="o">(</span><span class="mi">24</span><span class="o">).</span><span class="n">saveAsync</span>
+<span class="k">for</span> <span class="o">{</span>
+  <span class="k">_</span> <span class="k">&lt;-</span> <span class="n">futureSave</span>
+  <span class="n">result</span> <span class="k">&lt;-</span> <span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">likes</span><span class="o">.</span><span class="n">age</span><span class="o">.</span><span class="n">getAsync</span>
+<span class="o">}</span> <span class="k">yield</span> <span class="o">{</span>
+  <span class="c1">// Data was saved
+</span><span class="c1"></span>  <span class="n">result</span><span class="o">.</span><span class="n">head</span> <span class="o">===</span> <span class="o">(</span><span class="s">&#34;Ben&#34;</span><span class="o">,</span> <span class="s">&#34;pizza&#34;</span><span class="o">,</span> <span class="mi">24</span><span class="o">)</span>
+<span class="o">}</span>
+</code></pre></div><p>For brevity, the following examples use the synchronous <code>save</code> operation.</p>
+<h3 id="related-data">Related data</h3>
+<p>We can even save related date in the same operation</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">(</span><span class="s">&#34;John&#34;</span><span class="o">).</span><span class="n">likes</span><span class="o">(</span><span class="s">&#34;pizza&#34;</span><span class="o">).</span><span class="n">age</span><span class="o">(</span><span class="mi">24</span><span class="o">).</span><span class="nc">Home</span><span class="o">.</span><span class="n">street</span><span class="o">(</span><span class="s">&#34;5th Avenue&#34;</span><span class="o">).</span><span class="n">city</span><span class="o">(</span><span class="s">&#34;Boston&#34;</span><span class="o">).</span><span class="n">save</span>
+</code></pre></div><p>In this case, 6 facts will be asserted for the entity of John. A <code>:Person/home</code> ref attribute will resolve to the value of a new Address entity with id <code>addrId</code> and thereby establish the relationship from John to his Address:</p>
+<pre><code>johnId    :Person/name    &quot;John&quot;
+johnId    :Person/likes   &quot;pizza&quot;
+johnId    :Person/age     24
+johnId    :Person/home    addrId
+addrId    :Addr/street    &quot;5th Avenue&quot;
+addrId    :Addr/city      &quot;Boston&quot;
+</code></pre><p>And we could go on with further relationships&hellip;</p>
+<h3 id="cardinality-many-values">Cardinality many values</h3>
+<p>Cardinality many attributes like for instance <code>hobbies</code> hold <code>Set</code>s of values. But we can apply values in various ways:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="c1">// Vararg
+</span><span class="c1"></span><span class="nc">Person</span><span class="o">.</span><span class="n">hobbies</span><span class="o">(</span><span class="s">&#34;golf&#34;</span><span class="o">,</span> <span class="s">&#34;chess&#34;</span><span class="o">).</span><span class="n">save</span>
+
+<span class="c1">// Set
+</span><span class="c1"></span><span class="k">val</span> <span class="n">set</span> <span class="k">=</span> <span class="nc">Set</span><span class="o">(</span><span class="s">&#34;golf&#34;</span><span class="o">,</span> <span class="s">&#34;chess&#34;</span><span class="o">)</span>
+<span class="nc">Person</span><span class="o">.</span><span class="n">hobbies</span><span class="o">(</span><span class="n">set</span><span class="o">).</span><span class="n">save</span>
+
+<span class="c1">// Seq/List
+</span><span class="c1"></span><span class="k">val</span> <span class="n">seq</span> <span class="k">=</span> <span class="nc">Seq</span><span class="o">(</span><span class="s">&#34;golf&#34;</span><span class="o">,</span> <span class="s">&#34;chess&#34;</span><span class="o">)</span>
+<span class="nc">Person</span><span class="o">.</span><span class="n">hobbies</span><span class="o">(</span><span class="n">seq</span><span class="o">).</span><span class="n">save</span>
+</code></pre></div><h3 id="optional-values">Optional values</h3>
+<p>An optional value (<code>optionalLikes</code>) from a form submission for instance can be applied to an optional attribute (<code>likes$</code>):</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">(</span><span class="n">aName</span><span class="o">).</span><span class="n">likes$</span><span class="o">(</span><span class="n">optionalLikes</span><span class="o">).</span><span class="n">age</span><span class="o">(</span><span class="n">anAge</span><span class="o">).</span><span class="n">save</span>
+</code></pre></div><p>When this molecule is saved, only 2 facts will be asserted:</p>
+<pre><code>johnId    :Person/name    &quot;John&quot;
+johnId    :Person/age     24
+</code></pre><p>This is different from SQL where we would save a NULL value in a <code>likes</code> column.</p>
+<p>Molecule lets us fetch data sets with optional facts asserted for an attribute as optional values:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">likes$</span><span class="o">.</span><span class="n">age</span><span class="o">.</span><span class="n">get</span> <span class="o">===</span> <span class="nc">List</span><span class="o">(</span>
+  <span class="o">(</span><span class="s">&#34;John&#34;</span><span class="o">,</span> <span class="nc">None</span><span class="o">,</span> <span class="mi">24</span><span class="o">),</span>
+  <span class="o">(</span><span class="s">&#34;Pete&#34;</span><span class="o">,</span> <span class="nc">Some</span><span class="o">(</span><span class="s">&#34;sushi&#34;</span><span class="o">),</span> <span class="mi">55</span><span class="o">)</span>
+<span class="o">)</span>
+</code></pre></div><p>If we specifically want to find Persons that have no <code>likes</code> asserted we can say</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">likes_</span><span class="o">(</span><span class="n">nil</span><span class="o">).</span><span class="n">age</span><span class="o">.</span><span class="n">get</span> <span class="o">===</span> <span class="nc">List</span><span class="o">(</span>
+  <span class="o">(</span><span class="s">&#34;John&#34;</span><span class="o">,</span> <span class="mi">24</span><span class="o">)</span>
+  <span class="c1">// Pete not returned since he likes something
+</span><span class="c1"></span><span class="o">)</span>
+</code></pre></div><p>.. or</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">likes$</span><span class="o">(</span><span class="nc">None</span><span class="o">).</span><span class="n">age</span><span class="o">.</span><span class="n">get</span> <span class="o">===</span> <span class="nc">List</span><span class="o">(</span>
+  <span class="o">(</span><span class="s">&#34;John&#34;</span><span class="o">,</span> <span class="nc">None</span><span class="o">,</span> <span class="mi">24</span><span class="o">)</span>
+  <span class="c1">// Pete not returned since he likes something
+</span><span class="c1"></span><span class="o">)</span>
+</code></pre></div><h2 id="insert">Insert</h2>
+<p>Data can be inserted by making a molecule that matches the values of each row.</p>
+<p>One row of data can be applied directly with matching arguments</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">likes</span><span class="o">.</span><span class="n">age</span><span class="o">.</span><span class="n">insert</span><span class="o">(</span><span class="s">&#34;John&#34;</span><span class="o">,</span> <span class="s">&#34;pizza&#34;</span><span class="o">,</span> <span class="mi">24</span><span class="o">)</span>
+</code></pre></div><p>Multiple rows of data can be applied as any <code>Iterable</code> of tuples of data each matching the molecule attributes:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">likes</span><span class="o">.</span><span class="n">age</span> <span class="n">insert</span> <span class="nc">List</span><span class="o">(</span>
+  <span class="o">(</span><span class="s">&#34;Lisa&#34;</span><span class="o">,</span> <span class="s">&#34;pizza&#34;</span><span class="o">,</span> <span class="mi">20</span><span class="o">),</span>
+  <span class="o">(</span><span class="s">&#34;Ben&#34;</span><span class="o">,</span> <span class="s">&#34;pasta&#34;</span><span class="o">,</span> <span class="mi">25</span><span class="o">)</span>
+<span class="o">)</span>
+</code></pre></div><h3 id="type-safety-1">Type-safety</h3>
+<p>Type-safety is guaranteed since the type of each tuple of data is enforced by the compiler to conform to the molecule type.</p>
+<p>If the data set is not accepted type-wise, then either the molecule needs to be adjusted to match the type of data rows. Or, the data set might be irregular and have some variable size of tuples or varying types within tuples that need to be sorted out.</p>
+<h3 id="asynchronous-insert">Asynchronous insert</h3>
+<p>All transactional operators have an asynchronous equivalent. Inserting data asynchronously with <code>insertAsync</code> uses Datomic&rsquo;s asynchronous API and returns a <code>Future</code> with a <code>TxReport</code>.</p>
+<p>Here, we insert data as argument list/tuples asynchronously:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="c1">// Insert single row of data with individual args
+</span><span class="c1"></span><span class="k">val</span> <span class="n">singleInsertFuture</span><span class="k">:</span> <span class="kt">Future</span><span class="o">[</span><span class="kt">TxReport</span><span class="o">]</span> <span class="k">=</span> <span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">likes</span><span class="o">.</span><span class="n">age</span><span class="o">.</span><span class="n">insertAsync</span><span class="o">(</span><span class="s">&#34;John&#34;</span><span class="o">,</span> <span class="s">&#34;pizza&#34;</span><span class="o">,</span> <span class="mi">24</span><span class="o">)</span>
+
+<span class="c1">// Insert Iterable of multiple rows of data
+</span><span class="c1"></span><span class="k">val</span> <span class="n">multipleInsertFuture</span><span class="k">:</span> <span class="kt">Future</span><span class="o">[</span><span class="kt">TxReport</span><span class="o">]</span> <span class="k">=</span> <span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">likes</span><span class="o">.</span><span class="n">age</span> <span class="n">insertAsync</span> <span class="nc">List</span><span class="o">(</span>
+  <span class="o">(</span><span class="s">&#34;Lisa&#34;</span><span class="o">,</span> <span class="s">&#34;pizza&#34;</span><span class="o">,</span> <span class="mi">20</span><span class="o">),</span>
+  <span class="o">(</span><span class="s">&#34;Ben&#34;</span><span class="o">,</span> <span class="s">&#34;pasta&#34;</span><span class="o">,</span> <span class="mi">25</span><span class="o">)</span>
+<span class="o">)</span>
+
+<span class="k">for</span> <span class="o">{</span>
+  <span class="k">_</span> <span class="k">&lt;-</span> <span class="n">singleInsertFuture</span>
+  <span class="k">_</span> <span class="k">&lt;-</span> <span class="n">multipleInsertFuture</span>
+  <span class="n">result</span> <span class="k">&lt;-</span> <span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">likes</span><span class="o">.</span><span class="n">age</span><span class="o">.</span><span class="n">getAsync</span>
+<span class="o">}</span> <span class="k">yield</span> <span class="o">{</span>
+  <span class="c1">// Both inserts applied
+</span><span class="c1"></span>  <span class="n">result</span> <span class="o">===</span> <span class="nc">List</span><span class="o">(</span>
+    <span class="o">(</span><span class="s">&#34;John&#34;</span><span class="o">,</span> <span class="s">&#34;pizza&#34;</span><span class="o">,</span> <span class="mi">24</span><span class="o">),</span>
+    <span class="o">(</span><span class="s">&#34;Lisa&#34;</span><span class="o">,</span> <span class="s">&#34;pizza&#34;</span><span class="o">,</span> <span class="mi">20</span><span class="o">),</span>
+    <span class="o">(</span><span class="s">&#34;Ben&#34;</span><span class="o">,</span> <span class="s">&#34;pasta&#34;</span><span class="o">,</span> <span class="mi">25</span><span class="o">)</span>
+  <span class="o">)</span>
+<span class="o">}</span>
+</code></pre></div><p>For brevity, the following examples use the synchronous <code>save</code> operation.</p>
+<h3 id="optional-values-1">Optional values</h3>
+<p><code>null</code> values are not allowed as data-input values whereas Optional values are:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">likes$</span><span class="o">.</span><span class="n">age</span> <span class="n">insert</span> <span class="nc">List</span><span class="o">(</span>
+  <span class="o">(</span><span class="s">&#34;John&#34;</span><span class="o">,</span> <span class="nc">None</span><span class="o">,</span> <span class="mi">24</span><span class="o">),</span>
+  <span class="o">(</span><span class="s">&#34;Pete&#34;</span><span class="o">,</span> <span class="nc">Some</span><span class="o">(</span><span class="s">&#34;sushi&#34;</span><span class="o">),</span> <span class="mi">55</span><span class="o">)</span>
+<span class="o">)</span>
+</code></pre></div><p>As with <code>save</code>, None values are simply not asserted. No <code>likes</code> value is asserted for John in the example above.</p>
+<h3 id="related-data-1">Related data</h3>
+<p>Related data can be inserted</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">likes$</span><span class="o">.</span><span class="n">age</span><span class="o">.</span><span class="nc">Home</span><span class="o">.</span><span class="n">street</span><span class="o">.</span><span class="n">city</span> <span class="n">insert</span> <span class="nc">List</span><span class="o">(</span>
+  <span class="o">(</span><span class="s">&#34;John&#34;</span><span class="o">,</span> <span class="nc">None</span><span class="o">,</span> <span class="mi">24</span><span class="o">,</span> <span class="s">&#34;5th Avenue&#34;</span><span class="o">,</span> <span class="s">&#34;Boston&#34;</span><span class="o">),</span>
+  <span class="o">(</span><span class="s">&#34;Pete&#34;</span><span class="o">,</span> <span class="nc">Some</span><span class="o">(</span><span class="s">&#34;sushi&#34;</span><span class="o">),</span> <span class="mi">55</span><span class="o">,</span> <span class="s">&#34;Sunset Boulevard 1042&#34;</span><span class="o">,</span> <span class="s">&#34;Foxville&#34;</span><span class="o">)</span>
+<span class="o">)</span>
+</code></pre></div><p>When the John entity is created, a 5th Avenue Address entity is also created and a relationship from John to that Address entity is created. The same for Pete, and so on&hellip;</p>
+<h3 id="composite-data">Composite data</h3>
+<p>Data with associative relationships can be inserted with a <a href="../../code/relationships/#composite-molecules">Composite molecule</a>.</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Article</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">author</span> <span class="o">+</span> <span class="nc">Tag</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">weight</span> <span class="n">insert</span> <span class="nc">List</span><span class="o">(</span>
+  <span class="o">((</span><span class="s">&#34;Battle of Waterloo&#34;</span><span class="o">,</span> <span class="s">&#34;Ben Bridge&#34;</span><span class="o">),</span> <span class="o">(</span><span class="s">&#34;serious&#34;</span><span class="o">,</span> <span class="mi">5</span><span class="o">)),</span>
+  <span class="o">((</span><span class="s">&#34;Best jokes ever&#34;</span><span class="o">,</span> <span class="s">&#34;John Cleese&#34;</span><span class="o">),</span> <span class="o">(</span><span class="s">&#34;fun&#34;</span><span class="o">,</span> <span class="mi">3</span><span class="o">))</span>
+<span class="o">)</span>
+</code></pre></div><p>Note how each sub-molecule type-safely corresponds to each sub-tuple of data.</p>
+<p>Up to 22 sub-molecules can be associated in a single Composite which allows for wide data sets to be saved with up to 22 x 22 = 484 attributes per row of data!</p>
+<h3 id="data-variables">Data variables</h3>
+<p>Likewise we might often have the whole data set saved in a variable that we can insert too:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">val</span> <span class="n">data</span> <span class="k">=</span> <span class="nc">List</span><span class="o">(</span>
+  <span class="o">(</span><span class="s">&#34;John&#34;</span><span class="o">,</span> <span class="nc">None</span><span class="o">,</span> <span class="mi">24</span><span class="o">),</span>
+  <span class="o">(</span><span class="s">&#34;Pete&#34;</span><span class="o">,</span> <span class="nc">Some</span><span class="o">(</span><span class="s">&#34;sushi&#34;</span><span class="o">),</span> <span class="mi">55</span><span class="o">)</span>
+<span class="o">)</span>
+<span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">likes$</span><span class="o">.</span><span class="n">age</span> <span class="n">insert</span> <span class="n">data</span>
+</code></pre></div><h3 id="entity-ids">Entity ids</h3>
+<p>If we have some previously saved entities we can also insert their ids. Here we save some Address entity ids with the ref attribute <code>home</code>:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">val</span> <span class="n">fifthAv</span> <span class="k">=</span> <span class="nc">Addr</span><span class="o">.</span><span class="n">street</span><span class="o">(</span><span class="s">&#34;5th Avenue&#34;</span><span class="o">).</span><span class="n">city</span><span class="o">(</span><span class="s">&#34;Boston&#34;</span><span class="o">).</span><span class="n">save</span><span class="o">.</span><span class="n">eid</span>
+<span class="k">val</span> <span class="n">sunsetB</span> <span class="k">=</span> <span class="nc">Addr</span><span class="o">.</span><span class="n">street</span><span class="o">(</span><span class="s">&#34;Sunset Boulevard 1042&#34;</span><span class="o">).</span><span class="n">city</span><span class="o">(</span><span class="s">&#34;Foxville&#34;</span><span class="o">).</span><span class="n">save</span><span class="o">.</span><span class="n">eid</span>
+
+<span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">likes$</span><span class="o">.</span><span class="n">age</span><span class="o">.</span><span class="n">home</span> <span class="n">insert</span> <span class="nc">List</span><span class="o">(</span>
+  <span class="o">(</span><span class="s">&#34;John&#34;</span><span class="o">,</span> <span class="nc">Some</span><span class="o">(</span><span class="s">&#34;pizza&#34;</span><span class="o">),</span> <span class="mi">24</span><span class="o">,</span> <span class="n">fifthAv</span><span class="o">),</span>
+  <span class="o">(</span><span class="s">&#34;Lisa&#34;</span><span class="o">,</span> <span class="nc">None</span><span class="o">,</span> <span class="mi">20</span><span class="o">,</span> <span class="n">fifthAv</span><span class="o">),</span>
+  <span class="o">(</span><span class="s">&#34;Ben&#34;</span><span class="o">,</span> <span class="nc">Some</span><span class="o">(</span><span class="s">&#34;pasta&#34;</span><span class="o">),</span> <span class="mi">25</span><span class="o">,</span> <span class="n">fifthAv</span><span class="o">),</span>
+  <span class="o">(</span><span class="s">&#34;Pete&#34;</span><span class="o">,</span> <span class="nc">Some</span><span class="o">(</span><span class="s">&#34;sushi&#34;</span><span class="o">),</span> <span class="mi">55</span><span class="o">,</span> <span class="n">sunsetB</span><span class="o">)</span>
+<span class="o">)</span>
+</code></pre></div><h3 id="insert-molecule-as-template">Insert-molecule as template</h3>
+<p>We can assign an Insert-molecule to a variable in order to re-use it as a temple to insert data with various inputs.</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="c1">// Insert-molecule
+</span><span class="c1"></span><span class="k">val</span> <span class="n">insertPerson</span> <span class="k">=</span> <span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">likes</span><span class="o">.</span><span class="n">age</span><span class="o">.</span><span class="n">insert</span>
+
+<span class="c1">// Insert 3 persons re-using the insert-molecule
+</span><span class="c1"></span><span class="n">insertPerson</span><span class="o">(</span><span class="s">&#34;John&#34;</span><span class="o">,</span> <span class="s">&#34;pizza&#34;</span><span class="o">,</span> <span class="mi">24</span><span class="o">)</span>
+<span class="n">insertPerson</span><span class="o">(</span><span class="s">&#34;Lisa&#34;</span><span class="o">,</span> <span class="s">&#34;pizza&#34;</span><span class="o">,</span> <span class="mi">20</span><span class="o">)</span>
+<span class="n">insertPerson</span><span class="o">(</span><span class="s">&#34;Ben&#34;</span><span class="o">,</span> <span class="s">&#34;pasta&#34;</span><span class="o">,</span> <span class="mi">25</span><span class="o">)</span>
+</code></pre></div><p>We can use insert-molecules with data assigned to variables too:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">val</span> <span class="n">insertPerson</span> <span class="k">=</span> <span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">likes</span><span class="o">.</span><span class="n">age</span><span class="o">.</span><span class="n">insert</span>
+
+<span class="k">val</span> <span class="n">personsData</span> <span class="k">=</span> <span class="nc">List</span><span class="o">(</span>
+  <span class="o">(</span><span class="s">&#34;John&#34;</span><span class="o">,</span> <span class="s">&#34;pizza&#34;</span><span class="o">,</span> <span class="mi">24</span><span class="o">),</span>
+  <span class="o">(</span><span class="s">&#34;Lisa&#34;</span><span class="o">,</span> <span class="s">&#34;pizza&#34;</span><span class="o">,</span> <span class="mi">20</span><span class="o">),</span>
+  <span class="o">(</span><span class="s">&#34;Ben&#34;</span><span class="o">,</span> <span class="s">&#34;pasta&#34;</span><span class="o">,</span> <span class="mi">25</span><span class="o">)</span>
+<span class="o">)</span>
+
+<span class="c1">// Re-use insert-molecules with larger data sets 
+</span><span class="c1"></span><span class="n">insertPerson</span><span class="o">(</span><span class="n">personsData</span><span class="o">)</span>
+</code></pre></div><h2 id="update">Update</h2>
+<p>An &ldquo;update&rdquo; is a two-step process in Datomic:</p>
+<ol>
+<li>Retract old fact</li>
+<li>Assert new fact</li>
+</ol>
+<p>Datomic doesn&rsquo;t overwrite data. &ldquo;Retract&rdquo; is a statement that says &ldquo;this data is no longer current&rdquo; which means that it won&rsquo;t turn up when you query for it <em>as of now</em>. If you query for it <em>as of before</em> you will see it!</p>
+<p>Being able to see how data develops over time is a brillant core feature of Datomic. We don&rsquo;t need to administrate cumbersome historical changes manually. Auditing is built-in at the core of Datomic.</p>
+<h3 id="cardinality-one">Cardinality one</h3>
+<p>We need an entity id to update data so we get it first with the special generic Molecule attribute <code>e</code> (for <em><strong>e</strong>ntity</em>):</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">val</span> <span class="n">johnId</span> <span class="k">=</span> <span class="nc">Person</span><span class="o">.</span><span class="n">e</span><span class="o">.</span><span class="n">name_</span><span class="o">(</span><span class="s">&#34;John&#34;</span><span class="o">).</span><span class="n">get</span><span class="o">.</span><span class="n">head</span>
+</code></pre></div><h4 id="applyvalue"><code>apply(&lt;value&gt;)</code></h4>
+<p>Now we can update the entity John&rsquo;s age by applying the new value 25 to the <code>age</code> attribute:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">(</span><span class="n">johnId</span><span class="o">).</span><span class="n">age</span><span class="o">(</span><span class="mi">25</span><span class="o">).</span><span class="n">update</span>
+</code></pre></div><p>Molecule uses the <code>johnId</code> to</p>
+<ol>
+<li>find the current <code>age</code> attribute value (24) and retract that value</li>
+<li>assert the new <code>age</code> attribute value 25</li>
+</ol>
+<h4 id="apply"><code>apply()</code></h4>
+<p>We can retract (&ldquo;delete&rdquo;) an attribute value by applying no value</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">(</span><span class="n">johnId</span><span class="o">).</span><span class="n">age</span><span class="o">().</span><span class="n">update</span>
+</code></pre></div><p>This will retract the <code>age</code> value 25 of the John entity.</p>
+<h3 id="cardinality-many">Cardinality-many</h3>
+<p>A cardinality many attribute like <code>hobbies</code> holds a <code>Set</code> of values:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">(</span><span class="n">johnId</span><span class="o">).</span><span class="n">hobbies</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">head</span> <span class="o">===</span> <span class="nc">Set</span><span class="o">(</span><span class="s">&#34;golf&#34;</span><span class="o">,</span> <span class="s">&#34;cars&#34;</span><span class="o">)</span>
+</code></pre></div><h3 id="only-unique-values">Only unique values</h3>
+<p>Since cardinality many attributes hold Sets, Molecule rejects duplicate values in all cardinality-many operations shown below.</p>
+<p>Duplicate variables or primitive values will throw a compile-time error. Duplicate values that can only be discovered at runtime will throw an IllegalArgumentException at runtime.</p>
+<h3 id="operations-on-card-many-attrs">Operations on card-many attrs</h3>
+<p>All operations generally accepts varargs or <code>Lists</code> of the type of the attribute. So even if the attribute holds a <code>Set</code> of values we can also supply a <code>Seq</code> of values.</p>
+<h4 id="assert-add"><code>assert</code> (&ldquo;add&rdquo;)</h4>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="c1">// Assert vararg values
+</span><span class="c1"></span><span class="nc">Person</span><span class="o">(</span><span class="n">johnId</span><span class="o">).</span><span class="n">hobbies</span><span class="o">.</span><span class="n">assert</span><span class="o">(</span><span class="s">&#34;walks&#34;</span><span class="o">,</span> <span class="s">&#34;jogging&#34;</span><span class="o">).</span><span class="n">update</span>
+<span class="nc">Person</span><span class="o">(</span><span class="n">johnId</span><span class="o">).</span><span class="n">hobbies</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">head</span> <span class="o">===</span> <span class="nc">Set</span><span class="o">(</span><span class="s">&#34;golf&#34;</span><span class="o">,</span> <span class="s">&#34;cars&#34;</span><span class="o">,</span> <span class="s">&#34;walks&#34;</span><span class="o">,</span> <span class="s">&#34;jogging&#34;</span><span class="o">)</span>
+
+<span class="c1">// Add Set of values
+</span><span class="c1"></span><span class="nc">Person</span><span class="o">(</span><span class="n">johnId</span><span class="o">).</span><span class="n">hobbies</span><span class="o">.</span><span class="n">assert</span><span class="o">(</span><span class="nc">Set</span><span class="o">(</span><span class="s">&#34;skating&#34;</span><span class="o">,</span> <span class="s">&#34;biking&#34;</span><span class="o">)).</span><span class="n">update</span>
+<span class="nc">Person</span><span class="o">(</span><span class="n">johnId</span><span class="o">).</span><span class="n">hobbies</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">head</span> <span class="o">===</span> <span class="nc">Set</span><span class="o">(</span><span class="s">&#34;golf&#34;</span><span class="o">,</span> <span class="s">&#34;cars&#34;</span><span class="o">,</span> <span class="s">&#34;walks&#34;</span><span class="o">,</span> <span class="s">&#34;jogging&#34;</span><span class="o">,</span> <span class="s">&#34;skating&#34;</span><span class="o">,</span> <span class="s">&#34;biking&#34;</span><span class="o">)</span>
+</code></pre></div><h4 id="replace-retract--assert"><code>replace</code> (retract + assert)</h4>
+<p>Since Cardinality-many attributes have multiple values we need to specify which of those values we want to replace:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="c1">// Cardinality-many attribute value updated
+</span><span class="c1"></span><span class="nc">Person</span><span class="o">(</span><span class="n">johnId</span><span class="o">).</span><span class="n">hobbies</span><span class="o">.</span><span class="n">replace</span><span class="o">(</span><span class="s">&#34;skating&#34;</span> <span class="o">-&gt;</span> <span class="s">&#34;surfing&#34;</span><span class="o">).</span><span class="n">update</span>
+<span class="nc">Person</span><span class="o">(</span><span class="n">johnId</span><span class="o">).</span><span class="n">hobbies</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">head</span> <span class="o">===</span> <span class="nc">Set</span><span class="o">(</span><span class="s">&#34;golf&#34;</span><span class="o">,</span> <span class="s">&#34;cars&#34;</span><span class="o">,</span> <span class="s">&#34;walks&#34;</span><span class="o">,</span> <span class="s">&#34;jogging&#34;</span><span class="o">,</span> <span class="s">&#34;surfing&#34;</span><span class="o">,</span> <span class="s">&#34;biking&#34;</span><span class="o">)</span>
+</code></pre></div><p>Here we tell that the &ldquo;skating&rdquo; value should now be &ldquo;surfing&rdquo;. The old value is retracted and the new value asserted so that we can go back in time and see what the values were before our update.</p>
+<p>Update several values in one go</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">(</span><span class="n">johnId</span><span class="o">).</span><span class="n">hobbies</span><span class="o">(</span>
+  <span class="s">&#34;golf&#34;</span> <span class="o">-&gt;</span> <span class="s">&#34;badminton&#34;</span><span class="o">,</span>
+  <span class="s">&#34;cars&#34;</span> <span class="o">-&gt;</span> <span class="s">&#34;trains&#34;</span><span class="o">).</span><span class="n">update</span>
+<span class="nc">Person</span><span class="o">(</span><span class="n">johnId</span><span class="o">).</span><span class="n">hobbies</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">head</span> <span class="o">===</span> <span class="nc">Set</span><span class="o">(</span><span class="s">&#34;badminton&#34;</span><span class="o">,</span> <span class="s">&#34;trains&#34;</span><span class="o">,</span> <span class="s">&#34;walks&#34;</span><span class="o">,</span> <span class="s">&#34;jogging&#34;</span><span class="o">,</span> <span class="s">&#34;surfing&#34;</span><span class="o">,</span> <span class="s">&#34;biking&#34;</span><span class="o">)</span>
+</code></pre></div><h4 id="retract"><code>retract</code></h4>
+<p>We can retract one or more values from the set of values</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">(</span><span class="n">johnId</span><span class="o">).</span><span class="n">hobbies</span><span class="o">.</span><span class="n">retract</span><span class="o">(</span><span class="s">&#34;badminton&#34;</span><span class="o">).</span><span class="n">update</span>
+<span class="nc">Person</span><span class="o">(</span><span class="n">johnId</span><span class="o">).</span><span class="n">hobbies</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">head</span> <span class="o">===</span> <span class="nc">Set</span><span class="o">(</span><span class="s">&#34;trains&#34;</span><span class="o">,</span> <span class="s">&#34;walks&#34;</span><span class="o">,</span> <span class="s">&#34;jogging&#34;</span><span class="o">,</span> <span class="s">&#34;surfing&#34;</span><span class="o">,</span> <span class="s">&#34;biking&#34;</span><span class="o">)</span>
+
+<span class="nc">Person</span><span class="o">(</span><span class="n">johnId</span><span class="o">).</span><span class="n">hobbies</span><span class="o">.</span><span class="n">retract</span><span class="o">(</span><span class="nc">List</span><span class="o">(</span><span class="s">&#34;walks&#34;</span><span class="o">,</span> <span class="s">&#34;surfing&#34;</span><span class="o">)).</span><span class="n">update</span>
+<span class="nc">Person</span><span class="o">(</span><span class="n">johnId</span><span class="o">).</span><span class="n">hobbies</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">head</span> <span class="o">===</span> <span class="nc">Set</span><span class="o">(</span><span class="s">&#34;trains&#34;</span><span class="o">,</span> <span class="s">&#34;jogging&#34;</span><span class="o">,</span> <span class="s">&#34;biking&#34;</span><span class="o">)</span>
+</code></pre></div><p>The retracted facts can still be tracked in the history of the database.</p>
+<h4 id="apply-1"><code>apply</code></h4>
+<p>As with cardinality one attributes we can <code>apply</code> completely new values to an attribute. All old values are retracted. It&rsquo;s like an &ldquo;overwrite all&rdquo; operation except that we can see the retracted old values in the history of the database.</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">(</span><span class="n">johnId</span><span class="o">).</span><span class="n">hobbies</span><span class="o">(</span><span class="s">&#34;meditaion&#34;</span><span class="o">).</span><span class="n">update</span>
+<span class="nc">Person</span><span class="o">(</span><span class="n">johnId</span><span class="o">).</span><span class="n">hobbies</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">head</span> <span class="o">===</span> <span class="nc">Set</span><span class="o">(</span><span class="s">&#34;meditation&#34;</span><span class="o">)</span>
+</code></pre></div><h4 id="apply-2"><code>apply()</code></h4>
+<p>Applying nothing (empty parenthesises) retracts all values of an attribute</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">(</span><span class="n">johnId</span><span class="o">).</span><span class="n">hobbies</span><span class="o">().</span><span class="n">update</span>
+<span class="nc">Person</span><span class="o">(</span><span class="n">johnId</span><span class="o">).</span><span class="n">hobbies</span><span class="o">.</span><span class="n">get</span> <span class="o">===</span> <span class="nc">Nil</span>
+</code></pre></div><h3 id="update-multiple-entities">Update multiple entities</h3>
+<p>Update multiple entities in one transaction so that they have the same values:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="c1">// Both Bob and Ann turned 25 and became cool club members
+</span><span class="c1"></span><span class="nc">Person</span><span class="o">(</span><span class="n">bobId</span><span class="o">,</span> <span class="n">annId</span><span class="o">).</span><span class="n">age</span><span class="o">(</span><span class="mi">25</span><span class="o">).</span><span class="n">memberOf</span><span class="o">(</span><span class="s">&#34;cool club&#34;</span><span class="o">).</span><span class="n">update</span>
+</code></pre></div><h3 id="asynchronous-update">Asynchronous update</h3>
+<p>All transactional operators have an asynchronous equivalent. Updating data asynchronously with <code>updateAsync</code> uses Datomic&rsquo;s asynchronous API and returns a <code>Future</code> with a <code>TxReport</code>.</p>
+<p>Here, we map over the result of updating an entity asynchronously:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">for</span> <span class="o">{</span>
+  <span class="c1">// Initial data
+</span><span class="c1"></span>  <span class="n">saveTx</span> <span class="k">&lt;-</span> <span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">age</span> <span class="n">insertAsync</span> <span class="nc">List</span><span class="o">((</span><span class="s">&#34;Ben&#34;</span><span class="o">,</span> <span class="mi">25</span><span class="o">),</span> <span class="o">(</span><span class="s">&#34;Liz&#34;</span><span class="o">,</span> <span class="mi">23</span><span class="o">))</span>
+  <span class="nc">List</span><span class="o">(</span><span class="n">ben</span><span class="o">,</span> <span class="n">liz</span><span class="o">)</span> <span class="k">=</span> <span class="n">saveTx</span><span class="o">.</span><span class="n">eids</span>
+
+  <span class="c1">// Update Liz&#39; age
+</span><span class="c1"></span>  <span class="n">updateTx</span> <span class="k">&lt;-</span> <span class="nc">Ns</span><span class="o">(</span><span class="n">liz</span><span class="o">).</span><span class="n">age</span><span class="o">(</span><span class="mi">24</span><span class="o">).</span><span class="n">updateAsync</span>
+
+  <span class="c1">// Get result
+</span><span class="c1"></span>  <span class="n">result</span> <span class="k">&lt;-</span> <span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">age</span><span class="o">.</span><span class="n">getAsync</span>
+<span class="o">}</span> <span class="k">yield</span> <span class="o">{</span>
+  <span class="c1">// Liz had a birthday
+</span><span class="c1"></span>  <span class="n">result</span> <span class="o">===</span> <span class="nc">List</span><span class="o">((</span><span class="s">&#34;Ben&#34;</span><span class="o">,</span> <span class="mi">25</span><span class="o">),</span> <span class="o">(</span><span class="s">&#34;Liz&#34;</span><span class="o">,</span> <span class="mi">24</span><span class="o">))</span>
+<span class="o">}</span>
+</code></pre></div><h3 id="updating-multiple-entities-asynchronously">Updating multiple entities asynchronously</h3>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="c1">// Initial data
+</span><span class="c1"></span><span class="nc">Ns</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">int</span> <span class="n">insertAsync</span> <span class="nc">List</span><span class="o">(</span>
+  <span class="o">(</span><span class="s">&#34;a&#34;</span><span class="o">,</span> <span class="mi">1</span><span class="o">),</span>
+  <span class="o">(</span><span class="s">&#34;b&#34;</span><span class="o">,</span> <span class="mi">2</span><span class="o">),</span>
+  <span class="o">(</span><span class="s">&#34;c&#34;</span><span class="o">,</span> <span class="mi">3</span><span class="o">),</span>
+  <span class="o">(</span><span class="s">&#34;d&#34;</span><span class="o">,</span> <span class="mi">4</span><span class="o">)</span>
+<span class="o">)</span> <span class="n">map</span> <span class="o">{</span> <span class="n">tx</span> <span class="k">=&gt;</span> <span class="c1">// tx report from successful insert transaction
+</span><span class="c1"></span>  <span class="c1">// 4 inserted entities
+</span><span class="c1"></span>  <span class="k">val</span> <span class="nc">List</span><span class="o">(</span><span class="n">a</span><span class="o">,</span> <span class="n">b</span><span class="o">,</span> <span class="n">c</span><span class="o">,</span> <span class="n">d</span><span class="o">)</span> <span class="k">=</span> <span class="n">tx</span><span class="o">.</span><span class="n">eids</span>
+  <span class="nc">Ns</span><span class="o">.</span><span class="n">int</span><span class="o">.</span><span class="n">get</span> <span class="o">===</span> <span class="nc">List</span><span class="o">(</span>
+    <span class="o">(</span><span class="s">&#34;a&#34;</span><span class="o">,</span> <span class="mi">1</span><span class="o">),</span>
+    <span class="o">(</span><span class="s">&#34;b&#34;</span><span class="o">,</span> <span class="mi">2</span><span class="o">),</span>
+    <span class="o">(</span><span class="s">&#34;c&#34;</span><span class="o">,</span> <span class="mi">3</span><span class="o">),</span>
+    <span class="o">(</span><span class="s">&#34;d&#34;</span><span class="o">,</span> <span class="mi">4</span><span class="o">)</span>
+  <span class="o">)</span>
+
+  <span class="c1">// Update multiple entities asynchronously
+</span><span class="c1"></span>  <span class="nc">Ns</span><span class="o">(</span><span class="n">a</span><span class="o">,</span> <span class="n">b</span><span class="o">).</span><span class="n">int</span><span class="o">(</span><span class="mi">5</span><span class="o">).</span><span class="n">updateAsync</span><span class="o">.</span><span class="n">map</span> <span class="o">{</span> <span class="n">tx2</span> <span class="k">=&gt;</span> <span class="c1">// tx report from successful update transaction
+</span><span class="c1"></span>    <span class="c1">// Current data
+</span><span class="c1"></span>    <span class="nc">Ns</span><span class="o">.</span><span class="n">int</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">sorted</span> <span class="o">===</span> <span class="nc">List</span><span class="o">(</span>
+      <span class="o">(</span><span class="s">&#34;a&#34;</span><span class="o">,</span> <span class="mi">5</span><span class="o">),</span>
+      <span class="o">(</span><span class="s">&#34;b&#34;</span><span class="o">,</span> <span class="mi">5</span><span class="o">),</span>
+      <span class="o">(</span><span class="s">&#34;c&#34;</span><span class="o">,</span> <span class="mi">3</span><span class="o">),</span>
+      <span class="o">(</span><span class="s">&#34;d&#34;</span><span class="o">,</span> <span class="mi">4</span><span class="o">)</span>
+    <span class="o">)</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><h2 id="retract-1">Retract</h2>
+<p>In Datomic, retracting a fact saves a Datom with the fifth component <code>op</code> set to <code>false</code>.</p>
+<p>Retracted datoms will not show up in queries of the current data. But if you query historical data with for instance <a href="../../code/time/#asof">asOf</a> you&rsquo;ll see what the value was before it was retracted. This mechanism provides Datomic with built-in auditing of all of its data since nothing is deleted!</p>
+<h3 id="retract-facts">Retract facts</h3>
+<p>To retract individual attributre values apply empty parenthesises to the attribute we want to retract and then update the molecule:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Community</span><span class="o">(</span><span class="n">belltownId</span><span class="o">).</span><span class="n">name</span><span class="o">().</span><span class="n">category</span><span class="o">().</span><span class="n">update</span>
+</code></pre></div><p>Here we retracted the <code>name</code> and <code>category</code> attribute values of the Belltown Community entity:</p>
+<h3 id="retract-an-entity">Retract an entity</h3>
+<p>To delete a whole entity with all its attribute values we can call <code>retract</code> on a <code>Long</code> entity id</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="n">johnId</span><span class="o">.</span><span class="n">retract</span>
+</code></pre></div><p>All attributes having the entity id <code>johnId</code> are retracted.</p>
+<h3 id="add-tx-meta-data-to-retraction-on-entity-id">Add Tx meta data to retraction on entity id</h3>
+<p>Associate transaction meta data to a retraction on an entity id</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="n">johnId</span><span class="o">.</span><span class="nc">Tx</span><span class="o">(</span><span class="nc">MyUseCase</span><span class="o">.</span><span class="n">name</span><span class="o">(</span><span class="s">&#34;Terminate membership&#34;</span><span class="o">)).</span><span class="n">retract</span>
+</code></pre></div><p>We can then afterwards use the tx meta data to get information of retracted data:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="c1">// Who got their membership terminated and when?
+</span><span class="c1"></span><span class="nc">Person</span><span class="o">.</span><span class="n">e</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">op</span><span class="o">(</span><span class="kc">false</span><span class="o">).</span><span class="nc">Tx</span><span class="o">(</span><span class="nc">MyUseCase</span><span class="o">.</span><span class="n">name_</span><span class="o">(</span><span class="s">&#34;Termminate membership&#34;</span><span class="o">)).</span><span class="n">getHistory</span> <span class="o">===</span> <span class="nc">List</span><span class="o">(</span>
+  <span class="o">(</span><span class="n">johnId</span><span class="o">,</span> <span class="s">&#34;John&#34;</span><span class="o">,</span> <span class="n">t3</span><span class="o">,</span> <span class="kc">false</span><span class="o">)</span> <span class="c1">// John terminated his membership at transaction t3 and was retracted
+</span><span class="c1"></span><span class="o">)</span>
+</code></pre></div><h3 id="retract-multiple-entities">Retract multiple entities</h3>
+<p>Alternatively we can use the <code>retract</code> method (available via <code>import molecule.imports._</code>)</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="n">retract</span><span class="o">(</span><span class="n">johnId</span><span class="o">)</span>
+</code></pre></div><p>This <code>retract</code> method can also retract multiple entities</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">val</span> <span class="n">eids</span><span class="k">:</span> <span class="kt">List</span><span class="o">[</span><span class="kt">Long</span><span class="o">]</span> <span class="k">=</span> <span class="c1">// some entity ids 
+</span><span class="c1"></span>
+<span class="c1">// Retract all supplied entity ids
+</span><span class="c1"></span><span class="n">retract</span><span class="o">(</span><span class="n">eids</span><span class="o">)</span>
+</code></pre></div><h3 id="add-tx-meta-data-to-retraction-of-multiple-entity-ids">Add Tx meta data to retraction of multiple entity ids</h3>
+<p>.. and even associate transaction meta data to the retraction</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="c1">// Retract multiple entity ids and some tx meta data about the transaction
+</span><span class="c1"></span><span class="n">retract</span><span class="o">(</span><span class="n">eids</span><span class="o">,</span> <span class="nc">MyUseCase</span><span class="o">.</span><span class="n">name</span><span class="o">(</span><span class="s">&#34;Terminate membership&#34;</span><span class="o">))</span>
+</code></pre></div><p>Again, we can then afterwards use the tx meta data to get information of retracted data:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="c1">// Who got their membership terminated and when?
+</span><span class="c1"></span><span class="nc">Person</span><span class="o">.</span><span class="n">e</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">op</span><span class="o">(</span><span class="kc">false</span><span class="o">).</span><span class="nc">Tx</span><span class="o">(</span><span class="nc">MyUseCase</span><span class="o">.</span><span class="n">name_</span><span class="o">(</span><span class="s">&#34;Termminate membership&#34;</span><span class="o">)).</span><span class="n">getHistory</span> <span class="o">===</span> <span class="nc">List</span><span class="o">(</span>
+  <span class="o">(</span><span class="n">johnId</span><span class="o">,</span> <span class="s">&#34;John&#34;</span><span class="o">,</span> <span class="n">t3</span><span class="o">,</span> <span class="kc">false</span><span class="o">),</span> <span class="c1">// John terminated his membership at transaction t3 and was retracted
+</span><span class="c1"></span>  <span class="o">(</span><span class="n">lisaId</span><span class="o">,</span> <span class="s">&#34;Lisa&#34;</span><span class="o">,</span> <span class="n">t5</span><span class="o">,</span> <span class="kc">false</span><span class="o">)</span>  <span class="c1">// Lisa terminated her membership at transaction t5 and was retracted
+</span><span class="c1"></span><span class="o">)</span>
+</code></pre></div><h3 id="retract-component-entity">Retract component entity</h3>
+<p>If a ref attribute is defined with the option <code>isComponent</code> then it &ldquo;owns&rdquo; its related entities - or &ldquo;subcomponents&rdquo;, as when an <code>Order</code> own its <code>LineItem</code>s.</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">object</span> <span class="nc">ProductsOrderDataModel</span> <span class="o">{</span>
+
+  <span class="k">trait</span> <span class="nc">Order</span> <span class="o">{</span>
+    <span class="k">val</span> <span class="n">id</span>    <span class="k">=</span> <span class="n">oneInt</span>
+    <span class="k">val</span> <span class="n">items</span> <span class="k">=</span> <span class="n">many</span><span class="o">[</span><span class="kt">LineItem</span><span class="o">].</span><span class="n">isComponent</span> <span class="c1">// Order owns its line items
+</span><span class="c1"></span>  <span class="o">}</span>
+
+  <span class="k">trait</span> <span class="nc">LineItem</span> <span class="o">{</span>
+    <span class="k">val</span> <span class="n">product</span> <span class="k">=</span> <span class="n">oneString</span>
+    <span class="k">val</span> <span class="n">price</span>   <span class="k">=</span> <span class="n">oneDouble</span>
+    <span class="k">val</span> <span class="n">qty</span>     <span class="k">=</span> <span class="n">oneInt</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><p>If we retract such <code>Order</code>, then all of its related <code>LineItem</code>s are also retracted:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="n">orderId</span><span class="o">.</span><span class="n">retract</span> <span class="c1">// All related `LineItem`s are also retracted!
+</span><span class="c1"></span>
+<span class="c1">// or
+</span><span class="c1"></span><span class="n">retract</span><span class="o">(</span><span class="n">orderId</span><span class="o">)</span>
+</code></pre></div><p>Component entities are recursively retracted! So if <code>LineItem</code> would have had subcomponents then those would have been retracted too when the order was retracted - and so on down the hierarchy of subcomponents.</p>
+<h3 id="asynchronous-retract">Asynchronous retract</h3>
+<p>All transactional operators have an asynchronous equivalent.</p>
+<p>Retracting entities asynchronously uses Datomic&rsquo;s asynchronous API and returns a <code>Future</code> with a <code>TxReport</code>.</p>
+<p>Here, we map over the result of retracting an entity asynchronously (in the inner mapping):</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="c1">// Initial data
+</span><span class="c1"></span><span class="nc">Ns</span><span class="o">.</span><span class="n">int</span><span class="o">.</span><span class="n">insertAsync</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">).</span><span class="n">map</span> <span class="o">{</span> <span class="n">tx</span> <span class="k">=&gt;</span> <span class="c1">// tx report from successful insert transaction
+</span><span class="c1"></span>  <span class="c1">// 2 inserted entities
+</span><span class="c1"></span>  <span class="k">val</span> <span class="nc">List</span><span class="o">(</span><span class="n">e1</span><span class="o">,</span> <span class="n">e2</span><span class="o">)</span> <span class="k">=</span> <span class="n">tx</span><span class="o">.</span><span class="n">eids</span>
+  <span class="nc">Ns</span><span class="o">.</span><span class="n">int</span><span class="o">.</span><span class="n">get</span> <span class="o">===</span> <span class="nc">List</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">)</span>
+
+  <span class="c1">// Retract first entity asynchronously
+</span><span class="c1"></span>  <span class="n">e1</span><span class="o">.</span><span class="n">retractAsync</span><span class="o">.</span><span class="n">map</span> <span class="o">{</span> <span class="n">tx2</span> <span class="k">=&gt;</span> <span class="c1">// tx report from successful retract transaction
+</span><span class="c1"></span>    <span class="c1">// Current data
+</span><span class="c1"></span>    <span class="nc">Ns</span><span class="o">.</span><span class="n">int</span><span class="o">.</span><span class="n">get</span> <span class="o">===</span> <span class="nc">List</span><span class="o">(</span><span class="mi">2</span><span class="o">)</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><p>Retract multiple entities asynchronously:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="c1">// Initial data
+</span><span class="c1"></span><span class="nc">Ns</span><span class="o">.</span><span class="n">int</span><span class="o">.</span><span class="n">insertAsync</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">).</span><span class="n">map</span> <span class="o">{</span> <span class="n">tx</span> <span class="k">=&gt;</span> <span class="c1">// tx report from successful insert transaction
+</span><span class="c1"></span>  <span class="c1">// 2 inserted entities
+</span><span class="c1"></span>  <span class="k">val</span> <span class="nc">List</span><span class="o">(</span><span class="n">e1</span><span class="o">,</span> <span class="n">e2</span><span class="o">,</span> <span class="n">e3</span><span class="o">)</span> <span class="k">=</span> <span class="n">tx</span><span class="o">.</span><span class="n">eids</span>
+  <span class="nc">Ns</span><span class="o">.</span><span class="n">int</span><span class="o">.</span><span class="n">get</span> <span class="o">===</span> <span class="nc">List</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">)</span>
+
+  <span class="c1">// Retract first entity asynchronously
+</span><span class="c1"></span>  <span class="n">retractAsync</span><span class="o">(</span><span class="nc">Seq</span><span class="o">(</span><span class="n">e1</span><span class="o">,</span> <span class="n">e2</span><span class="o">)).</span><span class="n">map</span> <span class="o">{</span> <span class="n">tx2</span> <span class="k">=&gt;</span> <span class="c1">// tx report from successful retract transaction
+</span><span class="c1"></span>    <span class="c1">// Current data
+</span><span class="c1"></span>    <span class="nc">Ns</span><span class="o">.</span><span class="n">int</span><span class="o">.</span><span class="n">get</span> <span class="o">===</span> <span class="nc">List</span><span class="o">(</span><span class="mi">3</span><span class="o">)</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><h2 id="tx-report">Tx report</h2>
+<p>All assertions and retractions in Datomic happen within a transaction that guarantees ACID consistency. Along with the domain data involved, Datomic also automatically asserts a timestamp as part of a created Transaction entity for that transaction.</p>
+<p>Say that we create a new person with entity id <code>johnId</code>:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">val</span> <span class="n">johnId</span> <span class="k">=</span> <span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">(</span><span class="s">&#34;John&#34;</span><span class="o">).</span><span class="n">likes</span><span class="o">(</span><span class="s">&#34;pizza&#34;</span><span class="o">).</span><span class="n">save</span><span class="o">.</span><span class="n">eid</span>
+</code></pre></div><p>Then the following assertions are made:</p>
+<p><img src="../../img/page/transactions/3.png" alt=""></p>
+<p>The 4th column of the quintuplets is the entity id of the transaction where the fact was asserted or retracted. In this case the two facts about John was asserted in transaction <code>tx2</code>. <code>tx2</code> is an entity id (<code>Long</code>) exactly as the entity id of johnId <code>johnId</code>.</p>
+<p>The time of the transaction <code>date1</code> (<code>java.util.Date</code>) is asserted with the transaction entity id <code>tx2</code> as its entity id. And since that timestamp fact is also part of the same transaction <code>tx2</code> is also the transaction value (4th column) for that fact.</p>
+<h3 id="transactions-return-txreport">Transactions return TxReport</h3>
+<p>All transactional operations on molecules return a <code>TxReport</code> with information about the transaction like what data was transacted and what entities were created and a timestamp of the transaction:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">val</span> <span class="n">tx</span><span class="k">:</span> <span class="kt">TxReport</span> <span class="o">=</span> <span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">(</span><span class="s">&#34;John&#34;</span><span class="o">).</span><span class="n">likes</span><span class="o">(</span><span class="s">&#34;pizza&#34;</span><span class="o">).</span><span class="n">age</span><span class="o">(</span><span class="mi">24</span><span class="o">).</span><span class="n">save</span>
+
+<span class="c1">// Entity id created - useful when we know one entity was created
+</span><span class="c1"></span><span class="k">val</span> <span class="n">johnId</span><span class="k">:</span> <span class="kt">Long</span> <span class="o">=</span> <span class="n">tx</span><span class="o">.</span><span class="n">eid</span> <span class="c1">// (same as tx.eids.head)
+</span><span class="c1"></span>
+<span class="c1">// Entities id created
+</span><span class="c1"></span><span class="k">val</span> <span class="n">entities</span><span class="k">:</span> <span class="kt">Seq</span><span class="o">[</span><span class="kt">Long</span><span class="o">]</span> <span class="k">=</span> <span class="n">tx</span><span class="o">.</span><span class="n">eids</span>
+
+<span class="c1">// Transaction time `t` (a sequential number created internally by Datomic identifying the tx)
+</span><span class="c1"></span><span class="k">val</span> <span class="n">txT</span><span class="k">:</span> <span class="kt">Date</span> <span class="o">=</span> <span class="n">tx</span><span class="o">.</span><span class="n">t</span>
+
+<span class="c1">// Transaction time as `Date`
+</span><span class="c1"></span><span class="k">val</span> <span class="n">txTime</span><span class="k">:</span> <span class="kt">Date</span> <span class="o">=</span> <span class="n">tx</span><span class="o">.</span><span class="n">inst</span>
+
+<span class="c1">// Transaction entity id
+</span><span class="c1"></span><span class="k">val</span> <span class="n">txEntityId</span><span class="k">:</span> <span class="kt">Long</span> <span class="o">=</span> <span class="n">tx</span><span class="o">.</span><span class="n">tx</span>
+
+<span class="c1">// Transaction Entity
+</span><span class="c1"></span><span class="k">val</span> <span class="n">txEntity</span><span class="k">:</span> <span class="kt">datomicEntity</span> <span class="o">=</span> <span class="n">tx</span><span class="o">.</span><span class="n">txE</span>
+</code></pre></div><h3 id="transaction-entity-id-tx">Transaction entity id <code>tx</code></h3>
+<p>Since the transaction is itself an entity exactly as any other entity we can query it as we query our own domain data.</p>
+<p>Molecule offers some generic attributes that makes it easy to access transaction data. In our example we could find the transaction entity id of the assertion of Johns <code>name</code> by adding the generic attribute <code>tx</code> right after the <code>name_</code> attribute (that we have made tacit with the underscore since we&rsquo;re not interested in value &ldquo;John&rdquo;):</p>
+<p><em>&ldquo;In what transaction was Johns name asserted?&quot;</em></p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">(</span><span class="n">johnId</span><span class="o">).</span><span class="n">name_</span><span class="o">.</span><span class="n">tx</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">head</span> <span class="o">===</span> <span class="n">tx2</span>  <span class="c1">// 13194139534340L
+</span></code></pre></div><p>The <code>tx</code> attribute gets the 4th quintuplet value of its preceeding attribute in a molecule. We can see that <code>name</code> of entity <code>johnId</code> (John) was asserted in transaction <code>tx2</code> since the value <code>tx2</code> was saved as the <code>name</code> quintuplet&rsquo;s 4th value.</p>
+<h3 id="transaction-value-t">Transaction value <code>t</code></h3>
+<p>Alternatively we can get a transaction value <code>t</code></p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">(</span><span class="n">johnId</span><span class="o">).</span><span class="n">name_</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">head</span> <span class="o">===</span> <span class="n">t2</span>  <span class="c1">// 1028L
+</span></code></pre></div><h3 id="transaction-time-txinstant">Transaction time <code>txInstant</code></h3>
+<p>With the transaction entity available we can then also get to the value of the timestamp fact of that transaction entity. For convenience Molecule has a generic <code>txIntstant</code> to lookup the timestamp which is a <code>date.util.Date</code>:</p>
+<p><em>&ldquo;When was Johns name asserted?&quot;</em></p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">(</span><span class="n">johnId</span><span class="o">).</span><span class="n">name_</span><span class="o">.</span><span class="n">txInstant</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">head</span> <span class="o">===</span> <span class="n">date1</span>  <span class="c1">// Tue Apr 26 18:35:41
+</span></code></pre></div><h3 id="transaction-data-per-attribute">Transaction data per attribute</h3>
+<p>Since each fact of an entity could have been stated in different transactions, transaction data is always tied to only one attribute.</p>
+<p>Say for instance that we assert John&rsquo;s <code>age</code> in another transaction <code>tx3</code>, then we could subsequently get the two transactions involved:</p>
+<p><em>&ldquo;Was John&rsquo;s name and age asserted in the same transaction?&quot;</em></p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="c1">// Second transaction
+</span><span class="c1"></span><span class="k">val</span> <span class="n">tx3</span> <span class="k">=</span> <span class="nc">Person</span><span class="o">(</span><span class="n">johnId</span><span class="o">).</span><span class="n">age</span><span class="o">(</span><span class="mi">25</span><span class="o">).</span><span class="n">update</span><span class="o">.</span><span class="n">tx</span>
+
+<span class="c1">// Retrieve transactions of multiple attributes
+</span><span class="c1"></span><span class="nc">Person</span><span class="o">(</span><span class="n">johnId</span><span class="o">).</span><span class="n">name_</span><span class="o">.</span><span class="n">tx</span><span class="o">.</span><span class="n">age_</span><span class="o">.</span><span class="n">tx</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">head</span> <span class="o">===</span> <span class="o">(</span><span class="n">tx2</span><span class="o">,</span> <span class="n">tx3</span><span class="o">)</span>
+
+<span class="c1">// No, name and age were asserted in different transactions
+</span><span class="c1"></span><span class="n">tx2</span> <span class="o">!==</span> <span class="n">tx3</span>
+</code></pre></div><p>Likewise we could ask</p>
+<p><em>&ldquo;At what time was John&rsquo;s name and age asserted&rdquo;</em></p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">(</span><span class="n">johnId</span><span class="o">).</span><span class="n">name_</span><span class="o">.</span><span class="n">txInstant</span><span class="o">.</span><span class="n">age_</span><span class="o">.</span><span class="n">txInstant</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">head</span> <span class="o">===</span> <span class="o">(</span><span class="n">date1</span><span class="o">,</span> <span class="n">date2</span><span class="o">)</span>
+
+<span class="c1">// John&#39;s name was asserted before his age
+</span><span class="c1"></span><span class="n">date1</span><span class="o">.</span><span class="n">before</span><span class="o">(</span><span class="n">date2</span><span class="o">)</span> <span class="o">===</span> <span class="kc">true</span>
+</code></pre></div><h2 id="tx-bundle">Tx bundle</h2>
+<h3 id="multiple-actions-in-one-atomic-transaction">Multiple actions in one atomic transaction</h3>
+<p><a href="../../code/transactions/#save">save</a>, <a href="../../code/transactions/#insert">insert</a>, <a href="../../code/transactions/#update">update</a> and <a href="../../code/transactions/#retract-1">retract</a> operations on molecules each execute in their own transaction. By bundling transactions statements from several of those operations we can execute a single transaction that will guarantee atomicity. The bundled transaction will either complete as a whole or abort if there are any transactional errors.</p>
+<p>Each of the above operations has an equivalent method for getting the transaction statements it produces:</p>
+<ul>
+<li><code>&lt;molecule&gt;.getSaveStmts</code></li>
+<li><code>&lt;molecule&gt;.getInsertStmts</code></li>
+<li><code>&lt;molecule&gt;.getUpdateStmts</code></li>
+<li><code>&lt;entityId&gt;.getRetractStmts</code></li>
+</ul>
+<p>We can use those methods to build a bundled transaction to atomically perform 4 operations in one transaction:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="c1">// Some initial data
+</span><span class="c1"></span><span class="k">val</span> <span class="nc">List</span><span class="o">(</span><span class="n">e1</span><span class="o">,</span> <span class="n">e2</span><span class="o">,</span> <span class="n">e3</span><span class="o">)</span> <span class="k">=</span> <span class="nc">Ns</span><span class="o">.</span><span class="n">int</span> <span class="n">insert</span> <span class="nc">List</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">)</span> <span class="n">eids</span>
+
+<span class="c1">// Transact multiple molecule statements in one bundled transaction
+</span><span class="c1"></span><span class="n">transact</span><span class="o">(</span>
+  <span class="c1">// retract entity
+</span><span class="c1"></span>  <span class="n">e1</span><span class="o">.</span><span class="n">getRetractStmts</span><span class="o">,</span>
+  <span class="c1">// save new entity
+</span><span class="c1"></span>  <span class="nc">Ns</span><span class="o">.</span><span class="n">int</span><span class="o">(</span><span class="mi">4</span><span class="o">).</span><span class="n">getSaveStmts</span><span class="o">,</span>
+  <span class="c1">// insert multiple new entities
+</span><span class="c1"></span>  <span class="nc">Ns</span><span class="o">.</span><span class="n">int</span><span class="o">.</span><span class="n">getInsertStmts</span><span class="o">(</span><span class="nc">List</span><span class="o">(</span><span class="mi">5</span><span class="o">,</span> <span class="mi">6</span><span class="o">)),</span>
+  <span class="c1">// update entity
+</span><span class="c1"></span>  <span class="nc">Ns</span><span class="o">(</span><span class="n">e2</span><span class="o">).</span><span class="n">int</span><span class="o">(</span><span class="mi">20</span><span class="o">).</span><span class="n">getUpdateStmts</span>
+<span class="o">)</span>
+
+<span class="c1">// Data after group transaction
+</span><span class="c1"></span><span class="nc">Ns</span><span class="o">.</span><span class="n">int</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">sorted</span> <span class="o">===</span> <span class="nc">List</span><span class="o">(</span>
+  <span class="c1">// 1 retracted
+</span><span class="c1"></span>  <span class="mi">3</span><span class="o">,</span> <span class="c1">// unchanged
+</span><span class="c1"></span>  <span class="mi">4</span><span class="o">,</span> <span class="c1">// saved
+</span><span class="c1"></span>  <span class="mi">5</span><span class="o">,</span> <span class="mi">6</span><span class="o">,</span> <span class="c1">// inserted
+</span><span class="c1"></span>  <span class="mi">20</span> <span class="c1">// 2 updated
+</span><span class="c1"></span><span class="o">)</span>
+</code></pre></div><p>Bundled transactions can also use Datomic&rsquo;s asynchronous API by calling <code>transactAsync</code>:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Await</span><span class="o">.</span><span class="n">result</span><span class="o">(</span>
+  <span class="n">transactAsync</span><span class="o">(</span>
+    <span class="n">e1</span><span class="o">.</span><span class="n">getRetractStmts</span><span class="o">,</span>
+    <span class="nc">Ns</span><span class="o">.</span><span class="n">int</span><span class="o">(</span><span class="mi">4</span><span class="o">).</span><span class="n">getSaveStmts</span><span class="o">,</span>
+    <span class="nc">Ns</span><span class="o">.</span><span class="n">int</span><span class="o">.</span><span class="n">getInsertStmts</span><span class="o">(</span><span class="nc">List</span><span class="o">(</span><span class="mi">5</span><span class="o">,</span> <span class="mi">6</span><span class="o">)),</span>
+    <span class="nc">Ns</span><span class="o">(</span><span class="n">e2</span><span class="o">).</span><span class="n">int</span><span class="o">(</span><span class="mi">20</span><span class="o">).</span><span class="n">getUpdateStmts</span>
+  <span class="o">)</span> <span class="n">map</span> <span class="o">{</span> <span class="n">bundleTx</span> <span class="k">=&gt;</span>
+    <span class="nc">Ns</span><span class="o">.</span><span class="n">int</span><span class="o">.</span><span class="n">getAsync</span> <span class="n">map</span> <span class="o">{</span> <span class="n">queryResult</span> <span class="k">=&gt;</span> 
+      <span class="n">queryResult</span> <span class="o">===</span> <span class="nc">List</span><span class="o">(</span><span class="mi">3</span><span class="o">,</span> <span class="mi">4</span><span class="o">,</span> <span class="mi">5</span><span class="o">,</span> <span class="mi">6</span><span class="o">,</span> <span class="mi">20</span><span class="o">)</span>    
+    <span class="o">}</span>  
+  <span class="o">},</span>
+  <span class="mf">2.</span><span class="n">seconds</span>
+<span class="o">)</span>
+</code></pre></div><h3 id="inspecting-bundled-transactions">Inspecting bundled transactions</h3>
+<p>If you want to see the transactional output from a bundled transaction you can call <code>inspectTransaction</code> on some bundled transaction data:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="c1">// Print inspect info for group transaction without affecting live db
+</span><span class="c1"></span><span class="n">inspectTransact</span><span class="o">(</span>
+  <span class="c1">// retract
+</span><span class="c1"></span>  <span class="n">e1</span><span class="o">.</span><span class="n">getRetractStmts</span><span class="o">,</span>
+  <span class="c1">// save
+</span><span class="c1"></span>  <span class="nc">Ns</span><span class="o">.</span><span class="n">int</span><span class="o">(</span><span class="mi">4</span><span class="o">).</span><span class="n">getSaveStmts</span><span class="o">,</span>
+  <span class="c1">// insert
+</span><span class="c1"></span>  <span class="nc">Ns</span><span class="o">.</span><span class="n">int</span><span class="o">.</span><span class="n">getInsertStmts</span><span class="o">(</span><span class="nc">List</span><span class="o">(</span><span class="mi">5</span><span class="o">,</span> <span class="mi">6</span><span class="o">)),</span>
+  <span class="c1">// update
+</span><span class="c1"></span>  <span class="nc">Ns</span><span class="o">(</span><span class="n">e2</span><span class="o">).</span><span class="n">int</span><span class="o">(</span><span class="mi">20</span><span class="o">).</span><span class="n">getUpdateStmts</span>
+<span class="o">)</span>
+
+<span class="c1">// Prints transaction data to output:
+</span><span class="c1"></span><span class="cm">/*
+</span><span class="cm">  ## 1 ## TxReport
+</span><span class="cm">  ========================================================================
+</span><span class="cm">  1          ArrayBuffer(
+</span><span class="cm">    1          List(
+</span><span class="cm">      1          :db.fn/retractEntity   17592186045445)
+</span><span class="cm">    2          List(
+</span><span class="cm">      1          :db/add       #db/id[:db.part/user -1000247]     :Ns/int          4           Card(1))
+</span><span class="cm">    3          List(
+</span><span class="cm">      1          :db/add       #db/id[:db.part/user -1000252]     :Ns/int          5           Card(1))
+</span><span class="cm">    4          List(
+</span><span class="cm">      1          :db/add       #db/id[:db.part/user -1000253]     :Ns/int          6           Card(1))
+</span><span class="cm">    5          List(
+</span><span class="cm">      1          :db/add       17592186045446                     :Ns/int          20          Card(1)))
+</span><span class="cm">  ------------------------------------------------
+</span><span class="cm">  2          List(
+</span><span class="cm">    1    1     added: true ,   t: 13194139534345,   e: 13194139534345,   a: 50,   v: Wed Nov 14 23:38:15 CET 2018
+</span><span class="cm">
+</span><span class="cm">    2    2     added: false,  -t: 13194139534345,  -e: 17592186045445,  -a: 64,  -v: 1
+</span><span class="cm">
+</span><span class="cm">    3    3     added: true ,   t: 13194139534345,   e: 17592186045450,   a: 64,   v: 4
+</span><span class="cm">
+</span><span class="cm">    4    4     added: true ,   t: 13194139534345,   e: 17592186045451,   a: 64,   v: 5
+</span><span class="cm">
+</span><span class="cm">    5    5     added: true ,   t: 13194139534345,   e: 17592186045452,   a: 64,   v: 6
+</span><span class="cm">
+</span><span class="cm">    6    6     added: true ,   t: 13194139534345,   e: 17592186045446,   a: 64,   v: 20
+</span><span class="cm">         7     added: false,  -t: 13194139534345,  -e: 17592186045446,  -a: 64,  -v: 2)
+</span><span class="cm">  ========================================================================
+</span><span class="cm">*/</span>
+</code></pre></div><p>Two groups of data are shown. The first group is an internal representation in Molecule showing the operations. The second group shows the datoms produced in the transaction. For ease of reading, &ldquo;-&rdquo; (minus) is prepended the prefixes (t, e, a, v) for the datoms that are retractions - where <code>added</code> is false.  The abbreviations represents the parts of the Datom:</p>
+<ul>
+<li><code>added</code>: operation, can be true for asserted or false for retracted</li>
+<li><code>t</code>: transaction entity id</li>
+<li><code>e</code>: entity</li>
+<li><code>a</code>: attribute</li>
+<li><code>v</code>: value</li>
+</ul>
+<p>Updating 2 to 20 for instance creates two Datoms, one retracting the old value 2 and one asserting the new value 20.</p>
+<p>(The numbers on the left are simply index numbers and not part of the transactional data)</p>
+<h2 id="tx-meta-data">Tx meta data</h2>
+<p>A timestamp fact is transacted as part of all transactions in Datomic. Since a transaction is an entity itself, we can even add more facts that simply share the entity id of the transaction:</p>
+<p><img src="../../img/page/transactions/1.png" alt=""></p>
+<h3 id="save-1">Save</h3>
+<p>Depending on our domain we can tailor any tx meta data that we find valuable to associate with some transactions. We could for instance be interested in &ldquo;who did it&rdquo; and &ldquo;in what use case&rdquo; it happened and create some generic attributes <code>user</code> and <code>uc</code> in an <code>Audit</code> namespace:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">trait</span> <span class="nc">Audit</span> <span class="o">{</span>
+  <span class="k">val</span> <span class="n">user</span> <span class="k">=</span> <span class="n">oneString</span>
+  <span class="k">val</span> <span class="n">uc</span>   <span class="k">=</span> <span class="n">oneString</span>
+<span class="o">}</span>
+</code></pre></div><p>Then we can assert values of those attributes together with a <code>save</code> operation for instance by applying an <code>Audit</code> meta molecule</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Audit</span><span class="o">.</span><span class="n">user</span><span class="o">(</span><span class="s">&#34;Lisa&#34;</span><span class="o">).</span><span class="n">uc</span><span class="o">(</span><span class="s">&#34;survey&#34;</span><span class="o">)</span>
+</code></pre></div><p>..to the generic <code>Tx</code> namespace:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">(</span><span class="s">&#34;John&#34;</span><span class="o">).</span><span class="n">likes</span><span class="o">(</span><span class="s">&#34;pizza&#34;</span><span class="o">).</span><span class="nc">Tx</span><span class="o">(</span><span class="nc">Audit</span><span class="o">.</span><span class="n">user</span><span class="o">(</span><span class="s">&#34;Lisa&#34;</span><span class="o">).</span><span class="n">uc</span><span class="o">(</span><span class="s">&#34;survey&#34;</span><span class="o">)).</span><span class="n">save</span>
+</code></pre></div><p>This could read: <em>&ldquo;A person John liking pizza was saved by Lisa as part of a survey&rdquo;</em></p>
+<p>Molecule simply saves the tx meta data attributes <code>user</code> and <code>uc</code> with the transaction entity id <code>tx2</code> as their entity id:</p>
+<p><img src="../../img/page/transactions/2.png" alt=""></p>
+<h3 id="get">Get</h3>
+<p>Now we can query the tx meta data in various ways:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="c1">// How was John added?
+</span><span class="c1">// John was added by Lisa as part of a survey
+</span><span class="c1"></span><span class="nc">Person</span><span class="o">(</span><span class="n">johnId</span><span class="o">).</span><span class="n">name</span><span class="o">.</span><span class="nc">Tx</span><span class="o">(</span><span class="nc">Audit</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">uc</span><span class="o">).</span><span class="n">get</span> <span class="o">===</span> <span class="nc">List</span><span class="o">((</span><span class="s">&#34;John&#34;</span><span class="o">,</span> <span class="s">&#34;Lisa&#34;</span><span class="o">,</span> <span class="s">&#34;survey&#34;</span><span class="o">))</span>
+
+<span class="c1">// When did Lisa survey John?
+</span><span class="c1"></span><span class="nc">Person</span><span class="o">(</span><span class="n">johnId</span><span class="o">).</span><span class="n">name_</span><span class="o">.</span><span class="n">txInstant</span><span class="o">.</span><span class="nc">Tx</span><span class="o">(</span><span class="nc">Audit</span><span class="o">.</span><span class="n">user_</span><span class="o">(</span><span class="s">&#34;Lisa&#34;</span><span class="o">).</span><span class="n">uc_</span><span class="o">(</span><span class="s">&#34;survey&#34;</span><span class="o">)).</span><span class="n">get</span><span class="o">.</span><span class="n">head</span> <span class="o">===</span> <span class="n">dateX</span>
+  
+<span class="c1">// Who were surveyed?  
+</span><span class="c1"></span><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="nc">Tx</span><span class="o">(</span><span class="nc">Audit</span><span class="o">.</span><span class="n">uc_</span><span class="o">(</span><span class="s">&#34;survey&#34;</span><span class="o">)).</span><span class="n">get</span> <span class="o">===</span> <span class="nc">List</span><span class="o">(</span><span class="s">&#34;John&#34;</span><span class="o">)</span>
+
+<span class="c1">// What did people that Lisa surveyed like? 
+</span><span class="c1"></span><span class="nc">Person</span><span class="o">.</span><span class="n">likes</span><span class="o">.</span><span class="nc">Tx</span><span class="o">(</span><span class="nc">Audit</span><span class="o">.</span><span class="n">user_</span><span class="o">(</span><span class="s">&#34;Lisa&#34;</span><span class="o">).</span><span class="n">uc_</span><span class="o">(</span><span class="s">&#34;survey&#34;</span><span class="o">)).</span><span class="n">get</span> <span class="o">===</span> <span class="nc">List</span><span class="o">(</span><span class="s">&#34;pizza&#34;</span><span class="o">)</span>
+
+<span class="c1">// etc..
+</span></code></pre></div><h3 id="insert-1">Insert</h3>
+<p>If we insert multiple entities in a transaction, the transaction data is only asserted once:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">likes</span><span class="o">.</span><span class="nc">Tx</span><span class="o">(</span><span class="nc">Audit</span><span class="o">.</span><span class="n">user_</span><span class="o">(</span><span class="s">&#34;Lisa&#34;</span><span class="o">).</span><span class="n">uc_</span><span class="o">(</span><span class="s">&#34;survey&#34;</span><span class="o">))</span> <span class="n">insert</span> <span class="nc">List</span><span class="o">(</span>
+  <span class="o">(</span><span class="s">&#34;John&#34;</span><span class="o">,</span> <span class="s">&#34;sushi&#34;</span><span class="o">),</span>
+  <span class="o">(</span><span class="s">&#34;Pete&#34;</span><span class="o">,</span> <span class="s">&#34;burgers&#34;</span><span class="o">),</span>
+  <span class="o">(</span><span class="s">&#34;Mona&#34;</span><span class="o">,</span> <span class="s">&#34;snacks&#34;</span><span class="o">)</span>
+<span class="o">)</span>
+</code></pre></div><h3 id="composites">Composites</h3>
+<p>Similarly we can insert composite molecules composed of sub-molecules/sub-tuples of data - and some tx meta data:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Article</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">author</span> <span class="o">+</span> 
+  <span class="nc">Tag</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">weight</span>
+  <span class="o">.</span><span class="nc">Tx</span><span class="o">(</span><span class="nc">MetaData</span><span class="o">.</span><span class="n">submitter_</span><span class="o">(</span><span class="s">&#34;Brenda Johnson&#34;</span><span class="o">).</span><span class="n">usecase_</span><span class="o">(</span><span class="s">&#34;AddArticles&#34;</span><span class="o">))</span> <span class="n">insert</span> <span class="nc">List</span><span class="o">(</span>
+  <span class="c1">// 2 rows of data (Articles) 
+</span><span class="c1"></span>  <span class="c1">// The 2 sub-tuples of each row matches the 2 sub-molecules
+</span><span class="c1"></span>  <span class="o">((</span><span class="s">&#34;Battle of Waterloo&#34;</span><span class="o">,</span> <span class="s">&#34;Ben Bridge&#34;</span><span class="o">),</span> <span class="o">(</span><span class="s">&#34;serious&#34;</span><span class="o">,</span> <span class="mi">5</span><span class="o">)),</span>
+  <span class="o">((</span><span class="s">&#34;Best jokes ever&#34;</span><span class="o">,</span> <span class="s">&#34;John Cleese&#34;</span><span class="o">),</span> <span class="o">(</span><span class="s">&#34;fun&#34;</span><span class="o">,</span> <span class="mi">3</span><span class="o">))</span>
+<span class="o">)</span>
+</code></pre></div><p><em>&ldquo;Get serious articles that Brenda submitted&rdquo;</em>:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="n">m</span><span class="o">(</span><span class="nc">Article</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">author</span> <span class="o">+</span> 
+  <span class="nc">Tag</span><span class="o">.</span><span class="n">name_</span><span class="o">(</span><span class="s">&#34;serious&#34;</span><span class="o">).</span><span class="n">weight</span><span class="o">.&gt;=(</span><span class="mi">4</span><span class="o">)</span>
+  <span class="o">.</span><span class="nc">Tx</span><span class="o">(</span><span class="nc">MetaData</span><span class="o">.</span><span class="n">submitter_</span><span class="o">(</span><span class="s">&#34;Brenda Johnson&#34;</span><span class="o">))).</span><span class="n">get</span> <span class="o">===</span> <span class="nc">List</span><span class="o">(</span>
+  <span class="o">((</span><span class="s">&#34;Battle of Waterloo&#34;</span><span class="o">,</span> <span class="s">&#34;Ben Bridge&#34;</span><span class="o">),</span> <span class="mi">5</span><span class="o">)</span>
+<span class="o">)</span>
+</code></pre></div><h3 id="update-1">Update</h3>
+<p>Transaction meta data can be attached to updates too so that we can for instance follow who changed data in our system.</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">(</span><span class="n">johnId</span><span class="o">).</span><span class="n">likes</span><span class="o">(</span><span class="s">&#34;pasta&#34;</span><span class="o">).</span><span class="nc">Tx</span><span class="o">(</span><span class="nc">Audit</span><span class="o">.</span><span class="n">user_</span><span class="o">(</span><span class="s">&#34;Ben&#34;</span><span class="o">).</span><span class="n">uc_</span><span class="o">(</span><span class="s">&#34;survey-follow-up&#34;</span><span class="o">)).</span><span class="n">update</span>
+</code></pre></div><p>Now when we look at a list of Persons and what they like we can see that some likes were from an original survey and one is from a follow-up survey that Ben did:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">likes</span><span class="o">.</span><span class="nc">Tx</span><span class="o">(</span><span class="nc">Audit</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">uc</span><span class="o">).</span><span class="n">get</span> <span class="o">===</span> <span class="nc">List</span><span class="o">(</span>
+  <span class="o">(</span><span class="s">&#34;John&#34;</span><span class="o">,</span> <span class="s">&#34;pasta&#34;</span><span class="o">,</span> <span class="s">&#34;Ben&#34;</span><span class="o">,</span> <span class="s">&#34;survey-follow-up&#34;</span><span class="o">),</span>
+  <span class="o">(</span><span class="s">&#34;Pete&#34;</span><span class="o">,</span> <span class="s">&#34;burgers&#34;</span><span class="o">,</span> <span class="s">&#34;Lisa&#34;</span><span class="o">,</span> <span class="s">&#34;survey&#34;</span><span class="o">),</span>
+  <span class="o">(</span><span class="s">&#34;Mona&#34;</span><span class="o">,</span> <span class="s">&#34;snacks&#34;</span><span class="o">,</span> <span class="s">&#34;Lisa&#34;</span><span class="o">,</span> <span class="s">&#34;survey&#34;</span><span class="o">)</span>
+<span class="o">)</span>
+</code></pre></div><h3 id="retract-2">Retract</h3>
+<p>It&rsquo;s valuable also to have meta data about retractions so that we can afterwards ask questions like &ldquo;Who deleted this?&rdquo;.</p>
+<h3 id="single-attribute">Single attribute</h3>
+<p>To retract an attribute value we apply an empty arg list to the attribute and <code>update</code>. Here we also apply some tx meta data about who took away the <code>likes</code> value for Pete:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">(</span><span class="n">peteId</span><span class="o">).</span><span class="n">likes</span><span class="o">().</span><span class="nc">Tx</span><span class="o">(</span><span class="nc">Audit</span><span class="o">.</span><span class="n">user_</span><span class="o">(</span><span class="s">&#34;Ben&#34;</span><span class="o">).</span><span class="n">uc_</span><span class="o">(</span><span class="s">&#34;survey-follow-up&#34;</span><span class="o">)).</span><span class="n">update</span>
+</code></pre></div><p>We can follow the <code>likes</code> of Pete through <a href="../../code/time/#history">history</a> and see that Ben retracted his <code>likes</code> value in a survey follow-up:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">(</span><span class="n">peteId</span><span class="o">).</span><span class="n">likes</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">op</span><span class="o">.</span><span class="nc">Tx</span><span class="o">(</span><span class="nc">Audit</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">uc</span><span class="o">)).</span><span class="n">getHistory</span><span class="o">.</span><span class="n">toSeq</span><span class="o">.</span><span class="n">sortBy</span><span class="o">(</span><span class="n">r</span> <span class="k">=&gt;</span> <span class="o">(</span><span class="n">r</span><span class="o">.</span><span class="n">_2</span><span class="o">,</span> <span class="n">r</span><span class="o">.</span><span class="n">_3</span><span class="o">))</span> <span class="o">===</span> <span class="nc">List</span><span class="o">(</span>
+  <span class="c1">// Pete&#39;s liking was saved by Lisa as part of survey
+</span><span class="c1"></span>  <span class="o">(</span><span class="s">&#34;burgers&#34;</span><span class="o">,</span> <span class="n">t1</span><span class="o">,</span> <span class="kc">true</span><span class="o">,</span> <span class="s">&#34;Lisa&#34;</span><span class="o">,</span> <span class="s">&#34;survey&#34;</span><span class="o">),</span>
+  
+  <span class="c1">// Pete&#39;s liking was retracted by Ben in a survey follow-up
+</span><span class="c1"></span>  <span class="o">(</span><span class="s">&#34;burgers&#34;</span><span class="o">,</span> <span class="n">t2</span><span class="o">,</span> <span class="kc">false</span><span class="o">,</span> <span class="s">&#34;Ben&#34;</span><span class="o">,</span> <span class="s">&#34;survey-follow-up&#34;</span><span class="o">)</span>
+<span class="o">)</span>
+</code></pre></div><p>The entity Pete still exists but now has no current liking:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">(</span><span class="n">peteId</span><span class="o">).</span><span class="n">name</span><span class="o">.</span><span class="n">likes$</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">head</span> <span class="o">===</span> <span class="o">(</span><span class="s">&#34;Pete&#34;</span><span class="o">,</span> <span class="nc">None</span><span class="o">)</span> 
+</code></pre></div><h3 id="entities">Entities</h3>
+<p>Using the <code>retract</code> method we can retract one or more entity ids along with a tx meta data:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="n">retract</span><span class="o">(</span><span class="n">johnId</span><span class="o">,</span> <span class="nc">Audit</span><span class="o">.</span><span class="n">user</span><span class="o">(</span><span class="s">&#34;Mona&#34;</span><span class="o">).</span><span class="n">uc</span><span class="o">(</span><span class="s">&#34;clean-up&#34;</span><span class="o">))</span>
+</code></pre></div><p>The <code>Audit.user(&quot;Mona&quot;).uc(&quot;clean-up&quot;)</code> molecule has the tx meta data that we save with the transaction entity.</p>
+<p>John has now been both saved, updated and retracted:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">(</span><span class="n">johnId</span><span class="o">).</span><span class="n">likes</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">op</span><span class="o">.</span><span class="nc">Tx</span><span class="o">(</span><span class="nc">Audit</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">uc</span><span class="o">)).</span><span class="n">getHistory</span><span class="o">.</span><span class="n">toSeq</span><span class="o">.</span><span class="n">sortBy</span><span class="o">(</span><span class="n">r</span> <span class="k">=&gt;</span> <span class="o">(</span><span class="n">r</span><span class="o">.</span><span class="n">_2</span><span class="o">,</span> <span class="n">r</span><span class="o">.</span><span class="n">_3</span><span class="o">))</span> <span class="o">===</span> <span class="nc">List</span><span class="o">(</span>
+  <span class="c1">// John&#39;s liking was saved by Lisa as part of survey
+</span><span class="c1"></span>  <span class="o">(</span><span class="s">&#34;sushi&#34;</span><span class="o">,</span> <span class="n">t1</span><span class="o">,</span> <span class="kc">true</span><span class="o">,</span> <span class="s">&#34;Lisa&#34;</span><span class="o">,</span> <span class="s">&#34;survey&#34;</span><span class="o">),</span> <span class="c1">// sushi asserted
+</span><span class="c1"></span>  
+  <span class="c1">// John&#39;s liking was updated by Ben in a survey follow-up
+</span><span class="c1"></span>  <span class="o">(</span><span class="s">&#34;sushi&#34;</span><span class="o">,</span> <span class="n">t2</span><span class="o">,</span> <span class="kc">false</span><span class="o">,</span> <span class="s">&#34;Ben&#34;</span><span class="o">,</span> <span class="s">&#34;survey-follow-up&#34;</span><span class="o">),</span> <span class="c1">// sushi retracted
+</span><span class="c1"></span>  <span class="o">(</span><span class="s">&#34;pasta&#34;</span><span class="o">,</span> <span class="n">t2</span><span class="o">,</span> <span class="kc">true</span><span class="o">,</span> <span class="s">&#34;Ben&#34;</span><span class="o">,</span> <span class="s">&#34;survey-follow-up&#34;</span><span class="o">),</span> <span class="c1">// pasta asserted
+</span><span class="c1"></span>  
+  <span class="c1">// John&#39;s liking (actually whole entity) was retracted by Mona in a clean-up
+</span><span class="c1"></span>  <span class="o">(</span><span class="s">&#34;pasta&#34;</span><span class="o">,</span> <span class="n">t3</span><span class="o">,</span> <span class="kc">false</span><span class="o">,</span> <span class="s">&#34;Mona&#34;</span><span class="o">,</span> <span class="s">&#34;clean-up&#34;</span><span class="o">)</span> <span class="c1">// pasta retracted
+</span><span class="c1"></span><span class="o">)</span>
+</code></pre></div><p>The entity John now currently doesn&rsquo;t exists (although still in history)</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">(</span><span class="n">johnId</span><span class="o">).</span><span class="n">name</span><span class="o">.</span><span class="n">likes$</span><span class="o">.</span><span class="n">get</span> <span class="o">===</span> <span class="nc">Nil</span> 
+</code></pre></div><h3 id="next">Next</h3>
+<p><a href="../../code/transaction-functions">Transaction Functions&hellip;</a></p>
+
+    </div>
+
+
+
+
+
+
+
+    <div class="col-sm-2" style="padding-left:24px;padding-right: 0px;position:sticky;top:115px">
+
+        <nav class="bs-docs-sidebar" id="myScrollspy">
+  <ul class="bs-docs-sidenav nav">
+    
+      
+
+        
+        
+          
+            <li><a href="../../code/">Overview</a></li>
+          
+          
+        
+          
+            <li><a href="../../code/attributes/">Attributes</a></li>
+          
+          
+        
+          
+            <li><a href="../../code/relationships/">Relationships</a></li>
+          
+          
+        
+          
+            <li class="open"><a href="../../code/transactions/"><b>Transactions</b></a></li>
+            
+              <nav id="TableOfContents">
+  <ul>
+    <li><a href="#save">Save</a></li>
+    <li><a href="#insert">Insert</a></li>
+    <li><a href="#update">Update</a></li>
+    <li><a href="#retract-1">Retract</a></li>
+    <li><a href="#tx-report">Tx report</a></li>
+    <li><a href="#tx-bundle">Tx bundle</a></li>
+    <li><a href="#tx-meta-data">Tx meta data</a></li>
+  </ul>
+</nav>
+            
+          
+          
+        
+          
+            <li><a href="../../code/transaction-functions/">Transaction Functions</a></li>
+          
+          
+        
+          
+            <li><a href="../../code/time/">Time</a></li>
+          
+          
+        
+          
+            <li><a href="../../code/generic/">Generic APIs</a></li>
+          
+          
+        
+
+      
+    
+  </ul>
+</nav>
+    </div>
+
+</div> 
+
+     
+   
+ 
+
+
+</div> 
+
+<footer class="bs-docs-footer">
+
+  <div class="container" style="font-size:15px">
+    <ul class="bs-docs-footer-links">
+      <li style="margin-top: 8px;"><a href="../../front/"><img src="../../img/logo/MoleculeLogo150.png" alt=""></a></li>
+      <li><a href="https://github.com/scalamolecule/molecule">GitHub</a></li>
+      <li><a href="https://github.com/scalamolecule/molecule-web">GitHub-web</a></li>
+      <li><a href="https://gitter.im/scalamolecule/Lobby">Gitter</a></li>
+      <li><a href="https://groups.google.com/forum/#!forum/molecule-dsl">Forum</a></li>
+      <li><a href="../../about/">About</a></li>
+      <li><a href="../../credits/">Credits</a></li>
+      <li><a href="../../changelog">Changelog</a></li>
+    </ul>
+    <p>Licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0" target="_blank" rel="license">Apache License 2.0</a></p>
+  </div>
+</footer>
+
+
+<script type="text/javascript" src="../../js/jquery-1.11.2.min.js"></script>
+<script type="text/javascript" src="../../js/bootstrap.min.js"></script>
+
+
+<script type="text/javascript" src="../../js/scripts.js"></script>
+<script async defer id="github-bjs" src="https://buttons.github.io/buttons.js"></script>
+<script src="../../js/copy-button.js"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-2787756-3', 'auto');
+  ga('send', 'pageview');
+</script>
+
+</body>
+</html>

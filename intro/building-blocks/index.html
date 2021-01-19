@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <link rel="shortcut icon" href="../../favicon.ico" type="image/x-icon"/>
+    <link href='http://fonts.googleapis.com/css?family=Merriweather+Sans:400,300,300italic,400italic,700,700italic,800,800italic'
+          rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Work+Sans:400,300,300italic,400italic,500,600,700,700italic,800,800italic'
+          rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Jura:400,300,300italic,400italic,500,600,700,700italic,800,800italic'
+          rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic,500,600,700,700italic,800,800italic'
+          rel='stylesheet' type='text/css'>
+    <title>Building blocks</title>
+    <link href="../../css/bootstrap.min.css" rel="stylesheet">
+
+
+
+    <link href="../../css/highlight/styles/solarized_light.css" rel="stylesheet"/>
+    <link href="../../css/syntax-custom.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="../../vendor/font-awesome/css/font-awesome.min.css">
+
+    <link href="../../css/style.css" rel="stylesheet">
+
+
+
+
+    
+
+
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../../img/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../../img/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../../img/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="../../img/apple-touch-icon-57-precomposed.png">
+
+    
+    
+</head>
+<body data-spy="scroll" data-target="#myScrollspy" data-offset="110">
+<header class="bs-docs-header">
+    <div class="container-fluid" style="max-width:1170px">
+        <div class="col-sm-12 column" style="padding-left:0px; padding-right:0px;">
+            <div class="col-sm-9 column" style="padding-left:0px;height:50px;">
+
+    <ul class="nav nav-pills" style="margin-top:-6px;">
+        <li><a href="../../" style="padding-left: 6px; padding-right: 13px; vertical-align: top; margin-top: 7px;"><img
+                src="../../img/logo/MoleculeLogo150.png"></a></li>
+        
+        
+            
+            <li class="dropdown active">
+                <a href="../../intro/" target="_top">Intro</a>
+            </li>
+        
+            
+            <li class="dropdown ">
+                <a href="../../setup/" target="_top">Setup</a>
+            </li>
+        
+            
+            <li class="dropdown ">
+                <a href="../../code/" target="_top">Code</a>
+            </li>
+        
+            
+            <li class="dropdown ">
+                <a href="../../dev/" target="_top">Dev</a>
+            </li>
+        
+            
+            <li class="dropdown ">
+                <a href="../../community/" target="_top">Community</a>
+            </li>
+        
+    </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+            <div class="col-sm-3 column" style="padding-top:13px;padding-right:0px;text-align:right;display:inline-block">
+                <a href="https://javadoc.io/doc/org.scalamolecule/molecule_2.13/latest/index.html" target="_blank" style="margin-top:-2px;color:#999;padding-right:12px;">docs</a>
+                <a href="../../changelog" style="margin-top:-2px;color:#999">v0.24.0</a>
+                <a href="https://github.com/scalamolecule/molecule" target="_blank">
+                    <img src="../../vendor/GitHub-Mark/PNG/GitHub-Mark-Light-32px.png"
+                         style="margin-top:-4px;padding-left:15px;opacity:0.6;width:42px;">
+                </a>
+            </div>
+
+        </div>
+
+    </div>
+</header>
+
+<div class="wrapper">
+
+<div class="container-fluid" style="max-width:1170px">
+
+    <div class="col-sm-10 " style="padding-left:8px;">
+        <h1 id="molecule-building-blocks">Molecule building blocks</h1>
+<p>Here&rsquo;s a quick overview of various building blocks in the Molecule eco-system.</p>
+<h2 id="molecule">Molecule</h2>
+<p>A <em>molecule</em> is a model of a data structure containing one or more <em>attributes</em>.</p>
+<p>Here we describe a data structure of <code>name</code>, <code>age</code> of persons and what <code>street</code> they live on:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">age</span><span class="o">.</span><span class="nc">Address</span><span class="o">.</span><span class="n">street</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">head</span> <span class="o">===</span> <span class="o">(</span><span class="s">&#34;John&#34;</span><span class="o">,</span> <span class="mi">24</span><span class="o">,</span> <span class="s">&#34;5th Avenue&#34;</span><span class="o">)</span>
+</code></pre></div><p>Calling <code>get</code> on a molecule returns typed data that matches the molecular data structure.</p>
+<h2 id="attribute">Attribute</h2>
+<p>An <em>attribute</em> is the core element of Molecule. Molecules are composed of attributes.</p>
+<p>We could also call it a &ldquo;property&rdquo; a &ldquo;field&rdquo; etc. It&rsquo;s an intrinsic value of an atomic piece of information about something.</p>
+<p>Attributes have</p>
+<ul>
+<li><em>Type</em> - <code>String</code>, <code>Int</code> etc.</li>
+<li><em>Cardinality</em> - &ldquo;one&rdquo; for a single thing, &ldquo;many&rdquo; for multiple</li>
+<li><em>Options</em> - is the value indexed, searcheable, unique etc.</li>
+<li><em>Descriptions</em> - meta info about the attribute - that can be queried</li>
+</ul>
+<h2 id="datom">Datom</h2>
+<p>A <em>Datom</em> brings context to an Attribute.</p>
+<p>A Datom describes a <em>fact</em>, for instance that &ldquo;John likes pizza&rdquo;. A timestamp adds information about <em>when</em> John stated that he likes pizza. A fifth piece of information &ldquo;added&rdquo; tells if the fact is asserted (true - John likes) or retracted (false - John no longer likes).</p>
+<p>So, a Datom consists of 5 components of information:</p>
+<pre><code>johnId    likes    pizza      12:35:54      true
+   |        |        |           |            |
+Entity  Attribute  Value  Transaction/time  Added
+</code></pre><p>A molecule can retrieve this information:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="c1">// Q: Who likes what and when did they state it?
+</span><span class="c1"></span><span class="nc">Person</span><span class="o">.</span><span class="n">e</span><span class="o">.</span><span class="n">likes</span><span class="o">.</span><span class="n">txInstant</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">head</span> <span class="o">===</span> 
+  <span class="c1">// A: John said he likes pizza at 12:35:54
+</span><span class="c1"></span>  <span class="o">(</span><span class="n">johnId</span><span class="o">,</span> <span class="s">&#34;pizza&#34;</span><span class="o">,</span> <span class="nc">Date</span><span class="o">(</span><span class="s">&#34;12:35:54&#34;</span><span class="o">))</span>
+</code></pre></div><h2 id="entity">Entity</h2>
+<p>When multiple different Datoms (attributes) share the same entity id, <em>they together describe this entity</em>. Or we say that <em>&ldquo;the Entity has 3 attributes&rdquo;</em>.</p>
+<p>In our example John is an entity that has a name &ldquo;John&rdquo;, likes &ldquo;pizza&rdquo; and is 24 years old - a pizza-liking 24-year-old John:</p>
+
+
+
+
+
+<table class="table table-bordered">
+<thead>
+<tr>
+<th style="text-align:center">Entity id</th>
+<th style="text-align:left">Attribue</th>
+<th style="text-align:left">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><strong>101</strong></td>
+<td style="text-align:left">:Person/name</td>
+<td style="text-align:left">&ldquo;John&rdquo;</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>101</strong></td>
+<td style="text-align:left">:Person/likes</td>
+<td style="text-align:left">&ldquo;pizza&rdquo;</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>101</strong></td>
+<td style="text-align:left">:Person/age</td>
+<td style="text-align:left">24</td>
+</tr>
+</tbody>
+</table>
+
+<p>As you see, the concept of an entity is very flexible since it can be defined by endless combination of attributes and values that will give it unique characteristics.</p>
+<p>This is far more powerful than thinking in terms of &ldquo;defining a Person class&rdquo;! When we instead let the combinations of atomic attributes define entities of molecular data structures, our semantic capabilities and expressiveness explode exponentially.</p>
+<h2 id="namespace">Namespace</h2>
+<p>Attributes are loosely organized in <em>Namespaces</em> to semantically group qualities of a subset of our domain:
+<br><br></p>
+<p><img src="../../img/page/intro/DatomicElements1.png" alt="">
+<br><br></p>
+<p>As we saw, an Entity can have <em>any</em> Attribute from <em>any</em> Namespace associated to it:
+<br><br></p>
+<p><img src="../../img/page/intro/DatomicElements2.png" alt="">
+<br><br></p>
+<p>An entity is therefore <em>not</em> like a row in a table but rather a &ldquo;cross-cutting&rdquo; thing that we can freely associate any attribute value to.</p>
+<h2 id="time">Time</h2>
+<p>Since the transaction time is part of all Datoms, we can ask time-related questions:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="c1">// Who liked what on the 5th of november?
+</span><span class="c1"></span><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">likes</span><span class="o">.</span><span class="n">txInstant_</span><span class="o">(</span><span class="n">nov5date</span><span class="o">).</span><span class="n">get</span><span class="o">.</span><span class="n">head</span> <span class="o">===</span> <span class="o">(</span><span class="s">&#34;John&#34;</span><span class="o">,</span> <span class="s">&#34;pizza&#34;</span><span class="o">)</span>
+</code></pre></div><p>Datomic even offers various powerful ways to work with the <a href="../../code/time">time</a> dimension of our data:</p>
+<ul>
+<li><code>getAsOf</code> of some point in time</li>
+<li><code>getSince</code> some point in time</li>
+<li><code>getHistory</code> of an entity or attribute</li>
+<li><code>getWith(tx-stmts)</code> to test a future what-if scenario</li>
+</ul>
+<h2 id="expression">Expression</h2>
+<p>We can mix relationships, conditional values, logic etc in our molecules to express complex and precise data structures:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Community</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">`type`</span><span class="o">(</span><span class="s">&#34;twitter&#34;</span> <span class="n">or</span> <span class="s">&#34;facebook_page&#34;</span><span class="o">)</span>
+  <span class="o">.</span><span class="nc">Neighborhood</span><span class="o">.</span><span class="nc">District</span><span class="o">.</span><span class="n">region</span><span class="o">(</span><span class="s">&#34;sw&#34;</span> <span class="n">or</span> <span class="s">&#34;s&#34;</span> <span class="n">or</span> <span class="s">&#34;se&#34;</span><span class="o">)</span>
+</code></pre></div><p>which will find &ldquo;names of twitter/facebook_page communities in neighborhoods of southern districts&rdquo;.</p>
+<h3 id="next">Next</h3>
+<p><a href="../../intro/compare">Compare</a> Molecule with another query language, <a href="../../setup/">set up a Molecule project</a> or learn more about <a href="../../code">molecule code&hellip;</a></p>
+
+    </div>
+
+
+
+
+
+
+
+    <div class="col-sm-2" style="padding-left:24px;padding-right: 0px;position:sticky;top:115px">
+
+        <nav class="bs-docs-sidebar" id="myScrollspy">
+  <ul class="bs-docs-sidenav nav">
+    
+      
+
+        
+        
+          
+            <li><a href="../../intro/">Intro</a></li>
+          
+          
+        
+          
+            <li><a href="../../intro/philosophy/">Philosophy</a></li>
+          
+          
+        
+          
+            <li class="open"><a href="../../intro/building-blocks/"><b>Building blocks</b></a></li>
+            
+              <nav id="TableOfContents">
+  <ul>
+    <li><a href="#molecule">Molecule</a></li>
+    <li><a href="#attribute">Attribute</a></li>
+    <li><a href="#datom">Datom</a></li>
+    <li><a href="#entity">Entity</a></li>
+    <li><a href="#namespace">Namespace</a></li>
+    <li><a href="#time">Time</a></li>
+    <li><a href="#expression">Expression</a></li>
+  </ul>
+</nav>
+            
+          
+          
+        
+          
+            <li><a href="../../intro/compare/">Compare</a></li>
+          
+          
+            <ul class="level2">
+              
+                
+                  <li><a class="sub" href="../../intro/compare/datomic/">Datomic</a></li>
+                
+              
+                
+                  <li><a class="sub" href="../../intro/compare/sql/">SQL</a></li>
+                
+              
+                
+                  <li><a class="sub" href="../../intro/compare/slick/">Slick</a></li>
+                
+              
+                
+                  <li><a class="sub" href="../../intro/compare/gremlin/">Gremlin</a></li>
+                
+              
+            </ul>
+          
+        
+
+      
+    
+  </ul>
+</nav>
+    </div>
+
+</div> 
+
+     
+   
+ 
+
+
+</div> 
+
+<footer class="bs-docs-footer">
+
+  <div class="container" style="font-size:15px">
+    <ul class="bs-docs-footer-links">
+      <li style="margin-top: 8px;"><a href="../../front/"><img src="../../img/logo/MoleculeLogo150.png" alt=""></a></li>
+      <li><a href="https://github.com/scalamolecule/molecule">GitHub</a></li>
+      <li><a href="https://github.com/scalamolecule/molecule-web">GitHub-web</a></li>
+      <li><a href="https://gitter.im/scalamolecule/Lobby">Gitter</a></li>
+      <li><a href="https://groups.google.com/forum/#!forum/molecule-dsl">Forum</a></li>
+      <li><a href="../../about/">About</a></li>
+      <li><a href="../../credits/">Credits</a></li>
+      <li><a href="../../changelog">Changelog</a></li>
+    </ul>
+    <p>Licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0" target="_blank" rel="license">Apache License 2.0</a></p>
+  </div>
+</footer>
+
+
+<script type="text/javascript" src="../../js/jquery-1.11.2.min.js"></script>
+<script type="text/javascript" src="../../js/bootstrap.min.js"></script>
+
+
+<script type="text/javascript" src="../../js/scripts.js"></script>
+<script async defer id="github-bjs" src="https://buttons.github.io/buttons.js"></script>
+<script src="../../js/copy-button.js"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-2787756-3', 'auto');
+  ga('send', 'pageview');
+</script>
+
+</body>
+</html>

@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <link rel="shortcut icon" href="../../favicon.ico" type="image/x-icon"/>
+    <link href='http://fonts.googleapis.com/css?family=Merriweather+Sans:400,300,300italic,400italic,700,700italic,800,800italic'
+          rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Work+Sans:400,300,300italic,400italic,500,600,700,700italic,800,800italic'
+          rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Jura:400,300,300italic,400italic,500,600,700,700italic,800,800italic'
+          rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic,500,600,700,700italic,800,800italic'
+          rel='stylesheet' type='text/css'>
+    <title>Seattle tutorial</title>
+    <link href="../../css/bootstrap.min.css" rel="stylesheet">
+
+
+
+    <link href="../../css/highlight/styles/solarized_light.css" rel="stylesheet"/>
+    <link href="../../css/syntax-custom.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="../../vendor/font-awesome/css/font-awesome.min.css">
+
+    <link href="../../css/style.css" rel="stylesheet">
+
+
+
+
+    
+
+
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../../img/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../../img/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../../img/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="../../img/apple-touch-icon-57-precomposed.png">
+
+    
+    
+</head>
+<body data-spy="scroll" data-target="#myScrollspy" data-offset="110">
+<header class="bs-docs-header">
+    <div class="container-fluid" style="max-width:1170px">
+        <div class="col-sm-12 column" style="padding-left:0px; padding-right:0px;">
+            <div class="col-sm-9 column" style="padding-left:0px;height:50px;">
+
+    <ul class="nav nav-pills" style="margin-top:-6px;">
+        <li><a href="../../" style="padding-left: 6px; padding-right: 13px; vertical-align: top; margin-top: 7px;"><img
+                src="../../img/logo/MoleculeLogo150.png"></a></li>
+        
+        
+            
+            <li class="dropdown ">
+                <a href="../../intro/" target="_top">Intro</a>
+            </li>
+        
+            
+            <li class="dropdown ">
+                <a href="../../setup/" target="_top">Setup</a>
+            </li>
+        
+            
+            <li class="dropdown ">
+                <a href="../../code/" target="_top">Code</a>
+            </li>
+        
+            
+            <li class="dropdown ">
+                <a href="../../dev/" target="_top">Dev</a>
+            </li>
+        
+            
+            <li class="dropdown active">
+                <a href="../../community/" target="_top">Community</a>
+            </li>
+        
+    </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+            <div class="col-sm-3 column" style="padding-top:13px;padding-right:0px;text-align:right;display:inline-block">
+                <a href="https://javadoc.io/doc/org.scalamolecule/molecule_2.13/latest/index.html" target="_blank" style="margin-top:-2px;color:#999;padding-right:12px;">docs</a>
+                <a href="../../changelog" style="margin-top:-2px;color:#999">v0.24.0</a>
+                <a href="https://github.com/scalamolecule/molecule" target="_blank">
+                    <img src="../../vendor/GitHub-Mark/PNG/GitHub-Mark-Light-32px.png"
+                         style="margin-top:-4px;padding-left:15px;opacity:0.6;width:42px;">
+                </a>
+            </div>
+
+        </div>
+
+    </div>
+</header>
+
+<div class="wrapper">
+
+<div class="container-fluid" style="max-width:1170px">
+
+    <div class="col-sm-10 " style="padding-left:8px;">
+        <h1 id="seattle-tutorial---with-molecules">Seattle tutorial - with molecules</h1>
+<p><em>Credits: This tutorial is based on the original <a href="https://web.archive.org/web/20161007085359/http://docs.datomic.com/tutorial.html">Datomic Seattle tutorial</a> (there is also a <a href="http://docs.datomic.com/tutorial.html">new tutorial</a>) and some text passages have been quoted as-is or been slightly modified to describe how Molecule works.</em></p>
+<h2 id="introduction">Introduction</h2>
+<p>After <a href="../../setup/">setting up the database</a> and <a href="../../code/transactions/#insert">populating it with data</a> we can start making queries. We make queries by building &ldquo;molecules&rdquo; which are chains of attributes put together with the builder pattern. We can imagine this as a 3-dimensional data structure of atoms bound together in various patterns to build molecules&hellip;</p>
+<h3 id="molecule-builder-pattern">Molecule builder pattern</h3>
+<p>The first thing you do with Molecule is to define your domain namespaces and attributes in a trait that defines namespaces with attributes for your domain:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">trait</span> <span class="nc">Community</span> <span class="o">{</span>
+  <span class="k">val</span> <span class="n">name</span> <span class="k">=</span> <span class="n">oneString</span><span class="o">.</span><span class="n">fulltext</span>
+  <span class="k">val</span> <span class="n">url</span>  <span class="k">=</span> <span class="n">oneString</span>
+  <span class="o">...</span>
+<span class="o">}</span>
+</code></pre></div><p>The <code>name</code> field defines an attribute of type String with cardinality one. Adding the <code>fulltext</code> option will tell Datomic that we want to be able to make fulltext searches on the values of this attribute.</p>
+<p>After defining the schema like this, we run <code>sbt compile</code> and Molecule will generate some boilerplate traits that allow us to build molecules of our attributes:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">val</span> <span class="n">nameUrls</span> <span class="k">=</span> <span class="n">m</span><span class="o">(</span><span class="nc">Community</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">url</span><span class="o">).</span><span class="n">get</span>
+</code></pre></div><p>Since the <code>m</code> method is implicit we can generally just write</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">val</span> <span class="n">nameUrls</span> <span class="k">=</span> <span class="nc">Community</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">url</span><span class="o">.</span><span class="n">get</span>
+</code></pre></div><p>If you look at the generated namespace code you&rsquo;ll see that it is a little more complex behind the scenes. That&rsquo;s because we want our IDE to be able to infer the type of each attribute. If we for instance had an <code>age</code> attribute of type <code>Int</code> we could infer the return types of calling the <code>get</code> method on a molecule. That would return a List of name/age tuples of type <code>List[(String, Int)]</code>:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">val</span> <span class="n">nameAges</span><span class="k">:</span> <span class="kt">List</span><span class="o">[(</span><span class="kt">String</span>, <span class="kt">Int</span><span class="o">)]</span> <span class="k">=</span> <span class="nc">Community</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">age</span><span class="o">.</span><span class="n">get</span>
+</code></pre></div><p>A feature of Molecule is to omit the values of an attribute from the result set by adding an underscore to the attribute name:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">val</span> <span class="n">names</span><span class="k">:</span> <span class="kt">List</span><span class="o">[</span><span class="kt">String</span><span class="o">]</span> <span class="k">=</span> <span class="nc">Community</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">age_</span><span class="o">.</span><span class="n">get</span>
+</code></pre></div><p>This is handy if we want to query for entities that we want to be sure have an age and where we at the same time don&rsquo;t need the age returned.</p>
+<p>Now let&rsquo;s follow along the <a href="https://web.archive.org/web/20161007085359/http://docs.datomic.com/tutorial.html">Datomic Seattle tutorial</a> and see how Molecule can perform the same queries.</p>
+<h2 id="a-first-query">A first query</h2>
+<p>To find communities we can make a <code>communities</code> molecule looking for entities with Community name:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">val</span> <span class="n">communities</span> <span class="k">=</span> <span class="n">m</span><span class="o">(</span><span class="nc">Community</span><span class="o">.</span><span class="n">name</span><span class="o">)</span>
+</code></pre></div><p>With this molecule at hand we can get the community names, or we can ask for the size of our returned data set:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="n">communities</span><span class="o">.</span><span class="n">get</span> <span class="o">===</span> <span class="c1">// List of community names...
+</span></code></pre></div><p>or we could check how many communities we have</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="n">communities</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">size</span> <span class="o">===</span> <span class="mi">150</span>
+</code></pre></div><p>If we want the entity ids of our communities we can add the generic attribute <code>e</code> to our molecule. We might not be interested in the names but we want to make sure that we find entities having a name, so we add the <code>name</code> attribute with an underscore (to omit it from the result set):</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Community</span><span class="o">.</span><span class="n">e</span><span class="o">.</span><span class="n">name_</span><span class="o">.</span><span class="n">get</span><span class="o">(</span><span class="mi">3</span><span class="o">)</span> <span class="o">===</span> <span class="nc">List</span><span class="o">(</span><span class="mi">17592186045518L</span><span class="o">,</span> <span class="mi">17592186045516L</span><span class="o">,</span> <span class="mi">17592186045514L</span><span class="o">)</span>
+</code></pre></div><h2 id="getting-an-entitys-attribute-values">Getting an entity&rsquo;s attribute values</h2>
+<p>A way to get additional attribute values once we have an entity id is to <code>touch</code> it:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">val</span> <span class="n">communityId</span> <span class="k">=</span> <span class="nc">Community</span><span class="o">.</span><span class="n">e</span><span class="o">.</span><span class="n">name_</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">head</span>
+
+<span class="c1">// Use the community id to touch all the entity&#39;s attribute values
+</span><span class="c1"></span><span class="n">communityId</span><span class="o">.</span><span class="n">touch</span> <span class="o">===</span> <span class="nc">Map</span><span class="o">(</span>
+  <span class="s">&#34;:Community/type&#34;</span> <span class="o">-&gt;</span> <span class="s">&#34;:Community.type/website&#34;</span><span class="o">,</span>
+  <span class="s">&#34;:Community/url&#34;</span> <span class="o">-&gt;</span> <span class="s">&#34;http://www.greenlakecommunitycouncil.org/&#34;</span><span class="o">,</span>
+  <span class="s">&#34;:Community/category&#34;</span> <span class="o">-&gt;</span> <span class="nc">List</span><span class="o">(</span><span class="s">&#34;community council&#34;</span><span class="o">),</span>
+  <span class="s">&#34;:Community/orgtype&#34;</span> <span class="o">-&gt;</span> <span class="s">&#34;:Community.orgtype/community&#34;</span><span class="o">,</span>
+  <span class="s">&#34;:db/id&#34;</span> <span class="o">-&gt;</span> <span class="mi">17592186045665L</span><span class="o">,</span>
+  <span class="s">&#34;:Community/name&#34;</span> <span class="o">-&gt;</span> <span class="s">&#34;Greenlake Community Council&#34;</span><span class="o">,</span>
+  <span class="s">&#34;:Community/neighborhood&#34;</span> <span class="o">-&gt;</span> <span class="nc">Map</span><span class="o">(</span>
+    <span class="s">&#34;:db/id&#34;</span> <span class="o">-&gt;</span> <span class="mi">17592186045666L</span><span class="o">,</span>
+    <span class="s">&#34;:Neighborhood/district&#34;</span> <span class="o">-&gt;</span> <span class="nc">Map</span><span class="o">(</span>
+      <span class="s">&#34;:db/id&#34;</span> <span class="o">-&gt;</span> <span class="mi">17592186045667L</span><span class="o">,</span>
+      <span class="s">&#34;:District/name&#34;</span> <span class="o">-&gt;</span> <span class="s">&#34;Northwest&#34;</span><span class="o">,</span>
+      <span class="s">&#34;:District/region&#34;</span> <span class="o">-&gt;</span> <span class="s">&#34;:District.region/sw&#34;</span><span class="o">),</span>
+    <span class="s">&#34;:Neighborhood/name&#34;</span> <span class="o">-&gt;</span> <span class="s">&#34;Green Lake&#34;</span><span class="o">))</span>
+</code></pre></div><p>We can also retrive attribute values one by one by simply applying an attribute name to the entity id:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="n">communityId</span><span class="o">(</span><span class="s">&#34;:Community/name&#34;</span><span class="o">)</span> <span class="o">===</span> <span class="nc">Some</span><span class="o">(</span><span class="s">&#34;Greenlake Community Council&#34;</span><span class="o">)</span>
+<span class="n">communityId</span><span class="o">(</span><span class="s">&#34;:Community/url&#34;</span><span class="o">)</span> <span class="o">===</span> <span class="nc">Some</span><span class="o">(</span><span class="s">&#34;http://www.greenlakecommunitycouncil.org/&#34;</span><span class="o">)</span>
+<span class="n">communityId</span><span class="o">(</span><span class="s">&#34;:Community/category&#34;</span><span class="o">)</span> <span class="o">===</span> <span class="nc">Some</span><span class="o">(</span><span class="nc">Set</span><span class="o">(</span><span class="s">&#34;community council&#34;</span><span class="o">))</span>
+<span class="n">communityId</span><span class="o">(</span><span class="s">&#34;:Community/emptyOrBogusAttribute&#34;</span><span class="o">)</span> <span class="o">===</span> <span class="nc">None</span>
+</code></pre></div><h2 id="querying-_for_-an-attributes-value">Querying <em>for</em> an attribute&rsquo;s value</h2>
+<p>After defining a molecule like <code>Community.name</code> we can call the <code>get</code> method on it to retrieve values that matches it. When there&rsquo;s only one attribute defined in the molecule we&rsquo;ll get a list of this attribute&rsquo;s value back.</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Community</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">get</span><span class="o">(</span><span class="mi">3</span><span class="o">)</span> <span class="o">===</span> <span class="nc">List</span><span class="o">(</span>
+  <span class="s">&#34;KOMO Communities - Ballard&#34;</span><span class="o">,</span>
+  <span class="s">&#34;Ballard Blog&#34;</span><span class="o">,</span>
+  <span class="s">&#34;Ballard Historical Society&#34;</span><span class="o">)</span>
+</code></pre></div><p>If our molecule defines two or more attributes we&rsquo;ll get tuples of values back.</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Community</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">url</span><span class="o">.</span><span class="n">get</span><span class="o">(</span><span class="mi">3</span><span class="o">)</span> <span class="o">===</span> <span class="nc">List</span><span class="o">(</span>
+  <span class="o">(</span><span class="s">&#34;Broadview Community Council&#34;</span><span class="o">,</span> <span class="s">&#34;http://groups.google.com/group/broadview-community-council&#34;</span><span class="o">),</span>
+  <span class="o">(</span><span class="s">&#34;KOMO Communities - Wallingford&#34;</span><span class="o">,</span> <span class="s">&#34;http://wallingford.komonews.com&#34;</span><span class="o">),</span>
+  <span class="o">(</span><span class="s">&#34;Aurora Seattle&#34;</span><span class="o">,</span> <span class="s">&#34;http://www.auroraseattle.com/&#34;</span><span class="o">))</span>
+</code></pre></div><h2 id="querying-_by_-attribute-values">Querying <em>by</em> attribute values</h2>
+<p>When applying a value to an attribute we narrow the selection of entities that will match our molecule data structure. Let&rsquo;s find communities of type &ldquo;twitter&rdquo;:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Community</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">`type`</span><span class="o">(</span><span class="s">&#34;twitter&#34;</span><span class="o">).</span><span class="n">get</span><span class="o">(</span><span class="mi">3</span><span class="o">)</span> <span class="o">===</span> <span class="nc">List</span><span class="o">(</span>
+  <span class="o">(</span><span class="s">&#34;Columbia Citizens&#34;</span><span class="o">,</span> <span class="s">&#34;twitter&#34;</span><span class="o">),</span>
+  <span class="o">(</span><span class="s">&#34;Discover SLU&#34;</span><span class="o">,</span> <span class="s">&#34;twitter&#34;</span><span class="o">),</span>
+  <span class="o">(</span><span class="s">&#34;Fremont Universe&#34;</span><span class="o">,</span> <span class="s">&#34;twitter&#34;</span><span class="o">))</span>
+</code></pre></div><p>(We use the back-ticks to avoid having Scala to think of <code>type</code> as a Scala keyword)</p>
+<p>Since the <code>type</code> will always be &ldquo;twitter&rdquo; we could omit it from the result set by adding an underscore to the <code>type</code> attribute (and we don&rsquo;t need the back-ticks anymore).</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Community</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">type_</span><span class="o">(</span><span class="s">&#34;twitter&#34;</span><span class="o">).</span><span class="n">get</span><span class="o">(</span><span class="mi">3</span><span class="o">)</span> <span class="o">===</span> <span class="nc">List</span><span class="o">(</span>
+  <span class="s">&#34;Magnolia Voice&#34;</span><span class="o">,</span> <span class="s">&#34;Columbia Citizens&#34;</span><span class="o">,</span> <span class="s">&#34;Discover SLU&#34;</span><span class="o">)</span>
+</code></pre></div><p>Notice that we get some different communities. We are not guaranteed a specific order of returned values and the first 3 values can therefore vary as we see here even though the molecules/queries are similar.</p>
+<p>In most of our examples we supply static data like &ldquo;twitter&rdquo; but even though our molecules are created at compile time we can even supply data as variables like we would do with user input from forms etc. So we could as well write the following and get the same result.</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">val</span> <span class="n">tw</span> <span class="k">=</span> <span class="s">&#34;twitter&#34;</span>
+<span class="nc">Community</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">type_</span><span class="o">(</span><span class="n">tw</span><span class="o">).</span><span class="n">get</span><span class="o">(</span><span class="mi">3</span><span class="o">)</span> <span class="o">===</span> <span class="nc">List</span><span class="o">(</span>
+  <span class="s">&#34;Magnolia Voice&#34;</span><span class="o">,</span> <span class="s">&#34;Columbia Citizens&#34;</span><span class="o">,</span> <span class="s">&#34;Discover SLU&#34;</span><span class="o">)</span>
+</code></pre></div><p>Retrieving values of many-attributes like <code>category</code> gives us sets of values back</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Community</span><span class="o">.</span><span class="n">name_</span><span class="o">(</span><span class="s">&#34;belltown&#34;</span><span class="o">).</span><span class="n">category</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">head</span> <span class="o">===</span> <span class="nc">Set</span><span class="o">(</span><span class="s">&#34;events&#34;</span><span class="o">,</span> <span class="s">&#34;news&#34;</span><span class="o">)</span>
+</code></pre></div><p>Since we often want a single result back, Molecule supplies a <code>one</code> convenience method that calls <code>get.head</code>.</p>
+<p>We can apply multiple values to many-attributes like <code>category</code> and it will match entities having any of those values (OR-semantics).</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Community</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">category_</span><span class="o">(</span><span class="s">&#34;news&#34;</span><span class="o">,</span> <span class="s">&#34;arts&#34;</span><span class="o">).</span><span class="n">get</span><span class="o">(</span><span class="mi">3</span><span class="o">)</span> <span class="o">===</span> <span class="nc">List</span><span class="o">(</span>
+  <span class="s">&#34;Beach Drive Blog&#34;</span><span class="o">,</span>
+  <span class="s">&#34;KOMO Communities - Ballard&#34;</span><span class="o">,</span>
+  <span class="s">&#34;Ballard Blog&#34;</span><span class="o">)</span>
+</code></pre></div><h2 id="querying-across-references">Querying across references</h2>
+<p>The sample Data Model includes three main entity types communities, neighborhoods and districts that are related to each other with references. Molecule lets you traverse those references by going from one namespace to the next. Let&rsquo;s find communities in the noth-eastern region:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Community</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="nc">Neighborhood</span><span class="o">.</span><span class="nc">District</span><span class="o">.</span><span class="n">region_</span><span class="o">(</span><span class="s">&#34;ne&#34;</span><span class="o">).</span><span class="n">get</span><span class="o">(</span><span class="mi">3</span><span class="o">)</span> <span class="o">===</span> <span class="nc">List</span><span class="o">(</span>
+  <span class="s">&#34;Maple Leaf Community Council&#34;</span><span class="o">,</span>
+  <span class="s">&#34;Hawthorne Hills Community Website&#34;</span><span class="o">,</span>
+  <span class="s">&#34;KOMO Communities - View Ridge&#34;</span><span class="o">)</span>
+</code></pre></div><p>Or comunity names and their region:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Community</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="nc">Neighborhood</span><span class="o">.</span><span class="nc">District</span><span class="o">.</span><span class="n">region</span><span class="o">.</span><span class="n">get</span><span class="o">(</span><span class="mi">3</span><span class="o">)</span> <span class="o">===</span> <span class="nc">List</span><span class="o">(</span>
+  <span class="o">(</span><span class="s">&#34;KOMO Communities - North Seattle&#34;</span><span class="o">,</span><span class="s">&#34;n&#34;</span><span class="o">),</span>
+  <span class="o">(</span><span class="s">&#34;Morgan Junction Community Association&#34;</span><span class="o">,</span><span class="s">&#34;sw&#34;</span><span class="o">),</span>
+  <span class="o">(</span><span class="s">&#34;Friends of Seward Park&#34;</span><span class="o">,</span><span class="s">&#34;se&#34;</span><span class="o">))</span>
+</code></pre></div><h2 id="parameterizing-queries---input-molecules">Parameterizing queries - input molecules</h2>
+<p>When you apply values to molecules, the resulting query string is cached by Datomic. If you keep varying the string content, the cache is not effective. To take advantage of query caching it is recommended to make parameterized queries that can be cached once and used with varying input parameters.</p>
+<h3 id="single-input-value-for-an-attribute">Single input value for an attribute</h3>
+<p>Instead of applying the constant value &ldquo;twitter&rdquo; to a molecule <code>Community.type(&quot;twitter&quot;)</code> we can use the <code>?</code> input placeholder in an &ldquo;input molecule&rdquo; telling us that it waits for an input value.</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">val</span> <span class="n">communitiesOfType</span> <span class="k">=</span> <span class="n">m</span><span class="o">(</span><span class="nc">Community</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">type_</span><span class="o">(?))</span>
+</code></pre></div><p>When can then apply different input values to our input molecule:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">val</span> <span class="n">twitterCommunities</span> <span class="k">=</span> <span class="n">communitiesOfType</span><span class="o">(</span><span class="s">&#34;twitter&#34;</span><span class="o">)</span>
+<span class="k">val</span> <span class="n">facebookCommunities</span> <span class="k">=</span> <span class="n">communitiesOfType</span><span class="o">(</span><span class="s">&#34;facebook_page&#34;</span><span class="o">)</span>
+</code></pre></div><p>Those two molecules re-use the same cached query and just apply different input values. Now we can more efficiently get out results.</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="n">twitterCommunities</span><span class="o">.</span><span class="n">get</span><span class="o">(</span><span class="mi">3</span><span class="o">)</span> <span class="o">===</span> <span class="nc">List</span><span class="o">(</span>
+  <span class="s">&#34;Magnolia Voice&#34;</span><span class="o">,</span> <span class="s">&#34;Columbia Citizens&#34;</span><span class="o">,</span> <span class="s">&#34;Discover SLU&#34;</span><span class="o">)</span>
+  
+<span class="n">facebookCommunities</span><span class="o">.</span><span class="n">get</span><span class="o">(</span><span class="mi">3</span><span class="o">)</span> <span class="o">===</span> <span class="nc">List</span><span class="o">(</span>
+  <span class="s">&#34;Magnolia Voice&#34;</span><span class="o">,</span> <span class="s">&#34;Columbia Citizens&#34;</span><span class="o">,</span> <span class="s">&#34;Discover SLU&#34;</span><span class="o">)</span>
+</code></pre></div><p>If we omit the underscore we can get the type too</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">val</span> <span class="n">communitiesWithType</span> <span class="k">=</span> <span class="n">m</span><span class="o">(</span><span class="nc">Community</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">`type`</span><span class="o">(?))</span>
+
+<span class="n">communitiesWithType</span><span class="o">(</span><span class="s">&#34;twitter&#34;</span><span class="o">).</span><span class="n">get</span><span class="o">(</span><span class="mi">3</span><span class="o">)</span> <span class="o">===</span> <span class="nc">List</span><span class="o">(</span>
+  <span class="o">(</span><span class="s">&#34;Discover SLU&#34;</span><span class="o">,</span> <span class="s">&#34;twitter&#34;</span><span class="o">),</span>
+  <span class="o">(</span><span class="s">&#34;Fremont Universe&#34;</span><span class="o">,</span> <span class="s">&#34;twitter&#34;</span><span class="o">),</span>
+  <span class="o">(</span><span class="s">&#34;Columbia Citizens&#34;</span><span class="o">,</span> <span class="s">&#34;twitter&#34;</span><span class="o">))</span>
+</code></pre></div><h3 id="multiple-input-values-for-an-attribute---logical-or">Multiple input values for an attribute - logical OR</h3>
+<p>Find communities of type &ldquo;facebook_page&rdquo; OR &ldquo;twitter&rdquo;:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="n">communitiesWithType</span><span class="o">(</span><span class="s">&#34;facebook_page&#34;</span> <span class="n">or</span> <span class="s">&#34;twitter&#34;</span><span class="o">).</span><span class="n">get</span><span class="o">(</span><span class="mi">3</span><span class="o">)</span> <span class="o">===</span> <span class="nc">List</span><span class="o">(</span>
+  <span class="o">(</span><span class="s">&#34;Eastlake Community Council&#34;</span><span class="o">,</span> <span class="s">&#34;facebook_page&#34;</span><span class="o">),</span>
+  <span class="o">(</span><span class="s">&#34;Discover SLU&#34;</span><span class="o">,</span> <span class="s">&#34;twitter&#34;</span><span class="o">),</span>
+  <span class="o">(</span><span class="s">&#34;MyWallingford&#34;</span><span class="o">,</span> <span class="s">&#34;facebook_page&#34;</span><span class="o">))</span>
+</code></pre></div><p>Alternative syntaxes where comma-separations act as logical OR:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="n">communitiesWithType</span><span class="o">(</span><span class="s">&#34;facebook_page&#34;</span><span class="o">,</span> <span class="s">&#34;twitter&#34;</span><span class="o">)</span>
+<span class="n">communitiesWithType</span><span class="o">(</span><span class="nc">Seq</span><span class="o">(</span><span class="s">&#34;facebook_page&#34;</span><span class="o">,</span> <span class="s">&#34;twitter&#34;</span><span class="o">))</span>
+</code></pre></div><h3 id="tuple-of-input-values-for-multiple-attributes---logical-and">Tuple of input values for multiple attributes - logical AND</h3>
+<p>In addition to passing multiple values for a single attribute, you can pass a tuple of values for multiple attributes ensuring that both values are present.</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">val</span> <span class="n">typeAndOrgtype</span> <span class="k">=</span> <span class="n">m</span><span class="o">(</span><span class="nc">Community</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">type_</span><span class="o">(?).</span><span class="n">orgtype_</span><span class="o">(?))</span>
+</code></pre></div><p>With this input molecule we can find communities that are of <code>type</code> &ldquo;email_list&rdquo; AND <code>orgtype</code> &ldquo;community&rdquo;.</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="n">typeAndOrgtype</span><span class="o">(</span><span class="s">&#34;email_list&#34;</span> <span class="n">and</span> <span class="s">&#34;community&#34;</span><span class="o">).</span><span class="n">get</span><span class="o">(</span><span class="mi">3</span><span class="o">)</span> <span class="o">===</span> <span class="nc">List</span><span class="o">(</span>
+  <span class="s">&#34;Ballard Moms&#34;</span><span class="o">,</span>
+  <span class="s">&#34;Admiral Neighborhood Association&#34;</span><span class="o">,</span>
+  <span class="s">&#34;15th Ave Community&#34;</span><span class="o">)</span>
+</code></pre></div><p>The order of arguments in the logical AND expression will correspond to the order of the input placeholders in the input molecule so that &ldquo;email_list&rdquo; corresponds to <code>type_(?)</code> and &ldquo;community&rdquo; corresponds to <code>community_(?)</code>.</p>
+<p>Arguments in expressions are also type-checked against the expected types of the corresponding attributes. Our IDE would infer that the <code>orgtype</code> attribute doesn&rsquo;t expect an <code>Int</code> as the second argument if we were to pass the expression &ldquo;email_list and 42&rdquo;. This helps us avoid populating our database with unexpected data.</p>
+<p>We can express logical AND expressions with a list of arguments too:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="c1">// AND-semantics given an input molecule expecting 2 inputs!
+</span><span class="c1"></span><span class="n">typeAndOrgtype</span><span class="o">(</span><span class="s">&#34;email_list&#34;</span><span class="o">,</span> <span class="s">&#34;community&#34;</span><span class="o">)</span>
+</code></pre></div><p>Or we can pass a list of arguments. IMPORTANT: note how the semantics of a list of arguments change compared to the OR semantics that we saw with the single-input molecule above that had OR-semantics. When we have multiple inputs the semantics change to AND-semantics!</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="c1">// AND-semantics given an input molecule expecting 2 inputs!
+</span><span class="c1"></span><span class="n">typeAndOrgtype</span><span class="o">(</span><span class="nc">Seq</span><span class="o">((</span><span class="s">&#34;email_list&#34;</span><span class="o">,</span> <span class="s">&#34;community&#34;</span><span class="o">)))</span>
+</code></pre></div><h3 id="multiple-tuples-of-input-values-for-multiple-attributes---logical-andor">Multiple tuples of input values for multiple attributes - logical AND/OR</h3>
+<p>We can also ask for alternative tuples of data structures. Since the input values can then vary, we could ask our molecule to return the input values too.</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">val</span> <span class="n">typeAndOrgtype2</span> <span class="k">=</span> <span class="n">m</span><span class="o">(</span><span class="nc">Community</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">`type`</span><span class="o">(?).</span><span class="n">orgtype</span><span class="o">(?))</span>
+</code></pre></div><p>Now let&rsquo;s ask for email-list communities OR commercial website communities. Note how this combines logical AND and OR.</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="n">typeAndOrgtype2</span><span class="o">(</span>
+  <span class="o">(</span><span class="s">&#34;email_list&#34;</span> <span class="n">and</span> <span class="s">&#34;community&#34;</span><span class="o">)</span> <span class="n">or</span> 
+  <span class="o">(</span><span class="s">&#34;website&#34;</span> <span class="n">and</span> <span class="s">&#34;commercial&#34;</span><span class="o">)</span>
+<span class="o">).</span><span class="n">get</span><span class="o">(</span><span class="mi">5</span><span class="o">)</span> <span class="o">===</span> <span class="nc">List</span><span class="o">(</span>
+  <span class="o">(</span><span class="s">&#34;Fremont Arts Council&#34;</span><span class="o">,</span> <span class="s">&#34;email_list&#34;</span><span class="o">,</span> <span class="s">&#34;community&#34;</span><span class="o">),</span>
+  <span class="o">(</span><span class="s">&#34;Greenwood Community Council Announcements&#34;</span><span class="o">,</span> <span class="s">&#34;email_list&#34;</span><span class="o">,</span> <span class="s">&#34;community&#34;</span><span class="o">),</span>
+  <span class="o">(</span><span class="s">&#34;Broadview Community Council&#34;</span><span class="o">,</span> <span class="s">&#34;email_list&#34;</span><span class="o">,</span> <span class="s">&#34;community&#34;</span><span class="o">),</span>
+  <span class="o">(</span><span class="s">&#34;Alki News&#34;</span><span class="o">,</span> <span class="s">&#34;email_list&#34;</span><span class="o">,</span> <span class="s">&#34;community&#34;</span><span class="o">),</span>
+  <span class="o">(</span><span class="s">&#34;Beacon Hill Burglaries&#34;</span><span class="o">,</span> <span class="s">&#34;email_list&#34;</span><span class="o">,</span> <span class="s">&#34;community&#34;</span><span class="o">))</span>
+</code></pre></div><p>As usual we can use alternative syntaxes as well. Here we group the AND expression arguments as tuple values. Comma-separations between the tuples act as logical OR.</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="c1">// ((a AND b) OR (c AND d))
+</span><span class="c1"></span><span class="n">typeAndOrgtype2</span><span class="o">((</span><span class="s">&#34;email_list&#34;</span><span class="o">,</span> <span class="s">&#34;community&#34;</span><span class="o">),</span> <span class="o">(</span><span class="s">&#34;website&#34;</span><span class="o">,</span> <span class="s">&#34;commercial&#34;</span><span class="o">))</span>
+<span class="n">typeAndOrgtype2</span><span class="o">(</span><span class="nc">Seq</span><span class="o">((</span><span class="s">&#34;email_list&#34;</span><span class="o">,</span> <span class="s">&#34;community&#34;</span><span class="o">),</span> <span class="o">(</span><span class="s">&#34;website&#34;</span><span class="o">,</span> <span class="s">&#34;commercial&#34;</span><span class="o">)))</span>
+</code></pre></div><h2 id="invoking-functions-in-queries">Invoking functions in queries</h2>
+<p>Datomic lets you invoke functions in queries. Molecule use this to apply comparison operations on attribute values. Here we can for instance find communities whose <code>name</code> come before &ldquo;C&rdquo; in alphabetical order.</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="n">m</span><span class="o">(</span><span class="nc">Community</span><span class="o">.</span><span class="n">name</span> <span class="o">&lt;</span> <span class="s">&#34;C&#34;</span><span class="o">).</span><span class="n">get</span><span class="o">(</span><span class="mi">3</span><span class="o">)</span> <span class="o">===</span> <span class="nc">List</span><span class="o">(</span>
+  <span class="s">&#34;Ballard Blog&#34;</span><span class="o">,</span> <span class="s">&#34;Beach Drive Blog&#34;</span><span class="o">,</span> <span class="s">&#34;Beacon Hill Blog&#34;</span><span class="o">)</span>
+</code></pre></div><p>Note how we use the <code>m</code> method here to allow the postfix notation (spaces around <code>&lt;</code>). Alternatively you can call the <code>&lt;</code> method explicitly if you prefer this syntax:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Community</span><span class="o">.</span><span class="n">name</span><span class="o">.&lt;(</span><span class="s">&#34;C&#34;</span><span class="o">).</span><span class="n">get</span><span class="o">(</span><span class="mi">3</span><span class="o">)</span> <span class="o">===</span> <span class="nc">List</span><span class="o">(</span>
+  <span class="s">&#34;Ballard Blog&#34;</span><span class="o">,</span> <span class="s">&#34;Beach Drive Blog&#34;</span><span class="o">,</span> <span class="s">&#34;Beacon Hill Blog&#34;</span><span class="o">)</span>
+</code></pre></div><p>We can also parameterize the molecule.</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">val</span> <span class="n">communitiesBefore</span> <span class="k">=</span> <span class="n">m</span><span class="o">(</span><span class="nc">Community</span><span class="o">.</span><span class="n">name</span> <span class="o">&lt;</span> <span class="o">?)</span>
+
+<span class="n">communitiesBefore</span><span class="o">(</span><span class="s">&#34;C&#34;</span><span class="o">).</span><span class="n">get</span><span class="o">(</span><span class="mi">3</span><span class="o">)</span> <span class="o">===</span> <span class="nc">List</span><span class="o">(</span>
+  <span class="s">&#34;Ballard Blog&#34;</span><span class="o">,</span> <span class="s">&#34;Beach Drive Blog&#34;</span><span class="o">,</span> <span class="s">&#34;Beacon Hill Blog&#34;</span><span class="o">)</span>
+  
+<span class="n">communitiesBefore</span><span class="o">(</span><span class="s">&#34;A&#34;</span><span class="o">).</span><span class="n">get</span><span class="o">(</span><span class="mi">3</span><span class="o">)</span> <span class="o">===</span> <span class="nc">List</span><span class="o">(</span><span class="s">&#34;15th Ave Community&#34;</span><span class="o">)</span>
+</code></pre></div><h2 id="querying-with-fulltext-search">Querying with fulltext search</h2>
+<p>Datomic supports fulltext searching. When you define an attribute of string value, you can indicate whether it should be indexed for fulltext search. For instance Community <code>name</code> and <code>category</code> have the fulltext option defined in the Seattle schema. Let&rsquo;s find communities with &ldquo;Wallingford&rdquo; in the name.</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="o">(</span><span class="nc">Community</span><span class="o">.</span><span class="n">name</span> <span class="n">contains</span> <span class="s">&#34;Wallingford&#34;</span> <span class="n">take</span> <span class="mi">3</span><span class="o">)</span> <span class="o">===</span> <span class="nc">List</span><span class="o">(</span>
+  <span class="s">&#34;KOMO Communities - Wallingford&#34;</span><span class="o">)</span>
+</code></pre></div><p>And we can parameterize fulltext searches too:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">val</span> <span class="n">communitiesWith</span> <span class="k">=</span> <span class="n">m</span><span class="o">(</span><span class="nc">Community</span><span class="o">.</span><span class="n">name</span> <span class="n">contains</span> <span class="o">?)</span>
+
+<span class="o">(</span><span class="n">communitiesWith</span><span class="o">(</span><span class="s">&#34;Wallingford&#34;</span><span class="o">)</span> <span class="n">take</span> <span class="mi">3</span><span class="o">)</span> <span class="o">===</span> <span class="nc">List</span><span class="o">(</span>
+  <span class="s">&#34;KOMO Communities - Wallingford&#34;</span><span class="o">)</span>
+</code></pre></div><h3 id="fulltext-search-on-many-cardinality-attributes">Fulltext search on many-cardinality attributes</h3>
+<p>The <code>category</code> attribute can have several values so when we do a fulltext search on its values we&rsquo;ll get back a set of its values that match our seed. We can also combine fulltext search with other constraints. Here we look for website communities with a <code>category</code> containing the word &ldquo;food&rdquo;:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="n">m</span><span class="o">(</span><span class="nc">Community</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">type_</span><span class="o">(</span><span class="s">&#34;website&#34;</span><span class="o">).</span><span class="n">category</span> <span class="n">contains</span> <span class="s">&#34;food&#34;</span><span class="o">).</span><span class="n">get</span><span class="o">(</span><span class="mi">3</span><span class="o">)</span> <span class="o">===</span> <span class="nc">List</span><span class="o">(</span>
+  <span class="o">(</span><span class="s">&#34;Community Harvest of Southwest Seattle&#34;</span><span class="o">,</span> <span class="nc">Set</span><span class="o">(</span><span class="s">&#34;sustainable food&#34;</span><span class="o">)),</span>
+  <span class="o">(</span><span class="s">&#34;InBallard&#34;</span><span class="o">,</span> <span class="nc">Set</span><span class="o">(</span><span class="s">&#34;food&#34;</span><span class="o">)))</span>
+<span class="o">)</span>
+</code></pre></div><p>And parameterized:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">val</span> <span class="n">typeAndCategory</span> <span class="k">=</span> <span class="n">m</span><span class="o">(</span><span class="nc">Community</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">type_</span><span class="o">(?).</span><span class="n">category</span> <span class="n">contains</span> <span class="o">?)</span>
+
+<span class="n">typeAndCategory</span><span class="o">(</span><span class="s">&#34;website&#34;</span><span class="o">,</span> <span class="nc">Set</span><span class="o">(</span><span class="s">&#34;food&#34;</span><span class="o">)).</span><span class="n">get</span><span class="o">(</span><span class="mi">3</span><span class="o">)</span> <span class="o">===</span> <span class="nc">List</span><span class="o">(</span>
+  <span class="o">(</span><span class="s">&#34;Community Harvest of Southwest Seattle&#34;</span><span class="o">,</span> <span class="nc">Set</span><span class="o">(</span><span class="s">&#34;sustainable food&#34;</span><span class="o">)),</span>
+  <span class="o">(</span><span class="s">&#34;InBallard&#34;</span><span class="o">,</span> <span class="nc">Set</span><span class="o">(</span><span class="s">&#34;food&#34;</span><span class="o">)))</span>
+<span class="o">)</span>
+</code></pre></div><p>Note how the values of the <code>category</code> attribute are now returned since they can vary across the result set contrary to the <code>type</code> attribute which is not since it will have the same value for all matches.</p>
+<h2 id="querying-with-rules---logical-or">Querying with rules - logical OR</h2>
+<p>Datomic rules are named groups of Datomic clauses that can be plugged into Datomic queries. As a Molecule user you don&rsquo;t need to know about rules since Molecule automatically translates your logic to Datomic rules.</p>
+<p>We can for instance find social media communities with a logical OR expresion:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Community</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">type_</span><span class="o">(</span><span class="s">&#34;twitter&#34;</span> <span class="n">or</span> <span class="s">&#34;facebook_page&#34;</span><span class="o">).</span><span class="n">get</span><span class="o">(</span><span class="mi">3</span><span class="o">)</span> <span class="o">===</span> <span class="nc">List</span><span class="o">(</span>
+  <span class="s">&#34;Magnolia Voice&#34;</span><span class="o">,</span> <span class="s">&#34;Columbia Citizens&#34;</span><span class="o">,</span> <span class="s">&#34;Discover SLU&#34;</span><span class="o">)</span>
+</code></pre></div><p>&hellip; or find communities in the NE or SW regions.</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Community</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="nc">Neighborhood</span><span class="o">.</span><span class="nc">District</span><span class="o">.</span><span class="n">region_</span><span class="o">(</span><span class="s">&#34;ne&#34;</span> <span class="n">or</span> <span class="s">&#34;sw&#34;</span><span class="o">).</span><span class="n">get</span><span class="o">(</span><span class="mi">3</span><span class="o">)</span> <span class="o">===</span> <span class="nc">List</span><span class="o">(</span>
+  <span class="s">&#34;Beach Drive Blog&#34;</span><span class="o">,</span> 
+  <span class="s">&#34;KOMO Communities - Green Lake&#34;</span><span class="o">,</span> 
+  <span class="s">&#34;Delridge Produce Cooperative&#34;</span><span class="o">)</span>
+</code></pre></div><p>And we can combine them to find social-media communities in southern regions.</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">val</span> <span class="n">southernSocialMedia</span> <span class="k">=</span> <span class="nc">List</span><span class="o">(</span>
+  <span class="s">&#34;Columbia Citizens&#34;</span><span class="o">,</span>
+  <span class="s">&#34;Fauntleroy Community Association&#34;</span><span class="o">,</span>
+  <span class="s">&#34;MyWallingford&#34;</span><span class="o">,</span>
+  <span class="s">&#34;Blogging Georgetown&#34;</span><span class="o">)</span>
+
+<span class="nc">Community</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">type_</span><span class="o">(</span><span class="s">&#34;twitter&#34;</span> <span class="n">or</span> <span class="s">&#34;facebook_page&#34;</span><span class="o">)</span>
+  <span class="o">.</span><span class="nc">Neighborhood</span>
+  <span class="o">.</span><span class="nc">District</span><span class="o">.</span><span class="n">region_</span><span class="o">(</span><span class="s">&#34;sw&#34;</span> <span class="n">or</span> <span class="s">&#34;s&#34;</span> <span class="n">or</span> <span class="s">&#34;se&#34;</span><span class="o">).</span><span class="n">get</span> <span class="o">===</span> <span class="n">southernSocialMedia</span>
+</code></pre></div><p>Let&rsquo;s parameterized the same query:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">val</span> <span class="n">typeAndRegion</span> <span class="k">=</span> <span class="n">m</span><span class="o">(</span><span class="nc">Community</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">type_</span><span class="o">(?).</span><span class="nc">Neighborhood</span><span class="o">.</span><span class="nc">District</span><span class="o">.</span><span class="n">region_</span><span class="o">(?))</span>
+
+<span class="n">typeAndRegion</span><span class="o">(</span>
+  <span class="o">(</span><span class="s">&#34;twitter&#34;</span> <span class="n">or</span> <span class="s">&#34;facebook_page&#34;</span><span class="o">)</span> <span class="n">and</span> 
+  <span class="o">(</span><span class="s">&#34;sw&#34;</span> <span class="n">or</span> <span class="s">&#34;s&#34;</span> <span class="n">or</span> <span class="s">&#34;se&#34;</span><span class="o">)</span>
+<span class="o">).</span><span class="n">get</span> <span class="o">===</span> <span class="n">southernSocialMedia</span>
+
+<span class="c1">// or
+</span><span class="c1"></span><span class="n">typeAndRegion</span><span class="o">(</span>
+  <span class="nc">Seq</span><span class="o">(</span><span class="s">&#34;twitter&#34;</span><span class="o">,</span> <span class="s">&#34;facebook_page&#34;</span><span class="o">),</span> 
+  <span class="nc">Seq</span><span class="o">(</span><span class="s">&#34;sw&#34;</span><span class="o">,</span> <span class="s">&#34;s&#34;</span><span class="o">,</span> <span class="s">&#34;se&#34;</span><span class="o">)</span>
+<span class="o">).</span><span class="n">get</span> <span class="o">===</span> <span class="n">southernSocialMedia</span>
+</code></pre></div><p>Note how this syntax for the ((a OR b) AND (c OR d)) expression is different from the syntax we had earlier in the section &ldquo;Multiple tuples of input values for multiple attributes&rdquo; where we had a ((a AND b) OR (c AND d)) expression.</p>
+<h2 id="working-with-time">Working with time</h2>
+<p>All of the query results shown in the previous two sections were based on the initial seed data we loaded into our database. The data hasn&rsquo;t changed since then. In this section we&rsquo;ll load some more data, and explain how to work with database values from different moments in time.</p>
+<h3 id="time-is-built-in">Time is built in</h3>
+<p>One of the key concepts in Datomic is that new facts don&rsquo;t replace old facts. Instead, by default, the system keeps track of all the facts, forever. This makes it possible to look at the database as it was at a certain point in time, or at the changes since a certain point in time.</p>
+<p>When you submit a transaction to a database, Datomic keeps track of the entities, attributes and values you add or retract. It also keeps track of the transaction itself. Transactions are entities in their own right, and you can write queries to find them. The system associates one attribute with each transaction entity, Db.txInstant, which records the time the transaction was processed.</p>
+<p>Molecule has a <code>Db</code> namespace with a <code>txInstant</code> attribute that we can use to query for transactions instants (represented as java.util.Date instances) that has been created. We&rsquo;ve only executed two transactions, but the earlier system executed a few as part of its bootstrapping process. We know, though, that our two are the most recent. The code below uses a <code>Db.txInstant</code> molecule to retrieve transaction times, sort them into reverse chronological order, and store the most recent two as dataTxDate and schemaTxDate, when we added our data and our schema, respectively.</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">val</span> <span class="n">txDates</span> <span class="k">=</span> <span class="nc">Db</span><span class="o">.</span><span class="n">txInstant</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">toSeq</span><span class="o">.</span><span class="n">sorted</span><span class="o">.</span><span class="n">reverse</span>
+<span class="k">val</span> <span class="n">dataTxDate</span> <span class="k">=</span> <span class="n">txDates</span><span class="o">(</span><span class="mi">0</span><span class="o">)</span>
+<span class="k">val</span> <span class="n">schemaTxDate</span> <span class="k">=</span> <span class="n">txDates</span><span class="o">(</span><span class="mi">1</span><span class="o">)</span>
+</code></pre></div><h3 id="revisiting-the-past---getasofpastdate">Revisiting the past - <code>getAsOf(PastDate)</code></h3>
+<p>Once we have the relevant transaction times, we can look at the database as of that point in time. To do this, we retrieve the current database value by calling the molecule method <code>getAsOf</code>, passing in the Date we&rsquo;re interested in. The <code>getAsOf</code> method returns a new molecule based on the database value that is &ldquo;rewound&rdquo; back to the requested date.</p>
+<p>An example will help make this clear. The code below gets the value of the database as of our schema transaction. Then it runs our very first query, which retrieves entities representing communities, and prints the size of the results. Because we&rsquo;re using a database value from before we ran the transaction to load seed data, the size is 0.</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="c1">// Take all Community entities
+</span><span class="c1"></span><span class="k">val</span> <span class="n">communities</span> <span class="k">=</span> <span class="n">m</span><span class="o">(</span><span class="nc">Community</span><span class="o">.</span><span class="n">e</span><span class="o">.</span><span class="n">name_</span><span class="o">)</span>
+    
+<span class="n">communities</span><span class="o">.</span><span class="n">getAsOf</span><span class="o">(</span><span class="n">schemaTxDate</span><span class="o">).</span><span class="n">size</span> <span class="o">===</span> <span class="mi">0</span>
+</code></pre></div><p>If we do the same thing using the date of our seed data transaction, the query returns 150 results, because as of that moment, the seed data is there.</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="n">communities</span><span class="o">.</span><span class="n">getAsOf</span><span class="o">(</span><span class="n">dataTxDate</span><span class="o">).</span><span class="n">size</span> <span class="o">===</span> <span class="mi">150</span>
+</code></pre></div><h3 id="changes-since-a-date---getsincecomparedate">Changes since a date - <code>getSince(compareDate)</code></h3>
+<p>The <code>getAsOf</code> method allows us to look at a database value containing data changes up to a specific point in time. There is another method <code>getSince</code> that allows us to look at a database value containing data changes <em>since</em> a specific point in time.</p>
+<p>The code below gets the value of the database since our schema transaction and counts the number of communities. Because we&rsquo;re using a database value containing changes made since we ran the transaction to load our schema - including the changes made when we loaded our seed data - the size is 150.</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="n">communities</span><span class="o">.</span><span class="n">getSince</span><span class="o">(</span><span class="n">schemaTxDate</span><span class="o">).</span><span class="n">size</span> <span class="o">===</span> <span class="mi">150</span>
+</code></pre></div><p>If we do the same thing using the date of our seed data transaction, the query returns 0 results, because we haven&rsquo;t added any communities since that time.</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="n">communities</span><span class="o">.</span><span class="n">getSince</span><span class="o">(</span><span class="n">dataTxDate</span><span class="o">).</span><span class="n">size</span> <span class="o">===</span> <span class="mi">0</span>
+</code></pre></div><p>While we passed specific transaction dates to <code>getAsOf</code> and <code>getSince</code>, you can pass any date. The system find the closest relevant transaction and use that as the basis for filtering.</p>
+<p>Keeping track of data over time is a very powerful feature. However, there may be some data you don&rsquo;t want to keep old versions of. You can control whether old versions are kept on a per-attribute basis by adding <code>noHistory</code> to your attribute definition when you create your schema. If you choose not to keep history for a given attribute and you look at a database as of a time before the most recent change to a given entity&rsquo;s value for that attribute, you will not find any value for it.</p>
+<h3 id="imagining-the-future---getwithtesttxdata">Imagining the future - <code>getWith(TestTxData)</code></h3>
+<p>Revisiting the past is a very powerful feature. It&rsquo;s also possible to imagine the future. The <code>getAsOf</code> and <code>getSince</code> methods work by removing data from the current database value. You can also <em>add</em> data to a database value, using the Molecule method <code>getWith</code>. The result is a database value that&rsquo;s been modified without submitting a transaction and changing the data stored in the system. The modified database value can be used to execute queries, allowing you to perform &ldquo;what if&rdquo; calculations before committing to data changes.</p>
+<p>When a <code>getWith(TestTxData)</code> database object goes out of scope it is simply garbage collected. So we don&rsquo;t need to do any tear down of some state as is common with normal database mockups.</p>
+<p>We can explore this feature using a second seed data file provided with the sample application, &ldquo;samples/seattle/seattle-data1.edn&rdquo;. The code below reads it into a list.</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">val</span> <span class="n">data_rdr2</span> <span class="k">=</span> <span class="k">new</span> <span class="nc">FileReader</span><span class="o">(</span><span class="s">&#34;examples/resources/seattle/seattle-data1a.dtm&#34;</span><span class="o">)</span>
+<span class="k">val</span> <span class="n">newDataTx</span> <span class="k">=</span> <span class="nc">Util</span><span class="o">.</span><span class="n">readAll</span><span class="o">(</span><span class="n">data_rdr2</span><span class="o">).</span><span class="n">get</span><span class="o">(</span><span class="mi">0</span><span class="o">).</span><span class="n">asInstanceOf</span><span class="o">[</span><span class="kt">java.util.List</span><span class="o">[</span><span class="kt">Object</span><span class="o">]]</span>
+</code></pre></div><p>Once we have this new data transaction, we can build a database value that includes it. To do that, we simply get the current database value (or one as of or since a point in time) and call <code>getWith</code>, passing in the transaction data. <code>getWith</code> returns a molecule based on the new value of the database after the new data is added. If we execute our community counting query against it, we get 258 results.</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="c1">// test db
+</span><span class="c1"></span><span class="n">communities</span><span class="o">.</span><span class="n">getWith</span><span class="o">(</span><span class="n">newDataTx</span><span class="o">).</span><span class="n">get</span><span class="o">.</span><span class="n">size</span> <span class="o">===</span> <span class="mi">258</span>
+</code></pre></div><p>The actual data hasn&rsquo;t changed yet, so if we query the current database value, we still get 150 results. We won&rsquo;t see a change in the current database value until we submit the new transaction. After that, querying the current database value returns 258 results. Finally, if we get another database value containing data since our first seed data transaction ran, and query for communities we get 108 results, the number added by new data transaction.</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="c1">// existing db
+</span><span class="c1"></span><span class="n">communities</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">size</span> <span class="o">===</span> <span class="mi">150</span>
+
+<span class="c1">// transact
+</span><span class="c1"></span><span class="n">conn</span><span class="o">.</span><span class="n">transact</span><span class="o">(</span><span class="n">newDataTx</span><span class="o">)</span>
+
+<span class="c1">// updated db
+</span><span class="c1"></span><span class="n">communities</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">size</span> <span class="o">===</span> <span class="mi">258</span>
+
+<span class="c1">// number of new transactions
+</span><span class="c1"></span><span class="n">communities</span><span class="o">.</span><span class="n">getSince</span><span class="o">(</span><span class="n">dataTxDate</span><span class="o">).</span><span class="n">size</span> <span class="o">===</span> <span class="mi">108</span>
+</code></pre></div><h2 id="insert-data">Insert data</h2>
+<p>You can add data in two ways with Molecule:</p>
+<ol>
+<li>Build a molecule with data and insert</li>
+<li>Use a molecule template to insert matching data</li>
+</ol>
+<h3 id="data-molecule-with-values">&ldquo;Data-molecule&rdquo; with values</h3>
+<p>To insert a single data structure you can populate a molecule with values and then <code>save</code> it:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Community</span>
+  <span class="o">.</span><span class="n">name</span><span class="o">(</span><span class="s">&#34;AAA&#34;</span><span class="o">)</span>
+  <span class="o">.</span><span class="n">url</span><span class="o">(</span><span class="s">&#34;myUrl&#34;</span><span class="o">)</span>
+  <span class="o">.</span><span class="n">`type`</span><span class="o">(</span><span class="s">&#34;twitter&#34;</span><span class="o">)</span>
+  <span class="o">.</span><span class="n">orgtype</span><span class="o">(</span><span class="s">&#34;personal&#34;</span><span class="o">)</span>
+  <span class="o">.</span><span class="n">category</span><span class="o">(</span><span class="s">&#34;my&#34;</span><span class="o">,</span> <span class="s">&#34;favorites&#34;</span><span class="o">)</span>
+  <span class="o">.</span><span class="nc">Neighborhood</span><span class="o">.</span><span class="n">name</span><span class="o">(</span><span class="s">&#34;myNeighborhood&#34;</span><span class="o">)</span>
+  <span class="o">.</span><span class="nc">District</span><span class="o">.</span><span class="n">name</span><span class="o">(</span><span class="s">&#34;myDistrict&#34;</span><span class="o">).</span><span class="n">region</span><span class="o">(</span><span class="s">&#34;nw&#34;</span><span class="o">).</span><span class="n">save</span><span class="o">.</span><span class="n">eids</span> <span class="o">===</span> <span class="nc">List</span><span class="o">(</span>
+    <span class="mi">17592186045891L</span><span class="o">,</span> <span class="mi">17592186045892L</span><span class="o">,</span> <span class="mi">17592186045893L</span><span class="o">)</span>
+</code></pre></div><p>Note how we can add values for referenced namespaces and multiple values for cardinality-many attributes like <code>category</code> - all in one go!</p>
+<p>Apart from the new Community entity two more entities are also added. Since neither &ldquo;myNeighborhood&rdquo; nor &ldquo;myDistrict&rdquo; exist they are created to so that we can reference them.</p>
+<p>In Datomic there is no requirement that we add a &ldquo;complete&rdquo; set of namespace attributes to create an entity. For instance, we could add a community only with <code>Community.name(&quot;My community&quot;).save</code>.</p>
+<h3 id="insert-molecule--matching-values">&ldquo;Insert-molecule&rdquo; + matching values</h3>
+<p>A more efficient way to add larger sets of data is to define an &ldquo;Insert-Molecule&rdquo; that models the data structure we want to insert into the database. Note how we call the <code>insert</code> method to define it as an Input-Molecule:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">val</span> <span class="n">insertCommunity</span> <span class="k">=</span> <span class="n">m</span><span class="o">(</span>
+  <span class="nc">Community</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">url</span><span class="o">.</span><span class="n">`type`</span><span class="o">.</span><span class="n">orgtype</span><span class="o">.</span><span class="n">category</span>
+    <span class="o">.</span><span class="nc">Neighborhood</span><span class="o">.</span><span class="n">name</span>
+    <span class="o">.</span><span class="nc">District</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">region</span>
+<span class="o">).</span><span class="n">insert</span>
+</code></pre></div><p>We can then create a new Community by applying a matching set of attribute values:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="n">insertCommunity</span><span class="o">(</span>
+  <span class="s">&#34;BBB&#34;</span><span class="o">,</span> <span class="s">&#34;url B&#34;</span><span class="o">,</span> <span class="s">&#34;twitter&#34;</span><span class="o">,</span> <span class="s">&#34;personal&#34;</span><span class="o">,</span> <span class="nc">Set</span><span class="o">(</span><span class="s">&#34;some&#34;</span><span class="o">,</span> <span class="s">&#34;cat B&#34;</span><span class="o">),</span> 
+    <span class="s">&#34;neighborhood B&#34;</span><span class="o">,</span> 
+    <span class="s">&#34;district B&#34;</span><span class="o">,</span> <span class="s">&#34;s&#34;</span>
+<span class="o">).</span><span class="n">eids</span> <span class="o">===</span> <span class="nc">List</span><span class="o">(</span><span class="mi">17592186045895L</span><span class="o">,</span> <span class="mi">17592186045896L</span><span class="o">,</span> <span class="mi">17592186045897L</span><span class="o">)</span>
+</code></pre></div><p>As before, three entities are created here since we reference a new Neighborhood and District.</p>
+<p>All values are type checked against the expected type of each attribute!</p>
+<h3 id="insert-molecule--multiple-data-tuples">Insert-Molecule + multiple data tuples</h3>
+<p>With our insert-molecule at hand we can insert large numbers of data tuples. As an example we can insert 3 communities and referenced neighborhoods/district/regions in one go:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">val</span> <span class="n">newCommunitiesData</span> <span class="k">=</span> <span class="nc">List</span><span class="o">(</span>
+  <span class="o">(</span><span class="s">&#34;DDD Blogging Georgetown&#34;</span><span class="o">,</span> <span class="s">&#34;http://www.blogginggeorgetown.com/&#34;</span><span class="o">,</span> 
+    <span class="s">&#34;blog&#34;</span><span class="o">,</span> <span class="s">&#34;commercial&#34;</span><span class="o">,</span> <span class="nc">Set</span><span class="o">(</span><span class="s">&#34;DD cat 1&#34;</span><span class="o">,</span> <span class="s">&#34;DD cat 2&#34;</span><span class="o">),</span> 
+    <span class="s">&#34;DD Georgetown&#34;</span><span class="o">,</span> <span class="s">&#34;Greater Duwamish&#34;</span><span class="o">,</span> <span class="s">&#34;s&#34;</span><span class="o">),</span>
+  <span class="o">(</span><span class="s">&#34;DDD Interbay District Blog&#34;</span><span class="o">,</span> <span class="s">&#34;http://interbayneighborhood.neighborlogs.com/&#34;</span><span class="o">,</span> 
+    <span class="s">&#34;blog&#34;</span><span class="o">,</span> <span class="s">&#34;community&#34;</span><span class="o">,</span> <span class="nc">Set</span><span class="o">(</span><span class="s">&#34;DD cat 3&#34;</span><span class="o">),</span> 
+    <span class="s">&#34;DD Interbay&#34;</span><span class="o">,</span> <span class="s">&#34;Magnolia/Queen Anne&#34;</span><span class="o">,</span> <span class="s">&#34;w&#34;</span><span class="o">),</span>
+  <span class="o">(</span><span class="s">&#34;DDD KOMO Communities - West Seattle&#34;</span><span class="o">,</span> <span class="s">&#34;http://westseattle.komonews.com&#34;</span><span class="o">,</span> 
+    <span class="s">&#34;blog&#34;</span><span class="o">,</span> <span class="s">&#34;commercial&#34;</span><span class="o">,</span> <span class="nc">Set</span><span class="o">(</span><span class="s">&#34;DD cat 4&#34;</span><span class="o">),</span> 
+    <span class="s">&#34;DD West Seattle&#34;</span><span class="o">,</span> <span class="s">&#34;Southwest&#34;</span><span class="o">,</span> <span class="s">&#34;sw&#34;</span><span class="o">)</span>
+<span class="o">)</span>
+
+<span class="c1">// Insert 3 new communities with 3 new neighborhoods
+</span><span class="c1"></span><span class="n">insertCommunity</span><span class="o">(</span><span class="n">newCommunitiesData</span><span class="o">)</span> <span class="o">===</span> <span class="nc">List</span><span class="o">(</span>
+  <span class="mi">17592186045909L</span><span class="o">,</span> <span class="mi">17592186045910L</span><span class="o">,</span> <span class="mi">17592186045911L</span><span class="o">,</span>
+  <span class="mi">17592186045912L</span><span class="o">,</span> <span class="mi">17592186045913L</span><span class="o">,</span> <span class="mi">17592186045914L</span><span class="o">,</span>
+  <span class="mi">17592186045915L</span><span class="o">,</span> <span class="mi">17592186045916L</span><span class="o">,</span> <span class="mi">17592186045917L</span><span class="o">)</span>
+</code></pre></div><p>This approach gives us a clean way of populating a database where we can supply raw data from any source easily as long as we can format it as a list of tuples of values each matching our template molecule.</p>
+<h3 id="optional-attribute-values">Optional attribute values</h3>
+<p>We might have a data set with some optional attribute values. We can append a <code>$</code> to such attribute names to tell Molecule that this is an optional value:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">val</span> <span class="n">insertCommunity</span> <span class="k">=</span> <span class="n">m</span><span class="o">(</span>
+  <span class="nc">Community</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">url</span><span class="o">.</span><span class="n">`type`</span><span class="o">.</span><span class="n">orgtype$</span><span class="o">.</span><span class="n">category</span>
+    <span class="o">.</span><span class="nc">Neighborhood</span><span class="o">.</span><span class="n">name</span>
+    <span class="o">.</span><span class="nc">District</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">region</span>
+<span class="o">)</span> <span class="n">insert</span>
+</code></pre></div><p>If for instance some row has no orgtype we can use <code>None</code> (and likewise <code>Some(&lt;value&gt;)</code>):</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="o">(</span><span class="s">&#34;community4&#34;</span><span class="o">,</span> <span class="s">&#34;url2&#34;</span><span class="o">,</span> <span class="s">&#34;blog&#34;</span><span class="o">,</span> <span class="nc">None</span><span class="o">,</span> <span class="nc">Set</span><span class="o">(</span><span class="s">&#34;cat3&#34;</span><span class="o">,</span> <span class="s">&#34;cat1&#34;</span><span class="o">),</span> <span class="s">&#34;NbhName4&#34;</span><span class="o">,</span> <span class="s">&#34;DistName4&#34;</span><span class="o">,</span> <span class="s">&#34;ne&#34;</span><span class="o">)</span>
+</code></pre></div><p>In an sql table we would &ldquo;insert a null value&rdquo; for such column. But with Molecule/Datomic we just simply don&rsquo;t assert any orgtype value for that entity at all! In other words: there is no orgtype fact to be asserted.</p>
+<h3 id="type-safety">Type safety</h3>
+<p>In this example we have only inserted text strings. But all input is type checked against the selectedattributes of the molecule which makes the insert operation type safe. We even infer the expected type so that our IDE will bark if it finds for instance an Integer somewhere in our input data:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="o">(</span><span class="s">&#34;community2&#34;</span><span class="o">,</span> <span class="s">&#34;url2&#34;</span><span class="o">,</span> <span class="s">&#34;type2&#34;</span><span class="o">,</span> <span class="mi">42</span><span class="o">,</span> <span class="nc">Set</span><span class="o">(</span><span class="s">&#34;cat3&#34;</span><span class="o">,</span> <span class="s">&#34;cat1&#34;</span><span class="o">),</span> <span class="s">&#34;NbhName2&#34;</span><span class="o">,</span> <span class="s">&#34;DistName2&#34;</span><span class="o">,</span> <span class="s">&#34;DistReg2&#34;</span><span class="o">)</span>
+</code></pre></div><p>A data set having the value <code>42</code> as a value for the <code>orgtype</code> attribute won&rsquo;t compile and our IDE will infer that we have an invalid data set.</p>
+<h2 id="update-andor-retract-data">Update and/or retract data</h2>
+<p>To update data with Molecule, we first need the id of the entity that we want to update.</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">val</span> <span class="n">belltown</span> <span class="k">=</span> <span class="nc">Community</span><span class="o">.</span><span class="n">e</span><span class="o">.</span><span class="n">name_</span><span class="o">(</span><span class="s">&#34;belltown&#34;</span><span class="o">).</span><span class="n">get</span><span class="o">.</span><span class="n">head</span>
+</code></pre></div><p>Then we can &ldquo;replace&rdquo; some attributes</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Community</span><span class="o">(</span><span class="n">belltown</span><span class="o">).</span><span class="n">name</span><span class="o">(</span><span class="s">&#34;belltown 2&#34;</span><span class="o">).</span><span class="n">url</span><span class="o">(</span><span class="s">&#34;url 2&#34;</span><span class="o">).</span><span class="n">update</span>
+</code></pre></div><p>What really happens is not a mutation of data since no data is ever deleted or over-written in Datomic. Instead the old/current data is retracted and the <em>new fact for the attribute is asserted</em>. The new fact will turn up when queried for. But if we go back in time we can see the previous value at that point in time - many updates could have been performed over time, and all previous values are stored.</p>
+<h3 id="updating-cardinality-many-attributes">Updating cardinality-many attributes</h3>
+<p>When updating cardinality-many attributes we need to tell which of the values we want to update:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Community</span><span class="o">(</span><span class="n">belltown</span><span class="o">).</span><span class="n">category</span><span class="o">(</span><span class="s">&#34;news&#34;</span> <span class="o">-&gt;</span> <span class="s">&#34;Cool news&#34;</span><span class="o">).</span><span class="n">update</span>
+</code></pre></div><p>This syntax causes Molecule to first retract the old value &ldquo;news&rdquo; and then assert/add the new value &ldquo;Cool news&rdquo;. Note that if the before-value doesn&rsquo;t exist the new value will still be inserted, so you might be sure what the current value is by querying for it first.</p>
+<p>We can even update several values of a cardinality-many attribute in one go:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Community</span><span class="o">(</span><span class="n">belltown</span><span class="o">).</span><span class="n">category</span><span class="o">(</span>
+  <span class="s">&#34;Cool news&#34;</span> <span class="o">-&gt;</span> <span class="s">&#34;Super cool news&#34;</span><span class="o">,</span>
+  <span class="s">&#34;events&#34;</span> <span class="o">-&gt;</span> <span class="s">&#34;Super cool events&#34;</span><span class="o">).</span><span class="n">update</span>
+</code></pre></div><h3 id="assertingretracting-values-of-cardinality-many-attributes">Asserting/retracting values of cardinality-many attributes</h3>
+<p>If we want to assert or retract values of a cardinality-many attribute we can use the following methods:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="c1">// add
+</span><span class="c1"></span><span class="nc">Community</span><span class="o">(</span><span class="n">belltown</span><span class="o">).</span><span class="n">category</span><span class="o">.</span><span class="n">assert</span><span class="o">(</span><span class="s">&#34;extra category&#34;</span><span class="o">).</span><span class="n">update</span>
+
+<span class="c1">// remove
+</span><span class="c1"></span><span class="nc">Community</span><span class="o">(</span><span class="n">belltown</span><span class="o">).</span><span class="n">category</span><span class="o">.</span><span class="n">retract</span><span class="o">(</span><span class="s">&#34;Super cool events&#34;</span><span class="o">).</span><span class="n">update</span>
+</code></pre></div><h3 id="retract-values">Retract values</h3>
+<p>When you update a molecule you can apply an empty value <code>apply()</code> or simply <code>()</code> after an attribute name to retract (&ldquo;delete&rdquo;) the attributes value(s). We can mix updates and retractions:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Community</span><span class="o">(</span><span class="n">belltown</span><span class="o">).</span><span class="n">name</span><span class="o">(</span><span class="s">&#34;belltown 3&#34;</span><span class="o">).</span><span class="n">url</span><span class="o">().</span><span class="n">category</span><span class="o">().</span><span class="n">update</span>
+</code></pre></div><p><code>name</code> gets the new value &ldquo;belltown 3&rdquo; and both the <code>url</code> and <code>category</code> attributes have their values retracted.</p>
+<p>There are a couple of important things to know about retracting data. The first is that Datomic expects to know the value of the attribute being retracted. When applying the empty value, Molecule therefore internally first looks up the current value in order to be able to retract it.</p>
+<p>The other thing to know is that, because we can access database values as they existed at specific points in time, we can retrieve retracted data by looking in the past. In other words, the data is not gone as in a mutable database. If we want data to really be gone after we retract it, we have to disable history for the specific attribute, as described in <a href="../../setup/">Database setup</a>.</p>
+
+    </div>
+
+
+
+
+
+
+
+    <div class="col-sm-2" style="padding-left:24px;padding-right: 0px;position:sticky;top:115px">
+
+        <nav class="bs-docs-sidebar" id="myScrollspy">
+  <ul class="bs-docs-sidenav nav">
+    
+      
+
+        
+        
+          
+            <li><a href="../../community/">Community</a></li>
+          
+          
+        
+          
+            <li class="open"><a href="../../community/seattle/"><b>Seattle tutorial</b></a></li>
+            
+              <nav id="TableOfContents">
+  <ul>
+    <li><a href="#introduction">Introduction</a></li>
+    <li><a href="#a-first-query">A first query</a></li>
+    <li><a href="#getting-an-entitys-attribute-values">Getting an entity&rsquo;s attribute values</a></li>
+    <li><a href="#querying-_for_-an-attributes-value">Querying <em>for</em> an attribute&rsquo;s value</a></li>
+    <li><a href="#querying-_by_-attribute-values">Querying <em>by</em> attribute values</a></li>
+    <li><a href="#querying-across-references">Querying across references</a></li>
+    <li><a href="#parameterizing-queries---input-molecules">Parameterizing queries - input molecules</a></li>
+    <li><a href="#invoking-functions-in-queries">Invoking functions in queries</a></li>
+    <li><a href="#querying-with-fulltext-search">Querying with fulltext search</a></li>
+    <li><a href="#querying-with-rules---logical-or">Querying with rules - logical OR</a></li>
+    <li><a href="#working-with-time">Working with time</a></li>
+    <li><a href="#insert-data">Insert data</a></li>
+    <li><a href="#update-andor-retract-data">Update and/or retract data</a></li>
+  </ul>
+</nav>
+            
+          
+          
+        
+
+      
+    
+  </ul>
+</nav>
+    </div>
+
+</div> 
+
+     
+   
+ 
+
+
+</div> 
+
+<footer class="bs-docs-footer">
+
+  <div class="container" style="font-size:15px">
+    <ul class="bs-docs-footer-links">
+      <li style="margin-top: 8px;"><a href="../../front/"><img src="../../img/logo/MoleculeLogo150.png" alt=""></a></li>
+      <li><a href="https://github.com/scalamolecule/molecule">GitHub</a></li>
+      <li><a href="https://github.com/scalamolecule/molecule-web">GitHub-web</a></li>
+      <li><a href="https://gitter.im/scalamolecule/Lobby">Gitter</a></li>
+      <li><a href="https://groups.google.com/forum/#!forum/molecule-dsl">Forum</a></li>
+      <li><a href="../../about/">About</a></li>
+      <li><a href="../../credits/">Credits</a></li>
+      <li><a href="../../changelog">Changelog</a></li>
+    </ul>
+    <p>Licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0" target="_blank" rel="license">Apache License 2.0</a></p>
+  </div>
+</footer>
+
+
+<script type="text/javascript" src="../../js/jquery-1.11.2.min.js"></script>
+<script type="text/javascript" src="../../js/bootstrap.min.js"></script>
+
+
+<script type="text/javascript" src="../../js/scripts.js"></script>
+<script async defer id="github-bjs" src="https://buttons.github.io/buttons.js"></script>
+<script src="../../js/copy-button.js"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-2787756-3', 'auto');
+  ga('send', 'pageview');
+</script>
+
+</body>
+</html>

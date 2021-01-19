@@ -839,10 +839,10 @@ transactions statements from several of those operations we can execute a single
 transaction will either complete as a whole or abort if there are any transactional errors.</p>
 <p>Each of the above operations has an equivalent method for getting the transaction statements it produces:</p>
 <ul>
-<li><code>&lt;molecule&gt;.getSaveTx</code></li>
-<li><code>&lt;molecule&gt;.getInsertTx</code></li>
-<li><code>&lt;molecule&gt;.getUpdateTx</code></li>
-<li><code>&lt;entityId&gt;.getRetractTx</code></li>
+<li><code>&lt;molecule&gt;.getSaveStmts</code></li>
+<li><code>&lt;molecule&gt;.getInsertStmts</code></li>
+<li><code>&lt;molecule&gt;.getUpdateStmts</code></li>
+<li><code>&lt;entityId&gt;.getRetractStmts</code></li>
 </ul>
 <p>We can use those methods to build a bundled transaction to atomically perform 4 operations in one transaction:</p>
 <pre><code>// Some initial data
@@ -851,13 +851,13 @@ val List(e1, e2, e3) = Ns.int insert List(1, 2, 3) eids
 // Transact multiple molecule statements in one bundled transaction
 transact(
   // retract entity
-  e1.getRetractTx,
+  e1.getRetractStmts,
   // save new entity
-  Ns.int(4).getSaveTx,
+  Ns.int(4).getSaveStmts,
   // insert multiple new entities
-  Ns.int.getInsertTx(List(5, 6)),
+  Ns.int.getInsertStmts(List(5, 6)),
   // update entity
-  Ns(e2).int(20).getUpdateTx
+  Ns(e2).int(20).getUpdateStmts
 )
 
 // Data after group transaction
@@ -871,10 +871,10 @@ Ns.int.get.sorted === List(
 </code></pre><p>Bundled transactions can also use Datomic&rsquo;s asynchronous API by calling <code>transactAsync</code>:</p>
 <pre><code>Await.result(
   transactAsync(
-    e1.getRetractTx,
-    Ns.int(4).getSaveTx,
-    Ns.int.getInsertTx(List(5, 6)),
-    Ns(e2).int(20).getUpdateTx
+    e1.getRetractStmts,
+    Ns.int(4).getSaveStmts,
+    Ns.int.getInsertStmts(List(5, 6)),
+    Ns(e2).int(20).getUpdateStmts
   ) map { bundleTx =&gt;
     Ns.int.getAsync map { queryResult =&gt; 
       queryResult === List(3, 4, 5, 6, 20)    
@@ -887,13 +887,13 @@ Ns.int.get.sorted === List(
 <pre><code>// Print debug info for group transaction without affecting live db
 debugTransact(
   // retract
-  e1.getRetractTx,
+  e1.getRetractStmts,
   // save
-  Ns.int(4).getSaveTx,
+  Ns.int(4).getSaveStmts,
   // insert
-  Ns.int.getInsertTx(List(5, 6)),
+  Ns.int.getInsertStmts(List(5, 6)),
   // update
-  Ns(e2).int(20).getUpdateTx
+  Ns(e2).int(20).getUpdateStmts
 )
 
 // Prints transaction data to output:

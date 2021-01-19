@@ -1099,12 +1099,12 @@ OUTPUTS:
 <pre><code>// Normal `getWith` call with some sample data
 val fred = Ns.str(&quot;Fred&quot;).int(42).save.eid
 Ns.str.int.debugGetWith(
-  Ns.str(&quot;John&quot;).int(44).getSaveTx,
-  Ns.str.int getInsertTx List(
+  Ns.str(&quot;John&quot;).int(44).getSaveStmts,
+  Ns.str.int getInsertStmts List(
     (&quot;Lisa&quot;, 23),
     (&quot;Pete&quot;, 24)
   ),
-  Ns(fred).int(43).getUpdateTx
+  Ns(fred).int(43).getUpdateStmts
 )
 </code></pre><p>Will print Model ⟶ Query ⟶ Datalog Query ⟶ Data + statements for the
 3 transaction molecules applied:</p>

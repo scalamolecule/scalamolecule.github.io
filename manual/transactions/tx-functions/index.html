@@ -921,7 +921,7 @@ object myTxFunctions {
     val newToBalance = Account(to).balance.get.headOption.getOrElse(0) + amount
 
     // Update accounts
-    Account(from).balance(newFromBalance).getUpdateTx ++ Account(to).balance(newToBalance).getUpdateTx
+    Account(from).balance(newFromBalance).getUpdateStmts ++ Account(to).balance(newToBalance).getUpdateStmts
   }
 }
 </code></pre><p>The signature of a tx functions must include an implicit <code>Conn</code> parameter. This makes sure that the
@@ -931,13 +931,13 @@ exception if there is not enough money available. Throwing an exception inside a
 will cancel the whole transaction and thereby guarantee atomicity.</p>
 <p>Tx functions need to return transaction statements. We use Molecule&rsquo;s tx methods on
 molecules for the equivalent operations to get the necessary statements. So, to get the transaction statements
-of an update we simply replace a normal <code>update</code> call too <code>getUpdateTx</code> which will give us the transaction
+of an update we simply replace a normal <code>update</code> call too <code>getUpdateStmts</code> which will give us the transaction
 statements produced:</p>
 <pre><code>// Isolated update transaction (not in tx function)
 Account(from).balance(newFromBalance).update
 
-// .. equivalent to the transaction statements returned by `getUpdateTx` 
-Account(from).balance(newFromBalance).getUpdateTx
+// .. equivalent to the transaction statements returned by `getUpdateStmts`
+Account(from).balance(newFromBalance).getUpdateStmts
 </code></pre><h3 id="tx-functions-have-to-be-pure">Tx functions have to be pure</h3>
 <p>Tx functions can&rsquo;t modify the database within the body of the tx method. You couldn&rsquo;t for instance
 do an update within the method body. Any operations on the database have to be encoded in the returned
@@ -990,14 +990,14 @@ def withdraw(from: Long, amount: Int)(implicit conn: Conn): Seq[Seq[Statement]] 
     throw new TxFnException(s&quot;Can't transfer $amount from account $from having a balance of only $curFromBalance.&quot;)
 
   val newFromBalance = curFromBalance - amount
-  Account(from).balance(newFromBalance).getUpdateTx
+  Account(from).balance(newFromBalance).getUpdateStmts
 }
 
 
 // &quot;Sub&quot; tx fn - can be used on its own or in other tx functions
 def deposit(to: Long, amount: Int)(implicit conn: Conn): Seq[Seq[Statement]] = {
   val newToBalance = Account(to).balance.get.headOption.getOrElse(0) + amount
-  Account(to).balance(newToBalance).getUpdateTx
+  Account(to).balance(newToBalance).getUpdateStmts
 }
 
 

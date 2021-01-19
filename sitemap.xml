@@ -3,268 +3,147 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>http://scalamolecule.org/compare/</loc>
-    <lastmod>2014-05-14T02:13:50+00:00</lastmod>
+    <loc>http://scalamolecule.org/community/</loc>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/resources/</loc>
+    <loc>http://scalamolecule.org/setup/examples/datomic-peer-free-mem/</loc>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/manual/relationships/card-one/</loc>
-    <lastmod>2016-07-24T22:06:44+01:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://scalamolecule.org/manual/</loc>
-    <lastmod>2016-07-24T22:06:44+01:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://scalamolecule.org/compare/datomic/</loc>
-    <lastmod>2014-05-14T02:13:50+00:00</lastmod>
+    <loc>http://scalamolecule.org/intro/</loc>
   </url>
   
   <url>
     <loc>http://scalamolecule.org/dev/</loc>
-    <lastmod>2014-05-14T02:13:50+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/manual/time/asof-since/</loc>
+    <loc>http://scalamolecule.org/setup/</loc>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/manual/attributes/basics/</loc>
+    <loc>http://scalamolecule.org/code/</loc>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/manual/debug/datalog/</loc>
+    <loc>http://scalamolecule.org/setup/examples/datomic-peer-free-free/</loc>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/manual/generic/datom/</loc>
+    <loc>http://scalamolecule.org/setup/data-model/</loc>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/manual/crud/save/</loc>
+    <loc>http://scalamolecule.org/code/attributes/</loc>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/resources/tutorials/seattle/</loc>
+    <loc>http://scalamolecule.org/intro/compare/datomic/</loc>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/manual/quick-start/introduction/</loc>
+    <loc>http://scalamolecule.org/setup/examples/datomic-peer-pro-mem/</loc>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/manual/quick-start/performance/</loc>
+    <loc>http://scalamolecule.org/dev/inspect-queries/</loc>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/manual/relationships/card-many/</loc>
-    <lastmod>2016-07-24T22:06:44+01:00</lastmod>
+    <loc>http://scalamolecule.org/intro/philosophy/</loc>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/dev/boilerplate/</loc>
-    <lastmod>2014-05-14T02:13:50+00:00</lastmod>
+    <loc>http://scalamolecule.org/community/seattle/</loc>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/compare/sql/slick/</loc>
-    <lastmod>2014-05-14T02:13:50+00:00</lastmod>
+    <loc>http://scalamolecule.org/setup/examples/datomic-peer-pro-dev/</loc>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/compare/sql/</loc>
-    <lastmod>2014-05-14T02:13:50+00:00</lastmod>
+    <loc>http://scalamolecule.org/setup/sbt-setup/</loc>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/manual/generic/indexes/</loc>
+    <loc>http://scalamolecule.org/intro/building-blocks/</loc>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/manual/crud/insert/</loc>
+    <loc>http://scalamolecule.org/intro/compare/</loc>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/manual/attributes/modes/</loc>
+    <loc>http://scalamolecule.org/setup/examples/datomic-peerserver-mem/</loc>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/resources/videos/2017-04-25_Marc_Grue/</loc>
+    <loc>http://scalamolecule.org/dev/inspect-transactions/</loc>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/manual/setup/</loc>
+    <loc>http://scalamolecule.org/intro/compare/sql/</loc>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/manual/debug/debug-transactions/</loc>
+    <loc>http://scalamolecule.org/setup/examples/datomic-peerserver-dev/</loc>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/manual/transactions/tx-bundle/</loc>
+    <loc>http://scalamolecule.org/setup/db-connection/</loc>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/manual/transactions/tx-functions/</loc>
+    <loc>http://scalamolecule.org/setup/examples/datomic-devlocal/</loc>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/manual/transactions/tx-meta-data/</loc>
+    <loc>http://scalamolecule.org/dev/optimizations/</loc>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/compare/gremlin/</loc>
-    <lastmod>2014-05-14T02:13:50+00:00</lastmod>
+    <loc>http://scalamolecule.org/code/relationships/</loc>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/dev/transformation/</loc>
-    <lastmod>2014-05-14T02:13:50+00:00</lastmod>
+    <loc>http://scalamolecule.org/intro/compare/slick/</loc>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/manual/relationships/composites/</loc>
+    <loc>http://scalamolecule.org/dev/clojure-exchanges/</loc>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/manual/debug/err/</loc>
+    <loc>http://scalamolecule.org/setup/examples/</loc>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/manual/time/history/</loc>
+    <loc>http://scalamolecule.org/intro/compare/gremlin/</loc>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/manual/generic/log/</loc>
+    <loc>http://scalamolecule.org/code/transactions/</loc>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/manual/attributes/mapped/</loc>
+    <loc>http://scalamolecule.org/dev/pitfalls/</loc>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/manual/schema/</loc>
+    <loc>http://scalamolecule.org/code/transaction-functions/</loc>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/manual/schema/transaction/</loc>
+    <loc>http://scalamolecule.org/code/time/</loc>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/community/</loc>
-    <lastmod>2014-05-14T02:13:50+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://scalamolecule.org/manual/relationships/bidirectional/</loc>
-    <lastmod>2016-07-24T22:06:44+01:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://scalamolecule.org/manual/attributes/</loc>
-  </url>
-  
-  <url>
-    <loc>http://scalamolecule.org/manual/attributes/expressions/</loc>
-  </url>
-  
-  <url>
-    <loc>http://scalamolecule.org/manual/crud/get/</loc>
-  </url>
-  
-  <url>
-    <loc>http://scalamolecule.org/manual/generic/schema/</loc>
-  </url>
-  
-  <url>
-    <loc>http://scalamolecule.org/manual/time/with/</loc>
-  </url>
-  
-  <url>
-    <loc>http://scalamolecule.org/manual/attributes/aggregates/</loc>
-  </url>
-  
-  <url>
-    <loc>http://scalamolecule.org/manual/entities/</loc>
-  </url>
-  
-  <url>
-    <loc>http://scalamolecule.org/manual/crud/get-json/</loc>
-  </url>
-  
-  <url>
-    <loc>http://scalamolecule.org/manual/relationships/self-join/</loc>
-  </url>
-  
-  <url>
-    <loc>http://scalamolecule.org/manual/time/testing/</loc>
-  </url>
-  
-  <url>
-    <loc>http://scalamolecule.org/manual/attributes/parameterized/</loc>
-  </url>
-  
-  <url>
-    <loc>http://scalamolecule.org/manual/relationships/</loc>
-  </url>
-  
-  <url>
-    <loc>http://scalamolecule.org/manual/crud/update/</loc>
-  </url>
-  
-  <url>
-    <loc>http://scalamolecule.org/manual/crud/</loc>
-  </url>
-  
-  <url>
-    <loc>http://scalamolecule.org/manual/crud/retract/</loc>
-  </url>
-  
-  <url>
-    <loc>http://scalamolecule.org/manual/transactions/</loc>
-  </url>
-  
-  <url>
-    <loc>http://scalamolecule.org/manual/time/</loc>
-  </url>
-  
-  <url>
-    <loc>http://scalamolecule.org/manual/generic/</loc>
-  </url>
-  
-  <url>
-    <loc>http://scalamolecule.org/manual/debug/</loc>
-  </url>
-  
-  <url>
-    <loc>http://scalamolecule.org/changelog/</loc>
-    <lastmod>2020-10-31T02:13:50+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://scalamolecule.org/</loc>
-    <lastmod>2020-10-31T02:13:50+00:00</lastmod>
+    <loc>http://scalamolecule.org/code/generic/</loc>
   </url>
   
   <url>
     <loc>http://scalamolecule.org/about/</loc>
-    <lastmod>2014-05-14T02:13:50+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://scalamolecule.org/credits/</loc>
-    <lastmod>2014-05-14T02:13:50+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://scalamolecule.org/_presentation/</loc>
   </url>
   
   <url>
@@ -272,23 +151,19 @@
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/_presentation/presentation/</loc>
+    <loc>http://scalamolecule.org/changelog/</loc>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/_presentation/presentation1/</loc>
+    <loc>http://scalamolecule.org/credits/</loc>
+  </url>
+  
+  <url>
+    <loc>http://scalamolecule.org/</loc>
   </url>
   
   <url>
     <loc>http://scalamolecule.org/tags/</loc>
-  </url>
-  
-  <url>
-    <loc>http://scalamolecule.org/resources/tutorials/</loc>
-  </url>
-  
-  <url>
-    <loc>http://scalamolecule.org/resources/videos/</loc>
   </url>
   
 </urlset>

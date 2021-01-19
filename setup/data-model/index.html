@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <link rel="shortcut icon" href="../../favicon.ico" type="image/x-icon"/>
+    <link href='http://fonts.googleapis.com/css?family=Merriweather+Sans:400,300,300italic,400italic,700,700italic,800,800italic'
+          rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Work+Sans:400,300,300italic,400italic,500,600,700,700italic,800,800italic'
+          rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Jura:400,300,300italic,400italic,500,600,700,700italic,800,800italic'
+          rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic,500,600,700,700italic,800,800italic'
+          rel='stylesheet' type='text/css'>
+    <title>1. Data Model</title>
+    <link href="../../css/bootstrap.min.css" rel="stylesheet">
+
+
+
+    <link href="../../css/highlight/styles/solarized_light.css" rel="stylesheet"/>
+    <link href="../../css/syntax-custom.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="../../vendor/font-awesome/css/font-awesome.min.css">
+
+    <link href="../../css/style.css" rel="stylesheet">
+
+
+
+
+    
+
+
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../../img/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../../img/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../../img/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="../../img/apple-touch-icon-57-precomposed.png">
+
+    
+    
+</head>
+<body data-spy="scroll" data-target="#myScrollspy" data-offset="110">
+<header class="bs-docs-header">
+    <div class="container-fluid" style="max-width:1170px">
+        <div class="col-sm-12 column" style="padding-left:0px; padding-right:0px;">
+            <div class="col-sm-9 column" style="padding-left:0px;height:50px;">
+
+    <ul class="nav nav-pills" style="margin-top:-6px;">
+        <li><a href="../../" style="padding-left: 6px; padding-right: 13px; vertical-align: top; margin-top: 7px;"><img
+                src="../../img/logo/MoleculeLogo150.png"></a></li>
+        
+        
+            
+            <li class="dropdown ">
+                <a href="../../intro/" target="_top">Intro</a>
+            </li>
+        
+            
+            <li class="dropdown active">
+                <a href="../../setup/" target="_top">Setup</a>
+            </li>
+        
+            
+            <li class="dropdown ">
+                <a href="../../code/" target="_top">Code</a>
+            </li>
+        
+            
+            <li class="dropdown ">
+                <a href="../../dev/" target="_top">Dev</a>
+            </li>
+        
+            
+            <li class="dropdown ">
+                <a href="../../community/" target="_top">Community</a>
+            </li>
+        
+    </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+            <div class="col-sm-3 column" style="padding-top:13px;padding-right:0px;text-align:right;display:inline-block">
+                <a href="https://javadoc.io/doc/org.scalamolecule/molecule_2.13/latest/index.html" target="_blank" style="margin-top:-2px;color:#999;padding-right:12px;">docs</a>
+                <a href="../../changelog" style="margin-top:-2px;color:#999">v0.24.0</a>
+                <a href="https://github.com/scalamolecule/molecule" target="_blank">
+                    <img src="../../vendor/GitHub-Mark/PNG/GitHub-Mark-Light-32px.png"
+                         style="margin-top:-4px;padding-left:15px;opacity:0.6;width:42px;">
+                </a>
+            </div>
+
+        </div>
+
+    </div>
+</header>
+
+<div class="wrapper">
+
+<div class="container-fluid" style="max-width:1170px">
+
+    <div class="col-sm-10 " style="padding-left:8px;">
+        <h1 id="data-model">Data Model</h1>
+<p>Your Data Model is defined in a plain Scala file that you can have anywhere in your project. Molecule interprets this file and creates Molecule boilerplate code based on your Data Model so that you can write molecule queries with your domain terms.</p>
+<p>For Molecule to recognize your Data Model, a simple Data Model definition DSL is imported. A Scala object with the name or your domain and &ldquo;DataModel&rdquo; added should contain your definitions:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">package</span> <span class="nn">path.to.your.project</span>
+<span class="k">import</span> <span class="nn">molecule.core.data.model._</span>  <span class="c1">// Data Model DSL
+</span><span class="c1"></span>
+<span class="k">object</span> <span class="nc">YourDomainDataModel</span> <span class="o">{</span> <span class="c1">// Name ending in &#34;DataModel&#34;
+</span><span class="c1"></span>
+    <span class="c1">// ... Attribute definitions within Namespaces
+</span><span class="c1"></span><span class="o">}</span>
+</code></pre></div><p>Next, attributes needs to be defined within Namespaces.</p>
+<h2 id="attributes-in-namespaces">Attributes in Namespaces</h2>
+<p>An attribute is the smallest unit of information of a Data Model. It&rsquo;s like a field in a database, a property, or, well, an &ldquo;attribute&rdquo; of something.</p>
+<p>Attributes are organised within &ldquo;namespaces&rdquo; that semantically group related attributes. If used with SQL it would correspond to fields in a Table. But with Datomic, the semantics of a namespace is more of a &ldquo;prefix&rdquo; to the attribute.</p>
+<p>Let&rsquo;s look at an example Data Model from the <a href="../../community/seattle/">Seattle tutorial</a>:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">package</span> <span class="nn">path.to.your.project</span>
+<span class="k">import</span> <span class="nn">molecule.core.data.model._</span>  <span class="c1">// import Data Model DSL
+</span><span class="c1"></span>
+<span class="nd">@InOut</span><span class="o">(</span><span class="mi">2</span><span class="o">,</span> <span class="mi">8</span><span class="o">)</span>
+<span class="k">object</span> <span class="nc">SeattleDataModel</span> <span class="o">{</span>
+
+  <span class="k">trait</span> <span class="nc">Community</span> <span class="o">{</span>
+    <span class="k">val</span> <span class="n">name</span>         <span class="k">=</span> <span class="n">oneString</span><span class="o">.</span><span class="n">fulltext</span><span class="o">.</span><span class="n">doc</span><span class="o">(</span><span class="s">&#34;A community&#39;s name&#34;</span><span class="o">)</span> <span class="c1">// optional doc text
+</span><span class="c1"></span>    <span class="k">val</span> <span class="n">url</span>          <span class="k">=</span> <span class="n">oneString</span>
+    <span class="k">val</span> <span class="n">category</span>     <span class="k">=</span> <span class="n">manyString</span><span class="o">.</span><span class="n">fulltext</span>
+    <span class="k">val</span> <span class="n">orgtype</span>      <span class="k">=</span> <span class="n">oneEnum</span><span class="o">(</span><span class="s">&#34;community&#34;</span><span class="o">,</span> <span class="s">&#34;commercial&#34;</span><span class="o">,</span> <span class="s">&#34;nonprofit&#34;</span><span class="o">,</span> <span class="s">&#34;personal&#34;</span><span class="o">)</span>
+    <span class="k">val</span> <span class="n">`type`</span>       <span class="k">=</span> <span class="n">oneEnum</span><span class="o">(</span><span class="s">&#34;email_list&#34;</span><span class="o">,</span> <span class="s">&#34;twitter&#34;</span><span class="o">,</span> <span class="s">&#34;facebook_page&#34;</span><span class="o">)</span> <span class="c1">// + more...
+</span><span class="c1"></span>    <span class="k">val</span> <span class="n">neighborhood</span> <span class="k">=</span> <span class="n">one</span><span class="o">[</span><span class="kt">Neighborhood</span><span class="o">]</span>
+  <span class="o">}</span>
+
+  <span class="k">trait</span> <span class="nc">Neighborhood</span> <span class="o">{</span>
+    <span class="k">val</span> <span class="n">name</span>     <span class="k">=</span> <span class="n">oneString</span>
+    <span class="k">val</span> <span class="n">district</span> <span class="k">=</span> <span class="n">one</span><span class="o">[</span><span class="kt">District</span><span class="o">]</span>
+  <span class="o">}</span>
+
+  <span class="k">trait</span> <span class="nc">District</span> <span class="o">{</span>
+    <span class="k">val</span> <span class="n">name</span>   <span class="k">=</span> <span class="n">oneString</span>
+    <span class="k">val</span> <span class="n">region</span> <span class="k">=</span> <span class="n">oneEnum</span><span class="o">(</span><span class="s">&#34;n&#34;</span><span class="o">,</span> <span class="s">&#34;ne&#34;</span><span class="o">,</span> <span class="s">&#34;e&#34;</span><span class="o">,</span> <span class="s">&#34;se&#34;</span><span class="o">,</span> <span class="s">&#34;s&#34;</span><span class="o">,</span> <span class="s">&#34;sw&#34;</span><span class="o">,</span> <span class="s">&#34;w&#34;</span><span class="o">,</span> <span class="s">&#34;nw&#34;</span><span class="o">)</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><h3 id="molecule-arity">Molecule arity</h3>
+<p>The <code>@InOut(2, 8)</code> arity annotation at the top instructs the generated boilerplate code to able to create molecules with up to 2 <a href="../../code/attributes/#input-molecules">input attributes</a> and up to 8 &ldquo;output&rdquo; attributes.</p>
+<p>When developing your Data Model you might just set the first arity annotation variable for input attributes to <code>0</code> and then later when your model is stabilizing, then you can add the ability to make input molecules by setting it to 1, 2 or 3 (the maximum). Using parameterized input attributes can be a performance optimization since using input values in queries allows Datomic to cache the query.</p>
+<p>The second arity annotation parameter basically tells how long molecules you can build. This doesn&rsquo;t affect how many attributes you can <em>define</em> in each namespace in the Data Model. The maximum arity of a molecule and for this annotation parameter is 22, the same as for tuples.</p>
+<blockquote>
+<p>If you at some point need to make molecules with more than 22 attributes you can use <a href="../../code/relationships/#composite-molecules">composite molecules</a>.</p>
+</blockquote>
+<h2 id="namespaces-in-partitions">Namespaces in Partitions</h2>
+<p>If your Data Model gets big, you can use an extra layer of organization with &ldquo;Partitions&rdquo; that encapsulate multiple related Namespaces.</p>
+<p>A &ldquo;Partition&rdquo; in Molecule is used as a conceptual term and not in the traditional sense as a physical database partition. The whole Data Model should be regarded as a conceptual model that can be projected later onto various databases. A database admin might choose to partition a database according to our conceptual partitions and in that case the terms would correlate.</p>
+<p>We could for instance group some generic namespaces (and their respective attribues) in a <code>gen</code> partition. And some Namespaces about literature in a <code>lit</code> Partition:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nd">@InOut</span><span class="o">(</span><span class="mi">3</span><span class="o">,</span> <span class="mi">22</span><span class="o">)</span>
+<span class="k">object</span> <span class="nc">BookstoreDataModel</span> <span class="o">{</span>
+
+  <span class="k">object</span> <span class="nc">gen</span> <span class="o">{</span>
+    <span class="k">trait</span> <span class="nc">Person</span> <span class="o">{</span>
+      <span class="k">val</span> <span class="n">name</span>   <span class="k">=</span> <span class="n">oneString</span>
+      <span class="k">val</span> <span class="n">gender</span> <span class="k">=</span> <span class="n">oneEnum</span><span class="o">(</span><span class="s">&#34;male&#34;</span><span class="o">,</span> <span class="s">&#34;female&#34;</span><span class="o">)</span>
+    <span class="o">}</span>
+    <span class="c1">// ..more namespaces in the `gen` partition
+</span><span class="c1"></span>  <span class="o">}</span>
+
+  <span class="k">object</span> <span class="nc">lit</span> <span class="o">{</span>
+    <span class="k">trait</span> <span class="nc">Book</span> <span class="o">{</span>
+      <span class="k">val</span> <span class="n">title</span>     <span class="k">=</span> <span class="n">oneString</span>
+      <span class="k">val</span> <span class="n">author</span>    <span class="k">=</span> <span class="n">one</span><span class="o">[</span><span class="kt">gen.Person</span><span class="o">]</span> <span class="c1">// ref to namespace in other partition
+</span><span class="c1"></span>      <span class="k">val</span> <span class="n">publisher</span> <span class="k">=</span> <span class="n">one</span><span class="o">[</span><span class="kt">Publisher</span><span class="o">]</span>  <span class="c1">// ref to namespace in this partition
+</span><span class="c1"></span>      <span class="k">val</span> <span class="n">cat</span>       <span class="k">=</span> <span class="n">oneEnum</span><span class="o">(</span><span class="s">&#34;good&#34;</span><span class="o">,</span> <span class="s">&#34;bad&#34;</span><span class="o">)</span>
+    <span class="o">}</span>
+    <span class="k">trait</span> <span class="nc">Publisher</span> <span class="o">{</span>
+      <span class="k">val</span> <span class="n">name</span> <span class="k">=</span> <span class="n">oneString</span>
+    <span class="o">}</span>
+    <span class="c1">// ..more namespaces in the `lit` partition
+</span><span class="c1"></span>  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><p>Each partition can contain as many namespaces as you want.</p>
+<p>Partition names have to be in lowercase and are prepended to the namespaces it contains with an underscore inbetween:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="n">lit_Book</span><span class="o">.</span><span class="n">title</span><span class="o">.</span><span class="n">cat</span><span class="o">.</span><span class="nc">Author</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">gender</span><span class="o">.</span><span class="n">get</span> <span class="o">===</span> <span class="o">...</span>
+</code></pre></div><p>Since <code>Author</code> is already defined as a related namespace we don&rsquo;t need to prepend the partition name there.</p>
+<h2 id="attribute-types">Attribute types</h2>
+<p>In the Seattle example we saw how attributes are defined by assigning various DSL settings to a named variable:</p>
+<ul>
+<li><code>oneString</code>, <code>manyString</code> etc defines cardinality and type of an attribute.</li>
+<li><code>oneEnum</code>/<code>manyEnum</code> defines enumerated values (pre-defined words).</li>
+<li><code>one[&lt;ReferencedNamespace&gt;]</code> defines a reference to another namespace.</li>
+</ul>
+<p>We can define the following types of attributes:</p>
+<pre><code>Cardinality-one             Cardinality-many                 Mapped cardinality-many
+-------------------         -------------------------        --------------------------------
+oneString    : String       manyString    : Set[String]      mapString    : Map[String, String]
+oneInt       : Int          manyInt       : Set[Int]         mapInt       : Map[String, Int]
+oneLong      : Long         manyLong      : Set[Long]        mapLong      : Map[String, Long]
+oneFloat     : Float        manyFloat     : Set[Float]       mapFloat     : Map[String, Float]
+oneDouble    : Double       manyDouble    : Set[Double]      mapDouble    : Map[String, Double]
+oneBigInt    : BigInt       manyBigInt    : Set[BigInt]      mapBigInt    : Map[String, BigInt]
+oneBigDecimal: BigDecimal   manyBigDecimal: Set[BigDecimal]  mapBigDecimal: Map[String, BigDecimal]
+oneBoolean   : Boolean      manyBoolean   : Set[Boolean]     mapBoolean   : Map[String, Boolean]
+oneDate      : Date         manyDate      : Set[Date]        mapDate      : Map[String, Date]
+oneUUID      : UUID         manyUUID      : Set[UUID]        mapUUID      : Map[String, UUID]
+oneURI       : URI          manyURI       : Set[URI]         mapURI       : Map[String, URI]
+oneEnum      : String       manyEnum      : Set[String]
+</code></pre><p>Cardinality-one attributes can have one value per entity.</p>
+<p>Cardinality-many attributes can have a <code>Set</code> of unique values per entity. Often we choose instead to model many-values as a many-reference to another entity that could have more than one attribute.</p>
+<p>Mapped cardinality-many attributes are a special Molecule variation based on cardinality-many attributes. Read more <a href="../../code/attributes/#map-attributes">here</a>&hellip;</p>
+<h2 id="references">References</h2>
+<p>References are also treated like attributes. It&rsquo;s basically a reference to one or many entities. We define such relationship by supplying the referenced namespace as the type parameter to <code>one</code>/<code>many</code>:</p>
+<pre><code>Cardinality one         Cardinality many
+---------------         ----------------
+one[&lt;Ref-namespace&gt;]    many[&lt;Ref-namespace&gt;]
+</code></pre><p>In the example above we saw a reference from Community to Neighborhood defined as <code>one[Neighborhood]</code>. We would for instance likely define an Order/OrderLine relationship in an Order namespace as <code>many[OrderLine]</code>.</p>
+<h3 id="bidirectional-references">Bidirectional references</h3>
+<p>In <a href="../../code/relationships/#bidirectional">Bidirectional relationships</a> some specialized reference definitions for bidirectional graphs are explained.</p>
+<h2 id="attribute-options">Attribute options</h2>
+<p>In Datomic, each attribute can have some extra options:</p>
+
+
+
+
+
+<table class="table table-bordered">
+<thead>
+<tr>
+<th style="text-align:left">Option</th>
+<th style="text-align:center">Indexes</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">doc</td>
+<td style="text-align:center"></td>
+<td style="text-align:left">Attribute description.</td>
+</tr>
+<tr>
+<td style="text-align:left">uniqueValue</td>
+<td style="text-align:center">✔</td>
+<td style="text-align:left">Attribute value is unique to each entity.<br><em>Attempts to insert a duplicate value for a different entity id will fail.</em></td>
+</tr>
+<tr>
+<td style="text-align:left">uniqueIdentity</td>
+<td style="text-align:center">✔</td>
+<td style="text-align:left">Attribute value is unique to each entity and &ldquo;upsert&rdquo; is enabled. <br><em>Attempts to insert a duplicate value for a temporary entity id will cause all attributes associated with that temporary id to be merged with the entity already in the database.</em></td>
+</tr>
+<tr>
+<td style="text-align:left">indexed</td>
+<td style="text-align:center">✔</td>
+<td style="text-align:left">Generated index for this attribute. By default all attributes are set with the indexed option automatically by Molecule, so you don&rsquo;t need to set this.</td>
+</tr>
+<tr>
+<td style="text-align:left">fulltext</td>
+<td style="text-align:center">✔</td>
+<td style="text-align:left">Generate eventually consistent fulltext search index for this attribute.</td>
+</tr>
+<tr>
+<td style="text-align:left">isComponent</td>
+<td style="text-align:center">✔</td>
+<td style="text-align:left">Specifies that an attribute whose type is :db.type/ref is a component. Referenced entities become subcomponents of the entity to which the attribute is applied. <br><em>When you retract an entity with :db.fn/retractEntity, all subcomponents are also retracted. When you touch an entity, all its subcomponent entities are touched recursively.</em></td>
+</tr>
+<tr>
+<td style="text-align:left">noHistory</td>
+<td style="text-align:center"></td>
+<td style="text-align:left">Whether past values of an attribute should not be retained.</td>
+</tr>
+</tbody>
+</table>
+
+<p>Datomic indexes the values of all attributes having an option except for the <code>doc</code> and <code>noHistory</code> options.</p>
+<p>We saw examples of adding options by when we added <code>fulltext</code> to some of the attributes in the Seattle definition above. Molecule&rsquo;s schema definition DSL let&rsquo;s you only choose allowed options for any attribute type.</p>
+<h3 id="next">Next</h3>
+<p><a href="../../setup/sbt-setup">Setup sbt&hellip;</a></p>
+
+    </div>
+
+
+
+
+
+
+
+    <div class="col-sm-2" style="padding-left:24px;padding-right: 0px;position:sticky;top:115px">
+
+        <nav class="bs-docs-sidebar" id="myScrollspy">
+  <ul class="bs-docs-sidenav nav">
+    
+      
+
+        
+        
+          
+            <li><a href="../../setup/">Molecule setup</a></li>
+          
+          
+        
+          
+            <li class="open"><a href="../../setup/data-model/"><b>1. Data Model</b></a></li>
+            
+              <nav id="TableOfContents">
+  <ul>
+    <li><a href="#attributes-in-namespaces">Attributes in Namespaces</a></li>
+    <li><a href="#namespaces-in-partitions">Namespaces in Partitions</a></li>
+    <li><a href="#attribute-types">Attribute types</a></li>
+    <li><a href="#references">References</a></li>
+    <li><a href="#attribute-options">Attribute options</a></li>
+  </ul>
+</nav>
+            
+          
+          
+        
+          
+            <li><a href="../../setup/sbt-setup/">2. Sbt setup</a></li>
+          
+          
+        
+          
+            <li><a href="../../setup/db-connection/">3. Db connection</a></li>
+          
+          
+        
+          
+            <li><a href="../../setup/examples/">Database setups</a></li>
+          
+          
+            <ul class="level2">
+              
+                
+                  <li><a class="sub" href="../../setup/examples/datomic-peer-free-mem/">Datomic Peer free, mem</a></li>
+                
+              
+                
+                  <li><a class="sub" href="../../setup/examples/datomic-peer-free-free/">Datomic Peer free, free</a></li>
+                
+              
+                
+                  <li><a class="sub" href="../../setup/examples/datomic-peer-pro-mem/">Datomic Peer pro, mem</a></li>
+                
+              
+                
+                  <li><a class="sub" href="../../setup/examples/datomic-peer-pro-dev/">Datomic Peer pro, dev</a></li>
+                
+              
+                
+                  <li><a class="sub" href="../../setup/examples/datomic-peerserver-mem/">Datomic Peer Server, mem</a></li>
+                
+              
+                
+                  <li><a class="sub" href="../../setup/examples/datomic-peerserver-dev/">Datomic Peer Server, dev</a></li>
+                
+              
+                
+                  <li><a class="sub" href="../../setup/examples/datomic-devlocal/">Datomic dev-local/cloud</a></li>
+                
+              
+            </ul>
+          
+        
+
+      
+    
+  </ul>
+</nav>
+    </div>
+
+</div> 
+
+     
+   
+ 
+
+
+</div> 
+
+<footer class="bs-docs-footer">
+
+  <div class="container" style="font-size:15px">
+    <ul class="bs-docs-footer-links">
+      <li style="margin-top: 8px;"><a href="../../front/"><img src="../../img/logo/MoleculeLogo150.png" alt=""></a></li>
+      <li><a href="https://github.com/scalamolecule/molecule">GitHub</a></li>
+      <li><a href="https://github.com/scalamolecule/molecule-web">GitHub-web</a></li>
+      <li><a href="https://gitter.im/scalamolecule/Lobby">Gitter</a></li>
+      <li><a href="https://groups.google.com/forum/#!forum/molecule-dsl">Forum</a></li>
+      <li><a href="../../about/">About</a></li>
+      <li><a href="../../credits/">Credits</a></li>
+      <li><a href="../../changelog">Changelog</a></li>
+    </ul>
+    <p>Licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0" target="_blank" rel="license">Apache License 2.0</a></p>
+  </div>
+</footer>
+
+
+<script type="text/javascript" src="../../js/jquery-1.11.2.min.js"></script>
+<script type="text/javascript" src="../../js/bootstrap.min.js"></script>
+
+
+<script type="text/javascript" src="../../js/scripts.js"></script>
+<script async defer id="github-bjs" src="https://buttons.github.io/buttons.js"></script>
+<script src="../../js/copy-button.js"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-2787756-3', 'auto');
+  ga('send', 'pageview');
+</script>
+
+</body>
+</html>

@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <link rel="shortcut icon" href="../../favicon.ico" type="image/x-icon"/>
+    <link href='http://fonts.googleapis.com/css?family=Merriweather+Sans:400,300,300italic,400italic,700,700italic,800,800italic'
+          rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Work+Sans:400,300,300italic,400italic,500,600,700,700italic,800,800italic'
+          rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Jura:400,300,300italic,400italic,500,600,700,700italic,800,800italic'
+          rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic,500,600,700,700italic,800,800italic'
+          rel='stylesheet' type='text/css'>
+    <title>Optimizations</title>
+    <link href="../../css/bootstrap.min.css" rel="stylesheet">
+
+
+
+    <link href="../../css/highlight/styles/solarized_light.css" rel="stylesheet"/>
+    <link href="../../css/syntax-custom.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="../../vendor/font-awesome/css/font-awesome.min.css">
+
+    <link href="../../css/style.css" rel="stylesheet">
+
+
+
+
+    
+
+
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../../img/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../../img/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../../img/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="../../img/apple-touch-icon-57-precomposed.png">
+
+    
+    
+</head>
+<body data-spy="scroll" data-target="#myScrollspy" data-offset="110">
+<header class="bs-docs-header">
+    <div class="container-fluid" style="max-width:1170px">
+        <div class="col-sm-12 column" style="padding-left:0px; padding-right:0px;">
+            <div class="col-sm-9 column" style="padding-left:0px;height:50px;">
+
+    <ul class="nav nav-pills" style="margin-top:-6px;">
+        <li><a href="../../" style="padding-left: 6px; padding-right: 13px; vertical-align: top; margin-top: 7px;"><img
+                src="../../img/logo/MoleculeLogo150.png"></a></li>
+        
+        
+            
+            <li class="dropdown ">
+                <a href="../../intro/" target="_top">Intro</a>
+            </li>
+        
+            
+            <li class="dropdown ">
+                <a href="../../setup/" target="_top">Setup</a>
+            </li>
+        
+            
+            <li class="dropdown ">
+                <a href="../../code/" target="_top">Code</a>
+            </li>
+        
+            
+            <li class="dropdown active">
+                <a href="../../dev/" target="_top">Dev</a>
+            </li>
+        
+            
+            <li class="dropdown ">
+                <a href="../../community/" target="_top">Community</a>
+            </li>
+        
+    </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+            <div class="col-sm-3 column" style="padding-top:13px;padding-right:0px;text-align:right;display:inline-block">
+                <a href="https://javadoc.io/doc/org.scalamolecule/molecule_2.13/latest/index.html" target="_blank" style="margin-top:-2px;color:#999;padding-right:12px;">docs</a>
+                <a href="../../changelog" style="margin-top:-2px;color:#999">v0.24.0</a>
+                <a href="https://github.com/scalamolecule/molecule" target="_blank">
+                    <img src="../../vendor/GitHub-Mark/PNG/GitHub-Mark-Light-32px.png"
+                         style="margin-top:-4px;padding-left:15px;opacity:0.6;width:42px;">
+                </a>
+            </div>
+
+        </div>
+
+    </div>
+</header>
+
+<div class="wrapper">
+
+<div class="container-fluid" style="max-width:1170px">
+
+    <div class="col-sm-10 " style="padding-left:8px;">
+        <h1 id="optimizations">Optimizations</h1>
+<h2 id="save-on-compilation-time">Save on compilation time</h2>
+<p>If your code starts to have huge numbers of molecules, you can save time on compilation by importing a specialized Molecule api that sets a threshold for how many attributes are allowed in a molecule. This minimizes the amount of implicits waiting in vain to serve you and can reduce compilation time.</p>
+<p>So, if your longest molecule in a code file has 7 attributes, then you could for instance set the api import to allow for 7 attributes:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">import</span> <span class="nn">molecule.datomic.api.out7._</span>
+
+<span class="c1">// The above specialized import would be enough to allow this or smaller molecules:
+</span><span class="c1"></span><span class="nc">Person</span><span class="o">.</span><span class="n">e</span><span class="o">.</span><span class="n">firstName</span><span class="o">.</span><span class="n">lastName</span><span class="o">.</span><span class="n">age</span><span class="o">.</span><span class="nc">Address</span><span class="o">.</span><span class="n">street</span><span class="o">.</span><span class="n">zip</span><span class="o">.</span><span class="n">city</span><span class="o">.</span><span class="n">get</span>
+</code></pre></div><p>Varying api arities can be set for each code file.</p>
+<p>The Molecule library has more than 1300 tests with easily 30-100 molecules each, and we have simply set the api import to match the highest molecule arity in each file.</p>
+<p>If you use input molecules then you can add <code>inX</code> where X is how many <a href="../../code/attributes/#input-molecules">inputs</a> (1, 2 or 3) your molecule expects:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">import</span> <span class="nn">molecule.datomic.api.in2_out4._</span>
+
+<span class="c1">// The above specialized import would be enough to allow this input molecule:
+</span><span class="c1"></span><span class="k">val</span> <span class="n">personsOfAgeGender</span> <span class="k">=</span> <span class="n">m</span><span class="o">(</span><span class="nc">Person</span><span class="o">.</span><span class="n">firstName</span><span class="o">.</span><span class="n">lastName</span><span class="o">.</span><span class="n">age_</span><span class="o">(?).</span><span class="n">gender_</span><span class="o">(?).</span><span class="nc">Address</span><span class="o">.</span><span class="n">street</span><span class="o">.</span><span class="n">zip</span><span class="o">)</span>
+<span class="k">val</span> <span class="n">male22</span> <span class="k">=</span> <span class="n">personsOfAgeGender</span><span class="o">(</span><span class="mi">22</span><span class="o">,</span> <span class="s">&#34;male&#34;</span><span class="o">).</span><span class="n">get</span>
+</code></pre></div><h2 id="alternative-collections">Alternative collections</h2>
+<p>When using the Datomic Peer database system, the database &ldquo;server&rdquo; is running within your application process and not as a remote database server. This means that the complete data set is returned on every query and it is up to your application code to handle that. It gives you lower latency and greater control but also greater responsibility.</p>
+<p>Data is by default returned as <code>List</code>s of tuples where all rows of data have been casted to the type signature of the molecule:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="c1">// List returned for convenient access to smaller data sets
+</span><span class="c1"></span><span class="k">val</span> <span class="n">list</span> <span class="k">:</span> <span class="kt">List</span><span class="o">[(</span><span class="kt">String</span>, <span class="kt">Int</span><span class="o">)]</span> <span class="k">=</span> <span class="n">m</span><span class="o">(</span><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">age</span><span class="o">).</span><span class="n">get</span>
+</code></pre></div><p>But we can also return data with the following collection types that can be more efficient in various ways:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="c1">// Mutable Array for fast traversing and retrieval
+</span><span class="c1"></span><span class="k">val</span> <span class="n">array</span><span class="k">:</span> <span class="kt">Array</span><span class="o">[(</span><span class="kt">String</span>, <span class="kt">Int</span><span class="o">)]</span> <span class="k">=</span> <span class="n">m</span><span class="o">(</span><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">age</span><span class="o">).</span><span class="n">getArray</span>
+
+<span class="c1">// Iterable for lazy traversing with an Iterator - casting happens on each call to `next`
+</span><span class="c1"></span><span class="k">val</span> <span class="n">iterable</span><span class="k">:</span> <span class="kt">Iterable</span><span class="o">[(</span><span class="kt">String</span>, <span class="kt">Int</span><span class="o">)]</span> <span class="k">=</span> <span class="n">m</span><span class="o">(</span><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">age</span><span class="o">).</span><span class="n">getIterable</span>
+
+<span class="c1">// Raw untyped Datomic data
+</span><span class="c1"></span><span class="k">val</span> <span class="n">raw</span><span class="k">:</span> <span class="kt">java.util.Collection</span><span class="o">[</span><span class="kt">java.util.List</span><span class="o">[</span><span class="kt">AnyRef</span><span class="o">]]</span> <span class="k">=</span> <span class="n">m</span><span class="o">(</span><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">age</span><span class="o">).</span><span class="n">getRaw</span>
+</code></pre></div><p>And the asynchronous versions follow along too.</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">val</span> <span class="n">array</span>   <span class="k">:</span> <span class="kt">Future</span><span class="o">[</span><span class="kt">Array</span><span class="o">[(</span><span class="kt">String</span>, <span class="kt">Int</span><span class="o">)]]</span> <span class="k">=</span> <span class="n">m</span><span class="o">(</span><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">age</span><span class="o">).</span><span class="n">getAsyncArray</span>
+<span class="k">val</span> <span class="n">iterable</span><span class="k">:</span> <span class="kt">Future</span><span class="o">[</span><span class="kt">Iterable</span><span class="o">[(</span><span class="kt">String</span>, <span class="kt">Int</span><span class="o">)]]</span> <span class="k">=</span> <span class="n">m</span><span class="o">(</span><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">age</span><span class="o">).</span><span class="n">getAsyncIterable</span>
+<span class="k">val</span> <span class="n">raw</span>     <span class="k">:</span> <span class="kt">Future</span><span class="o">[</span><span class="kt">java.util.Collection</span><span class="o">[</span><span class="kt">java.util.List</span><span class="o">[</span><span class="kt">AnyRef</span><span class="o">]]]</span> <span class="k">=</span> <span class="n">m</span><span class="o">(</span><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">age</span><span class="o">).</span><span class="n">getAsyncRaw</span>
+</code></pre></div><h2 id="optimized-time-getters">Optimized Time getters</h2>
+<p>The default time getters return <code>List</code>s of tuples as the normal <code>get</code> method does:</p>
+<pre><code>getAsOf(…)    getAsyncAsOf(…)
+getSince(…)   getAsyncSince(…)
+getWith(…)    getAsyncWith(…)
+</code></pre><p>Again, we can use more specialized collection types:</p>
+<pre><code>getArrayAsOf(…)       getAsyncArrayAsOf(…)
+getArraySince(…)      getAsyncArraySince(…)
+getArrayWith(…)       getAsyncArrayWith(…)
+
+getIterableAsOf(…)    getAsyncIterableAsOf(…)
+getIterableSince(…)   getAsyncIterableSince(…)
+getIterableWith(…)    getAsyncIterableWith(…)
+
+getRawAsOf(…)         getAsyncRawAsOf(…)
+getRawSince(…)        getAsyncRawSince(…)
+getRawWith(…)         getAsyncRawWith(…)
+</code></pre><p><code>getHistory</code> is only implemented to return a List (the default) since the result order is not guaranteed and we therefore always need a fully realized sortable collection.</p>
+<h2 id="automatic-query-optimization">Automatic Query optimization</h2>
+<p>Molecule transparently optimize all queries sent to Datomic.</p>
+<p>Most selective Clauses are automatically grouped first in the :where section of the Datomic query as per the recommendation in <a href="https://docs.datomic.com/on-prem/best-practices.html">Datomic Best Practices</a>.</p>
+<p>This brings dramatic performance gains of in some cases beyond 100x compared to un-optimized queries. The optimization happens automatically in the background so that you can focus entirely on your domain without concern for the optimal order of attributes in your molecules.</p>
+
+    </div>
+
+
+
+
+
+
+
+    <div class="col-sm-2" style="padding-left:24px;padding-right: 0px;position:sticky;top:115px">
+
+        <nav class="bs-docs-sidebar" id="myScrollspy">
+  <ul class="bs-docs-sidenav nav">
+    
+      
+
+        
+        
+          
+            <li><a href="../../dev/">Macro transformations</a></li>
+          
+          
+        
+          
+            <li><a href="../../dev/inspect-queries/">Inspect Queries</a></li>
+          
+          
+        
+          
+            <li><a href="../../dev/inspect-transactions/">Inspect Transactions</a></li>
+          
+          
+        
+          
+            <li class="open"><a href="../../dev/optimizations/"><b>Optimizations</b></a></li>
+            
+              <nav id="TableOfContents">
+  <ul>
+    <li><a href="#save-on-compilation-time">Save on compilation time</a></li>
+    <li><a href="#alternative-collections">Alternative collections</a></li>
+    <li><a href="#optimized-time-getters">Optimized Time getters</a></li>
+    <li><a href="#automatic-query-optimization">Automatic Query optimization</a></li>
+  </ul>
+</nav>
+            
+          
+          
+        
+          
+            <li><a href="../../dev/clojure-exchanges/">Clojure exchanges</a></li>
+          
+          
+        
+          
+            <li><a href="../../dev/pitfalls/">Pitfalls</a></li>
+          
+          
+        
+
+      
+    
+  </ul>
+</nav>
+    </div>
+
+</div> 
+
+     
+   
+ 
+
+
+</div> 
+
+<footer class="bs-docs-footer">
+
+  <div class="container" style="font-size:15px">
+    <ul class="bs-docs-footer-links">
+      <li style="margin-top: 8px;"><a href="../../front/"><img src="../../img/logo/MoleculeLogo150.png" alt=""></a></li>
+      <li><a href="https://github.com/scalamolecule/molecule">GitHub</a></li>
+      <li><a href="https://github.com/scalamolecule/molecule-web">GitHub-web</a></li>
+      <li><a href="https://gitter.im/scalamolecule/Lobby">Gitter</a></li>
+      <li><a href="https://groups.google.com/forum/#!forum/molecule-dsl">Forum</a></li>
+      <li><a href="../../about/">About</a></li>
+      <li><a href="../../credits/">Credits</a></li>
+      <li><a href="../../changelog">Changelog</a></li>
+    </ul>
+    <p>Licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0" target="_blank" rel="license">Apache License 2.0</a></p>
+  </div>
+</footer>
+
+
+<script type="text/javascript" src="../../js/jquery-1.11.2.min.js"></script>
+<script type="text/javascript" src="../../js/bootstrap.min.js"></script>
+
+
+<script type="text/javascript" src="../../js/scripts.js"></script>
+<script async defer id="github-bjs" src="https://buttons.github.io/buttons.js"></script>
+<script src="../../js/copy-button.js"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-2787756-3', 'auto');
+  ga('send', 'pageview');
+</script>
+
+</body>
+</html>

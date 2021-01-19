@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <link rel="shortcut icon" href="../../../favicon.ico" type="image/x-icon"/>
+    <link href='http://fonts.googleapis.com/css?family=Merriweather+Sans:400,300,300italic,400italic,700,700italic,800,800italic'
+          rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Work+Sans:400,300,300italic,400italic,500,600,700,700italic,800,800italic'
+          rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Jura:400,300,300italic,400italic,500,600,700,700italic,800,800italic'
+          rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic,500,600,700,700italic,800,800italic'
+          rel='stylesheet' type='text/css'>
+    <title>Gremlin</title>
+    <link href="../../../css/bootstrap.min.css" rel="stylesheet">
+
+
+
+    <link href="../../../css/highlight/styles/solarized_light.css" rel="stylesheet"/>
+    <link href="../../../css/syntax-custom.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="../../../vendor/font-awesome/css/font-awesome.min.css">
+
+    <link href="../../../css/style.css" rel="stylesheet">
+
+
+
+
+    
+
+
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../../../img/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../../../img/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../../../img/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="../../../img/apple-touch-icon-57-precomposed.png">
+
+    
+    
+</head>
+<body data-spy="scroll" data-target="#myScrollspy" data-offset="110">
+<header class="bs-docs-header">
+    <div class="container-fluid" style="max-width:1170px">
+        <div class="col-sm-12 column" style="padding-left:0px; padding-right:0px;">
+            <div class="col-sm-9 column" style="padding-left:0px;height:50px;">
+
+    <ul class="nav nav-pills" style="margin-top:-6px;">
+        <li><a href="../../../" style="padding-left: 6px; padding-right: 13px; vertical-align: top; margin-top: 7px;"><img
+                src="../../../img/logo/MoleculeLogo150.png"></a></li>
+        
+        
+            
+            <li class="dropdown active">
+                <a href="../../../intro/" target="_top">Intro</a>
+            </li>
+        
+            
+            <li class="dropdown ">
+                <a href="../../../setup/" target="_top">Setup</a>
+            </li>
+        
+            
+            <li class="dropdown ">
+                <a href="../../../code/" target="_top">Code</a>
+            </li>
+        
+            
+            <li class="dropdown ">
+                <a href="../../../dev/" target="_top">Dev</a>
+            </li>
+        
+            
+            <li class="dropdown ">
+                <a href="../../../community/" target="_top">Community</a>
+            </li>
+        
+    </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+            <div class="col-sm-3 column" style="padding-top:13px;padding-right:0px;text-align:right;display:inline-block">
+                <a href="https://javadoc.io/doc/org.scalamolecule/molecule_2.13/latest/index.html" target="_blank" style="margin-top:-2px;color:#999;padding-right:12px;">docs</a>
+                <a href="../../../changelog" style="margin-top:-2px;color:#999">v0.24.0</a>
+                <a href="https://github.com/scalamolecule/molecule" target="_blank">
+                    <img src="../../../vendor/GitHub-Mark/PNG/GitHub-Mark-Light-32px.png"
+                         style="margin-top:-4px;padding-left:15px;opacity:0.6;width:42px;">
+                </a>
+            </div>
+
+        </div>
+
+    </div>
+</header>
+
+<div class="wrapper">
+
+<div class="container-fluid" style="max-width:1170px">
+
+    <div class="col-sm-10 " style="padding-left:8px;">
+        <h1 id="molecule-vs-gremlin">Molecule vs Gremlin</h1>
+<p>Let&rsquo;s compare the queries/traversals in the <a href="http://tinkerpop.apache.org/docs/current/tutorials/getting-started/">Gremlin Getting Started Tutorial</a> with equivalent <a href="https://github.com/scalamolecule/molecule/blob/master/examples/src/test/scala/molecule/examples/gremlin/gettingStarted/Friends.scala">Molecule queries</a>.</p>
+<p>For the examples we&rsquo;ll use the same &ldquo;Modern&rdquo; graph as the tutorial:</p>
+<br>
+<p><img src="../../../img/page/compare/tinkerpop-modern.png" alt=""></p>
+<br>
+<h2 id="insert-data">Insert data</h2>
+<p>Gremlin is untyped, so data is inserted directly in a generic way where &ldquo;types&rdquo; are created on-the-go:</p>
+<pre><code>Graph graph = TinkerGraph.open(); (1)
+Vertex marko = graph.addVertex(T.label, &quot;person&quot;, T.id, 1, &quot;name&quot;, &quot;marko&quot;, &quot;age&quot;, 29); (2)
+Vertex vadas = graph.addVertex(T.label, &quot;person&quot;, T.id, 2, &quot;name&quot;, &quot;vadas&quot;, &quot;age&quot;, 27);
+Vertex lop = graph.addVertex(T.label, &quot;software&quot;, T.id, 3, &quot;name&quot;, &quot;lop&quot;, &quot;lang&quot;, &quot;java&quot;);
+Vertex josh = graph.addVertex(T.label, &quot;person&quot;, T.id, 4, &quot;name&quot;, &quot;josh&quot;, &quot;age&quot;, 32);
+Vertex ripple = graph.addVertex(T.label, &quot;software&quot;, T.id, 5, &quot;name&quot;, &quot;ripple&quot;, &quot;lang&quot;, &quot;java&quot;);
+Vertex peter = graph.addVertex(T.label, &quot;person&quot;, T.id, 6, &quot;name&quot;, &quot;peter&quot;, &quot;age&quot;, 35);
+marko.addEdge(&quot;knows&quot;, vadas, T.id, 7, &quot;weight&quot;, 0.5f); (3)
+marko.addEdge(&quot;knows&quot;, josh, T.id, 8, &quot;weight&quot;, 1.0f);
+marko.addEdge(&quot;created&quot;, lop, T.id, 9, &quot;weight&quot;, 0.4f);
+josh.addEdge(&quot;created&quot;, ripple, T.id, 10, &quot;weight&quot;, 1.0f);
+josh.addEdge(&quot;created&quot;, lop, T.id, 11, &quot;weight&quot;, 0.4f);
+peter.addEdge(&quot;created&quot;, lop, T.id, 12, &quot;weight&quot;, 0.2f);
+</code></pre><p>In Molecule we first define a schema. Since we won&rsquo;t use the <code>weight</code> properties yet, we&rsquo;ll start off defining a schema without those:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">object</span> <span class="nc">ModernGraph1DataModel</span> <span class="o">{</span>
+
+  <span class="k">trait</span> <span class="nc">Person</span> <span class="o">{</span>
+    <span class="k">val</span> <span class="n">name</span> <span class="k">=</span> <span class="n">oneString</span>
+    <span class="k">val</span> <span class="n">age</span>  <span class="k">=</span> <span class="n">oneInt</span>
+
+    <span class="c1">// Normal (uni-directional) reference
+</span><span class="c1"></span>    <span class="k">val</span> <span class="n">software</span> <span class="k">=</span> <span class="n">many</span><span class="o">[</span><span class="kt">Software</span><span class="o">]</span>
+
+    <span class="c1">// Bidirectional self-reference
+</span><span class="c1"></span>    <span class="k">val</span> <span class="n">friends</span> <span class="k">=</span> <span class="n">manyBi</span><span class="o">[</span><span class="kt">Person</span><span class="o">]</span>
+  <span class="o">}</span>
+
+  <span class="k">trait</span> <span class="nc">Software</span> <span class="o">{</span>
+    <span class="k">val</span> <span class="n">name</span> <span class="k">=</span> <span class="n">oneString</span>
+    <span class="k">val</span> <span class="n">lang</span> <span class="k">=</span> <span class="n">oneString</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><p>When we compile our project with <code>sbt compile</code>, the sbt-molecule plugin will generate the necessary boilerplate code so that we can enter typed data to populate the graph:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="c1">// Create database and save implicit connection
+</span><span class="c1"></span><span class="k">implicit</span> <span class="k">val</span> <span class="n">conn</span> <span class="k">=</span> <span class="n">recreateDbFrom</span><span class="o">(</span><span class="nc">ModernGraph1Schema</span><span class="o">)</span>
+
+<span class="c1">// Software
+</span><span class="c1"></span><span class="k">val</span> <span class="nc">List</span><span class="o">(</span><span class="n">lop</span><span class="o">,</span> <span class="n">ripple</span><span class="o">)</span> <span class="k">=</span> <span class="nc">Software</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">lang</span> <span class="n">insert</span> <span class="nc">Seq</span><span class="o">(</span>
+  <span class="o">(</span><span class="s">&#34;lop&#34;</span><span class="o">,</span> <span class="s">&#34;java&#34;</span><span class="o">),</span>
+  <span class="o">(</span><span class="s">&#34;ripple&#34;</span><span class="o">,</span> <span class="s">&#34;java&#34;</span><span class="o">)</span>
+<span class="o">)</span> <span class="n">eids</span>
+
+<span class="c1">// People and software created
+</span><span class="c1"></span><span class="k">val</span> <span class="nc">List</span><span class="o">(</span><span class="n">marko</span><span class="o">,</span> <span class="n">vadas</span><span class="o">,</span> <span class="n">josh</span><span class="o">,</span> <span class="n">peter</span><span class="o">)</span> <span class="k">=</span> <span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">age</span><span class="o">.</span><span class="n">software</span> <span class="n">insert</span> <span class="nc">Seq</span><span class="o">(</span>
+  <span class="o">(</span><span class="s">&#34;marko&#34;</span><span class="o">,</span> <span class="mi">29</span><span class="o">,</span> <span class="nc">Set</span><span class="o">(</span><span class="n">lop</span><span class="o">)),</span>
+  <span class="o">(</span><span class="s">&#34;vadas&#34;</span><span class="o">,</span> <span class="mi">27</span><span class="o">,</span> <span class="nc">Set</span><span class="o">[</span><span class="kt">Long</span><span class="o">]()),</span>
+  <span class="o">(</span><span class="s">&#34;josh&#34;</span><span class="o">,</span> <span class="mi">32</span><span class="o">,</span> <span class="nc">Set</span><span class="o">(</span><span class="n">lop</span><span class="o">,</span> <span class="n">ripple</span><span class="o">)),</span>
+  <span class="o">(</span><span class="s">&#34;peter&#34;</span><span class="o">,</span> <span class="mi">35</span><span class="o">,</span> <span class="nc">Set</span><span class="o">(</span><span class="n">lop</span><span class="o">))</span>
+<span class="o">)</span> <span class="n">eids</span>
+
+<span class="c1">// Friendships
+</span><span class="c1"></span><span class="nc">Person</span><span class="o">(</span><span class="n">marko</span><span class="o">).</span><span class="n">friends</span><span class="o">(</span><span class="n">vadas</span><span class="o">,</span> <span class="n">josh</span><span class="o">).</span><span class="n">update</span>
+</code></pre></div><p>We&rsquo;ll use the variables with entity ids above for the coming examples.</p>
+<h2 id="the-first-5-minutes">The first 5 minutes</h2>
+<p>Now we are ready to make queries.</p>
+<h3 id="generic-vs-domain-language">Generic vs domain language</h3>
+<p>Since Gremlin traverses generic edges and vertices it is also communicating intentions in a generic way like the following &ldquo;query&rdquo;:</p>
+<p><em>Get the value of the <code>name</code> property on vertex with the unique identifier of &ldquo;1&rdquo;.</em></p>
+<pre><code>gremlin&gt; g.V(1).values('name')
+==&gt;marko
+</code></pre><p>Since Molecule uses the domain terms as custom building blocks directly, we can formulate our intentions with the language of our domain directly:</p>
+<p><em>What is the Person name of entity <code>marko</code>?</em></p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">(</span><span class="n">marko</span><span class="o">).</span><span class="n">name</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">head</span> <span class="o">===</span> <span class="s">&#34;marko&#34;</span>
+</code></pre></div><h3 id="edges--entities">Edges / Entities</h3>
+<p><em>Get the edges with the label &ldquo;knows&rdquo; for the vertex with the unique identifier of &ldquo;1&rdquo;:</em></p>
+<pre><code>gremlin&gt; g.V(1).outE('knows')
+==&gt;e[7][1-knows-&gt;2]
+==&gt;e[8][1-knows-&gt;4]
+</code></pre><p><em>Marko&rsquo;s friends</em></p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">(</span><span class="n">marko</span><span class="o">).</span><span class="n">friends</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">head</span> <span class="o">===</span> <span class="nc">Set</span><span class="o">(</span><span class="n">vadas</span><span class="o">,</span> <span class="n">josh</span><span class="o">)</span>
+</code></pre></div><h3 id="values">Values</h3>
+<p><em>Get the names of the people that the vertex with the unique identifier of &ldquo;1&rdquo; &ldquo;knows&rdquo;.</em></p>
+<pre><code>gremlin&gt; g.V(1).out('knows').values('name')
+==&gt;vadas
+==&gt;josh
+</code></pre><p>In Molecule we can jump from one namespace like <code>Person</code> to <code>Friends</code> since there&rsquo;s a relationship defined between the two. That way we can get Marko&rsquo;s referenced Friends entities:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">(</span><span class="n">marko</span><span class="o">).</span><span class="nc">Friends</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">head</span> <span class="o">===</span> <span class="nc">Set</span><span class="o">(</span><span class="s">&#34;vadas&#34;</span><span class="o">,</span> <span class="s">&#34;josh&#34;</span><span class="o">)</span>
+</code></pre></div><p>Note though, that a namespace is not like a SQL table but rather just a meaningful prefix for a group of attributes.</p>
+<h3 id="expressions">Expressions</h3>
+<p><em>Get the names of the people vertex &ldquo;1&rdquo; knows who are over the age of 30.</em></p>
+<pre><code>gremlin&gt; g.V(1).out('knows').has('age', gt(30)).values('name') //(7)
+==&gt;josh
+</code></pre><p><em>Names of Marko&rsquo;s friends over the age of 30.</em></p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">(</span><span class="n">marko</span><span class="o">).</span><span class="nc">Friends</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">age_</span><span class="o">.&gt;(</span><span class="mi">30</span><span class="o">).</span><span class="n">get</span> <span class="o">===</span> <span class="nc">Set</span><span class="o">(</span><span class="s">&#34;josh&#34;</span><span class="o">)</span>
+</code></pre></div><h2 id="the-next-15-minutes">The next 15 minutes</h2>
+<p><em>Find Marko in the graph</em></p>
+<pre><code>gremlin&gt; g.V().has('name','marko')
+==&gt;v[1]
+</code></pre><p>Prepending the generic attribute <code>e</code> before an attribute finds the entity that it belongs to:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">.</span><span class="n">e</span><span class="o">.</span><span class="n">name_</span><span class="o">(</span><span class="s">&#34;marko&#34;</span><span class="o">).</span><span class="n">get</span><span class="o">.</span><span class="n">head</span> <span class="o">===</span> <span class="n">marko</span>
+</code></pre></div><p>We also append an underscore <code>_</code> to the <code>name</code> attribute so that it becomes <code>name_</code>. In Molecule this makes the attribute &ldquo;tacit&rdquo;, or &ldquo;silent&rdquo;, meaning that we don&rsquo;t need to return its value &ldquo;marko&rdquo; since we&rsquo;re already applying it as a value that we expect the attribute to have.</p>
+<h3 id="traversing--relationships">Traversing / relationships</h3>
+<p><em>Gremlin has reached the &ldquo;software that Marko created&rdquo;, he has access to the properties of the &ldquo;software&rdquo; vertex and you can therefore ask Gremlin to extract the value of the &ldquo;name&rdquo; property</em></p>
+<pre><code>gremlin&gt; g.V().has('name','marko').out('created').values('name')
+==&gt;lop
+</code></pre><p><em>What software did Marko create?</em> - here we use a relationship again to get to the referenced Software entities and their names</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">.</span><span class="n">name_</span><span class="o">(</span><span class="s">&#34;marko&#34;</span><span class="o">).</span><span class="nc">Software</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">get</span> <span class="o">===</span> <span class="nc">Seq</span><span class="o">(</span><span class="s">&#34;lop&#34;</span><span class="o">)</span>
+</code></pre></div><h3 id="or-logic">OR logic</h3>
+<p><em>Find the &ldquo;age&rdquo; values of both &ldquo;vadas&rdquo; and &ldquo;marko&rdquo;</em></p>
+<pre><code>gremlin&gt; g.V().has('name',within('vadas','marko')).values('age')
+==&gt;29
+==&gt;27
+</code></pre><p>To get both names we us Molecule&rsquo;s OR-logic by applying multiple values to an attribute. <code>name</code> should be either &ldquo;marko&rdquo; OR &ldquo;vadas&rdquo; and we can use various syntaxes:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">.</span><span class="n">name_</span><span class="o">(</span><span class="s">&#34;marko&#34;</span><span class="o">,</span> <span class="s">&#34;vadas&#34;</span><span class="o">).</span><span class="n">age</span><span class="o">.</span><span class="n">get</span> <span class="o">===</span> <span class="nc">Seq</span><span class="o">(</span><span class="mi">27</span><span class="o">,</span> <span class="mi">29</span><span class="o">)</span>       <span class="c1">// Vararg
+</span><span class="c1"></span><span class="nc">Person</span><span class="o">.</span><span class="n">name_</span><span class="o">(</span><span class="s">&#34;marko&#34;</span> <span class="n">or</span> <span class="s">&#34;vadas&#34;</span><span class="o">).</span><span class="n">age</span><span class="o">.</span><span class="n">get</span> <span class="o">===</span> <span class="nc">Seq</span><span class="o">(</span><span class="mi">27</span><span class="o">,</span> <span class="mi">29</span><span class="o">)</span>     <span class="c1">// `or`
+</span><span class="c1"></span><span class="nc">Person</span><span class="o">.</span><span class="n">name_</span><span class="o">(</span><span class="nc">Seq</span><span class="o">(</span><span class="s">&#34;marko&#34;</span><span class="o">,</span> <span class="s">&#34;vadas&#34;</span><span class="o">)).</span><span class="n">age</span><span class="o">.</span><span class="n">get</span> <span class="o">===</span> <span class="nc">Seq</span><span class="o">(</span><span class="mi">27</span><span class="o">,</span> <span class="mi">29</span><span class="o">)</span>  <span class="c1">// Seq
+</span></code></pre></div><h3 id="aggregates">Aggregates</h3>
+<p><em>Average age of &ldquo;vadas&rdquo; and &ldquo;marko&rdquo;</em></p>
+<pre><code>gremlin&gt; g.V().has('name',within('vadas','marko')).values('age').mean()
+==&gt;28.0
+</code></pre><p>Molecule implements Datomics aggregate functions by applying the keyword <code>avg</code> to a number attribute like <code>age</code></p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">.</span><span class="n">name_</span><span class="o">(</span><span class="s">&#34;marko&#34;</span><span class="o">,</span> <span class="s">&#34;vadas&#34;</span><span class="o">).</span><span class="n">age</span><span class="o">(</span><span class="n">avg</span><span class="o">).</span><span class="n">get</span><span class="o">.</span><span class="n">head</span> <span class="o">===</span> <span class="mf">28.0</span>
+</code></pre></div><h3 id="where--2-step-queries">Where / 2-step queries</h3>
+<p><em>&ldquo;Who are the people that marko develops software with?&quot;</em></p>
+<pre><code>gremlin&gt; g.V().has('name','marko').out('created').in('created').values('name')
+==&gt;marko
+==&gt;josh
+==&gt;peter
+</code></pre><p>It&rsquo;s idiomatic with Datomic to split such query and use the output of one query as input for the next one:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="c1">// First find ids of software projects that marko has participated in
+</span><span class="c1"></span><span class="k">val</span> <span class="n">markoSoftware</span> <span class="k">=</span> <span class="nc">Person</span><span class="o">.</span><span class="n">name_</span><span class="o">(</span><span class="s">&#34;marko&#34;</span><span class="o">).</span><span class="n">software</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">head</span>
+
+<span class="c1">// Then find names of persons that have participated in those projects
+</span><span class="c1"></span><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">software_</span><span class="o">(</span><span class="n">markoSoftware</span><span class="o">).</span><span class="n">get</span> <span class="o">===</span> <span class="nc">Seq</span><span class="o">(</span><span class="s">&#34;peter&#34;</span><span class="o">,</span> <span class="s">&#34;josh&#34;</span><span class="o">,</span> <span class="s">&#34;marko&#34;</span><span class="o">)</span>
+</code></pre></div><br>
+Excluding marko from the result
+<pre><code>gremlin&gt; g.V().has('name','marko').as('exclude').out('created').in('created').where(neq('exclude')).values('name')
+==&gt;josh
+==&gt;peter
+</code></pre><div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">not</span><span class="o">(</span><span class="s">&#34;marko&#34;</span><span class="o">).</span><span class="n">software_</span><span class="o">(</span><span class="n">markoSoftware</span><span class="o">).</span><span class="n">get</span> <span class="o">===</span> <span class="nc">Seq</span><span class="o">(</span><span class="s">&#34;peter&#34;</span><span class="o">,</span> <span class="s">&#34;josh&#34;</span><span class="o">)</span>
+</code></pre></div><h3 id="group">Group</h3>
+<p><em>&ldquo;Group all the vertices in the graph by their vertex label&rdquo;</em></p>
+<pre><code>gremlin&gt; g.V().group().by(label).by('name')
+==&gt;[software:[lop,ripple],person:[marko,vadas,josh,peter]]
+</code></pre><p>Since Molecule is typed we would probably ask for specific <code>name</code> attribute values:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">get</span> <span class="o">===</span> <span class="nc">Seq</span><span class="o">(</span><span class="s">&#34;peter&#34;</span><span class="o">,</span> <span class="s">&#34;vadas&#34;</span><span class="o">,</span> <span class="s">&#34;josh&#34;</span><span class="o">,</span> <span class="s">&#34;marko&#34;</span><span class="o">)</span>
+<span class="nc">Software</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">get</span> <span class="o">===</span> <span class="nc">Seq</span><span class="o">(</span><span class="s">&#34;ripple&#34;</span><span class="o">,</span> <span class="s">&#34;lop&#34;</span><span class="o">)</span>
+</code></pre></div><h2 id="edge-property-queries">Edge property queries</h2>
+<p>The Gremlin tutorial doesn&rsquo;t actually use any of the <code>weight</code> properties so we made the <a href="https://github.com/scalamolecule/molecule/blob/master/examples/src/test/scala/molecule/examples/gremlin/gettingStarted/Knows.scala">Knows</a> test suite to see how we can work with edge property molecules.</p>
+<p>Let&rsquo;s ask a few more complex questions - a reminder of the graph could be useful here</p>
+<br>
+<p><img src="../../../img/page/compare/tinkerpop-modern.png" alt=""></p>
+<br>
+<p>Who knows young people?</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="c1">// Since we save bidirectional references we get friendships in both directions:
+</span><span class="c1"></span><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="nc">Friends</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">age</span><span class="o">.&lt;(</span><span class="mi">30</span><span class="o">).</span><span class="n">get</span> <span class="o">===</span> <span class="nc">List</span><span class="o">(</span>
+  <span class="o">(</span><span class="s">&#34;vadas&#34;</span><span class="o">,</span> <span class="s">&#34;marko&#34;</span><span class="o">,</span> <span class="mi">29</span><span class="o">),</span> <span class="c1">// vadas knows marko who is 29
+</span><span class="c1"></span>  <span class="o">(</span><span class="s">&#34;josh&#34;</span><span class="o">,</span> <span class="s">&#34;marko&#34;</span><span class="o">,</span> <span class="mi">29</span><span class="o">),</span> <span class="c1">// josh knows marko who is 29
+</span><span class="c1"></span>  <span class="o">(</span><span class="s">&#34;marko&#34;</span><span class="o">,</span> <span class="s">&#34;vadas&#34;</span><span class="o">,</span> <span class="mi">27</span><span class="o">)</span> <span class="c1">// marko knows vadas who is 27
+</span><span class="c1"></span><span class="o">)</span>
+</code></pre></div><p>How many young friends does the older people have?</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">age</span><span class="o">.&gt;=(</span><span class="mi">30</span><span class="o">).</span><span class="n">friends</span><span class="o">(</span><span class="n">count</span><span class="o">).</span><span class="n">age_</span><span class="o">.&lt;(</span><span class="mi">30</span><span class="o">).</span><span class="n">get</span> <span class="o">===</span> <span class="nc">List</span><span class="o">(</span>
+  <span class="o">(</span><span class="s">&#34;josh&#34;</span><span class="o">,</span> <span class="mi">32</span><span class="o">,</span> <span class="mi">1</span><span class="o">)</span> <span class="c1">// josh (32) knows 1 young person (Marko, 29)
+</span><span class="c1"></span><span class="o">)</span>
+</code></pre></div><p>Marko&rsquo;s friends and their friends</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">(</span><span class="s">&#34;marko&#34;</span><span class="o">).</span><span class="nc">Knows</span><span class="o">.</span><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="nc">Knows</span><span class="o">.</span><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">get</span> <span class="o">===</span> <span class="nc">List</span><span class="o">(</span>
+  <span class="o">(</span><span class="s">&#34;marko&#34;</span><span class="o">,</span> <span class="s">&#34;vadas&#34;</span><span class="o">,</span> <span class="s">&#34;peter&#34;</span><span class="o">),</span>
+  <span class="o">(</span><span class="s">&#34;marko&#34;</span><span class="o">,</span> <span class="s">&#34;josh&#34;</span><span class="o">,</span> <span class="s">&#34;marko&#34;</span><span class="o">),</span>
+  <span class="o">(</span><span class="s">&#34;marko&#34;</span><span class="o">,</span> <span class="s">&#34;vadas&#34;</span><span class="o">,</span> <span class="s">&#34;marko&#34;</span><span class="o">)</span>
+<span class="o">)</span>
+
+<span class="c1">// Same, nested
+</span><span class="c1"></span><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">(</span><span class="s">&#34;marko&#34;</span><span class="o">).</span><span class="nc">Knows</span><span class="o">.*(</span>
+  <span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="nc">Knows</span><span class="o">.*(</span>
+    <span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">)).</span><span class="n">get</span>
+        <span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="n">t1</span> <span class="k">=&gt;</span> <span class="o">(</span><span class="n">t1</span><span class="o">.</span><span class="n">_1</span><span class="o">,</span> <span class="n">t1</span><span class="o">.</span><span class="n">_2</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="n">t2</span> <span class="k">=&gt;</span> <span class="o">(</span><span class="n">t2</span><span class="o">.</span><span class="n">_1</span><span class="o">,</span> <span class="n">t2</span><span class="o">.</span><span class="n">_2</span><span class="o">.</span><span class="n">sorted</span><span class="o">)).</span><span class="n">sortBy</span><span class="o">(</span><span class="k">_</span><span class="o">.</span><span class="n">_1</span><span class="o">)))</span> <span class="o">===</span>
+        <span class="nc">List</span><span class="o">(</span>
+          <span class="o">(</span>
+            <span class="s">&#34;marko&#34;</span><span class="o">,</span>
+            <span class="nc">List</span><span class="o">(</span>
+              <span class="o">(</span><span class="s">&#34;josh&#34;</span><span class="o">,</span> <span class="nc">List</span><span class="o">(</span><span class="s">&#34;marko&#34;</span><span class="o">)),</span>
+              <span class="o">(</span><span class="s">&#34;vadas&#34;</span><span class="o">,</span> <span class="nc">List</span><span class="o">(</span><span class="s">&#34;marko&#34;</span><span class="o">,</span> <span class="s">&#34;peter&#34;</span><span class="o">)),</span>
+            <span class="o">)</span>
+          <span class="o">)</span>
+        <span class="o">)</span>
+</code></pre></div><p>Marko&rsquo;s friends and their friends (excluding marko)</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">(</span><span class="s">&#34;marko&#34;</span><span class="o">).</span><span class="nc">Knows</span><span class="o">.</span><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="nc">Knows</span><span class="o">.</span><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">not</span><span class="o">(</span><span class="s">&#34;marko&#34;</span><span class="o">).</span><span class="n">get</span> <span class="o">===</span> <span class="nc">List</span><span class="o">(</span>
+  <span class="o">(</span><span class="s">&#34;marko&#34;</span><span class="o">,</span> <span class="s">&#34;vadas&#34;</span><span class="o">,</span> <span class="s">&#34;peter&#34;</span><span class="o">)</span>
+<span class="o">)</span>
+</code></pre></div><p>Marko&rsquo;s friends' friends</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">.</span><span class="n">name_</span><span class="o">(</span><span class="s">&#34;marko&#34;</span><span class="o">).</span><span class="nc">Knows</span><span class="o">.</span><span class="nc">Person</span><span class="o">.</span><span class="nc">Knows</span><span class="o">.</span><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">not</span><span class="o">(</span><span class="s">&#34;marko&#34;</span><span class="o">).</span><span class="n">get</span> <span class="o">===</span> <span class="nc">List</span><span class="o">(</span>
+  <span class="s">&#34;peter&#34;</span>
+<span class="o">)</span>
+</code></pre></div><p>Marko&rsquo;s friends' friends that are not already marko&rsquo;s friends (or marko)</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">val</span> <span class="n">ownCircle</span> <span class="k">=</span> <span class="nc">Person</span><span class="o">(</span><span class="n">marko</span><span class="o">).</span><span class="nc">Knows</span><span class="o">.</span><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">toSeq</span> <span class="k">:</span><span class="kt">+</span> <span class="err">&#34;</span><span class="kt">marko</span><span class="err">&#34;</span>
+<span class="kt">Person</span><span class="o">(</span><span class="kt">marko</span><span class="o">)</span><span class="kt">.Knows.Person.Knows.Person.name.not</span><span class="o">(</span><span class="kt">ownCircle</span><span class="o">)</span><span class="kt">.get</span> <span class="o">===</span> <span class="nc">List</span><span class="o">(</span>
+  <span class="s">&#34;peter&#34;</span>
+<span class="o">)</span>
+</code></pre></div><h3 id="using-the-edge-properties">Using the edge properties</h3>
+<br>
+<p><img src="../../../img/page/compare/tinkerpop-modern.png" alt=""></p>
+<br>
+<p>Well-known friends</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">(</span><span class="n">marko</span><span class="o">).</span><span class="nc">Knows</span><span class="o">.</span><span class="n">weight_</span><span class="o">.&gt;(</span><span class="mf">0.8</span><span class="o">).</span><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">get</span> <span class="o">===</span> <span class="nc">List</span><span class="o">(</span><span class="s">&#34;josh&#34;</span><span class="o">)</span>
+</code></pre></div><p>Well-known friends heavily involved in projects</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">(</span><span class="n">marko</span><span class="o">).</span><span class="nc">Knows</span><span class="o">.</span><span class="n">weight_</span><span class="o">.&gt;(</span><span class="mf">0.8</span><span class="o">).</span><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="nc">Created</span><span class="o">.</span><span class="n">weight_</span><span class="o">.&gt;(</span><span class="mf">0.8</span><span class="o">).</span><span class="nc">Software</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">get</span> <span class="o">===</span>
+  <span class="nc">List</span><span class="o">((</span><span class="s">&#34;josh&#34;</span><span class="o">,</span> <span class="s">&#34;ripple&#34;</span><span class="o">))</span>
+</code></pre></div><p>Friends of friends' side projects</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">(</span><span class="n">marko</span><span class="o">).</span><span class="nc">Knows</span><span class="o">.</span><span class="nc">Person</span><span class="o">.</span><span class="nc">Knows</span><span class="o">.</span><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">not</span><span class="o">(</span><span class="s">&#34;marko&#34;</span><span class="o">).</span><span class="nc">Created</span><span class="o">.</span><span class="n">weight</span><span class="o">.&lt;(</span><span class="mf">0.5</span><span class="o">).</span><span class="nc">Software</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">get</span> <span class="o">===</span>
+  <span class="nc">List</span><span class="o">((</span><span class="s">&#34;peter&#34;</span><span class="o">,</span> <span class="mf">0.2</span><span class="o">,</span> <span class="s">&#34;lop&#34;</span><span class="o">))</span>
+
+<span class="c1">// .. or elaborated:
+</span><span class="c1"></span><span class="nc">Person</span><span class="o">(</span><span class="n">marko</span><span class="o">)</span> <span class="c1">// marko entity
+</span><span class="c1"></span>  <span class="o">.</span><span class="nc">Knows</span><span class="o">.</span><span class="nc">Person</span> <span class="c1">// friends of marko
+</span><span class="c1"></span>  <span class="o">.</span><span class="nc">Knows</span><span class="o">.</span><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">not</span><span class="o">(</span><span class="s">&#34;marko&#34;</span><span class="o">)</span> <span class="c1">// friends of friends of marko that are not marko
+</span><span class="c1"></span>  <span class="o">.</span><span class="nc">Created</span><span class="o">.</span><span class="n">weight</span><span class="o">.&lt;(</span><span class="mf">0.5</span><span class="o">)</span> <span class="c1">// Created (software) with a low weight property
+</span><span class="c1"></span>  <span class="o">.</span><span class="nc">Software</span><span class="o">.</span><span class="n">name</span> <span class="c1">// name of software created
+</span><span class="c1"></span>  <span class="o">.</span><span class="n">get</span> <span class="o">===</span> <span class="nc">List</span><span class="o">((</span>
+  <span class="s">&#34;peter&#34;</span><span class="o">,</span> <span class="c1">// peter is a friend of vadas who is a friend of marko
+</span><span class="c1"></span>  <span class="mf">0.2</span><span class="o">,</span>     <span class="c1">// peter participated with a weight of 0.2 in creating
+</span><span class="c1"></span>  <span class="s">&#34;lop&#34;</span>    <span class="c1">// the software &#34;lop&#34;
+</span><span class="c1"></span><span class="o">))</span>
+</code></pre></div><h3 id="next">Next</h3>
+<p><a href="../../../setup">Setup&hellip;</a></p>
+
+    </div>
+
+
+
+
+
+
+
+    <div class="col-sm-2" style="padding-left:24px;padding-right: 0px;position:sticky;top:115px">
+
+        <nav class="bs-docs-sidebar" id="myScrollspy">
+  <ul class="bs-docs-sidenav nav">
+    
+      
+
+        
+        
+          
+            <li><a href="../../../intro/">Intro</a></li>
+          
+          
+        
+          
+            <li><a href="../../../intro/philosophy/">Philosophy</a></li>
+          
+          
+        
+          
+            <li><a href="../../../intro/building-blocks/">Building blocks</a></li>
+          
+          
+        
+          
+            <li><a href="../../../intro/compare/">Compare</a></li>
+          
+          
+            <ul class="level2">
+              
+                
+                  <li><a class="sub" href="../../../intro/compare/datomic/">Datomic</a></li>
+                
+              
+                
+                  <li><a class="sub" href="../../../intro/compare/sql/">SQL</a></li>
+                
+              
+                
+                  <li><a class="sub" href="../../../intro/compare/slick/">Slick</a></li>
+                
+              
+                
+                  <li class="active"><b>Gremlin</b></li>
+                  
+                    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#insert-data">Insert data</a></li>
+    <li><a href="#the-first-5-minutes">The first 5 minutes</a></li>
+    <li><a href="#the-next-15-minutes">The next 15 minutes</a></li>
+    <li><a href="#edge-property-queries">Edge property queries</a></li>
+  </ul>
+</nav>
+                  
+                
+              
+            </ul>
+          
+        
+
+      
+    
+  </ul>
+</nav>
+    </div>
+
+</div> 
+
+     
+   
+ 
+
+
+</div> 
+
+<footer class="bs-docs-footer">
+
+  <div class="container" style="font-size:15px">
+    <ul class="bs-docs-footer-links">
+      <li style="margin-top: 8px;"><a href="../../../front/"><img src="../../../img/logo/MoleculeLogo150.png" alt=""></a></li>
+      <li><a href="https://github.com/scalamolecule/molecule">GitHub</a></li>
+      <li><a href="https://github.com/scalamolecule/molecule-web">GitHub-web</a></li>
+      <li><a href="https://gitter.im/scalamolecule/Lobby">Gitter</a></li>
+      <li><a href="https://groups.google.com/forum/#!forum/molecule-dsl">Forum</a></li>
+      <li><a href="../../../about/">About</a></li>
+      <li><a href="../../../credits/">Credits</a></li>
+      <li><a href="../../../changelog">Changelog</a></li>
+    </ul>
+    <p>Licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0" target="_blank" rel="license">Apache License 2.0</a></p>
+  </div>
+</footer>
+
+
+<script type="text/javascript" src="../../../js/jquery-1.11.2.min.js"></script>
+<script type="text/javascript" src="../../../js/bootstrap.min.js"></script>
+
+
+<script type="text/javascript" src="../../../js/scripts.js"></script>
+<script async defer id="github-bjs" src="https://buttons.github.io/buttons.js"></script>
+<script src="../../../js/copy-button.js"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-2787756-3', 'auto');
+  ga('send', 'pageview');
+</script>
+
+</body>
+</html>

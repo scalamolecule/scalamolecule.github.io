@@ -913,10 +913,10 @@ val currentAndPreviousAgesOfFredAsync = Person(fredId).age.getAsyncHistory
 the test transaction data. This is a very powerful way of testing future-like &ldquo;what-if&rdquo; scenarios.</p>
 <p>Transactional test data to be tested can be obtained by calling one of the following methods on some test-molecules:</p>
 <ul>
-<li><code>&lt;molecule&gt;.getSaveTx</code></li>
-<li><code>&lt;molecule&gt;.getInsertTx</code></li>
-<li><code>&lt;molecule&gt;.getUpdateTx</code></li>
-<li><code>&lt;entityId&gt;.getRetractTx</code></li>
+<li><code>&lt;molecule&gt;.getSaveStmts</code></li>
+<li><code>&lt;molecule&gt;.getInsertStmts</code></li>
+<li><code>&lt;molecule&gt;.getUpdateStmts</code></li>
+<li><code>&lt;entityId&gt;.getRetractStmts</code></li>
 </ul>
 <pre><code>// Apply one or more tx test data molecules
 val personsWithNewData = Person.name.age.getWith(&lt;txTestData&gt;*) 
