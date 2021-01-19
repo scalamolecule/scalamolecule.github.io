@@ -665,7 +665,7 @@ johnId    :Person/age     24
   <span class="o">(</span><span class="n">johnId</span><span class="o">,</span> <span class="s">&#34;John&#34;</span><span class="o">,</span> <span class="n">t3</span><span class="o">,</span> <span class="kc">false</span><span class="o">),</span> <span class="c1">// John terminated his membership at transaction t3 and was retracted
 </span><span class="c1"></span>  <span class="o">(</span><span class="n">lisaId</span><span class="o">,</span> <span class="s">&#34;Lisa&#34;</span><span class="o">,</span> <span class="n">t5</span><span class="o">,</span> <span class="kc">false</span><span class="o">)</span>  <span class="c1">// Lisa terminated her membership at transaction t5 and was retracted
 </span><span class="c1"></span><span class="o">)</span>
-</code></pre></div><h3 id="retract-component-entity">Retract component entity</h3>
+</code></pre></div><h3 id="retract-a-component-entity">Retract a component entity</h3>
 <p>If a ref attribute is defined with the option <code>isComponent</code> then it &ldquo;owns&rdquo; its related entities - or &ldquo;subcomponents&rdquo;, as when an <code>Order</code> own its <code>LineItem</code>s.</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">object</span> <span class="nc">ProductsOrderDataModel</span> <span class="o">{</span>
 
