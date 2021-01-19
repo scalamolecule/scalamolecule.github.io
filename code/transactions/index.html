@@ -411,7 +411,7 @@ johnId    :Person/age     24
   <span class="c1">// Pete not returned since he likes something
 </span><span class="c1"></span><span class="o">)</span>
 </code></pre></div><h2 id="insert">Insert</h2>
-<p>Data can be inserted by making a molecule that matches the values of each row.</p>
+<p>An <code>insert</code> Molecule can act as a template for insterting one or more rows of data that matches the molecule.</p>
 <p>One row of data can be applied directly with matching arguments</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">likes</span><span class="o">.</span><span class="n">age</span><span class="o">.</span><span class="n">insert</span><span class="o">(</span><span class="s">&#34;John&#34;</span><span class="o">,</span> <span class="s">&#34;pizza&#34;</span><span class="o">,</span> <span class="mi">24</span><span class="o">)</span>
 </code></pre></div><p>Multiple rows of data can be applied as any <code>Iterable</code> of tuples of data each matching the molecule attributes:</p>
