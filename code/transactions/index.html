@@ -925,12 +925,12 @@ johnId    :Person/age     24
 <span class="o">)</span>
 </code></pre></div><h3 id="composites">Composites</h3>
 <p>Similarly we can insert composite molecules composed of sub-molecules/sub-tuples of data - and some tx meta-data:</p>
-<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Article</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">author</span> <span class="o">+</span> 
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="n">m</span><span class="o">(</span><span class="nc">Article</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">author</span> <span class="o">+</span> 
   <span class="nc">Tag</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">weight</span>
   <span class="o">.</span><span class="nc">Tx</span><span class="o">(</span><span class="nc">MetaData</span>
       <span class="o">.</span><span class="n">submitter_</span><span class="o">(</span><span class="s">&#34;Brenda Johnson&#34;</span><span class="o">)</span>
       <span class="o">.</span><span class="n">usecase_</span><span class="o">(</span><span class="s">&#34;AddArticles&#34;</span><span class="o">)</span>
-  <span class="o">)</span> <span class="n">insert</span> <span class="nc">List</span><span class="o">(</span>
+  <span class="o">))</span> <span class="n">insert</span> <span class="nc">List</span><span class="o">(</span>
   <span class="c1">// 2 rows of data (Articles) 
 </span><span class="c1"></span>  <span class="c1">// The 2 sub-tuples of each row matches the 2 sub-molecules
 </span><span class="c1"></span>  <span class="o">((</span><span class="s">&#34;Battle of Waterloo&#34;</span><span class="o">,</span> <span class="s">&#34;Ben Bridge&#34;</span><span class="o">),</span> <span class="o">(</span><span class="s">&#34;serious&#34;</span><span class="o">,</span> <span class="mi">5</span><span class="o">)),</span>
