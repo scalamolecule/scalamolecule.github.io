@@ -513,7 +513,7 @@ johnId    :Person/age     24
 <li>Retract old fact</li>
 <li>Assert new fact</li>
 </ol>
-<p>Datomic doesn&rsquo;t overwrite data. &ldquo;Retract&rdquo; is a statement that says &ldquo;this data is no longer current&rdquo; which means that it won&rsquo;t turn up when you query for it <em>as of now</em>. If you query for it <em>as of before</em> you will see it!</p>
+<p>Datomic doesn&rsquo;t overwrite data. &ldquo;Retract&rdquo; is a statement that says &ldquo;this data is no longer current&rdquo; which means that it won&rsquo;t turn up when you query the current database. If you query for it <em>as of before</em> you will see it!</p>
 <p>Being able to see how data develops over time is a brillant core feature of Datomic. We don&rsquo;t need to administrate cumbersome historical changes manually. Auditing is built-in at the core of Datomic.</p>
 <h3 id="cardinality-one">Cardinality one</h3>
 <p>We need an entity id to update data so we get it first with the special generic Molecule attribute <code>e</code> (for <em><strong>e</strong>ntity</em>):</p>
