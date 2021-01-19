@@ -719,7 +719,7 @@ johnId    :Person/age     24
 <p><img src="../../img/page/transactions/3.png" alt=""></p>
 <p>The 4th column of the quintuplets is the entity id of the transaction where the fact was asserted or retracted. In this case the two facts about John was asserted in transaction <code>tx2</code>. <code>tx2</code> is an entity id (<code>Long</code>) exactly as the entity id of johnId <code>johnId</code>.</p>
 <p>The time of the transaction <code>date1</code> (<code>java.util.Date</code>) is asserted with the transaction entity id <code>tx2</code> as its entity id. And since that timestamp fact is also part of the same transaction <code>tx2</code> is also the transaction value (4th column) for that fact.</p>
-<h3 id="transactions-return-txreport">Transactions return TxReport</h3>
+<h3 id="transactions-return-a-txreport">Transactions return a TxReport</h3>
 <p>All transactional operations on molecules return a <code>TxReport</code> with information about the transaction like what data was transacted and what entities were created and a timestamp of the transaction:</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">val</span> <span class="n">tx</span><span class="k">:</span> <span class="kt">TxReport</span> <span class="o">=</span> <span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">(</span><span class="s">&#34;John&#34;</span><span class="o">).</span><span class="n">likes</span><span class="o">(</span><span class="s">&#34;pizza&#34;</span><span class="o">).</span><span class="n">age</span><span class="o">(</span><span class="mi">24</span><span class="o">).</span><span class="n">save</span>
 
