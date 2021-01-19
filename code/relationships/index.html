@@ -787,7 +787,7 @@ Ben &lt;-- Ann // reverse ref
 
 <p>Say, John registers with our website, and we want to categorize John as a customer. Then the challenge arises, how should we model that John is in a certain category? Since categories are applied to many things, this is a classical <a href="https://en.wikipedia.org/wiki/Cross-cutting_concern">cross-cutting concern</a>.</p>
 <p>A traditional way of modelling this is to make a relationship from Person to Site.cat, from this to Site.cat, from that to Site.cat etc. Not optimal. Having an external join table is not optimal either.</p>
-<p>Instead we can simply create an <em>association</em> by simply letting a Datom with a <code>Site.cat</code> attribute have a John id!:</p>
+<p>Instead we can simply create an <em>association</em> by letting a Datom with a <code>Site.cat</code> attribute have a John id!:</p>
 
 
 
@@ -852,15 +852,23 @@ Ben &lt;-- Ann // reverse ref
   <span class="o">((</span><span class="s">&#34;John&#34;</span><span class="o">,</span> <span class="s">&#34;pizza&#34;</span><span class="o">,</span> <span class="mi">24</span><span class="o">),</span> <span class="o">(</span><span class="s">&#34;customer&#34;</span><span class="o">,</span> <span class="s">&#34;good&#34;</span><span class="o">))</span>
 <span class="o">)</span>
 </code></pre></div><p>And we can add even more sub-molecules&hellip;</p>
-<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="n">m</span><span class="o">(</span><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">likes</span><span class="o">.</span><span class="n">age</span> <span class="o">+</span> <span class="nc">Site</span><span class="o">.</span><span class="n">cat</span><span class="o">.</span><span class="n">status</span> <span class="o">+</span> <span class="nc">Loc</span><span class="o">.</span><span class="n">tags</span> <span class="o">+</span> <span class="nc">Emotion</span><span class="o">.</span><span class="n">like</span><span class="o">).</span><span class="n">get</span> <span class="o">===</span> <span class="nc">List</span><span class="o">(</span>
-  <span class="o">((</span><span class="s">&#34;John&#34;</span><span class="o">,</span> <span class="s">&#34;pizza&#34;</span><span class="o">,</span> <span class="mi">24</span><span class="o">),</span> <span class="o">(</span><span class="s">&#34;customer&#34;</span><span class="o">,</span> <span class="s">&#34;good&#34;</span><span class="o">),</span> <span class="nc">Set</span><span class="o">(</span><span class="s">&#34;inner city&#34;</span><span class="o">,</span> <span class="s">&#34;hipster&#34;</span><span class="o">),</span> <span class="kc">true</span><span class="o">)</span>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="n">m</span><span class="o">(</span><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">likes</span><span class="o">.</span><span class="n">age</span> 
+  <span class="o">+</span> <span class="nc">Site</span><span class="o">.</span><span class="n">cat</span><span class="o">.</span><span class="n">status</span> 
+  <span class="o">+</span> <span class="nc">Loc</span><span class="o">.</span><span class="n">tags</span> 
+  <span class="o">+</span> <span class="nc">Emotion</span><span class="o">.</span><span class="n">like</span><span class="o">).</span><span class="n">get</span> <span class="o">===</span> <span class="nc">List</span><span class="o">(</span>
+  <span class="o">(</span>
+    <span class="o">(</span><span class="s">&#34;John&#34;</span><span class="o">,</span> <span class="s">&#34;pizza&#34;</span><span class="o">,</span> <span class="mi">24</span><span class="o">),</span> 
+    <span class="o">(</span><span class="s">&#34;customer&#34;</span><span class="o">,</span> <span class="s">&#34;good&#34;</span><span class="o">),</span> 
+    <span class="nc">Set</span><span class="o">(</span><span class="s">&#34;inner city&#34;</span><span class="o">,</span> <span class="s">&#34;hipster&#34;</span><span class="o">),</span> 
+    <span class="kc">true</span>
+  <span class="o">)</span>
 <span class="o">)</span>
 </code></pre></div><p>And expressions too&hellip;</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="c1">// Which positive adult hipster customers like what?
 </span><span class="c1"></span><span class="n">m</span><span class="o">(</span><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">likes</span><span class="o">.</span><span class="n">age_</span><span class="o">.&gt;(</span><span class="mi">20</span><span class="o">)</span> 
- <span class="o">+</span> <span class="nc">Site</span><span class="o">.</span><span class="n">cat_</span><span class="o">(</span><span class="s">&#34;customer&#34;</span><span class="o">)</span>
- <span class="o">+</span> <span class="nc">Loc</span><span class="o">.</span><span class="n">tags_</span><span class="o">(</span><span class="s">&#34;hipster&#34;</span><span class="o">)</span> 
- <span class="o">+</span> <span class="nc">Emotion</span><span class="o">.</span><span class="n">like_</span><span class="o">(</span><span class="kc">true</span><span class="o">)).</span><span class="n">get</span> <span class="o">===</span> <span class="nc">List</span><span class="o">(</span>
+  <span class="o">+</span> <span class="nc">Site</span><span class="o">.</span><span class="n">cat_</span><span class="o">(</span><span class="s">&#34;customer&#34;</span><span class="o">)</span>
+  <span class="o">+</span> <span class="nc">Loc</span><span class="o">.</span><span class="n">tags_</span><span class="o">(</span><span class="s">&#34;hipster&#34;</span><span class="o">)</span> 
+  <span class="o">+</span> <span class="nc">Emotion</span><span class="o">.</span><span class="n">like_</span><span class="o">(</span><span class="kc">true</span><span class="o">)).</span><span class="n">get</span> <span class="o">===</span> <span class="nc">List</span><span class="o">(</span>
   <span class="o">(</span><span class="s">&#34;John&#34;</span><span class="o">,</span> <span class="s">&#34;pizza&#34;</span><span class="o">)</span>
 <span class="o">)</span>
 </code></pre></div><p>The combinations are quite endless - while you can keep your domain model/schema clean and intrinsic!</p>
