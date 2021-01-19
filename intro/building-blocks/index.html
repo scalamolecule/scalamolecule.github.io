@@ -351,9 +351,9 @@
 <p>A <em>Datom</em> brings context to an Attribute.</p>
 <p>A Datom describes a <em>fact</em>, for instance that &ldquo;John likes pizza&rdquo;. A timestamp adds information about <em>when</em> John stated that he likes pizza. A fifth piece of information &ldquo;added&rdquo; tells if the fact is asserted (true - John likes) or retracted (false - John no longer likes).</p>
 <p>So, a Datom consists of 5 components of information:</p>
-<pre><code>johnId    likes    pizza      12:35:54      true
-   |        |        |           |            |
-Entity  Attribute  Value  Transaction/time  Added
+<pre><code>johnId    likes    pizza      12:35:54        true
+   |        |        |           |             |
+Entity  Attribute  Value  Transaction/time  Operation
 </code></pre><p>A molecule can retrieve this information:</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="c1">// Q: Who likes what and when did they state it?
 </span><span class="c1"></span><span class="nc">Person</span><span class="o">.</span><span class="n">e</span><span class="o">.</span><span class="n">likes</span><span class="o">.</span><span class="n">txInstant</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">head</span> <span class="o">===</span> 
