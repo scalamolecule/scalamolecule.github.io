@@ -916,7 +916,7 @@ johnId    :Person/age     24
 
 <span class="c1">// etc..
 </span></code></pre></div><h3 id="insert-1">Insert</h3>
-<p>If we insert multiple entities in a transaction, the transaction data is only asserted once:</p>
+<p>If we insert multiple entities in a transaction, the transaction meta-data is only asserted once:</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">likes</span>
   <span class="o">.</span><span class="nc">Tx</span><span class="o">(</span><span class="nc">Audit</span><span class="o">.</span><span class="n">user_</span><span class="o">(</span><span class="s">&#34;Lisa&#34;</span><span class="o">).</span><span class="n">uc_</span><span class="o">(</span><span class="s">&#34;survey&#34;</span><span class="o">))</span> <span class="n">insert</span> <span class="nc">List</span><span class="o">(</span>
   <span class="o">(</span><span class="s">&#34;John&#34;</span><span class="o">,</span> <span class="s">&#34;sushi&#34;</span><span class="o">),</span>
