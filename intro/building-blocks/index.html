@@ -412,7 +412,7 @@ Entity  Attribute  Value  Transaction/time  Added
 </span><span class="c1"></span><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">likes</span><span class="o">.</span><span class="n">txInstant_</span><span class="o">(</span><span class="n">nov5date</span><span class="o">).</span><span class="n">get</span><span class="o">.</span><span class="n">head</span> <span class="o">===</span> <span class="o">(</span><span class="s">&#34;John&#34;</span><span class="o">,</span> <span class="s">&#34;pizza&#34;</span><span class="o">)</span>
 </code></pre></div><p>Datomic even offers various powerful ways to work with the <a href="../../code/time">time</a> dimension of our data:</p>
 <ul>
-<li><code>getAsOf</code> of some point in time</li>
+<li><code>getAsOf</code> some point in time</li>
 <li><code>getSince</code> some point in time</li>
 <li><code>getHistory</code> of an entity or attribute</li>
 <li><code>getWith(tx-stmts)</code> to test a future what-if scenario</li>
