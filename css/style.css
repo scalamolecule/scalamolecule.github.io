@@ -605,12 +605,14 @@ pre.chroma.front {
     }
 
     pre.chroma.front {
-        font-size: 20px;
+        font-size: 15px;
     }
     img#molecule-big-logo {
         width: 450px;
-        Xbackground-color: green;
-        /*"/img/logo/MoleculeLogo600.png"*/
+    }
+    a.btn.btn-lg {
+        font-size: 15px;
+        padding: 7px;
     }
 }
 
