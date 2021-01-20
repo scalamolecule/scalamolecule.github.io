@@ -327,11 +327,10 @@ blockquote {
   #sidebarCollapse {
     z-index: 2;
     position: fixed;
-    xposition: sticky;
     top: 60px;
     right: 6px;
 
-    background-color: #8787874f;
+    background-color: #b1b1b14f;
     padding: 6px;
   }
 
