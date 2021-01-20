@@ -316,12 +316,13 @@ blockquote {
   }
 
   #sidebar.active  a {
-    font-size: 16px;
-    font-weight: 400;
+    font-size: 17px;
+    font-weight: 500;
     line-height: 28px;
   }
   #sidebar.active  b {
-    font-size: 16px;
+    font-size: 17px;
+    font-weight: 500;
     line-height: 28px;
   }
 
