@@ -101,7 +101,7 @@
     <div class="col-sm-10" style="padding-left:8px;">
         <h1 id="macro-transformations">Macro transformations</h1>
 <p>Here&rsquo;s some info for developers about how Molecule works in the background.</p>
-<p>During project compilation with sbt, the <a href="https://github.com/scalamolecule/sbt-molecule">MoleculePlugin</a> generates boilerplate code for us that we can write molecules with in our programs.</p>
+<p>During project compilation with sbt, the <a href="https://github.com/scalamolecule/sbt-molecule">MoleculePlugin</a> generates boilerplate code for us so that we can write molecules in our programs.</p>
 <p>Our Molecule source code is then during compilation of each Scala file transformed through 4 stages into a Datomic query text string or formatted transaction data that Datomic understands. The response from Datomic is then sent back to your program, typed and formatted.</p>
 <h2 id="1-molecule-source-code">1. Molecule source code</h2>
 <p>Let&rsquo;s transform the source code of a molecule describing southern media communities:</p>
