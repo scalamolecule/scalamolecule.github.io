@@ -251,7 +251,7 @@ blockquote {
 }
 
 /* Open settings */
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 767px) {
     .navbar-toggle {
         margin-top: 3px;
     }
@@ -285,7 +285,7 @@ blockquote {
     sidebar collapsing
 ----------------------------------------------------- */
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 767px) {
   #sidebar {
     position: fixed;
     top: 35px;
