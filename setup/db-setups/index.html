@@ -6,7 +6,7 @@
     <link rel="shortcut icon" href="../../favicon.ico" type="image/x-icon"/>
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic,500,600,700,700italic,800,800italic'
           rel='stylesheet' type='text/css'>
-    <title>3. Db connection</title>
+    <title>Database setups</title>
     <link href="../../css/bootstrap.min.css" rel="stylesheet">
 
 
@@ -23,6 +23,8 @@
     <link rel="apple-touch-icon-precomposed" href="../../img/apple-touch-icon-57-precomposed.png">
 
     
+    
+    <link href="../../setup/db-setups/index.xml" rel="alternate" type="application/rss+xml" title="Molecule"/>
     
 </head>
 <body data-spy="scroll" data-target="#sidebar" data-offset="110">
@@ -96,59 +98,54 @@
 
 <div class="container-fluid" style="max-width:1170px">
 
-    <div class="col-sm-10 " style="padding-left:8px;">
-        <h1 id="database-connection">Database connection</h1>
-<p>To use Molecule we need a few imports and a connection to a <a href="https://www.datomic.com/">Datomic</a> database.</p>
-<p>There are some smaller variations in how the different setups connect to the database. But the principles are the same, so let&rsquo;s walk through those:</p>
-<h2 id="api--dsl-imports">API &amp; DSL imports</h2>
-<p>Import the Molecule api and the generated DSL for your Data Model</p>
-<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">import</span> <span class="nn">molecule.datomic.api._</span>
-<span class="k">import</span> <span class="nn">app.dsl.yourDomain._</span>
-</code></pre></div><h2 id="database-system">Database system</h2>
-<p>Choose a Datomic database system:</p>
-<h4 id="peer">Peer</h4>
-<p>The <a href="https://docs.datomic.com/on-prem/peer-getting-started.html">Datomic Peer</a> runs in your application process.</p>
-<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">import</span> <span class="nn">molecule.datomic.peer.facade.Datomic_Peer._</span>
-</code></pre></div><h4 id="peer-server">Peer Server</h4>
-<p>The <a href="https://docs.datomic.com/on-prem/peer-server.html">Datomic Peer Server</a> runs on a remote server (could be local also).</p>
-<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">import</span> <span class="nn">molecule.datomic.client.facade.Datomic_PeerServer._</span>
-</code></pre></div><h4 id="dev-local-cloud">Dev-local (Cloud)</h4>
-<p><a href="https://docs.datomic.com/cloud/dev-local.html">Datomic dev-local</a> provides a local testing environment for Datomic Cloud without connecting to a server.</p>
-<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">import</span> <span class="nn">molecule.datomic.client.facade.Datomic_DevLocal._</span>
-</code></pre></div><h2 id="connection">Connection</h2>
-<p>Get a connection to the database in 3 different ways:</p>
-<h3 id="re-create-database-and-schema">Re-create database and schema</h3>
-<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">import</span> <span class="nn">app.schema.YourDomainSchema</span>
+    <div class="col-sm-10" style="padding-left:8px;">
+        <h1 id="database-setups">Database setups</h1>
+<p>Datomic has a flexible and powerful palette of options to configure its database systems.</p>
+<p>From a Molecule perspective these can be summarized in a configuration matrix of 3 database systems on the left and 3 types of downloads at the top:</p>
 
-<span class="c1">// In-memory connection (default) 
-</span><span class="c1"></span><span class="k">implicit</span> <span class="k">val</span> <span class="n">conn</span> <span class="k">=</span> <span class="n">recreateDbFrom</span><span class="o">(</span><span class="nc">YourDomainSchema</span><span class="o">)</span>
 
-<span class="c1">// .. or with storage service
-</span><span class="c1">// WARNING: this completely destroys the database and creates a new empty one!
-</span><span class="c1"></span><span class="k">implicit</span> <span class="k">val</span> <span class="n">conn</span> <span class="k">=</span> <span class="n">recreateDbFrom</span><span class="o">(</span><span class="nc">YourDomainSchema</span><span class="o">,</span> <span class="n">datomic</span><span class="o">-</span><span class="n">db</span><span class="o">-</span><span class="n">uri</span><span class="o">,</span> <span class="n">protocol</span><span class="o">)</span>
-</code></pre></div><h3 id="transact-schema-migrate">Transact schema (migrate)</h3>
-<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">import</span> <span class="nn">app.schema.YourDomainSchema</span>
 
-<span class="c1">// In-memory connection (default) 
-</span><span class="c1"></span><span class="k">implicit</span> <span class="k">val</span> <span class="n">conn</span> <span class="k">=</span> <span class="n">transactSchema</span><span class="o">(</span><span class="nc">YourDomainSchema</span><span class="o">)</span>
 
-<span class="c1">// .. or with storage service
-</span><span class="c1"></span><span class="k">implicit</span> <span class="k">val</span> <span class="n">conn</span> <span class="k">=</span> <span class="n">transactSchema</span><span class="o">(</span><span class="nc">YourDomainSchema</span><span class="o">,</span> <span class="n">datomic</span><span class="o">-</span><span class="n">db</span><span class="o">-</span><span class="n">uri</span><span class="o">,</span> <span class="n">protocol</span><span class="o">)</span>
-</code></pre></div><p>We can transact our complete schema as often as we want. If a transaction value is the same as the current value in the database, Datomic simply ignores it. Whereas changes we make to your Data Model / Schema will be transacted.</p>
-<p>This makes it easy to migrate our schema: we make changes to our Data Model, <code>sbt compile -Dmolecule=true</code> and transact our updated generated Schema transaction file.</p>
-<p>And if some of our code is still using an old attribute definition, the compiler will warn us. The compiler in this way help us enforce that our code, data, schema and Data Model all stay in sync! We won&rsquo;t be able to save data with a molecule that is outdated since it won&rsquo;t compile.</p>
-<h3 id="connect">Connect</h3>
-<p>When no changes are needed to our schema, we simply connect to our database.</p>
-<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">implicit</span> <span class="k">val</span> <span class="n">conn</span> <span class="k">=</span> <span class="n">connect</span><span class="o">(</span><span class="n">datomic</span><span class="o">-</span><span class="n">db</span><span class="o">-</span><span class="n">uri</span><span class="o">,</span> <span class="n">protocol</span><span class="o">)</span>
-</code></pre></div><h3 id="datomic-db-uri--protocol">Datomic db URI + protocol</h3>
-<p>Datomic uses a URI to configure the <a href="https://docs.datomic.com/on-prem/peer-getting-started.html#connecting">connection</a> to its database systems and describing what underlying <a href="https://docs.datomic.com/on-prem/overview.html#the-storage-service">Storage Service</a> is used in this basic form:</p>
-<pre><code>datomic:&lt;protocol&gt;://&lt;db-identifiers&gt; 
-</code></pre>
-<p>The protocol is &ldquo;mem&rdquo; for an in-memory database, &ldquo;free&rdquo; (Free)/&ldquo;dev&rdquo; (Starter/Pro) for a development database saving to local disk, &ldquo;cass&rdquo; for an underlying Cassandra disk storage system and <a href="https://docs.datomic.com/on-prem/javadoc/datomic/Peer.html#connect-java.lang.Object-">so on</a>.</p>
-<p>The db-identifiers for an in-memory database could be &ldquo;hello&rdquo;, and the complete uri would be &ldquo;datomic:mem://hello&rdquo;.</p>
-<p>With a transactor running and a local Datomic database saving to disk, the identifier could be &ldquo;localhost:4334/mbrainz-1968-1973&rdquo; which tells Datomic how the database is reached through localhost on port 4334 and that the database name is &ldquo;mbrainz-1968-1973&rdquo;.</p>
-<h3 id="next">Next</h3>
-<p>To help you choose a database setup, you can explore the <a href="../../setup/db-setups">Example database setups&hellip;</a></p>
+
+<table class="table table-bordered">
+<thead>
+<tr>
+<th style="text-align:left"></th>
+<th style="text-align:left"><a href="https://my.datomic.com/downloads/free">Free</a></th>
+<th style="text-align:left"><a href="https://www.datomic.com/get-datomic.html">Starter/Pro</a></th>
+<th style="text-align:left"><a href="https://cognitect.com/dev-tools">Dev-Tools</a></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong><a href="https://docs.datomic.com/on-prem/peer-getting-started.html">Peer</a></strong></td>
+<td style="text-align:left"><a href="../../setup/db-setups/datomic-peer-free-mem/">mem</a> / <a href="http://localhost:1313/setup/db-setups/datomic-peer-free-free/">free</a></td>
+<td style="text-align:left"><a href="http://localhost:1313/setup/db-setups/datomic-peer-pro-mem/">mem</a> / <a href="http://localhost:1313/setup/db-setups/datomic-peer-pro-dev/">dev</a></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong><a href="https://docs.datomic.com/on-prem/peer-server.html">Peer Server</a></strong></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"><a href="http://localhost:1313/setup/db-setups/datomic-peerserver-mem/">mem</a> / <a href="http://localhost:1313/setup/db-setups/datomic-peerserver-dev/">dev</a></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong><a href="https://docs.datomic.com/cloud/dev-local.html">Dev Local (Cloud)</a></strong></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"><a href="http://localhost:1313/setup/db-setups/datomic-devlocal/">dev-local</a></td>
+</tr>
+</tbody>
+</table>
+
+<p>The protocols links (<em>free</em>, <em>mem</em>, <em>dev</em>) point to descriptions of various combinations of database system/download that you also see in the side menu.</p>
+<h3 id="database-setup-projects-on-github">Database setup projects on Github</h3>
+<p>All the database setup sample projects are contained in the <a href="https://github.com/scalamolecule/molecule-sample-projects">molecule-database-setups</a> github project that your can</p>
+<pre><code>git clone https://github.com/scalamolecule/molecule-database-setups.git
+</code></pre><p>Each project has a readme with setup instructions and a test that you can run to confirm that the setup works.</p>
+<p>Feel free to use the example projects as starting points or templates for your own projects.</p>
+<h3 id="other-storage-services">Other Storage Services</h3>
+<p>Several more protocols exist for various <a href="https://docs.datomic.com/on-prem/storage.html">Storage Services</a> that Datomic uses to save data to disk. We refer to the Datomic  documentation to setup these.</p>
 
     </div>
 
@@ -181,21 +178,19 @@
           
         
           
-            <li class="open"><a href="../../setup/db-connection/"><b>3. Db connection</b></a></li>
-            
-              <nav id="TableOfContents">
-  <ul>
-    <li><a href="#api--dsl-imports">API &amp; DSL imports</a></li>
-    <li><a href="#database-system">Database system</a></li>
-    <li><a href="#connection">Connection</a></li>
-  </ul>
-</nav>
-            
+            <li><a href="../../setup/db-connection/">3. Db connection</a></li>
           
           
         
           
-            <li><a href="../../setup/db-setups/">Database setups</a></li>
+            <li class="open"><a href="../../setup/db-setups/"><b>Database setups</b></a></li>
+            
+              <nav id="TableOfContents">
+  <ul>
+    <li></li>
+  </ul>
+</nav>
+            
           
           
             <ul class="level2">

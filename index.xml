@@ -8,20 +8,20 @@
     <language>en-us</language><atom:link href="http://scalamolecule.org/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Datomic Peer free, mem</title>
-      <link>http://scalamolecule.org/setup/examples/datomic-peer-free-mem/</link>
+      <link>http://scalamolecule.org/setup/db-setups/datomic-peer-free-mem/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://scalamolecule.org/setup/examples/datomic-peer-free-mem/</guid>
+      <guid>http://scalamolecule.org/setup/db-setups/datomic-peer-free-mem/</guid>
       <description>Datomic Peer (free), in-mem Minimal project setup to test using Molecule with a free Datomic Peer in-memory database (protocol: mem).
 import sbt.Keys._ lazy val demo = project.in(file(&amp;#34;.&amp;#34;)) .aggregate(app) .settings(name := &amp;#34;molecule-datomic-peer-free-mem&amp;#34;) lazy val app = project.in(file(&amp;#34;app&amp;#34;)) .enablePlugins(MoleculePlugin) .settings( scalaVersion := &amp;#34;2.13.4&amp;#34;, resolvers ++= Seq( Resolver.sonatypeRepo(&amp;#34;releases&amp;#34;), &amp;#34;clojars&amp;#34; at &amp;#34;https://clojars.org/repo&amp;#34; ), libraryDependencies ++= Seq( &amp;#34;org.scalamolecule&amp;#34; %% &amp;#34;molecule&amp;#34; % &amp;#34;0.24.0&amp;#34;, &amp;#34;com.datomic&amp;#34; % &amp;#34;datomic-free&amp;#34; % &amp;#34;0.9.5697&amp;#34; ), // path to domain model directory  moleculeDataModelPaths := Seq(&amp;#34;app&amp;#34;), // Generate Molecule boilerplate code with `sbt clean compile -Dmolecule=true`  moleculePluginActive := sys.</description>
     </item>
     
     <item>
       <title>Datomic Peer free, free</title>
-      <link>http://scalamolecule.org/setup/examples/datomic-peer-free-free/</link>
+      <link>http://scalamolecule.org/setup/db-setups/datomic-peer-free-free/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://scalamolecule.org/setup/examples/datomic-peer-free-free/</guid>
+      <guid>http://scalamolecule.org/setup/db-setups/datomic-peer-free-free/</guid>
       <description>Datomic Peer (free), persisted Minimal project setup to persist data to disk with Molecule and a free Datomic Peer database (protocol: free).
 import sbt.Keys._ lazy val demo = project.in(file(&amp;#34;.&amp;#34;)) .aggregate(app) .settings(name := &amp;#34;molecule-datomic-peer-free-free&amp;#34;) lazy val app = project.in(file(&amp;#34;app&amp;#34;)) .enablePlugins(MoleculePlugin) .settings( scalaVersion := &amp;#34;2.13.4&amp;#34;, resolvers ++= Seq( Resolver.sonatypeRepo(&amp;#34;releases&amp;#34;), &amp;#34;clojars&amp;#34; at &amp;#34;https://clojars.org/repo&amp;#34;, ), libraryDependencies ++= Seq( &amp;#34;org.scalamolecule&amp;#34; %% &amp;#34;molecule&amp;#34; % &amp;#34;0.24.0&amp;#34;, &amp;#34;com.datomic&amp;#34; % &amp;#34;datomic-free&amp;#34; % &amp;#34;0.9.5697&amp;#34; ), // path to domain model directory  moleculeDataModelPaths := Seq(&amp;#34;app&amp;#34;), // Generate Molecule boilerplate code with `sbt clean compile -Dmolecule=true`  moleculePluginActive := sys.</description>
     </item>
@@ -63,10 +63,10 @@ Querying for attribute values The most basic query is to ask for entities with s
     
     <item>
       <title>Datomic Peer pro, mem</title>
-      <link>http://scalamolecule.org/setup/examples/datomic-peer-pro-mem/</link>
+      <link>http://scalamolecule.org/setup/db-setups/datomic-peer-pro-mem/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://scalamolecule.org/setup/examples/datomic-peer-pro-mem/</guid>
+      <guid>http://scalamolecule.org/setup/db-setups/datomic-peer-pro-mem/</guid>
       <description>Datomic Peer (pro), in-mem Minimal project setup to test using Molecule with a starter/pro Datomic Peer in-memory database (protocol: mem).
 import sbt.Keys._ lazy val demo = project.in(file(&amp;#34;.&amp;#34;)) .aggregate(app) .settings(name := &amp;#34;molecule-datomic-peer-pro-mem&amp;#34;) lazy val app = project.in(file(&amp;#34;app&amp;#34;)) .enablePlugins(MoleculePlugin) .settings( scalaVersion := &amp;#34;2.13.4&amp;#34;, resolvers ++= Seq( Resolver.sonatypeRepo(&amp;#34;releases&amp;#34;), &amp;#34;clojars&amp;#34; at &amp;#34;https://clojars.org/repo&amp;#34;, &amp;#34;my.datomic.com&amp;#34; at &amp;#34;https://my.datomic.com/repo&amp;#34; ), /* Downloading Datomic Starter/Pro requires authentication of your license: Create a ~/.sbt/.credentials file with the following content: realm=Datomic Maven Repo host=my.</description>
     </item>
@@ -106,10 +106,10 @@ Introduction After setting up the database and populating it with data we can st
     
     <item>
       <title>Datomic Peer pro, dev</title>
-      <link>http://scalamolecule.org/setup/examples/datomic-peer-pro-dev/</link>
+      <link>http://scalamolecule.org/setup/db-setups/datomic-peer-pro-dev/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://scalamolecule.org/setup/examples/datomic-peer-pro-dev/</guid>
+      <guid>http://scalamolecule.org/setup/db-setups/datomic-peer-pro-dev/</guid>
       <description>Datomic Peer (pro), persisted Minimal project setup to persist data to disk with Molecule and a starter/pro Datomic Peer database (protocol: dev).
 import sbt.Keys._ lazy val demo = project.in(file(&amp;#34;.&amp;#34;)) .aggregate(app) .settings(name := &amp;#34;molecule-datomic-peer-pro-dev&amp;#34;) lazy val app = project.in(file(&amp;#34;app&amp;#34;)) .enablePlugins(MoleculePlugin) .settings( scalaVersion := &amp;#34;2.13.4&amp;#34;, resolvers ++= Seq( Resolver.sonatypeRepo(&amp;#34;releases&amp;#34;), &amp;#34;clojars&amp;#34; at &amp;#34;https://clojars.org/repo&amp;#34;, &amp;#34;my.datomic.com&amp;#34; at &amp;#34;https://my.datomic.com/repo&amp;#34; ), /* Downloading Datomic Starter/Pro requires authentication of your license: Create a ~/.sbt/.credentials file with the following content: realm=Datomic Maven Repo host=my.</description>
     </item>
@@ -142,10 +142,10 @@ Attribute An attribute is the core element of Molecule.</description>
     
     <item>
       <title>Datomic Peer Server, mem</title>
-      <link>http://scalamolecule.org/setup/examples/datomic-peerserver-mem/</link>
+      <link>http://scalamolecule.org/setup/db-setups/datomic-peerserver-mem/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://scalamolecule.org/setup/examples/datomic-peerserver-mem/</guid>
+      <guid>http://scalamolecule.org/setup/db-setups/datomic-peerserver-mem/</guid>
       <description>Datomic Peer Server, in-mem Minimal project setup to test using Molecule with a Datomic Peer Server in-memory database (protocol: mem).
 import sbt.Keys._ lazy val demo = project.in(file(&amp;#34;.&amp;#34;)) .aggregate(app) .settings(name := &amp;#34;molecule-datomic-peerserver-mem&amp;#34;) lazy val app = project.in(file(&amp;#34;app&amp;#34;)) .enablePlugins(MoleculePlugin) .settings( scalaVersion := &amp;#34;2.13.4&amp;#34;, resolvers ++= Seq( Resolver.sonatypeRepo(&amp;#34;releases&amp;#34;), &amp;#34;clojars&amp;#34; at &amp;#34;https://clojars.org/repo&amp;#34;, &amp;#34;my.datomic.com&amp;#34; at &amp;#34;https://my.datomic.com/repo&amp;#34; ), /* Downloading Datomic Starter/Pro requires authentication of your license: Create a ~/.sbt/.credentials file with the following content: realm=Datomic Maven Repo host=my.</description>
     </item>
@@ -176,10 +176,10 @@ Person.age.name.e.get map { case (age, name, id) =&amp;gt; (age, s&amp;#34;$name
     
     <item>
       <title>Datomic Peer Server, dev</title>
-      <link>http://scalamolecule.org/setup/examples/datomic-peerserver-dev/</link>
+      <link>http://scalamolecule.org/setup/db-setups/datomic-peerserver-dev/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://scalamolecule.org/setup/examples/datomic-peerserver-dev/</guid>
+      <guid>http://scalamolecule.org/setup/db-setups/datomic-peerserver-dev/</guid>
       <description>Datomic Peer Server, persisted Minimal project setup to persist data to disk with Molecule and a Datomic Peer Server database (protocol: dev).
 import sbt.Keys._ lazy val demo = project.in(file(&amp;#34;.&amp;#34;)) .aggregate(app) .settings(name := &amp;#34;molecule-datomic-peerserver-dev&amp;#34;) lazy val app = project.in(file(&amp;#34;app&amp;#34;)) .enablePlugins(MoleculePlugin) .settings( scalaVersion := &amp;#34;2.13.4&amp;#34;, resolvers ++= Seq( Resolver.sonatypeRepo(&amp;#34;releases&amp;#34;), &amp;#34;clojars&amp;#34; at &amp;#34;https://clojars.org/repo&amp;#34;, &amp;#34;my.datomic.com&amp;#34; at &amp;#34;https://my.datomic.com/repo&amp;#34; ), /* Downloading Datomic Starter/Pro requires authentication of your license: Create a ~/.sbt/.credentials file with the following content: realm=Datomic Maven Repo host=my.</description>
     </item>
@@ -199,10 +199,10 @@ Peer The Datomic Peer runs in your application process.</description>
     
     <item>
       <title>Datomic dev-local/cloud</title>
-      <link>http://scalamolecule.org/setup/examples/datomic-devlocal/</link>
+      <link>http://scalamolecule.org/setup/db-setups/datomic-devlocal/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://scalamolecule.org/setup/examples/datomic-devlocal/</guid>
+      <guid>http://scalamolecule.org/setup/db-setups/datomic-devlocal/</guid>
       <description>Datomic dev-local/cloud Minimal project setup to test a Cloud setup locally without connecting to a server.
 import sbt.Keys._ lazy val demo = project.in(file(&amp;#34;.&amp;#34;)) .aggregate(app) .settings(name := &amp;#34;molecule-datomic-devlocal&amp;#34;) lazy val app = project.in(file(&amp;#34;app&amp;#34;)) .enablePlugins(MoleculePlugin) .settings( scalaVersion := &amp;#34;2.13.4&amp;#34;, resolvers ++= Seq( Resolver.sonatypeRepo(&amp;#34;releases&amp;#34;), &amp;#34;clojars&amp;#34; at &amp;#34;https://clojars.org/repo&amp;#34;, Resolver.mavenLocal ), libraryDependencies ++= Seq( &amp;#34;org.scalamolecule&amp;#34; %% &amp;#34;molecule&amp;#34; % &amp;#34;0.24.0&amp;#34;, &amp;#34;com.datomic&amp;#34; % &amp;#34;dev-local&amp;#34; % &amp;#34;0.9.229&amp;#34; ), // path to domain model directory  moleculeDataModelPaths := Seq(&amp;#34;app&amp;#34;), // Generate Molecule boilerplate code with `sbt clean compile -Dmolecule=true`  moleculePluginActive := sys.</description>
     </item>

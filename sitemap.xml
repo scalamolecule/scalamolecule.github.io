@@ -7,7 +7,7 @@
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/setup/examples/datomic-peer-free-mem/</loc>
+    <loc>http://scalamolecule.org/setup/db-setups/datomic-peer-free-mem/</loc>
   </url>
   
   <url>
@@ -27,7 +27,7 @@
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/setup/examples/datomic-peer-free-free/</loc>
+    <loc>http://scalamolecule.org/setup/db-setups/datomic-peer-free-free/</loc>
   </url>
   
   <url>
@@ -43,7 +43,7 @@
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/setup/examples/datomic-peer-pro-mem/</loc>
+    <loc>http://scalamolecule.org/setup/db-setups/datomic-peer-pro-mem/</loc>
   </url>
   
   <url>
@@ -59,7 +59,7 @@
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/setup/examples/datomic-peer-pro-dev/</loc>
+    <loc>http://scalamolecule.org/setup/db-setups/datomic-peer-pro-dev/</loc>
   </url>
   
   <url>
@@ -75,7 +75,7 @@
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/setup/examples/datomic-peerserver-mem/</loc>
+    <loc>http://scalamolecule.org/setup/db-setups/datomic-peerserver-mem/</loc>
   </url>
   
   <url>
@@ -87,7 +87,7 @@
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/setup/examples/datomic-peerserver-dev/</loc>
+    <loc>http://scalamolecule.org/setup/db-setups/datomic-peerserver-dev/</loc>
   </url>
   
   <url>
@@ -95,7 +95,7 @@
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/setup/examples/datomic-devlocal/</loc>
+    <loc>http://scalamolecule.org/setup/db-setups/datomic-devlocal/</loc>
   </url>
   
   <url>
@@ -115,7 +115,7 @@
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/setup/examples/</loc>
+    <loc>http://scalamolecule.org/setup/db-setups/</loc>
   </url>
   
   <url>
