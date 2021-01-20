@@ -330,15 +330,11 @@ blockquote {
     top: 60px;
     right: 6px;
 
-    background-color: #b1b1b14f;
+    background-color: #cccccc4f;
     padding: 6px;
   }
 
   #sidebarCollapse:focus {
-      /* Avoid an ugly focus outline on click in Chrome,
-         but darken the button for accessibility.
-         See https://stackoverflow.com/a/25298082/1481479 */
-      Xbackground-color: #E6E6E6;
       outline: 0;
   }
 }
