@@ -507,7 +507,7 @@ language itself and importing the paradise plugin is no longer necessary in 2.13
   <span class="o">.</span><span class="nc">Tx</span><span class="o">(</span><span class="nc">Person</span><span class="o">.</span><span class="n">name_</span><span class="o">(</span><span class="s">&#34;John&#34;</span><span class="o">))</span>
   <span class="o">.</span><span class="nc">Tx</span><span class="o">(</span><span class="nc">UseCase</span><span class="o">.</span><span class="n">name_</span><span class="o">(</span><span class="s">&#34;Scheduled transfer&#34;</span><span class="o">)).</span><span class="n">get</span><span class="o">.</span><span class="n">head</span> <span class="o">===</span> <span class="mi">720</span>
 </code></pre></div><h3 id="inspecting-tx-function-invocations">Inspecting tx function invocations</h3>
-<p>If you want to see the <code>Statement</code>s produced by a tx function you can invoke it within <code>inspectTransact</code> without affecting the live database:</p>
+<p>If you want to see the <code>Statement</code>s produced by a tx function you can invoke it within <code>inspectTransactFn</code> without affecting the live database:</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="c1">// Print inspect info for tx function invocation
 </span><span class="c1"></span><span class="n">inspectTransactFn</span><span class="o">(</span><span class="n">transfer</span><span class="o">(</span><span class="n">fromAccount</span><span class="o">,</span> <span class="n">toAccount</span><span class="o">,</span> <span class="mi">20</span><span class="o">))</span>
 
