@@ -250,7 +250,7 @@ blockquote {
     margin-left: 0;
 }
 
-/* Collapsed settings */
+/* Open settings */
 @media only screen and (max-width: 768px) {
     .navbar-toggle {
         margin-top: 3px;
@@ -317,11 +317,12 @@ blockquote {
 
   #sidebar.active  a {
     font-size: 16px;
-    line-height: 30px;
+    font-weight: 400;
+    line-height: 28px;
   }
   #sidebar.active  b {
     font-size: 16px;
-    line-height: 25px;
+    line-height: 28px;
   }
 
   #sidebarCollapse {
