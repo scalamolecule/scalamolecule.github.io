@@ -252,11 +252,9 @@ blockquote {
 
 /* Collapsed settings */
 @media only screen and (max-width: 768px) {
-
     .navbar-toggle {
         margin-top: 3px;
     }
-
     .navbar-header {
         margin-left: 0;
     }
@@ -290,7 +288,7 @@ blockquote {
 @media only screen and (max-width: 768px) {
   #sidebar {
     position: fixed;
-    top: 135px;
+    top: 35px;
     right: -315px;
     width: 300px;
     background-color: yellow;
@@ -298,9 +296,9 @@ blockquote {
 
   #sidebar.active {
     position: fixed;
-    top: 135px;
+    top: 35px;
     right: 0px;
-    width: 260px;
+    width: 280px;
 
     padding: 20px;
 
@@ -323,12 +321,14 @@ blockquote {
   }
   #sidebar.active  b {
     font-size: 16px;
-    line-height: 30px;
+    line-height: 25px;
   }
 
   #sidebarCollapse {
+    z-index: 2;
     position: fixed;
-    top: 70px;
+    xposition: sticky;
+    top: 60px;
     right: 6px;
 
     background-color: #8787874f;
