@@ -80,7 +80,7 @@
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="https://javadoc.io/doc/org.scalamolecule/molecule_2.13/latest/index.html" target="_blank" style="">Docs</a></li>
-                    <li><a href="../../../changelog" style="">v0.24.0</a></li>
+                    <li><a href="../../../changelog" style="">v0.25.0</a></li>
                     <li><a href="https://github.com/scalamolecule/molecule" target="_blank">
                         <img src="../../../vendor/GitHub-Mark/PNG/GitHub-Mark-Light-32px.png"
                              style="margin-top:-4px;padding-left:15px;opacity:0.6;width:42px;">
@@ -97,8 +97,8 @@
 <div class="container-fluid" style="max-width:1170px">
 
     <div class="col-sm-10 " style="padding-left:8px;">
-        <h1 id="datomic-peer-free-persisted">Datomic Peer (free), persisted</h1>
-<p>Minimal project setup to persist data to disk with Molecule and a free <a href="https://docs.datomic.com/on-prem/peer-getting-started.html">Datomic Peer</a> database (protocol: free).</p>
+        
+<h1 id="datomic-peer-free-persisted" >Datomic Peer (free), persisted <a href="#datomic-peer-free-persisted"></a></h1><p>Minimal project setup to persist data to disk with Molecule and a free <a href="https://docs.datomic.com/on-prem/peer-getting-started.html">Datomic Peer</a> database (protocol: free).</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">import</span> <span class="nn">sbt.Keys._</span>
 
 <span class="k">lazy</span> <span class="k">val</span> <span class="n">demo</span> <span class="k">=</span> <span class="n">project</span><span class="o">.</span><span class="n">in</span><span class="o">(</span><span class="n">file</span><span class="o">(</span><span class="s">&#34;.&#34;</span><span class="o">))</span>
@@ -128,20 +128,20 @@
     <span class="c1">// Let IDE detect created jars in unmanaged lib directory
 </span><span class="c1"></span>    <span class="n">exportJars</span> <span class="k">:</span><span class="o">=</span> <span class="kc">true</span>
   <span class="o">)</span>
-</code></pre></div><h3 id="1-start-transactor">1. Start transactor</h3>
-<p>First, you need to <a href="https://docs.datomic.com/on-prem/storage.html#start-transactor">start a Datomic transactor</a> in its own process:</p>
+</code></pre></div>
+<h3 id="1-start-transactor" >1. Start transactor <a href="#1-start-transactor"></a></h3><p>First, you need to <a href="https://docs.datomic.com/on-prem/storage.html#start-transactor">start a Datomic transactor</a> in its own process:</p>
 <pre><code>cd &lt;your-datomic-distribution (free/starter/pro)&gt;
 bin/transactor config/samples/free-transactor-template.properties
 </code></pre>
 <p>Note that although the Peer in your application code in this project setup is the free version of Peer, the transactor can be of any type - a free or a starter/pro. As long as your application code can reach it via a matching host:port it will work. A datomic database is in other words interchangeable between free/pro.</p>
-<h3 id="2-connect-to-peer">2. Connect to Peer</h3>
-<p>Then connect to the database:</p>
+
+<h3 id="2-connect-to-peer" >2. Connect to Peer <a href="#2-connect-to-peer"></a></h3><p>Then connect to the database:</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">implicit</span> <span class="k">val</span> <span class="n">conn</span> <span class="k">=</span> <span class="nc">Datomic_Peer</span><span class="o">.</span><span class="n">connect</span><span class="o">(</span><span class="s">&#34;localhost:4334/sampledb&#34;</span><span class="o">,</span> <span class="s">&#34;free&#34;</span><span class="o">)</span>
 </code></pre></div><p>Or, if we want to test a clean database each time, we could recreate the database and transact the schema on each run:</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">implicit</span> <span class="k">val</span> <span class="n">conn</span> <span class="k">=</span> <span class="nc">Datomic_Peer</span><span class="o">.</span><span class="n">recreateDbFrom</span><span class="o">(</span><span class="nc">SampleSchema</span><span class="o">,</span> <span class="s">&#34;localhost:4334/sampledb&#34;</span><span class="o">,</span> <span class="s">&#34;free&#34;</span><span class="o">)</span>
 </code></pre></div><p>In this setup we use the &ldquo;free&rdquo; protocol which is intended for development databases that are persisted on local disk. See <a href="https://docs.datomic.com/on-prem/storage.html">other storage options</a> for alternative storage options.</p>
-<h3 id="3-make-molecules">3. Make molecules</h3>
-<p>Having an implicit connection in scope, we can start transacting and querying <code>sampledb</code> with molecules:</p>
+
+<h3 id="3-make-molecules" >3. Make molecules <a href="#3-make-molecules"></a></h3><p>Having an implicit connection in scope, we can start transacting and querying <code>sampledb</code> with molecules:</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="c1">// Transact
 </span><span class="c1"></span><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">(</span><span class="s">&#34;John&#34;</span><span class="o">).</span><span class="n">age</span><span class="o">(</span><span class="mi">24</span><span class="o">).</span><span class="n">save</span><span class="o">.</span><span class="n">eid</span>
 

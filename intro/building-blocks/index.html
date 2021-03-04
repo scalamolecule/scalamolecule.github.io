@@ -80,7 +80,7 @@
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="https://javadoc.io/doc/org.scalamolecule/molecule_2.13/latest/index.html" target="_blank" style="">Docs</a></li>
-                    <li><a href="../../changelog" style="">v0.24.0</a></li>
+                    <li><a href="../../changelog" style="">v0.25.0</a></li>
                     <li><a href="https://github.com/scalamolecule/molecule" target="_blank">
                         <img src="../../vendor/GitHub-Mark/PNG/GitHub-Mark-Light-32px.png"
                              style="margin-top:-4px;padding-left:15px;opacity:0.6;width:42px;">
@@ -97,15 +97,15 @@
 <div class="container-fluid" style="max-width:1170px">
 
     <div class="col-sm-10 " style="padding-left:8px;">
-        <h1 id="molecule-building-blocks">Molecule building blocks</h1>
-<p>Here&rsquo;s a quick overview of various building blocks in the Molecule eco-system.</p>
-<h2 id="molecule">Molecule</h2>
-<p>A <em>molecule</em> is a model of a data structure containing one or more <em>attributes</em>.</p>
+        
+<h1 id="molecule-building-blocks" >Molecule building blocks <a href="#molecule-building-blocks"></a></h1><p>Here&rsquo;s a quick overview of various building blocks in the Molecule eco-system.</p>
+
+<h2 id="molecule" class="safari_anchor_hack">Molecule <a href="#molecule"></a></h2><p>A <em>molecule</em> is a model of a data structure containing one or more <em>attributes</em>.</p>
 <p>Here we describe a data structure of <code>name</code>, <code>age</code> of persons and what <code>street</code> they live on:</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">age</span><span class="o">.</span><span class="nc">Address</span><span class="o">.</span><span class="n">street</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">head</span> <span class="o">===</span> <span class="o">(</span><span class="s">&#34;John&#34;</span><span class="o">,</span> <span class="mi">24</span><span class="o">,</span> <span class="s">&#34;5th Avenue&#34;</span><span class="o">)</span>
 </code></pre></div><p>Calling <code>get</code> on a molecule returns typed data that matches the molecular data structure.</p>
-<h2 id="attribute">Attribute</h2>
-<p>An <em>attribute</em> is the core element of Molecule. Molecules are composed of attributes.</p>
+
+<h2 id="attribute" class="safari_anchor_hack">Attribute <a href="#attribute"></a></h2><p>An <em>attribute</em> is the core element of Molecule. Molecules are composed of attributes.</p>
 <p>We could also call it a &ldquo;property&rdquo; a &ldquo;field&rdquo; etc. It&rsquo;s an intrinsic atomic piece of information about something.</p>
 <p>Attributes have</p>
 <ul>
@@ -114,8 +114,8 @@
 <li><em>Options</em> - is the value indexed, searcheable, unique etc.</li>
 <li><em>Descriptions</em> - meta info about the attribute - that can be queried</li>
 </ul>
-<h2 id="datom">Datom</h2>
-<p>A <em>Datom</em> brings context to an Attribute.</p>
+
+<h2 id="datom" class="safari_anchor_hack">Datom <a href="#datom"></a></h2><p>A <em>Datom</em> brings context to an Attribute.</p>
 <p>A Datom describes a <em>fact</em>, for instance that &ldquo;John likes pizza&rdquo;. A timestamp adds information about <em>when</em> John stated that he likes pizza. A fifth piece of information about the operation performed tells if the fact is asserted (true - John likes) or retracted (false - John no longer likes).</p>
 <p>So, a Datom consists of 5 components of information:</p>
 <pre><code>johnId    likes    pizza      12:35:54        true
@@ -126,8 +126,8 @@ Entity  Attribute  Value  Transaction/time  Operation
 </span><span class="c1"></span><span class="nc">Person</span><span class="o">.</span><span class="n">e</span><span class="o">.</span><span class="n">likes</span><span class="o">.</span><span class="n">txInstant</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">head</span> <span class="o">===</span> 
   <span class="c1">// A: John said he likes pizza at 12:35:54
 </span><span class="c1"></span>  <span class="o">(</span><span class="n">johnId</span><span class="o">,</span> <span class="s">&#34;pizza&#34;</span><span class="o">,</span> <span class="nc">Date</span><span class="o">(</span><span class="s">&#34;12:35:54&#34;</span><span class="o">))</span>
-</code></pre></div><h2 id="entity">Entity</h2>
-<p>When multiple different Datoms (attributes) share the same entity id, <em>they together describe this entity</em>. Or we say that <em>&ldquo;the Entity has 3 attributes&rdquo;</em>.</p>
+</code></pre></div>
+<h2 id="entity" class="safari_anchor_hack">Entity <a href="#entity"></a></h2><p>When multiple different Datoms (attributes) share the same entity id, <em>they together describe this entity</em>. Or we say that <em>&ldquo;the Entity has 3 attributes&rdquo;</em>.</p>
 <p>In our example John is an entity that has a name &ldquo;John&rdquo;, likes &ldquo;pizza&rdquo; and is 24 years old - a pizza-liking 24-year-old John:</p>
 
 
@@ -163,8 +163,8 @@ Entity  Attribute  Value  Transaction/time  Operation
 
 <p>As you see, the concept of an entity is very flexible since it can be defined by endless combinations of attributes and values that will give it unique characteristics.</p>
 <p>This is far more powerful than thinking in terms of &ldquo;defining a Person class&rdquo;! When we instead let the combinations of atomic attributes define entities of molecular data structures, our semantic capabilities and expressiveness increase exponentially.</p>
-<h2 id="namespace">Namespace</h2>
-<p>Attributes are loosely organized in <em>Namespaces</em> to semantically group qualities of a subset of our domain:
+
+<h2 id="namespace" class="safari_anchor_hack">Namespace <a href="#namespace"></a></h2><p>Attributes are loosely organized in <em>Namespaces</em> to semantically group qualities of a subset of our domain:
 <br><br></p>
 <p><img src="../../img/page/intro/DatomicElements1.png" alt="">
 <br><br></p>
@@ -173,8 +173,8 @@ Entity  Attribute  Value  Transaction/time  Operation
 <p><img src="../../img/page/intro/DatomicElements2.png" alt="">
 <br><br></p>
 <p>An entity is therefore <em>not</em> like a row in a table but rather a &ldquo;cross-cutting&rdquo; thing that we can freely associate any attribute value to.</p>
-<h2 id="time">Time</h2>
-<p>Since the transaction time is part of all Datoms, we can ask time-related questions:</p>
+
+<h2 id="time" class="safari_anchor_hack">Time <a href="#time"></a></h2><p>Since the transaction time is part of all Datoms, we can ask time-related questions:</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="c1">// Who liked what on the 5th of november?
 </span><span class="c1"></span><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">likes</span><span class="o">.</span><span class="n">txInstant_</span><span class="o">(</span><span class="n">nov5date</span><span class="o">).</span><span class="n">get</span><span class="o">.</span><span class="n">head</span> <span class="o">===</span> <span class="o">(</span><span class="s">&#34;John&#34;</span><span class="o">,</span> <span class="s">&#34;pizza&#34;</span><span class="o">)</span>
 </code></pre></div><p>Datomic even offers various powerful ways to work with the <a href="../../code/time">time</a> dimension of our data:</p>
@@ -184,13 +184,13 @@ Entity  Attribute  Value  Transaction/time  Operation
 <li><code>getHistory</code> of an entity or attribute</li>
 <li><code>getWith(tx-stmts)</code> to test a future what-if scenario</li>
 </ul>
-<h2 id="expression">Expression</h2>
-<p>We can mix relationships, conditional values, logic etc in our molecules to express complex and precise data structures:</p>
+
+<h2 id="expression" class="safari_anchor_hack">Expression <a href="#expression"></a></h2><p>We can mix relationships, conditional values, logic etc in our molecules to express complex and precise data structures:</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Community</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">`type`</span><span class="o">(</span><span class="s">&#34;twitter&#34;</span> <span class="n">or</span> <span class="s">&#34;facebook_page&#34;</span><span class="o">)</span>
   <span class="o">.</span><span class="nc">Neighborhood</span><span class="o">.</span><span class="nc">District</span><span class="o">.</span><span class="n">region</span><span class="o">(</span><span class="s">&#34;sw&#34;</span> <span class="n">or</span> <span class="s">&#34;s&#34;</span> <span class="n">or</span> <span class="s">&#34;se&#34;</span><span class="o">)</span>
 </code></pre></div><p>which will find &ldquo;names of twitter/facebook_page communities in neighborhoods of southern districts&rdquo;.</p>
-<h3 id="next">Next</h3>
-<p><a href="../../intro/compare">Compare</a> Molecule with another query language, <a href="../../setup/">set up a Molecule project</a> or learn more about <a href="../../code">molecule code&hellip;</a></p>
+
+<h3 id="next" >Next <a href="#next"></a></h3><p><a href="../../intro/compare">Compare</a> Molecule with another query language, <a href="../../setup/">set up a Molecule project</a> or learn more about <a href="../../code">molecule code&hellip;</a></p>
 
     </div>
 

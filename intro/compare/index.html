@@ -82,7 +82,7 @@
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="https://javadoc.io/doc/org.scalamolecule/molecule_2.13/latest/index.html" target="_blank" style="">Docs</a></li>
-                    <li><a href="../../changelog" style="">v0.24.0</a></li>
+                    <li><a href="../../changelog" style="">v0.25.0</a></li>
                     <li><a href="https://github.com/scalamolecule/molecule" target="_blank">
                         <img src="../../vendor/GitHub-Mark/PNG/GitHub-Mark-Light-32px.png"
                              style="margin-top:-4px;padding-left:15px;opacity:0.6;width:42px;">
@@ -99,11 +99,11 @@
 <div class="container-fluid" style="max-width:1170px">
 
     <div class="col-sm-10" style="padding-left:8px;">
-        <h1 id="molecule-vs-other-query-languages">Molecule vs other query languages</h1>
-<p>Every database language has its strengths and weaknesses and we&rsquo;ll try here to compare existing languages with Molecule and see how they accomplish similar tasks.</p>
+        
+<h1 id="molecule-vs-other-query-languages" >Molecule vs other query languages <a href="#molecule-vs-other-query-languages"></a></h1><p>Every database language has its strengths and weaknesses and we&rsquo;ll try here to compare existing languages with Molecule and see how they accomplish similar tasks.</p>
 <p>Many query languages let you define data objects matching your domain that are then <em>consumed</em> by the host language (Scala) in combination with DSL tokens. Molecule instead let you use your domain terms directly as the query tokens.</p>
-<h3 id="slick">Slick</h3>
-<p>If we take <a href="http://slick.typesafe.com/doc/3.0.0-M1/queries.html#joining-and-zipping">Slick</a> for instance we could say that it &ldquo;<em>consumes</em>&rdquo; the domain terms <code>coffees</code> and <code>suppliers</code> in this Scala sequence comprehension:</p>
+
+<h3 id="slick" >Slick <a href="#slick"></a></h3><p>If we take <a href="http://slick.typesafe.com/doc/3.0.0-M1/queries.html#joining-and-zipping">Slick</a> for instance we could say that it &ldquo;<em>consumes</em>&rdquo; the domain terms <code>coffees</code> and <code>suppliers</code> in this Scala sequence comprehension:</p>
 <pre><code>// Slick
 val coffeeSupliers = for {
   c &lt;- coffees
@@ -113,16 +113,16 @@ val coffeeSupliers = for {
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="c1">// Molecule
 </span><span class="c1"></span><span class="k">val</span> <span class="n">coffeeSupliers</span> <span class="k">=</span> <span class="nc">Coffees</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="nc">Suppliers</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">get</span>
 </code></pre></div><p>We get the exact same type-inferred result back, a <code>List[(String, String)]</code></p>
-<h3 id="squeryl">Squeryl</h3>
-<p><a href="https://www.squeryl.org/">Squeryl</a> also <em>consumes</em> data objects, now in another DSL construct:</p>
+
+<h3 id="squeryl" >Squeryl <a href="#squeryl"></a></h3><p><a href="https://www.squeryl.org/">Squeryl</a> also <em>consumes</em> data objects, now in another DSL construct:</p>
 <pre><code>// Squeryl
 def songs = from(MusicDb.songs)(s =&gt; where(s.artistId === id) select(s))
 </code></pre><p>In Molecule we don&rsquo;t need to use keywords like <code>from</code>, <code>where</code> and <code>select</code> (apart from the final <code>get</code> method). We instead get song entities (<code>e</code>) filtered by Artist by simply applying a required value directly to the <code>artist</code> attribute:</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="c1">// Molecule
 </span><span class="c1"></span><span class="k">val</span> <span class="n">songs</span> <span class="k">=</span> <span class="nc">Song</span><span class="o">.</span><span class="n">e</span><span class="o">.</span><span class="n">artist_</span><span class="o">(</span><span class="n">id</span><span class="o">).</span><span class="n">get</span>
 </code></pre></div><p>(The underscore after artist makes the attribute tacit - that we don&rsquo;t need to return its value)</p>
-<h3 id="next">Next</h3>
-<p>Let&rsquo;s compare with <a href="../../intro/compare/datomic/">Datomic / Datalog</a>&hellip;</p>
+
+<h3 id="next" >Next <a href="#next"></a></h3><p>Let&rsquo;s compare with <a href="../../intro/compare/datomic/">Datomic / Datalog</a>&hellip;</p>
 
     </div>
 

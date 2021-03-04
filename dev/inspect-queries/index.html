@@ -80,7 +80,7 @@
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="https://javadoc.io/doc/org.scalamolecule/molecule_2.13/latest/index.html" target="_blank" style="">Docs</a></li>
-                    <li><a href="../../changelog" style="">v0.24.0</a></li>
+                    <li><a href="../../changelog" style="">v0.25.0</a></li>
                     <li><a href="https://github.com/scalamolecule/molecule" target="_blank">
                         <img src="../../vendor/GitHub-Mark/PNG/GitHub-Mark-Light-32px.png"
                              style="margin-top:-4px;padding-left:15px;opacity:0.6;width:42px;">
@@ -97,8 +97,8 @@
 <div class="container-fluid" style="max-width:1170px">
 
     <div class="col-sm-10 " style="padding-left:8px;">
-        <h1 id="inspect-queries">Inspect queries</h1>
-<p>All molecule query commands have a corresponding inspect command that will print inspection information to console.</p>
+        
+<h1 id="inspect-queries" >Inspect queries <a href="#inspect-queries"></a></h1><p>All molecule query commands have a corresponding inspect command that will print inspection information to console.</p>
 <ul>
 <li>&lt;molecule&gt;.<code>inspectGet</code></li>
 <li>&lt;molecule&gt;.<code>inspectGetHistory</code></li>
@@ -106,8 +106,8 @@
 <li>&lt;molecule&gt;.<code>inspectGetSince(...)</code></li>
 <li>&lt;molecule&gt;.<code>inspectGetWith(...)</code></li>
 </ul>
-<h2 id="inspectget">inspectGet</h2>
-<p>Simply replace a <code>get</code> command on a molecule with <code>inspectGet</code> to print inspection data when running the code in
+
+<h2 id="inspectget" class="safari_anchor_hack">inspectGet <a href="#inspectget"></a></h2><p>Simply replace a <code>get</code> command on a molecule with <code>inspectGet</code> to print inspection data when running the code in
 a test for instance:</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="c1">// Molecule to be inspected
 </span><span class="c1"></span><span class="nc">Community</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="nc">Neighborhood</span><span class="o">.</span><span class="nc">District</span><span class="o">.</span><span class="n">region_</span><span class="o">(</span><span class="s">&#34;ne&#34;</span> <span class="n">or</span> <span class="s">&#34;sw&#34;</span><span class="o">).</span><span class="n">get</span><span class="o">(</span><span class="mi">3</span><span class="o">)</span> <span class="o">===</span> <span class="nc">List</span><span class="o">(</span>
@@ -204,8 +204,8 @@ OUTPUTS:
 --------------------------------------------------------------------------
 </code></pre><p>While the Model and Query are internal representations of the molecule, the Datalog query shows you what Molecule sends to Datomic.</p>
 <p>Using inspectGet can also be a quick way to test if a required data set is correctly returned with some molecule.</p>
-<h3 id="experiment-with-datalog-query">Experiment with Datalog query</h3>
-<p>If you want to experiment with changing the raw Datalog query, you can copy an paste the Datalog query from console into the query call on the connection object:</p>
+
+<h3 id="experiment-with-datalog-query" >Experiment with Datalog query <a href="#experiment-with-datalog-query"></a></h3><p>If you want to experiment with changing the raw Datalog query, you can copy an paste the Datalog query from console into the query call on the connection object:</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="n">conn</span><span class="o">.</span><span class="n">q</span><span class="o">(</span>
   <span class="c1">// Datalog query:
 </span><span class="c1"></span>  <span class="s">&#34;&#34;&#34;[:find  ?b
@@ -228,8 +228,8 @@ List(Alki News)
 List(Longfellow Creek Community Website)
 List(Laurelhurst Community Club)
 // etc...
-</code></pre><h2 id="inspectgethistory">inspectGetHistory</h2>
-<p>When examining data spanning multiple transactions, the time filter inspect commands can be very useful. Say we have 3 transactions:</p>
+</code></pre>
+<h2 id="inspectgethistory" class="safari_anchor_hack">inspectGetHistory <a href="#inspectgethistory"></a></h2><p>When examining data spanning multiple transactions, the time filter inspect commands can be very useful. Say we have 3 transactions:</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">val</span> <span class="n">tx1</span> <span class="k">=</span> <span class="nc">Ns</span><span class="o">.</span><span class="n">str</span><span class="o">(</span><span class="s">&#34;a&#34;</span><span class="o">).</span><span class="n">int</span><span class="o">(</span><span class="mi">1</span><span class="o">).</span><span class="n">save</span>
 <span class="k">val</span> <span class="n">e1</span>  <span class="k">=</span> <span class="n">tx1</span><span class="o">.</span><span class="n">eid</span>
 <span class="k">val</span> <span class="n">t1</span>  <span class="k">=</span> <span class="n">tx1</span><span class="o">.</span><span class="n">t</span> <span class="c1">// 1028
@@ -280,8 +280,8 @@ OUTPUTS:
 (showing up to 500 rows)
 --------------------------------------------------------------------------
 </code></pre><p>We can see that the value &ldquo;a&rdquo; was asserted in transaction 1028, retracted in 1030 and the new value &ldquo;b&rdquo; asserted in 1030.</p>
-<h2 id="inspectgetasof">inspectGetAsOf</h2>
-<p>Using the same example transaction above we can inspect data at a certain point in time by calling <code>inspectGetAsOf(t)</code>:</p>
+
+<h2 id="inspectgetasof" class="safari_anchor_hack">inspectGetAsOf <a href="#inspectgetasof"></a></h2><p>Using the same example transaction above we can inspect data at a certain point in time by calling <code>inspectGetAsOf(t)</code>:</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Ns</span><span class="o">(</span><span class="n">e1</span><span class="o">).</span><span class="n">t</span><span class="o">.</span><span class="n">a</span><span class="o">.</span><span class="n">v</span><span class="o">.</span><span class="n">op</span><span class="o">.</span><span class="n">inspectGetAsOf</span><span class="o">(</span><span class="n">t1</span><span class="o">)</span>
 </code></pre></div><p>And get</p>
 <pre><code>--------------------------------------------------------------------------
@@ -320,8 +320,8 @@ OUTPUTS:
 (showing up to 500 rows)
 --------------------------------------------------------------------------
 </code></pre><p>Showing the <code>:Ns/str</code> value at transaction 1028</p>
-<h2 id="inspectgetsince">inspectGetSince</h2>
-<p>Likewise we can get changes of attribute <code>:Ns/int</code> since transaction t1/1028</p>
+
+<h2 id="inspectgetsince" class="safari_anchor_hack">inspectGetSince <a href="#inspectgetsince"></a></h2><p>Likewise we can get changes of attribute <code>:Ns/int</code> since transaction t1/1028</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Ns</span><span class="o">(</span><span class="n">e1</span><span class="o">).</span><span class="n">int</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">op</span><span class="o">.</span><span class="n">inspectGetSince</span><span class="o">(</span><span class="n">t1</span><span class="o">)</span>
 </code></pre></div><p>And see that <code>:Ns/int</code> value 2 was asserted in transaction 1031:</p>
 <pre><code>--------------------------------------------------------------------------
@@ -359,8 +359,8 @@ OUTPUTS:
 1  [2 1031 true]
 (showing up to 500 rows)
 --------------------------------------------------------------------------
-</code></pre><h2 id="inspectgetwith">inspectGetWith</h2>
-<p>The <code>with</code> time filter is a bit special since transactional data is supplied to the method. So the <code>inspectGetWith(..)</code> method will also display the transactional data:</p>
+</code></pre>
+<h2 id="inspectgetwith" class="safari_anchor_hack">inspectGetWith <a href="#inspectgetwith"></a></h2><p>The <code>with</code> time filter is a bit special since transactional data is supplied to the method. So the <code>inspectGetWith(..)</code> method will also display the transactional data:</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="c1">// Normal `getWith` call with some sample data
 </span><span class="c1"></span><span class="k">val</span> <span class="n">johnId</span> <span class="k">=</span> <span class="nc">Ns</span><span class="o">.</span><span class="n">str</span><span class="o">(</span><span class="s">&#34;John&#34;</span><span class="o">).</span><span class="n">int</span><span class="o">(</span><span class="mi">24</span><span class="o">).</span><span class="n">save</span><span class="o">.</span><span class="n">eid</span>
 <span class="nc">Ns</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">int</span><span class="o">.</span><span class="n">inspectGetWith</span><span class="o">(</span>

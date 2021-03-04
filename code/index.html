@@ -82,7 +82,7 @@
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="https://javadoc.io/doc/org.scalamolecule/molecule_2.13/latest/index.html" target="_blank" style="">Docs</a></li>
-                    <li><a href="../changelog" style="">v0.24.0</a></li>
+                    <li><a href="../changelog" style="">v0.25.0</a></li>
                     <li><a href="https://github.com/scalamolecule/molecule" target="_blank">
                         <img src="../vendor/GitHub-Mark/PNG/GitHub-Mark-Light-32px.png"
                              style="margin-top:-4px;padding-left:15px;opacity:0.6;width:42px;">
@@ -99,23 +99,40 @@
 <div class="container-fluid" style="max-width:1170px">
 
     <div class="col-sm-10" style="padding-left:8px;">
-        <h1 id="molecule-code-overview">Molecule Code overview</h1>
-<p>On this page we&rsquo;ll quickly get an intuitive overview of how Molecule queries and transactions look like.</p>
+        
+<h1 id="molecule-code-overview" >Molecule Code overview <a href="#molecule-code-overview"></a></h1><p>On this page we&rsquo;ll quickly get an intuitive overview of how Molecule queries and transactions look like.</p>
 <p>Then the following pages in the side menu will explain in more detail.</p>
-<h3 id="db-connection">Db connection</h3>
-<p>We&rsquo;ll presume that we have <a href="../setup">set up</a> an implicit connection to an in-memory Peer database:</p>
+
+<h3 id="db-connection" >Db connection <a href="#db-connection"></a></h3><p>We&rsquo;ll presume that we have <a href="../setup">set up</a> an implicit connection to an in-memory Peer database:</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">import</span> <span class="nn">app.dsl.someDomain._</span>
 <span class="k">import</span> <span class="nn">molecule.datomic.api._</span>
 <span class="k">import</span> <span class="nn">molecule.datomic.peer.facade.Datomic_Peer</span>
 
 <span class="k">implicit</span> <span class="k">val</span> <span class="n">conn</span> <span class="k">=</span> <span class="n">recreateDbFrom</span><span class="o">(</span><span class="nc">SomeSchema</span><span class="o">)</span>
-</code></pre></div><h2 id="crud">&ldquo;CRUD&rdquo;</h2>
-<p>We use the builder pattern to compose molecules of attributes and get back typed tuples of data that matches our molecule by calling <code>get</code> on a molecule:</p>
+</code></pre></div>
+<h2 id="crud" class="safari_anchor_hack">&ldquo;CRUD&rdquo; <a href="#crud"></a></h2><p>We use the builder pattern to compose molecules of attributes and get back typed tuples of data that matches our molecule by calling <code>get</code> on a molecule:</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">val</span> <span class="n">names</span>           <span class="k">:</span> <span class="kt">List</span><span class="o">[</span><span class="kt">String</span><span class="o">]</span>                 <span class="k">=</span> <span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">get</span>
 <span class="k">val</span> <span class="n">namesAndAges</span>    <span class="k">:</span> <span class="kt">List</span><span class="o">[(</span><span class="kt">String</span>, <span class="kt">Int</span><span class="o">)]</span>          <span class="k">=</span> <span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">age</span><span class="o">.</span><span class="n">get</span>
 <span class="k">val</span> <span class="n">namesAgesMembers</span><span class="k">:</span> <span class="kt">List</span><span class="o">[(</span><span class="kt">String</span>, <span class="kt">Int</span>, <span class="kt">Boolean</span><span class="o">)]</span> <span class="k">=</span> <span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">age</span><span class="o">.</span><span class="n">isMember</span><span class="o">.</span><span class="n">get</span>
 <span class="c1">// etc..
-</span></code></pre></div><p>In Datomic, data is not deleted but instead &ldquo;retracted&rdquo; since all changes are accumulated. That makes it possible to go back and see <em>what data</em> was retracted and is no longer current. That&rsquo;s why we say &ldquo;CRUD&rdquo; instead of CRUD.</p>
+</span></code></pre></div><p>Or we can return an object for each row of data</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="c1">// Single row/object
+</span><span class="c1"></span><span class="k">val</span> <span class="n">ben</span> <span class="k">=</span> <span class="nc">Person</span><span class="o">.</span><span class="n">name_</span><span class="o">(</span><span class="s">&#34;Ben&#34;</span><span class="o">).</span><span class="n">age</span><span class="o">.</span><span class="n">gender</span><span class="o">.</span><span class="nc">Address</span><span class="o">.</span><span class="n">street</span><span class="o">.</span><span class="nc">City</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">getObj</span>
+<span class="n">ben</span><span class="o">.</span><span class="n">age</span> <span class="o">===</span> <span class="mi">23</span>
+<span class="n">ben</span><span class="o">.</span><span class="n">gender</span> <span class="o">===</span> <span class="s">&#34;male&#34;</span>
+<span class="n">ben</span><span class="o">.</span><span class="nc">Address</span><span class="o">.</span><span class="n">street</span> <span class="o">===</span> <span class="s">&#34;Broadway&#34;</span>
+<span class="n">ben</span><span class="o">.</span><span class="nc">Address</span><span class="o">.</span><span class="nc">City</span><span class="o">.</span><span class="n">name</span> <span class="o">===</span> <span class="s">&#34;New York&#34;</span>
+
+<span class="c1">// Multiple rows/objects
+</span><span class="c1"></span><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">age</span><span class="o">.</span><span class="nc">Address</span><span class="o">.</span><span class="n">street</span><span class="o">.</span><span class="nc">City</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">getObjList</span><span class="o">.</span><span class="n">foreach</span> <span class="o">{</span> <span class="n">person</span> <span class="k">=&gt;</span>
+  <span class="n">println</span><span class="o">(</span>
+    <span class="s">s&#34;</span><span class="si">${</span><span class="n">person</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s"> is </span><span class="si">${</span><span class="n">person</span><span class="o">.</span><span class="n">age</span><span class="si">}</span><span class="s"> yeas old and lives on &#34;</span> <span class="o">+</span>
+            <span class="s">s&#34;</span><span class="si">${</span><span class="n">person</span><span class="o">.</span><span class="nc">Address</span><span class="o">.</span><span class="n">street</span><span class="si">}</span><span class="s">, </span><span class="si">${</span><span class="n">person</span><span class="o">.</span><span class="nc">Address</span><span class="o">.</span><span class="nc">City</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s">&#34;</span>
+  <span class="o">)</span>
+  <span class="c1">// &#34;Ben is 23 years old and lives on Broadway, New York&#34;
+</span><span class="c1"></span>  <span class="c1">// &#34;Lisa is ...&#34; etc...
+</span><span class="c1"></span><span class="o">}</span>
+</code></pre></div><p>In Datomic, data is not deleted but instead &ldquo;retracted&rdquo; since all changes are accumulated. That makes it possible to go back and see <em>what data</em> was retracted and is no longer current. That&rsquo;s why we say &ldquo;CRUD&rdquo; instead of CRUD.</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="c1">// Save populated molecule
 </span><span class="c1"></span><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">(</span><span class="s">&#34;John&#34;</span><span class="o">).</span><span class="n">likes</span><span class="o">(</span><span class="s">&#34;pizza&#34;</span><span class="o">).</span><span class="n">age</span><span class="o">(</span><span class="mi">24</span><span class="o">).</span><span class="n">save</span>
 
@@ -133,8 +150,8 @@
 
 <span class="c1">// Retract attribute value
 </span><span class="c1"></span><span class="nc">Person</span><span class="o">(</span><span class="n">johnId</span><span class="o">).</span><span class="n">likes</span><span class="o">().</span><span class="n">update</span>
-</code></pre></div><h2 id="syncasync-apis">Sync/Async APIs</h2>
-<p>All commands in Molecule can be synchronous or asynchronous:</p>
+</code></pre></div>
+<h2 id="syncasync-apis" class="safari_anchor_hack">Sync/Async APIs <a href="#syncasync-apis"></a></h2><p>All commands in Molecule can be synchronous or asynchronous:</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="c1">// sync 
 </span><span class="c1"></span><span class="k">val</span> <span class="n">list</span><span class="k">:</span> <span class="kt">List</span><span class="o">[(</span><span class="kt">String</span>, <span class="kt">Int</span><span class="o">)]</span> <span class="k">=</span> <span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">age</span><span class="o">.</span><span class="n">get</span> 
 
@@ -145,23 +162,23 @@
 <span class="n">insertAsync</span>
 <span class="n">updateAsync</span>
 <span class="n">retractAsync</span>
-</code></pre></div><h2 id="attribute-types">Attribute types</h2>
-<h3 id="card-one-attributes">Card-one attributes</h3>
-<p><code>name</code> here is a card-one attribute with a single value</p>
+</code></pre></div>
+<h2 id="attribute-types" class="safari_anchor_hack">Attribute types <a href="#attribute-types"></a></h2>
+<h3 id="card-one-attributes" >Card-one attributes <a href="#card-one-attributes"></a></h3><p><code>name</code> here is a card-one attribute with a single value</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">head</span> <span class="o">===</span> <span class="s">&#34;Bob&#34;</span>
-</code></pre></div><h3 id="card-many-attributes">Card-many attributes</h3>
-<p><code>interests</code> here is a card-many attribute with a Set of distinct values</p>
+</code></pre></div>
+<h3 id="card-many-attributes" >Card-many attributes <a href="#card-many-attributes"></a></h3><p><code>interests</code> here is a card-many attribute with a Set of distinct values</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">interests</span><span class="o">.</span><span class="n">get</span> <span class="o">===</span> <span class="nc">List</span><span class="o">(</span>
   <span class="s">&#34;Bob&#34;</span><span class="o">,</span> <span class="nc">Set</span><span class="o">(</span><span class="s">&#34;Baseball&#34;</span><span class="o">,</span> <span class="s">&#34;Origami&#34;</span><span class="o">),</span>
   <span class="s">&#34;Liz&#34;</span><span class="o">,</span> <span class="nc">Set</span><span class="o">(</span><span class="s">&#34;Painting&#34;</span><span class="o">,</span> <span class="s">&#34;Traveling&#34;</span><span class="o">,</span> <span class="s">&#34;Tae Kwondo&#34;</span><span class="o">)</span>
 <span class="o">)</span>
-</code></pre></div><h3 id="map-attributes">Map attributes</h3>
-<p>Keyed card-many attributes, or &ldquo;Map attributes&rdquo;, are useful for i18n for instance</p>
+</code></pre></div>
+<h3 id="map-attributes" >Map attributes <a href="#map-attributes"></a></h3><p>Keyed card-many attributes, or &ldquo;Map attributes&rdquo;, are useful for i18n for instance</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Phrases</span><span class="o">.</span><span class="n">greeting</span><span class="o">(</span><span class="s">&#34;en&#34;</span> <span class="o">-&gt;</span> <span class="s">&#34;hello&#34;</span><span class="o">,</span> <span class="s">&#34;de&#34;</span> <span class="o">-&gt;</span> <span class="s">&#34;hallo&#34;</span><span class="o">).</span><span class="n">save</span>
 <span class="nc">Phrases</span><span class="o">.</span><span class="n">greeting</span><span class="o">(</span><span class="s">&#34;en&#34;</span> <span class="o">-&gt;</span> <span class="s">&#34;hello&#34;</span><span class="o">).</span><span class="n">get</span><span class="o">.</span><span class="n">head</span> <span class="o">===</span> <span class="nc">Map</span><span class="o">(</span><span class="s">&#34;en&#34;</span> <span class="o">-&gt;</span> <span class="s">&#34;hello&#34;</span><span class="o">)</span>
 <span class="nc">Phrases</span><span class="o">.</span><span class="n">greeting</span><span class="o">.</span><span class="n">k</span><span class="o">(</span><span class="s">&#34;de&#34;</span><span class="o">).</span><span class="n">get</span><span class="o">.</span><span class="n">head</span>          <span class="o">===</span> <span class="nc">Map</span><span class="o">(</span><span class="s">&#34;de&#34;</span> <span class="o">-&gt;</span> <span class="s">&#34;hallo&#34;</span><span class="o">)</span>
-</code></pre></div><h3 id="mandatory-optional-tacit">Mandatory, Optional, Tacit</h3>
-<p>Attributes can be</p>
+</code></pre></div>
+<h3 id="mandatory-optional-tacit" >Mandatory, Optional, Tacit <a href="#mandatory-optional-tacit"></a></h3><p>Attributes can be</p>
 <ul>
 <li>a <em>mandatory</em> value,</li>
 <li>an <em>optional</em> value (<code>$</code> appended), or</li>
@@ -171,8 +188,8 @@
 </span><span class="c1">// age$ is optional
 </span><span class="c1">// isMember_ is mandatory but not returned (tacit)
 </span><span class="c1"></span><span class="k">val</span> <span class="n">membersWithOptionalAge</span><span class="k">:</span> <span class="kt">List</span><span class="o">[(</span><span class="kt">String</span>, <span class="kt">Option</span><span class="o">[</span><span class="kt">Int</span><span class="o">])]</span> <span class="k">=</span> <span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">age$</span><span class="o">.</span><span class="n">isMember_</span><span class="o">.</span><span class="n">get</span>
-</code></pre></div><h3 id="attribute-data-types">Attribute data types</h3>
-<pre><code>Cardinality one             Cardinality many                 Mapped cardinality many
+</code></pre></div>
+<h3 id="attribute-data-types" >Attribute data types <a href="#attribute-data-types"></a></h3><pre><code>Cardinality one             Cardinality many                 Mapped cardinality many
 -------------------         -------------------------        --------------------------------
 oneString    : String       manyString    : Set[String]      mapString    : Map[String, String]
 oneInt       : Int          manyInt       : Set[Int]         mapInt       : Map[String, Int]
@@ -186,9 +203,9 @@ oneDate      : Date         manyDate      : Set[Date]        mapDate      : Map[
 oneUUID      : UUID         manyUUID      : Set[UUID]        mapUUID      : Map[String, UUID]
 oneURI       : URI          manyURI       : Set[URI]         mapURI       : Map[String, URI]
 oneEnum      : String       manyEnum      : Set[String]
-</code></pre><h2 id="attribute-values">Attribute values</h2>
-<h3 id="expressions">Expressions</h3>
-<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="c1">// equality
+</code></pre>
+<h2 id="attribute-values" class="safari_anchor_hack">Attribute values <a href="#attribute-values"></a></h2>
+<h3 id="expressions" >Expressions <a href="#expressions"></a></h3><div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="c1">// equality
 </span><span class="c1"></span><span class="nc">Person</span><span class="o">.</span><span class="n">age</span><span class="o">(</span><span class="mi">42</span><span class="o">)</span>
 
 <span class="c1">// negation
@@ -207,8 +224,8 @@ oneEnum      : String       manyEnum      : Set[String]
 
 <span class="c1">// Word search
 </span><span class="c1"></span><span class="nc">Person</span><span class="o">.</span><span class="n">comment</span><span class="o">.</span><span class="n">contains</span><span class="o">(</span><span class="s">&#34;nice&#34;</span><span class="o">)</span>
-</code></pre></div><h3 id="aggregates">Aggregates</h3>
-<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">.</span><span class="n">age</span><span class="o">(</span><span class="n">count</span><span class="o">)</span>
+</code></pre></div>
+<h3 id="aggregates" >Aggregates <a href="#aggregates"></a></h3><div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">.</span><span class="n">age</span><span class="o">(</span><span class="n">count</span><span class="o">)</span>
 <span class="nc">Person</span><span class="o">.</span><span class="n">age</span><span class="o">(</span><span class="n">countDistinct</span><span class="o">)</span>
 <span class="nc">Person</span><span class="o">.</span><span class="n">age</span><span class="o">(</span><span class="n">distinct</span><span class="o">)</span>
 <span class="nc">Person</span><span class="o">.</span><span class="n">age</span><span class="o">(</span><span class="n">max</span><span class="o">)</span>
@@ -220,15 +237,15 @@ oneEnum      : String       manyEnum      : Set[String]
 <span class="nc">Person</span><span class="o">.</span><span class="n">age</span><span class="o">(</span><span class="n">stddev</span><span class="o">)</span>
 <span class="nc">Person</span><span class="o">.</span><span class="n">age</span><span class="o">(</span><span class="n">sum</span><span class="o">)</span>
 <span class="nc">Person</span><span class="o">.</span><span class="n">age</span><span class="o">(</span><span class="n">variance</span><span class="o">)</span>
-</code></pre></div><h3 id="logic">Logic</h3>
-<p>OR</p>
+</code></pre></div>
+<h3 id="logic" >Logic <a href="#logic"></a></h3><p>OR</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">.</span><span class="n">age</span><span class="o">(</span><span class="mi">42</span> <span class="n">or</span> <span class="mi">43</span><span class="o">)</span> <span class="c1">// same as
 </span><span class="c1"></span><span class="nc">Person</span><span class="o">.</span><span class="n">age</span><span class="o">(</span><span class="mi">42</span><span class="o">,</span> <span class="mi">43</span><span class="o">)</span>   <span class="c1">// same as
 </span><span class="c1"></span><span class="nc">Person</span><span class="o">.</span><span class="n">age</span><span class="o">(</span><span class="nc">List</span><span class="o">(</span><span class="mi">42</span><span class="o">,</span> <span class="mi">43</span><span class="o">))</span>
 </code></pre></div><p>AND: card-many attribute <code>category</code> has both a &ldquo;restaurants&rdquo; and a &ldquo;shopping&rdquo; value:</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Community</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">category_</span><span class="o">(</span><span class="s">&#34;restaurants&#34;</span> <span class="n">and</span> <span class="s">&#34;shopping&#34;</span><span class="o">).</span><span class="n">get</span> <span class="o">===</span> <span class="nc">List</span><span class="o">(</span><span class="s">&#34;Ballard Gossip Girl&#34;</span><span class="o">)</span>
-</code></pre></div><h2 id="input-molecules">Input molecules</h2>
-<p>&ldquo;Input molecules&rdquo; awaits 1, 2 or 3 input values. Useful for re-use</p>
+</code></pre></div>
+<h2 id="input-molecules" class="safari_anchor_hack">Input molecules <a href="#input-molecules"></a></h2><p>&ldquo;Input molecules&rdquo; awaits 1, 2 or 3 input values. Useful for re-use</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">val</span> <span class="n">personsOfAge</span> <span class="k">=</span> <span class="n">m</span><span class="o">(</span><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">age_</span><span class="o">(?))</span>
 
 <span class="n">personsOfAge</span><span class="o">(</span><span class="mi">23</span><span class="o">).</span><span class="n">get</span> <span class="o">===</span> <span class="nc">List</span><span class="o">(</span><span class="s">&#34;Bob&#34;</span><span class="o">)</span>
@@ -238,13 +255,13 @@ oneEnum      : String       manyEnum      : Set[String]
 
 <span class="c1">// Social media communities in southern districts
 </span><span class="c1"></span><span class="n">typeAndRegion</span><span class="o">((</span><span class="s">&#34;twitter&#34;</span> <span class="n">or</span> <span class="s">&#34;facebook_page&#34;</span><span class="o">)</span> <span class="n">and</span> <span class="o">(</span><span class="s">&#34;sw&#34;</span> <span class="n">or</span> <span class="s">&#34;s&#34;</span> <span class="n">or</span> <span class="s">&#34;se&#34;</span><span class="o">))</span>
-</code></pre></div><h2 id="relationships">Relationships</h2>
-<h3 id="card-one">Card-one</h3>
-<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">age</span><span class="o">.</span><span class="nc">Address</span><span class="o">.</span><span class="n">street</span><span class="o">.</span><span class="n">get</span> <span class="o">===</span> <span class="nc">List</span><span class="o">(</span>
+</code></pre></div>
+<h2 id="relationships" class="safari_anchor_hack">Relationships <a href="#relationships"></a></h2>
+<h3 id="card-one" >Card-one <a href="#card-one"></a></h3><div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">age</span><span class="o">.</span><span class="nc">Address</span><span class="o">.</span><span class="n">street</span><span class="o">.</span><span class="n">get</span> <span class="o">===</span> <span class="nc">List</span><span class="o">(</span>
   <span class="o">(</span><span class="s">&#34;Bob&#34;</span><span class="o">,</span> <span class="mi">23</span><span class="o">,</span> <span class="s">&#34;5th Avenue&#34;</span><span class="o">)</span> 
 <span class="o">)</span> 
-</code></pre></div><h3 id="card-many">Card-many</h3>
-<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="c1">// flat
+</code></pre></div>
+<h3 id="card-many" >Card-many <a href="#card-many"></a></h3><div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="c1">// flat
 </span><span class="c1"></span><span class="nc">Invoice</span><span class="o">.</span><span class="n">no</span><span class="o">.</span><span class="nc">InvoiceLines</span><span class="o">.</span><span class="n">item</span><span class="o">.</span><span class="n">get</span> <span class="o">===</span> <span class="nc">List</span><span class="o">(</span>
   <span class="o">(</span><span class="mi">42</span><span class="o">,</span> <span class="s">&#34;coffee&#34;</span><span class="o">),</span>
   <span class="o">(</span><span class="mi">42</span><span class="o">,</span> <span class="s">&#34;sugar&#34;</span><span class="o">)</span>
@@ -254,22 +271,22 @@ oneEnum      : String       manyEnum      : Set[String]
 </span><span class="c1"></span><span class="nc">Invoice</span><span class="o">.</span><span class="n">no</span><span class="o">.</span><span class="nc">InvoiceLines</span><span class="o">.*(</span><span class="nc">InvoiceLine</span><span class="o">.</span><span class="n">item</span><span class="o">).</span><span class="n">get</span> <span class="o">===</span> <span class="nc">List</span><span class="o">(</span>
   <span class="o">(</span><span class="mi">42</span><span class="o">,</span> <span class="nc">List</span><span class="o">(</span><span class="s">&#34;coffee&#34;</span><span class="o">,</span> <span class="s">&#34;sugar&#34;</span><span class="o">))</span>
 <span class="o">)</span>
-</code></pre></div><h3 id="self-join">Self-join</h3>
-<p>Relationship to the same Namespace type (Person -&gt; Person)</p>
+</code></pre></div>
+<h3 id="self-join" >Self-join <a href="#self-join"></a></h3><p>Relationship to the same Namespace type (Person -&gt; Person)</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="nc">Spouse</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">head</span> <span class="o">===</span> <span class="o">(</span><span class="s">&#34;Bob&#34;</span><span class="o">,</span> <span class="s">&#34;Liz&#34;</span><span class="o">)</span>
-</code></pre></div><h3 id="directional">Directional</h3>
-<p>Relationships can be defined to go in both directions so that we can traverse a graph uniformly:</p>
+</code></pre></div>
+<h3 id="directional" >Directional <a href="#directional"></a></h3><p>Relationships can be defined to go in both directions so that we can traverse a graph uniformly:</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="nc">Knows</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="nc">Knows</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">get</span> <span class="o">===</span> <span class="nc">List</span><span class="o">(</span>
   <span class="o">(</span><span class="s">&#34;Bob&#34;</span><span class="o">,</span> <span class="s">&#34;Liz&#34;</span><span class="o">,</span> <span class="s">&#34;Dan&#34;</span><span class="o">),</span>
   <span class="o">(</span><span class="s">&#34;Dan&#34;</span><span class="o">,</span> <span class="s">&#34;Liz&#34;</span><span class="o">,</span> <span class="s">&#34;Bob&#34;</span><span class="o">)</span>
   <span class="c1">// etc...
 </span><span class="c1"></span><span class="o">)</span>
-</code></pre></div><h3 id="associative">Associative</h3>
-<p>Attributes from different Namespaces that are not explicitly related can be <em>associated</em> by sharing the same entity id. We call molecules with associative relationships &ldquo;Composite molecules&rdquo;:</p>
+</code></pre></div>
+<h3 id="associative" >Associative <a href="#associative"></a></h3><p>Attributes from different Namespaces that are not explicitly related can be <em>associated</em> by sharing the same entity id. We call molecules with associative relationships &ldquo;Composite molecules&rdquo;:</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="n">m</span><span class="o">(</span><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">(</span><span class="s">&#34;Bob&#34;</span><span class="o">)</span> <span class="o">+</span> <span class="nc">Bar</span><span class="o">.</span><span class="n">status</span><span class="o">(</span><span class="s">&#34;regular&#34;</span><span class="o">)).</span><span class="n">save</span>
 <span class="n">m</span><span class="o">(</span><span class="nc">Person</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="nc">Bar</span><span class="o">.</span><span class="n">status</span><span class="o">).</span><span class="n">get</span><span class="o">.</span><span class="n">head</span> <span class="o">===</span> <span class="o">(</span><span class="s">&#34;Bob&#34;</span><span class="o">,</span> <span class="s">&#34;regular&#34;</span><span class="o">)</span>
-</code></pre></div><h2 id="tx-bundle">Tx Bundle</h2>
-<p>Transaction bundles can atomically transact multiple operations/statements in one transaction:</p>
+</code></pre></div>
+<h2 id="tx-bundle" class="safari_anchor_hack">Tx Bundle <a href="#tx-bundle"></a></h2><p>Transaction bundles can atomically transact multiple operations/statements in one transaction:</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="n">transact</span><span class="o">(</span>
   <span class="c1">// retract entity
 </span><span class="c1"></span>  <span class="n">e1</span><span class="o">.</span><span class="n">getRetractStmts</span><span class="o">,</span>
@@ -280,8 +297,8 @@ oneEnum      : String       manyEnum      : Set[String]
   <span class="c1">// update entity
 </span><span class="c1"></span>  <span class="nc">Ns</span><span class="o">(</span><span class="n">e2</span><span class="o">).</span><span class="n">int</span><span class="o">(</span><span class="mi">20</span><span class="o">).</span><span class="n">getUpdateStmts</span>
 <span class="o">)</span>
-</code></pre></div><h2 id="tx-meta-data">Tx meta data</h2>
-<p>Add meta data to the transaction entity itself about the transaction:</p>
+</code></pre></div>
+<h2 id="tx-meta-data" class="safari_anchor_hack">Tx meta data <a href="#tx-meta-data"></a></h2><p>Add meta data to the transaction entity itself about the transaction:</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">(</span><span class="s">&#34;John&#34;</span><span class="o">).</span><span class="n">likes</span><span class="o">(</span><span class="s">&#34;pizza&#34;</span><span class="o">).</span><span class="nc">Tx</span><span class="o">(</span><span class="nc">Audit</span><span class="o">.</span><span class="n">user</span><span class="o">(</span><span class="s">&#34;Lisa&#34;</span><span class="o">).</span><span class="n">uc</span><span class="o">(</span><span class="s">&#34;survey&#34;</span><span class="o">)).</span><span class="n">save</span>
 </code></pre></div><p>We can then query for specific tx meta data</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="c1">// How was John added?
@@ -298,8 +315,8 @@ oneEnum      : String       manyEnum      : Set[String]
 </span><span class="c1"></span><span class="nc">Person</span><span class="o">.</span><span class="n">likes</span><span class="o">.</span><span class="nc">Tx</span><span class="o">(</span><span class="nc">Audit</span><span class="o">.</span><span class="n">user_</span><span class="o">(</span><span class="s">&#34;Lisa&#34;</span><span class="o">).</span><span class="n">uc_</span><span class="o">(</span><span class="s">&#34;survey&#34;</span><span class="o">)).</span><span class="n">get</span> <span class="o">===</span> <span class="nc">List</span><span class="o">(</span><span class="s">&#34;pizza&#34;</span><span class="o">)</span>
 
 <span class="c1">// etc..
-</span></code></pre></div><h2 id="tx-function">Tx function</h2>
-<p>Ensure transactional atomicity with tx functions that run within a single transaction. If any part of the function throws an exception, the whole transaction is aborted.</p>
+</span></code></pre></div>
+<h2 id="tx-function" class="safari_anchor_hack">Tx function <a href="#tx-function"></a></h2><p>Ensure transactional atomicity with tx functions that run within a single transaction. If any part of the function throws an exception, the whole transaction is aborted.</p>
 <p>Here&rsquo;s a money transfer function where we want to be sure that both accounts are updated correctly:</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="c1">// Pass in entity ids of from/to accounts and the amount to be transferred
 </span><span class="c1"></span><span class="k">def</span> <span class="n">transfer</span><span class="o">(</span><span class="n">from</span><span class="k">:</span> <span class="kt">Long</span><span class="o">,</span> <span class="n">to</span><span class="k">:</span> <span class="kt">Long</span><span class="o">,</span> <span class="n">amount</span><span class="k">:</span> <span class="kt">Int</span><span class="o">)(</span><span class="k">implicit</span> <span class="n">conn</span><span class="k">:</span> <span class="kt">Conn</span><span class="o">)</span><span class="k">:</span> <span class="kt">Seq</span><span class="o">[</span><span class="kt">Seq</span><span class="o">[</span><span class="kt">Statement</span><span class="o">]]</span> <span class="k">=</span> <span class="o">{</span>
@@ -318,8 +335,8 @@ oneEnum      : String       manyEnum      : Set[String]
 <span class="o">}</span>
 </code></pre></div><p>We then call the transaction function inside a <code>transact</code> method:</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="n">transact</span><span class="o">(</span><span class="n">transfer</span><span class="o">(</span><span class="n">fromAccount</span><span class="o">,</span> <span class="n">toAccount</span><span class="o">,</span> <span class="n">okAmount</span><span class="o">))</span>
-</code></pre></div><h2 id="time">Time</h2>
-<p>Datomic has powerful ways of accessing all the immutable data that accumulates over time in the database:</p>
+</code></pre></div>
+<h2 id="time" class="safari_anchor_hack">Time <a href="#time"></a></h2><p>Datomic has powerful ways of accessing all the immutable data that accumulates over time in the database:</p>
 <p><img src="../img/page/time/all.png" alt=""></p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="c1">// Current data
 </span><span class="c1"></span><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">age</span><span class="o">.</span><span class="n">get</span>
@@ -335,10 +352,10 @@ oneEnum      : String       manyEnum      : Set[String]
 
 <span class="c1">// Test what-if scenarios given some test statements - how will it look if we do x?
 </span><span class="c1"></span><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">getWith</span><span class="o">(</span><span class="n">someTestStmts</span><span class="o">)</span>
-</code></pre></div><h2 id="generic-apis">Generic APIs</h2>
-<p>Molecule provides access to Datomic&rsquo;s various generic interfaces and apis.</p>
-<h3 id="entity-api">Entity API</h3>
-<p><code>touch</code> an entity id to get all it&rsquo;s attribute values</p>
+</code></pre></div>
+<h2 id="generic-apis" class="safari_anchor_hack">Generic APIs <a href="#generic-apis"></a></h2><p>Molecule provides access to Datomic&rsquo;s various generic interfaces and apis.</p>
+
+<h3 id="entity-api" >Entity API <a href="#entity-api"></a></h3><p><code>touch</code> an entity id to get all it&rsquo;s attribute values</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="n">orderId</span><span class="o">.</span><span class="n">touch</span> <span class="o">===</span> <span class="nc">Map</span><span class="o">(</span>
   <span class="s">&#34;:db/id&#34;</span> <span class="o">-&gt;</span> <span class="n">orderId</span><span class="o">,</span>
   <span class="s">&#34;:Order/lineItems&#34;</span> <span class="o">-&gt;</span> <span class="nc">List</span><span class="o">(</span>
@@ -352,8 +369,8 @@ oneEnum      : String       manyEnum      : Set[String]
       <span class="s">&#34;:LineItem/qty&#34;</span> <span class="o">-&gt;</span> <span class="mi">2</span><span class="o">,</span> 
       <span class="s">&#34;:LineItem/product&#34;</span> <span class="o">-&gt;</span> <span class="s">&#34;Coffee&#34;</span><span class="o">,</span>
       <span class="s">&#34;:LineItem/price&#34;</span> <span class="o">-&gt;</span> <span class="mf">46.0</span><span class="o">)))</span>
-</code></pre></div><h3 id="datom">Datom</h3>
-<p>Retrieve generic data about entities and attributes:</p>
+</code></pre></div>
+<h3 id="datom" >Datom <a href="#datom"></a></h3><p>Retrieve generic data about entities and attributes:</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="c1">// Entity id of Ben with generic Datom attribute `e`
 </span><span class="c1"></span><span class="nc">Person</span><span class="o">.</span><span class="n">e</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">head</span> <span class="o">===</span> <span class="o">(</span><span class="n">benEntityId</span><span class="o">,</span> <span class="s">&#34;Ben&#34;</span><span class="o">)</span>
 
@@ -361,16 +378,16 @@ oneEnum      : String       manyEnum      : Set[String]
 </span><span class="c1"></span><span class="nc">Person</span><span class="o">.</span><span class="n">age</span><span class="o">.</span><span class="n">txInstant</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">head</span> <span class="o">===</span> <span class="o">(</span><span class="mi">24</span><span class="o">,</span> <span class="o">&lt;</span><span class="nc">April</span> <span class="mi">4</span><span class="o">&gt;)</span> <span class="c1">// (Date)
 </span><span class="c1"></span>
 <span class="c1">// etc...
-</span></code></pre></div><h3 id="indexes">Indexes</h3>
-<h4 id="eavt">EAVT</h4>
-<p>Attributes and values of entity e1</p>
+</span></code></pre></div>
+<h3 id="indexes" >Indexes <a href="#indexes"></a></h3>
+<h4 id="eavt" >EAVT <a href="#eavt"></a></h4><p>Attributes and values of entity e1</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">EAVT</span><span class="o">(</span><span class="n">e1</span><span class="o">).</span><span class="n">a</span><span class="o">.</span><span class="n">v</span><span class="o">.</span><span class="n">get</span> <span class="o">===</span> <span class="nc">List</span><span class="o">(</span>
   <span class="o">(</span><span class="s">&#34;:Person/name&#34;</span><span class="o">,</span> <span class="s">&#34;Ben&#34;</span><span class="o">),</span>
   <span class="o">(</span><span class="s">&#34;:Person/age&#34;</span><span class="o">,</span> <span class="mi">25</span><span class="o">),</span>
   <span class="o">(</span><span class="s">&#34;:Golf/score&#34;</span><span class="o">,</span> <span class="mf">5.7</span><span class="o">)</span>
 <span class="o">)</span>
-</code></pre></div><h4 id="avet">AVET</h4>
-<p>Values, entities and transactions where attribute <code>:Person/age</code> is involved</p>
+</code></pre></div>
+<h4 id="avet" >AVET <a href="#avet"></a></h4><p>Values, entities and transactions where attribute <code>:Person/age</code> is involved</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">AVET</span><span class="o">(</span><span class="s">&#34;:Person/age&#34;</span><span class="o">).</span><span class="n">e</span><span class="o">.</span><span class="n">v</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">get</span> <span class="o">===</span> <span class="nc">List</span><span class="o">(</span>
   <span class="o">(</span><span class="mi">25</span><span class="o">,</span> <span class="n">e1</span><span class="o">,</span> <span class="n">t2</span><span class="o">),</span>
   <span class="o">(</span><span class="mi">23</span><span class="o">,</span> <span class="n">e2</span><span class="o">,</span> <span class="n">t5</span><span class="o">)</span>
@@ -382,21 +399,21 @@ oneEnum      : String       manyEnum      : Set[String]
   <span class="o">(</span><span class="mi">14</span><span class="o">,</span> <span class="n">e4</span><span class="o">,</span> <span class="n">t7</span><span class="o">),</span>
   <span class="o">(</span><span class="mi">23</span><span class="o">,</span> <span class="n">e2</span><span class="o">,</span> <span class="n">t5</span><span class="o">)</span>
 <span class="o">)</span>
-</code></pre></div><h4 id="aevt">AEVT</h4>
-<p>Entities, values and transactions where attribute <code>:Person/name</code> is involved</p>
+</code></pre></div>
+<h4 id="aevt" >AEVT <a href="#aevt"></a></h4><p>Entities, values and transactions where attribute <code>:Person/name</code> is involved</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">AEVT</span><span class="o">(</span><span class="s">&#34;:Person/name&#34;</span><span class="o">).</span><span class="n">e</span><span class="o">.</span><span class="n">v</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">get</span> <span class="o">===</span> <span class="nc">List</span><span class="o">(</span>
   <span class="o">(</span><span class="n">e1</span><span class="o">,</span> <span class="s">&#34;Ben&#34;</span><span class="o">,</span> <span class="n">t2</span><span class="o">),</span>
   <span class="o">(</span><span class="n">e2</span><span class="o">,</span> <span class="s">&#34;Liz&#34;</span><span class="o">,</span> <span class="n">t5</span><span class="o">)</span>
 <span class="o">)</span>
-</code></pre></div><h4 id="vaet">VAET</h4>
-<p>Get entities pointing to entity a1</p>
+</code></pre></div>
+<h4 id="vaet" >VAET <a href="#vaet"></a></h4><p>Get entities pointing to entity a1</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">VAET</span><span class="o">(</span><span class="n">a1</span><span class="o">).</span><span class="n">v</span><span class="o">.</span><span class="n">a</span><span class="o">.</span><span class="n">e</span><span class="o">.</span><span class="n">get</span> <span class="o">===</span> <span class="nc">List</span><span class="o">(</span>
   <span class="o">(</span><span class="n">a1</span><span class="o">,</span> <span class="s">&#34;:Release/artists&#34;</span><span class="o">,</span> <span class="n">r1</span><span class="o">),</span>
   <span class="o">(</span><span class="n">a1</span><span class="o">,</span> <span class="s">&#34;:Release/artists&#34;</span><span class="o">,</span> <span class="n">r2</span><span class="o">),</span>
   <span class="o">(</span><span class="n">a1</span><span class="o">,</span> <span class="s">&#34;:Release/artists&#34;</span><span class="o">,</span> <span class="n">r3</span><span class="o">),</span>
 <span class="o">)</span>
-</code></pre></div><h3 id="log">Log</h3>
-<p>Data from transaction <code>t1</code> until <code>t4</code> (exclusive)</p>
+</code></pre></div>
+<h3 id="log" >Log <a href="#log"></a></h3><p>Data from transaction <code>t1</code> until <code>t4</code> (exclusive)</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Log</span><span class="o">(</span><span class="nc">Some</span><span class="o">(</span><span class="n">t1</span><span class="o">),</span> <span class="nc">Some</span><span class="o">(</span><span class="n">t4</span><span class="o">)).</span><span class="n">t</span><span class="o">.</span><span class="n">e</span><span class="o">.</span><span class="n">a</span><span class="o">.</span><span class="n">v</span><span class="o">.</span><span class="n">op</span><span class="o">.</span><span class="n">get</span> <span class="o">===</span> <span class="nc">List</span><span class="o">(</span>
   <span class="o">(</span><span class="n">t1</span><span class="o">,</span> <span class="n">e1</span><span class="o">,</span> <span class="s">&#34;:Person/name&#34;</span><span class="o">,</span> <span class="s">&#34;Ben&#34;</span><span class="o">,</span> <span class="kc">true</span><span class="o">),</span>
   <span class="o">(</span><span class="n">t1</span><span class="o">,</span> <span class="n">e1</span><span class="o">,</span> <span class="s">&#34;:Person/age&#34;</span><span class="o">,</span> <span class="mi">25</span><span class="o">,</span> <span class="kc">true</span><span class="o">),</span>
@@ -407,15 +424,15 @@ oneEnum      : String       manyEnum      : Set[String]
   <span class="o">(</span><span class="n">t3</span><span class="o">,</span> <span class="n">e1</span><span class="o">,</span> <span class="s">&#34;:Person/age&#34;</span><span class="o">,</span> <span class="mi">25</span><span class="o">,</span> <span class="kc">false</span><span class="o">),</span>
   <span class="o">(</span><span class="n">t3</span><span class="o">,</span> <span class="n">e1</span><span class="o">,</span> <span class="s">&#34;:Person/age&#34;</span><span class="o">,</span> <span class="mi">26</span><span class="o">,</span> <span class="kc">true</span><span class="o">)</span>
 <span class="o">)</span>
-</code></pre></div><h3 id="schema">Schema</h3>
-<p>Get information about the Datomic schema which is also a way to access your Data Model programatically.</p>
+</code></pre></div>
+<h3 id="schema" >Schema <a href="#schema"></a></h3><p>Get information about the Datomic schema which is also a way to access your Data Model programatically.</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Schema</span><span class="o">.</span><span class="n">part</span><span class="o">.</span><span class="n">ns</span><span class="o">.</span><span class="n">attr</span><span class="o">.</span><span class="n">fulltext$</span><span class="o">.</span><span class="n">doc</span><span class="o">.</span><span class="n">get</span> <span class="o">===</span> <span class="nc">List</span><span class="o">(</span>
   <span class="o">(</span><span class="s">&#34;ind&#34;</span><span class="o">,</span> <span class="s">&#34;Person&#34;</span><span class="o">,</span> <span class="s">&#34;name&#34;</span><span class="o">,</span> <span class="nc">Some</span><span class="o">(</span><span class="kc">true</span><span class="o">),</span> <span class="s">&#34;Person name&#34;</span><span class="o">),</span> <span class="c1">// fulltext search enabled
 </span><span class="c1"></span>  <span class="o">(</span><span class="s">&#34;ind&#34;</span><span class="o">,</span> <span class="s">&#34;Person&#34;</span><span class="o">,</span> <span class="s">&#34;age&#34;</span><span class="o">,</span> <span class="nc">None</span><span class="o">,</span> <span class="s">&#34;Person age&#34;</span><span class="o">),</span>
   <span class="o">(</span><span class="s">&#34;cat&#34;</span><span class="o">,</span> <span class="s">&#34;Sport&#34;</span><span class="o">,</span> <span class="s">&#34;name&#34;</span><span class="o">,</span> <span class="nc">None</span><span class="o">,</span> <span class="s">&#34;Sport category name&#34;</span><span class="o">)</span>
 <span class="o">)</span>
-</code></pre></div><h3 id="next">Next</h3>
-<p><a href="../code/attributes/">Attributes&hellip;</a></p>
+</code></pre></div>
+<h3 id="next" >Next <a href="#next"></a></h3><p><a href="../code/attributes/">Attributes&hellip;</a></p>
 
     </div>
 
@@ -482,6 +499,11 @@ oneEnum      : String       manyEnum      : Set[String]
         
           
             <li><a href="../code/generic/">Generic APIs</a></li>
+          
+          
+        
+          
+            <li><a href="../code/dynamic/">Dynamic molecules</a></li>
           
           
         

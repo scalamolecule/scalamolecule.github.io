@@ -16,7 +16,7 @@
 Code examples are taken from the Seattle tutorial.
 Follow along in the code from which we will pick a few examples.
 Querying for attribute values The most basic query is to ask for entities with some attribute values:
-// Datalog [:find ?b ?c (distinct ?d) :where [?a :Community/name ?b] [?a :Community/url ?c] [?a :Community/category ?</description>
+// Datalog [:find ?b ?c (distinct ?d) :where [?a :Community/name ?b] [?a :Community/url ?c] [?</description>
     </item>
     
     <item>
@@ -25,10 +25,10 @@ Querying for attribute values The most basic query is to ask for entities with s
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://scalamolecule.org/intro/compare/sql/</guid>
-      <description>Molecule vs SQL SELECT * sql&amp;quot;select * from PERSON&amp;quot;.as[Person].list With Molecule we only need to fetch the attributes that we need:
+      <description>Molecule vs SQL  SELECT * sql&amp;quot;select * from PERSON&amp;quot;.as[Person].list With Molecule we only need to fetch the attributes that we need:
 Person.name.age.get Returned type is List[(String, Int)]
 SELECT sql&amp;quot;&amp;quot;&amp;quot; select AGE, concat(concat(concat(NAME,&#39; (&#39;),ID),&#39;)&#39;) from PERSON &amp;quot;&amp;quot;&amp;quot;.as[(Int,String)].list With Molecule we would concatenate name and id with the returned result set:
-Person.age.name.e.get map { case (age, name, id) =&amp;gt; (age, s&amp;#34;$name($id)&amp;#34; } WHERE sql&amp;quot;select * from PERSON where AGE &amp;gt;= 18 AND NAME = &#39;C.</description>
+Person.age.name.e.get map { case (age, name, id) =&amp;gt; (age, s&amp;#34;$name($id)&amp;#34; }  WHERE sql&amp;quot;select * from PERSON where AGE &amp;gt;= 18 AND NAME = &#39;C.</description>
     </item>
     
     <item>
@@ -39,8 +39,8 @@ Person.age.name.e.get map { case (age, name, id) =&amp;gt; (age, s&amp;#34;$name
       <guid>http://scalamolecule.org/intro/compare/slick/</guid>
       <description>Molecule vs Slick Using examples from Coming from SQL to Slick:
 Select all table values // Slick people.result In molecule we would declare each attribute we are interested in also to infer the exact return type
-// Molecule Person.name.age.get Select certain columns people.map(p =&amp;gt; (p.age, p.name ++ &amp;quot; (&amp;quot; ++ p.id.asColumnOf[String] ++ &amp;quot;)&amp;quot;)).result With Molecule we would concatenate name and id with the returned result set:
-Person.age.name.e.get map { case (age, name, id) =&amp;gt; (age, s&amp;#34;$name($id)&amp;#34; } filter / WHERE people.</description>
+// Molecule Person.name.age.get  Select certain columns people.map(p =&amp;gt; (p.age, p.name ++ &amp;quot; (&amp;quot; ++ p.id.asColumnOf[String] ++ &amp;quot;)&amp;quot;)).result With Molecule we would concatenate name and id with the returned result set:
+Person.age.name.e.get map { case (age, name, id) =&amp;gt; (age, s&amp;#34;$name($id)&amp;#34; }  filter / WHERE people.</description>
     </item>
     
     <item>

@@ -80,7 +80,7 @@
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="https://javadoc.io/doc/org.scalamolecule/molecule_2.13/latest/index.html" target="_blank" style="">Docs</a></li>
-                    <li><a href="../../changelog" style="">v0.24.0</a></li>
+                    <li><a href="../../changelog" style="">v0.25.0</a></li>
                     <li><a href="https://github.com/scalamolecule/molecule" target="_blank">
                         <img src="../../vendor/GitHub-Mark/PNG/GitHub-Mark-Light-32px.png"
                              style="margin-top:-4px;padding-left:15px;opacity:0.6;width:42px;">
@@ -97,9 +97,9 @@
 <div class="container-fluid" style="max-width:1170px">
 
     <div class="col-sm-10 " style="padding-left:8px;">
-        <h1 id="transaction-functions">Transaction functions</h1>
-<h3 id="atomic-processing-within-the-transaction">Atomic processing within the transaction</h3>
-<p>Transaction functions</p>
+        
+<h1 id="transaction-functions" >Transaction functions <a href="#transaction-functions"></a></h1>
+<h3 id="atomic-processing-within-the-transaction" >Atomic processing within the transaction <a href="#atomic-processing-within-the-transaction"></a></h3><p>Transaction functions</p>
 <ul>
 <li>run on the transactor inside of transactions</li>
 <li>can atomically analyze and transform database values</li>
@@ -108,8 +108,8 @@
 <li>must return transaction data (<code>Seq[Seq[Statement]]</code>)</li>
 </ul>
 <p>Since tx functions have access to the tx database value they are essential to guaranteeing atomicity in updates for instance. You can query the current db value within the transaction logic and thus be sure certain assertions hold before doing some operation.</p>
-<h3 id="calling-tx-functions">Calling tx functions</h3>
-<p>Molecule facilitates writing tx functions by annotating one or more objects that contain tx function methods:</p>
+
+<h3 id="calling-tx-functions" >Calling tx functions <a href="#calling-tx-functions"></a></h3><p>Molecule facilitates writing tx functions by annotating one or more objects that contain tx function methods:</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">import</span> <span class="nn">molecule.macros.TxFns</span>
 
 <span class="nd">@TxFns</span>
@@ -129,8 +129,8 @@
 <span class="k">object</span> <span class="nc">myTxFunctionsSomewhereElse</span> <span class="o">{...}</span>
 <span class="n">etc</span><span class="o">...</span>
 </code></pre></div><p>The macro annotation <code>@TxFns</code> creates an internal &ldquo;twin&rdquo; method at compile time for each Scala tx function that you define. The twin method basically adapts to the way Datomic expects tx functions and automatically gets saved into the Datomic database transparently without any work on your part.</p>
-<h4 id="enabling-the-macro-annotation-for-scala-212">Enabling the macro annotation for Scala 2.12</h4>
-<p>To use the <code>@TxFns</code> macro annotation with Scala 2.12, you&rsquo;ll need to include the Macro Paradise compiler plugin in your build:</p>
+
+<h4 id="enabling-the-macro-annotation-for-scala-212" >Enabling the macro annotation for Scala 2.12 <a href="#enabling-the-macro-annotation-for-scala-212"></a></h4><p>To use the <code>@TxFns</code> macro annotation with Scala 2.12, you&rsquo;ll need to include the Macro Paradise compiler plugin in your build:</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="n">libraryDependencies</span> <span class="o">++=</span> <span class="nc">Seq</span><span class="o">(</span>
   <span class="o">...,</span>
   <span class="n">compilerPlugin</span><span class="o">(</span><span class="s">&#34;org.scalamacros&#34;</span> <span class="o">%</span> <span class="s">&#34;paradise&#34;</span> <span class="o">%</span> <span class="s">&#34;2.1.1&#34;</span> <span class="n">cross</span> <span class="nc">CrossVersion</span><span class="o">.</span><span class="n">patch</span><span class="o">)</span>
@@ -140,25 +140,25 @@
 import of the scala paradise plugin. In version 2.13 they have been incorporated into the core
 language itself and importing the paradise plugin is no longer necessary in 2.13.</p>
 </blockquote>
-<h3 id="tx-functions-on-the-transactor-classpath">Tx functions on the transactor classpath</h3>
-<p>The tx functions also need to be visible to the transactor process meaning that the compiled tx function container must be on the classpath of the transactor. This will depend on the Datomic setup you are using:</p>
-<h4 id="local-dev--in-memory">Local dev / in-memory</h4>
-<p>No need to prepare anything since transaction functions defined within the project will be available on the classpath for the Transactor managed by the Peer.</p>
-<h4 id="starter-pro--pro">Starter pro / pro</h4>
-<p>Set Datomic classpath variable to where your tx functions are before starting the transactor</p>
+
+<h3 id="tx-functions-on-the-transactor-classpath" >Tx functions on the transactor classpath <a href="#tx-functions-on-the-transactor-classpath"></a></h3><p>The tx functions also need to be visible to the transactor process meaning that the compiled tx function container must be on the classpath of the transactor. This will depend on the Datomic setup you are using:</p>
+
+<h4 id="local-dev--in-memory" >Local dev / in-memory <a href="#local-dev--in-memory"></a></h4><p>No need to prepare anything since transaction functions defined within the project will be available on the classpath for the Transactor managed by the Peer.</p>
+
+<h4 id="starter-pro--pro" >Starter pro / pro <a href="#starter-pro--pro"></a></h4><p>Set Datomic classpath variable to where your tx functions are before starting the transactor</p>
 <pre><code>&gt; cd DATOMIC_HOME
 &gt; export DATOMIC_EXT_CLASSPATH=/Users/mg/molecule/molecule/coretests/target/scala-2.12/test-classes/
 &gt; bin/transactor ...
-</code></pre><h4 id="free">Free</h4>
-<p>The Free version can&rsquo;t set the classpath variable so we need to provide the tx functions manually by making a jar of our classes, move it to the transactor bin folder and start the transactor:</p>
+</code></pre>
+<h4 id="free" >Free <a href="#free"></a></h4><p>The Free version can&rsquo;t set the classpath variable so we need to provide the tx functions manually by making a jar of our classes, move it to the transactor bin folder and start the transactor:</p>
 <pre><code>&gt; cd ~/molecule/molecule/coretests/target/scala-2.12/test-classes  [path to your compiled classes] 
 &gt; jar cvf scala-fns.jar .
 &gt; mv ~/molecule/molecule/coretests/target/scala-2.12/test-classes/scala-fns.jar DATOMIC_HOME/bin/
 &gt; bin/transactor ...
-</code></pre><h3 id="tx-function-example">Tx function example</h3>
-<p>A typical example of needing access to the tx database value before doing an operation on it could be to transfer money from one account to another.</p>
-<h3 id="enforcing-atomic-constraints">Enforcing atomic constraints</h3>
-<p>We want to be sure that there is enough available funds before we do the transfer. If we had done the lookup of the current balance outside a transaction we could risk that the balance was updated inbetween our lookup and doing the transfer. With a tx function we can avoid this by having access to the tx database value <em>within the transaction itself</em>. This will give us the necessary atomicity of the whole transfer. The transfer will only happen if there are enough funds available.</p>
+</code></pre>
+<h3 id="tx-function-example" >Tx function example <a href="#tx-function-example"></a></h3><p>A typical example of needing access to the tx database value before doing an operation on it could be to transfer money from one account to another.</p>
+
+<h3 id="enforcing-atomic-constraints" >Enforcing atomic constraints <a href="#enforcing-atomic-constraints"></a></h3><p>We want to be sure that there is enough available funds before we do the transfer. If we had done the lookup of the current balance outside a transaction we could risk that the balance was updated inbetween our lookup and doing the transfer. With a tx function we can avoid this by having access to the tx database value <em>within the transaction itself</em>. This will give us the necessary atomicity of the whole transfer. The transfer will only happen if there are enough funds available.</p>
 <p>Let&rsquo;s look at a simple tx function implementation:</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nd">@TxFns</span>
 <span class="k">object</span> <span class="nc">myTxFunctions</span> <span class="o">{</span>
@@ -187,10 +187,10 @@ language itself and importing the paradise plugin is no longer necessary in 2.13
 
 <span class="c1">// .. equivalent to the transaction statements returned by `getUpdateStmts` 
 </span><span class="c1"></span><span class="nc">Account</span><span class="o">(</span><span class="n">from</span><span class="o">).</span><span class="n">balance</span><span class="o">(</span><span class="n">newFromBalance</span><span class="o">).</span><span class="n">getUpdateStmts</span>
-</code></pre></div><h3 id="tx-functions-have-to-be-pure">Tx functions have to be pure</h3>
-<p>Tx functions can&rsquo;t modify the database within the body of the tx method. You couldn&rsquo;t for instance do an update within the method body. Any operations on the database have to be encoded in the returned transaction statements.</p>
-<h3 id="invoking-tx-functions">Invoking tx functions</h3>
-<p>We call the transaction function inside a <code>transactFn</code> method:</p>
+</code></pre></div>
+<h3 id="tx-functions-have-to-be-pure" >Tx functions have to be pure <a href="#tx-functions-have-to-be-pure"></a></h3><p>Tx functions can&rsquo;t modify the database within the body of the tx method. You couldn&rsquo;t for instance do an update within the method body. Any operations on the database have to be encoded in the returned transaction statements.</p>
+
+<h3 id="invoking-tx-functions" >Invoking tx functions <a href="#invoking-tx-functions"></a></h3><p>We call the transaction function inside a <code>transactFn</code> method:</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="n">transactFn</span><span class="o">(</span><span class="n">transfer</span><span class="o">(</span><span class="n">fromAccount</span><span class="o">,</span> <span class="n">toAccount</span><span class="o">,</span> <span class="n">okAmount</span><span class="o">))</span>
 </code></pre></div><p><code>transactFn</code> is a macro that needs the tx function invocation itself as its argument in order to be able to analyze the tx function at compile time.</p>
 <p>So our complete example could look like this:</p>
@@ -204,8 +204,8 @@ language itself and importing the paradise plugin is no longer necessary in 2.13
 <span class="c1">// Balances after transfer
 </span><span class="c1"></span><span class="nc">Account</span><span class="o">(</span><span class="n">fromAccount</span><span class="o">).</span><span class="n">balance</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">head</span> <span class="o">===</span> <span class="mi">80</span>
 <span class="nc">Account</span><span class="o">(</span><span class="n">toAccount</span><span class="o">).</span><span class="n">balance</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">head</span> <span class="o">===</span> <span class="mi">720</span>
-</code></pre></div><h3 id="error-handling---ensuring-atomicity">Error handling - ensuring atomicity</h3>
-<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="c1">// Trying to transfer a too big amount will throw an exception 
+</code></pre></div>
+<h3 id="error-handling---ensuring-atomicity" >Error handling - ensuring atomicity <a href="#error-handling---ensuring-atomicity"></a></h3><div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="c1">// Trying to transfer a too big amount will throw an exception 
 </span><span class="c1"></span><span class="o">(</span><span class="n">transactFn</span><span class="o">(</span><span class="n">transfer</span><span class="o">(</span><span class="n">fromAccount</span><span class="o">,</span> <span class="n">toAccount</span><span class="o">,</span> <span class="mi">500</span><span class="o">))</span> <span class="n">must</span> <span class="n">throwA</span><span class="o">[</span><span class="kt">TxFnException</span><span class="o">])</span>
   <span class="o">.</span><span class="n">message</span> <span class="o">===</span> <span class="s">s&#34;Got the exception molecule.macros.exception.TxFnException: &#34;</span> <span class="o">+</span>
   <span class="s">s&#34;Can&#39;t transfer 500 from account </span><span class="si">$fromAccount</span><span class="s"> having a balance of only 100.&#34;</span>
@@ -213,8 +213,8 @@ language itself and importing the paradise plugin is no longer necessary in 2.13
 <span class="c1">// No data has been changed
 </span><span class="c1"></span><span class="nc">Account</span><span class="o">(</span><span class="n">fromAccount</span><span class="o">).</span><span class="n">balance</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">head</span> <span class="o">===</span> <span class="mi">100</span>
 <span class="nc">Account</span><span class="o">(</span><span class="n">toAccount</span><span class="o">).</span><span class="n">balance</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">head</span> <span class="o">===</span> <span class="mi">700</span>
-</code></pre></div><h3 id="async-invocations">Async invocations</h3>
-<p>Tx functions can also be invoked asynchronously:</p>
+</code></pre></div>
+<h3 id="async-invocations" >Async invocations <a href="#async-invocations"></a></h3><p>Tx functions can also be invoked asynchronously:</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Await</span><span class="o">.</span><span class="n">result</span><span class="o">(</span>
   <span class="n">transactFnAsync</span><span class="o">(</span><span class="n">transfer</span><span class="o">(</span><span class="n">fromAccount</span><span class="o">,</span> <span class="n">toAccount</span><span class="o">,</span> <span class="mi">20</span><span class="o">))</span> <span class="n">map</span> <span class="o">{</span> <span class="n">txReport</span> <span class="k">=&gt;</span>
     <span class="c1">// (for brevity we check the current balances synchronously)
@@ -224,8 +224,8 @@ language itself and importing the paradise plugin is no longer necessary in 2.13
   <span class="mf">2.</span><span class="n">seconds</span>
 <span class="o">)</span>
 </code></pre></div><p>For brevity examples show synchronous invocations but could as well have used async invocations.</p>
-<h3 id="composing-tx-functions">Composing tx functions</h3>
-<p>A tx function can be called from another tx function. We can thus compose more complex tx functions from &ldquo;sub tx functions&rdquo;. We could for instance de-compose our previous transfer tx function into two sub tx functions <code>withdraw</code> and <code>deposit</code> and then call those from a <code>transferComposed</code> tx function:</p>
+
+<h3 id="composing-tx-functions" >Composing tx functions <a href="#composing-tx-functions"></a></h3><p>A tx function can be called from another tx function. We can thus compose more complex tx functions from &ldquo;sub tx functions&rdquo;. We could for instance de-compose our previous transfer tx function into two sub tx functions <code>withdraw</code> and <code>deposit</code> and then call those from a <code>transferComposed</code> tx function:</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="c1">// &#34;Sub&#34; tx fn - can be used on its own or in other tx functions
 </span><span class="c1"></span><span class="k">def</span> <span class="n">withdraw</span><span class="o">(</span><span class="n">from</span><span class="k">:</span> <span class="kt">Long</span><span class="o">,</span> <span class="n">amount</span><span class="k">:</span> <span class="kt">Int</span><span class="o">)(</span><span class="k">implicit</span> <span class="n">conn</span><span class="k">:</span> <span class="kt">Conn</span><span class="o">)</span><span class="k">:</span> <span class="kt">Seq</span><span class="o">[</span><span class="kt">Seq</span><span class="o">[</span><span class="kt">Statement</span><span class="o">]]</span> <span class="k">=</span> <span class="o">{</span>
   <span class="k">val</span> <span class="n">curFromBalance</span> <span class="k">=</span> <span class="nc">Account</span><span class="o">(</span><span class="n">from</span><span class="o">).</span><span class="n">balance</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">headOption</span><span class="o">.</span><span class="n">getOrElse</span><span class="o">(</span><span class="mi">0</span><span class="o">)</span>
@@ -250,8 +250,8 @@ language itself and importing the paradise plugin is no longer necessary in 2.13
 </span><span class="c1"></span>  <span class="c1">// If they were called independently outside a tx function, atomicity wouldn&#39;t be guaranteed.
 </span><span class="c1"></span>  <span class="n">withdraw</span><span class="o">(</span><span class="n">from</span><span class="o">,</span> <span class="n">amount</span><span class="o">)</span> <span class="o">++</span> <span class="n">deposit</span><span class="o">(</span><span class="n">to</span><span class="o">,</span> <span class="n">amount</span><span class="o">)</span>
 <span class="o">}</span>
-</code></pre></div><h3 id="adding-tx-meta-data-to-tx-function-invocations">Adding tx meta data to tx function invocations</h3>
-<p>Tx meta data can be added to a tx function invocation by adding one or more tx meta data molecules with applied tx meta data to the <code>transactFn</code>/<code>transactFnAsync</code> method. Say we want to add meta information about &ldquo;who did the transfer&rdquo; then we can add it to the transaction entity like this:</p>
+</code></pre></div>
+<h3 id="adding-tx-meta-data-to-tx-function-invocations" >Adding tx meta data to tx function invocations <a href="#adding-tx-meta-data-to-tx-function-invocations"></a></h3><p>Tx meta data can be added to a tx function invocation by adding one or more tx meta data molecules with applied tx meta data to the <code>transactFn</code>/<code>transactFnAsync</code> method. Say we want to add meta information about &ldquo;who did the transfer&rdquo; then we can add it to the transaction entity like this:</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="c1">// Add tx meta data that John did the transfer
 </span><span class="c1"></span><span class="n">transactFn</span><span class="o">(</span><span class="n">transfer</span><span class="o">(</span><span class="n">fromAccount</span><span class="o">,</span> <span class="n">toAccount</span><span class="o">,</span> <span class="mi">20</span><span class="o">),</span> <span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">(</span><span class="s">&#34;John&#34;</span><span class="o">))</span>
 
@@ -273,8 +273,8 @@ language itself and importing the paradise plugin is no longer necessary in 2.13
 <span class="nc">Account</span><span class="o">(</span><span class="n">toAccount</span><span class="o">).</span><span class="n">balance</span>
   <span class="o">.</span><span class="nc">Tx</span><span class="o">(</span><span class="nc">Person</span><span class="o">.</span><span class="n">name_</span><span class="o">(</span><span class="s">&#34;John&#34;</span><span class="o">))</span>
   <span class="o">.</span><span class="nc">Tx</span><span class="o">(</span><span class="nc">UseCase</span><span class="o">.</span><span class="n">name_</span><span class="o">(</span><span class="s">&#34;Scheduled transfer&#34;</span><span class="o">)).</span><span class="n">get</span><span class="o">.</span><span class="n">head</span> <span class="o">===</span> <span class="mi">720</span>
-</code></pre></div><h3 id="inspecting-tx-function-invocations">Inspecting tx function invocations</h3>
-<p>If you want to see the <code>Statement</code>s produced by a tx function you can invoke it within <code>inspectTransactFn</code> without affecting the live database:</p>
+</code></pre></div>
+<h3 id="inspecting-tx-function-invocations" >Inspecting tx function invocations <a href="#inspecting-tx-function-invocations"></a></h3><p>If you want to see the <code>Statement</code>s produced by a tx function you can invoke it within <code>inspectTransactFn</code> without affecting the live database:</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="c1">// Print inspect info for tx function invocation
 </span><span class="c1"></span><span class="n">inspectTransactFn</span><span class="o">(</span><span class="n">transfer</span><span class="o">(</span><span class="n">fromAccount</span><span class="o">,</span> <span class="n">toAccount</span><span class="o">,</span> <span class="mi">20</span><span class="o">))</span>
 
@@ -308,8 +308,8 @@ language itself and importing the paradise plugin is no longer necessary in 2.13
 </ul>
 <p>Updating the from-account balance from 100 to 80 for instance creates two Datoms, one retracting the old value 100 and one asserting the new value 80.</p>
 <p>(The numbers on the left are simply index numbers and not part of the transactional data)</p>
-<h3 id="next">Next</h3>
-<p><a href="../../code/time">Time&hellip;</a></p>
+
+<h3 id="next" >Next <a href="#next"></a></h3><p><a href="../../code/time">Time&hellip;</a></p>
 
     </div>
 
@@ -365,6 +365,11 @@ language itself and importing the paradise plugin is no longer necessary in 2.13
         
           
             <li><a href="../../code/generic/">Generic APIs</a></li>
+          
+          
+        
+          
+            <li><a href="../../code/dynamic/">Dynamic molecules</a></li>
           
           
         

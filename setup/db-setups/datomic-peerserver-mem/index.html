@@ -80,7 +80,7 @@
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="https://javadoc.io/doc/org.scalamolecule/molecule_2.13/latest/index.html" target="_blank" style="">Docs</a></li>
-                    <li><a href="../../../changelog" style="">v0.24.0</a></li>
+                    <li><a href="../../../changelog" style="">v0.25.0</a></li>
                     <li><a href="https://github.com/scalamolecule/molecule" target="_blank">
                         <img src="../../../vendor/GitHub-Mark/PNG/GitHub-Mark-Light-32px.png"
                              style="margin-top:-4px;padding-left:15px;opacity:0.6;width:42px;">
@@ -97,8 +97,8 @@
 <div class="container-fluid" style="max-width:1170px">
 
     <div class="col-sm-10 " style="padding-left:8px;">
-        <h1 id="datomic-peer-server-in-mem">Datomic Peer Server, in-mem</h1>
-<p>Minimal project setup to test using Molecule with a <a href="https://docs.datomic.com/on-prem/peer-server.html">Datomic Peer Server</a> in-memory database (protocol: mem).</p>
+        
+<h1 id="datomic-peer-server-in-mem" >Datomic Peer Server, in-mem <a href="#datomic-peer-server-in-mem"></a></h1><p>Minimal project setup to test using Molecule with a <a href="https://docs.datomic.com/on-prem/peer-server.html">Datomic Peer Server</a> in-memory database (protocol: mem).</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">import</span> <span class="nn">sbt.Keys._</span>
 
 <span class="k">lazy</span> <span class="k">val</span> <span class="n">demo</span> <span class="k">=</span> <span class="n">project</span><span class="o">.</span><span class="n">in</span><span class="o">(</span><span class="n">file</span><span class="o">(</span><span class="s">&#34;.&#34;</span><span class="o">))</span>
@@ -145,8 +145,8 @@
     <span class="c1">// Let IDE detect created jars in unmanaged lib directory
 </span><span class="c1"></span>    <span class="n">exportJars</span> <span class="k">:</span><span class="o">=</span> <span class="kc">true</span>
   <span class="o">)</span>
-</code></pre></div><h3 id="1-start-peer-server">1. Start Peer Server</h3>
-<p>First, you need to start the Peer Server with an automatically created in-memory database:</p>
+</code></pre></div>
+<h3 id="1-start-peer-server" >1. Start Peer Server <a href="#1-start-peer-server"></a></h3><p>First, you need to start the Peer Server with an automatically created in-memory database:</p>
 <pre><code>cd &lt;your-datomic-distribution (starter/pro)&gt;
 bin/run -m datomic.peer-server -h localhost -p 8998 -a k,s -d sampledb,datomic:mem://sampledb
 </code></pre>
@@ -162,8 +162,8 @@ bin/run -m datomic.peer-server -h localhost -p 8998 -a k,s -d sampledb,datomic:m
 <p>There can be no space after comma in the pairs of options!</p>
 <p>For simplicity, we just chose to write &ldquo;k,s&rdquo; for access-key,secret. The important thing is that you need to supply the same pair when you connect to the Peer Server in your code (as with host/port names).</p>
 <p>If successful, it will show something like &ldquo;Serving datomic:mem://sampledb as sampledb&rdquo;.</p>
-<h3 id="2-connect-to-peer-server">2. Connect to Peer Server</h3>
-<p>Presuming the transactor is running and the Peer Server is serving <code>sampledb</code> we can connect to it:</p>
+
+<h3 id="2-connect-to-peer-server" >2. Connect to Peer Server <a href="#2-connect-to-peer-server"></a></h3><p>Presuming the transactor is running and the Peer Server is serving <code>sampledb</code> we can connect to it:</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">implicit</span> <span class="k">val</span> <span class="n">conn</span> <span class="k">=</span> 
   <span class="nc">Datomic_PeerServer</span><span class="o">(</span><span class="s">&#34;k&#34;</span><span class="o">,</span> <span class="s">&#34;s&#34;</span><span class="o">,</span> <span class="s">&#34;localhost:8998&#34;</span><span class="o">)</span>
    <span class="o">.</span><span class="n">connect</span><span class="o">(</span><span class="s">&#34;sampledb&#34;</span><span class="o">)</span>
@@ -172,8 +172,8 @@ bin/run -m datomic.peer-server -h localhost -p 8998 -a k,s -d sampledb,datomic:m
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">implicit</span> <span class="k">val</span> <span class="n">conn</span> <span class="k">=</span> 
   <span class="nc">Datomic_PeerServer</span><span class="o">(</span><span class="s">&#34;k&#34;</span><span class="o">,</span> <span class="s">&#34;s&#34;</span><span class="o">,</span> <span class="s">&#34;localhost:8998&#34;</span><span class="o">)</span>
     <span class="o">.</span><span class="n">transactSchema</span><span class="o">(</span><span class="nc">SampleSchema</span><span class="o">,</span> <span class="s">&#34;sampledb&#34;</span><span class="o">)</span>
-</code></pre></div><h3 id="3-make-molecules">3. Make molecules</h3>
-<p>From here on, we can start transacting and querying <code>sampledb</code> with molecules:</p>
+</code></pre></div>
+<h3 id="3-make-molecules" >3. Make molecules <a href="#3-make-molecules"></a></h3><p>From here on, we can start transacting and querying <code>sampledb</code> with molecules:</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="c1">// Transact
 </span><span class="c1"></span><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">(</span><span class="s">&#34;John&#34;</span><span class="o">).</span><span class="n">age</span><span class="o">(</span><span class="mi">24</span><span class="o">).</span><span class="n">save</span><span class="o">.</span><span class="n">eid</span>
 

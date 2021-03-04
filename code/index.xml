@@ -38,7 +38,7 @@ object PersonDataModel { trait Person { val name = oneString val pet = one[Anima
       <description>Transactions Molecule has 4 basic transaction operations:
  save insert update retract  Save In Molecule we can populate a molecule with data and save it:
 Person.name(&amp;#34;John&amp;#34;).likes(&amp;#34;pizza&amp;#34;).age(24).save This will assert 3 facts in Datomic that all share the id of the new entity id johnId that is automatically created by Datomic:
-johnId :Person/name &amp;quot;John&amp;quot; johnId :Person/likes &amp;quot;pizza&amp;quot; johnId :Person/age 24 Type-safety Type-safety is guaranteed since each attribute only accepts values of its defined type.</description>
+johnId :Person/name &amp;quot;John&amp;quot; johnId :Person/likes &amp;quot;pizza&amp;quot; johnId :Person/age 24  Type-safety Type-safety is guaranteed since each attribute only accepts values of its defined type.</description>
     </item>
     
     <item>
@@ -47,7 +47,7 @@ johnId :Person/name &amp;quot;John&amp;quot; johnId :Person/likes &amp;quot;pizz
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://scalamolecule.org/code/transaction-functions/</guid>
-      <description>Transaction functions Atomic processing within the transaction Transaction functions
+      <description>Transaction functions  Atomic processing within the transaction Transaction functions
  run on the transactor inside of transactions can atomically analyze and transform database values can perform arbitrary logic must have no side effect must return transaction data (Seq[Seq[Statement]])  Since tx functions have access to the tx database value they are essential to guaranteeing atomicity in updates for instance. You can query the current db value within the transaction logic and thus be sure certain assertions hold before doing some operation.</description>
     </item>
     
@@ -70,6 +70,17 @@ The 5 time getters offer us valuable insight into the database from various pers
       <guid>http://scalamolecule.org/code/generic/</guid>
       <description>Generic APIs Here, we&amp;rsquo;ll walk through how Molecule provides access to Datomic&amp;rsquo;s various generic interfaces and apis.
 Entity API As we saw in building blocks, an entity can have attributes from multiple namespaces   Entity id Attribue Value     johnId :Person/name &amp;ldquo;John&amp;rdquo;   johnId :Person/likes &amp;ldquo;pizza&amp;rdquo;   johnId :Person/age 24   johnId :Site/cat &amp;ldquo;customer&amp;rdquo;    At runtime we can explore what attributes an entity has by calling touch directly on a Long entity id:</description>
+    </item>
+    
+    <item>
+      <title>Dynamic molecules</title>
+      <link>http://scalamolecule.org/code/dynamic/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://scalamolecule.org/code/dynamic/</guid>
+      <description>Dynamic molecules For molecules expecting to return a single row of data, we can add a code body that will have access to the data of that row through a self reference.
+In the following case we access a Person object through the self reference p to build some logic that is relevant for this particular set of data:
+// Retrieve typed and named data and add functionality directly val person = m(Person.</description>
     </item>
     
   </channel>

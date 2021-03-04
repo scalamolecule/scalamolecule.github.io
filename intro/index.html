@@ -82,7 +82,7 @@
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="https://javadoc.io/doc/org.scalamolecule/molecule_2.13/latest/index.html" target="_blank" style="">Docs</a></li>
-                    <li><a href="../changelog" style="">v0.24.0</a></li>
+                    <li><a href="../changelog" style="">v0.25.0</a></li>
                     <li><a href="https://github.com/scalamolecule/molecule" target="_blank">
                         <img src="../vendor/GitHub-Mark/PNG/GitHub-Mark-Light-32px.png"
                              style="margin-top:-4px;padding-left:15px;opacity:0.6;width:42px;">
@@ -99,12 +99,12 @@
 <div class="container-fluid" style="max-width:1170px">
 
     <div class="col-sm-10" style="padding-left:8px;">
-        <h1 id="imglogomolecule-logo-m-75apng-molecule"><img src="../img/logo/molecule-logo-m-75a.png" alt=""> Molecule</h1>
-<h2 id="what-is-it">What is it?</h2>
-<p>Molecule is a Scala eco-system to define your domain Data Model and use that as your query language.</p>
+        
+<h1 id="imglogomolecule-logo-m-75apng-molecule" ><img src="../img/logo/molecule-logo-m-75a.png" alt=""> Molecule <a href="#imglogomolecule-logo-m-75apng-molecule"></a></h1>
+<h2 id="what-is-it" class="safari_anchor_hack">What is it? <a href="#what-is-it"></a></h2><p>Molecule is a Scala eco-system to define your domain Data Model and use that as your query language.</p>
 <p>Molecule uses the powerful <a href="http://datomic.com">Datomic</a> database.</p>
-<h2 id="why-use-it">Why use it?</h2>
-<ul>
+
+<h2 id="why-use-it" class="safari_anchor_hack">Why use it? <a href="#why-use-it"></a></h2><ul>
 <li>Express queries more intuitively than ever possible - since it&rsquo;s <em>your</em> language.</li>
 <li>Enjoy having the compiler enforce that your Data Model and data stay in sync.</li>
 <li>Dynamically compose the exact data structures/molecules that your business logic needs.</li>
@@ -113,8 +113,8 @@
 <li>Let go of &ldquo;query construction&rdquo; and a separate &ldquo;query language&rdquo;.</li>
 <li>Save time, increase clarity and have more fun!</li>
 </ul>
-<h2 id="how-does-it-work">How does it work?</h2>
-<p>Scala macros transform a model of your domain data into query and transaction tokens that can be run directly against a server-side database to save and retrieve typed data:</p>
+
+<h2 id="how-does-it-work" class="safari_anchor_hack">How does it work? <a href="#how-does-it-work"></a></h2><p>Scala macros transform a model of your domain data into query and transaction tokens that can be run directly against a server-side database to save and retrieve typed data:</p>
 <p><em>Domain Data Model</em></p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">trait</span> <span class="nc">Person</span> <span class="o">{</span>
   <span class="k">val</span> <span class="n">name</span>    <span class="k">=</span> <span class="n">oneString</span>
@@ -134,15 +134,15 @@
   <span class="o">(</span><span class="s">&#34;Lisa&#34;</span><span class="o">,</span> <span class="mi">20</span><span class="o">,</span> <span class="s">&#34;Broadway&#34;</span><span class="o">),</span>
   <span class="o">(</span><span class="s">&#34;John&#34;</span><span class="o">,</span> <span class="mi">24</span><span class="o">,</span> <span class="s">&#34;5th Avenue&#34;</span><span class="o">)</span>
 <span class="o">)</span>
-</code></pre></div><h2 id="is-there-a-future-here">Is there a future here?</h2>
-<p>Molecule is just a thin DataModel-to-query Scala translation layer on top of the heavy-weight <a href="https://www.datomic.com">Datomic</a> database made by industry leaders like Rich Hickey, Stuart Halloway and more from <a href="https://www.cognitect.com/">Cognitect</a>, the people behind the Clojure Language.</p>
+</code></pre></div>
+<h2 id="is-there-a-future-here" class="safari_anchor_hack">Is there a future here? <a href="#is-there-a-future-here"></a></h2><p>Molecule is just a thin DataModel-to-query Scala translation layer on top of the heavy-weight <a href="https://www.datomic.com">Datomic</a> database made by industry leaders like Rich Hickey, Stuart Halloway and more from <a href="https://www.cognitect.com/">Cognitect</a>, the people behind the Clojure Language.</p>
 <p>Datomic serves huge complex systems like <a href="https://www.cognitect.com/walmart-case-study.html">Walmart</a>, <a href="https://www.cognitect.com/nubank-case-study.html">Nubank</a> in Brasil and <a href="https://www.cognitect.com/clients.html">many more industries</a>. If you want expressive power over a complex domain, Datomic and Molecule will serve you well.</p>
-<h2 id="can-i-try-it-out-quickly">Can I try it out quickly?</h2>
-<p>Yes:</p>
+
+<h2 id="can-i-try-it-out-quickly" class="safari_anchor_hack">Can I try it out quickly? <a href="#can-i-try-it-out-quickly"></a></h2><p>Yes:</p>
 <pre><code>git clone https://github.com/scalamolecule/molecule-demo.git
 </code></pre><p>Open the <a href="https://github.com/scalamolecule/molecule-demo">demo project</a> in your IDE and run molecule queries with a ready-to-run in-memory database, no configuration. Make your own molecules and test straight away, or add new attributes to use. Or look at other <a href="../setup/db-setups">database setups</a>.</p>
-<h3 id="next">Next</h3>
-<p><a href="../intro/philosophy">Philosophy&hellip;</a></p>
+
+<h3 id="next" >Next <a href="#next"></a></h3><p><a href="../intro/philosophy">Philosophy&hellip;</a></p>
 
     </div>
 

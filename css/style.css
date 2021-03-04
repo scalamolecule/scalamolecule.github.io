@@ -50,8 +50,8 @@ body {
   font-size: 18px;
   font-weight: 300;
   color: #444;
-  xposition: relative;
 }
+
 .wrapper {
     min-height: calc(100vh - 140px - 70px - 60px);
 }
@@ -59,8 +59,20 @@ body {
 html, body {
     /* anchor-linking not behind header bar */
     scroll-padding-top: 100px;
+    ##overscroll-behavior: none;
 }
 
+
+XX:target::before
+{
+   content: "";
+   display: block;
+   height: 65px; //Height of header
+   margin-top: -65px;
+
+
+
+}
 
 h1, h2, h3, .h1, .h2, .h3 {
   font-weight: 100;
@@ -69,6 +81,19 @@ h1, h2, h3, .h1, .h2, .h3 {
 a {
     color: #00A0D6;
 }
+
+        /*.safari_anchor_hack {*/
+@media not all and (min-resolution:.001dpcm) {
+    @media {
+        .safari_anchor_hack {
+            Xbackground-color: #f7f7f7;
+            padding-top: 70px;
+            XXscroll-padding-top: 100px;
+            XXscroll-margin-top: 100px;
+        }
+    }
+}
+
 a:hover {
     color: #00A0D6;
 }

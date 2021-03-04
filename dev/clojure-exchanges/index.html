@@ -80,7 +80,7 @@
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="https://javadoc.io/doc/org.scalamolecule/molecule_2.13/latest/index.html" target="_blank" style="">Docs</a></li>
-                    <li><a href="../../changelog" style="">v0.24.0</a></li>
+                    <li><a href="../../changelog" style="">v0.25.0</a></li>
                     <li><a href="https://github.com/scalamolecule/molecule" target="_blank">
                         <img src="../../vendor/GitHub-Mark/PNG/GitHub-Mark-Light-32px.png"
                              style="margin-top:-4px;padding-left:15px;opacity:0.6;width:42px;">
@@ -97,10 +97,10 @@
 <div class="container-fluid" style="max-width:1170px">
 
     <div class="col-sm-10 " style="padding-left:8px;">
-        <h1 id="clojure-schemas">Clojure Schemas</h1>
-<p>To ease exchanging Datomic schemas with the Clojure world where Namespaces start with a lowercase letter by convention, Molecule also creates two convenience Schema &ldquo;converters&rdquo; that transact aliased attribute names where the first letter is either raised or lowered.</p>
-<h3 id="lowercase-to-uppercase">lowercase to Uppercase</h3>
-<p>If you for instance want to use Molecule with an externally defined Datomic database Schema or data sets with lowercase namespace names you can define the Data Model as usual in Molecule with uppercase Namespace names and then rea:</p>
+        
+<h1 id="clojure-schemas" >Clojure Schemas <a href="#clojure-schemas"></a></h1><p>To ease exchanging Datomic schemas with the Clojure world where Namespaces start with a lowercase letter by convention, Molecule also creates two convenience Schema &ldquo;converters&rdquo; that transact aliased attribute names where the first letter is either raised or lowered.</p>
+
+<h3 id="lowercase-to-uppercase" >lowercase to Uppercase <a href="#lowercase-to-uppercase"></a></h3><p>If you for instance want to use Molecule with an externally defined Datomic database Schema or data sets with lowercase namespace names you can define the Data Model as usual in Molecule with uppercase Namespace names and then rea:</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="c1">// Read lowercase schema
 </span><span class="c1"></span><span class="k">val</span> <span class="n">lowercaseExternalSchema</span> <span class="k">=</span> <span class="n">datomic</span><span class="o">.</span><span class="nc">Util</span><span class="o">.</span><span class="n">readAll</span><span class="o">(</span><span class="k">new</span> <span class="nc">FileReader</span><span class="o">(</span><span class="s">&#34;external-schema.dtm&#34;</span><span class="o">))</span>
 <span class="n">conn</span><span class="o">.</span><span class="n">transact</span><span class="o">(</span><span class="n">lowercaseExternalSchema</span><span class="o">)</span>
@@ -110,8 +110,8 @@
 
 <span class="c1">// Make molecules with uppercase Namespace names...
 </span></code></pre></div><p>When we test the mBrainz dataset for instance, we <a href="https://github.com/scalamolecule/molecule/blob/master/molecule-tests/src/test/scala/molecule/TestSpec.scala#L166-L170">convert from from lower to Upper</a>.</p>
-<h3 id="uppercase-to-lowercase">Uppercase to lowercase</h3>
-<p>Vice versa, you can &ldquo;export&rdquo; an Uppercase schema to lowercase by transacting <code>&lt;your-domain&gt;SchemaUpperToLower</code>:</p>
+
+<h3 id="uppercase-to-lowercase" >Uppercase to lowercase <a href="#uppercase-to-lowercase"></a></h3><p>Vice versa, you can &ldquo;export&rdquo; an Uppercase schema to lowercase by transacting <code>&lt;your-domain&gt;SchemaUpperToLower</code>:</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="n">conn</span><span class="o">.</span><span class="n">transact</span><span class="o">(</span><span class="nc">YourSchemaUpperToLower</span><span class="o">.</span><span class="n">namespaces</span><span class="o">)</span>
 </code></pre></div><p>You can then backup the database and let it be conveniently restored in a Clojure setting:</p>
 <pre><code>cd &lt;your-datomic-distribution&gt;
