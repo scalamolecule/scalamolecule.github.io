@@ -237,7 +237,7 @@ pass=&lt;your-password&gt;
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="n">moleculeMakeJars</span> <span class="k">:</span><span class="o">=</span> <span class="kc">false</span>
 </code></pre></div><p>Then the jars are not created and the generated source code available in the <code>src_managed</code> directory in <code>target</code>.</p>
 <h3 id="moleculeallindexed">moleculeAllIndexed</h3>
-<p>This is a Datomic-specific sbt settings key that tells wether schema attributes should all be indexed:</p>
+<p>This is a Datomic-specific sbt settings key that tells whether schema attributes should all be indexed:</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="n">moleculeAllIndexed</span> <span class="k">:</span><span class="o">=</span> <span class="kc">true</span> <span class="c1">// (default)
 </span></code></pre></div><p>If you set it to false, your settings in your Data Model determines which attributes are indexed.</p>
 <h2 id="complete-sbt-example">Complete sbt example</h2>
