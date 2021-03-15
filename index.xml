@@ -2,46 +2,46 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Molecule</title>
-    <link>http://scalamolecule.org/</link>
+    <link>http://www.scalamolecule.org/</link>
     <description>Recent content on Molecule</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="http://scalamolecule.org/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language><atom:link href="http://www.scalamolecule.org/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Datomic Peer free, mem</title>
-      <link>http://scalamolecule.org/setup/db-setups/datomic-peer-free-mem/</link>
+      <link>http://www.scalamolecule.org/setup/db-setups/datomic-peer-free-mem/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://scalamolecule.org/setup/db-setups/datomic-peer-free-mem/</guid>
+      <guid>http://www.scalamolecule.org/setup/db-setups/datomic-peer-free-mem/</guid>
       <description>Datomic Peer (free), in-mem Minimal project setup to test using Molecule with a free Datomic Peer in-memory database (protocol: mem).
 import sbt.Keys._ lazy val demo = project.in(file(&amp;#34;.&amp;#34;)) .aggregate(app) .settings(name := &amp;#34;molecule-datomic-peer-free-mem&amp;#34;) lazy val app = project.in(file(&amp;#34;app&amp;#34;)) .enablePlugins(MoleculePlugin) .settings( scalaVersion := &amp;#34;2.13.5&amp;#34;, resolvers ++= Seq( Resolver.sonatypeRepo(&amp;#34;releases&amp;#34;), &amp;#34;clojars&amp;#34; at &amp;#34;https://clojars.org/repo&amp;#34; ), libraryDependencies ++= Seq( &amp;#34;org.scalamolecule&amp;#34; %% &amp;#34;molecule&amp;#34; % &amp;#34;0.25.1&amp;#34;, &amp;#34;com.datomic&amp;#34; % &amp;#34;datomic-free&amp;#34; % &amp;#34;0.9.5697&amp;#34; ), // path to domain model directory  moleculeDataModelPaths := Seq(&amp;#34;app&amp;#34;), // Generate Molecule boilerplate code with `sbt clean compile -Dmolecule=true`  moleculePluginActive := sys.</description>
     </item>
     
     <item>
       <title>Datomic Peer free, free</title>
-      <link>http://scalamolecule.org/setup/db-setups/datomic-peer-free-free/</link>
+      <link>http://www.scalamolecule.org/setup/db-setups/datomic-peer-free-free/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://scalamolecule.org/setup/db-setups/datomic-peer-free-free/</guid>
+      <guid>http://www.scalamolecule.org/setup/db-setups/datomic-peer-free-free/</guid>
       <description>Datomic Peer (free), persisted Minimal project setup to persist data to disk with Molecule and a free Datomic Peer database (protocol: free).
 import sbt.Keys._ lazy val demo = project.in(file(&amp;#34;.&amp;#34;)) .aggregate(app) .settings(name := &amp;#34;molecule-datomic-peer-free-free&amp;#34;) lazy val app = project.in(file(&amp;#34;app&amp;#34;)) .enablePlugins(MoleculePlugin) .settings( scalaVersion := &amp;#34;2.13.5&amp;#34;, resolvers ++= Seq( Resolver.sonatypeRepo(&amp;#34;releases&amp;#34;), &amp;#34;clojars&amp;#34; at &amp;#34;https://clojars.org/repo&amp;#34;, ), libraryDependencies ++= Seq( &amp;#34;org.scalamolecule&amp;#34; %% &amp;#34;molecule&amp;#34; % &amp;#34;0.25.1&amp;#34;, &amp;#34;com.datomic&amp;#34; % &amp;#34;datomic-free&amp;#34; % &amp;#34;0.9.5697&amp;#34; ), // path to domain model directory  moleculeDataModelPaths := Seq(&amp;#34;app&amp;#34;), // Generate Molecule boilerplate code with `sbt clean compile -Dmolecule=true`  moleculePluginActive := sys.</description>
     </item>
     
     <item>
       <title>1. Data Model</title>
-      <link>http://scalamolecule.org/setup/data-model/</link>
+      <link>http://www.scalamolecule.org/setup/data-model/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://scalamolecule.org/setup/data-model/</guid>
+      <guid>http://www.scalamolecule.org/setup/data-model/</guid>
       <description>Data Model Your Data Model is defined in a plain Scala file that you can have anywhere in your project. Molecule interprets this file and creates Molecule boilerplate code based on your Data Model so that you can write molecule queries with your domain terms.
 For Molecule to recognize your Data Model, a simple Data Model definition DSL is imported. A Scala object with the name or your domain and &amp;ldquo;DataModel&amp;rdquo; added should contain your definitions:</description>
     </item>
     
     <item>
       <title>Attributes</title>
-      <link>http://scalamolecule.org/code/attributes/</link>
+      <link>http://www.scalamolecule.org/code/attributes/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://scalamolecule.org/code/attributes/</guid>
+      <guid>http://www.scalamolecule.org/code/attributes/</guid>
       <description>Attributes Molecules are built by chaining attributes together with the builder pattern.
 Molecule then transforms the constructed molecule to a query string at compile time. Molecules can be constructed explicitly with the m method. But generally the implicit call is used.
 We could for instance build a molecule representing the data structure of Persons with name, age and gender Attributes:
@@ -50,10 +50,10 @@ We could for instance build a molecule representing the data structure of Person
     
     <item>
       <title>Datomic</title>
-      <link>http://scalamolecule.org/intro/compare/datomic/</link>
+      <link>http://www.scalamolecule.org/intro/compare/datomic/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://scalamolecule.org/intro/compare/datomic/</guid>
+      <guid>http://www.scalamolecule.org/intro/compare/datomic/</guid>
       <description>Molecule vs Datomic/Datalog Let&amp;rsquo;s see how Molecule queries compare to Datalog queries used with the Datomic database.
 Code examples are taken from the Seattle tutorial.
 Follow along in the code from which we will pick a few examples.
@@ -63,20 +63,20 @@ Querying for attribute values The most basic query is to ask for entities with s
     
     <item>
       <title>Datomic Peer pro, mem</title>
-      <link>http://scalamolecule.org/setup/db-setups/datomic-peer-pro-mem/</link>
+      <link>http://www.scalamolecule.org/setup/db-setups/datomic-peer-pro-mem/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://scalamolecule.org/setup/db-setups/datomic-peer-pro-mem/</guid>
+      <guid>http://www.scalamolecule.org/setup/db-setups/datomic-peer-pro-mem/</guid>
       <description>Datomic Peer (pro), in-mem Minimal project setup to test using Molecule with a starter/pro Datomic Peer in-memory database (protocol: mem).
 import sbt.Keys._ lazy val demo = project.in(file(&amp;#34;.&amp;#34;)) .aggregate(app) .settings(name := &amp;#34;molecule-datomic-peer-pro-mem&amp;#34;) lazy val app = project.in(file(&amp;#34;app&amp;#34;)) .enablePlugins(MoleculePlugin) .settings( scalaVersion := &amp;#34;2.13.5&amp;#34;, resolvers ++= Seq( Resolver.sonatypeRepo(&amp;#34;releases&amp;#34;), &amp;#34;clojars&amp;#34; at &amp;#34;https://clojars.org/repo&amp;#34;, &amp;#34;my.datomic.com&amp;#34; at &amp;#34;https://my.datomic.com/repo&amp;#34; ), /* Downloading Datomic Starter/Pro requires authentication of your license: Create a ~/.sbt/.credentials file with the following content: realm=Datomic Maven Repo host=my.</description>
     </item>
     
     <item>
       <title>Inspect Queries</title>
-      <link>http://scalamolecule.org/dev/inspect-queries/</link>
+      <link>http://www.scalamolecule.org/dev/inspect-queries/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://scalamolecule.org/dev/inspect-queries/</guid>
+      <guid>http://www.scalamolecule.org/dev/inspect-queries/</guid>
       <description>Inspect queries All molecule query commands have a corresponding inspect command that will print inspection information to console.
  &amp;lt;molecule&amp;gt;.inspectGet &amp;lt;molecule&amp;gt;.inspectGetHistory &amp;lt;molecule&amp;gt;.inspectGetAsOf(...) &amp;lt;molecule&amp;gt;.inspectGetSince(...) &amp;lt;molecule&amp;gt;.inspectGetWith(...)  inspectGet Simply replace a get command on a molecule with inspectGet to print inspection data when running the code in a test for instance:
 // Molecule to be inspected Community.name.Neighborhood.District.region_(&amp;#34;ne&amp;#34; or &amp;#34;sw&amp;#34;).get(3) === List( &amp;#34;Beach Drive Blog&amp;#34;, &amp;#34;KOMO Communities - Green Lake&amp;#34;, &amp;#34;Delridge Produce Cooperative&amp;#34; ) // Inspect `get` Community.</description>
@@ -84,10 +84,10 @@ import sbt.Keys._ lazy val demo = project.in(file(&amp;#34;.&amp;#34;)) .aggrega
     
     <item>
       <title>Philosophy</title>
-      <link>http://scalamolecule.org/intro/philosophy/</link>
+      <link>http://www.scalamolecule.org/intro/philosophy/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://scalamolecule.org/intro/philosophy/</guid>
+      <guid>http://www.scalamolecule.org/intro/philosophy/</guid>
       <description>Molecules - your new domain data?  Business processes are fluent and need an equally flexible data counterpart: molecules.
  The problem Traditionally, domain classes are too often:
  Dumb crud-containers of domain data being populated and consumed back and forth. Rigid abstractions being bad fits for complex business processes. Bloated with more and more properties serving business processes scattered all over.  Abstraction often has its price.
@@ -96,30 +96,30 @@ A &amp;ldquo;Person&amp;rdquo; can be endlessly many things and doesn&amp;rsquo;
     
     <item>
       <title>Seattle tutorial</title>
-      <link>http://scalamolecule.org/community/seattle/</link>
+      <link>http://www.scalamolecule.org/community/seattle/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://scalamolecule.org/community/seattle/</guid>
+      <guid>http://www.scalamolecule.org/community/seattle/</guid>
       <description>Seattle tutorial - with molecules Credits: This tutorial is based on the original Datomic Seattle tutorial (there is also a new tutorial) and some text passages have been quoted as-is or been slightly modified to describe how Molecule works.
 Introduction After setting up the database and populating it with data we can start making queries. We make queries by building &amp;ldquo;molecules&amp;rdquo; which are chains of attributes put together with the builder pattern.</description>
     </item>
     
     <item>
       <title>Datomic Peer pro, dev</title>
-      <link>http://scalamolecule.org/setup/db-setups/datomic-peer-pro-dev/</link>
+      <link>http://www.scalamolecule.org/setup/db-setups/datomic-peer-pro-dev/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://scalamolecule.org/setup/db-setups/datomic-peer-pro-dev/</guid>
+      <guid>http://www.scalamolecule.org/setup/db-setups/datomic-peer-pro-dev/</guid>
       <description>Datomic Peer (pro), persisted Minimal project setup to persist data to disk with Molecule and a starter/pro Datomic Peer database (protocol: dev).
 import sbt.Keys._ lazy val demo = project.in(file(&amp;#34;.&amp;#34;)) .aggregate(app) .settings(name := &amp;#34;molecule-datomic-peer-pro-dev&amp;#34;) lazy val app = project.in(file(&amp;#34;app&amp;#34;)) .enablePlugins(MoleculePlugin) .settings( scalaVersion := &amp;#34;2.13.5&amp;#34;, resolvers ++= Seq( Resolver.sonatypeRepo(&amp;#34;releases&amp;#34;), &amp;#34;clojars&amp;#34; at &amp;#34;https://clojars.org/repo&amp;#34;, &amp;#34;my.datomic.com&amp;#34; at &amp;#34;https://my.datomic.com/repo&amp;#34; ), /* Downloading Datomic Starter/Pro requires authentication of your license: Create a ~/.sbt/.credentials file with the following content: realm=Datomic Maven Repo host=my.</description>
     </item>
     
     <item>
       <title>2. Sbt setup</title>
-      <link>http://scalamolecule.org/setup/sbt-setup/</link>
+      <link>http://www.scalamolecule.org/setup/sbt-setup/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://scalamolecule.org/setup/sbt-setup/</guid>
+      <guid>http://www.scalamolecule.org/setup/sbt-setup/</guid>
       <description>Sbt setup Once you have defined your Data Model, your sbt project needs to be set up to use Molecule.
 MoleculePlugin The sbt MoleculePlugin generates Molecule boilerplate code when you compile your project.
 Add the latest version of the plugin in project/buildinfo.sbt:
@@ -129,10 +129,10 @@ lazy val yourProject = project.in(file(&amp;#34;app&amp;#34;)) .enablePlugins(Mo
     
     <item>
       <title>Building blocks</title>
-      <link>http://scalamolecule.org/intro/building-blocks/</link>
+      <link>http://www.scalamolecule.org/intro/building-blocks/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://scalamolecule.org/intro/building-blocks/</guid>
+      <guid>http://www.scalamolecule.org/intro/building-blocks/</guid>
       <description>Molecule building blocks Here&amp;rsquo;s a quick overview of various building blocks in the Molecule eco-system.
 Molecule A molecule is a model of a data structure containing one or more attributes.
 Here we describe a data structure of name, age of persons and what street they live on:
@@ -142,20 +142,20 @@ Attribute An attribute is the core element of Molecule.</description>
     
     <item>
       <title>Datomic Peer Server, mem</title>
-      <link>http://scalamolecule.org/setup/db-setups/datomic-peerserver-mem/</link>
+      <link>http://www.scalamolecule.org/setup/db-setups/datomic-peerserver-mem/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://scalamolecule.org/setup/db-setups/datomic-peerserver-mem/</guid>
+      <guid>http://www.scalamolecule.org/setup/db-setups/datomic-peerserver-mem/</guid>
       <description>Datomic Peer Server, in-mem Minimal project setup to test using Molecule with a Datomic Peer Server in-memory database (protocol: mem).
 import sbt.Keys._ lazy val demo = project.in(file(&amp;#34;.&amp;#34;)) .aggregate(app) .settings(name := &amp;#34;molecule-datomic-peerserver-mem&amp;#34;) lazy val app = project.in(file(&amp;#34;app&amp;#34;)) .enablePlugins(MoleculePlugin) .settings( scalaVersion := &amp;#34;2.13.5&amp;#34;, resolvers ++= Seq( Resolver.sonatypeRepo(&amp;#34;releases&amp;#34;), &amp;#34;clojars&amp;#34; at &amp;#34;https://clojars.org/repo&amp;#34;, &amp;#34;my.datomic.com&amp;#34; at &amp;#34;https://my.datomic.com/repo&amp;#34; ), /* Downloading Datomic Starter/Pro requires authentication of your license: Create a ~/.sbt/.credentials file with the following content: realm=Datomic Maven Repo host=my.</description>
     </item>
     
     <item>
       <title>Inspect Transactions</title>
-      <link>http://scalamolecule.org/dev/inspect-transactions/</link>
+      <link>http://www.scalamolecule.org/dev/inspect-transactions/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://scalamolecule.org/dev/inspect-transactions/</guid>
+      <guid>http://www.scalamolecule.org/dev/inspect-transactions/</guid>
       <description>Inspect transactions Transactional operations can be inspected with the following methods:
  &amp;lt;molecule&amp;gt;.inspectSave &amp;lt;molecule&amp;gt;.inspectInsert(data...) &amp;lt;molecule&amp;gt;.inspectUpdate &amp;lt;entityId&amp;gt;.inspectRetract &amp;lt;entityId&amp;gt;.Tx(transactionMolecule).inspectRetract inspectRetract(entityIds, txMetaDataMolecules*)  Calling these inspect methods will print the produced transaction statements to console only and not perform any transaction on the database.
 inspectSave If we are about to save a molecule we can instead call inspectSave on the same molecule to see what transaction statements Molecule will send to Datomic.
@@ -164,10 +164,10 @@ inspectSave If we are about to save a molecule we can instead call inspectSave o
     
     <item>
       <title>SQL</title>
-      <link>http://scalamolecule.org/intro/compare/sql/</link>
+      <link>http://www.scalamolecule.org/intro/compare/sql/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://scalamolecule.org/intro/compare/sql/</guid>
+      <guid>http://www.scalamolecule.org/intro/compare/sql/</guid>
       <description>Molecule vs SQL SELECT * sql&amp;quot;select * from PERSON&amp;quot;.as[Person].list With Molecule we only need to fetch the attributes that we need:
 Person.name.age.get Returned type is List[(String, Int)]
 SELECT sql&amp;quot;&amp;quot;&amp;quot; select AGE, concat(concat(concat(NAME,&#39; (&#39;),ID),&#39;)&#39;) from PERSON &amp;quot;&amp;quot;&amp;quot;.as[(Int,String)].list With Molecule we would concatenate name and id with the returned result set:
@@ -176,20 +176,20 @@ Person.age.name.e.get map { case (age, name, id) =&amp;gt; (age, s&amp;#34;$name
     
     <item>
       <title>Datomic Peer Server, dev</title>
-      <link>http://scalamolecule.org/setup/db-setups/datomic-peerserver-dev/</link>
+      <link>http://www.scalamolecule.org/setup/db-setups/datomic-peerserver-dev/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://scalamolecule.org/setup/db-setups/datomic-peerserver-dev/</guid>
+      <guid>http://www.scalamolecule.org/setup/db-setups/datomic-peerserver-dev/</guid>
       <description>Datomic Peer Server, persisted Minimal project setup to persist data to disk with Molecule and a Datomic Peer Server database (protocol: dev).
 import sbt.Keys._ lazy val demo = project.in(file(&amp;#34;.&amp;#34;)) .aggregate(app) .settings(name := &amp;#34;molecule-datomic-peerserver-dev&amp;#34;) lazy val app = project.in(file(&amp;#34;app&amp;#34;)) .enablePlugins(MoleculePlugin) .settings( scalaVersion := &amp;#34;2.13.5&amp;#34;, resolvers ++= Seq( Resolver.sonatypeRepo(&amp;#34;releases&amp;#34;), &amp;#34;clojars&amp;#34; at &amp;#34;https://clojars.org/repo&amp;#34;, &amp;#34;my.datomic.com&amp;#34; at &amp;#34;https://my.datomic.com/repo&amp;#34; ), /* Downloading Datomic Starter/Pro requires authentication of your license: Create a ~/.sbt/.credentials file with the following content: realm=Datomic Maven Repo host=my.</description>
     </item>
     
     <item>
       <title>3. Db connection</title>
-      <link>http://scalamolecule.org/setup/db-connection/</link>
+      <link>http://www.scalamolecule.org/setup/db-connection/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://scalamolecule.org/setup/db-connection/</guid>
+      <guid>http://www.scalamolecule.org/setup/db-connection/</guid>
       <description>Database connection To use Molecule we need a few imports and a connection to a Datomic database.
 There are some smaller variations in how the different setups connect to the database. But the principles are the same, so let&amp;rsquo;s walk through those:
 API &amp;amp; DSL imports Import the Molecule api and the generated DSL for your Data Model
@@ -199,30 +199,30 @@ Peer The Datomic Peer runs in your application process.</description>
     
     <item>
       <title>Datomic dev-local/cloud</title>
-      <link>http://scalamolecule.org/setup/db-setups/datomic-devlocal/</link>
+      <link>http://www.scalamolecule.org/setup/db-setups/datomic-devlocal/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://scalamolecule.org/setup/db-setups/datomic-devlocal/</guid>
+      <guid>http://www.scalamolecule.org/setup/db-setups/datomic-devlocal/</guid>
       <description>Datomic dev-local/cloud Minimal project setup to test a Cloud setup locally without connecting to a server.
 import sbt.Keys._ lazy val demo = project.in(file(&amp;#34;.&amp;#34;)) .aggregate(app) .settings(name := &amp;#34;molecule-datomic-devlocal&amp;#34;) lazy val app = project.in(file(&amp;#34;app&amp;#34;)) .enablePlugins(MoleculePlugin) .settings( scalaVersion := &amp;#34;2.13.5&amp;#34;, resolvers ++= Seq( Resolver.sonatypeRepo(&amp;#34;releases&amp;#34;), &amp;#34;clojars&amp;#34; at &amp;#34;https://clojars.org/repo&amp;#34;, Resolver.mavenLocal ), libraryDependencies ++= Seq( &amp;#34;org.scalamolecule&amp;#34; %% &amp;#34;molecule&amp;#34; % &amp;#34;0.25.1&amp;#34;, &amp;#34;com.datomic&amp;#34; % &amp;#34;dev-local&amp;#34; % &amp;#34;0.9.232&amp;#34; ), // path to domain model directory  moleculeDataModelPaths := Seq(&amp;#34;app&amp;#34;), // Generate Molecule boilerplate code with `sbt clean compile -Dmolecule=true`  moleculePluginActive := sys.</description>
     </item>
     
     <item>
       <title>Optimizations</title>
-      <link>http://scalamolecule.org/dev/optimizations/</link>
+      <link>http://www.scalamolecule.org/dev/optimizations/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://scalamolecule.org/dev/optimizations/</guid>
+      <guid>http://www.scalamolecule.org/dev/optimizations/</guid>
       <description>Optimizations Save on compilation time If your code starts to have huge numbers of molecules, you can save time on compilation by importing a specialized Molecule api that sets a threshold for how many attributes are allowed in a molecule. This minimizes the amount of implicits waiting in vain to serve you and can reduce compilation time.
 So, if your longest molecule in a code file has 7 attributes, then you could for instance set the api import to allow for 7 attributes:</description>
     </item>
     
     <item>
       <title>Relationships</title>
-      <link>http://scalamolecule.org/code/relationships/</link>
+      <link>http://www.scalamolecule.org/code/relationships/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://scalamolecule.org/code/relationships/</guid>
+      <guid>http://www.scalamolecule.org/code/relationships/</guid>
       <description>Relationships A relationship (or reference) in Molecule is when an entity has a ref-attribute holding the entity id of another entity.
 A ref-attribute is defined in our Data Model like this:
 object PersonDataModel { trait Person { val name = oneString val pet = one[Animal] // `pet` is a card-one ref attribute  val hobbies = many[Activity] // `hobbies` is a card-many ref attribute  } trait Animal { val name = oneString } trait Activity { val name = oneString } } pet can hold one Long which is the id of a referenced Animal entity (the pet).</description>
@@ -230,10 +230,10 @@ object PersonDataModel { trait Person { val name = oneString val pet = one[Anima
     
     <item>
       <title>Slick</title>
-      <link>http://scalamolecule.org/intro/compare/slick/</link>
+      <link>http://www.scalamolecule.org/intro/compare/slick/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://scalamolecule.org/intro/compare/slick/</guid>
+      <guid>http://www.scalamolecule.org/intro/compare/slick/</guid>
       <description>Molecule vs Slick Using examples from Coming from SQL to Slick:
 Select all table values // Slick people.result In molecule we would declare each attribute we are interested in also to infer the exact return type
 // Molecule Person.name.age.get Select certain columns people.map(p =&amp;gt; (p.age, p.name ++ &amp;quot; (&amp;quot; ++ p.id.asColumnOf[String] ++ &amp;quot;)&amp;quot;)).result With Molecule we would concatenate name and id with the returned result set:
@@ -242,20 +242,20 @@ Person.age.name.e.get map { case (age, name, id) =&amp;gt; (age, s&amp;#34;$name
     
     <item>
       <title>Clojure exchanges</title>
-      <link>http://scalamolecule.org/dev/clojure-exchanges/</link>
+      <link>http://www.scalamolecule.org/dev/clojure-exchanges/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://scalamolecule.org/dev/clojure-exchanges/</guid>
+      <guid>http://www.scalamolecule.org/dev/clojure-exchanges/</guid>
       <description>Clojure Schemas To ease exchanging Datomic schemas with the Clojure world where Namespaces start with a lowercase letter by convention, Molecule also creates two convenience Schema &amp;ldquo;converters&amp;rdquo; that transact aliased attribute names where the first letter is either raised or lowered.
 lowercase to Uppercase If you for instance want to use Molecule with an externally defined Datomic database Schema or data sets with lowercase namespace names you can define the Data Model as usual in Molecule with uppercase Namespace names and then rea:</description>
     </item>
     
     <item>
       <title>Gremlin</title>
-      <link>http://scalamolecule.org/intro/compare/gremlin/</link>
+      <link>http://www.scalamolecule.org/intro/compare/gremlin/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://scalamolecule.org/intro/compare/gremlin/</guid>
+      <guid>http://www.scalamolecule.org/intro/compare/gremlin/</guid>
       <description>Molecule vs Gremlin Let&amp;rsquo;s compare the queries/traversals in the Gremlin Getting Started Tutorial with equivalent Molecule queries.
 For the examples we&amp;rsquo;ll use the same &amp;ldquo;Modern&amp;rdquo; graph as the tutorial:
 Insert data Gremlin is untyped, so data is inserted directly in a generic way where &amp;ldquo;types&amp;rdquo; are created on-the-go:
@@ -264,10 +264,10 @@ Graph graph = TinkerGraph.open(); (1) Vertex marko = graph.addVertex(T.label, &a
     
     <item>
       <title>Transactions</title>
-      <link>http://scalamolecule.org/code/transactions/</link>
+      <link>http://www.scalamolecule.org/code/transactions/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://scalamolecule.org/code/transactions/</guid>
+      <guid>http://www.scalamolecule.org/code/transactions/</guid>
       <description>Transactions Molecule has 4 basic transaction operations:
  save insert update retract  Save In Molecule we can populate a molecule with data and save it:
 Person.name(&amp;#34;John&amp;#34;).likes(&amp;#34;pizza&amp;#34;).age(24).save This will assert 3 facts in Datomic that all share the id of the new entity id johnId that is automatically created by Datomic:
@@ -276,10 +276,10 @@ johnId :Person/name &amp;quot;John&amp;quot; johnId :Person/likes &amp;quot;pizz
     
     <item>
       <title>Pitfalls</title>
-      <link>http://scalamolecule.org/dev/pitfalls/</link>
+      <link>http://www.scalamolecule.org/dev/pitfalls/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://scalamolecule.org/dev/pitfalls/</guid>
+      <guid>http://www.scalamolecule.org/dev/pitfalls/</guid>
       <description>Pitfalls Cannot resolve overloaded method &amp;lsquo;inputMolecule&amp;rsquo; When forgetting to explicitly calling m on an input molecule
 val inputMolecule = Community.name(?) inputMolecule(&amp;#34;Ben&amp;#34;) // will not compile and likely be inferred as an error in your IDE Input molecule needs to be declared explicitly with the m method
 val inputMolecule = m(Community.name(?)) // Now we can apply value to input molecule inputMolecule(&amp;#34;Ben&amp;#34;) JdbcSQLException: Connection is broken: &amp;ldquo;java.net.ConnectException: Connection refused Datomic transactor is not running - please start it again.</description>
@@ -287,20 +287,20 @@ val inputMolecule = m(Community.name(?)) // Now we can apply value to input mole
     
     <item>
       <title>Transaction Functions</title>
-      <link>http://scalamolecule.org/code/transaction-functions/</link>
+      <link>http://www.scalamolecule.org/code/transaction-functions/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://scalamolecule.org/code/transaction-functions/</guid>
+      <guid>http://www.scalamolecule.org/code/transaction-functions/</guid>
       <description>Transaction functions Atomic processing within the transaction Transaction functions
  run on the transactor inside of transactions can atomically analyze and transform database values can perform arbitrary logic must have no side effect must return transaction data (Seq[Seq[Statement]])  Since tx functions have access to the tx database value they are essential to guaranteeing atomicity in updates for instance. You can query the current db value within the transaction logic and thus be sure certain assertions hold before doing some operation.</description>
     </item>
     
     <item>
       <title>Time</title>
-      <link>http://scalamolecule.org/code/time/</link>
+      <link>http://www.scalamolecule.org/code/time/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://scalamolecule.org/code/time/</guid>
+      <guid>http://www.scalamolecule.org/code/time/</guid>
       <description>Time Datomic has powerful ways of accessing all the immutable data that accumulates over time in the database:
 The 5 time getters offer us valuable insight into the database from various perspectives:
   Semantics Sync Async     Current view of the database get getAsync   How the db looked after tx2 was transacted getAsOf(t2) getAsyncAsOf(t2)   Db with only data since (excluding) tx2 until now getSince(t2) getAsyncSince(t2)   All transactions over time getHistory getAsyncHistory   &amp;ldquo;What if&amp;rdquo;-look into the future of Now + tx4data getWith(tx4data) getAsyncWith(tx4data)    The synchronous getters return a List of tuples and the asynchronous a Future of List of tuples.</description>
@@ -308,20 +308,20 @@ The 5 time getters offer us valuable insight into the database from various pers
     
     <item>
       <title>Generic APIs</title>
-      <link>http://scalamolecule.org/code/generic/</link>
+      <link>http://www.scalamolecule.org/code/generic/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://scalamolecule.org/code/generic/</guid>
+      <guid>http://www.scalamolecule.org/code/generic/</guid>
       <description>Generic APIs Here, we&amp;rsquo;ll walk through how Molecule provides access to Datomic&amp;rsquo;s various generic interfaces and apis.
 Entity API As we saw in building blocks, an entity can have attributes from multiple namespaces   Entity id Attribue Value     johnId :Person/name &amp;ldquo;John&amp;rdquo;   johnId :Person/likes &amp;ldquo;pizza&amp;rdquo;   johnId :Person/age 24   johnId :Site/cat &amp;ldquo;customer&amp;rdquo;    At runtime we can explore what attributes an entity has by calling touch directly on a Long entity id:</description>
     </item>
     
     <item>
       <title>Dynamic molecules</title>
-      <link>http://scalamolecule.org/code/dynamic/</link>
+      <link>http://www.scalamolecule.org/code/dynamic/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://scalamolecule.org/code/dynamic/</guid>
+      <guid>http://www.scalamolecule.org/code/dynamic/</guid>
       <description>Dynamic molecules For molecules expecting to return a single row of data, we can add a code body that will have access to the data of that row through a self reference.
 In the following case we access a Person object through the self reference p to build some logic that is relevant for this particular set of data:
 // Retrieve typed and named data and add functionality directly val person = m(Person.</description>
@@ -329,10 +329,10 @@ In the following case we access a Person object through the self reference p to 
     
     <item>
       <title>About</title>
-      <link>http://scalamolecule.org/about/</link>
+      <link>http://www.scalamolecule.org/about/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://scalamolecule.org/about/</guid>
+      <guid>http://www.scalamolecule.org/about/</guid>
       <description>About The Molecule project started in 2013 as a small library to access the Datomic database from Scala in an intuitive way by letting macros transform Scala &amp;ldquo;molecules&amp;rdquo; to Datomic query strings.
 Molecule is created by Marc Grue, a Danish double bass player in the Gothenburg Symphony Orchestra, the National Orchestra of Sweden. Marc is a passionate long-time Scala programmer (since version 2.7).
 Molecule has since mature substantially to for instance have a unified API against all three Datomic systems: Peer, Peer Server and Cloud.</description>
@@ -340,20 +340,20 @@ Molecule has since mature substantially to for instance have a unified API again
     
     <item>
       <title>Changelog</title>
-      <link>http://scalamolecule.org/changelog/</link>
+      <link>http://www.scalamolecule.org/changelog/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://scalamolecule.org/changelog/</guid>
+      <guid>http://www.scalamolecule.org/changelog/</guid>
       <description>Molecule changelog Github releases
  2021-03-14 v0.25.1 Time getters for object output 2021-03-04 v0.25.0 Molecule object output and dynamic molecules 2021-01-16 v0.24.0 Json output dropped 2021-01-03 v0.23.0 Targeting Datomic Peer + Peer-Server + Cloud 2020-10-31 v0.22.8 Upgrade to ScalaJS 1.3 2020-07-17 v0.22.7 Allow all implicit widening conversions for numeric variables 2020-07-17 v0.22.6 BigDecimal accepting non-decimal numbers correctly 2020-06-16 v0.22.5 Apply Iterable instead of Seq to values 2020-06-11 v0.22.4 Time zones in distribution 2020-06-08 v0.</description>
     </item>
     
     <item>
       <title>Credits</title>
-      <link>http://scalamolecule.org/credits/</link>
+      <link>http://www.scalamolecule.org/credits/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://scalamolecule.org/credits/</guid>
+      <guid>http://www.scalamolecule.org/credits/</guid>
       <description>Credits Author(s) Molecule is created by Marc Grue (bass player in the Gothenburg Symphony Orchestra and a dedicated Scala programmer).
 Inspired by  Rogue, type-safe Scala DSL for MongoDB Datomisca, a Scala API for Datomic SqlTyped, Embedding SQL as an external DSL into Scala JScala, Scala macro that produces JavaScript from Scala code Parboiled2, A macro-based PEG parser generator for Scala  </description>
     </item>

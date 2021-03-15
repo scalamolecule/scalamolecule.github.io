@@ -2,26 +2,26 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Molecule setup on Molecule</title>
-    <link>http://scalamolecule.org/setup/</link>
+    <link>http://www.scalamolecule.org/setup/</link>
     <description>Recent content in Molecule setup on Molecule</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="http://scalamolecule.org/setup/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language><atom:link href="http://www.scalamolecule.org/setup/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>1. Data Model</title>
-      <link>http://scalamolecule.org/setup/data-model/</link>
+      <link>http://www.scalamolecule.org/setup/data-model/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://scalamolecule.org/setup/data-model/</guid>
+      <guid>http://www.scalamolecule.org/setup/data-model/</guid>
       <description>Data Model Your Data Model is defined in a plain Scala file that you can have anywhere in your project. Molecule interprets this file and creates Molecule boilerplate code based on your Data Model so that you can write molecule queries with your domain terms.
 For Molecule to recognize your Data Model, a simple Data Model definition DSL is imported. A Scala object with the name or your domain and &amp;ldquo;DataModel&amp;rdquo; added should contain your definitions:</description>
     </item>
     
     <item>
       <title>2. Sbt setup</title>
-      <link>http://scalamolecule.org/setup/sbt-setup/</link>
+      <link>http://www.scalamolecule.org/setup/sbt-setup/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://scalamolecule.org/setup/sbt-setup/</guid>
+      <guid>http://www.scalamolecule.org/setup/sbt-setup/</guid>
       <description>Sbt setup Once you have defined your Data Model, your sbt project needs to be set up to use Molecule.
 MoleculePlugin The sbt MoleculePlugin generates Molecule boilerplate code when you compile your project.
 Add the latest version of the plugin in project/buildinfo.sbt:
@@ -31,10 +31,10 @@ lazy val yourProject = project.in(file(&amp;#34;app&amp;#34;)) .enablePlugins(Mo
     
     <item>
       <title>3. Db connection</title>
-      <link>http://scalamolecule.org/setup/db-connection/</link>
+      <link>http://www.scalamolecule.org/setup/db-connection/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://scalamolecule.org/setup/db-connection/</guid>
+      <guid>http://www.scalamolecule.org/setup/db-connection/</guid>
       <description>Database connection To use Molecule we need a few imports and a connection to a Datomic database.
 There are some smaller variations in how the different setups connect to the database. But the principles are the same, so let&amp;rsquo;s walk through those:
 API &amp;amp; DSL imports Import the Molecule api and the generated DSL for your Data Model

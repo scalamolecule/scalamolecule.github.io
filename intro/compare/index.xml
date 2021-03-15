@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Compare on Molecule</title>
-    <link>http://scalamolecule.org/intro/compare/</link>
+    <link>http://www.scalamolecule.org/intro/compare/</link>
     <description>Recent content in Compare on Molecule</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="http://scalamolecule.org/intro/compare/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language><atom:link href="http://www.scalamolecule.org/intro/compare/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Datomic</title>
-      <link>http://scalamolecule.org/intro/compare/datomic/</link>
+      <link>http://www.scalamolecule.org/intro/compare/datomic/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://scalamolecule.org/intro/compare/datomic/</guid>
+      <guid>http://www.scalamolecule.org/intro/compare/datomic/</guid>
       <description>Molecule vs Datomic/Datalog Let&amp;rsquo;s see how Molecule queries compare to Datalog queries used with the Datomic database.
 Code examples are taken from the Seattle tutorial.
 Follow along in the code from which we will pick a few examples.
@@ -21,10 +21,10 @@ Querying for attribute values The most basic query is to ask for entities with s
     
     <item>
       <title>SQL</title>
-      <link>http://scalamolecule.org/intro/compare/sql/</link>
+      <link>http://www.scalamolecule.org/intro/compare/sql/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://scalamolecule.org/intro/compare/sql/</guid>
+      <guid>http://www.scalamolecule.org/intro/compare/sql/</guid>
       <description>Molecule vs SQL SELECT * sql&amp;quot;select * from PERSON&amp;quot;.as[Person].list With Molecule we only need to fetch the attributes that we need:
 Person.name.age.get Returned type is List[(String, Int)]
 SELECT sql&amp;quot;&amp;quot;&amp;quot; select AGE, concat(concat(concat(NAME,&#39; (&#39;),ID),&#39;)&#39;) from PERSON &amp;quot;&amp;quot;&amp;quot;.as[(Int,String)].list With Molecule we would concatenate name and id with the returned result set:
@@ -33,10 +33,10 @@ Person.age.name.e.get map { case (age, name, id) =&amp;gt; (age, s&amp;#34;$name
     
     <item>
       <title>Slick</title>
-      <link>http://scalamolecule.org/intro/compare/slick/</link>
+      <link>http://www.scalamolecule.org/intro/compare/slick/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://scalamolecule.org/intro/compare/slick/</guid>
+      <guid>http://www.scalamolecule.org/intro/compare/slick/</guid>
       <description>Molecule vs Slick Using examples from Coming from SQL to Slick:
 Select all table values // Slick people.result In molecule we would declare each attribute we are interested in also to infer the exact return type
 // Molecule Person.name.age.get Select certain columns people.map(p =&amp;gt; (p.age, p.name ++ &amp;quot; (&amp;quot; ++ p.id.asColumnOf[String] ++ &amp;quot;)&amp;quot;)).result With Molecule we would concatenate name and id with the returned result set:
@@ -45,10 +45,10 @@ Person.age.name.e.get map { case (age, name, id) =&amp;gt; (age, s&amp;#34;$name
     
     <item>
       <title>Gremlin</title>
-      <link>http://scalamolecule.org/intro/compare/gremlin/</link>
+      <link>http://www.scalamolecule.org/intro/compare/gremlin/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://scalamolecule.org/intro/compare/gremlin/</guid>
+      <guid>http://www.scalamolecule.org/intro/compare/gremlin/</guid>
       <description>Molecule vs Gremlin Let&amp;rsquo;s compare the queries/traversals in the Gremlin Getting Started Tutorial with equivalent Molecule queries.
 For the examples we&amp;rsquo;ll use the same &amp;ldquo;Modern&amp;rdquo; graph as the tutorial:
 Insert data Gremlin is untyped, so data is inserted directly in a generic way where &amp;ldquo;types&amp;rdquo; are created on-the-go:

@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Intro on Molecule</title>
-    <link>http://scalamolecule.org/intro/</link>
+    <link>http://www.scalamolecule.org/intro/</link>
     <description>Recent content in Intro on Molecule</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="http://scalamolecule.org/intro/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language><atom:link href="http://www.scalamolecule.org/intro/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Philosophy</title>
-      <link>http://scalamolecule.org/intro/philosophy/</link>
+      <link>http://www.scalamolecule.org/intro/philosophy/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://scalamolecule.org/intro/philosophy/</guid>
+      <guid>http://www.scalamolecule.org/intro/philosophy/</guid>
       <description>Molecules - your new domain data?  Business processes are fluent and need an equally flexible data counterpart: molecules.
  The problem Traditionally, domain classes are too often:
  Dumb crud-containers of domain data being populated and consumed back and forth. Rigid abstractions being bad fits for complex business processes. Bloated with more and more properties serving business processes scattered all over.  Abstraction often has its price.
@@ -20,10 +20,10 @@ A &amp;ldquo;Person&amp;rdquo; can be endlessly many things and doesn&amp;rsquo;
     
     <item>
       <title>Building blocks</title>
-      <link>http://scalamolecule.org/intro/building-blocks/</link>
+      <link>http://www.scalamolecule.org/intro/building-blocks/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://scalamolecule.org/intro/building-blocks/</guid>
+      <guid>http://www.scalamolecule.org/intro/building-blocks/</guid>
       <description>Molecule building blocks Here&amp;rsquo;s a quick overview of various building blocks in the Molecule eco-system.
 Molecule A molecule is a model of a data structure containing one or more attributes.
 Here we describe a data structure of name, age of persons and what street they live on:

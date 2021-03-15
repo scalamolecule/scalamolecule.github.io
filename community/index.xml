@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Community on Molecule</title>
-    <link>http://scalamolecule.org/community/</link>
+    <link>http://www.scalamolecule.org/community/</link>
     <description>Recent content in Community on Molecule</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="http://scalamolecule.org/community/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language><atom:link href="http://www.scalamolecule.org/community/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Seattle tutorial</title>
-      <link>http://scalamolecule.org/community/seattle/</link>
+      <link>http://www.scalamolecule.org/community/seattle/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://scalamolecule.org/community/seattle/</guid>
+      <guid>http://www.scalamolecule.org/community/seattle/</guid>
       <description>Seattle tutorial - with molecules Credits: This tutorial is based on the original Datomic Seattle tutorial (there is also a new tutorial) and some text passages have been quoted as-is or been slightly modified to describe how Molecule works.
 Introduction After setting up the database and populating it with data we can start making queries. We make queries by building &amp;ldquo;molecules&amp;rdquo; which are chains of attributes put together with the builder pattern.</description>
     </item>

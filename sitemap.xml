@@ -3,171 +3,171 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>http://scalamolecule.org/community/</loc>
+    <loc>http://www.scalamolecule.org/community/</loc>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/setup/db-setups/datomic-peer-free-mem/</loc>
+    <loc>http://www.scalamolecule.org/setup/db-setups/datomic-peer-free-mem/</loc>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/intro/</loc>
+    <loc>http://www.scalamolecule.org/intro/</loc>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/dev/</loc>
+    <loc>http://www.scalamolecule.org/dev/</loc>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/setup/</loc>
+    <loc>http://www.scalamolecule.org/setup/</loc>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/code/</loc>
+    <loc>http://www.scalamolecule.org/code/</loc>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/setup/db-setups/datomic-peer-free-free/</loc>
+    <loc>http://www.scalamolecule.org/setup/db-setups/datomic-peer-free-free/</loc>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/setup/data-model/</loc>
+    <loc>http://www.scalamolecule.org/setup/data-model/</loc>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/code/attributes/</loc>
+    <loc>http://www.scalamolecule.org/code/attributes/</loc>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/intro/compare/datomic/</loc>
+    <loc>http://www.scalamolecule.org/intro/compare/datomic/</loc>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/setup/db-setups/datomic-peer-pro-mem/</loc>
+    <loc>http://www.scalamolecule.org/setup/db-setups/datomic-peer-pro-mem/</loc>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/dev/inspect-queries/</loc>
+    <loc>http://www.scalamolecule.org/dev/inspect-queries/</loc>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/intro/philosophy/</loc>
+    <loc>http://www.scalamolecule.org/intro/philosophy/</loc>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/community/seattle/</loc>
+    <loc>http://www.scalamolecule.org/community/seattle/</loc>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/setup/db-setups/datomic-peer-pro-dev/</loc>
+    <loc>http://www.scalamolecule.org/setup/db-setups/datomic-peer-pro-dev/</loc>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/setup/sbt-setup/</loc>
+    <loc>http://www.scalamolecule.org/setup/sbt-setup/</loc>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/intro/building-blocks/</loc>
+    <loc>http://www.scalamolecule.org/intro/building-blocks/</loc>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/intro/compare/</loc>
+    <loc>http://www.scalamolecule.org/intro/compare/</loc>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/setup/db-setups/datomic-peerserver-mem/</loc>
+    <loc>http://www.scalamolecule.org/setup/db-setups/datomic-peerserver-mem/</loc>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/dev/inspect-transactions/</loc>
+    <loc>http://www.scalamolecule.org/dev/inspect-transactions/</loc>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/intro/compare/sql/</loc>
+    <loc>http://www.scalamolecule.org/intro/compare/sql/</loc>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/setup/db-setups/datomic-peerserver-dev/</loc>
+    <loc>http://www.scalamolecule.org/setup/db-setups/datomic-peerserver-dev/</loc>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/setup/db-connection/</loc>
+    <loc>http://www.scalamolecule.org/setup/db-connection/</loc>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/setup/db-setups/datomic-devlocal/</loc>
+    <loc>http://www.scalamolecule.org/setup/db-setups/datomic-devlocal/</loc>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/dev/optimizations/</loc>
+    <loc>http://www.scalamolecule.org/dev/optimizations/</loc>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/code/relationships/</loc>
+    <loc>http://www.scalamolecule.org/code/relationships/</loc>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/intro/compare/slick/</loc>
+    <loc>http://www.scalamolecule.org/intro/compare/slick/</loc>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/dev/clojure-exchanges/</loc>
+    <loc>http://www.scalamolecule.org/dev/clojure-exchanges/</loc>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/setup/db-setups/</loc>
+    <loc>http://www.scalamolecule.org/setup/db-setups/</loc>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/intro/compare/gremlin/</loc>
+    <loc>http://www.scalamolecule.org/intro/compare/gremlin/</loc>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/code/transactions/</loc>
+    <loc>http://www.scalamolecule.org/code/transactions/</loc>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/dev/pitfalls/</loc>
+    <loc>http://www.scalamolecule.org/dev/pitfalls/</loc>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/code/transaction-functions/</loc>
+    <loc>http://www.scalamolecule.org/code/transaction-functions/</loc>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/code/time/</loc>
+    <loc>http://www.scalamolecule.org/code/time/</loc>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/code/generic/</loc>
+    <loc>http://www.scalamolecule.org/code/generic/</loc>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/code/dynamic/</loc>
+    <loc>http://www.scalamolecule.org/code/dynamic/</loc>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/about/</loc>
+    <loc>http://www.scalamolecule.org/about/</loc>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/categories/</loc>
+    <loc>http://www.scalamolecule.org/categories/</loc>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/changelog/</loc>
+    <loc>http://www.scalamolecule.org/changelog/</loc>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/credits/</loc>
+    <loc>http://www.scalamolecule.org/credits/</loc>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/</loc>
+    <loc>http://www.scalamolecule.org/</loc>
   </url>
   
   <url>
-    <loc>http://scalamolecule.org/tags/</loc>
+    <loc>http://www.scalamolecule.org/tags/</loc>
   </url>
   
 </urlset>

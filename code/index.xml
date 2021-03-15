@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Overview on Molecule</title>
-    <link>http://scalamolecule.org/code/</link>
+    <link>http://www.scalamolecule.org/code/</link>
     <description>Recent content in Overview on Molecule</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="http://scalamolecule.org/code/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language><atom:link href="http://www.scalamolecule.org/code/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Attributes</title>
-      <link>http://scalamolecule.org/code/attributes/</link>
+      <link>http://www.scalamolecule.org/code/attributes/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://scalamolecule.org/code/attributes/</guid>
+      <guid>http://www.scalamolecule.org/code/attributes/</guid>
       <description>Attributes Molecules are built by chaining attributes together with the builder pattern.
 Molecule then transforms the constructed molecule to a query string at compile time. Molecules can be constructed explicitly with the m method. But generally the implicit call is used.
 We could for instance build a molecule representing the data structure of Persons with name, age and gender Attributes:
@@ -20,10 +20,10 @@ We could for instance build a molecule representing the data structure of Person
     
     <item>
       <title>Relationships</title>
-      <link>http://scalamolecule.org/code/relationships/</link>
+      <link>http://www.scalamolecule.org/code/relationships/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://scalamolecule.org/code/relationships/</guid>
+      <guid>http://www.scalamolecule.org/code/relationships/</guid>
       <description>Relationships A relationship (or reference) in Molecule is when an entity has a ref-attribute holding the entity id of another entity.
 A ref-attribute is defined in our Data Model like this:
 object PersonDataModel { trait Person { val name = oneString val pet = one[Animal] // `pet` is a card-one ref attribute  val hobbies = many[Activity] // `hobbies` is a card-many ref attribute  } trait Animal { val name = oneString } trait Activity { val name = oneString } } pet can hold one Long which is the id of a referenced Animal entity (the pet).</description>
@@ -31,10 +31,10 @@ object PersonDataModel { trait Person { val name = oneString val pet = one[Anima
     
     <item>
       <title>Transactions</title>
-      <link>http://scalamolecule.org/code/transactions/</link>
+      <link>http://www.scalamolecule.org/code/transactions/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://scalamolecule.org/code/transactions/</guid>
+      <guid>http://www.scalamolecule.org/code/transactions/</guid>
       <description>Transactions Molecule has 4 basic transaction operations:
  save insert update retract  Save In Molecule we can populate a molecule with data and save it:
 Person.name(&amp;#34;John&amp;#34;).likes(&amp;#34;pizza&amp;#34;).age(24).save This will assert 3 facts in Datomic that all share the id of the new entity id johnId that is automatically created by Datomic:
@@ -43,20 +43,20 @@ johnId :Person/name &amp;quot;John&amp;quot; johnId :Person/likes &amp;quot;pizz
     
     <item>
       <title>Transaction Functions</title>
-      <link>http://scalamolecule.org/code/transaction-functions/</link>
+      <link>http://www.scalamolecule.org/code/transaction-functions/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://scalamolecule.org/code/transaction-functions/</guid>
+      <guid>http://www.scalamolecule.org/code/transaction-functions/</guid>
       <description>Transaction functions Atomic processing within the transaction Transaction functions
  run on the transactor inside of transactions can atomically analyze and transform database values can perform arbitrary logic must have no side effect must return transaction data (Seq[Seq[Statement]])  Since tx functions have access to the tx database value they are essential to guaranteeing atomicity in updates for instance. You can query the current db value within the transaction logic and thus be sure certain assertions hold before doing some operation.</description>
     </item>
     
     <item>
       <title>Time</title>
-      <link>http://scalamolecule.org/code/time/</link>
+      <link>http://www.scalamolecule.org/code/time/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://scalamolecule.org/code/time/</guid>
+      <guid>http://www.scalamolecule.org/code/time/</guid>
       <description>Time Datomic has powerful ways of accessing all the immutable data that accumulates over time in the database:
 The 5 time getters offer us valuable insight into the database from various perspectives:
   Semantics Sync Async     Current view of the database get getAsync   How the db looked after tx2 was transacted getAsOf(t2) getAsyncAsOf(t2)   Db with only data since (excluding) tx2 until now getSince(t2) getAsyncSince(t2)   All transactions over time getHistory getAsyncHistory   &amp;ldquo;What if&amp;rdquo;-look into the future of Now + tx4data getWith(tx4data) getAsyncWith(tx4data)    The synchronous getters return a List of tuples and the asynchronous a Future of List of tuples.</description>
@@ -64,20 +64,20 @@ The 5 time getters offer us valuable insight into the database from various pers
     
     <item>
       <title>Generic APIs</title>
-      <link>http://scalamolecule.org/code/generic/</link>
+      <link>http://www.scalamolecule.org/code/generic/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://scalamolecule.org/code/generic/</guid>
+      <guid>http://www.scalamolecule.org/code/generic/</guid>
       <description>Generic APIs Here, we&amp;rsquo;ll walk through how Molecule provides access to Datomic&amp;rsquo;s various generic interfaces and apis.
 Entity API As we saw in building blocks, an entity can have attributes from multiple namespaces   Entity id Attribue Value     johnId :Person/name &amp;ldquo;John&amp;rdquo;   johnId :Person/likes &amp;ldquo;pizza&amp;rdquo;   johnId :Person/age 24   johnId :Site/cat &amp;ldquo;customer&amp;rdquo;    At runtime we can explore what attributes an entity has by calling touch directly on a Long entity id:</description>
     </item>
     
     <item>
       <title>Dynamic molecules</title>
-      <link>http://scalamolecule.org/code/dynamic/</link>
+      <link>http://www.scalamolecule.org/code/dynamic/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://scalamolecule.org/code/dynamic/</guid>
+      <guid>http://www.scalamolecule.org/code/dynamic/</guid>
       <description>Dynamic molecules For molecules expecting to return a single row of data, we can add a code body that will have access to the data of that row through a self reference.
 In the following case we access a Person object through the self reference p to build some logic that is relevant for this particular set of data:
 // Retrieve typed and named data and add functionality directly val person = m(Person.</description>
