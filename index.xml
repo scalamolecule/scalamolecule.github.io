@@ -58,7 +58,7 @@ We could for instance build a molecule representing the data structure of Person
 Code examples are taken from the Seattle tutorial.
 Follow along in the code from which we will pick a few examples.
 Querying for attribute values The most basic query is to ask for entities with some attribute values:
-// Datalog [:find ?b ?c (distinct ?d) :where [?a :Community/name ?b] [?a :Community/url ?c] [?</description>
+// Datalog [:find ?b ?c (distinct ?d) :where [?a :Community/name ?b] [?a :Community/url ?c] [?a :Community/category ?</description>
     </item>
     
     <item>
@@ -124,7 +124,7 @@ import sbt.Keys._ lazy val demo = project.in(file(&amp;#34;.&amp;#34;)) .aggrega
 MoleculePlugin The sbt MoleculePlugin generates Molecule boilerplate code when you compile your project.
 Add the latest version of the plugin in project/buildinfo.sbt:
 addSbtPlugin(&amp;#34;org.scalamolecule&amp;#34; % &amp;#34;sbt-molecule&amp;#34; % &amp;#34;0.12.0&amp;#34;) And add it to the project build.sbt file
-lazy val yourProject = project.in(file(&amp;#34;app&amp;#34;)) .enablePlugins(MoleculePlugin) //...  )  Dependencies These will depend on which specific Datomic database system that you will use.</description>
+lazy val yourProject = project.in(file(&amp;#34;app&amp;#34;)) .enablePlugins(MoleculePlugin) //...  ) Dependencies These will depend on which specific Datomic database system that you will use.</description>
     </item>
     
     <item>
@@ -158,7 +158,8 @@ import sbt.Keys._ lazy val demo = project.in(file(&amp;#34;.&amp;#34;)) .aggrega
       <guid>http://scalamolecule.org/dev/inspect-transactions/</guid>
       <description>Inspect transactions Transactional operations can be inspected with the following methods:
  &amp;lt;molecule&amp;gt;.inspectSave &amp;lt;molecule&amp;gt;.inspectInsert(data...) &amp;lt;molecule&amp;gt;.inspectUpdate &amp;lt;entityId&amp;gt;.inspectRetract &amp;lt;entityId&amp;gt;.Tx(transactionMolecule).inspectRetract inspectRetract(entityIds, txMetaDataMolecules*)  Calling these inspect methods will print the produced transaction statements to console only and not perform any transaction on the database.
-inspectSave If we are about to save a molecule we can instead call inspectSave on the same molecule to see what transaction statements Molecule will send to Datomic.</description>
+inspectSave If we are about to save a molecule we can instead call inspectSave on the same molecule to see what transaction statements Molecule will send to Datomic.
+// Normal save Ns.</description>
     </item>
     
     <item>
@@ -167,10 +168,10 @@ inspectSave If we are about to save a molecule we can instead call inspectSave o
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://scalamolecule.org/intro/compare/sql/</guid>
-      <description>Molecule vs SQL  SELECT * sql&amp;quot;select * from PERSON&amp;quot;.as[Person].list With Molecule we only need to fetch the attributes that we need:
+      <description>Molecule vs SQL SELECT * sql&amp;quot;select * from PERSON&amp;quot;.as[Person].list With Molecule we only need to fetch the attributes that we need:
 Person.name.age.get Returned type is List[(String, Int)]
 SELECT sql&amp;quot;&amp;quot;&amp;quot; select AGE, concat(concat(concat(NAME,&#39; (&#39;),ID),&#39;)&#39;) from PERSON &amp;quot;&amp;quot;&amp;quot;.as[(Int,String)].list With Molecule we would concatenate name and id with the returned result set:
-Person.age.name.e.get map { case (age, name, id) =&amp;gt; (age, s&amp;#34;$name($id)&amp;#34; }  WHERE sql&amp;quot;select * from PERSON where AGE &amp;gt;= 18 AND NAME = &#39;C.</description>
+Person.age.name.e.get map { case (age, name, id) =&amp;gt; (age, s&amp;#34;$name($id)&amp;#34; } WHERE sql&amp;quot;select * from PERSON where AGE &amp;gt;= 18 AND NAME = &#39;C.</description>
     </item>
     
     <item>
@@ -192,7 +193,8 @@ import sbt.Keys._ lazy val demo = project.in(file(&amp;#34;.&amp;#34;)) .aggrega
       <description>Database connection To use Molecule we need a few imports and a connection to a Datomic database.
 There are some smaller variations in how the different setups connect to the database. But the principles are the same, so let&amp;rsquo;s walk through those:
 API &amp;amp; DSL imports Import the Molecule api and the generated DSL for your Data Model
-import molecule.datomic.api._ import app.dsl.yourDomain._  Database system Choose a Datomic database system:</description>
+import molecule.datomic.api._ import app.dsl.yourDomain._ Database system Choose a Datomic database system:
+Peer The Datomic Peer runs in your application process.</description>
     </item>
     
     <item>
@@ -211,7 +213,7 @@ import sbt.Keys._ lazy val demo = project.in(file(&amp;#34;.&amp;#34;)) .aggrega
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://scalamolecule.org/dev/optimizations/</guid>
-      <description>Optimizations  Save on compilation time If your code starts to have huge numbers of molecules, you can save time on compilation by importing a specialized Molecule api that sets a threshold for how many attributes are allowed in a molecule. This minimizes the amount of implicits waiting in vain to serve you and can reduce compilation time.
+      <description>Optimizations Save on compilation time If your code starts to have huge numbers of molecules, you can save time on compilation by importing a specialized Molecule api that sets a threshold for how many attributes are allowed in a molecule. This minimizes the amount of implicits waiting in vain to serve you and can reduce compilation time.
 So, if your longest molecule in a code file has 7 attributes, then you could for instance set the api import to allow for 7 attributes:</description>
     </item>
     
@@ -234,8 +236,8 @@ object PersonDataModel { trait Person { val name = oneString val pet = one[Anima
       <guid>http://scalamolecule.org/intro/compare/slick/</guid>
       <description>Molecule vs Slick Using examples from Coming from SQL to Slick:
 Select all table values // Slick people.result In molecule we would declare each attribute we are interested in also to infer the exact return type
-// Molecule Person.name.age.get  Select certain columns people.map(p =&amp;gt; (p.age, p.name ++ &amp;quot; (&amp;quot; ++ p.id.asColumnOf[String] ++ &amp;quot;)&amp;quot;)).result With Molecule we would concatenate name and id with the returned result set:
-Person.age.name.e.get map { case (age, name, id) =&amp;gt; (age, s&amp;#34;$name($id)&amp;#34; }  filter / WHERE people.</description>
+// Molecule Person.name.age.get Select certain columns people.map(p =&amp;gt; (p.age, p.name ++ &amp;quot; (&amp;quot; ++ p.id.asColumnOf[String] ++ &amp;quot;)&amp;quot;)).result With Molecule we would concatenate name and id with the returned result set:
+Person.age.name.e.get map { case (age, name, id) =&amp;gt; (age, s&amp;#34;$name($id)&amp;#34; } filter / WHERE people.</description>
     </item>
     
     <item>
@@ -269,7 +271,7 @@ Graph graph = TinkerGraph.open(); (1) Vertex marko = graph.addVertex(T.label, &a
       <description>Transactions Molecule has 4 basic transaction operations:
  save insert update retract  Save In Molecule we can populate a molecule with data and save it:
 Person.name(&amp;#34;John&amp;#34;).likes(&amp;#34;pizza&amp;#34;).age(24).save This will assert 3 facts in Datomic that all share the id of the new entity id johnId that is automatically created by Datomic:
-johnId :Person/name &amp;quot;John&amp;quot; johnId :Person/likes &amp;quot;pizza&amp;quot; johnId :Person/age 24  Type-safety Type-safety is guaranteed since each attribute only accepts values of its defined type.</description>
+johnId :Person/name &amp;quot;John&amp;quot; johnId :Person/likes &amp;quot;pizza&amp;quot; johnId :Person/age 24 Type-safety Type-safety is guaranteed since each attribute only accepts values of its defined type.</description>
     </item>
     
     <item>
@@ -278,9 +280,9 @@ johnId :Person/name &amp;quot;John&amp;quot; johnId :Person/likes &amp;quot;pizz
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://scalamolecule.org/dev/pitfalls/</guid>
-      <description>Pitfalls  Cannot resolve overloaded method &amp;lsquo;inputMolecule&amp;rsquo; When forgetting to explicitly calling m on an input molecule
+      <description>Pitfalls Cannot resolve overloaded method &amp;lsquo;inputMolecule&amp;rsquo; When forgetting to explicitly calling m on an input molecule
 val inputMolecule = Community.name(?) inputMolecule(&amp;#34;Ben&amp;#34;) // will not compile and likely be inferred as an error in your IDE Input molecule needs to be declared explicitly with the m method
-val inputMolecule = m(Community.name(?)) // Now we can apply value to input molecule inputMolecule(&amp;#34;Ben&amp;#34;)  JdbcSQLException: Connection is broken: &amp;ldquo;java.net.ConnectException: Connection refused Datomic transactor is not running - please start it again.</description>
+val inputMolecule = m(Community.name(?)) // Now we can apply value to input molecule inputMolecule(&amp;#34;Ben&amp;#34;) JdbcSQLException: Connection is broken: &amp;ldquo;java.net.ConnectException: Connection refused Datomic transactor is not running - please start it again.</description>
     </item>
     
     <item>
@@ -289,7 +291,7 @@ val inputMolecule = m(Community.name(?)) // Now we can apply value to input mole
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://scalamolecule.org/code/transaction-functions/</guid>
-      <description>Transaction functions  Atomic processing within the transaction Transaction functions
+      <description>Transaction functions Atomic processing within the transaction Transaction functions
  run on the transactor inside of transactions can atomically analyze and transform database values can perform arbitrary logic must have no side effect must return transaction data (Seq[Seq[Statement]])  Since tx functions have access to the tx database value they are essential to guaranteeing atomicity in updates for instance. You can query the current db value within the transaction logic and thus be sure certain assertions hold before doing some operation.</description>
     </item>
     
@@ -343,7 +345,7 @@ Molecule has since mature substantially to for instance have a unified API again
       
       <guid>http://scalamolecule.org/changelog/</guid>
       <description>Molecule changelog Github releases
- 2021-03-04 v0.25.0 Molecule object output and dynamic molecules 2021-01-16 v0.24.0 Json output dropped 2021-01-03 v0.23.0 Targeting Datomic Peer + Peer-Server + Cloud 2020-10-31 v0.22.8 Upgrade to ScalaJS 1.3 2020-07-17 v0.22.7 Allow all implicit widening conversions for numeric variables 2020-07-17 v0.22.6 BigDecimal accepting non-decimal numbers correctly 2020-06-16 v0.22.5 Apply Iterable instead of Seq to values 2020-06-11 v0.22.4 Time zones in distribution 2020-06-08 v0.22.3 Resolve mutable identifiers in Scala 2.</description>
+ 2021-03-14 v0.25.1 Time getters for object output 2021-03-04 v0.25.0 Molecule object output and dynamic molecules 2021-01-16 v0.24.0 Json output dropped 2021-01-03 v0.23.0 Targeting Datomic Peer + Peer-Server + Cloud 2020-10-31 v0.22.8 Upgrade to ScalaJS 1.3 2020-07-17 v0.22.7 Allow all implicit widening conversions for numeric variables 2020-07-17 v0.22.6 BigDecimal accepting non-decimal numbers correctly 2020-06-16 v0.22.5 Apply Iterable instead of Seq to values 2020-06-11 v0.22.4 Time zones in distribution 2020-06-08 v0.</description>
     </item>
     
     <item>
@@ -352,7 +354,7 @@ Molecule has since mature substantially to for instance have a unified API again
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://scalamolecule.org/credits/</guid>
-      <description> Credits  Author(s) Molecule is created by Marc Grue (bass player in the Gothenburg Symphony Orchestra and a dedicated Scala programmer).
+      <description>Credits Author(s) Molecule is created by Marc Grue (bass player in the Gothenburg Symphony Orchestra and a dedicated Scala programmer).
 Inspired by  Rogue, type-safe Scala DSL for MongoDB Datomisca, a Scala API for Datomic SqlTyped, Embedding SQL as an external DSL into Scala JScala, Scala macro that produces JavaScript from Scala code Parboiled2, A macro-based PEG parser generator for Scala  </description>
     </item>
     

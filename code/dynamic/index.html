@@ -80,7 +80,7 @@
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="https://javadoc.io/doc/org.scalamolecule/molecule_2.13/latest/index.html" target="_blank" style="">Docs</a></li>
-                    <li><a href="../../changelog" style="">v0.25.0</a></li>
+                    <li><a href="../../changelog" style="">v0.25.1</a></li>
                     <li><a href="https://github.com/scalamolecule/molecule" target="_blank">
                         <img src="../../vendor/GitHub-Mark/PNG/GitHub-Mark-Light-32px.png"
                              style="margin-top:-4px;padding-left:15px;opacity:0.6;width:42px;">
@@ -97,8 +97,8 @@
 <div class="container-fluid" style="max-width:1170px">
 
     <div class="col-sm-10 " style="padding-left:8px;">
-        
-<h1 id="dynamic-molecules" >Dynamic molecules <a href="#dynamic-molecules"></a></h1><p>For molecules expecting to return a single row of data, we can add a code body that will have access to the data of that row through a self reference.</p>
+        <h1 id="dynamic-molecules">Dynamic molecules</h1>
+<p>For molecules expecting to return a single row of data, we can add a code body that will have access to the data of that row through a self reference.</p>
 <p>In the following case we access a Person object through the self reference <code>p</code> to build some logic that is relevant for this particular set of data:</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="c1">// Retrieve typed and named data and add functionality directly
 </span><span class="c1"></span><span class="k">val</span> <span class="n">person</span> <span class="k">=</span> <span class="n">m</span><span class="o">(</span><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">(</span><span class="s">&#34;Ben&#34;</span><span class="o">).</span><span class="n">age</span><span class="o">.</span><span class="n">gender</span><span class="o">.</span><span class="nc">Address</span><span class="o">.</span><span class="n">street</span><span class="o">,</span><span class="nc">City</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">getObj</span><span class="o">)</span> <span class="o">{</span> <span class="n">p</span> <span class="k">=&gt;</span>

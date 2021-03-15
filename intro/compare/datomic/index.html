@@ -80,7 +80,7 @@
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="https://javadoc.io/doc/org.scalamolecule/molecule_2.13/latest/index.html" target="_blank" style="">Docs</a></li>
-                    <li><a href="../../../changelog" style="">v0.25.0</a></li>
+                    <li><a href="../../../changelog" style="">v0.25.1</a></li>
                     <li><a href="https://github.com/scalamolecule/molecule" target="_blank">
                         <img src="../../../vendor/GitHub-Mark/PNG/GitHub-Mark-Light-32px.png"
                              style="margin-top:-4px;padding-left:15px;opacity:0.6;width:42px;">
@@ -97,12 +97,12 @@
 <div class="container-fluid" style="max-width:1170px">
 
     <div class="col-sm-10 " style="padding-left:8px;">
-        
-<h1 id="molecule-vs-datomicdatalog" >Molecule vs Datomic/Datalog <a href="#molecule-vs-datomicdatalog"></a></h1><p>Let&rsquo;s see how Molecule queries compare to Datalog queries used with the Datomic database.</p>
+        <h1 id="molecule-vs-datomicdatalog">Molecule vs Datomic/Datalog</h1>
+<p>Let&rsquo;s see how Molecule queries compare to Datalog queries used with the Datomic database.</p>
 <p>Code examples are taken from the <a href="../../../community/seattle">Seattle tutorial</a>.</p>
 <p><a href="https://github.com/scalamolecule/molecule/blob/master/examples/src/test/scala/molecule/examples/seattle/SeattleTests.scala">Follow along in the code</a> from which we will pick a few examples.</p>
-
-<h3 id="querying-_for_-attribute-values" >Querying <em>for</em> attribute values <a href="#querying-_for_-attribute-values"></a></h3><p>The most basic query is to ask for entities with some attribute values:</p>
+<h3 id="querying-_for_-attribute-values">Querying <em>for</em> attribute values</h3>
+<p>The most basic query is to ask for entities with some attribute values:</p>
 <pre><code>// Datalog
 [:find  ?b ?c (distinct ?d)
  :where [?a :Community/name ?b]
@@ -113,8 +113,8 @@
 </span><span class="c1"></span><span class="nc">Community</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">url</span><span class="o">.</span><span class="n">category</span>
 </code></pre></div><p>Datalog has a <code>:find</code> and <code>:where</code> section similar to <code>select</code> and <code>where</code> in the SQL world. The <code>:find</code> section defines which values to return and the <code>:where</code> section defines one or more clauses filtering the result set.</p>
 <p>In this case we asked for the values of variable <code>?b</code>, <code>?c</code> and <code>?d</code> each one bound in its where clause. With molecule we use the three attribute names all associated with the <code>Community</code> namespace.</p>
-
-<h3 id="querying-_by_-attribute-values" >Querying <em>by</em> attribute values <a href="#querying-_by_-attribute-values"></a></h3><p>Let&rsquo;s query by an enumerated value for the <code>type</code> attribute:</p>
+<h3 id="querying-_by_-attribute-values">Querying <em>by</em> attribute values</h3>
+<p>Let&rsquo;s query by an enumerated value for the <code>type</code> attribute:</p>
 <pre><code>[:find  ?b
  :where [?a :Community/name ?b]
         [?a :Community/type &quot;:Community.type/twitter&quot;]]
@@ -137,8 +137,8 @@ List(
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Community</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">category_</span><span class="o">(</span><span class="s">&#34;news&#34;</span> <span class="n">or</span> <span class="s">&#34;arts&#34;</span><span class="o">)</span>
 </code></pre></div><p>Alternatively use comma:</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Community</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">category_</span><span class="o">(</span><span class="s">&#34;news&#34;</span><span class="o">,</span> <span class="s">&#34;arts&#34;</span><span class="o">)</span>
-</code></pre></div>
-<h3 id="querying-across-references-joins" >Querying across references (joins) <a href="#querying-across-references-joins"></a></h3><p>Getting Community name and the region it is in.</p>
+</code></pre></div><h3 id="querying-across-references-joins">Querying across references (joins)</h3>
+<p>Getting Community name and the region it is in.</p>
 <pre><code>[:find  ?b ?e2
  :where [?a :Community/name ?b]
         [?a :Community/neighborhood ?c]
@@ -147,8 +147,8 @@ List(
         [?e :db/ident ?e1]
         [(.getName ^clojure.lang.Keyword ?e1) ?e2]]
 </code></pre><div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Community</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="nc">Neighborhood</span><span class="o">.</span><span class="nc">District</span><span class="o">.</span><span class="n">region</span>
-</code></pre></div>
-<h3 id="parameterizing-queries" >Parameterizing queries <a href="#parameterizing-queries"></a></h3><p>Community input molecule awaiting some type value</p>
+</code></pre></div><h3 id="parameterizing-queries">Parameterizing queries</h3>
+<p>Community input molecule awaiting some type value</p>
 <pre><code>[:find  ?b ?c2
  :in    $ ?c
  :where [?a :Community/name ?b]
@@ -209,14 +209,14 @@ List(
 )
 </code></pre><div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="n">m</span><span class="o">(</span><span class="nc">Community</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">`type`</span><span class="o">(?).</span><span class="n">orgtype</span><span class="o">(?))</span>
 <span class="o">.</span><span class="n">apply</span><span class="o">(</span><span class="nc">Seq</span><span class="o">((</span><span class="s">&#34;email_list&#34;</span><span class="o">,</span> <span class="s">&#34;community&#34;</span><span class="o">),</span> <span class="o">(</span><span class="s">&#34;website&#34;</span><span class="o">,</span> <span class="s">&#34;commercial&#34;</span><span class="o">)))</span>
-</code></pre></div>
-<h3 id="invoking-functions-in-queries" >Invoking functions in queries <a href="#invoking-functions-in-queries"></a></h3><pre><code>[:find  ?b
+</code></pre></div><h3 id="invoking-functions-in-queries">Invoking functions in queries</h3>
+<pre><code>[:find  ?b
  :where [?a :Community/name ?b]
         [(.compareTo ^String ?b &quot;C&quot;) ?b2]
         [(&lt; ?b2 0)]]
 </code></pre><div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Community</span><span class="o">.</span><span class="n">name</span><span class="o">.&lt;(</span><span class="s">&#34;C&#34;</span><span class="o">)</span>
-</code></pre></div>
-<h3 id="fulltext-search" >Fulltext search <a href="#fulltext-search"></a></h3><pre><code>[:find  ?b
+</code></pre></div><h3 id="fulltext-search">Fulltext search</h3>
+<pre><code>[:find  ?b
  :where [(fulltext $ :Community/name &quot;Wallingford&quot;) [[ ?a ?b ]]]]
 </code></pre><div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Community</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">contains</span><span class="o">(</span><span class="s">&#34;Wallingford&#34;</span><span class="o">)</span>
 </code></pre></div><p>Fulltext search on many-attribute (<code>category</code>)</p>
@@ -225,8 +225,8 @@ List(
         [?a :Community/type &quot;:Community.type/website&quot;]
         [(fulltext $ :Community/category &quot;food&quot;) [[ ?a ?d ]]]]
 </code></pre><div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Community</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">type_</span><span class="o">(</span><span class="s">&#34;website&#34;</span><span class="o">).</span><span class="n">category</span><span class="o">.</span><span class="n">contains</span><span class="o">(</span><span class="s">&#34;food&#34;</span><span class="o">)</span>
-</code></pre></div>
-<h3 id="querying-with-rules-logical-or" >Querying with rules (logical OR) <a href="#querying-with-rules-logical-or"></a></h3><p>Social media communities</p>
+</code></pre></div><h3 id="querying-with-rules-logical-or">Querying with rules (logical OR)</h3>
+<p>Social media communities</p>
 <pre><code>[:find  ?b
  :in    $ %
  :where [?a :Community/name ?b]
@@ -281,12 +281,12 @@ List(
 )
 </code></pre><div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="n">m</span><span class="o">(</span><span class="nc">Community</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">type_</span><span class="o">(?).</span><span class="nc">Neighborhood</span><span class="o">.</span><span class="nc">District</span><span class="o">.</span><span class="n">region_</span><span class="o">(?))</span>
   <span class="o">.</span><span class="n">apply</span><span class="o">((</span><span class="s">&#34;twitter&#34;</span> <span class="n">or</span> <span class="s">&#34;facebook_page&#34;</span><span class="o">)</span> <span class="n">and</span> <span class="o">(</span><span class="s">&#34;sw&#34;</span> <span class="n">or</span> <span class="s">&#34;s&#34;</span> <span class="n">or</span> <span class="s">&#34;se&#34;</span><span class="o">)</span>
-</code></pre></div>
-<h3 id="working-with-time" >Working with time <a href="#working-with-time"></a></h3><pre><code>[:find  ?b
+</code></pre></div><h3 id="working-with-time">Working with time</h3>
+<pre><code>[:find  ?b
  :where [?a :db/txInstant ?b]]
 </code></pre><div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Db</span><span class="o">.</span><span class="n">txInstant</span>
-</code></pre></div>
-<h3 id="inserting-data" >Inserting data <a href="#inserting-data"></a></h3><pre><code>List(
+</code></pre></div><h3 id="inserting-data">Inserting data</h3>
+<pre><code>List(
   List(  :db/add,   #db/id[:db.part/user -1000001],   :Community/name        ,   AAA                             )
   List(  :db/add,   #db/id[:db.part/user -1000001],   :Community/url         ,   myUrl                           )
   List(  :db/add,   #db/id[:db.part/user -1000001],   :Community/type        ,   :Community.type/twitter         )
@@ -336,8 +336,8 @@ List(
   <span class="o">(</span><span class="s">&#34;DDD Blogging Georgetown&#34;</span><span class="o">,</span> <span class="s">&#34;http://www.blogginggeorgetown.com/&#34;</span><span class="o">,</span> <span class="s">&#34;blog&#34;</span><span class="o">,</span> <span class="s">&#34;commercial&#34;</span><span class="o">,</span> <span class="nc">Set</span><span class="o">(</span><span class="s">&#34;DD cat 1&#34;</span><span class="o">,</span> <span class="s">&#34;DD cat 2&#34;</span><span class="o">),</span> <span class="s">&#34;DD Georgetown&#34;</span><span class="o">,</span> <span class="s">&#34;Greater Duwamish&#34;</span><span class="o">,</span> <span class="s">&#34;s&#34;</span><span class="o">),</span>
   <span class="o">(</span><span class="s">&#34;DDD Interbay District Blog&#34;</span><span class="o">,</span> <span class="s">&#34;http://interbayneighborhood.neighborlogs.com/&#34;</span><span class="o">,</span> <span class="s">&#34;blog&#34;</span><span class="o">,</span> <span class="s">&#34;community&#34;</span><span class="o">,</span> <span class="nc">Set</span><span class="o">(</span><span class="s">&#34;DD cat 3&#34;</span><span class="o">),</span> <span class="s">&#34;DD Interbay&#34;</span><span class="o">,</span> <span class="s">&#34;Magnolia/Queen Anne&#34;</span><span class="o">,</span> <span class="s">&#34;w&#34;</span><span class="o">)</span>
 <span class="o">)</span>
-</code></pre></div>
-<h3 id="updating-data" >Updating data <a href="#updating-data"></a></h3><p>Updating one-attribute</p>
+</code></pre></div><h3 id="updating-data">Updating data</h3>
+<p>Updating one-attribute</p>
 <pre><code>List(
   List(  :db/add,   17592186045649,   :Community/name,   belltown 2  )
   List(  :db/add,   17592186045649,   :Community/url ,   url 2       )
@@ -389,8 +389,8 @@ List(
   List(  :db/retract,   17592186045649,   :Community/category,   news                            )
 )
 </code></pre><div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Community</span><span class="o">(</span><span class="n">belltownId</span><span class="o">).</span><span class="n">name</span><span class="o">(</span><span class="s">&#34;belltown 3&#34;</span><span class="o">).</span><span class="n">url</span><span class="o">().</span><span class="n">category</span><span class="o">().</span><span class="n">update</span>
-</code></pre></div>
-<h3 id="next" >Next <a href="#next"></a></h3><p><a href="../../../intro/compare/sql/">Compare SQL&hellip;</a></p>
+</code></pre></div><h3 id="next">Next</h3>
+<p><a href="../../../intro/compare/sql/">Compare SQL&hellip;</a></p>
 
     </div>
 

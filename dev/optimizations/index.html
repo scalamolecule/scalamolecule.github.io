@@ -80,7 +80,7 @@
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="https://javadoc.io/doc/org.scalamolecule/molecule_2.13/latest/index.html" target="_blank" style="">Docs</a></li>
-                    <li><a href="../../changelog" style="">v0.25.0</a></li>
+                    <li><a href="../../changelog" style="">v0.25.1</a></li>
                     <li><a href="https://github.com/scalamolecule/molecule" target="_blank">
                         <img src="../../vendor/GitHub-Mark/PNG/GitHub-Mark-Light-32px.png"
                              style="margin-top:-4px;padding-left:15px;opacity:0.6;width:42px;">
@@ -97,9 +97,9 @@
 <div class="container-fluid" style="max-width:1170px">
 
     <div class="col-sm-10 " style="padding-left:8px;">
-        
-<h1 id="optimizations" >Optimizations <a href="#optimizations"></a></h1>
-<h2 id="save-on-compilation-time" class="safari_anchor_hack">Save on compilation time <a href="#save-on-compilation-time"></a></h2><p>If your code starts to have huge numbers of molecules, you can save time on compilation by importing a specialized Molecule api that sets a threshold for how many attributes are allowed in a molecule. This minimizes the amount of implicits waiting in vain to serve you and can reduce compilation time.</p>
+        <h1 id="optimizations">Optimizations</h1>
+<h2 id="save-on-compilation-time">Save on compilation time</h2>
+<p>If your code starts to have huge numbers of molecules, you can save time on compilation by importing a specialized Molecule api that sets a threshold for how many attributes are allowed in a molecule. This minimizes the amount of implicits waiting in vain to serve you and can reduce compilation time.</p>
 <p>So, if your longest molecule in a code file has 7 attributes, then you could for instance set the api import to allow for 7 attributes:</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">import</span> <span class="nn">molecule.datomic.api.out7._</span>
 
@@ -113,8 +113,8 @@
 <span class="c1">// The above specialized import would be enough to allow this input molecule:
 </span><span class="c1"></span><span class="k">val</span> <span class="n">personsOfAgeGender</span> <span class="k">=</span> <span class="n">m</span><span class="o">(</span><span class="nc">Person</span><span class="o">.</span><span class="n">firstName</span><span class="o">.</span><span class="n">lastName</span><span class="o">.</span><span class="n">age_</span><span class="o">(?).</span><span class="n">gender_</span><span class="o">(?).</span><span class="nc">Address</span><span class="o">.</span><span class="n">street</span><span class="o">.</span><span class="n">zip</span><span class="o">)</span>
 <span class="k">val</span> <span class="n">male22</span> <span class="k">=</span> <span class="n">personsOfAgeGender</span><span class="o">(</span><span class="mi">22</span><span class="o">,</span> <span class="s">&#34;male&#34;</span><span class="o">).</span><span class="n">get</span>
-</code></pre></div>
-<h2 id="alternative-collections" class="safari_anchor_hack">Alternative collections <a href="#alternative-collections"></a></h2><p>When using the Datomic Peer database system, the database &ldquo;server&rdquo; is running within your application process and not as a remote database server. This means that the complete data set is returned on every query and it is up to your application code to handle that. It gives you lower latency and greater control but also greater responsibility.</p>
+</code></pre></div><h2 id="alternative-collections">Alternative collections</h2>
+<p>When using the Datomic Peer database system, the database &ldquo;server&rdquo; is running within your application process and not as a remote database server. This means that the complete data set is returned on every query and it is up to your application code to handle that. It gives you lower latency and greater control but also greater responsibility.</p>
 <p>Data is by default returned as <code>List</code>s of tuples where all rows of data have been casted to the type signature of the molecule:</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="c1">// List returned for convenient access to smaller data sets
 </span><span class="c1"></span><span class="k">val</span> <span class="n">list</span> <span class="k">:</span> <span class="kt">List</span><span class="o">[(</span><span class="kt">String</span>, <span class="kt">Int</span><span class="o">)]</span> <span class="k">=</span> <span class="n">m</span><span class="o">(</span><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">age</span><span class="o">).</span><span class="n">get</span>
@@ -131,12 +131,12 @@
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">val</span> <span class="n">array</span>   <span class="k">:</span> <span class="kt">Future</span><span class="o">[</span><span class="kt">Array</span><span class="o">[(</span><span class="kt">String</span>, <span class="kt">Int</span><span class="o">)]]</span> <span class="k">=</span> <span class="n">m</span><span class="o">(</span><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">age</span><span class="o">).</span><span class="n">getAsyncArray</span>
 <span class="k">val</span> <span class="n">iterable</span><span class="k">:</span> <span class="kt">Future</span><span class="o">[</span><span class="kt">Iterable</span><span class="o">[(</span><span class="kt">String</span>, <span class="kt">Int</span><span class="o">)]]</span> <span class="k">=</span> <span class="n">m</span><span class="o">(</span><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">age</span><span class="o">).</span><span class="n">getAsyncIterable</span>
 <span class="k">val</span> <span class="n">raw</span>     <span class="k">:</span> <span class="kt">Future</span><span class="o">[</span><span class="kt">java.util.Collection</span><span class="o">[</span><span class="kt">java.util.List</span><span class="o">[</span><span class="kt">AnyRef</span><span class="o">]]]</span> <span class="k">=</span> <span class="n">m</span><span class="o">(</span><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">age</span><span class="o">).</span><span class="n">getAsyncRaw</span>
-</code></pre></div>
-<h2 id="optimized-time-getters" class="safari_anchor_hack">Optimized Time getters <a href="#optimized-time-getters"></a></h2><p>The default time getters return <code>List</code>s of tuples as the normal <code>get</code> method does:</p>
+</code></pre></div><h2 id="optimized-time-getters">Optimized Time getters</h2>
+<p>The default time getters return <code>List</code>s of tuples as the normal <code>get</code> method does:</p>
 <pre><code>getAsOf(…)    getAsyncAsOf(…)
 getSince(…)   getAsyncSince(…)
 getWith(…)    getAsyncWith(…)
-</code></pre><p>Again, we can use more specialized collection types:</p>
+</code></pre><p>And for optimization purposes we can use more specialized collection types:</p>
 <pre><code>getArrayAsOf(…)       getAsyncArrayAsOf(…)
 getArraySince(…)      getAsyncArraySince(…)
 getArrayWith(…)       getAsyncArrayWith(…)
@@ -149,8 +149,24 @@ getRawAsOf(…)         getAsyncRawAsOf(…)
 getRawSince(…)        getAsyncRawSince(…)
 getRawWith(…)         getAsyncRawWith(…)
 </code></pre><p><code>getHistory</code> is only implemented to return a List (the default) since the result order is not guaranteed and we therefore always need a fully realized sortable collection.</p>
+<h4 id="object-getters">Object getters</h4>
+<pre><code>// All objects materialized in List
+getObjListAsOf(…)       getAsyncObjListAsOf(…)
+getObjListSince(…)      getAsyncObjListSince(…)
+getObjListWith(…)       getAsyncObjListWith(…)
+getObjListHistory(…)    getAsyncObjListHistory(…) // History only for List of objects
 
-<h2 id="automatic-query-optimization" class="safari_anchor_hack">Automatic Query optimization <a href="#automatic-query-optimization"></a></h2><p>Molecule transparently optimize all queries sent to Datomic.</p>
+// All objects materialized in fast Array
+getObjArrayAsOf(…)      getAsyncObjArrayAsOf(…)
+getObjArraySince(…)     getAsyncObjArraySince(…)
+getObjArrayWith(…)      getAsyncObjArrayWith(…)
+
+// Object creation/casting deferred for each `next` call on Iterator
+getObjIterableAsOf(…)   getAsyncObjIterableAsOf(…)
+getObjIterableSince(…)  getAsyncObjIterableSince(…)
+getObjIterableWith(…)   getAsyncObjIterableWith(…)
+</code></pre><h2 id="automatic-query-optimization">Automatic Query optimization</h2>
+<p>Molecule transparently optimize all queries sent to Datomic.</p>
 <p>Most selective Clauses are automatically grouped first in the :where section of the Datomic query as per the recommendation in <a href="https://docs.datomic.com/on-prem/best-practices.html">Datomic Best Practices</a>.</p>
 <p>This brings dramatic performance gains of in some cases beyond 100x compared to un-optimized queries. The optimization happens automatically in the background so that you can focus entirely on your domain without concern for the optimal order of attributes in your molecules.</p>
 

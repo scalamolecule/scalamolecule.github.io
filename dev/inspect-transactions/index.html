@@ -80,7 +80,7 @@
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="https://javadoc.io/doc/org.scalamolecule/molecule_2.13/latest/index.html" target="_blank" style="">Docs</a></li>
-                    <li><a href="../../changelog" style="">v0.25.0</a></li>
+                    <li><a href="../../changelog" style="">v0.25.1</a></li>
                     <li><a href="https://github.com/scalamolecule/molecule" target="_blank">
                         <img src="../../vendor/GitHub-Mark/PNG/GitHub-Mark-Light-32px.png"
                              style="margin-top:-4px;padding-left:15px;opacity:0.6;width:42px;">
@@ -97,8 +97,8 @@
 <div class="container-fluid" style="max-width:1170px">
 
     <div class="col-sm-10 " style="padding-left:8px;">
-        
-<h1 id="inspect-transactions" >Inspect transactions <a href="#inspect-transactions"></a></h1><p>Transactional operations can be inspected with the following methods:</p>
+        <h1 id="inspect-transactions">Inspect transactions</h1>
+<p>Transactional operations can be inspected with the following methods:</p>
 <ul>
 <li>&lt;molecule&gt;.<code>inspectSave</code></li>
 <li>&lt;molecule&gt;.<code>inspectInsert(data...)</code></li>
@@ -108,8 +108,8 @@
 <li><code>inspectRetract(entityIds, txMetaDataMolecules*)</code></li>
 </ul>
 <p>Calling these inspect methods will print the produced transaction statements to console only and not perform any transaction on the database.</p>
-
-<h2 id="inspectsave" class="safari_anchor_hack">inspectSave <a href="#inspectsave"></a></h2><p>If we are about to save a molecule we can instead call <code>inspectSave</code> on the same molecule to see what transaction statements Molecule will send to Datomic.</p>
+<h2 id="inspectsave">inspectSave</h2>
+<p>If we are about to save a molecule we can instead call <code>inspectSave</code> on the same molecule to see what transaction statements Molecule will send to Datomic.</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="c1">// Normal save
 </span><span class="c1"></span><span class="nc">Ns</span><span class="o">.</span><span class="n">str</span><span class="o">(</span><span class="s">&#34;273 Broadway&#34;</span><span class="o">).</span><span class="nc">Ref1</span><span class="o">.</span><span class="n">int1</span><span class="o">(</span><span class="mi">10700</span><span class="o">).</span><span class="n">str1</span><span class="o">(</span><span class="s">&#34;New York&#34;</span><span class="o">).</span><span class="nc">Ref2</span><span class="o">.</span><span class="n">str2</span><span class="o">(</span><span class="s">&#34;USA&#34;</span><span class="o">).</span><span class="n">save</span>
 
@@ -142,8 +142,8 @@
   5          :db/add    #db/id[:db.part/user -1001201]   :Ref1/ref2           #db/id[:db.part/user -1001204]
   6          :db/add    #db/id[:db.part/user -1001204]   :Ref2/str2           USA)
 ================================================================================================================
-</code></pre>
-<h3 id="inspect-save-with-tx-meta-data" >Inspect save with tx meta data <a href="#inspect-save-with-tx-meta-data"></a></h3><p>Inspect save with transaction meta data by calling <code>inspectSave</code>.</p>
+</code></pre><h3 id="inspect-save-with-tx-meta-data">Inspect save with tx meta data</h3>
+<p>Inspect save with transaction meta data by calling <code>inspectSave</code>.</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Ns</span><span class="o">.</span><span class="n">int</span><span class="o">(</span><span class="mi">1</span><span class="o">).</span><span class="nc">Tx</span><span class="o">(</span><span class="nc">Ns</span><span class="o">.</span><span class="n">str_</span><span class="o">(</span><span class="s">&#34;meta data&#34;</span><span class="o">)).</span><span class="n">inspectSave</span>
 </code></pre></div><p>The following is then printed to console:</p>
 <pre><code>## 1 ## output.Molecule.inspectSave 
@@ -162,8 +162,8 @@
   2          :db/add    datomic.tx                       :Ns/str              meta data)
 ================================================================================================================
 </code></pre><p>Note how the <code>:Ns/str</code> attribute meta value &ldquo;meta data&rdquo; is asserted with the current transaction entity (identified by <code>datomic.tx</code>).</p>
-
-<h2 id="inspectinsert" class="safari_anchor_hack">inspectInsert <a href="#inspectinsert"></a></h2><p>If we for instance have a nested insert it could be valuable to break it down and see what transaction statements Molecule produces by applying the same insertion data to the <code>inspectInsert</code> method:</p>
+<h2 id="inspectinsert">inspectInsert</h2>
+<p>If we for instance have a nested insert it could be valuable to break it down and see what transaction statements Molecule produces by applying the same insertion data to the <code>inspectInsert</code> method:</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="c1">// Nested insert
 </span><span class="c1"></span><span class="n">m</span><span class="o">(</span><span class="nc">Ns</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="nc">Refs1</span> <span class="o">*</span> <span class="nc">Ref1</span><span class="o">.</span><span class="n">int1</span><span class="o">.</span><span class="n">str1</span><span class="o">).</span><span class="n">insert</span><span class="o">(</span>
   <span class="s">&#34;order&#34;</span><span class="o">,</span> <span class="nc">List</span><span class="o">((</span><span class="mi">4</span><span class="o">,</span> <span class="s">&#34;product1&#34;</span><span class="o">),</span> <span class="o">(</span><span class="mi">7</span><span class="o">,</span> <span class="s">&#34;product2&#34;</span><span class="o">))</span>
@@ -222,8 +222,8 @@
 <li>Untupled data</li>
 <li>Datomic transactions</li>
 </ul>
-
-<h2 id="inspectupdate" class="safari_anchor_hack">inspectUpdate <a href="#inspectupdate"></a></h2><div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="c1">// Initial data
+<h2 id="inspectupdate">inspectUpdate</h2>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="c1">// Initial data
 </span><span class="c1"></span><span class="k">val</span> <span class="n">eid</span> <span class="k">=</span> <span class="nc">Ns</span><span class="o">.</span><span class="n">int</span><span class="o">(</span><span class="mi">1</span><span class="o">).</span><span class="n">str</span><span class="o">(</span><span class="s">&#34;a&#34;</span><span class="o">).</span><span class="n">save</span><span class="o">.</span><span class="n">eid</span>
 <span class="c1">// Update - note how we try to update to the same `str` value
 </span><span class="c1"></span><span class="nc">Ns</span><span class="o">(</span><span class="n">eid</span><span class="o">).</span><span class="n">int</span><span class="o">(</span><span class="mi">2</span><span class="o">).</span><span class="n">str</span><span class="o">(</span><span class="s">&#34;a&#34;</span><span class="o">).</span><span class="n">update</span>
@@ -257,8 +257,8 @@ OUTPUTS:
 4  [&quot;:Ns/int&quot; 1 1028 true]
 (showing up to 500 rows)
 --------------------------------------------------------------------------
-</code></pre>
-<h2 id="inspectretract" class="safari_anchor_hack">inspectRetract <a href="#inspectretract"></a></h2><p>A single entity can be retracted by simply calling the implicit <code>retract</code> method on an entity id. To see what transaction statements this produces, call <code>inspectRetract</code> instead:</p>
+</code></pre><h2 id="inspectretract">inspectRetract</h2>
+<p>A single entity can be retracted by simply calling the implicit <code>retract</code> method on an entity id. To see what transaction statements this produces, call <code>inspectRetract</code> instead:</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="n">eid</span><span class="o">.</span><span class="n">inspectRetract</span>
 </code></pre></div><p>This shows that a single transaction is produced to retract the entity:</p>
 <pre><code>## 1 ## Inspect `retract` on entity 
@@ -267,8 +267,8 @@ OUTPUTS:
   1          List(
     1          :db.fn/retractEntity   17592186045445))
 ================================================================================================================
-</code></pre>
-<h3 id="add-tx-meta-data-to-retraction-on-entity-id" >Add Tx meta data to retraction on entity id <a href="#add-tx-meta-data-to-retraction-on-entity-id"></a></h3><p>We can add transaction meta data to the entity retraction in order to be able to later track what kind of retraction that happened.</p>
+</code></pre><h3 id="add-tx-meta-data-to-retraction-on-entity-id">Add Tx meta data to retraction on entity id</h3>
+<p>We can add transaction meta data to the entity retraction in order to be able to later track what kind of retraction that happened.</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="n">eid</span><span class="o">.</span><span class="nc">Tx</span><span class="o">(</span><span class="nc">Ns</span><span class="o">.</span><span class="n">str</span><span class="o">(</span><span class="s">&#34;meta&#34;</span><span class="o">)).</span><span class="n">inspectRetract</span>
 </code></pre></div><p>We see that the additional datom with the meta value &ldquo;meta&rdquo; was associated with the transaction entity (datomic.tx) where the retraction of the entity is performed.</p>
 <pre><code>================================================================================================================
@@ -277,8 +277,8 @@ OUTPUTS:
     1          :db.fn/retractEntity   17592186045445
     2          :db/add    datomic.tx                       :Ns/str              meta))
 ================================================================================================================
-</code></pre>
-<h2 id="inspectretracteids" class="safari_anchor_hack">inspectRetract(eids) <a href="#inspectretracteids"></a></h2><p>Inspect retracting multiple entities with <code>inspectRetract</code></p>
+</code></pre><h2 id="inspectretracteids">inspectRetract(eids)</h2>
+<p>Inspect retracting multiple entities with <code>inspectRetract</code></p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="n">inspectRetract</span><span class="o">(</span><span class="nc">Seq</span><span class="o">(</span><span class="n">e1</span><span class="o">,</span> <span class="n">e2</span><span class="o">))</span>
 </code></pre></div><p>Two entity retraction statements produced.</p>
 <pre><code>## 1 ## molecule.Datomic.inspectRetract 
@@ -294,8 +294,8 @@ OUTPUTS:
     1          :db.fn/retractEntity   17592186045445
     2          :db.fn/retractEntity   17592186045446))
 ================================================================================================================
-</code></pre>
-<h3 id="add-tx-meta-data-to-retraction-of-multiple-entity-ids" >Add Tx meta data to retraction of multiple entity ids <a href="#add-tx-meta-data-to-retraction-of-multiple-entity-ids"></a></h3><p>Let&rsquo;s add some transaction meta data to the retraction</p>
+</code></pre><h3 id="add-tx-meta-data-to-retraction-of-multiple-entity-ids">Add Tx meta data to retraction of multiple entity ids</h3>
+<p>Let&rsquo;s add some transaction meta data to the retraction</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="n">inspectRetract</span><span class="o">(</span><span class="nc">Seq</span><span class="o">(</span><span class="n">e1</span><span class="o">,</span> <span class="n">e2</span><span class="o">),</span> <span class="nc">Ref1</span><span class="o">.</span><span class="n">str1</span><span class="o">(</span><span class="s">&#34;Some tx info&#34;</span><span class="o">))</span>
 </code></pre></div><p>Then we can see how the <code>:Ref1/str1</code> attribute value &ldquo;Some tx info&rdquo; is added as a statement to the transaction that retracts the two entities:</p>
 <pre><code>## 1 ## molecule.Datomic.inspectRetract 

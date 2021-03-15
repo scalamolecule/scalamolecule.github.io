@@ -80,7 +80,7 @@
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="https://javadoc.io/doc/org.scalamolecule/molecule_2.13/latest/index.html" target="_blank" style="">Docs</a></li>
-                    <li><a href="../../../changelog" style="">v0.25.0</a></li>
+                    <li><a href="../../../changelog" style="">v0.25.1</a></li>
                     <li><a href="https://github.com/scalamolecule/molecule" target="_blank">
                         <img src="../../../vendor/GitHub-Mark/PNG/GitHub-Mark-Light-32px.png"
                              style="margin-top:-4px;padding-left:15px;opacity:0.6;width:42px;">
@@ -97,8 +97,8 @@
 <div class="container-fluid" style="max-width:1170px">
 
     <div class="col-sm-10 " style="padding-left:8px;">
-        
-<h1 id="datomic-peer-pro-in-mem" >Datomic Peer (pro), in-mem <a href="#datomic-peer-pro-in-mem"></a></h1><p>Minimal project setup to test using Molecule with a starter/pro <a href="https://docs.datomic.com/on-prem/peer-getting-started.html">Datomic Peer</a> in-memory database (protocol: mem).</p>
+        <h1 id="datomic-peer-pro-in-mem">Datomic Peer (pro), in-mem</h1>
+<p>Minimal project setup to test using Molecule with a starter/pro <a href="https://docs.datomic.com/on-prem/peer-getting-started.html">Datomic Peer</a> in-memory database (protocol: mem).</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">import</span> <span class="nn">sbt.Keys._</span>
 
 <span class="k">lazy</span> <span class="k">val</span> <span class="n">demo</span> <span class="k">=</span> <span class="n">project</span><span class="o">.</span><span class="n">in</span><span class="o">(</span><span class="n">file</span><span class="o">(</span><span class="s">&#34;.&#34;</span><span class="o">))</span>
@@ -145,13 +145,13 @@
     <span class="c1">// Let IDE detect created jars in unmanaged lib directory
 </span><span class="c1"></span>    <span class="n">exportJars</span> <span class="k">:</span><span class="o">=</span> <span class="kc">true</span>
   <span class="o">)</span>
-</code></pre></div>
-<h3 id="1-connect-to-peer" >1. Connect to Peer <a href="#1-connect-to-peer"></a></h3><p>Connect, recreate in-memory database and get database connection</p>
+</code></pre></div><h3 id="1-connect-to-peer">1. Connect to Peer</h3>
+<p>Connect, recreate in-memory database and get database connection</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">implicit</span> <span class="k">val</span> <span class="n">conn</span> <span class="k">=</span> <span class="nc">Datomic_Peer</span><span class="o">.</span><span class="n">recreateDbFrom</span><span class="o">(</span><span class="nc">SampleSchema</span><span class="o">)</span> 
 </code></pre></div><p>Since we are not persisting the database, we let Molecule create a random database name. We don&rsquo;t need to supply the default &ldquo;mem&rdquo; protocol either. So this is really simple.</p>
 <p>If you need persisting data, please see <a href="https://docs.datomic.com/on-prem/storage.html">other storage options</a> or have a look at one of the other sample projects.</p>
-
-<h3 id="2-make-molecules" >2. Make molecules <a href="#2-make-molecules"></a></h3><p>Having an implicit connection in scope, we can start transacting and querying <code>sampledb</code> with molecules:</p>
+<h3 id="2-make-molecules">2. Make molecules</h3>
+<p>Having an implicit connection in scope, we can start transacting and querying <code>sampledb</code> with molecules:</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="c1">// Transact
 </span><span class="c1"></span><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">(</span><span class="s">&#34;John&#34;</span><span class="o">).</span><span class="n">age</span><span class="o">(</span><span class="mi">24</span><span class="o">).</span><span class="n">save</span><span class="o">.</span><span class="n">eid</span>
 

@@ -25,7 +25,8 @@
       <guid>http://scalamolecule.org/dev/inspect-transactions/</guid>
       <description>Inspect transactions Transactional operations can be inspected with the following methods:
  &amp;lt;molecule&amp;gt;.inspectSave &amp;lt;molecule&amp;gt;.inspectInsert(data...) &amp;lt;molecule&amp;gt;.inspectUpdate &amp;lt;entityId&amp;gt;.inspectRetract &amp;lt;entityId&amp;gt;.Tx(transactionMolecule).inspectRetract inspectRetract(entityIds, txMetaDataMolecules*)  Calling these inspect methods will print the produced transaction statements to console only and not perform any transaction on the database.
-inspectSave If we are about to save a molecule we can instead call inspectSave on the same molecule to see what transaction statements Molecule will send to Datomic.</description>
+inspectSave If we are about to save a molecule we can instead call inspectSave on the same molecule to see what transaction statements Molecule will send to Datomic.
+// Normal save Ns.</description>
     </item>
     
     <item>
@@ -34,7 +35,7 @@ inspectSave If we are about to save a molecule we can instead call inspectSave o
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://scalamolecule.org/dev/optimizations/</guid>
-      <description>Optimizations  Save on compilation time If your code starts to have huge numbers of molecules, you can save time on compilation by importing a specialized Molecule api that sets a threshold for how many attributes are allowed in a molecule. This minimizes the amount of implicits waiting in vain to serve you and can reduce compilation time.
+      <description>Optimizations Save on compilation time If your code starts to have huge numbers of molecules, you can save time on compilation by importing a specialized Molecule api that sets a threshold for how many attributes are allowed in a molecule. This minimizes the amount of implicits waiting in vain to serve you and can reduce compilation time.
 So, if your longest molecule in a code file has 7 attributes, then you could for instance set the api import to allow for 7 attributes:</description>
     </item>
     
@@ -54,9 +55,9 @@ lowercase to Uppercase If you for instance want to use Molecule with an external
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://scalamolecule.org/dev/pitfalls/</guid>
-      <description>Pitfalls  Cannot resolve overloaded method &amp;lsquo;inputMolecule&amp;rsquo; When forgetting to explicitly calling m on an input molecule
+      <description>Pitfalls Cannot resolve overloaded method &amp;lsquo;inputMolecule&amp;rsquo; When forgetting to explicitly calling m on an input molecule
 val inputMolecule = Community.name(?) inputMolecule(&amp;#34;Ben&amp;#34;) // will not compile and likely be inferred as an error in your IDE Input molecule needs to be declared explicitly with the m method
-val inputMolecule = m(Community.name(?)) // Now we can apply value to input molecule inputMolecule(&amp;#34;Ben&amp;#34;)  JdbcSQLException: Connection is broken: &amp;ldquo;java.net.ConnectException: Connection refused Datomic transactor is not running - please start it again.</description>
+val inputMolecule = m(Community.name(?)) // Now we can apply value to input molecule inputMolecule(&amp;#34;Ben&amp;#34;) JdbcSQLException: Connection is broken: &amp;ldquo;java.net.ConnectException: Connection refused Datomic transactor is not running - please start it again.</description>
     </item>
     
   </channel>

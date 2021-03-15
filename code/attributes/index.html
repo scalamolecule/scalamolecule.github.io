@@ -80,7 +80,7 @@
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="https://javadoc.io/doc/org.scalamolecule/molecule_2.13/latest/index.html" target="_blank" style="">Docs</a></li>
-                    <li><a href="../../changelog" style="">v0.25.0</a></li>
+                    <li><a href="../../changelog" style="">v0.25.1</a></li>
                     <li><a href="https://github.com/scalamolecule/molecule" target="_blank">
                         <img src="../../vendor/GitHub-Mark/PNG/GitHub-Mark-Light-32px.png"
                              style="margin-top:-4px;padding-left:15px;opacity:0.6;width:42px;">
@@ -97,8 +97,8 @@
 <div class="container-fluid" style="max-width:1170px">
 
     <div class="col-sm-10 " style="padding-left:8px;">
-        
-<h1 id="attributes" >Attributes <a href="#attributes"></a></h1><p>Molecules are built by chaining attributes together with the builder pattern.</p>
+        <h1 id="attributes">Attributes</h1>
+<p>Molecules are built by chaining attributes together with the builder pattern.</p>
 <p>Molecule then transforms the constructed molecule to a query string at compile time. Molecules can be constructed explicitly with the <code>m</code> method. But generally the implicit call is used.</p>
 <p>We could for instance build a molecule representing the data structure of Persons with name, age and gender Attributes:</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="c1">// Explicit `m` macro call
@@ -108,35 +108,35 @@
 </span><span class="c1"></span><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">age</span><span class="o">.</span><span class="n">gender</span><span class="o">.</span><span class="n">get</span>
 </code></pre></div><p>The fundamental building blocks are Namespaces like <code>Person</code> and Attributes like <code>name</code>, <code>age</code> and <code>gender</code>. Namespaces are simply prefixes to Attribute names to avoid name clashes and to group our Attributes in meaningful ways according to our domain.</p>
 <p>As you see we start our molecule from some Namespace and then build on Attribute by Attribute.</p>
-
-<h3 id="molecule-max-size" >Molecule max size <a href="#molecule-max-size"></a></h3><p>The size of molecules are limited to Scala&rsquo;s arity limit of 22 for tuples.</p>
+<h3 id="molecule-max-size">Molecule max size</h3>
+<p>The size of molecules are limited to Scala&rsquo;s arity limit of 22 for tuples.</p>
 <p>But we can create a <a href="../../code/relationships/#composite-molecules">composite molecule</a> with up to 22 x 22 = 484 attributes!</p>
-
-<h3 id="cardinality" >Cardinality <a href="#cardinality"></a></h3><p>The attributes <code>name</code>, <code>age</code> and <code>gender</code> that we saw above are typical cardinality-one attributes each with one value.</p>
+<h3 id="cardinality">Cardinality</h3>
+<p>The attributes <code>name</code>, <code>age</code> and <code>gender</code> that we saw above are typical cardinality-one attributes each with one value.</p>
 <p>Datomic also has cardinality-many attributes that have a <code>Set</code> of values. This means that the same value cannot be saved multiple times, or that only unique values are saved. An example could be a cardinality-many attribute <code>hobbies</code> of a <code>Person</code>:</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">hobbies</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">head</span> <span class="o">===</span> <span class="o">(</span><span class="s">&#34;John&#34;</span><span class="o">,</span> <span class="nc">Set</span><span class="o">(</span><span class="s">&#34;Trains&#34;</span><span class="o">,</span> <span class="s">&#34;Chess&#34;</span><span class="o">))</span>
 </code></pre></div><p>In the <a href="../../code/transactions/#update">Update</a> section of CRUD we will see how multiple values are managed with Molecule.</p>
-
-<h2 id="3-attribute-modes" class="safari_anchor_hack">3 attribute modes <a href="#3-attribute-modes"></a></h2>
-<h4 id="1-mandatory-attr" >1. Mandatory <code>attr</code> <a href="#1-mandatory-attr"></a></h4><p>When we use a molecule to query the Datomic database we ask for entities having all our Attributes associated with them.</p>
+<h2 id="3-attribute-modes">3 attribute modes</h2>
+<h4 id="1-mandatory-attr">1. Mandatory <code>attr</code></h4>
+<p>When we use a molecule to query the Datomic database we ask for entities having all our Attributes associated with them.</p>
 <p><em>Note that this is different from selecting rows from a sql table where you can also get null values back!</em></p>
 <p>If for instance we have entities representing Persons in our data set that haven&rsquo;t got any age Attribute associated with them then this query will <em>not</em> return those entities:</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">val</span> <span class="n">persons</span> <span class="k">=</span> <span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">age</span><span class="o">.</span><span class="n">get</span>
 </code></pre></div><p>Basically we look for <strong>matches</strong> to our molecule data structure.</p>
-
-<h4 id="2-tacit-attr_" >2. Tacit <code>attr_</code> <a href="#2-tacit-attr_"></a></h4><p>Sometimes we want to grap entities that we <em>know</em> have certain attributes, but without returning those values. We call the un-returning attributes &ldquo;tacit attributes&rdquo;.</p>
+<h4 id="2-tacit-attr_">2. Tacit <code>attr_</code></h4>
+<p>Sometimes we want to grap entities that we <em>know</em> have certain attributes, but without returning those values. We call the un-returning attributes &ldquo;tacit attributes&rdquo;.</p>
 <p>If for instance we wanted to find all names of Persons that have an age attribute set but we don&rsquo;t need to return those age values, then we can add an underscore <code>_</code> after the <code>age</code> Attribute:</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">val</span> <span class="n">names</span> <span class="k">=</span> <span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">age_</span><span class="o">.</span><span class="n">get</span>
 </code></pre></div><p>This will return names of person entities having both a name and age Attribute set. Note how the age values are no longer returned from the type signatures:</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">val</span> <span class="n">persons</span><span class="k">:</span> <span class="kt">List</span><span class="o">[(</span><span class="kt">String</span>, <span class="kt">Int</span><span class="o">)]</span> <span class="k">=</span> <span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">age</span><span class="o">.</span><span class="n">get</span>
 <span class="k">val</span> <span class="n">names</span>  <span class="k">:</span> <span class="kt">List</span><span class="o">[</span><span class="kt">String</span><span class="o">]</span>        <span class="k">=</span> <span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">age_</span><span class="o">.</span><span class="n">get</span>
 </code></pre></div><p>This way we can switch on and off individual attributes from the result set without affecting the data structures we look for.</p>
-
-<h4 id="3-optional-attr" >3. Optional <code>attr$</code> <a href="#3-optional-attr"></a></h4><p>If an attribute value is only sometimes set, we can ask for it&rsquo;s optional value by adding a dollar sign <code>$</code> after the attribute:</p>
+<h4 id="3-optional-attr">3. Optional <code>attr$</code></h4>
+<p>If an attribute value is only sometimes set, we can ask for it&rsquo;s optional value by adding a dollar sign <code>$</code> after the attribute:</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">val</span> <span class="n">names</span><span class="k">:</span> <span class="kt">List</span><span class="o">[(</span><span class="kt">String</span>, <span class="kt">Option</span><span class="o">[</span><span class="kt">String</span><span class="o">]</span>, <span class="kt">String</span><span class="o">)]</span> <span class="k">=</span> <span class="nc">Person</span><span class="o">.</span><span class="n">firstName</span><span class="o">.</span><span class="n">middleName$</span><span class="o">.</span><span class="n">lastName</span><span class="o">.</span><span class="n">get</span>
 </code></pre></div><p>That way we can get all person names with or without middleNames. As you can see from the return type, the middle name is wrapped in an <code>Option</code>.</p>
-
-<h2 id="map-attributes" class="safari_anchor_hack">Map Attributes <a href="#map-attributes"></a></h2><p>Mapped values can be saved with mapped attributes in Molecule. It&rsquo;s a special Molecule construct that makes it easy to save for instance multi-lingual data without having to create language-variations of each attribute. But they can also be used for any other key-value indexed data.</p>
+<h2 id="map-attributes">Map Attributes</h2>
+<p>Mapped values can be saved with mapped attributes in Molecule. It&rsquo;s a special Molecule construct that makes it easy to save for instance multi-lingual data without having to create language-variations of each attribute. But they can also be used for any other key-value indexed data.</p>
 <p>Say you want to save famous Persons names in multiple languages. Then you could use a mapString:</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="c1">// In definition file
 </span><span class="c1"></span><span class="k">val</span> <span class="n">name</span> <span class="k">=</span> <span class="n">mapString</span>
@@ -162,9 +162,9 @@
   <span class="o">)</span>
 <span class="o">)</span>
 </code></pre></div><p>Molecule concatenates the key and value of each pair to one of several values of an underlying cardinality-many attribute. When data is then retrieved Molecule splits the concatenated string into a typed pair. This all happens automatically and let&rsquo;s us focus on their use in our code.</p>
-
-<h2 id="expressions" class="safari_anchor_hack">Expressions <a href="#expressions"></a></h2>
-<h3 id="equality" >Equality <a href="#equality"></a></h3><p>We can apply values to Attributes in order to filter the data structures we are looking for. We could for instance find people who like pizza:</p>
+<h2 id="expressions">Expressions</h2>
+<h3 id="equality">Equality</h3>
+<p>We can apply values to Attributes in order to filter the data structures we are looking for. We could for instance find people who like pizza:</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">.</span><span class="n">likes</span><span class="o">.</span><span class="n">apply</span><span class="o">(</span><span class="s">&#34;pizza&#34;</span><span class="o">)</span>
 </code></pre></div><p>or simply</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">.</span><span class="n">likes</span><span class="o">(</span><span class="s">&#34;pizza&#34;</span><span class="o">)</span>
@@ -184,8 +184,8 @@
 </span><span class="c1"></span><span class="nc">Person</span><span class="o">.</span><span class="n">age</span><span class="o">(</span><span class="mi">40</span><span class="o">,</span> <span class="mi">41</span><span class="o">,</span> <span class="mi">42</span><span class="o">)</span>
 <span class="c1">// .. same as
 </span><span class="c1"></span><span class="nc">Person</span><span class="o">.</span><span class="n">age</span><span class="o">(</span><span class="nc">List</span><span class="o">(</span><span class="mi">40</span><span class="o">,</span> <span class="mi">41</span><span class="o">,</span> <span class="mi">42</span><span class="o">))</span>
-</code></pre></div>
-<h3 id="fulltext-search" >Fulltext search <a href="#fulltext-search"></a></h3><p>If we add the <code>fulltext</code> option to a String attribute definition Datomic will index the text strings saved so that we can do fulltext searches across all values. We could for instance search for Community names containing the word &ldquo;Town&rdquo; in their name:</p>
+</code></pre></div><h3 id="fulltext-search">Fulltext search</h3>
+<p>If we add the <code>fulltext</code> option to a String attribute definition Datomic will index the text strings saved so that we can do fulltext searches across all values. We could for instance search for Community names containing the word &ldquo;Town&rdquo; in their name:</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Community</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">contains</span><span class="o">(</span><span class="s">&#34;Town&#34;</span><span class="o">)</span>
 </code></pre></div><p>Note that only full words are considered, so &ldquo;Tow&rdquo; won&rsquo;t match. Searches are case-insensitive.</p>
 <p>Also, the following common words are not considered:</p>
@@ -194,8 +194,8 @@
 &quot;no&quot;, &quot;not&quot;, &quot;of&quot;, &quot;on&quot;, &quot;or&quot;, &quot;such&quot;,
 &quot;that&quot;, &quot;the&quot;, &quot;their&quot;, &quot;then&quot;, &quot;there&quot;, &quot;these&quot;,
 &quot;they&quot;, &quot;this&quot;, &quot;to&quot;, &quot;was&quot;, &quot;will&quot;, &quot;with&quot;
-</code></pre>
-<h3 id="negation" >Negation <a href="#negation"></a></h3><p>We can exclude a certain attribute value like in &ldquo;Persons that are not 42 years old&rdquo;:</p>
+</code></pre><h3 id="negation">Negation</h3>
+<p>We can exclude a certain attribute value like in &ldquo;Persons that are not 42 years old&rdquo;:</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">.</span><span class="n">age</span><span class="o">.!=(</span><span class="mi">42</span><span class="o">)</span>
 <span class="c1">// or
 </span><span class="c1"></span><span class="nc">Person</span><span class="o">.</span><span class="n">age</span><span class="o">.</span><span class="n">not</span><span class="o">(</span><span class="mi">42</span><span class="o">)</span>
@@ -203,8 +203,8 @@
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">.</span><span class="n">age</span><span class="o">.!=(</span><span class="mi">40</span> <span class="n">or</span> <span class="mi">41</span> <span class="n">or</span> <span class="mi">42</span><span class="o">)</span>
 <span class="nc">Person</span><span class="o">.</span><span class="n">age</span><span class="o">.!=(</span><span class="mi">40</span><span class="o">,</span> <span class="mi">41</span><span class="o">,</span> <span class="mi">42</span><span class="o">)</span>
 <span class="nc">Person</span><span class="o">.</span><span class="n">age</span><span class="o">.!=(</span><span class="nc">List</span><span class="o">(</span><span class="mi">40</span><span class="o">,</span> <span class="mi">41</span><span class="o">,</span> <span class="mi">42</span><span class="o">))</span>
-</code></pre></div>
-<h3 id="comparison" >Comparison <a href="#comparison"></a></h3><p>We can filer attribute values that satisfy comparison expressions:</p>
+</code></pre></div><h3 id="comparison">Comparison</h3>
+<p>We can filer attribute values that satisfy comparison expressions:</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">.</span><span class="n">age</span><span class="o">.&lt;(</span><span class="mi">42</span><span class="o">)</span>
 <span class="nc">Person</span><span class="o">.</span><span class="n">age</span><span class="o">.&gt;(</span><span class="mi">42</span><span class="o">)</span>
 <span class="nc">Person</span><span class="o">.</span><span class="n">age</span><span class="o">.&lt;=(</span><span class="mi">42</span><span class="o">)</span>
@@ -212,12 +212,12 @@
 </code></pre></div><p>Comparison of all types are performed with java&rsquo;s <code>compareTo</code> method. Text strings can for instance also be sorted by a letter:</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Community</span><span class="o">.</span><span class="n">name</span><span class="o">.&lt;(</span><span class="s">&#34;C&#34;</span><span class="o">).</span><span class="n">get</span><span class="o">(</span><span class="mi">3</span><span class="o">)</span> <span class="o">===</span> <span class="nc">List</span><span class="o">(</span>
   <span class="s">&#34;ArtsWest&#34;</span><span class="o">,</span> <span class="s">&#34;All About South Park&#34;</span><span class="o">,</span> <span class="s">&#34;Ballard Neighbor Connection&#34;</span><span class="o">)</span>
-</code></pre></div>
-<h3 id="null" >Null <a href="#null"></a></h3><p>We can look for non-asserted attributes (Null values) as in &ldquo;Persons that have no age asserted&rdquo; by applying an empty value to an attribute:</p>
+</code></pre></div><h3 id="null">Null</h3>
+<p>We can look for non-asserted attributes (Null values) as in &ldquo;Persons that have no age asserted&rdquo; by applying an empty value to an attribute:</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">age_</span><span class="o">()</span> <span class="o">===</span> <span class="c1">// all persons where age hasn&#39;t been asserted
 </span></code></pre></div><p>Note that the <code>age_</code> attribute has to be tacit (with an underscore) since we naturally can&rsquo;t return missing values.</p>
-
-<h3 id="applying-variables" >Applying variables <a href="#applying-variables"></a></h3><p>Even though Molecule introspects molecule constructions at compile time we can still use (runtime) variables for our expressions:</p>
+<h3 id="applying-variables">Applying variables</h3>
+<p>Even though Molecule introspects molecule constructions at compile time we can still use (runtime) variables for our expressions:</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">val</span> <span class="n">youngAge</span> <span class="k">=</span> <span class="mi">25</span>
 <span class="k">val</span> <span class="n">goodAge</span> <span class="k">=</span> <span class="mi">42</span>
 <span class="nc">Person</span><span class="o">.</span><span class="n">age</span><span class="o">(</span><span class="n">goodAge</span><span class="o">)</span>
@@ -232,44 +232,44 @@
 </code></pre></div><p>In this case we could instead apply the expression result to a variable and use that in the molecule:</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">val</span> <span class="n">date</span> <span class="k">=</span> <span class="k">new</span> <span class="n">java</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="nc">Date</span><span class="o">(</span><span class="s">&#34;2017-05-10&#34;</span><span class="o">)</span>
 <span class="nc">Person</span><span class="o">.</span><span class="n">birthday</span><span class="o">(</span><span class="n">date</span><span class="o">)</span>
-</code></pre></div>
-<h2 id="aggregates" class="safari_anchor_hack">Aggregates <a href="#aggregates"></a></h2><p>Molecule wraps Datomic&rsquo;s native aggregate functions by applying special aggregate keyword objects to the attribute we want to aggregate on.</p>
+</code></pre></div><h2 id="aggregates">Aggregates</h2>
+<p>Molecule wraps Datomic&rsquo;s native aggregate functions by applying special aggregate keyword objects to the attribute we want to aggregate on.</p>
 <p>Aggregate functions either return a single value or a collection of values:</p>
-
-<h3 id="aggregates-returning-a-single-value" >Aggregates returning a single value <a href="#aggregates-returning-a-single-value"></a></h3>
-<h4 id="minmax" >min/max <a href="#minmax"></a></h4><p>Applying the <code>min</code> or <code>max</code> aggregate keyword object as a value to the <code>age</code> attribute returns the lowest/highest ages.</p>
+<h3 id="aggregates-returning-a-single-value">Aggregates returning a single value</h3>
+<h4 id="minmax">min/max</h4>
+<p>Applying the <code>min</code> or <code>max</code> aggregate keyword object as a value to the <code>age</code> attribute returns the lowest/highest ages.</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">.</span><span class="n">age</span><span class="o">(</span><span class="n">min</span><span class="o">)</span> <span class="c1">// lowest age
 </span><span class="c1"></span><span class="nc">Person</span><span class="o">.</span><span class="n">age</span><span class="o">(</span><span class="n">max</span><span class="o">)</span> <span class="c1">// highest age
 </span></code></pre></div><p><code>min</code>/<code>max</code> supports all attribute types.</p>
-
-<h4 id="sum" >sum <a href="#sum"></a></h4><div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">.</span><span class="n">age</span><span class="o">(</span><span class="n">sum</span><span class="o">)</span> <span class="c1">// sum of all ages
-</span></code></pre></div>
-<h4 id="count" >count <a href="#count"></a></h4><p>Count the total number of entities with an asserted <code>age</code> value (not to be confused with <code>sum</code>).</p>
+<h4 id="sum">sum</h4>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">.</span><span class="n">age</span><span class="o">(</span><span class="n">sum</span><span class="o">)</span> <span class="c1">// sum of all ages
+</span></code></pre></div><h4 id="count">count</h4>
+<p>Count the total number of entities with an asserted <code>age</code> value (not to be confused with <code>sum</code>).</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">.</span><span class="n">age</span><span class="o">(</span><span class="n">count</span><span class="o">)</span> <span class="c1">// count of all persons with an age (not the sum of ages)
-</span></code></pre></div>
-<h4 id="countdistinct" >countDistinct <a href="#countdistinct"></a></h4><p>Count the total number of entities with asserted <em>unique</em> <code>age</code> values (not to be confused with <code>sum</code>).</p>
+</span></code></pre></div><h4 id="countdistinct">countDistinct</h4>
+<p>Count the total number of entities with asserted <em>unique</em> <code>age</code> values (not to be confused with <code>sum</code>).</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">.</span><span class="n">age</span><span class="o">(</span><span class="n">countDistinct</span><span class="o">)</span>  <span class="c1">// count of unique ages
-</span></code></pre></div>
-<h4 id="avg" >avg <a href="#avg"></a></h4><div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">.</span><span class="n">age</span><span class="o">(</span><span class="n">avg</span><span class="o">)</span> <span class="c1">// average of all ages
-</span></code></pre></div>
-<h4 id="median" >median <a href="#median"></a></h4><div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">.</span><span class="n">age</span><span class="o">(</span><span class="n">median</span><span class="o">)</span> <span class="c1">// median of all ages
-</span></code></pre></div>
-<h4 id="variance" >variance <a href="#variance"></a></h4><div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">.</span><span class="n">age</span><span class="o">(</span><span class="n">variance</span><span class="o">)</span> <span class="c1">// variance of all ages
-</span></code></pre></div>
-<h4 id="stddev" >stddev <a href="#stddev"></a></h4><div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">.</span><span class="n">age</span><span class="o">(</span><span class="n">stddev</span><span class="o">)</span> <span class="c1">// standard deviation of all ages
-</span></code></pre></div>
-<h3 id="aggregates-returning-collections-of-values" >Aggregates returning collections of values <a href="#aggregates-returning-collections-of-values"></a></h3>
-<h4 id="distinct" >distinct <a href="#distinct"></a></h4><div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">.</span><span class="n">age</span><span class="o">(</span><span class="n">distinct</span><span class="o">)</span> <span class="c1">// distinct ages
-</span></code></pre></div>
-<h4 id="minn" >min(n) <a href="#minn"></a></h4><div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">.</span><span class="n">age</span><span class="o">(</span><span class="n">min</span><span class="o">(</span><span class="mi">3</span><span class="o">))</span> <span class="c1">// 3 lowest ages
-</span></code></pre></div>
-<h4 id="maxn" >max(n) <a href="#maxn"></a></h4><div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">.</span><span class="n">age</span><span class="o">(</span><span class="n">max</span><span class="o">(</span><span class="mi">3</span><span class="o">))</span> <span class="c1">// 3 highest ages
-</span></code></pre></div>
-<h4 id="randn" >rand(n) <a href="#randn"></a></h4><div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">.</span><span class="n">age</span><span class="o">(</span><span class="n">rand</span><span class="o">(</span><span class="mi">3</span><span class="o">))</span> <span class="c1">// 3 random persons (with potential for duplicates)
-</span></code></pre></div>
-<h4 id="samplen" >sample(n) <a href="#samplen"></a></h4><div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">.</span><span class="n">age</span><span class="o">(</span><span class="n">sample</span><span class="o">(</span><span class="mi">3</span><span class="o">))</span> <span class="c1">// 3 sample persons (without duplicates)
-</span></code></pre></div>
-<h2 id="input-molecules" class="safari_anchor_hack">Input-molecules <a href="#input-molecules"></a></h2><p>Molecules can be parameterized by applying the input placeholder <code>?</code> as a value to an attribute. The molecule then expects input for that attribute at runtime.</p>
+</span></code></pre></div><h4 id="avg">avg</h4>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">.</span><span class="n">age</span><span class="o">(</span><span class="n">avg</span><span class="o">)</span> <span class="c1">// average of all ages
+</span></code></pre></div><h4 id="median">median</h4>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">.</span><span class="n">age</span><span class="o">(</span><span class="n">median</span><span class="o">)</span> <span class="c1">// median of all ages
+</span></code></pre></div><h4 id="variance">variance</h4>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">.</span><span class="n">age</span><span class="o">(</span><span class="n">variance</span><span class="o">)</span> <span class="c1">// variance of all ages
+</span></code></pre></div><h4 id="stddev">stddev</h4>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">.</span><span class="n">age</span><span class="o">(</span><span class="n">stddev</span><span class="o">)</span> <span class="c1">// standard deviation of all ages
+</span></code></pre></div><h3 id="aggregates-returning-collections-of-values">Aggregates returning collections of values</h3>
+<h4 id="distinct">distinct</h4>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">.</span><span class="n">age</span><span class="o">(</span><span class="n">distinct</span><span class="o">)</span> <span class="c1">// distinct ages
+</span></code></pre></div><h4 id="minn">min(n)</h4>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">.</span><span class="n">age</span><span class="o">(</span><span class="n">min</span><span class="o">(</span><span class="mi">3</span><span class="o">))</span> <span class="c1">// 3 lowest ages
+</span></code></pre></div><h4 id="maxn">max(n)</h4>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">.</span><span class="n">age</span><span class="o">(</span><span class="n">max</span><span class="o">(</span><span class="mi">3</span><span class="o">))</span> <span class="c1">// 3 highest ages
+</span></code></pre></div><h4 id="randn">rand(n)</h4>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">.</span><span class="n">age</span><span class="o">(</span><span class="n">rand</span><span class="o">(</span><span class="mi">3</span><span class="o">))</span> <span class="c1">// 3 random persons (with potential for duplicates)
+</span></code></pre></div><h4 id="samplen">sample(n)</h4>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">.</span><span class="n">age</span><span class="o">(</span><span class="n">sample</span><span class="o">(</span><span class="mi">3</span><span class="o">))</span> <span class="c1">// 3 sample persons (without duplicates)
+</span></code></pre></div><h2 id="input-molecules">Input-molecules</h2>
+<p>Molecules can be parameterized by applying the input placeholder <code>?</code> as a value to an attribute. The molecule then expects input for that attribute at runtime.</p>
 <p>By assigning parameterized &ldquo;Input-molecules&rdquo; to variables we can re-use those variables to query for similar data structures where only some data part varies:</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="c1">// 1 input parameter
 </span><span class="c1"></span><span class="k">val</span> <span class="n">person</span> <span class="k">=</span> <span class="n">m</span><span class="o">(</span><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">(?))</span>
@@ -277,22 +277,22 @@
 <span class="k">val</span> <span class="n">john</span> <span class="k">=</span> <span class="n">person</span><span class="o">(</span><span class="s">&#34;John&#34;</span><span class="o">).</span><span class="n">get</span><span class="o">.</span><span class="n">head</span>
 <span class="k">val</span> <span class="n">lisa</span> <span class="k">=</span> <span class="n">person</span><span class="o">(</span><span class="s">&#34;Lisa&#34;</span><span class="o">).</span><span class="n">get</span><span class="o">.</span><span class="n">head</span>
 </code></pre></div><p>Of course more complex molecules would benefit even more from this approach.</p>
-
-<h3 id="datomic-cache-and-optimization" >Datomic cache and optimization <a href="#datomic-cache-and-optimization"></a></h3><p>Datomic caches and optimizes queries from input molecules so performance-wise it&rsquo;s a good idea to use them.</p>
-
-<h3 id="parameterized-expressions" >Parameterized expressions <a href="#parameterized-expressions"></a></h3><div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">val</span> <span class="n">personName</span>  <span class="k">=</span> <span class="n">m</span><span class="o">(</span><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">(?))</span>
+<h3 id="datomic-cache-and-optimization">Datomic cache and optimization</h3>
+<p>Datomic caches and optimizes queries from input molecules so performance-wise it&rsquo;s a good idea to use them.</p>
+<h3 id="parameterized-expressions">Parameterized expressions</h3>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">val</span> <span class="n">personName</span>  <span class="k">=</span> <span class="n">m</span><span class="o">(</span><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">(?))</span>
 <span class="k">val</span> <span class="n">johnOrLisas</span> <span class="k">=</span> <span class="n">personName</span><span class="o">(</span><span class="s">&#34;John&#34;</span> <span class="n">or</span> <span class="s">&#34;Lisa&#34;</span><span class="o">).</span><span class="n">get</span> <span class="c1">// OR
-</span></code></pre></div>
-<h3 id="multiple-parameters" >Multiple parameters <a href="#multiple-parameters"></a></h3><p>Molecules can have up to 3 <code>?</code> placeholder parameters.</p>
+</span></code></pre></div><h3 id="multiple-parameters">Multiple parameters</h3>
+<p>Molecules can have up to 3 <code>?</code> placeholder parameters.</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">val</span> <span class="n">person</span>      <span class="k">=</span> <span class="n">m</span><span class="o">(</span><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">(?).</span><span class="n">age</span><span class="o">(?))</span>
 <span class="k">val</span> <span class="n">john</span>        <span class="k">=</span> <span class="n">person</span><span class="o">(</span><span class="s">&#34;John&#34;</span> <span class="n">and</span> <span class="mi">24</span><span class="o">).</span><span class="n">get</span><span class="o">.</span><span class="n">head</span> <span class="c1">// AND
 </span><span class="c1"></span><span class="k">val</span> <span class="n">johnOrJonas</span> <span class="k">=</span> <span class="n">person</span><span class="o">((</span><span class="s">&#34;John&#34;</span> <span class="n">and</span> <span class="mi">24</span><span class="o">)</span> <span class="n">or</span> <span class="o">(</span><span class="s">&#34;Lisa&#34;</span> <span class="n">and</span> <span class="mi">20</span><span class="o">)).</span><span class="n">get</span> <span class="c1">// AND/OR
-</span></code></pre></div>
-<h3 id="mix-parameterized-and-static-expressions" >Mix parameterized and static expressions <a href="#mix-parameterized-and-static-expressions"></a></h3><div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">val</span> <span class="n">americansYoungerThan</span> <span class="k">=</span> <span class="n">m</span><span class="o">(</span><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">age</span><span class="o">.&lt;(?).</span><span class="nc">Country</span><span class="o">.</span><span class="n">name</span><span class="o">(</span><span class="s">&#34;USA&#34;</span><span class="o">))</span>
+</span></code></pre></div><h3 id="mix-parameterized-and-static-expressions">Mix parameterized and static expressions</h3>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">val</span> <span class="n">americansYoungerThan</span> <span class="k">=</span> <span class="n">m</span><span class="o">(</span><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">age</span><span class="o">.&lt;(?).</span><span class="nc">Country</span><span class="o">.</span><span class="n">name</span><span class="o">(</span><span class="s">&#34;USA&#34;</span><span class="o">))</span>
 <span class="k">val</span> <span class="n">americanKids</span>         <span class="k">=</span> <span class="n">americansYoungerThan</span><span class="o">(</span><span class="mi">13</span><span class="o">).</span><span class="n">get</span>
 <span class="k">val</span> <span class="n">americanBabies</span>       <span class="k">=</span> <span class="n">americansYoungerThan</span><span class="o">(</span><span class="mi">1</span><span class="o">).</span><span class="n">get</span>
-</code></pre></div>
-<h3 id="next" >Next <a href="#next"></a></h3><p><a href="../../code/relationships/">Relationships&hellip;</a></p>
+</code></pre></div><h3 id="next">Next</h3>
+<p><a href="../../code/relationships/">Relationships&hellip;</a></p>
 
     </div>
 

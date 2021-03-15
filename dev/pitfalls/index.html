@@ -80,7 +80,7 @@
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="https://javadoc.io/doc/org.scalamolecule/molecule_2.13/latest/index.html" target="_blank" style="">Docs</a></li>
-                    <li><a href="../../changelog" style="">v0.25.0</a></li>
+                    <li><a href="../../changelog" style="">v0.25.1</a></li>
                     <li><a href="https://github.com/scalamolecule/molecule" target="_blank">
                         <img src="../../vendor/GitHub-Mark/PNG/GitHub-Mark-Light-32px.png"
                              style="margin-top:-4px;padding-left:15px;opacity:0.6;width:42px;">
@@ -97,17 +97,17 @@
 <div class="container-fluid" style="max-width:1170px">
 
     <div class="col-sm-10 " style="padding-left:8px;">
-        
-<h1 id="pitfalls" >Pitfalls <a href="#pitfalls"></a></h1>
-<h4 id="101" >Cannot resolve overloaded method &lsquo;inputMolecule&rsquo; <a href="#101"></a></h4><p>When forgetting to explicitly calling <code>m</code> on an input molecule</p>
+        <h1 id="pitfalls">Pitfalls</h1>
+<h4 id="101">Cannot resolve overloaded method &lsquo;inputMolecule&rsquo;</h4>
+<p>When forgetting to explicitly calling <code>m</code> on an input molecule</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">val</span> <span class="n">inputMolecule</span> <span class="k">=</span> <span class="nc">Community</span><span class="o">.</span><span class="n">name</span><span class="o">(?)</span>
 <span class="n">inputMolecule</span><span class="o">(</span><span class="s">&#34;Ben&#34;</span><span class="o">)</span> <span class="c1">// will not compile and likely be inferred as an error in your IDE
 </span></code></pre></div><p>Input molecule needs to be declared explicitly with the <code>m</code> method</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">val</span> <span class="n">inputMolecule</span> <span class="k">=</span> <span class="n">m</span><span class="o">(</span><span class="nc">Community</span><span class="o">.</span><span class="n">name</span><span class="o">(?))</span>
 <span class="c1">// Now we can apply value to input molecule
 </span><span class="c1"></span><span class="n">inputMolecule</span><span class="o">(</span><span class="s">&#34;Ben&#34;</span><span class="o">)</span>
-</code></pre></div>
-<h4 id="201" >JdbcSQLException: Connection is broken: &ldquo;java.net.ConnectException: Connection refused <a href="#201"></a></h4><p>Datomic transactor is not running - please start it again.</p>
+</code></pre></div><h4 id="201">JdbcSQLException: Connection is broken: &ldquo;java.net.ConnectException: Connection refused</h4>
+<p>Datomic transactor is not running - please start it again.</p>
 
     </div>
 

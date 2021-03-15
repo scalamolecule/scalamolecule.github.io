@@ -80,7 +80,7 @@
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="https://javadoc.io/doc/org.scalamolecule/molecule_2.13/latest/index.html" target="_blank" style="">Docs</a></li>
-                    <li><a href="../../changelog" style="">v0.25.0</a></li>
+                    <li><a href="../../changelog" style="">v0.25.1</a></li>
                     <li><a href="https://github.com/scalamolecule/molecule" target="_blank">
                         <img src="../../vendor/GitHub-Mark/PNG/GitHub-Mark-Light-32px.png"
                              style="margin-top:-4px;padding-left:15px;opacity:0.6;width:42px;">
@@ -97,10 +97,10 @@
 <div class="container-fluid" style="max-width:1170px">
 
     <div class="col-sm-10 " style="padding-left:8px;">
-        
-<h1 id="sbt-setup" >Sbt setup <a href="#sbt-setup"></a></h1><p>Once you have defined your <a href="../../setup/data-model">Data Model</a>, your sbt project needs to be set up to use Molecule.</p>
-
-<h2 id="moleculeplugin" class="safari_anchor_hack">MoleculePlugin <a href="#moleculeplugin"></a></h2><p>The sbt <a href="https://github.com/scalamolecule/sbt-molecule">MoleculePlugin</a> generates Molecule boilerplate code when you compile your project.</p>
+        <h1 id="sbt-setup">Sbt setup</h1>
+<p>Once you have defined your <a href="../../setup/data-model">Data Model</a>, your sbt project needs to be set up to use Molecule.</p>
+<h2 id="moleculeplugin">MoleculePlugin</h2>
+<p>The sbt <a href="https://github.com/scalamolecule/sbt-molecule">MoleculePlugin</a> generates Molecule boilerplate code when you compile your project.</p>
 <p>Add the latest version of the plugin in <code>project/buildinfo.sbt</code>:</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="n">addSbtPlugin</span><span class="o">(</span><span class="s">&#34;org.scalamolecule&#34;</span> <span class="o">%</span> <span class="s">&#34;sbt-molecule&#34;</span> <span class="o">%</span> <span class="s">&#34;0.12.0&#34;</span><span class="o">)</span>
 </code></pre></div><p>And add it to the project <code>build.sbt</code> file</p>
@@ -108,8 +108,8 @@
     <span class="o">.</span><span class="n">enablePlugins</span><span class="o">(</span><span class="nc">MoleculePlugin</span><span class="o">)</span>
     <span class="c1">//...
 </span><span class="c1"></span>  <span class="o">)</span>
-</code></pre></div>
-<h2 id="dependencies" class="safari_anchor_hack">Dependencies <a href="#dependencies"></a></h2><p>These will depend on which specific Datomic database system that you will use. You can choose from 3 different Datomic libraries that will support the following database systems:</p>
+</code></pre></div><h2 id="dependencies">Dependencies</h2>
+<p>These will depend on which specific Datomic database system that you will use. You can choose from 3 different Datomic libraries that will support the following database systems:</p>
 
 
 
@@ -139,8 +139,8 @@
 </table>
 
 <p>Each of the 3 libraries resolve differently:</p>
-
-<h3 id="datomic-free" >datomic-free <a href="#datomic-free"></a></h3><div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala">  <span class="o">.</span><span class="n">settings</span><span class="o">(</span>
+<h3 id="datomic-free">datomic-free</h3>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala">  <span class="o">.</span><span class="n">settings</span><span class="o">(</span>
     <span class="n">resolvers</span> <span class="o">++=</span> <span class="nc">Seq</span><span class="o">(</span>
       <span class="nc">Resolver</span><span class="o">.</span><span class="n">sonatypeRepo</span><span class="o">(</span><span class="s">&#34;releases&#34;</span><span class="o">),</span>
       <span class="s">&#34;clojars&#34;</span> <span class="n">at</span> <span class="s">&#34;https://clojars.org/repo&#34;</span> 
@@ -151,8 +151,8 @@
     <span class="o">),</span>
     <span class="c1">//...
 </span><span class="c1"></span>  <span class="o">)</span>
-</code></pre></div>
-<h3 id="datomic-pro" >datomic-pro <a href="#datomic-pro"></a></h3><p>The Starter/pro version of Datomic requires a license so we need to provide a username and password to download the library. We do this by saving those in a secret <code>~/.sbt/.credentials</code> file:</p>
+</code></pre></div><h3 id="datomic-pro">datomic-pro</h3>
+<p>The Starter/pro version of Datomic requires a license so we need to provide a username and password to download the library. We do this by saving those in a secret <code>~/.sbt/.credentials</code> file:</p>
 <pre><code>realm=Datomic Maven Repo
 host=my.datomic.com
 id=my.datomic.com
@@ -173,8 +173,8 @@ pass=&lt;your-password&gt;
     <span class="o">),</span>
     <span class="c1">//...
 </span><span class="c1"></span>  <span class="o">)</span>
-</code></pre></div>
-<h3 id="dev-local" >dev-local <a href="#dev-local"></a></h3><p>The <a href="https://docs.datomic.com/cloud/dev-local.html">dev-local library</a> is part of <a href="https://cognitect.com/dev-tools">Cognitect dev-tools</a> that needs to be downloaded first. After downloading, you <code>./install</code> the library in your local maven repository and let sbt know to look there too:</p>
+</code></pre></div><h3 id="dev-local">dev-local</h3>
+<p>The <a href="https://docs.datomic.com/cloud/dev-local.html">dev-local library</a> is part of <a href="https://cognitect.com/dev-tools">Cognitect dev-tools</a> that needs to be downloaded first. After downloading, you <code>./install</code> the library in your local maven repository and let sbt know to look there too:</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala">  <span class="o">.</span><span class="n">settings</span><span class="o">(</span>
     <span class="n">resolvers</span> <span class="o">++=</span> <span class="nc">Seq</span><span class="o">(</span>
       <span class="nc">Resolver</span><span class="o">.</span><span class="n">sonatypeRepo</span><span class="o">(</span><span class="s">&#34;releases&#34;</span><span class="o">),</span>
@@ -188,8 +188,8 @@ pass=&lt;your-password&gt;
     <span class="o">),</span>
     <span class="c1">//...
 </span><span class="c1"></span>  <span class="o">)</span>
-</code></pre></div>
-<h2 id="data-model-paths" class="safari_anchor_hack">Data Model paths <a href="#data-model-paths"></a></h2><p>The MoleculePlugin needs to know where your Data Model(s) are.</p>
+</code></pre></div><h2 id="data-model-paths">Data Model paths</h2>
+<p>The MoleculePlugin needs to know where your Data Model(s) are.</p>
 <p>You can have a single or several Data Model files in a project, each corresponding to a single database.</p>
 <p>Data Model files should reside in directories named <code>dataModel</code> anywhere in your source code. Use the <code>moleculeDataModelPaths</code> sbt settings key of the MoleculePlugin to list paths to those directories.</p>
 <p>Say you have a project <code>app</code> like the <a href="https://github.com/scalamolecule/molecule-demo">molecule-demo</a> project and a single Data Model file <code>YourDomainDataModel.scala</code>:</p>
@@ -199,8 +199,8 @@ pass=&lt;your-password&gt;
     <span class="n">moleculeDataModelPaths</span> <span class="k">:</span><span class="o">=</span> <span class="nc">Seq</span><span class="o">(</span><span class="s">&#34;app&#34;</span><span class="o">),</span>
     <span class="c1">//...
 </span><span class="c1"></span>  <span class="o">)</span>
-</code></pre></div>
-<h3 id="multiple-data-models" >Multiple Data Models <a href="#multiple-data-models"></a></h3><p>The Molecule project tests shows an example of having multiple Data Model files:</p>
+</code></pre></div><h3 id="multiple-data-models">Multiple Data Models</h3>
+<p>The Molecule project tests shows an example of having multiple Data Model files:</p>
 <p><img src="../../img/page/setup/setup2.png" alt=""></p>
 <p>We list these paths like this in our <code>build.sbt</code>:</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala">  <span class="o">.</span><span class="n">settings</span><span class="o">(</span>
@@ -217,10 +217,10 @@ pass=&lt;your-password&gt;
     <span class="o">),</span>
     <span class="c1">//...
 </span><span class="c1"></span>  <span class="o">)</span>
-</code></pre></div>
-<h2 id="moleculeplugin-options" class="safari_anchor_hack">MoleculePlugin options <a href="#moleculeplugin-options"></a></h2><p>Apart from the mandatory <code>moleculeDataModelPaths</code> setting key that we saw above, the MoleculePlugin has 3 more optional keys that you can set in your project build file. If the default value suits you, you don&rsquo;t need to add the key.</p>
-
-<h3 id="moleculepluginactive" >moleculePluginActive <a href="#moleculepluginactive"></a></h3><div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="n">moleculePluginActive</span> <span class="k">:</span><span class="o">=</span> <span class="kc">false</span> <span class="c1">// (default)
+</code></pre></div><h2 id="moleculeplugin-options">MoleculePlugin options</h2>
+<p>Apart from the mandatory <code>moleculeDataModelPaths</code> setting key that we saw above, the MoleculePlugin has 3 more optional keys that you can set in your project build file. If the default value suits you, you don&rsquo;t need to add the key.</p>
+<h3 id="moleculepluginactive">moleculePluginActive</h3>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="n">moleculePluginActive</span> <span class="k">:</span><span class="o">=</span> <span class="kc">false</span> <span class="c1">// (default)
 </span></code></pre></div><p>Set this to <code>true</code> to have Molecule boilerplate code re-generated on each project compilation.</p>
 <p>The default value is <code>false</code> to avoid re-generating boilerplate code when your Data Model hasn&rsquo;t changed and you simply want to re-compile your project without affecting the existing generated boilerplate code.</p>
 <p>A flexible way to control when re-generation should happen is to pass a property value when you want Molecule boilerplate code generated with your project compilation:</p>
@@ -230,18 +230,18 @@ pass=&lt;your-password&gt;
 </code></pre></div><p>(You can call the property anything your like)</p>
 <p>Then you can freely recompile your project without re-generating the Molecule boilerplate code:</p>
 <pre><code>sbt compile
-</code></pre>
-<h3 id="moleculemakejars" >moleculeMakeJars <a href="#moleculemakejars"></a></h3><p>Normally you want generated Molecule boilerplate code available as an immutable jar:</p>
+</code></pre><h3 id="moleculemakejars">moleculeMakeJars</h3>
+<p>Normally you want generated Molecule boilerplate code available as an immutable jar:</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="n">moleculeMakeJars</span> <span class="k">:</span><span class="o">=</span> <span class="kc">true</span> <span class="c1">// (default)
 </span></code></pre></div><p>If you want to be able to modify or test things with the generated boilerplate code, you can set the key to false:</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="n">moleculeMakeJars</span> <span class="k">:</span><span class="o">=</span> <span class="kc">false</span>
 </code></pre></div><p>Then the jars are not created and the generated source code available in the <code>src_managed</code> directory in <code>target</code>.</p>
-
-<h3 id="moleculeallindexed" >moleculeAllIndexed <a href="#moleculeallindexed"></a></h3><p>This is a Datomic-specific sbt settings key that tells wether schema attributes should all be indexed:</p>
+<h3 id="moleculeallindexed">moleculeAllIndexed</h3>
+<p>This is a Datomic-specific sbt settings key that tells wether schema attributes should all be indexed:</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="n">moleculeAllIndexed</span> <span class="k">:</span><span class="o">=</span> <span class="kc">true</span> <span class="c1">// (default)
 </span></code></pre></div><p>If you set it to false, your settings in your Data Model determines which attributes are indexed.</p>
-
-<h2 id="complete-sbt-example" class="safari_anchor_hack">Complete sbt example <a href="#complete-sbt-example"></a></h2><p>Putting all the configuration together, we here have a minimal project <code>build.sbt</code> setup for a free Datomic Peer system:</p>
+<h2 id="complete-sbt-example">Complete sbt example</h2>
+<p>Putting all the configuration together, we here have a minimal project <code>build.sbt</code> setup for a free Datomic Peer system:</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">import</span> <span class="nn">sbt.Keys._</span>
 
 <span class="k">lazy</span> <span class="k">val</span> <span class="n">demo</span> <span class="k">=</span> <span class="n">project</span><span class="o">.</span><span class="n">in</span><span class="o">(</span><span class="n">file</span><span class="o">(</span><span class="s">&#34;.&#34;</span><span class="o">))</span>
@@ -273,8 +273,8 @@ pass=&lt;your-password&gt;
   <span class="o">)</span>
 </code></pre></div><p>We have added the last line <code>exportJars := true</code> also to let your IDE automatically detect and include the jars that the MoleculePlugin creates in the unmanaged lib directory of your project.</p>
 <p>In the side menu you can see more examples of various project/database setups.</p>
-
-<h2 id="compile-project" class="safari_anchor_hack">Compile Project <a href="#compile-project"></a></h2><p>When you have copnfigured your sbt project, you can compile it to have Molecule boilerplate code generated:</p>
+<h2 id="compile-project">Compile Project</h2>
+<p>When you have copnfigured your sbt project, you can compile it to have Molecule boilerplate code generated:</p>
 <pre><code>sbt clean compile -Dmolecule=true
 </code></pre><p>During project compilation, a series of operations are then performed:</p>
 <ol>
@@ -287,8 +287,8 @@ pass=&lt;your-password&gt;
 <p><img src="../../img/page/setup/setup3.png" alt=""></p>
 <p><code>dsl</code> contains the generated Molecule boilerplate code for the defined Person Data Model and <code>schema</code> contains boilerplate code for transacting our Datomic schema.</p>
 <p>Whenever you make changes to your Data Model, you can simply <code>sbt compile -Dmolecule=true</code> and have your Schema transaction boilerplate code re-generated with your latest changes.</p>
-
-<h3 id="next" >Next <a href="#next"></a></h3><p><a href="../../setup/db-connection">Get a database connection&hellip;</a></p>
+<h3 id="next">Next</h3>
+<p><a href="../../setup/db-connection">Get a database connection&hellip;</a></p>
 
     </div>
 
