@@ -93,7 +93,7 @@
 
     <div class="col-sm-10 " style="padding-left:8px;">
         <h1 id="pitfalls">Pitfalls</h1>
-<h4 id="101">Cannot resolve overloaded method &lsquo;inputMolecule&rsquo;</h4>
+<h3 id="101">Cannot resolve overloaded method &lsquo;inputMolecule&rsquo;</h3>
 <p>When forgetting to explicitly calling <code>m</code> on an input molecule</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">val</span> <span class="n">inputMolecule</span> <span class="k">=</span> <span class="nc">Community</span><span class="o">.</span><span class="n">name</span><span class="o">(?)</span>
 <span class="n">inputMolecule</span><span class="o">(</span><span class="s">&#34;Ben&#34;</span><span class="o">)</span> <span class="c1">// will not compile and likely be inferred as an error in your IDE
@@ -101,8 +101,27 @@
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">val</span> <span class="n">inputMolecule</span> <span class="k">=</span> <span class="n">m</span><span class="o">(</span><span class="nc">Community</span><span class="o">.</span><span class="n">name</span><span class="o">(?))</span>
 <span class="c1">// Now we can apply value to input molecule
 </span><span class="c1"></span><span class="n">inputMolecule</span><span class="o">(</span><span class="s">&#34;Ben&#34;</span><span class="o">)</span>
-</code></pre></div><h4 id="201">JdbcSQLException: Connection is broken: &ldquo;java.net.ConnectException: Connection refused</h4>
+</code></pre></div><h3 id="201">JdbcSQLException: Connection is broken: &ldquo;java.net.ConnectException: Connection refused</h3>
 <p>Datomic transactor is not running - please start it again.</p>
+<h3 id="configuring-shared-sourcemaps">Configuring shared sourcemaps</h3>
+<p>Adding the following configuration to a shared project in the <code>build.sbt</code> file make sure that sourcemaps for shared code are configured even on remote hosts:</p>
+<pre><code>.jsConfigure(_.enablePlugins(ScalaJSWeb))
+</code></pre>
+<p>It just creates problems for the MoleculePlugin when creating jars for the project.
+After jars from compiled generated molecule source code files have been created, the MoleculePlugin deletes the source files and compiled classes. Something then goes wrong for ScalaJSWeb so that it can&rsquo;t find the class files:</p>
+<pre><code>[error] java.io.FileNotFoundException: /&lt;path...&gt;/shared/.js/target/scala-2.13/classes/db/dsl/MBrainz/Release.class (No such file or directory)
+</code></pre>
+<p>A workaround is to</p>
+<ul>
+<li>remove <code>.jsConfigure(_.enablePlugins(ScalaJSWeb))</code> or</li>
+<li>set <code>moleculeMakeJars := false</code> to leave generated source code as is or</li>
+<li>find out how to get the two to work together :-)</li>
+</ul>
+<h3 id="gobal--onload">Gobal / onload</h3>
+<p>Another similar problem when creating jars from generated source code is when the following configuration is applied to automatically load the server project when running <code>sbt</code>:</p>
+<pre><code>Global / onLoad := (Global / onLoad).value.andThen(state =&gt; &quot;project server&quot; :: state)
+</code></pre>
+<p>As with the above pitfall, the workaround is the same: skip this setting, set <code>moleculeMakeJars := false</code> or explore how both can co-exist.</p>
 
     </div>
 
