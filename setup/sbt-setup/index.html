@@ -103,7 +103,13 @@
     <span class="o">.</span><span class="n">enablePlugins</span><span class="o">(</span><span class="nc">MoleculePlugin</span><span class="o">)</span>
     <span class="c1">//...
 </span><span class="c1"></span>  <span class="o">)</span>
-</code></pre></div><h2 id="dependencies">Dependencies</h2>
+</code></pre></div><p>In ScalaJS projects, enable the plugin in the shared project:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">lazy</span> <span class="k">val</span> <span class="n">shared</span> <span class="k">=</span> <span class="n">crossProject</span><span class="o">(</span><span class="nc">JSPlatform</span><span class="o">,</span> <span class="nc">JVMPlatform</span><span class="o">)</span>
+  <span class="o">.</span><span class="n">crossType</span><span class="o">(</span><span class="nc">CrossType</span><span class="o">.</span><span class="nc">Pure</span><span class="o">)</span>
+  <span class="o">.</span><span class="n">in</span><span class="o">(</span><span class="n">file</span><span class="o">(</span><span class="s">&#34;shared&#34;</span><span class="o">))</span>
+  <span class="o">.</span><span class="n">enablePlugins</span><span class="o">(</span><span class="nc">MoleculePlugin</span><span class="o">)</span>
+  <span class="c1">// ...
+</span></code></pre></div><h2 id="dependencies">Dependencies</h2>
 <p>These will depend on which specific Datomic database system that you will use. You can choose from 3 different Datomic libraries that will support the following database systems:</p>
 
 

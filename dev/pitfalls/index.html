@@ -93,7 +93,7 @@
 
     <div class="col-sm-10 " style="padding-left:8px;">
         <h1 id="pitfalls">Pitfalls</h1>
-<h3 id="101">Cannot resolve overloaded method &lsquo;inputMolecule&rsquo;</h3>
+<h2 id="101">Cannot resolve overloaded method &lsquo;inputMolecule&rsquo;</h2>
 <p>When forgetting to explicitly calling <code>m</code> on an input molecule</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">val</span> <span class="n">inputMolecule</span> <span class="k">=</span> <span class="nc">Community</span><span class="o">.</span><span class="n">name</span><span class="o">(?)</span>
 <span class="n">inputMolecule</span><span class="o">(</span><span class="s">&#34;Ben&#34;</span><span class="o">)</span> <span class="c1">// will not compile and likely be inferred as an error in your IDE
@@ -102,9 +102,19 @@
 <span class="c1">// Now we can apply value to the input molecule
 </span><span class="c1"></span><span class="n">inputMolecule</span><span class="o">(</span><span class="s">&#34;Ben&#34;</span><span class="o">)</span>
 </code></pre></div><h3 id="201">JdbcSQLException: Connection is broken: &ldquo;java.net.ConnectException: Connection refused</h3>
-<p>Datomic transactor is not running - please start it again.</p>
+<p>Datomic transactor is not running - please <a href="https://docs.datomic.com/on-prem/storage.html#start-transactor">start it again</a>, with for instance:</p>
+<pre><code>cd &lt;your-datomic-free-distribution&gt;
+bin/transactor config/samples/free-transactor-template.properties
+
+cd &lt;your-datomic-starter/pro-distribution&gt;
+bin/transactor config/samples/dev-transactor-template.properties
+
+cd &lt;your-datomic-starter/pro-distribution&gt;
+bin/run -m datomic.peer-server -h localhost -p 8998 -a k,s -d sampledb,datomic:mem://sampledb
+</code></pre>
+<p>See <a href="../../setup/db-setups/">Database setups</a> for more info.</p>
 <h3 id="configuring-shared-sourcemaps">Configuring shared sourcemaps</h3>
-<p>Adding the following configuration to a shared project in the <code>build.sbt</code> file make sure that sourcemaps for shared code are configured even on remote hosts:</p>
+<p>Adding the following configuration to a shared project in the <code>build.sbt</code> file makes sure that sourcemaps for shared code are configured even on remote hosts (see <a href="https://github.com/vmunier/play-scalajs.g8/issues/112#issuecomment-815252252">explanation</a>):</p>
 <pre><code>.jsConfigure(_.enablePlugins(ScalaJSWeb))
 </code></pre>
 <p>It just creates problems for the MoleculePlugin when creating jars for the project.
@@ -168,7 +178,7 @@ After jars from compiled generated molecule source code files have been created,
             
               <nav id="TableOfContents">
   <ul>
-    <li></li>
+    <li><a href="#101">Cannot resolve overloaded method &lsquo;inputMolecule&rsquo;</a></li>
   </ul>
 </nav>
             

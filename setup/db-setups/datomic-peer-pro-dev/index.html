@@ -142,7 +142,7 @@
   <span class="o">)</span>
 </code></pre></div><h3 id="1-start-transactor">1. Start transactor</h3>
 <p>First, you need to <a href="https://docs.datomic.com/on-prem/storage.html#start-transactor">start a Datomic transactor</a> in its own process:</p>
-<pre><code>cd &lt;your-datomic-distribution (starter/pro)&gt;
+<pre><code>cd &lt;your-datomic-starter/pro-distribution&gt;
 bin/transactor config/samples/dev-transactor-template.properties
 </code></pre>
 <p>Note that although the Peer in your application code in this project setup is the pro version of Peer, the transactor can be of any type - a free or a starter/pro. As long as your application code can reach it via a matching host:port it will work. A datomic database is in other words interchangeable between free/pro.</p>

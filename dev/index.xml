@@ -57,7 +57,7 @@ lowercase to Uppercase If you for instance want to use Molecule with an external
       <guid>http://www.scalamolecule.org/dev/pitfalls/</guid>
       <description>Pitfalls Cannot resolve overloaded method &amp;lsquo;inputMolecule&amp;rsquo; When forgetting to explicitly calling m on an input molecule
 val inputMolecule = Community.name(?) inputMolecule(&amp;#34;Ben&amp;#34;) // will not compile and likely be inferred as an error in your IDE Input molecule needs to be declared explicitly with the m method
-val inputMolecule = m(Community.name(?)) // Now we can apply value to the input molecule inputMolecule(&amp;#34;Ben&amp;#34;) JdbcSQLException: Connection is broken: &amp;ldquo;java.net.ConnectException: Connection refused Datomic transactor is not running - please start it again.</description>
+val inputMolecule = m(Community.name(?)) // Now we can apply value to the input molecule inputMolecule(&amp;#34;Ben&amp;#34;) JdbcSQLException: Connection is broken: &amp;ldquo;java.net.ConnectException: Connection refused Datomic transactor is not running - please start it again, with for instance:</description>
     </item>
     
   </channel>
