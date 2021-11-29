@@ -105,7 +105,7 @@
 <li>Encode the result by calling the <code>moleculeRpcResult</code> method.</li>
 </ol>
 <p>By extending <code>MoleculeRpcHandler</code> the method <code>moleculeRpcResult</code> encoder for the third step becomes available.</p>
-<p>On a Play server, a Controller could be setup like in <a href="">this sample project</a>:</p>
+<p>On a Play server, a Controller could be setup like in <a href="https://github.com/scalamolecule/molecule-samples/tree/main/molecule-rpc-transparent">this sample project</a>:</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="c1">// 1. Extend MoleculeRpcHandler
 </span><span class="c1"></span><span class="k">class</span> <span class="nc">AppController</span> <span class="k">extends</span> <span class="nc">MoleculeRpcHandler</span><span class="o">(</span><span class="s">&#34;localhost&#34;</span><span class="o">,</span> <span class="mi">9000</span><span class="o">)</span> <span class="k">with</span> <span class="nc">InjectedController</span> <span class="k">with</span> <span class="nc">HtmlTag</span> <span class="o">{</span>
 
@@ -135,7 +135,7 @@
 </span><span class="c1"></span><span class="k">implicit</span> <span class="k">val</span> <span class="n">conn</span> <span class="k">=</span> <span class="nc">Future</span><span class="o">(</span><span class="nc">Conn_Js</span><span class="o">(</span>
   <span class="nc">DatomicPeerProxy</span><span class="o">(</span><span class="s">&#34;mem&#34;</span><span class="o">,</span> <span class="s">&#34;&#34;</span><span class="o">,</span> <span class="nc">PersonSchema</span><span class="o">.</span><span class="n">datomicPeer</span><span class="o">,</span> <span class="nc">PersonSchema</span><span class="o">.</span><span class="n">attrMap</span><span class="o">),</span> <span class="s">&#34;localhost&#34;</span><span class="o">,</span> <span class="mi">9000</span>
 <span class="o">))</span>
-</code></pre></div><p>There are <a href="">3 Proxy connection types</a> that all require the following two schema/attribute arguments:</p>
+</code></pre></div><p>There are <a href="https://github.com/scalamolecule/molecule/blob/master/molecule/shared/src/main/scala/molecule/core/marshalling/ConnProxy.scala">3 Proxy connection types</a> that all require the following two schema/attribute arguments:</p>
 <ul>
 <li>A Seq of Schema transaction data that is supplied from the sbt-molecule plugin generated boilerplate code.</li>
 <li>A Map of Attribute meta data, also supplied from the sbt-molecule plugin generated boilerplate code.</li>
@@ -190,7 +190,7 @@
   <span class="nc">MBrainzSchema</span><span class="o">.</span><span class="n">datomicClient</span><span class="o">,</span> <span class="c1">// Note that datomicClient is used
 </span><span class="c1"></span>  <span class="nc">MBrainzSchema</span><span class="o">.</span><span class="n">attrMap</span>
 <span class="o">)</span>
-</code></pre></div><p>For examples of complete Client setups, please have a look at the two rpc projects in the <a href="">molecule samples repo</a></p>
+</code></pre></div><p>For examples of complete Client setups, please have a look at the two rpc projects in the <a href="https://github.com/scalamolecule/molecule-samples">molecule samples repo</a></p>
 <h3 id="next">Next</h3>
 <p>Explore various <a href="../../setup/db-setups">example database setups&hellip;</a>. These are all examples of Server setups. But you&rsquo;ll find that most settings apply to a Client setup too.</p>
 
