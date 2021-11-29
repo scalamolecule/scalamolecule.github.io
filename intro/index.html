@@ -58,7 +58,7 @@
                     
                         
                             <li class="dropdown">
-                                <a href="../code/" target="_top">Code</a>
+                                <a href="../documentation/" target="_top">Documentation</a>
                             </li>
                         
                     
@@ -76,8 +76,8 @@
                     
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="https://javadoc.io/doc/org.scalamolecule/molecule_2.13/latest/index.html" target="_blank" style="">Docs</a></li>
-                    <li><a href="../changelog" style="">v0.25.1</a></li>
+                    <li><a href="https://javadoc.io/doc/org.scalamolecule/molecule_2.13/latest/index.html" target="_blank" style="">ScalaDocs</a></li>
+                    <li><a href="../changelog" style="">v1.0.0</a></li>
                     <li><a href="https://github.com/scalamolecule/molecule" target="_blank">
                         <img src="https://www.scalamolecule.org/vendor/GitHub-Mark/PNG/GitHub-Mark-Light-32px.png"
                              style="margin-top:-4px;padding-left:15px;opacity:0.6;width:42px;">
@@ -95,21 +95,22 @@
 
     <div class="col-sm-10" style="padding-left:8px;">
         <h1 id="imglogomolecule-logo-m-75apng-molecule"><img src="../img/logo/molecule-logo-m-75a.png" alt=""> Molecule</h1>
-<h2 id="what-is-it">What is it?</h2>
-<p>Molecule is a Scala eco-system to define your domain Data Model and use that as your query language.</p>
-<p>Molecule uses the powerful <a href="http://datomic.com">Datomic</a> database.</p>
+<p>Molecule is a non-blocking asynchronous Scala eco-system to define your domain Data Model and use the defined terms and relationships as your type-inferred query language.</p>
+<p>Molecule works on both the jvm and Scala.js platform. On the js platform you can fetch and transact data a bit like with GraphQL. But with molecules, all your domain terms are recognized by your IDE and fully type inferred so that any molecule query/transaction is guaranteed to be valid already when writing the code. Molecule then transparently makes a RPC call retrieving typed data without having to implement a shared interface on the server side.</p>
+<p>The exact same molecule queries/transactions can be used on either the jvm or js side.</p>
+<p>Molecule uses the powerful <a href="http://datomic.com">Datomic</a> database that can model normal SQL tables, graphs, key-value and document stores. Even auditing data and time-awareness is a core built-in functionality of Datomic.</p>
 <h2 id="why-use-it">Why use it?</h2>
 <ul>
-<li>Express queries more intuitively than ever possible - since it&rsquo;s <em>your</em> language.</li>
-<li>Enjoy having the compiler enforce that your Data Model and data stay in sync.</li>
+<li>Express queries intuitively with type interferrence.</li>
+<li>Have your Data Model and data guaranteed to be in sync by the compiler.</li>
 <li>Dynamically compose the exact data structures/molecules that your business logic needs.</li>
 <li>Avoid traditional over-fetching with rigid bloating domain classes.</li>
+<li>Make transparent RPC calls from the Client side.</li>
 <li>Leverage built-in auditing, time-travel etc of the powerful <a href="http://datomic.com">Datomic</a> database.</li>
-<li>Let go of &ldquo;query construction&rdquo; and a separate &ldquo;query language&rdquo;.</li>
-<li>Save time, increase clarity and have more fun!</li>
+<li>Avoid query construction with a separate query language.</li>
 </ul>
 <h2 id="how-does-it-work">How does it work?</h2>
-<p>Scala macros transform a model of your domain data into query and transaction tokens that can be run directly against a server-side database to save and retrieve typed data:</p>
+<p>Scala macros transform a model of your domain data into query and transaction tokens that can be run directly against the database to save and retrieve typed data:</p>
 <p><em>Domain Data Model</em></p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">trait</span> <span class="nc">Person</span> <span class="o">{</span>
   <span class="k">val</span> <span class="n">name</span>    <span class="k">=</span> <span class="n">oneString</span>
@@ -120,22 +121,24 @@
   <span class="k">val</span> <span class="n">street</span> <span class="k">=</span> <span class="n">oneString</span>
 <span class="o">}</span>
 </code></pre></div><p><em>Typed transactions and queries with the tokens of your domain model</em></p>
-<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">age</span><span class="o">.</span><span class="nc">Address</span><span class="o">.</span><span class="n">street</span> <span class="n">insert</span> <span class="nc">List</span><span class="o">(</span>
-  <span class="o">(</span><span class="s">&#34;Lisa&#34;</span><span class="o">,</span> <span class="mi">20</span><span class="o">,</span> <span class="s">&#34;Broadway&#34;</span><span class="o">),</span>
-  <span class="o">(</span><span class="s">&#34;John&#34;</span><span class="o">,</span> <span class="mi">24</span><span class="o">,</span> <span class="s">&#34;5th Avenue&#34;</span><span class="o">)</span>
-<span class="o">)</span>
-
-<span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">age</span><span class="o">.</span><span class="nc">Address</span><span class="o">.</span><span class="n">street</span><span class="o">.</span><span class="n">get</span> <span class="o">===</span> <span class="nc">List</span><span class="o">(</span>
-  <span class="o">(</span><span class="s">&#34;Lisa&#34;</span><span class="o">,</span> <span class="mi">20</span><span class="o">,</span> <span class="s">&#34;Broadway&#34;</span><span class="o">),</span>
-  <span class="o">(</span><span class="s">&#34;John&#34;</span><span class="o">,</span> <span class="mi">24</span><span class="o">,</span> <span class="s">&#34;5th Avenue&#34;</span><span class="o">)</span>
-<span class="o">)</span>
-</code></pre></div><h2 id="is-there-a-future-here">Is there a future here?</h2>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">for</span> <span class="o">{</span>
+  <span class="c1">// insert data
+</span><span class="c1"></span>  <span class="k">_</span> <span class="k">&lt;-</span> <span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">age</span><span class="o">.</span><span class="nc">Address</span><span class="o">.</span><span class="n">street</span> <span class="n">insert</span> <span class="nc">List</span><span class="o">(</span>
+    <span class="o">(</span><span class="s">&#34;Lisa&#34;</span><span class="o">,</span> <span class="mi">20</span><span class="o">,</span> <span class="s">&#34;Broadway&#34;</span><span class="o">),</span>
+    <span class="o">(</span><span class="s">&#34;John&#34;</span><span class="o">,</span> <span class="mi">24</span><span class="o">,</span> <span class="s">&#34;5th Avenue&#34;</span><span class="o">)</span>
+  <span class="o">)</span>
+  
+  <span class="k">_</span> <span class="k">&lt;-</span> <span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">age</span><span class="o">.</span><span class="nc">Address</span><span class="o">.</span><span class="n">street</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="k">_</span> <span class="o">==&gt;</span> <span class="nc">List</span><span class="o">(</span>
+    <span class="o">(</span><span class="s">&#34;Lisa&#34;</span><span class="o">,</span> <span class="mi">20</span><span class="o">,</span> <span class="s">&#34;Broadway&#34;</span><span class="o">),</span>
+    <span class="o">(</span><span class="s">&#34;John&#34;</span><span class="o">,</span> <span class="mi">24</span><span class="o">,</span> <span class="s">&#34;5th Avenue&#34;</span><span class="o">)</span>
+  <span class="o">))</span>
+<span class="o">}</span> <span class="k">yield</span> <span class="o">()</span>
+</code></pre></div><h2 id="solid-industry-support">Solid industry support</h2>
 <p>Molecule is just a thin DataModel-to-query Scala translation layer on top of the heavy-weight <a href="https://www.datomic.com">Datomic</a> database made by industry leaders like Rich Hickey, Stuart Halloway and more from <a href="https://www.cognitect.com/">Cognitect</a>, the people behind the Clojure Language.</p>
-<p>Datomic serves huge complex systems like <a href="https://www.cognitect.com/walmart-case-study.html">Walmart</a>, <a href="https://www.cognitect.com/nubank-case-study.html">Nubank</a> in Brasil and <a href="https://www.cognitect.com/clients.html">many more industries</a>. If you want expressive power over a complex domain, Datomic and Molecule will serve you well.</p>
-<h2 id="can-i-try-it-out-quickly">Can I try it out quickly?</h2>
-<p>Yes:</p>
-<pre><code>git clone https://github.com/scalamolecule/molecule-demo.git
-</code></pre><p>Open the <a href="https://github.com/scalamolecule/molecule-demo">demo project</a> in your IDE and run molecule queries with a ready-to-run in-memory database, no configuration. Make your own molecules and test straight away, or add new attributes to use. Or look at other <a href="../setup/db-setups">database setups</a>.</p>
+<p>Datomic serves huge complex systems like <a href="https://www.cognitect.com/walmart-case-study.html">Walmart</a>, <a href="https://www.cognitect.com/nubank-case-study.html">Nubank</a> in Brasil and <a href="https://www.cognitect.com/clients.html">many more industries</a>. If you want expressive power over a complex domain, Datomic and Molecule will safely serve you well.</p>
+<h2 id="try-it">Try it</h2>
+<pre><code>git clone https://github.com/scalamolecule/molecule-samples.git
+</code></pre><p>Open one of the projects in the <a href="https://github.com/scalamolecule/molecule-samples">sample projects repo</a> in your IDE and run molecule queries with a ready-to-run in-memory database, no configuration needed. Make your own molecules and test straight away, or add new attributes to use. Or look at other <a href="../setup/db-setups">database setups</a>.</p>
 <h3 id="next">Next</h3>
 <p><a href="../intro/philosophy">Philosophy&hellip;</a></p>
 
@@ -159,11 +162,10 @@
             
               <nav id="TableOfContents">
   <ul>
-    <li><a href="#what-is-it">What is it?</a></li>
     <li><a href="#why-use-it">Why use it?</a></li>
     <li><a href="#how-does-it-work">How does it work?</a></li>
-    <li><a href="#is-there-a-future-here">Is there a future here?</a></li>
-    <li><a href="#can-i-try-it-out-quickly">Can I try it out quickly?</a></li>
+    <li><a href="#solid-industry-support">Solid industry support</a></li>
+    <li><a href="#try-it">Try it</a></li>
   </ul>
 </nav>
             

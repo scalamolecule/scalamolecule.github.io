@@ -14,7 +14,7 @@
       <guid>http://www.scalamolecule.org/dev/inspect-queries/</guid>
       <description>Inspect queries All molecule query commands have a corresponding inspect command that will print inspection information to console.
  &amp;lt;molecule&amp;gt;.inspectGet &amp;lt;molecule&amp;gt;.inspectGetHistory &amp;lt;molecule&amp;gt;.inspectGetAsOf(...) &amp;lt;molecule&amp;gt;.inspectGetSince(...) &amp;lt;molecule&amp;gt;.inspectGetWith(...)  inspectGet Simply replace a get command on a molecule with inspectGet to print inspection data when running the code in a test for instance:
-// Molecule to be inspected Community.name.Neighborhood.District.region_(&amp;#34;ne&amp;#34; or &amp;#34;sw&amp;#34;).get(3) === List( &amp;#34;Beach Drive Blog&amp;#34;, &amp;#34;KOMO Communities - Green Lake&amp;#34;, &amp;#34;Delridge Produce Cooperative&amp;#34; ) // Inspect `get` Community.</description>
+// Molecule to be inspected Community.name.Neighborhood.District.region_(&amp;#34;ne&amp;#34; or &amp;#34;sw&amp;#34;).get(3).map(_ ==&amp;gt; List( &amp;#34;Beach Drive Blog&amp;#34;, &amp;#34;KOMO Communities - Green Lake&amp;#34;, &amp;#34;Delridge Produce Cooperative&amp;#34; )) // Inspect `get` Community.</description>
     </item>
     
     <item>
@@ -35,8 +35,9 @@ inspectSave If we are about to save a molecule we can instead call inspectSave o
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://www.scalamolecule.org/dev/optimizations/</guid>
-      <description>Optimizations Save on compilation time If your code starts to have huge numbers of molecules, you can save time on compilation by importing a specialized Molecule api that sets a threshold for how many attributes are allowed in a molecule. This minimizes the amount of implicits waiting in vain to serve you and can reduce compilation time.
-So, if your longest molecule in a code file has 7 attributes, then you could for instance set the api import to allow for 7 attributes:</description>
+      <description>Optimizations Save on compilation time The simplest way of bringing in the molecule api is with this import
+import molecule.datomic.api._ This enable molecules with any arity.
+If your code starts to have huge numbers of molecules, you can save time on compilation by importing a specialized Molecule api that sets a threshold for how many attributes are allowed in a molecule. This minimizes the amount of implicits waiting in vain to serve you and can reduce compilation time.</description>
     </item>
     
     <item>
@@ -57,7 +58,7 @@ lowercase to Uppercase If you for instance want to use Molecule with an external
       <guid>http://www.scalamolecule.org/dev/pitfalls/</guid>
       <description>Pitfalls Cannot resolve overloaded method &amp;lsquo;inputMolecule&amp;rsquo; When forgetting to explicitly calling m on an input molecule
 val inputMolecule = Community.name(?) inputMolecule(&amp;#34;Ben&amp;#34;) // will not compile and likely be inferred as an error in your IDE Input molecule needs to be declared explicitly with the m method
-val inputMolecule = m(Community.name(?)) // Now we can apply value to the input molecule inputMolecule(&amp;#34;Ben&amp;#34;) JdbcSQLException: Connection is broken: &amp;ldquo;java.net.ConnectException: Connection refused Datomic transactor is not running - please start it again, with for instance:</description>
+val inputMolecule = m(Community.name(?)) // Now we can apply value to the input molecule inputMolecule(&amp;#34;Ben&amp;#34;) JdbcSQLException: Connection is broken: &amp;ldquo;java.net.ConnectException: Connection refused Datomic transactor is not running - please start it again, with for instance one of the following:</description>
     </item>
     
   </channel>

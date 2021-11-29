@@ -56,7 +56,7 @@
                     
                         
                             <li class="dropdown">
-                                <a href="../../../code/" target="_top">Code</a>
+                                <a href="../../../documentation/" target="_top">Documentation</a>
                             </li>
                         
                     
@@ -74,8 +74,8 @@
                     
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="https://javadoc.io/doc/org.scalamolecule/molecule_2.13/latest/index.html" target="_blank" style="">Docs</a></li>
-                    <li><a href="../../../changelog" style="">v0.25.1</a></li>
+                    <li><a href="https://javadoc.io/doc/org.scalamolecule/molecule_2.13/latest/index.html" target="_blank" style="">ScalaDocs</a></li>
+                    <li><a href="../../../changelog" style="">v1.0.0</a></li>
                     <li><a href="https://github.com/scalamolecule/molecule" target="_blank">
                         <img src="https://www.scalamolecule.org/vendor/GitHub-Mark/PNG/GitHub-Mark-Light-32px.png"
                              style="margin-top:-4px;padding-left:15px;opacity:0.6;width:42px;">
@@ -103,7 +103,7 @@
 <span class="k">lazy</span> <span class="k">val</span> <span class="n">app</span> <span class="k">=</span> <span class="n">project</span><span class="o">.</span><span class="n">in</span><span class="o">(</span><span class="n">file</span><span class="o">(</span><span class="s">&#34;app&#34;</span><span class="o">))</span>
   <span class="o">.</span><span class="n">enablePlugins</span><span class="o">(</span><span class="nc">MoleculePlugin</span><span class="o">)</span>
   <span class="o">.</span><span class="n">settings</span><span class="o">(</span>
-    <span class="n">scalaVersion</span> <span class="k">:</span><span class="o">=</span> <span class="s">&#34;2.13.5&#34;</span><span class="o">,</span>
+    <span class="n">scalaVersion</span> <span class="k">:</span><span class="o">=</span> <span class="s">&#34;2.13.7&#34;</span><span class="o">,</span>
     <span class="n">resolvers</span> <span class="o">++=</span> <span class="nc">Seq</span><span class="o">(</span>
       <span class="nc">Resolver</span><span class="o">.</span><span class="n">sonatypeRepo</span><span class="o">(</span><span class="s">&#34;releases&#34;</span><span class="o">),</span>
       <span class="s">&#34;clojars&#34;</span> <span class="n">at</span> <span class="s">&#34;https://clojars.org/repo&#34;</span><span class="o">,</span>
@@ -111,7 +111,7 @@
     <span class="o">),</span>
 
     <span class="n">libraryDependencies</span> <span class="o">++=</span> <span class="nc">Seq</span><span class="o">(</span>
-      <span class="s">&#34;org.scalamolecule&#34;</span> <span class="o">%%</span> <span class="s">&#34;molecule&#34;</span> <span class="o">%</span> <span class="s">&#34;0.25.1&#34;</span><span class="o">,</span>
+      <span class="s">&#34;org.scalamolecule&#34;</span> <span class="o">%%</span> <span class="s">&#34;molecule&#34;</span> <span class="o">%</span> <span class="s">&#34;1.0.0&#34;</span><span class="o">,</span>
       <span class="s">&#34;com.datomic&#34;</span> <span class="o">%</span> <span class="s">&#34;dev-local&#34;</span> <span class="o">%</span> <span class="s">&#34;0.9.232&#34;</span>
     <span class="o">),</span>
 
@@ -131,10 +131,10 @@
 </code></pre></div><h3 id="2-make-molecules">2. Make molecules</h3>
 <p>Having an implicit connection in scope, we can start transacting and querying <code>sampledb</code> with molecules:</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="c1">// Transact
-</span><span class="c1"></span><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">(</span><span class="s">&#34;John&#34;</span><span class="o">).</span><span class="n">age</span><span class="o">(</span><span class="mi">24</span><span class="o">).</span><span class="n">save</span><span class="o">.</span><span class="n">eid</span>
+</span><span class="c1"></span><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">(</span><span class="s">&#34;John&#34;</span><span class="o">).</span><span class="n">age</span><span class="o">(</span><span class="mi">24</span><span class="o">).</span><span class="n">save</span>
 
 <span class="c1">// Query
-</span><span class="c1"></span><span class="n">assert</span><span class="o">(</span><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">age</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">head</span> <span class="o">==</span> <span class="o">(</span><span class="s">&#34;John&#34;</span><span class="o">,</span> <span class="mi">24</span><span class="o">))</span>
+</span><span class="c1"></span><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">age</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="k">_</span><span class="o">.</span><span class="n">head</span> <span class="o">==&gt;</span> <span class="o">(</span><span class="s">&#34;John&#34;</span><span class="o">,</span> <span class="mi">24</span><span class="o">))</span>
 
 <span class="c1">// etc..
 </span></code></pre></div><p>Add/change definitions in the SampleDataModel and run <code>sbt clean compile -Dmolecule=true</code> in your project root to have Molecule re-generate boilerplate code. Then you can try out using your new attributes in new molecules in <code>SampleApp</code>.</p>
@@ -170,7 +170,12 @@
           
         
           
-            <li><a href="../../../setup/db-connection/">3. Db connection</a></li>
+            <li><a href="../../../setup/jvm-connection/">3.1 Db Connection, jvm</a></li>
+          
+          
+        
+          
+            <li><a href="../../../setup/js-connection/">3.2 Db Connection, js</a></li>
           
           
         

@@ -58,7 +58,7 @@
                     
                         
                             <li class="dropdown">
-                                <a href="./code/" target="_top">Code</a>
+                                <a href="./documentation/" target="_top">Documentation</a>
                             </li>
                         
                     
@@ -76,8 +76,8 @@
                     
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="https://javadoc.io/doc/org.scalamolecule/molecule_2.13/latest/index.html" target="_blank" style="">Docs</a></li>
-                    <li><a href="./changelog" style="">v0.25.1</a></li>
+                    <li><a href="https://javadoc.io/doc/org.scalamolecule/molecule_2.13/latest/index.html" target="_blank" style="">ScalaDocs</a></li>
+                    <li><a href="./changelog" style="">v1.0.0</a></li>
                     <li><a href="https://github.com/scalamolecule/molecule" target="_blank">
                         <img src="https://www.scalamolecule.org/vendor/GitHub-Mark/PNG/GitHub-Mark-Light-32px.png"
                              style="margin-top:-4px;padding-left:15px;opacity:0.6;width:42px;">
@@ -97,41 +97,44 @@
             <img id="molecule-big-logo" src="./img/logo/MoleculeLogo600.png">
             <br>
             <br>
-            <h1 style="margin-top:30px;margin-bottom:30px">Your own query language</h1>
+            <h3 style="margin-top:30px;margin-bottom:30px;line-height:40px;">
+                Non-blocking asynchronous<br>
+                domain-tailored database query language<br>
+                for Scala and Scala.js against the <a href="https://www.datomic.com">Datomic</a><span style="font-size:14px;vertical-align: super">®</span> db</h3>
 
-            <div class="highlight">
-                <pre class="chroma front" style="margin-bottom:0px;"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">age</span><span class="o">.</span><span class="nc">Address</span><span class="o">.</span><span class="n">street</span>
-</code></pre></div>
 
 
-            <div style="height: 170px">
-                <div id="myCarousel-1" class="carousel slide vertical" data-interval="2500" data-ride="carousel">
-                    
-                    <div class="carousel-inner" style="margin-left:56px">
 
-                        <div class="active item">
-                            <div class="highlight" style="display:inline-block;padding-left:38px;margin-top:53px;">
-                                <pre class="chroma front" style="text-align: left;"><code
-                                        class="language-scala" data-lang="scala"><span class="o">(</span><span
-                                        class="s">&#34;Lisa&#34;</span><span class="o">,</span> <span
-                                        class="mi">20</span><span class="o">,</span> <span
-                                        class="s">&#34;Broadway&#34;</span><span class="o">)</span></code></pre>
-                            </div>
-                        </div>
 
-                        <div class="item">
-                            <div class="highlight" style="display:inline-block;padding-left:10px;margin-top:19px;">
-                                <pre class="chroma front"><code class="language-scala" data-lang="scala"><span class="n">obj</span><span class="o">.</span><span class="n">name</span>           <span class="k">=</span> <span class="s">&#34;Lisa&#34;</span>
-<span class="n">obj</span><span class="o">.</span><span class="n">age</span>            <span class="k">=</span> <span class="mi">20</span>
-<span class="n">obj</span><span class="o">.</span><span class="nc">Address</span><span class="o">.</span><span class="n">street</span> <span class="k">=</span> <span class="s">&#34;Broadway&#34;</span>
-</code></pre></div>
-                        </div>
 
-                    </div>
-                    
 
-                </div>
-            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -142,7 +145,7 @@
                 <a href="./setup" class="btn btn-lg" role="button"
                    style="background:none;border-color:#888;">Get Started</a>
                 <a href="./code/" class="btn btn-lg" role="button"
-                   style="background:none;border-color:#888;">Show code</a>
+                   style="background:none;border-color:#888;">Documentation</a>
             </div>
 
         </div>
@@ -150,21 +153,159 @@
     </div>
 </div></section>
 
-<section><div style="align:center;padding-top:70px;padding-bottom:100px">
+<section><div style="align:center;padding-top:30px;padding-bottom:60px">
 
     <div class="container" style="padding-top:0px;align:center;">
         <div class="col-sm-2 column "></div>
         <div class="col-sm-8 column" style="text-align: center">
-            <h2>Your Data Model =><br>Your Query Language</h2>
+            <h2>Fetch data as tuples, objects or json</h2>
             <div style="font-size:22px;font-weight:300;">
                 <p>
-                    Molecule is a Scala eco-system to define your domain <nobr>Data Model</nobr> and use
-                    that as your query language.
+                    Build intuitive queries with your domain terms
                 </p>
+
+            </div>
+
+
+
+
+
+            <div class="highlight">
+                <pre class="chroma" style="text-align:left;display:inline-block"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">age</span><span class="o">.</span><span class="nc">Address</span><span class="o">.</span><span class="n">street</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">map</span> <span class="o">{</span> <span class="n">tuples</span> <span class="k">=&gt;</span>
+  <span class="n">tuples</span><span class="o">.</span><span class="n">head</span> <span class="o">==&gt;</span> <span class="o">(</span><span class="s">"Lisa"</span><span class="o">,</span> <span class="mi">20</span><span class="o">,</span> <span class="s">"Broadway"</span><span class="o">)</span>
+<span class="o">}</span>
+
+<span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">age</span><span class="o">.</span><span class="nc">Address</span><span class="o">.</span><span class="n">street</span><span class="o">.</span><span class="n">getObjs</span><span class="o">.</span><span class="n">map</span> <span class="o">{</span> <span class="n">objects</span> <span class="k">=&gt;</span>
+  <span class="k">val</span> <span class="n">obj</span> <span class="k">=</span> <span class="n">objects</span><span class="o">.</span><span class="n">head</span>
+  <span class="n">obj</span><span class="o">.</span><span class="n">name</span> <span class="o">==&gt;</span> <span class="s">"Lisa"</span>
+  <span class="n">obj</span><span class="o">.</span><span class="n">age</span> <span class="o">==&gt;</span> <span class="mi">20</span>
+  <span class="n">obj</span><span class="o">.</span><span class="nc">Address</span><span class="o">.</span><span class="n">street</span> <span class="o">==&gt;</span> <span class="s">"Broadway"</span>
+<span class="o">}</span>
+
+<span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">age</span><span class="o">.</span><span class="nc">Address</span><span class="o">.</span><span class="n">street</span><span class="o">.</span><span class="n">getJson</span><span class="o">.</span><span class="n">map</span> <span class="o">{</span> <span class="n">json</span> <span class="k">=&gt;</span>
+  <span class="n">json</span> <span class="o">==&gt;</span>
+    <span class="s">"""{
+</span><span class="s">      |  "data": {
+</span><span class="s">      |    "Person": [
+</span><span class="s">      |      {
+</span><span class="s">      |        "name": "Lisa",
+</span><span class="s">      |        "age": 20,
+</span><span class="s">      |        "Address": {
+</span><span class="s">      |          "street": "Broadway"
+</span><span class="s">      |        }
+</span><span class="s">      |      }
+</span><span class="s">      |    ]
+</span><span class="s">      |  }
+</span><span class="s">      |}"""</span><span class="o">.</span><span class="n">stripMargin</span>
+<span class="o">}</span>
+</code></pre></div>
+
+
+
+
+        </div>
+        <div class="col-sm-2 column "></div>
+    </div>
+
+
+
+
+
+
+</div></section>
+
+<section style="background-image:url(/bg/furley_bg.png)">
+<div style="align:center;padding-top:30px;padding-bottom:60px;">
+
+    <div class="container" style="padding-top:0px;align:center;">
+        <div class="col-sm-2 column "></div>
+        <div class="col-sm-8 column" style="text-align: center">
+
+            <h2>Make transparent RPC calls with Scala.js</h2>
+            <div style="font-size:22px;font-weight:300;">
                 <p>
-                    Use your Data Model attributes to build molecules of data structures that you can transact
-                    and query against the powerful
-                    <a href="https://www.datomic.com">Datomic</a><span style="font-size:14px;vertical-align: super">®</span> database.
+                    Transact and fetch data with molecules transparently from the js platform<br>without shared interfaces and sever implementations.
+                    <a href="./setup/js-connection/">Read more..</a>
+                </p>
+            </div>
+        </div>
+        <div class="col-sm-2 column "></div>
+    </div>
+
+
+    <div class="container" style="align:center;padding-top:0px">
+        <div class="col-sm-2 column "></div>
+
+
+        <div class="col-sm-5 column" style="text-align: left;">
+            <h3>Traditional rpc</h3>
+
+            <div class="highlight">
+                <pre class="chroma" style="text-align:left;display:inline-block"><code class="language-scala" data-lang="scala"><span class="c1">// js
+</span><span class="c1"></span><span class="k">val</span> <span class="n">personApi</span> <span class="k">=</span> <span class="o">...</span> <span class="c1">// rpc setup
+</span><span class="c1"></span><span class="n">personApi</span><span class="o">.</span><span class="n">personAge</span><span class="o">(</span><span class="s">"Lisa"</span><span class="o">).</span><span class="n">map</span><span class="o">(</span><span class="n">age</span> <span class="k">=&gt;</span>
+  <span class="n">body</span><span class="o">.</span><span class="n">appendChild</span><span class="o">(</span>
+    <span class="n">div</span><span class="o">(</span><span class="s">"Lisa's age: "</span> <span class="o">+</span> <span class="n">age</span><span class="o">).</span><span class="n">render</span>
+  <span class="o">)</span>
+<span class="o">)</span>
+</code></pre></div>
+
+
+            <div class="highlight">
+                <pre class="chroma" style="text-align:left;display:inline-block"><code class="language-scala" data-lang="scala"><span class="c1">// shared
+</span><span class="c1"></span><span class="k">trait</span> <span class="nc">PersonApi</span> <span class="o">{</span>
+  <span class="k">def</span> <span class="n">personAge</span><span class="o">(</span><span class="n">name</span><span class="k">:</span> <span class="kt">String</span><span class="o">)</span><span class="k">:</span> <span class="kt">Future</span><span class="o">[</span><span class="kt">Int</span><span class="o">]</span>
+<span class="o">}</span>
+</code></pre></div>
+
+
+            <div class="highlight">
+                <pre class="chroma" style="text-align:left;display:inline-block"><code class="language-scala" data-lang="scala"><span class="c1">// jvm
+</span><span class="c1"></span><span class="k">object</span> <span class="nc">PersonImpl</span> <span class="k">extends</span> <span class="nc">PersonApi</span> <span class="o">{</span>
+  <span class="k">def</span> <span class="n">personAge</span><span class="o">(</span><span class="n">name</span><span class="k">:</span> <span class="kt">String</span><span class="o">)</span> <span class="k">=</span> <span class="o">{</span>
+</span><span class="c1"></span>    <span class="nc">Person</span><span class="o">.</span><span class="n">name_</span><span class="o">(</span><span class="n">name</span><span class="o">).</span><span class="n">age</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="k">_</span><span class="o">.</span><span class="n">head</span><span class="o">)</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>
+
+        </div>
+
+
+
+
+
+
+
+        <div class="col-sm-4 column" style="text-align: left;">
+            <h3>Transparent rpc</h3>
+
+            <div class="highlight">
+                <pre class="chroma" style="text-align:left;display:inline-block"><code class="language-scala" data-lang="scala"><span class="c1">// js
+</span><span class="c1"></span><span class="nc">Person</span><span class="o">.</span><span class="n">name_</span><span class="o">(</span><span class="s">"Lisa"</span><span class="o">).</span><span class="n">age</span><span class="o">.</span><span class="n">getObj</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="n">lisa</span> <span class="k">=&gt;</span>
+  <span class="n">body</span><span class="o">.</span><span class="n">appendChild</span><span class="o">(</span>
+    <span class="n">div</span><span class="o">(</span><span class="s">"Lisa's age: "</span> <span class="o">+</span> <span class="n">lisa</span><span class="o">.</span><span class="n">age</span><span class="o">).</span><span class="n">render</span>
+  <span class="o">)</span>
+<span class="o">)</span>
+</code></pre></div>
+
+        </div>
+
+
+
+        <div class="col-sm-1 column "></div>
+    </div>
+</div></section>
+
+<section><div style="align:center;padding-top:30px;padding-bottom:60px">
+
+    <div class="container" style="padding-top:0px;align:center;">
+        <div class="col-sm-2 column "></div>
+        <div class="col-sm-8 column" style="text-align: center">
+
+            <h2>Your Domain terms as Query Language</h2>
+            <div style="font-size:22px;font-weight:300;">
+                <p>
+                    Use a Data Model of your Domain to build <br>type-inferred molecules for both transactions and queries
                 </p>
 
 
@@ -183,7 +324,7 @@
     <div class="container-fluid" style="padding-top:0px;max-width:1170px">
 
         <div class="col-sm-4 column">
-            <h2 style="padding-left:15px">Model</h2>
+            <h2 style="padding-left:65px">Model</h2>
             <div class="highlight"> <pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">trait</span> <span class="nc">Person</span> <span class="o">{</span>
   <span class="k">val</span> <span class="n">name</span>    <span class="k">=</span> <span class="n">oneString</span>
   <span class="k">val</span> <span class="n">age</span>     <span class="k">=</span> <span class="n">oneInt</span>
@@ -196,7 +337,7 @@
         </div>
 
         <div class="col-sm-4 column">
-            <h2 style="padding-left:15px">Transact</h2>
+            <h2 style="padding-left:85px">Transact</h2>
             <div class="highlight"> <pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">age</span><span class="o">.</span><span class="nc">Address</span><span class="o">.</span><span class="n">street</span> <span class="n">insert</span>
   <span class="nc">List</span><span class="o">(</span>
     <span class="o">(</span><span class="s">&#34;Lisa&#34;</span><span class="o">,</span> <span class="mi">20</span><span class="o">,</span> <span class="s">&#34;Broadway&#34;</span><span class="o">),</span>
@@ -206,13 +347,15 @@
         </div>
 
         <div class="col-sm-4 column">
-            <h2 style="padding-left:15px">Query</h2>
-            <div class="highlight"> <pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">age</span><span class="o">.</span><span class="nc">Address</span><span class="o">.</span><span class="n">street</span><span class="o">.</span><span class="n">get</span> <span class="o">===</span>
-  <span class="nc">List</span><span class="o">(</span>
-    <span class="o">(</span><span class="s">&#34;Lisa&#34;</span><span class="o">,</span> <span class="mi">20</span><span class="o">,</span> <span class="s">&#34;Broadway&#34;</span><span class="o">),</span>
-    <span class="o">(</span><span class="s">&#34;John&#34;</span><span class="o">,</span> <span class="mi">24</span><span class="o">,</span> <span class="s">&#34;5th Avenue&#34;</span><span class="o">)</span>
-  <span class="o">)</span>
-</code></pre></div>
+            <h2 style="padding-left:90px">Query</h2>
+            <div class="highlight"> 
+                <pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">age</span><span class="o">.</span><span class="nc">Address</span><span class="o">.</span><span class="n">street</span><span class="o">.</span><span class="n">get</span>
+  <span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="k">_</span> <span class="o">==&gt;</span> <span class="nc">List</span><span class="o">(</span>
+    <span class="o">(</span><span class="s">"Lisa"</span><span class="o">,</span> <span class="mi">20</span><span class="o">,</span> <span class="s">"Broadway"</span><span class="o">),</span>
+    <span class="o">(</span><span class="s">"John"</span><span class="o">,</span> <span class="mi">24</span><span class="o">,</span> <span class="s">"5th Avenue"</span><span class="o">)</span>
+  <span class="o">))</span>
+</code></pre>
+            </div>
         </div>
 
     </div>
@@ -231,7 +374,7 @@
             <h2>Same molecules for multiple dbs</h2>
             <div style="font-size:22px;font-weight:300;">
                 <p>
-                    Transact and query your molecules uniformly against any of the three
+                    Transact and query uniformly with your molecule api against any of the three
                     <nobr><a href="http://datomic.com">Datomic</a> database systems</nobr>:
                     Peer, Peer-Server and Cloud.
                 </p>
@@ -246,22 +389,15 @@
         <div class="col-sm-10 column" style="text-align: center;">
             <div class="well" style="background-color:rgba(51, 185, 255, 0.28);margin:0">
                 <div class="logo" style="font-size: 100px;margin-top:-40px;">m</div>
-                <h2 style="margin-top:-28px;margin-bottom:0">
-                    <nobr>Your molecules</nobr>
+                <h2 style="padding-top:42px;margin-bottom:0">
+                    <nobr>One molecule api</nobr>
                 </h2>
             </div>
 
             <div class="row">
-                <div class="col-sm4 col-md-4">
-                    <h1 style="color:#555;margin-top:22px">⇅</h1>
-                </div>
-                <div class="col-sm4 col-md-4">
-                    <h1 style="color:#555;margin-top:22px">⇅</h1>
-                </div>
-                <div class="col-sm4 col-md-4">
-                    <h1 style="color:#555;margin-top:22px">⇅</h1>
-                </div>
+                <h1 style="color:#555;margin-top:22px">⇅</h1>
             </div>
+
 
             <div class="row">
                 <div class="col-sm4 col-md-4">
@@ -321,13 +457,15 @@
                     <td></td>
                     <td>
                         <ul style="margin-top:-40px;margin-left:-20px">
-                            <li>Typesafe Scala meta-DSL for Datomic</li>
-                            <li>Intuitively use your domain terms as query tokens</li>
-                            <li>Sync/Async APIs</li>
-                            <li>Model any RDBMS, Graph, Document, KV-store etc.</li>
-                            <li>Datalog queries for Datomic built at compile time</li>
+                            <li>Non-blocking and asynchronous</li>
+                            <li>Type-inferred transactions and queries</li>
+                            <li>Your Domain terms used as tx/query tokens</li>
+                            <li>Transparent RPC on Scala.js platform</li>
+                            <li>RDBMS, Graph, Document, KV-store all-in-one</li>
+                            <li>Transactions and queries built at compile time</li>
                             <li>Automatic Query optimization</li>
-                            <li>(Molecule is not affiliated with Datomic)</li>
+                            <li>Built-in auditing and time queries</li>
+                            <li>Test against automatically garbage-collected db "branches"</li>
                             <li><a href="./intro/">Read more...</a></li>
                         </ul>
                     </td>
@@ -359,6 +497,7 @@
                             <li>Built-in auditing - query entire history of data</li>
                             <li>ACID-compliant transactions</li>
                             <li>Flexible and sound Data Model</li>
+                            <li>Strong industry support</li>
                         </ul>
                     </td>
                 </tr>
@@ -394,9 +533,9 @@
                     <div class="active item">
                         <div class="carousel-caption">
                             <h3>Type-inferred Queries</h3>
-                            <p>Build query molecules with your domain attributes</p>
+                            <p>Build type-inferred molecule queries with your domain attributes</p>
                             <div class="highlight"> 
-                                <pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">val</span> <span class="n">persons</span><span class="k">:</span> <span class="kt">List</span><span class="o">[(</span><span class="kt">String</span>, <span class="kt">Int</span><span class="o">)]</span> <span class="k">=</span> <span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">age</span><span class="o">.</span><span class="n">get</span>
+                                <pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">val</span> <span class="n">persons</span><span class="k">:</span> <span class="kt">Future</span><span class="o">[</span><span class="kt">List</span><span class="o">[(</span><span class="kt">String</span>, <span class="kt">Int</span><span class="o">)]]</span> <span class="k">=</span> <span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">age</span><span class="o">.</span><span class="n">get</span>
 </code></pre></div>
                             <p><em>&ldquo;Name and age of Persons&rdquo;</em></p>
                         </div>
@@ -503,10 +642,10 @@
         <div class="col-sm-1 column"></div>
         <div class="col-sm-7 column">
 
-            <h3 id="try-demo">Try <a href="https://github.com/scalamolecule/molecule-demo">demo</a></h3>
+            <h3 id="try-demo">Check <a href="https://github.com/scalamolecule/molecule-samples">samples</a></h3>
 
             <ol>
-                <li><code>git clone https://github.com/scalamolecule/molecule-demo.git</code></li>
+                <li><code>git clone https://github.com/scalamolecule/molecule-samples.git</code></li>
                 <li>Open in your IDE</li>
                 <li>Run app - and build new molecules&hellip;</li>
             </ol>
@@ -518,7 +657,7 @@
             <ul>
                 <li><a href="./intro/">Introduction</a> to Molecule</li>
                 <li><a href="./setup/">Setup</a> your Molecule project</li>
-                <li>See <a href="./code/">Code examples</a></li>
+                <li><a href="./code/">Documentation</a></li>
             </ul>
 
         </div>

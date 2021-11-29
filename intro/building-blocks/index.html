@@ -56,7 +56,7 @@
                     
                         
                             <li class="dropdown">
-                                <a href="../../code/" target="_top">Code</a>
+                                <a href="../../documentation/" target="_top">Documentation</a>
                             </li>
                         
                     
@@ -74,8 +74,8 @@
                     
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="https://javadoc.io/doc/org.scalamolecule/molecule_2.13/latest/index.html" target="_blank" style="">Docs</a></li>
-                    <li><a href="../../changelog" style="">v0.25.1</a></li>
+                    <li><a href="https://javadoc.io/doc/org.scalamolecule/molecule_2.13/latest/index.html" target="_blank" style="">ScalaDocs</a></li>
+                    <li><a href="../../changelog" style="">v1.0.0</a></li>
                     <li><a href="https://github.com/scalamolecule/molecule" target="_blank">
                         <img src="https://www.scalamolecule.org/vendor/GitHub-Mark/PNG/GitHub-Mark-Light-32px.png"
                              style="margin-top:-4px;padding-left:15px;opacity:0.6;width:42px;">
@@ -97,7 +97,7 @@
 <h2 id="molecule">Molecule</h2>
 <p>A <em>molecule</em> is a model of a data structure containing one or more <em>attributes</em>.</p>
 <p>Here we describe a data structure of <code>name</code>, <code>age</code> of persons and what <code>street</code> they live on:</p>
-<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">age</span><span class="o">.</span><span class="nc">Address</span><span class="o">.</span><span class="n">street</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">head</span> <span class="o">===</span> <span class="o">(</span><span class="s">&#34;John&#34;</span><span class="o">,</span> <span class="mi">24</span><span class="o">,</span> <span class="s">&#34;5th Avenue&#34;</span><span class="o">)</span>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">age</span><span class="o">.</span><span class="nc">Address</span><span class="o">.</span><span class="n">street</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="k">_</span><span class="o">.</span><span class="n">head</span> <span class="o">==&gt;</span> <span class="o">(</span><span class="s">&#34;John&#34;</span><span class="o">,</span> <span class="mi">24</span><span class="o">,</span> <span class="s">&#34;5th Avenue&#34;</span><span class="o">))</span>
 </code></pre></div><p>Calling <code>get</code> on a molecule returns typed data that matches the molecular data structure.</p>
 <h2 id="attribute">Attribute</h2>
 <p>An <em>attribute</em> is the core element of Molecule. Molecules are composed of attributes.</p>
@@ -118,9 +118,10 @@
 Entity  Attribute  Value  Transaction/time  Operation
 </code></pre><p>A molecule can retrieve this information:</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="c1">// Q: Who likes what and when did they state it?
-</span><span class="c1"></span><span class="nc">Person</span><span class="o">.</span><span class="n">e</span><span class="o">.</span><span class="n">likes</span><span class="o">.</span><span class="n">txInstant</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">head</span> <span class="o">===</span> 
+</span><span class="c1"></span><span class="nc">Person</span><span class="o">.</span><span class="n">e</span><span class="o">.</span><span class="n">likes</span><span class="o">.</span><span class="n">txInstant</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="k">_</span><span class="o">.</span><span class="n">head</span> <span class="o">==&gt;</span> 
   <span class="c1">// A: John said he likes pizza at 12:35:54
 </span><span class="c1"></span>  <span class="o">(</span><span class="n">johnId</span><span class="o">,</span> <span class="s">&#34;pizza&#34;</span><span class="o">,</span> <span class="nc">Date</span><span class="o">(</span><span class="s">&#34;12:35:54&#34;</span><span class="o">))</span>
+<span class="o">)</span>
 </code></pre></div><h2 id="entity">Entity</h2>
 <p>When multiple different Datoms (attributes) share the same entity id, <em>they together describe this entity</em>. Or we say that <em>&ldquo;the Entity has 3 attributes&rdquo;</em>.</p>
 <p>In our example John is an entity that has a name &ldquo;John&rdquo;, likes &ldquo;pizza&rdquo; and is 24 years old - a pizza-liking 24-year-old John:</p>
@@ -171,8 +172,8 @@ Entity  Attribute  Value  Transaction/time  Operation
 <h2 id="time">Time</h2>
 <p>Since the transaction time is part of all Datoms, we can ask time-related questions:</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="c1">// Who liked what on the 5th of november?
-</span><span class="c1"></span><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">likes</span><span class="o">.</span><span class="n">txInstant_</span><span class="o">(</span><span class="n">nov5date</span><span class="o">).</span><span class="n">get</span><span class="o">.</span><span class="n">head</span> <span class="o">===</span> <span class="o">(</span><span class="s">&#34;John&#34;</span><span class="o">,</span> <span class="s">&#34;pizza&#34;</span><span class="o">)</span>
-</code></pre></div><p>Datomic even offers various powerful ways to work with the <a href="../../code/time">time</a> dimension of our data:</p>
+</span><span class="c1"></span><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">likes</span><span class="o">.</span><span class="n">txInstant_</span><span class="o">(</span><span class="n">nov5date</span><span class="o">).</span><span class="n">get</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="k">_</span><span class="o">.</span><span class="n">head</span> <span class="o">==&gt;</span> <span class="o">(</span><span class="s">&#34;John&#34;</span><span class="o">,</span> <span class="s">&#34;pizza&#34;</span><span class="o">))</span>
+</code></pre></div><p>Datomic even offers various powerful ways to work with the <a href="../../documentation/time">time</a> dimension of our data:</p>
 <ul>
 <li><code>getAsOf</code> some point in time</li>
 <li><code>getSince</code> some point in time</li>

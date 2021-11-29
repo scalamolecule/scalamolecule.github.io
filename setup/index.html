@@ -58,7 +58,7 @@
                     
                         
                             <li class="dropdown">
-                                <a href="../code/" target="_top">Code</a>
+                                <a href="../documentation/" target="_top">Documentation</a>
                             </li>
                         
                     
@@ -76,8 +76,8 @@
                     
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="https://javadoc.io/doc/org.scalamolecule/molecule_2.13/latest/index.html" target="_blank" style="">Docs</a></li>
-                    <li><a href="../changelog" style="">v0.25.1</a></li>
+                    <li><a href="https://javadoc.io/doc/org.scalamolecule/molecule_2.13/latest/index.html" target="_blank" style="">ScalaDocs</a></li>
+                    <li><a href="../changelog" style="">v1.0.0</a></li>
                     <li><a href="https://github.com/scalamolecule/molecule" target="_blank">
                         <img src="https://www.scalamolecule.org/vendor/GitHub-Mark/PNG/GitHub-Mark-Light-32px.png"
                              style="margin-top:-4px;padding-left:15px;opacity:0.6;width:42px;">
@@ -95,17 +95,22 @@
 
     <div class="col-sm-10" style="padding-left:8px;">
         <h1 id="molecule-setup">Molecule setup</h1>
-<p>Using Molecule involves 3 initial steps:</p>
+<p>Setting up Molecule involves 3 steps:</p>
 <ol>
 <li><a href="../setup/data-model">Define your Data Model</a>,</li>
 <li><a href="../setup/sbt-setup">Setup your project with sbt</a></li>
-<li><a href="../setup/db-connection">Get a database connection</a></li>
+<li>Get a database connection:
+<ol>
+<li><a href="../setup/jvm-connection">Server-side (jvm) connection</a></li>
+<li><a href="../setup/js-connection">Client-side (js) proxy connection</a></li>
+</ol>
+</li>
 </ol>
 <p>On the next pages we&rsquo;ll walk through those steps.</p>
 <h2 id="quick-start-molecule-demo">Quick-start Molecule demo</h2>
-<p>The fastest way to try out molecule is to clone the <a href="https://github.com/scalamolecule/molecule-demo">molecule-demo</a> Github repository:</p>
+<p>The fastest way to try out molecule is to clone the <a href="https://github.com/scalamolecule/molecule-samples">molecule-samples</a> Github repository:</p>
 <pre><code>git clone https://github.com/scalamolecule/molecule-demo.git
-</code></pre><p>and then open in your IDE and play around making more molecules.</p>
+</code></pre><p>and then open one of the sample projects in your IDE and play around making more molecules or add new attributes to the Data Model.</p>
 
     </div>
 
@@ -145,7 +150,12 @@
           
         
           
-            <li><a href="../setup/db-connection/">3. Db connection</a></li>
+            <li><a href="../setup/jvm-connection/">3.1 Db Connection, jvm</a></li>
+          
+          
+        
+          
+            <li><a href="../setup/js-connection/">3.2 Db Connection, js</a></li>
           
           
         

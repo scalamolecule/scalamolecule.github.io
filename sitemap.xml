@@ -23,7 +23,7 @@
   </url>
   
   <url>
-    <loc>http://www.scalamolecule.org/code/</loc>
+    <loc>http://www.scalamolecule.org/documentation/</loc>
   </url>
   
   <url>
@@ -35,7 +35,7 @@
   </url>
   
   <url>
-    <loc>http://www.scalamolecule.org/code/attributes/</loc>
+    <loc>http://www.scalamolecule.org/documentation/attributes/</loc>
   </url>
   
   <url>
@@ -91,7 +91,7 @@
   </url>
   
   <url>
-    <loc>http://www.scalamolecule.org/setup/db-connection/</loc>
+    <loc>http://www.scalamolecule.org/setup/jvm-connection/</loc>
   </url>
   
   <url>
@@ -103,11 +103,15 @@
   </url>
   
   <url>
-    <loc>http://www.scalamolecule.org/code/relationships/</loc>
+    <loc>http://www.scalamolecule.org/documentation/relationships/</loc>
   </url>
   
   <url>
     <loc>http://www.scalamolecule.org/intro/compare/slick/</loc>
+  </url>
+  
+  <url>
+    <loc>http://www.scalamolecule.org/setup/js-connection/</loc>
   </url>
   
   <url>
@@ -123,7 +127,7 @@
   </url>
   
   <url>
-    <loc>http://www.scalamolecule.org/code/transactions/</loc>
+    <loc>http://www.scalamolecule.org/documentation/transactions/</loc>
   </url>
   
   <url>
@@ -131,19 +135,19 @@
   </url>
   
   <url>
-    <loc>http://www.scalamolecule.org/code/transaction-functions/</loc>
+    <loc>http://www.scalamolecule.org/documentation/transaction-functions/</loc>
   </url>
   
   <url>
-    <loc>http://www.scalamolecule.org/code/time/</loc>
+    <loc>http://www.scalamolecule.org/documentation/time/</loc>
   </url>
   
   <url>
-    <loc>http://www.scalamolecule.org/code/generic/</loc>
+    <loc>http://www.scalamolecule.org/documentation/generic/</loc>
   </url>
   
   <url>
-    <loc>http://www.scalamolecule.org/code/dynamic/</loc>
+    <loc>http://www.scalamolecule.org/documentation/dynamic/</loc>
   </url>
   
   <url>

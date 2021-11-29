@@ -55,7 +55,7 @@
                     
                         
                             <li class="dropdown">
-                                <a href="../../code/" target="_top">Code</a>
+                                <a href="../../documentation/" target="_top">Documentation</a>
                             </li>
                         
                     
@@ -74,8 +74,8 @@
                     
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="https://javadoc.io/doc/org.scalamolecule/molecule_2.13/latest/index.html" target="_blank" style="">Docs</a></li>
-                    <li><a href="../../changelog" style="">v0.25.1</a></li>
+                    <li><a href="https://javadoc.io/doc/org.scalamolecule/molecule_2.13/latest/index.html" target="_blank" style="">ScalaDocs</a></li>
+                    <li><a href="../../changelog" style="">v1.0.0</a></li>
                     <li><a href="https://github.com/scalamolecule/molecule" target="_blank">
                         <img src="https://www.scalamolecule.org/vendor/GitHub-Mark/PNG/GitHub-Mark-Light-32px.png"
                              style="margin-top:-4px;padding-left:15px;opacity:0.6;width:42px;">
@@ -105,11 +105,11 @@
 <p>Simply replace a <code>get</code> command on a molecule with <code>inspectGet</code> to print inspection data when running the code in
 a test for instance:</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="c1">// Molecule to be inspected
-</span><span class="c1"></span><span class="nc">Community</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="nc">Neighborhood</span><span class="o">.</span><span class="nc">District</span><span class="o">.</span><span class="n">region_</span><span class="o">(</span><span class="s">&#34;ne&#34;</span> <span class="n">or</span> <span class="s">&#34;sw&#34;</span><span class="o">).</span><span class="n">get</span><span class="o">(</span><span class="mi">3</span><span class="o">)</span> <span class="o">===</span> <span class="nc">List</span><span class="o">(</span>
+</span><span class="c1"></span><span class="nc">Community</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="nc">Neighborhood</span><span class="o">.</span><span class="nc">District</span><span class="o">.</span><span class="n">region_</span><span class="o">(</span><span class="s">&#34;ne&#34;</span> <span class="n">or</span> <span class="s">&#34;sw&#34;</span><span class="o">).</span><span class="n">get</span><span class="o">(</span><span class="mi">3</span><span class="o">).</span><span class="n">map</span><span class="o">(</span><span class="k">_</span> <span class="o">==&gt;</span> <span class="nc">List</span><span class="o">(</span>
   <span class="s">&#34;Beach Drive Blog&#34;</span><span class="o">,</span> 
   <span class="s">&#34;KOMO Communities - Green Lake&#34;</span><span class="o">,</span> 
   <span class="s">&#34;Delridge Produce Cooperative&#34;</span>
-<span class="o">)</span>
+<span class="o">))</span>
 
 <span class="c1">// Inspect `get`
 </span><span class="c1"></span><span class="nc">Community</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="nc">Neighborhood</span><span class="o">.</span><span class="nc">District</span><span class="o">.</span><span class="n">region_</span><span class="o">(</span><span class="s">&#34;ne&#34;</span> <span class="n">or</span> <span class="s">&#34;sw&#34;</span><span class="o">).</span><span class="n">inspectGet</span>
@@ -200,8 +200,8 @@ OUTPUTS:
 </code></pre><p>While the Model and Query are internal representations of the molecule, the Datalog query shows you what Molecule sends to Datomic.</p>
 <p>Using inspectGet can also be a quick way to test if a required data set is correctly returned with some molecule.</p>
 <h3 id="experiment-with-datalog-query">Experiment with Datalog query</h3>
-<p>If you want to experiment with changing the raw Datalog query, you can copy an paste the Datalog query from console into the query call on the connection object:</p>
-<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="n">conn</span><span class="o">.</span><span class="n">q</span><span class="o">(</span>
+<p>Inspections can be used to copy some Datalog query and paste it into a raw query on the connection object:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="n">conn</span><span class="o">.</span><span class="n">query</span><span class="o">(</span>
   <span class="c1">// Datalog query:
 </span><span class="c1"></span>  <span class="s">&#34;&#34;&#34;[:find  ?b
 </span><span class="s">    | :in    $ %
@@ -214,7 +214,7 @@ OUTPUTS:
 </span><span class="s">    | [(rule1 ?d) [?d :District/region &#34;:District.region/ne&#34;]]
 </span><span class="s">    | [(rule1 ?d) [?d :District/region &#34;:District.region/sw&#34;]]
 </span><span class="s">    |]&#34;&#34;&#34;</span><span class="o">.</span><span class="n">stripMargin</span>
-<span class="o">)</span> <span class="n">foreach</span> <span class="n">println</span>
+<span class="o">).</span><span class="n">map</span><span class="o">(</span><span class="k">_</span> <span class="n">foreach</span> <span class="n">println</span><span class="o">)</span>
 </code></pre></div><p>Which will print the raw Datomic rows of data to console:</p>
 <pre><code>List(Beach Drive Blog)
 List(KOMO Communities - Green Lake)
@@ -225,16 +225,18 @@ List(Laurelhurst Community Club)
 // etc...
 </code></pre><h2 id="inspectgethistory">inspectGetHistory</h2>
 <p>When examining data spanning multiple transactions, the time filter inspect commands can be very useful. Say we have 3 transactions:</p>
-<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">val</span> <span class="n">tx1</span> <span class="k">=</span> <span class="nc">Ns</span><span class="o">.</span><span class="n">str</span><span class="o">(</span><span class="s">&#34;a&#34;</span><span class="o">).</span><span class="n">int</span><span class="o">(</span><span class="mi">1</span><span class="o">).</span><span class="n">save</span>
-<span class="k">val</span> <span class="n">e1</span>  <span class="k">=</span> <span class="n">tx1</span><span class="o">.</span><span class="n">eid</span>
-<span class="k">val</span> <span class="n">t1</span>  <span class="k">=</span> <span class="n">tx1</span><span class="o">.</span><span class="n">t</span> <span class="c1">// 1028
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">for</span> <span class="o">{</span>
+  <span class="n">tx1</span> <span class="k">&lt;-</span> <span class="nc">Ns</span><span class="o">.</span><span class="n">str</span><span class="o">(</span><span class="s">&#34;a&#34;</span><span class="o">).</span><span class="n">int</span><span class="o">(</span><span class="mi">1</span><span class="o">).</span><span class="n">save</span>
+  <span class="n">e1</span>  <span class="k">=</span> <span class="n">tx1</span><span class="o">.</span><span class="n">eid</span>
+  <span class="n">t1</span>  <span class="k">=</span> <span class="n">tx1</span><span class="o">.</span><span class="n">t</span> <span class="c1">// 1028
 </span><span class="c1"></span>
-<span class="k">val</span> <span class="n">tx2</span> <span class="k">=</span> <span class="nc">Ns</span><span class="o">(</span><span class="n">e1</span><span class="o">).</span><span class="n">str</span><span class="o">(</span><span class="s">&#34;b&#34;</span><span class="o">).</span><span class="n">update</span>
-<span class="k">val</span> <span class="n">t2</span>  <span class="k">=</span> <span class="n">tx2</span><span class="o">.</span><span class="n">t</span> <span class="c1">// 1030
+  <span class="n">tx2</span> <span class="k">&lt;-</span> <span class="nc">Ns</span><span class="o">(</span><span class="n">e1</span><span class="o">).</span><span class="n">str</span><span class="o">(</span><span class="s">&#34;b&#34;</span><span class="o">).</span><span class="n">update</span>
+  <span class="n">t2</span>  <span class="k">=</span> <span class="n">tx2</span><span class="o">.</span><span class="n">t</span> <span class="c1">// 1030
 </span><span class="c1"></span>
-<span class="k">val</span> <span class="n">tx3</span> <span class="k">=</span> <span class="nc">Ns</span><span class="o">(</span><span class="n">e1</span><span class="o">).</span><span class="n">int</span><span class="o">(</span><span class="mi">2</span><span class="o">).</span><span class="n">update</span>
-<span class="k">val</span> <span class="n">t3</span>  <span class="k">=</span> <span class="n">tx3</span><span class="o">.</span><span class="n">t</span> <span class="c1">// 1031
-</span></code></pre></div><p>Then we can for instance inspect the history of the <code>:Ns/str</code> attribute by calling the <code>inspectGetHistory</code> method:</p>
+  <span class="n">tx3</span> <span class="k">&lt;-</span> <span class="nc">Ns</span><span class="o">(</span><span class="n">e1</span><span class="o">).</span><span class="n">int</span><span class="o">(</span><span class="mi">2</span><span class="o">).</span><span class="n">update</span>
+  <span class="n">t3</span>  <span class="k">=</span> <span class="n">tx3</span><span class="o">.</span><span class="n">t</span> <span class="c1">// 1031
+</span><span class="c1"></span><span class="o">}</span> <span class="k">yield</span> <span class="o">()</span>
+</code></pre></div><p>Then we can for instance inspect the history of the <code>:Ns/str</code> attribute by calling the <code>inspectGetHistory</code> method:</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Ns</span><span class="o">(</span><span class="n">e1</span><span class="o">).</span><span class="n">str</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">op</span><span class="o">.</span><span class="n">inspectGetHistory</span>
 </code></pre></div><p>And get the transformations and resulting data</p>
 <pre><code>--------------------------------------------------------------------------
@@ -356,16 +358,18 @@ OUTPUTS:
 --------------------------------------------------------------------------
 </code></pre><h2 id="inspectgetwith">inspectGetWith</h2>
 <p>The <code>with</code> time filter is a bit special since transactional data is supplied to the method. So the <code>inspectGetWith(..)</code> method will also display the transactional data:</p>
-<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="c1">// Normal `getWith` call with some sample data
-</span><span class="c1"></span><span class="k">val</span> <span class="n">johnId</span> <span class="k">=</span> <span class="nc">Ns</span><span class="o">.</span><span class="n">str</span><span class="o">(</span><span class="s">&#34;John&#34;</span><span class="o">).</span><span class="n">int</span><span class="o">(</span><span class="mi">24</span><span class="o">).</span><span class="n">save</span><span class="o">.</span><span class="n">eid</span>
-<span class="nc">Ns</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">int</span><span class="o">.</span><span class="n">inspectGetWith</span><span class="o">(</span>
-  <span class="nc">Ns</span><span class="o">.</span><span class="n">str</span><span class="o">(</span><span class="s">&#34;John&#34;</span><span class="o">).</span><span class="n">int</span><span class="o">(</span><span class="mi">24</span><span class="o">).</span><span class="n">getSaveStmts</span><span class="o">,</span>
-  <span class="nc">Ns</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">int</span> <span class="n">getInsertStmts</span> <span class="nc">List</span><span class="o">(</span>
-    <span class="o">(</span><span class="s">&#34;Lisa&#34;</span><span class="o">,</span> <span class="mi">20</span><span class="o">),</span>
-    <span class="o">(</span><span class="s">&#34;Pete&#34;</span><span class="o">,</span> <span class="mi">55</span><span class="o">)</span>
-  <span class="o">),</span>
-  <span class="nc">Ns</span><span class="o">(</span><span class="n">johnId</span><span class="o">).</span><span class="n">int</span><span class="o">(</span><span class="mi">25</span><span class="o">).</span><span class="n">getUpdateStmts</span>
-<span class="o">)</span>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">for</span> <span class="o">{</span>
+  <span class="c1">// Normal `getWith` call with some sample data
+</span><span class="c1"></span>  <span class="n">johnId</span> <span class="k">&lt;-</span> <span class="nc">Ns</span><span class="o">.</span><span class="n">str</span><span class="o">(</span><span class="s">&#34;John&#34;</span><span class="o">).</span><span class="n">int</span><span class="o">(</span><span class="mi">24</span><span class="o">).</span><span class="n">save</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="k">_</span><span class="o">.</span><span class="n">eid</span><span class="o">)</span>
+  <span class="k">_</span> <span class="k">&lt;-</span> <span class="nc">Ns</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">int</span><span class="o">.</span><span class="n">inspectGetWith</span><span class="o">(</span>
+    <span class="nc">Ns</span><span class="o">.</span><span class="n">str</span><span class="o">(</span><span class="s">&#34;John&#34;</span><span class="o">).</span><span class="n">int</span><span class="o">(</span><span class="mi">24</span><span class="o">).</span><span class="n">getSaveStmts</span><span class="o">,</span>
+    <span class="nc">Ns</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">int</span> <span class="n">getInsertStmts</span> <span class="nc">List</span><span class="o">(</span>
+      <span class="o">(</span><span class="s">&#34;Lisa&#34;</span><span class="o">,</span> <span class="mi">20</span><span class="o">),</span>
+      <span class="o">(</span><span class="s">&#34;Pete&#34;</span><span class="o">,</span> <span class="mi">55</span><span class="o">)</span>
+    <span class="o">),</span>
+    <span class="nc">Ns</span><span class="o">(</span><span class="n">johnId</span><span class="o">).</span><span class="n">int</span><span class="o">(</span><span class="mi">25</span><span class="o">).</span><span class="n">getUpdateStmts</span>
+  <span class="o">)</span>
+<span class="o">}</span> <span class="k">yield</span> <span class="o">()</span>
 </code></pre></div><p>Will print Model ⟶ Query ⟶ Datalog Query ⟶ Data + statements for the 3 transaction molecules applied:</p>
 <pre><code>--------------------------------------------------------------------------
 Model(List(

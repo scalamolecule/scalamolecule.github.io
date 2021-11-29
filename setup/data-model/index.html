@@ -56,7 +56,7 @@
                     
                         
                             <li class="dropdown">
-                                <a href="../../code/" target="_top">Code</a>
+                                <a href="../../documentation/" target="_top">Documentation</a>
                             </li>
                         
                     
@@ -74,8 +74,8 @@
                     
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="https://javadoc.io/doc/org.scalamolecule/molecule_2.13/latest/index.html" target="_blank" style="">Docs</a></li>
-                    <li><a href="../../changelog" style="">v0.25.1</a></li>
+                    <li><a href="https://javadoc.io/doc/org.scalamolecule/molecule_2.13/latest/index.html" target="_blank" style="">ScalaDocs</a></li>
+                    <li><a href="../../changelog" style="">v1.0.0</a></li>
                     <li><a href="https://github.com/scalamolecule/molecule" target="_blank">
                         <img src="https://www.scalamolecule.org/vendor/GitHub-Mark/PNG/GitHub-Mark-Light-32px.png"
                              style="margin-top:-4px;padding-left:15px;opacity:0.6;width:42px;">
@@ -118,8 +118,8 @@
 </span><span class="c1"></span>    <span class="k">val</span> <span class="n">url</span>          <span class="k">=</span> <span class="n">oneString</span>
     <span class="k">val</span> <span class="n">category</span>     <span class="k">=</span> <span class="n">manyString</span><span class="o">.</span><span class="n">fulltext</span>
     <span class="k">val</span> <span class="n">orgtype</span>      <span class="k">=</span> <span class="n">oneEnum</span><span class="o">(</span><span class="s">&#34;community&#34;</span><span class="o">,</span> <span class="s">&#34;commercial&#34;</span><span class="o">,</span> <span class="s">&#34;nonprofit&#34;</span><span class="o">,</span> <span class="s">&#34;personal&#34;</span><span class="o">)</span>
-    <span class="k">val</span> <span class="n">`type`</span>       <span class="k">=</span> <span class="n">oneEnum</span><span class="o">(</span><span class="s">&#34;email_list&#34;</span><span class="o">,</span> <span class="s">&#34;twitter&#34;</span><span class="o">,</span> <span class="s">&#34;facebook_page&#34;</span><span class="o">)</span> <span class="c1">// + more...
-</span><span class="c1"></span>    <span class="k">val</span> <span class="n">neighborhood</span> <span class="k">=</span> <span class="n">one</span><span class="o">[</span><span class="kt">Neighborhood</span><span class="o">]</span>
+    <span class="k">val</span> <span class="n">tpe</span>          <span class="k">=</span> <span class="n">oneEnum</span><span class="o">(</span><span class="s">&#34;email_list&#34;</span><span class="o">,</span> <span class="s">&#34;twitter&#34;</span><span class="o">,</span> <span class="s">&#34;facebook_page&#34;</span> <span class="cm">/* more..*/</span><span class="o">).</span><span class="n">alias</span><span class="o">(</span><span class="s">&#34;type&#34;</span><span class="o">)</span>
+    <span class="k">val</span> <span class="n">neighborhood</span> <span class="k">=</span> <span class="n">one</span><span class="o">[</span><span class="kt">Neighborhood</span><span class="o">]</span>
   <span class="o">}</span>
 
   <span class="k">trait</span> <span class="nc">Neighborhood</span> <span class="o">{</span>
@@ -132,12 +132,13 @@
     <span class="k">val</span> <span class="n">region</span> <span class="k">=</span> <span class="n">oneEnum</span><span class="o">(</span><span class="s">&#34;n&#34;</span><span class="o">,</span> <span class="s">&#34;ne&#34;</span><span class="o">,</span> <span class="s">&#34;e&#34;</span><span class="o">,</span> <span class="s">&#34;se&#34;</span><span class="o">,</span> <span class="s">&#34;s&#34;</span><span class="o">,</span> <span class="s">&#34;sw&#34;</span><span class="o">,</span> <span class="s">&#34;w&#34;</span><span class="o">,</span> <span class="s">&#34;nw&#34;</span><span class="o">)</span>
   <span class="o">}</span>
 <span class="o">}</span>
-</code></pre></div><h3 id="molecule-arity">Molecule arity</h3>
-<p>The <code>@InOut(2, 8)</code> arity annotation at the top instructs the generated boilerplate code to able to create molecules with up to 2 <a href="../../code/attributes/#input-molecules">input attributes</a> and up to 8 &ldquo;output&rdquo; attributes.</p>
+</code></pre></div><p>Since <code>type</code> is a reserved word in Scala, we choose another name and make an alias called &ldquo;type&rdquo;. This allows for accessing imported data that uses <code>type</code> as attribute name.</p>
+<h3 id="molecule-arity">Molecule arity</h3>
+<p>The <code>@InOut(2, 8)</code> arity annotation at the top instructs the generated boilerplate code to able to create molecules with up to 2 <a href="../../documentation/attributes/#input-molecules">input attributes</a> and up to 8 &ldquo;output&rdquo; attributes.</p>
 <p>When developing your Data Model you might just set the first arity annotation variable for input attributes to <code>0</code> and then later when your model is stabilizing, then you can add the ability to make input molecules by setting it to 1, 2 or 3 (the maximum). Using parameterized input attributes can be a performance optimization since using input values in queries allows Datomic to cache the query.</p>
 <p>The second arity annotation parameter basically tells how long molecules you can build. This doesn&rsquo;t affect how many attributes you can <em>define</em> in each namespace in the Data Model. The maximum arity of a molecule and for this annotation parameter is 22, the same as for tuples.</p>
 <blockquote>
-<p>If you at some point need to make molecules with more than 22 attributes you can use <a href="../../code/relationships/#composite-molecules">composite molecules</a>.</p>
+<p>If you at some point need to make molecules with more than 22 attributes you can use <a href="../../documentation/relationships/#composite-molecules">composite molecules</a>.</p>
 </blockquote>
 <h2 id="namespaces-in-partitions">Namespaces in Partitions</h2>
 <p>If your Data Model gets big, you can use an extra layer of organization with &ldquo;Partitions&rdquo; that encapsulate multiple related Namespaces.</p>
@@ -169,7 +170,7 @@
 <span class="o">}</span>
 </code></pre></div><p>Each partition can contain as many namespaces as you want.</p>
 <p>Partition names have to be in lowercase and are prepended to the namespaces it contains with an underscore inbetween:</p>
-<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="n">lit_Book</span><span class="o">.</span><span class="n">title</span><span class="o">.</span><span class="n">cat</span><span class="o">.</span><span class="nc">Author</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">gender</span><span class="o">.</span><span class="n">get</span> <span class="o">===</span> <span class="o">...</span>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="n">lit_Book</span><span class="o">.</span><span class="n">title</span><span class="o">.</span><span class="n">cat</span><span class="o">.</span><span class="nc">Author</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">gender</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="k">_</span> <span class="o">==&gt;</span> <span class="o">...)</span>
 </code></pre></div><p>Since <code>Author</code> is already defined as a related namespace we don&rsquo;t need to prepend the partition name there.</p>
 <h2 id="attribute-types">Attribute types</h2>
 <p>In the Seattle example we saw how attributes are defined by assigning various DSL settings to a named variable:</p>
@@ -184,18 +185,18 @@
 oneString    : String       manyString    : Set[String]      mapString    : Map[String, String]
 oneInt       : Int          manyInt       : Set[Int]         mapInt       : Map[String, Int]
 oneLong      : Long         manyLong      : Set[Long]        mapLong      : Map[String, Long]
-oneFloat     : Float        manyFloat     : Set[Float]       mapFloat     : Map[String, Float]
 oneDouble    : Double       manyDouble    : Set[Double]      mapDouble    : Map[String, Double]
-oneBigInt    : BigInt       manyBigInt    : Set[BigInt]      mapBigInt    : Map[String, BigInt]
-oneBigDecimal: BigDecimal   manyBigDecimal: Set[BigDecimal]  mapBigDecimal: Map[String, BigDecimal]
 oneBoolean   : Boolean      manyBoolean   : Set[Boolean]     mapBoolean   : Map[String, Boolean]
 oneDate      : Date         manyDate      : Set[Date]        mapDate      : Map[String, Date]
 oneUUID      : UUID         manyUUID      : Set[UUID]        mapUUID      : Map[String, UUID]
 oneURI       : URI          manyURI       : Set[URI]         mapURI       : Map[String, URI]
+oneBigInt    : BigInt       manyBigInt    : Set[BigInt]      mapBigInt    : Map[String, BigInt]
+oneBigDecimal: BigDecimal   manyBigDecimal: Set[BigDecimal]  mapBigDecimal: Map[String, BigDecimal]
 oneEnum      : String       manyEnum      : Set[String]
-</code></pre><p>Cardinality-one attributes can have one value per entity.</p>
+</code></pre><p>Due to <a href="http://www.scala-js.org/doc/semantics.html">limitations in JavaScript</a>, some <code>Float</code> precision is lost on the js platform. Please use <code>Double</code> instead to ensure safe double precision.</p>
+<p>Cardinality-one attributes can have one value per entity.</p>
 <p>Cardinality-many attributes can have a <code>Set</code> of unique values per entity. Often we choose instead to model many-values as a many-reference to another entity that could have more than one attribute.</p>
-<p>Mapped cardinality-many attributes are a special Molecule variation based on cardinality-many attributes. Read more <a href="../../code/attributes/#map-attributes">here</a>&hellip;</p>
+<p>Mapped cardinality-many attributes are a special Molecule variation based on cardinality-many attributes. Read more <a href="../../documentation/attributes/#map-attributes">here</a>&hellip;</p>
 <h2 id="references">References</h2>
 <p>References are also treated like attributes. It&rsquo;s basically a reference to one or many entities. We define such relationship by supplying the referenced namespace as the type parameter to <code>one</code>/<code>many</code>:</p>
 <pre><code>Cardinality one         Cardinality many
@@ -203,7 +204,7 @@ oneEnum      : String       manyEnum      : Set[String]
 one[&lt;Ref-namespace&gt;]    many[&lt;Ref-namespace&gt;]
 </code></pre><p>In the example above we saw a reference from Community to Neighborhood defined as <code>one[Neighborhood]</code>. We would for instance likely define an Order/OrderLine relationship in an Order namespace as <code>many[OrderLine]</code>.</p>
 <h3 id="bidirectional-references">Bidirectional references</h3>
-<p>In <a href="../../code/relationships/#bidirectional">Bidirectional relationships</a> some specialized reference definitions for bidirectional graphs are explained.</p>
+<p>In <a href="../../documentation/relationships/#bidirectional">Bidirectional relationships</a> some specialized reference definitions for bidirectional graphs are explained.</p>
 <h2 id="attribute-options">Attribute options</h2>
 <p>In Datomic, each attribute can have some extra options:</p>
 
@@ -305,7 +306,12 @@ one[&lt;Ref-namespace&gt;]    many[&lt;Ref-namespace&gt;]
           
         
           
-            <li><a href="../../setup/db-connection/">3. Db connection</a></li>
+            <li><a href="../../setup/jvm-connection/">3.1 Db Connection, jvm</a></li>
+          
+          
+        
+          
+            <li><a href="../../setup/js-connection/">3.2 Db Connection, js</a></li>
           
           
         

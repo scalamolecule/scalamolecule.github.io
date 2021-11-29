@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Overview on Molecule</title>
+    <link>http://www.scalamolecule.org/documentation/</link>
+    <description>Recent content in Overview on Molecule</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language><atom:link href="http://www.scalamolecule.org/documentation/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Attributes</title>
+      <link>http://www.scalamolecule.org/documentation/attributes/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.scalamolecule.org/documentation/attributes/</guid>
+      <description>Attributes Molecules are built by chaining attributes together with the builder pattern.
+Molecule then transforms the constructed molecule to a query string at compile time. Molecules can be constructed explicitly with the m method. But generally the implicit call is used.
+We could for instance build a molecule representing the data structure of Persons with name, age and gender Attributes:
+// Explicit `m` macro call m(Person.name.age.gender).get // Implicit `m` macro call Person.</description>
+    </item>
+    
+    <item>
+      <title>Relationships</title>
+      <link>http://www.scalamolecule.org/documentation/relationships/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.scalamolecule.org/documentation/relationships/</guid>
+      <description>Relationships A relationship (or reference) in Molecule is when an entity has a ref-attribute holding the entity id of another entity.
+A ref-attribute is defined in our Data Model like this:
+object PersonDataModel { trait Person { val name = oneString val pet = one[Animal] // `pet` is a card-one ref attribute  val hobbies = many[Activity] // `hobbies` is a card-many ref attribute  } trait Animal { val name = oneString } trait Activity { val name = oneString } } pet can hold one Long which is the id of a referenced Animal entity (the pet).</description>
+    </item>
+    
+    <item>
+      <title>Transactions</title>
+      <link>http://www.scalamolecule.org/documentation/transactions/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.scalamolecule.org/documentation/transactions/</guid>
+      <description>Transactions Molecule has 4 basic transaction operations:
+ save insert update retract  Save In Molecule we can populate a molecule with data and save it:
+Person.name(&amp;#34;John&amp;#34;).likes(&amp;#34;pizza&amp;#34;).age(24).save This will assert 3 facts in Datomic that all share the id of the new entity id johnId that is automatically created by Datomic:
+johnId :Person/name &amp;quot;John&amp;quot; johnId :Person/likes &amp;quot;pizza&amp;quot; johnId :Person/age 24 Type-safety Type-safety is guaranteed since each attribute only accepts values of its defined type.</description>
+    </item>
+    
+    <item>
+      <title>Transaction Functions</title>
+      <link>http://www.scalamolecule.org/documentation/transaction-functions/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.scalamolecule.org/documentation/transaction-functions/</guid>
+      <description>Transaction functions Transaction functions allow to atomically make multiple data operations within one transaction. This feature is available for Datomic Peer systems.
+Atomic processing within the transaction Transaction functions
+ run on the transactor inside of transactions can atomically analyze and transform database values can perform arbitrary logic must have no side effect must return transaction data (Future[Seq[Statement]]) are available for Peers on the jvm platform only  Since tx functions have access to the tx database value they are essential to guaranteeing atomicity in updates for instance.</description>
+    </item>
+    
+    <item>
+      <title>Time</title>
+      <link>http://www.scalamolecule.org/documentation/time/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.scalamolecule.org/documentation/time/</guid>
+      <description>Time Datomic has powerful ways of accessing all the immutable data that accumulates over time in the database:
+The 5 time getters offer us valuable insight into the database from various perspectives:
+  Semantics method     Current view of the database get   How the db looked after tx2 was transacted getAsOf(t2)   Db with only data since (excluding) tx2 until now getSince(t2)   All transactions over time getHistory   &amp;ldquo;What if&amp;rdquo;-look into the future of Now + tx4data getWith(tx4data)    Limit returned data The amount of data returned can be limited by adding a max row parameter (to any of the getters above):</description>
+    </item>
+    
+    <item>
+      <title>Generic APIs</title>
+      <link>http://www.scalamolecule.org/documentation/generic/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.scalamolecule.org/documentation/generic/</guid>
+      <description>Generic APIs Here, we&amp;rsquo;ll walk through how Molecule provides access to Datomic&amp;rsquo;s various generic interfaces and apis.
+Entity API As we saw in building blocks, an entity can have attributes from multiple namespaces   Entity id Attribue Value     johnId :Person/name &amp;ldquo;John&amp;rdquo;   johnId :Person/likes &amp;ldquo;pizza&amp;rdquo;   johnId :Person/age 24   johnId :Site/cat &amp;ldquo;customer&amp;rdquo;    At runtime we can explore what attributes an entity has by calling touch directly on a Long entity id:</description>
+    </item>
+    
+    <item>
+      <title>Dynamic molecules</title>
+      <link>http://www.scalamolecule.org/documentation/dynamic/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.scalamolecule.org/documentation/dynamic/</guid>
+      <description>Dynamic molecules Molecules can have a Scala code body applied that defines functionality relevant to the requested data. A self reference to the data object gives access to the fetched data. Any data in scope (even from outside this code body) can be accessed too. Adding functionality this way to the data gives a great flexibility to add &amp;ldquo;dynamic&amp;rdquo; (still type safe) contextualized functionality.
+In the following example we access a Person object through the self reference person to build some logic that is relevant for this particular set of data:</description>
+    </item>
+    
+  </channel>
+</rss>

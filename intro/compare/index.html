@@ -58,7 +58,7 @@
                     
                         
                             <li class="dropdown">
-                                <a href="../../code/" target="_top">Code</a>
+                                <a href="../../documentation/" target="_top">Documentation</a>
                             </li>
                         
                     
@@ -76,8 +76,8 @@
                     
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="https://javadoc.io/doc/org.scalamolecule/molecule_2.13/latest/index.html" target="_blank" style="">Docs</a></li>
-                    <li><a href="../../changelog" style="">v0.25.1</a></li>
+                    <li><a href="https://javadoc.io/doc/org.scalamolecule/molecule_2.13/latest/index.html" target="_blank" style="">ScalaDocs</a></li>
+                    <li><a href="../../changelog" style="">v1.0.0</a></li>
                     <li><a href="https://github.com/scalamolecule/molecule" target="_blank">
                         <img src="https://www.scalamolecule.org/vendor/GitHub-Mark/PNG/GitHub-Mark-Light-32px.png"
                              style="margin-top:-4px;padding-left:15px;opacity:0.6;width:42px;">
@@ -107,7 +107,7 @@ val coffeeSupliers = for {
 </code></pre><p>Whereas in Molecule, we only <em>declare</em> which attributes we are interested in. Molecule attributes <em>themselves</em> form the query - they are not <em>consumed</em> by an outer construct. That way, the domain terms directly form the query without additional keywords and constructs. Only the final <code>get</code> is a query keyword:</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="c1">// Molecule
 </span><span class="c1"></span><span class="k">val</span> <span class="n">coffeeSupliers</span> <span class="k">=</span> <span class="nc">Coffees</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="nc">Suppliers</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">get</span>
-</code></pre></div><p>We get the exact same type-inferred result back, a <code>List[(String, String)]</code></p>
+</code></pre></div><p>We get the exact same type-inferred result back, a <code>Future[List[(String, String)]]</code></p>
 <h3 id="squeryl">Squeryl</h3>
 <p><a href="https://www.squeryl.org/">Squeryl</a> also <em>consumes</em> data objects, now in another DSL construct:</p>
 <pre><code>// Squeryl

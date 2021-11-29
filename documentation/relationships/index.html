@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <link rel="shortcut icon" href="../../favicon.ico" type="image/x-icon"/>
+    <title>Relationships</title>
+    <link rel="stylesheet" type='text/css' href="https://www.scalamolecule.org/css/bootstrap.min.css">
+    <link rel="stylesheet" type='text/css' href="https://www.scalamolecule.org/css/highlight/styles/solarized_light.css"/>
+    <link rel="stylesheet" type='text/css' href="https://www.scalamolecule.org/css/syntax-custom.css"/>
+    <link rel="stylesheet" type='text/css' href="https://www.scalamolecule.org/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type='text/css' href="https://www.scalamolecule.org/css/style.css">
+    <link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic,500,600,700,700italic,800,800italic'>
+
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://www.scalamolecule.org/img/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://www.scalamolecule.org/img/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://www.scalamolecule.org/img/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="https://www.scalamolecule.org/img/apple-touch-icon-57-precomposed.png">
+
+    
+    
+</head>
+<body data-spy="scroll" data-target="#sidebar" data-offset="110">
+<header class="bs-docs-header">
+
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid" style="max-width:1170px;padding-top:3px">
+            
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="../../" style="padding-left: 6px; padding-right: 13px;"><img src="https://www.scalamolecule.org/img/logo/MoleculeLogo150.png"></a>
+            </div>
+
+            
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    
+                    
+                        
+                            <li class="dropdown">
+                                <a href="../../intro/" target="_top">Intro</a>
+                            </li>
+                        
+                    
+                        
+                            <li class="dropdown">
+                                <a href="../../setup/" target="_top">Setup</a>
+                            </li>
+                        
+                    
+                        
+                            <li class="active">
+                                <a href="../../documentation/" target="_top">Documentation</a>
+                                <div></div>
+                            </li>
+                        
+                    
+                        
+                            <li class="dropdown">
+                                <a href="../../dev/" target="_top">Dev</a>
+                            </li>
+                        
+                    
+                        
+                            <li class="dropdown">
+                                <a href="../../community/" target="_top">Community</a>
+                            </li>
+                        
+                    
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="https://javadoc.io/doc/org.scalamolecule/molecule_2.13/latest/index.html" target="_blank" style="">ScalaDocs</a></li>
+                    <li><a href="../../changelog" style="">v1.0.0</a></li>
+                    <li><a href="https://github.com/scalamolecule/molecule" target="_blank">
+                        <img src="https://www.scalamolecule.org/vendor/GitHub-Mark/PNG/GitHub-Mark-Light-32px.png"
+                             style="margin-top:-4px;padding-left:15px;opacity:0.6;width:42px;">
+                    </a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+</header>
+
+<div class="wrapper">
+
+<div class="container-fluid" style="max-width:1170px">
+
+    <div class="col-sm-10 " style="padding-left:8px;">
+        <h1 id="relationships">Relationships</h1>
+<p>A relationship (or reference) in Molecule is when an entity has a <em>ref-attribute</em> holding the entity id of another entity.</p>
+<p>A <em>ref-attribute</em> is defined in our Data Model like this:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">object</span> <span class="nc">PersonDataModel</span> <span class="o">{</span>
+  
+  <span class="k">trait</span> <span class="nc">Person</span> <span class="o">{</span>
+    <span class="k">val</span> <span class="n">name</span>    <span class="k">=</span> <span class="n">oneString</span>
+    <span class="k">val</span> <span class="n">pet</span>     <span class="k">=</span> <span class="n">one</span><span class="o">[</span><span class="kt">Animal</span><span class="o">]</span>    <span class="c1">// `pet` is a card-one ref attribute
+</span><span class="c1"></span>    <span class="k">val</span> <span class="n">hobbies</span> <span class="k">=</span> <span class="n">many</span><span class="o">[</span><span class="kt">Activity</span><span class="o">]</span> <span class="c1">// `hobbies` is a card-many ref attribute
+</span><span class="c1"></span>  <span class="o">}</span>
+  
+  <span class="k">trait</span> <span class="nc">Animal</span> <span class="o">{</span>
+    <span class="k">val</span> <span class="n">name</span> <span class="k">=</span> <span class="n">oneString</span>
+  <span class="o">}</span>
+  
+  <span class="k">trait</span> <span class="nc">Activity</span> <span class="o">{</span>
+    <span class="k">val</span> <span class="n">name</span> <span class="k">=</span> <span class="n">oneString</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><p><code>pet</code> can hold one <code>Long</code> which is the id of a referenced Animal entity (the pet).</p>
+<p><code>hobbies</code> can hold multiple <code>Long</code>s which are the ids of referenced Activity entities (the hobbies).</p>
+<h2 id="card-one">Card-one</h2>
+<h3 id="saving-relational-data">Saving relational data</h3>
+<p>Given the example Data Model above, we can save a card-one relationship between &ldquo;Dan&rdquo; and his pet &ldquo;Rex&rdquo;:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">for</span> <span class="o">{</span>
+  <span class="nc">List</span><span class="o">(</span><span class="n">danId</span><span class="o">,</span> <span class="n">rexId</span><span class="o">)</span> <span class="k">&lt;-</span> <span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">(</span><span class="s">&#34;Dan&#34;</span><span class="o">).</span><span class="nc">Pet</span><span class="o">.</span><span class="n">name</span><span class="o">(</span><span class="s">&#34;Rex&#34;</span><span class="o">).</span><span class="n">save</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="k">_</span><span class="o">.</span><span class="n">eids</span><span class="o">)</span>
+<span class="o">}</span> <span class="k">yield</span> <span class="o">()</span>
+</code></pre></div><p>A Dan and a Rex entity were created.</p>
+<p>The <code>pet</code> ref-attribute of the Dan entity holds <code>rexId</code>. That&rsquo;s the relationship from Dan to Rex.</p>
+<p>If a <code>rexId</code> already existed, we could have saved it directly by applying it to the <code>pet</code> ref-attribute:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">for</span> <span class="o">{</span>
+  <span class="nc">List</span><span class="o">(</span><span class="n">danId</span><span class="o">)</span> <span class="k">&lt;-</span> <span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">(</span><span class="s">&#34;Dan&#34;</span><span class="o">).</span><span class="n">pet</span><span class="o">(</span><span class="n">rexId</span><span class="o">).</span><span class="n">save</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="k">_</span><span class="o">.</span><span class="n">eids</span><span class="o">)</span>
+<span class="o">}</span> <span class="k">yield</span> <span class="o">()</span>
+</code></pre></div><p>Now only Dan was created, having two attributes: <code>name</code> with value &ldquo;Dan&rdquo; and <code>pet</code> with value <code>rexId</code>.</p>
+<h3 id="retrieving-relational-data">Retrieving relational data</h3>
+<p>We can ask for related data by using a Capitalized ref-attribute name <code>Pet</code>:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="nc">Pet</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="k">_</span><span class="o">.</span><span class="n">head</span> <span class="o">==&gt;</span> <span class="o">(</span><span class="s">&#34;Dan&#34;</span><span class="o">,</span> <span class="s">&#34;Rex&#34;</span><span class="o">))</span>
+</code></pre></div><p>And related entity ids with the lowercase ref-attribute name <code>pet</code>:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">.</span><span class="n">e</span><span class="o">.</span><span class="n">name_</span><span class="o">(</span><span class="s">&#34;Dan&#34;</span><span class="o">).</span><span class="n">pet</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="k">_</span><span class="o">.</span><span class="n">head</span> <span class="o">==&gt;</span> <span class="o">(</span><span class="n">danId</span><span class="o">,</span> <span class="n">rexId</span><span class="o">))</span>
+</code></pre></div><h3 id="ref-namespace">Ref namespace</h3>
+<p>As you see, Molecule generates a Capitalized version of all ref-attributes serving as a &ldquo;bridge&rdquo; to the referenced Namespace attributes. We call these &ldquo;Ref namespaces&rdquo;.</p>
+<p>In our example we used <code>Pet</code> to get to the <code>Animal.name</code> attribute and <code>pet</code> to get the referenced entity id value <code>rexId</code>.</p>
+<blockquote>
+<p><em>Capitalized</em> ref-attribute names are <em>Ref namespaces</em></p>
+<p><em>Lowercase</em> ref-attributes are reference attributes holding entity ids</p>
+</blockquote>
+<h3 id="one-to-one-or-one-to-many">One-to-one or one-to-many</h3>
+<p>If John is living by himself on 5th Avenue we could talk about a one-to-one relationship between him and his address.</p>
+<p>But if several people live on the same address, say entity id <code>102</code>, then we have a one-to-many relationship since multiple people entities have a reference to <code>102</code>:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">home</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="k">_</span> <span class="o">==&gt;</span> <span class="nc">List</span><span class="o">(</span>
+  <span class="o">(</span><span class="s">&#34;John&#34;</span><span class="o">,</span> <span class="mi">102</span><span class="o">),</span>
+  <span class="o">(</span><span class="s">&#34;Lisa&#34;</span><span class="o">,</span> <span class="mi">102</span><span class="o">),</span>
+  <span class="o">(</span><span class="s">&#34;Mona&#34;</span><span class="o">,</span> <span class="mi">102</span><span class="o">)</span>
+<span class="o">))</span>
+</code></pre></div><p>Wether a relationship is a one-to-one or one-to-many relationship is determined by the data. In our Data Model, we just model it as a card-one relationship <code>one[Address]</code>.</p>
+<h3 id="relationship-graph">Relationship graph</h3>
+<p>Relationship graphs can become arbitrarily deep. We could for instance in a <code>Address</code> namespace have a relationship to a <code>Country</code> namespace and then get the country <code>name</code> too and so on:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="nc">Home</span><span class="o">.</span><span class="n">street</span><span class="o">.</span><span class="n">city</span><span class="o">.</span><span class="nc">Country</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="k">_</span><span class="o">.</span><span class="n">head</span> <span class="o">==&gt;</span> 
+  <span class="o">(</span><span class="s">&#34;John&#34;</span><span class="o">,</span> <span class="s">&#34;5th Avenue&#34;</span><span class="o">,</span> <span class="s">&#34;Boston&#34;</span><span class="o">,</span> <span class="s">&#34;USA&#34;</span><span class="o">)</span>
+<span class="o">)</span>
+<span class="c1">// etc...
+</span></code></pre></div><h2 id="card-many">Card-many</h2>
+<p>Cardinality-many ref-attributes can simply hold a <code>Set</code> of referenced entity ids and are modelled with the <code>many[&lt;RefNamespace&gt;]</code> syntax:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">object</span> <span class="nc">OrderDataModel</span> <span class="o">{</span>
+
+  <span class="k">trait</span> <span class="nc">Order</span> <span class="o">{</span>
+    <span class="k">val</span> <span class="n">id</span>    <span class="k">=</span> <span class="n">oneString</span>
+    <span class="k">val</span> <span class="n">items</span> <span class="k">=</span> <span class="n">many</span><span class="o">[</span><span class="kt">LineItem</span><span class="o">].</span><span class="n">isComponent</span>
+  <span class="o">}</span>
+
+  <span class="k">trait</span> <span class="nc">LineItem</span> <span class="o">{</span>
+    <span class="k">val</span> <span class="n">qty</span>     <span class="k">=</span> <span class="n">oneInt</span>
+    <span class="k">val</span> <span class="n">product</span> <span class="k">=</span> <span class="n">oneString</span>
+    <span class="k">val</span> <span class="n">price</span>   <span class="k">=</span> <span class="n">oneDouble</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><p>An <code>Order</code> can have multiple <code>LineItem</code>s so we define a cardinality-many ref attribute <code>items</code> that points to the <code>LineItem</code> namespace.</p>
+<p>Note how we in this example make LineItems a component with the <code>isComponent</code> option. That means that <code>LineItem</code>s are <em>owned</em> by an <code>Order</code> and will get automatically retracted if the <code>Order</code> is retracted. Subsequent component-defined referenced entities will be recursively retracted too.</p>
+<p>Now we can get an Order and its Line Items:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Order</span><span class="o">.</span><span class="n">id</span><span class="o">.</span><span class="nc">Items</span><span class="o">.</span><span class="n">qty</span><span class="o">.</span><span class="n">product</span><span class="o">.</span><span class="n">price</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="k">_</span> <span class="o">==&gt;</span> <span class="nc">List</span><span class="o">(</span>
+  <span class="o">(</span><span class="s">&#34;order1&#34;</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="s">&#34;Milk&#34;</span><span class="o">,</span> <span class="mf">12.00</span><span class="o">),</span>
+  <span class="o">(</span><span class="s">&#34;order1&#34;</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="s">&#34;Coffee&#34;</span><span class="o">,</span> <span class="mf">46.00</span><span class="o">),</span>
+  <span class="o">(</span><span class="s">&#34;order2&#34;</span><span class="o">,</span> <span class="mi">4</span><span class="o">,</span> <span class="s">&#34;Bread&#34;</span><span class="o">,</span> <span class="mf">5.00</span><span class="o">)</span>
+<span class="o">))</span>
+</code></pre></div><p>The Order data is repeated for each line Item which is kind of redundant. We can avoid that with a &ldquo;nested&rdquo; Molecule instead:</p>
+<h3 id="nested-data">Nested data</h3>
+<p>We can nest the result from the above example with the Molecule operator <code>*</code> indicating &ldquo;with many&rdquo;:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="n">m</span><span class="o">(</span><span class="nc">Order</span><span class="o">.</span><span class="n">id</span><span class="o">.</span><span class="nc">Items</span> <span class="o">*</span> <span class="nc">LineItem</span><span class="o">.</span><span class="n">qty</span><span class="o">.</span><span class="n">product</span><span class="o">.</span><span class="n">price</span><span class="o">).</span><span class="n">get</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="k">_</span> <span class="o">==&gt;</span> <span class="nc">List</span><span class="o">(</span>
+  <span class="o">(</span><span class="s">&#34;order1&#34;</span><span class="o">,</span> <span class="nc">List</span><span class="o">(</span>
+    <span class="o">(</span><span class="mi">3</span><span class="o">,</span> <span class="s">&#34;Milk&#34;</span><span class="o">,</span> <span class="mf">12.00</span><span class="o">),</span> 
+    <span class="o">(</span><span class="mi">2</span><span class="o">,</span> <span class="s">&#34;Coffee&#34;</span><span class="o">,</span> <span class="mf">46.00</span><span class="o">))),</span>
+  <span class="o">(</span><span class="s">&#34;order2&#34;</span><span class="o">,</span> <span class="nc">List</span><span class="o">(</span>
+    <span class="o">(</span><span class="mi">4</span><span class="o">,</span> <span class="s">&#34;Bread&#34;</span><span class="o">,</span> <span class="mf">5.00</span><span class="o">)))</span>
+<span class="o">))</span>
+
+<span class="c1">// or
+</span><span class="c1"></span><span class="nc">Order</span><span class="o">.</span><span class="n">id</span><span class="o">.</span><span class="nc">Items</span><span class="o">.*(</span><span class="nc">LineItem</span><span class="o">.</span><span class="n">qty</span><span class="o">.</span><span class="n">product</span><span class="o">.</span><span class="n">price</span><span class="o">).</span><span class="n">get</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="k">_</span> <span class="o">==&gt;</span> <span class="nc">List</span><span class="o">(...))</span>
+</code></pre></div><p>Now each Order has its own list of typed Line Item data and there is no Order redundancy.</p>
+<h3 id="optional-nested-data">Optional nested data</h3>
+<p>Optional nested data can be queried with the <code>*?</code> operator:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="c1">// Sample data
+</span><span class="c1"></span><span class="n">m</span><span class="o">(</span><span class="nc">Ns</span><span class="o">.</span><span class="n">int</span><span class="o">.</span><span class="nc">Refs1</span> <span class="o">*</span> <span class="nc">Ref1</span><span class="o">.</span><span class="n">str1</span><span class="o">)</span> <span class="n">insert</span> <span class="nc">List</span><span class="o">(</span>
+  <span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="nc">List</span><span class="o">(</span><span class="s">&#34;a&#34;</span><span class="o">,</span> <span class="s">&#34;b&#34;</span><span class="o">)),</span>
+  <span class="o">(</span><span class="mi">2</span><span class="o">,</span> <span class="nc">List</span><span class="o">())</span> <span class="c1">// (no nested data)
+</span><span class="c1"></span><span class="o">)</span>
+
+<span class="c1">// Mandatory nested data
+</span><span class="c1"></span><span class="n">m</span><span class="o">(</span><span class="nc">Ns</span><span class="o">.</span><span class="n">int</span><span class="o">.</span><span class="nc">Refs1</span> <span class="o">*</span> <span class="nc">Ref1</span><span class="o">.</span><span class="n">str1</span><span class="o">).</span><span class="n">get</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="k">_</span> <span class="o">==&gt;</span> <span class="nc">List</span><span class="o">(</span>
+  <span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="nc">List</span><span class="o">(</span><span class="s">&#34;a&#34;</span><span class="o">,</span> <span class="s">&#34;b&#34;</span><span class="o">))</span>
+<span class="o">))</span>
+
+<span class="c1">// Optional nested data
+</span><span class="c1"></span><span class="n">m</span><span class="o">(</span><span class="nc">Ns</span><span class="o">.</span><span class="n">int</span><span class="o">.</span><span class="nc">Refs1</span> <span class="o">*?</span> <span class="nc">Ref1</span><span class="o">.</span><span class="n">str1</span><span class="o">).</span><span class="n">get</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="k">_</span> <span class="o">==&gt;</span> <span class="nc">List</span><span class="o">(</span>
+  <span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="nc">List</span><span class="o">(</span><span class="s">&#34;a&#34;</span><span class="o">,</span> <span class="s">&#34;b&#34;</span><span class="o">)),</span>
+  <span class="o">(</span><span class="mi">2</span><span class="o">,</span> <span class="nc">List</span><span class="o">())</span>
+<span class="o">))</span>
+</code></pre></div><p>Molecule can nest data structures up to 7 levels deep.</p>
+<h2 id="self-join">Self-join</h2>
+<p>Self-joins can be used to compare values of the <em>same attribute</em> for multiple entities. They don&rsquo;t require any special definition in our Data Model.</p>
+<p>Let&rsquo;s consider an example of <code>Person</code>s with an <code>age</code>, <code>name</code> and beverage preferences.</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="n">m</span><span class="o">(</span><span class="nc">Person</span><span class="o">.</span><span class="n">age</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="nc">Likes</span> <span class="o">*</span> <span class="nc">Score</span><span class="o">.</span><span class="n">beverage</span><span class="o">.</span><span class="n">rating</span><span class="o">)</span> <span class="n">insert</span> <span class="nc">List</span><span class="o">(</span>
+  <span class="o">(</span><span class="mi">23</span><span class="o">,</span> <span class="s">&#34;Joe&#34;</span><span class="o">,</span> <span class="nc">List</span><span class="o">((</span><span class="s">&#34;Coffee&#34;</span><span class="o">,</span> <span class="mi">3</span><span class="o">),</span> <span class="o">(</span><span class="s">&#34;Cola&#34;</span><span class="o">,</span> <span class="mi">2</span><span class="o">),</span> <span class="o">(</span><span class="s">&#34;Pepsi&#34;</span><span class="o">,</span> <span class="mi">3</span><span class="o">))),</span>
+  <span class="o">(</span><span class="mi">25</span><span class="o">,</span> <span class="s">&#34;Ben&#34;</span><span class="o">,</span> <span class="nc">List</span><span class="o">((</span><span class="s">&#34;Coffee&#34;</span><span class="o">,</span> <span class="mi">2</span><span class="o">),</span> <span class="o">(</span><span class="s">&#34;Tea&#34;</span><span class="o">,</span> <span class="mi">3</span><span class="o">))),</span>
+  <span class="o">(</span><span class="mi">23</span><span class="o">,</span> <span class="s">&#34;Liz&#34;</span><span class="o">,</span> <span class="nc">List</span><span class="o">((</span><span class="s">&#34;Coffee&#34;</span><span class="o">,</span> <span class="mi">1</span><span class="o">),</span> <span class="o">(</span><span class="s">&#34;Tea&#34;</span><span class="o">,</span> <span class="mi">3</span><span class="o">),</span> <span class="o">(</span><span class="s">&#34;Pepsi&#34;</span><span class="o">,</span> <span class="mi">1</span><span class="o">)))</span>
+<span class="o">)</span>
+</code></pre></div><p>Normally we ask for values accross attributes like attr1 AND attr2 AND etc as in age==23 AND name AND rating==Pepsi</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">.</span><span class="n">age_</span><span class="o">(</span><span class="mi">23</span><span class="o">).</span><span class="n">name</span><span class="o">.</span><span class="nc">Likes</span><span class="o">.</span><span class="n">beverage_</span><span class="o">(</span><span class="s">&#34;Pepsi&#34;</span><span class="o">).</span><span class="n">get</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="k">_</span> <span class="o">==&gt;</span> <span class="nc">List</span><span class="o">(</span><span class="s">&#34;Liz&#34;</span><span class="o">,</span> <span class="s">&#34;Joe&#34;</span><span class="o">))</span>
+</code></pre></div><p>But when we need to compare values of the same attribute across entities we need self-joins.</p>
+<p>Here&rsquo;s an example of a self-join where we take pairs of person entities where one is 23 years old and the other 25 years old and then see which of those pairs have a shared preferred beverage. We say that we &ldquo;unify&rdquo; by the attribute values that the two entities have in common (<code>Likes.beverage</code>).</p>
+<p>Self-joins lets us answer a lot of interesting questions:</p>
+<p>What beverages do pairs of 23- AND 25-year-olds like in common?</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="c1">// (unifying on Likes.beverage)
+</span><span class="c1"></span><span class="nc">Person</span><span class="o">.</span><span class="n">age_</span><span class="o">(</span><span class="mi">23</span> <span class="n">and</span> <span class="mi">25</span><span class="o">).</span><span class="nc">Likes</span><span class="o">.</span><span class="n">beverage</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="k">_</span> <span class="o">==&gt;</span> <span class="nc">List</span><span class="o">(</span><span class="s">&#34;Coffee&#34;</span><span class="o">,</span> <span class="s">&#34;Tea&#34;</span><span class="o">))</span>
+<span class="c1">// Joe (23) AND Ben (25) likes Coffee (Coffee unifies)
+</span><span class="c1">// Liz (23) AND Ben (25) likes Coffee (Coffee unifies)
+</span><span class="c1">// Liz (23) AND Ben (25) likes Tea    (Tea unifies)
+</span><span class="c1">// Distinct values of Coffee and Tea returned
+</span></code></pre></div><p>Does 23- and 25-years-old have some common beverage ratings?</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="c1">// (unifying on Likes.rating)
+</span><span class="c1"></span><span class="nc">Person</span><span class="o">.</span><span class="n">age_</span><span class="o">(</span><span class="mi">23</span> <span class="n">and</span> <span class="mi">25</span><span class="o">).</span><span class="nc">Likes</span><span class="o">.</span><span class="n">rating</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="k">_</span> <span class="o">==&gt;</span> <span class="nc">List</span><span class="o">(</span><span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">))</span>
+</code></pre></div><p>Any 23- and 25-year-olds with the same name? (no)</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="c1">// (unifying on Person.name)
+</span><span class="c1"></span><span class="nc">Person</span><span class="o">.</span><span class="n">age_</span><span class="o">(</span><span class="mi">23</span> <span class="n">and</span> <span class="mi">25</span><span class="o">).</span><span class="n">name</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="k">_</span> <span class="o">==&gt;</span> <span class="nc">List</span><span class="o">())</span>
+</code></pre></div><p>Which beverages do Joe and Liz both like?</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="c1">// (unifying on Likes.beverage)
+</span><span class="c1"></span><span class="nc">Person</span><span class="o">.</span><span class="n">name_</span><span class="o">(</span><span class="s">&#34;Joe&#34;</span> <span class="n">and</span> <span class="s">&#34;Liz&#34;</span><span class="o">).</span><span class="nc">Likes</span><span class="o">.</span><span class="n">beverage</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="k">_</span> <span class="o">==&gt;</span> <span class="nc">List</span><span class="o">(</span><span class="s">&#34;Pepsi&#34;</span><span class="o">,</span> <span class="s">&#34;Coffee&#34;</span><span class="o">))</span>
+</code></pre></div><p>Do Joe and Liz have some common ratings?</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="c1">// (unifying on Likes.rating)
+</span><span class="c1"></span><span class="nc">Person</span><span class="o">.</span><span class="n">name_</span><span class="o">(</span><span class="s">&#34;Joe&#34;</span> <span class="n">and</span> <span class="s">&#34;Liz&#34;</span><span class="o">).</span><span class="nc">Likes</span><span class="o">.</span><span class="n">rating</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="k">_</span> <span class="o">==&gt;</span> <span class="nc">List</span><span class="o">(</span><span class="mi">3</span><span class="o">))</span>
+</code></pre></div><p>Do Joe and Liz have a shared age?</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="c1">// (unifying on Person.age)
+</span><span class="c1"></span><span class="nc">Person</span><span class="o">.</span><span class="n">name_</span><span class="o">(</span><span class="s">&#34;Joe&#34;</span> <span class="n">and</span> <span class="s">&#34;Liz&#34;</span><span class="o">).</span><span class="n">age</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="k">_</span> <span class="o">==&gt;</span> <span class="nc">List</span><span class="o">(</span><span class="mi">23</span><span class="o">))</span>
+</code></pre></div><p>Who likes both Coffee and Tea?</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="c1">// (unifying on Person.name)
+</span><span class="c1"></span><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="nc">Likes</span><span class="o">.</span><span class="n">beverage_</span><span class="o">(</span><span class="s">&#34;Coffee&#34;</span> <span class="n">and</span> <span class="s">&#34;Tea&#34;</span><span class="o">).</span><span class="n">get</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="k">_</span> <span class="o">==&gt;</span> <span class="nc">List</span><span class="o">(</span><span class="s">&#34;Ben&#34;</span><span class="o">,</span> <span class="s">&#34;Liz&#34;</span><span class="o">))</span>
+</code></pre></div><p>What ages have those who like both Coffe and Tea?</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="c1">// (unifying on Person.age)
+</span><span class="c1"></span><span class="nc">Person</span><span class="o">.</span><span class="n">age</span><span class="o">.</span><span class="nc">Likes</span><span class="o">.</span><span class="n">beverage_</span><span class="o">(</span><span class="s">&#34;Coffee&#34;</span> <span class="n">and</span> <span class="s">&#34;Tea&#34;</span><span class="o">).</span><span class="n">get</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="k">_</span> <span class="o">==&gt;</span> <span class="nc">List</span><span class="o">(</span><span class="mi">23</span><span class="o">,</span> <span class="mi">25</span><span class="o">))</span>
+</code></pre></div><p>What shared ratings do Coffee and Tea have?</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="c1">// (unifying on Score.rating)
+</span><span class="c1"></span><span class="nc">Score</span><span class="o">.</span><span class="n">beverage_</span><span class="o">(</span><span class="s">&#34;Coffee&#34;</span> <span class="n">and</span> <span class="s">&#34;Tea&#34;</span><span class="o">).</span><span class="n">rating</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="k">_</span> <span class="o">==&gt;</span> <span class="nc">List</span><span class="o">(</span><span class="mi">3</span><span class="o">))</span>
+</code></pre></div><p>Who rated both 2 and 3?</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="c1">// (unifying on Person.name)
+</span><span class="c1"></span><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="nc">Likes</span><span class="o">.</span><span class="n">rating_</span><span class="o">(</span><span class="mi">2</span> <span class="n">and</span> <span class="mi">3</span><span class="o">).</span><span class="n">get</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="k">_</span> <span class="o">==&gt;</span> <span class="nc">List</span><span class="o">(</span><span class="s">&#34;Ben&#34;</span><span class="o">,</span> <span class="s">&#34;Joe&#34;</span><span class="o">))</span>
+</code></pre></div><p>What ages have those who rated both 2 and 3?</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="c1">// (unifying on Person.age)
+</span><span class="c1"></span><span class="nc">Person</span><span class="o">.</span><span class="n">age</span><span class="o">.</span><span class="nc">Likes</span><span class="o">.</span><span class="n">rating_</span><span class="o">(</span><span class="mi">2</span> <span class="n">and</span> <span class="mi">3</span><span class="o">).</span><span class="n">get</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="k">_</span> <span class="o">==&gt;</span> <span class="nc">List</span><span class="o">(</span><span class="mi">23</span><span class="o">,</span> <span class="mi">25</span><span class="o">))</span>
+</code></pre></div><p>Which beverages are rated 2 and 3?</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="c1">// (unifying on Likes.beverage)
+</span><span class="c1"></span><span class="nc">Score</span><span class="o">.</span><span class="n">rating_</span><span class="o">(</span><span class="mi">2</span> <span class="n">and</span> <span class="mi">3</span><span class="o">).</span><span class="n">beverage</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="k">_</span> <span class="o">==&gt;</span> <span class="nc">List</span><span class="o">(</span><span class="s">&#34;Coffee&#34;</span><span class="o">))</span>
+</code></pre></div><h3 id="unifying-by-2-attributes">Unifying by 2 attributes</h3>
+<p>Which 23- and 25-year-olds with the same name like the same beverage? (none)</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="c1">// (unifying on Person.name and Likes.beverage)
+</span><span class="c1"></span><span class="nc">Person</span><span class="o">.</span><span class="n">age_</span><span class="o">(</span><span class="mi">23</span> <span class="n">and</span> <span class="mi">25</span><span class="o">).</span><span class="n">name</span><span class="o">.</span><span class="nc">Likes</span><span class="o">.</span><span class="n">beverage</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="k">_</span> <span class="o">==&gt;</span> <span class="nc">List</span><span class="o">())</span>
+</code></pre></div><p>Do Joe and Liz share age and beverage preferences? (yes)</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="c1">// (unifying on Person.age and Likes.beverage)
+</span><span class="c1"></span><span class="nc">Person</span><span class="o">.</span><span class="n">age</span><span class="o">.</span><span class="n">name_</span><span class="o">(</span><span class="s">&#34;Joe&#34;</span> <span class="n">and</span> <span class="s">&#34;Liz&#34;</span><span class="o">).</span><span class="nc">Likes</span><span class="o">.</span><span class="n">beverage</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="k">_</span> <span class="o">==&gt;</span> <span class="nc">List</span><span class="o">(</span>
+  <span class="o">(</span><span class="mi">23</span><span class="o">,</span> <span class="s">&#34;Coffee&#34;</span><span class="o">),</span>
+  <span class="o">(</span><span class="mi">23</span><span class="o">,</span> <span class="s">&#34;Pepsi&#34;</span><span class="o">)</span>
+<span class="o">))</span>
+</code></pre></div><h3 id="multiple-ands">Multiple ANDs</h3>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">.</span><span class="n">name_</span><span class="o">(</span><span class="s">&#34;Joe&#34;</span> <span class="n">and</span> <span class="s">&#34;Ben&#34;</span> <span class="n">and</span> <span class="s">&#34;Liz&#34;</span><span class="o">).</span><span class="nc">Likes</span><span class="o">.</span><span class="n">beverage</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="k">_</span> <span class="o">==&gt;</span> <span class="nc">List</span><span class="o">(</span><span class="s">&#34;Coffee&#34;</span><span class="o">))</span>
+</code></pre></div><h3 id="explicit-self-join">Explicit self-join</h3>
+<p>All the examples above use the <code>and</code> notation to construct simple self-joins. Any of them could be re-written to use a more powerful and expressive <code>Self</code>-notation:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">.</span><span class="n">age_</span><span class="o">(</span><span class="mi">23</span> <span class="n">and</span> <span class="mi">25</span><span class="o">).</span><span class="nc">Likes</span><span class="o">.</span><span class="n">beverage</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="k">_</span> <span class="o">==&gt;</span> <span class="nc">List</span><span class="o">(</span><span class="s">&#34;Coffee&#34;</span><span class="o">,</span> <span class="s">&#34;Tea&#34;</span><span class="o">))</span>
+
+<span class="c1">// ..can be re-written to:
+</span><span class="c1"></span><span class="nc">Person</span><span class="o">.</span><span class="n">age_</span><span class="o">(</span><span class="mi">23</span><span class="o">).</span><span class="nc">Likes</span><span class="o">.</span><span class="n">beverage</span><span class="o">.</span><span class="nc">_Person</span><span class="o">.</span><span class="nc">Self</span>
+  <span class="o">.</span><span class="n">age_</span><span class="o">(</span><span class="mi">25</span><span class="o">).</span><span class="nc">Likes</span><span class="o">.</span><span class="n">beverage_</span><span class="o">(</span><span class="n">unify</span><span class="o">).</span><span class="n">get</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="k">_</span> <span class="o">==&gt;</span> <span class="nc">List</span><span class="o">(</span><span class="s">&#34;Coffee&#34;</span><span class="o">,</span> <span class="s">&#34;Tea&#34;</span><span class="o">))</span>
+</code></pre></div><p>Let&rsquo;s walk through that one&hellip;</p>
+<p>First we ask for a tacit <code>age</code> of 23 being asserted with one Person (entity). After asking for the <code>beverage</code> value of the first person we &ldquo;go back&rdquo; with <code>_Person</code> to the initial namespace <code>Person</code> and then say that we want to make a self-join with <code>Self</code> to start defining another Person/entity. We want the other person to be 25 years old. When we define the <code>beverage</code> value for the other person we tell molecule to &ldquo;unify&rdquo; that value with the equivalent <code>beverage</code> value of the first person.</p>
+<p>This second notation gives us freedom to fetch more values that shouldn&rsquo;t be unified. Say for instance that we want to know the names of 23-/25-year-olds sharing a beverage preference:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">.</span><span class="n">age_</span><span class="o">(</span><span class="mi">23</span><span class="o">).</span><span class="n">name</span><span class="o">.</span><span class="nc">Likes</span><span class="o">.</span><span class="n">beverage</span><span class="o">.</span><span class="nc">_Person</span><span class="o">.</span><span class="nc">Self</span>
+  <span class="o">.</span><span class="n">age_</span><span class="o">(</span><span class="mi">25</span><span class="o">).</span><span class="n">name</span><span class="o">.</span><span class="nc">Likes</span><span class="o">.</span><span class="n">beverage_</span><span class="o">(</span><span class="n">unify</span><span class="o">).</span><span class="n">get</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="k">_</span><span class="o">.</span><span class="n">sorted</span> <span class="o">==&gt;</span> <span class="nc">List</span><span class="o">(</span>
+  <span class="o">(</span><span class="s">&#34;Joe&#34;</span><span class="o">,</span> <span class="s">&#34;Coffee&#34;</span><span class="o">,</span> <span class="s">&#34;Ben&#34;</span><span class="o">),</span>
+  <span class="o">(</span><span class="s">&#34;Liz&#34;</span><span class="o">,</span> <span class="s">&#34;Coffee&#34;</span><span class="o">,</span> <span class="s">&#34;Ben&#34;</span><span class="o">),</span>
+  <span class="o">(</span><span class="s">&#34;Liz&#34;</span><span class="o">,</span> <span class="s">&#34;Tea&#34;</span><span class="o">,</span> <span class="s">&#34;Ben&#34;</span><span class="o">)</span>
+<span class="o">))</span>
+</code></pre></div><p>Now we also fetch the name of beverage which is not being unified between the two entities.</p>
+<p>Let&rsquo;s add the ratings too</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">.</span><span class="n">age_</span><span class="o">(</span><span class="mi">23</span><span class="o">).</span><span class="n">name</span><span class="o">.</span><span class="nc">Likes</span><span class="o">.</span><span class="n">rating</span><span class="o">.</span><span class="n">beverage</span><span class="o">.</span><span class="nc">_Person</span><span class="o">.</span><span class="nc">Self</span>
+  <span class="o">.</span><span class="n">age_</span><span class="o">(</span><span class="mi">25</span><span class="o">).</span><span class="n">name</span><span class="o">.</span><span class="nc">Likes</span><span class="o">.</span><span class="n">beverage_</span><span class="o">(</span><span class="n">unify</span><span class="o">).</span><span class="n">rating</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="k">_</span><span class="o">.</span><span class="n">sorted</span> <span class="o">==&gt;</span> <span class="nc">List</span><span class="o">(</span>
+  <span class="o">(</span><span class="s">&#34;Joe&#34;</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="s">&#34;Coffee&#34;</span><span class="o">,</span> <span class="s">&#34;Ben&#34;</span><span class="o">,</span> <span class="mi">2</span><span class="o">),</span>
+  <span class="o">(</span><span class="s">&#34;Liz&#34;</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="s">&#34;Coffee&#34;</span><span class="o">,</span> <span class="s">&#34;Ben&#34;</span><span class="o">,</span> <span class="mi">2</span><span class="o">),</span>
+  <span class="o">(</span><span class="s">&#34;Liz&#34;</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="s">&#34;Tea&#34;</span><span class="o">,</span> <span class="s">&#34;Ben&#34;</span><span class="o">,</span> <span class="mi">3</span><span class="o">)</span>
+<span class="o">))</span>
+</code></pre></div><p>We can arrange the attributes in the previous molecule in other orders too:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">.</span><span class="n">age_</span><span class="o">(</span><span class="mi">23</span><span class="o">).</span><span class="n">name</span><span class="o">.</span><span class="nc">Likes</span><span class="o">.</span><span class="n">rating</span><span class="o">.</span><span class="n">beverage</span><span class="o">.</span><span class="nc">_Person</span><span class="o">.</span><span class="nc">Self</span>
+  <span class="o">.</span><span class="n">age_</span><span class="o">(</span><span class="mi">25</span><span class="o">).</span><span class="n">name</span><span class="o">.</span><span class="nc">Likes</span><span class="o">.</span><span class="n">rating</span><span class="o">.</span><span class="n">beverage_</span><span class="o">(</span><span class="n">unify</span><span class="o">).</span><span class="n">get</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="k">_</span><span class="o">.</span><span class="n">sorted</span> <span class="o">==&gt;</span> <span class="nc">List</span><span class="o">(</span>
+  <span class="o">(</span><span class="s">&#34;Joe&#34;</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="s">&#34;Coffee&#34;</span><span class="o">,</span> <span class="s">&#34;Ben&#34;</span><span class="o">,</span> <span class="mi">2</span><span class="o">),</span>
+  <span class="o">(</span><span class="s">&#34;Liz&#34;</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="s">&#34;Coffee&#34;</span><span class="o">,</span> <span class="s">&#34;Ben&#34;</span><span class="o">,</span> <span class="mi">2</span><span class="o">),</span>
+  <span class="o">(</span><span class="s">&#34;Liz&#34;</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="s">&#34;Tea&#34;</span><span class="o">,</span> <span class="s">&#34;Ben&#34;</span><span class="o">,</span> <span class="mi">3</span><span class="o">)</span>
+<span class="o">))</span>
+<span class="c1">// or
+</span><span class="c1"></span><span class="nc">Person</span><span class="o">.</span><span class="n">age_</span><span class="o">(</span><span class="mi">23</span><span class="o">).</span><span class="n">name</span><span class="o">.</span><span class="nc">Likes</span><span class="o">.</span><span class="n">beverage</span><span class="o">.</span><span class="n">rating</span><span class="o">.</span><span class="nc">_Person</span><span class="o">.</span><span class="nc">Self</span>
+  <span class="o">.</span><span class="n">age_</span><span class="o">(</span><span class="mi">25</span><span class="o">).</span><span class="n">name</span><span class="o">.</span><span class="nc">Likes</span><span class="o">.</span><span class="n">beverage_</span><span class="o">(</span><span class="n">unify</span><span class="o">).</span><span class="n">rating</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="k">_</span><span class="o">.</span><span class="n">sorted</span> <span class="o">==&gt;</span> <span class="nc">List</span><span class="o">(</span>
+  <span class="o">(</span><span class="s">&#34;Joe&#34;</span><span class="o">,</span> <span class="s">&#34;Coffee&#34;</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="s">&#34;Ben&#34;</span><span class="o">,</span> <span class="mi">2</span><span class="o">),</span>
+  <span class="o">(</span><span class="s">&#34;Liz&#34;</span><span class="o">,</span> <span class="s">&#34;Coffee&#34;</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="s">&#34;Ben&#34;</span><span class="o">,</span> <span class="mi">2</span><span class="o">),</span>
+  <span class="o">(</span><span class="s">&#34;Liz&#34;</span><span class="o">,</span> <span class="s">&#34;Tea&#34;</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="s">&#34;Ben&#34;</span><span class="o">,</span> <span class="mi">3</span><span class="o">)</span>
+<span class="o">))</span>
+<span class="c1">// or
+</span><span class="c1"></span><span class="nc">Person</span><span class="o">.</span><span class="n">age_</span><span class="o">(</span><span class="mi">23</span><span class="o">).</span><span class="n">name</span><span class="o">.</span><span class="nc">Likes</span><span class="o">.</span><span class="n">beverage</span><span class="o">.</span><span class="n">rating</span><span class="o">.</span><span class="nc">_Person</span><span class="o">.</span><span class="nc">Self</span>
+  <span class="o">.</span><span class="n">age_</span><span class="o">(</span><span class="mi">25</span><span class="o">).</span><span class="n">name</span><span class="o">.</span><span class="nc">Likes</span><span class="o">.</span><span class="n">rating</span><span class="o">.</span><span class="n">beverage_</span><span class="o">(</span><span class="n">unify</span><span class="o">).</span><span class="n">get</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="k">_</span><span class="o">.</span><span class="n">sorted</span> <span class="o">==&gt;</span> <span class="nc">List</span><span class="o">(</span>
+  <span class="o">(</span><span class="s">&#34;Joe&#34;</span><span class="o">,</span> <span class="s">&#34;Coffee&#34;</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="s">&#34;Ben&#34;</span><span class="o">,</span> <span class="mi">2</span><span class="o">),</span>
+  <span class="o">(</span><span class="s">&#34;Liz&#34;</span><span class="o">,</span> <span class="s">&#34;Coffee&#34;</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="s">&#34;Ben&#34;</span><span class="o">,</span> <span class="mi">2</span><span class="o">),</span>
+  <span class="o">(</span><span class="s">&#34;Liz&#34;</span><span class="o">,</span> <span class="s">&#34;Tea&#34;</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="s">&#34;Ben&#34;</span><span class="o">,</span> <span class="mi">3</span><span class="o">)</span>
+<span class="o">))</span>
+</code></pre></div><p>Only higher rated beverages</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">.</span><span class="n">age_</span><span class="o">(</span><span class="mi">23</span><span class="o">).</span><span class="n">name</span><span class="o">.</span><span class="nc">Likes</span><span class="o">.</span><span class="n">rating</span><span class="o">.&gt;(</span><span class="mi">1</span><span class="o">).</span><span class="n">beverage</span><span class="o">.</span><span class="nc">_Person</span><span class="o">.</span><span class="nc">Self</span>
+  <span class="o">.</span><span class="n">age_</span><span class="o">(</span><span class="mi">25</span><span class="o">).</span><span class="n">name</span><span class="o">.</span><span class="nc">Likes</span><span class="o">.</span><span class="n">rating</span><span class="o">.&gt;(</span><span class="mi">1</span><span class="o">).</span><span class="n">beverage_</span><span class="o">(</span><span class="n">unify</span><span class="o">).</span><span class="n">get</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="k">_</span><span class="o">.</span><span class="n">sorted</span> <span class="o">==&gt;</span> <span class="nc">List</span><span class="o">(</span>
+  <span class="o">(</span><span class="s">&#34;Joe&#34;</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="s">&#34;Coffee&#34;</span><span class="o">,</span> <span class="s">&#34;Ben&#34;</span><span class="o">,</span> <span class="mi">2</span><span class="o">),</span>
+  <span class="o">(</span><span class="s">&#34;Liz&#34;</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="s">&#34;Tea&#34;</span><span class="o">,</span> <span class="s">&#34;Ben&#34;</span><span class="o">,</span> <span class="mi">3</span><span class="o">)</span>
+<span class="o">))</span>
+</code></pre></div><p>Only highest rated beverages</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">.</span><span class="n">age_</span><span class="o">(</span><span class="mi">23</span><span class="o">).</span><span class="n">name</span><span class="o">.</span><span class="nc">Likes</span><span class="o">.</span><span class="n">rating</span><span class="o">(</span><span class="mi">3</span><span class="o">).</span><span class="n">beverage</span><span class="o">.</span><span class="nc">_Person</span><span class="o">.</span><span class="nc">Self</span>
+  <span class="o">.</span><span class="n">age_</span><span class="o">(</span><span class="mi">25</span><span class="o">).</span><span class="n">name</span><span class="o">.</span><span class="nc">Likes</span><span class="o">.</span><span class="n">rating</span><span class="o">(</span><span class="mi">3</span><span class="o">).</span><span class="n">beverage_</span><span class="o">(</span><span class="n">unify</span><span class="o">).</span><span class="n">get</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="k">_</span><span class="o">.</span><span class="n">sorted</span> <span class="o">==&gt;</span> <span class="nc">List</span><span class="o">(</span>
+  <span class="o">(</span><span class="s">&#34;Liz&#34;</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="s">&#34;Tea&#34;</span><span class="o">,</span> <span class="s">&#34;Ben&#34;</span><span class="o">,</span> <span class="mi">3</span><span class="o">)</span>
+<span class="o">))</span>
+</code></pre></div><p>Common beverage of 23-year-old with low rating and 25-year-old with high rating</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">.</span><span class="n">age_</span><span class="o">(</span><span class="mi">23</span><span class="o">).</span><span class="n">name</span><span class="o">.</span><span class="nc">Likes</span><span class="o">.</span><span class="n">rating</span><span class="o">(</span><span class="mi">1</span><span class="o">).</span><span class="n">beverage</span><span class="o">.</span><span class="nc">_Person</span><span class="o">.</span><span class="nc">Self</span>
+  <span class="o">.</span><span class="n">age_</span><span class="o">(</span><span class="mi">25</span><span class="o">).</span><span class="n">name</span><span class="o">.</span><span class="nc">Likes</span><span class="o">.</span><span class="n">rating</span><span class="o">(</span><span class="mi">2</span><span class="o">).</span><span class="n">beverage_</span><span class="o">(</span><span class="n">unify</span><span class="o">).</span><span class="n">get</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="k">_</span><span class="o">.</span><span class="n">sorted</span> <span class="o">==&gt;</span> <span class="nc">List</span><span class="o">(</span>
+  <span class="o">(</span><span class="s">&#34;Liz&#34;</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="s">&#34;Coffee&#34;</span><span class="o">,</span> <span class="s">&#34;Ben&#34;</span><span class="o">,</span> <span class="mi">2</span><span class="o">)</span>
+<span class="o">))</span>
+</code></pre></div><p>Any 23- and 25-year-olds wanting to drink tea together?</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">.</span><span class="n">age_</span><span class="o">(</span><span class="mi">23</span><span class="o">).</span><span class="n">name</span><span class="o">.</span><span class="nc">Likes</span><span class="o">.</span><span class="n">beverage_</span><span class="o">(</span><span class="s">&#34;Tea&#34;</span><span class="o">).</span><span class="nc">_Person</span><span class="o">.</span><span class="nc">Self</span>
+  <span class="o">.</span><span class="n">age_</span><span class="o">(</span><span class="mi">25</span><span class="o">).</span><span class="n">name</span><span class="o">.</span><span class="nc">Likes</span><span class="o">.</span><span class="n">beverage_</span><span class="o">(</span><span class="s">&#34;Tea&#34;</span><span class="o">).</span><span class="n">get</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="k">_</span> <span class="o">==&gt;</span> <span class="nc">List</span><span class="o">((</span><span class="s">&#34;Liz&#34;</span><span class="o">,</span> <span class="s">&#34;Ben&#34;</span><span class="o">)))</span>
+</code></pre></div><p>Any 23-year old Tea drinker and a 25-year-old Coffee drinker?</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">.</span><span class="n">age_</span><span class="o">(</span><span class="mi">23</span><span class="o">).</span><span class="n">name</span><span class="o">.</span><span class="nc">Likes</span><span class="o">.</span><span class="n">beverage_</span><span class="o">(</span><span class="s">&#34;Tea&#34;</span><span class="o">).</span><span class="nc">_Person</span><span class="o">.</span><span class="nc">Self</span>
+  <span class="o">.</span><span class="n">age_</span><span class="o">(</span><span class="mi">25</span><span class="o">).</span><span class="n">name</span><span class="o">.</span><span class="nc">Likes</span><span class="o">.</span><span class="n">beverage_</span><span class="o">(</span><span class="s">&#34;Coffee&#34;</span><span class="o">).</span><span class="n">get</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="k">_</span> <span class="o">==&gt;</span> <span class="nc">List</span><span class="o">((</span><span class="s">&#34;Liz&#34;</span><span class="o">,</span> <span class="s">&#34;Ben&#34;</span><span class="o">)))</span>
+</code></pre></div><p>Any pair of young persons drinking respectively Tea and Coffee?</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">.</span><span class="n">age_</span><span class="o">.&lt;(</span><span class="mi">24</span><span class="o">).</span><span class="n">name</span><span class="o">.</span><span class="nc">Likes</span><span class="o">.</span><span class="n">beverage_</span><span class="o">(</span><span class="s">&#34;Tea&#34;</span><span class="o">).</span><span class="nc">_Person</span><span class="o">.</span><span class="nc">Self</span>
+  <span class="o">.</span><span class="n">age_</span><span class="o">.&lt;(</span><span class="mi">24</span><span class="o">).</span><span class="n">name</span><span class="o">.</span><span class="nc">Likes</span><span class="o">.</span><span class="n">beverage_</span><span class="o">(</span><span class="s">&#34;Coffee&#34;</span><span class="o">).</span><span class="n">get</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="k">_</span> <span class="o">==&gt;</span> <span class="nc">List</span><span class="o">(</span>
+  <span class="o">(</span><span class="s">&#34;Liz&#34;</span><span class="o">,</span> <span class="s">&#34;Joe&#34;</span><span class="o">),</span>
+  <span class="o">(</span><span class="s">&#34;Liz&#34;</span><span class="o">,</span> <span class="s">&#34;Liz&#34;</span><span class="o">)</span>
+<span class="o">))</span>
+</code></pre></div><p>Since Liz is under 24 and drinks both Tea and Coffee she shows up as two persons (one drinking Tea, the other Coffee). We can filter the result to only get different persons:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">.</span><span class="n">e</span><span class="o">.</span><span class="n">age_</span><span class="o">.&lt;(</span><span class="mi">24</span><span class="o">).</span><span class="n">name</span><span class="o">.</span><span class="nc">Likes</span><span class="o">.</span><span class="n">beverage_</span><span class="o">(</span><span class="s">&#34;Tea&#34;</span><span class="o">).</span><span class="nc">_Person</span><span class="o">.</span><span class="nc">Self</span>
+  <span class="o">.</span><span class="n">e</span><span class="o">.</span><span class="n">age_</span><span class="o">.&lt;(</span><span class="mi">24</span><span class="o">).</span><span class="n">name</span><span class="o">.</span><span class="nc">Likes</span><span class="o">.</span><span class="n">beverage_</span><span class="o">(</span><span class="s">&#34;Coffee&#34;</span><span class="o">).</span><span class="n">get</span>
+  <span class="o">.</span><span class="n">filter</span><span class="o">(</span><span class="n">r</span> <span class="k">=&gt;</span> <span class="n">r</span><span class="o">.</span><span class="n">_1</span> <span class="o">!=</span> <span class="n">r</span><span class="o">.</span><span class="n">_3</span><span class="o">).</span><span class="n">map</span><span class="o">(</span><span class="n">r</span> <span class="k">=&gt;</span> <span class="o">(</span><span class="n">r</span><span class="o">.</span><span class="n">_2</span><span class="o">,</span> <span class="n">r</span><span class="o">.</span><span class="n">_4</span><span class="o">))</span> <span class="o">===</span> <span class="nc">List</span><span class="o">(</span>
+  <span class="o">(</span><span class="s">&#34;Liz&#34;</span><span class="o">,</span> <span class="s">&#34;Joe&#34;</span><span class="o">)</span>
+<span class="o">))</span>
+</code></pre></div><h3 id="multiple-explicit-self-joins">Multiple explicit self-joins</h3>
+<p>Beverages liked by all 3 different people</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">.</span><span class="n">name_</span><span class="o">(</span><span class="s">&#34;Joe&#34;</span> <span class="n">and</span> <span class="s">&#34;Ben&#34;</span> <span class="n">and</span> <span class="s">&#34;Liz&#34;</span><span class="o">).</span><span class="nc">Likes</span><span class="o">.</span><span class="n">beverage</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="k">_</span> <span class="o">==&gt;</span> <span class="nc">List</span><span class="o">(</span><span class="s">&#34;Coffee&#34;</span><span class="o">))</span>
+
+<span class="c1">// or
+</span><span class="c1"></span>
+<span class="nc">Person</span><span class="o">.</span><span class="n">name_</span><span class="o">(</span><span class="s">&#34;Joe&#34;</span><span class="o">).</span><span class="nc">Likes</span><span class="o">.</span><span class="n">beverage</span><span class="o">.</span><span class="nc">_Person</span><span class="o">.</span><span class="nc">Self</span>
+  <span class="o">.</span><span class="n">name_</span><span class="o">(</span><span class="s">&#34;Ben&#34;</span><span class="o">).</span><span class="nc">Likes</span><span class="o">.</span><span class="n">beverage_</span><span class="o">(</span><span class="n">unify</span><span class="o">).</span><span class="nc">_Person</span><span class="o">.</span><span class="nc">Self</span>
+  <span class="o">.</span><span class="n">name_</span><span class="o">(</span><span class="s">&#34;Liz&#34;</span><span class="o">).</span><span class="nc">Likes</span><span class="o">.</span><span class="n">beverage_</span><span class="o">(</span><span class="n">unify</span><span class="o">).</span><span class="n">get</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="k">_</span> <span class="o">==&gt;</span> <span class="nc">List</span><span class="o">(</span><span class="s">&#34;Coffee&#34;</span><span class="o">))</span>
+</code></pre></div><h2 id="bidirectional">Bidirectional</h2>
+<p>Relationships in Datomic are unidirectional but can be queried in reverse when needed.</p>
+<p>When working with graph structures we can benefit from being able to traverse the graph recursively without worrying about in which direction each relationship was created.</p>
+<p>Molecule offers to define bidirectional relationships that makes uniform traversals easy.</p>
+<h3 id="unidirectional-reference-limitations">Unidirectional reference limitations</h3>
+<p>If we add a friend reference from Ann to Ben</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">(</span><span class="s">&#34;Ann&#34;</span><span class="o">).</span><span class="nc">Friends</span><span class="o">.</span><span class="n">name</span><span class="o">(</span><span class="s">&#34;Ben&#34;</span><span class="o">).</span><span class="n">save</span>
+</code></pre></div><p>Then we can naturally query to get friends of Ann</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">.</span><span class="n">name_</span><span class="o">(</span><span class="s">&#34;Ann&#34;</span><span class="o">).</span><span class="nc">Friends</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="k">_</span> <span class="o">==&gt;</span> <span class="nc">List</span><span class="o">(</span><span class="s">&#34;Ben&#34;</span><span class="o">))</span>
+</code></pre></div><p>But what if we want to find friends of Ben? This will give us nothing since our reference only went from Ann to Ben:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">.</span><span class="n">name_</span><span class="o">(</span><span class="s">&#34;Ben&#34;</span><span class="o">).</span><span class="nc">Friends</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="k">_</span> <span class="o">==&gt;</span> <span class="nc">List</span><span class="o">())</span>
+</code></pre></div><p>Instead we would have to think backwards to get the back reference &ldquo;who referenced Ben?&quot;:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"> <span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="nc">Friends</span><span class="o">.</span><span class="n">name_</span><span class="o">(</span><span class="s">&#34;Ben&#34;</span><span class="o">).</span><span class="n">get</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="k">_</span> <span class="o">==&gt;</span> <span class="nc">List</span><span class="o">(</span><span class="s">&#34;Ann&#34;</span><span class="o">))</span>
+</code></pre></div><p>Since we can&rsquo;t know from which person a friendship reference is made we will always have to query separately in both directions. If we were to traverse say 3 levels into a friendship graph we would end up with 6 queries - one in each direction for all three levels. It can quickly become a pain.</p>
+<h3 id="bidirectional-refs-to-the-rescue">Bidirectional refs to the rescue&hellip;</h3>
+<p>By defining a relationship in Molecule as bidirectional:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">val</span> <span class="n">friends</span> <span class="k">=</span> <span class="n">manyBi</span><span class="o">[</span><span class="kt">Person</span><span class="o">]</span>
+</code></pre></div><p>we can start treating friendship relationships uniformly in both directions and get the intuitively expected results</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"> <span class="nc">Person</span><span class="o">.</span><span class="n">name_</span><span class="o">(</span><span class="s">&#34;Ann&#34;</span><span class="o">).</span><span class="nc">Friends</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="k">_</span> <span class="o">==&gt;</span> <span class="nc">List</span><span class="o">(</span><span class="s">&#34;Ben&#34;</span><span class="o">))</span>
+ <span class="nc">Person</span><span class="o">.</span><span class="n">name_</span><span class="o">(</span><span class="s">&#34;Ben&#34;</span><span class="o">).</span><span class="nc">Friends</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="k">_</span> <span class="o">==&gt;</span> <span class="nc">List</span><span class="o">(</span><span class="s">&#34;Ann&#34;</span><span class="o">))</span>
+</code></pre></div><p>And the graph example becomes easy</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"> <span class="nc">Person</span><span class="o">.</span><span class="n">name_</span><span class="o">(</span><span class="s">&#34;Ann&#34;</span><span class="o">).</span><span class="nc">Friends</span><span class="o">.</span><span class="nc">Friends</span><span class="o">.</span><span class="nc">Friends</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="k">_</span> <span class="o">==&gt;</span> <span class="nc">List</span><span class="o">(...))</span>
+ 
+ <span class="c1">// Or without recycling to Ann
+</span><span class="c1"></span> <span class="nc">Person</span><span class="o">.</span><span class="n">name_</span><span class="o">(</span><span class="s">&#34;Ann&#34;</span><span class="o">).</span><span class="nc">Friends</span><span class="o">.</span><span class="nc">Friends</span><span class="o">.</span><span class="n">name_</span><span class="o">.</span><span class="n">not</span><span class="o">(</span><span class="s">&#34;Ann&#34;</span><span class="o">).</span><span class="nc">Friends</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">not</span><span class="o">(</span><span class="s">&#34;Ann&#34;</span><span class="o">).</span><span class="n">get</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="k">_</span> <span class="o">==&gt;</span> <span class="nc">List</span><span class="o">(...))</span>
+</code></pre></div><h3 id="direct-bidirectional-refs">Direct bidirectional refs</h3>
+<p>Single direct references to another entity can either go to the same namespace or to another namespace:</p>
+<h3 id="a-----a--self-join">A &lt;&mdash;&gt; A / Self-join</h3>
+<p>The friendship reference we saw above is a classic &ldquo;self-join&rdquo; in that it&rsquo;s a cardinality-many relationship between same-kinds: Persons.</p>
+<p>A cardinality-one example would be</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">val</span> <span class="n">spouse</span> <span class="k">=</span> <span class="n">oneBi</span><span class="o">[</span><span class="kt">Person</span><span class="o">]</span>
+</code></pre></div><p>where the relationship goes in both directions but only between two persons. If Ann is spouse to Ben, then Ben is also spouse to Ann and we want to be able to query that information uniformly in both directions:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"> <span class="nc">Person</span><span class="o">.</span><span class="n">name_</span><span class="o">(</span><span class="s">&#34;Ann&#34;</span><span class="o">).</span><span class="nc">Spouse</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="k">_</span> <span class="o">==&gt;</span> <span class="nc">List</span><span class="o">(</span><span class="s">&#34;Ben&#34;</span><span class="o">))</span>
+ <span class="nc">Person</span><span class="o">.</span><span class="n">name_</span><span class="o">(</span><span class="s">&#34;Ben&#34;</span><span class="o">).</span><span class="nc">Spouse</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="k">_</span> <span class="o">==&gt;</span> <span class="nc">List</span><span class="o">(</span><span class="s">&#34;Ann&#34;</span><span class="o">))</span>
+</code></pre></div><h3 id="a-----b">A &lt;&mdash;&gt; B</h3>
+<p>In a zoo we could (admittedly a bit contrively) say that the caretakers are buddies with the animals they take care of, and reversely the caretakers would be &ldquo;buddies&rdquo; of the animals. We define such bidirectional relationship with a reference from each namespace to the other:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">object</span> <span class="nc">Person</span> <span class="k">extends</span> <span class="nc">Person</span>
+<span class="k">trait</span> <span class="nc">Person</span> <span class="o">{</span>
+  <span class="k">val</span> <span class="n">buddies</span> <span class="k">=</span> <span class="n">manyBi</span><span class="o">[</span><span class="kt">Animal.buddies.</span><span class="k">type</span><span class="o">]</span>
+  
+  <span class="k">val</span> <span class="n">name</span> <span class="k">=</span> <span class="n">oneString</span>
+<span class="o">}</span>
+
+<span class="k">object</span> <span class="nc">Animal</span> <span class="k">extends</span> <span class="nc">Animal</span>
+<span class="k">trait</span> <span class="nc">Animal</span> <span class="o">{</span>
+  <span class="k">val</span> <span class="n">buddies</span> <span class="k">=</span> <span class="n">manyBi</span><span class="o">[</span><span class="kt">Person.buddies.</span><span class="k">type</span><span class="o">]</span>
+  
+  <span class="k">val</span> <span class="n">name</span> <span class="k">=</span> <span class="n">oneString</span>
+<span class="o">}</span>
+</code></pre></div><p>Each <code>manyBi</code> reference definition takes a type parameter that points back to the other definition. This is so that Molecule can keep track of the references back and forth.</p>
+<p>As with friends we can now query uniformly no matter from which end the reference was entered:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"> <span class="nc">Person</span><span class="o">.</span><span class="n">name_</span><span class="o">(</span><span class="s">&#34;Joe&#34;</span><span class="o">).</span><span class="nc">Buddies</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="k">_</span> <span class="o">==&gt;</span> <span class="nc">List</span><span class="o">(</span><span class="s">&#34;Leo&#34;</span><span class="o">,</span> <span class="s">&#34;Gus&#34;</span><span class="o">))</span>
+ <span class="nc">Animal</span><span class="o">.</span><span class="n">name_</span><span class="o">(</span><span class="s">&#34;Leo&#34;</span><span class="o">).</span><span class="nc">Buddies</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="k">_</span> <span class="o">==&gt;</span> <span class="nc">List</span><span class="o">(</span><span class="s">&#34;Joe&#34;</span><span class="o">))</span>
+ <span class="nc">Animal</span><span class="o">.</span><span class="n">name_</span><span class="o">(</span><span class="s">&#34;Gus&#34;</span><span class="o">).</span><span class="nc">Buddies</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="k">_</span> <span class="o">==&gt;</span> <span class="nc">List</span><span class="o">(</span><span class="s">&#34;Joe&#34;</span><span class="o">))</span>
+</code></pre></div><p>An interesting aspect is that we can give the reference attributes different names on each end. Say Persons have 1 Pet and we model that as a bidirectional cardinality-one reference:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">object</span> <span class="nc">Person</span> <span class="k">extends</span> <span class="nc">Person</span>
+<span class="k">trait</span> <span class="nc">Person</span> <span class="o">{</span>
+  <span class="k">val</span> <span class="n">pet</span> <span class="k">=</span> <span class="n">oneBi</span><span class="o">[</span><span class="kt">Animal.master.</span><span class="k">type</span><span class="o">]</span>
+  
+  <span class="k">val</span> <span class="n">name</span> <span class="k">=</span> <span class="n">oneString</span>
+<span class="o">}</span>
+
+<span class="k">object</span> <span class="nc">Animal</span> <span class="k">extends</span> <span class="nc">Animal</span>
+<span class="k">trait</span> <span class="nc">Animal</span> <span class="o">{</span>
+  <span class="k">val</span> <span class="n">master</span> <span class="k">=</span> <span class="n">oneBi</span><span class="o">[</span><span class="kt">Person.pet.</span><span class="k">type</span><span class="o">]</span>
+<span class="o">}</span>
+</code></pre></div><p>If we then enter a pet ownership</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">(</span><span class="s">&#34;Liz&#34;</span><span class="o">).</span><span class="nc">Pet</span><span class="o">.</span><span class="n">name</span><span class="o">(</span><span class="s">&#34;Rex&#34;</span><span class="o">).</span><span class="n">save</span>
+</code></pre></div><p>then we can get access to that information uniformly from both ends even though different attribute names are used:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"> <span class="nc">Person</span><span class="o">.</span><span class="n">name_</span><span class="o">(</span><span class="s">&#34;Liz&#34;</span><span class="o">).</span><span class="nc">Pet</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="k">_</span> <span class="o">==&gt;</span> <span class="nc">List</span><span class="o">(</span><span class="s">&#34;Rex&#34;</span><span class="o">))</span>
+ <span class="nc">Animal</span><span class="o">.</span><span class="n">name_</span><span class="o">(</span><span class="s">&#34;Rex&#34;</span><span class="o">).</span><span class="nc">Master</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="k">_</span> <span class="o">==&gt;</span> <span class="nc">List</span><span class="o">(</span><span class="s">&#34;Liz&#34;</span><span class="o">))</span>
+</code></pre></div><h3 id="property-edges">Property edges</h3>
+<p>Taking bidirectionality to the next level involves &ldquo;property edges&rdquo;, a term taken from graph theory where an edge/relationship between two vertices/entities has some property values attached to it. Molecule models this by using a bidirectional reference between one entity and a (property edge) entity, and then between this property edge entity and another entity.</p>
+<p>This is actually what we do all the time with references except that they are normally unidirectional! In order to make them bidirectional Molecule offers a convenient solution:</p>
+<h3 id="a-----edgeproperties-----a">A &lt;&mdash;&gt; Edge.properties&hellip; &lt;&mdash;&gt; A</h3>
+<p>If we want to express &ldquo;how well&rdquo; two persons know each other we could model the above friendship example instead with at property edge having a <code>weight</code> property:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="c1">// Entity
+</span><span class="c1"></span><span class="k">object</span> <span class="nc">Person</span> <span class="k">extends</span> <span class="nc">Person</span>
+<span class="k">trait</span> <span class="nc">Person</span> <span class="o">{</span>
+  <span class="c1">// A ==&gt; edge -- a
+</span><span class="c1"></span>  <span class="k">val</span> <span class="n">knows</span> <span class="k">=</span> <span class="n">manyBiEdge</span><span class="o">[</span><span class="kt">Knows.person.</span><span class="k">type</span><span class="o">]</span>
+  
+  <span class="k">val</span> <span class="n">name</span> <span class="k">=</span> <span class="n">oneString</span>
+<span class="o">}</span>
+
+<span class="c1">// Property edge
+</span><span class="c1"></span><span class="k">object</span> <span class="nc">Knows</span> <span class="k">extends</span> <span class="nc">Knows</span>
+<span class="k">trait</span> <span class="nc">Knows</span> <span class="o">{</span>
+  <span class="c1">// a --- edge ==&gt; a
+</span><span class="c1"></span>  <span class="k">val</span> <span class="n">person</span><span class="k">:</span> <span class="kt">AnyRef</span> <span class="o">=</span> <span class="n">target</span><span class="o">[</span><span class="kt">Person.knows.</span><span class="k">type</span><span class="o">]</span>
+  
+  <span class="c1">// Property
+</span><span class="c1"></span>  <span class="k">val</span> <span class="n">weight</span> <span class="k">=</span> <span class="n">oneInt</span>
+<span class="o">}</span>
+</code></pre></div><p>Now we use the <code>manyBiEdge</code> definition that takes a type parameter pointing to the reference in the edge namespace that points back here. In the edge namespace we define the reference back with the <code>target</code> definition.</p>
+<p>Now we can add some weighed friendships:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="nc">Knows</span><span class="o">.*(</span><span class="nc">Knows</span><span class="o">.</span><span class="n">weight</span><span class="o">.</span><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">).</span><span class="n">insert</span><span class="o">(</span><span class="s">&#34;Ann&#34;</span><span class="o">,</span> <span class="nc">List</span><span class="o">((</span><span class="mi">7</span><span class="o">,</span> <span class="s">&#34;Ben&#34;</span><span class="o">),</span> <span class="o">(</span><span class="mi">8</span><span class="o">,</span> <span class="s">&#34;Joe&#34;</span><span class="o">)))</span>
+</code></pre></div><p>And uniformly retrieve that information from any end:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">.</span><span class="n">name_</span><span class="o">(</span><span class="s">&#34;Ann&#34;</span><span class="o">).</span><span class="nc">Knows</span><span class="o">.*(</span><span class="nc">Knows</span><span class="o">.</span><span class="n">weight</span><span class="o">.</span><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">).</span><span class="n">get</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="k">_</span> <span class="o">==&gt;</span> <span class="nc">List</span><span class="o">((</span><span class="mi">7</span><span class="o">,</span> <span class="s">&#34;Ben&#34;</span><span class="o">),</span> <span class="o">(</span><span class="mi">8</span><span class="o">,</span> <span class="s">&#34;Joe&#34;</span><span class="o">)))</span>
+<span class="nc">Person</span><span class="o">.</span><span class="n">name_</span><span class="o">(</span><span class="s">&#34;Ben&#34;</span><span class="o">).</span><span class="nc">Knows</span><span class="o">.*(</span><span class="nc">Knows</span><span class="o">.</span><span class="n">weight</span><span class="o">.</span><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">).</span><span class="n">get</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="k">_</span> <span class="o">==&gt;</span> <span class="nc">List</span><span class="o">((</span><span class="mi">7</span><span class="o">,</span> <span class="s">&#34;Ann&#34;</span><span class="o">)))</span>
+<span class="nc">Person</span><span class="o">.</span><span class="n">name_</span><span class="o">(</span><span class="s">&#34;Joe&#34;</span><span class="o">).</span><span class="nc">Knows</span><span class="o">.*(</span><span class="nc">Knows</span><span class="o">.</span><span class="n">weight</span><span class="o">.</span><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">).</span><span class="n">get</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="k">_</span> <span class="o">==&gt;</span> <span class="nc">List</span><span class="o">((</span><span class="mi">8</span><span class="o">,</span> <span class="s">&#34;Ann&#34;</span><span class="o">)))</span>
+</code></pre></div><h3 id="a-----edgeproperties-----b">A &lt;&mdash;&gt; Edge.properties&hellip; &lt;&mdash;&gt; B</h3>
+<p>Let&rsquo;s add weight to the relationships between caretakers and animals. The edge namespace now has to reference both the Person and Animal namespaces:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="c1">// Entity A
+</span><span class="c1"></span><span class="k">object</span> <span class="nc">Person</span> <span class="k">extends</span> <span class="nc">Person</span>
+<span class="k">trait</span> <span class="nc">Person</span> <span class="o">{</span>
+  <span class="c1">// Ref to edge
+</span><span class="c1"></span>  <span class="c1">// A ==&gt; edge -- b
+</span><span class="c1"></span>  <span class="k">val</span> <span class="n">closeTo</span> <span class="k">=</span> <span class="n">manyBiEdge</span><span class="o">[</span><span class="kt">CloseTo.animal.</span><span class="k">type</span><span class="o">]</span>
+  
+  <span class="k">val</span> <span class="n">name</span> <span class="k">=</span> <span class="n">oneString</span>
+<span class="o">}</span>
+
+<span class="c1">// Property edge
+</span><span class="c1"></span><span class="k">object</span> <span class="nc">CloseTo</span> <span class="k">extends</span> <span class="nc">CloseTo</span>
+<span class="k">trait</span> <span class="nc">CloseTo</span> <span class="o">{</span>
+  <span class="c1">// Ref to Person
+</span><span class="c1"></span>  <span class="c1">// a &lt;== edge --- b
+</span><span class="c1"></span>  <span class="k">val</span> <span class="n">person</span><span class="k">:</span> <span class="kt">AnyRef</span> <span class="o">=</span> <span class="n">target</span><span class="o">[</span><span class="kt">Person.closeTo.</span><span class="k">type</span><span class="o">]</span>
+  
+  <span class="c1">// Ref to Animal
+</span><span class="c1"></span>  <span class="c1">// a --- edge ==&gt; b
+</span><span class="c1"></span>  <span class="k">val</span> <span class="n">animal</span><span class="k">:</span> <span class="kt">AnyRef</span> <span class="o">=</span> <span class="n">target</span><span class="o">[</span><span class="kt">Animal.closeTo.</span><span class="k">type</span><span class="o">]</span>
+  
+  <span class="c1">// Property
+</span><span class="c1"></span>  <span class="k">val</span> <span class="n">weight</span> <span class="k">=</span> <span class="n">oneInt</span>
+<span class="o">}</span>
+
+<span class="c1">// Entity B
+</span><span class="c1"></span><span class="k">object</span> <span class="nc">Animal</span> <span class="k">extends</span> <span class="nc">Animal</span>
+<span class="k">trait</span> <span class="nc">Animal</span> <span class="o">{</span>
+  <span class="c1">// Ref to edge
+</span><span class="c1"></span>  <span class="c1">// a -- edge &lt;== B
+</span><span class="c1"></span>  <span class="k">val</span> <span class="n">closeTo</span>  <span class="k">=</span> <span class="n">manyBiEdge</span><span class="o">[</span><span class="kt">CloseTo.person.</span><span class="k">type</span><span class="o">]</span>
+  
+  <span class="k">val</span> <span class="n">name</span> <span class="k">=</span> <span class="n">oneString</span>
+<span class="o">}</span>
+</code></pre></div><p>Adding data from one end (we could as well have done it from the Animal end)</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="nc">CloseTo</span><span class="o">.*(</span><span class="nc">CloseTo</span><span class="o">.</span><span class="n">weight</span><span class="o">.</span><span class="nc">Animal</span><span class="o">.</span><span class="n">name</span><span class="o">)</span> <span class="n">insert</span> <span class="nc">List</span><span class="o">((</span><span class="s">&#34;Joe&#34;</span><span class="o">,</span> <span class="nc">List</span><span class="o">((</span><span class="mi">7</span><span class="o">,</span> <span class="s">&#34;Gus&#34;</span><span class="o">),</span> <span class="o">(</span><span class="mi">6</span><span class="o">,</span> <span class="s">&#34;Leo&#34;</span><span class="o">))))</span>
+</code></pre></div><p>We can now uniformly retrieve the weighed friendship information from any end:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="c1">// Querying from Person
+</span><span class="c1"></span><span class="nc">Person</span><span class="o">.</span><span class="n">name_</span><span class="o">(</span><span class="s">&#34;Joe&#34;</span><span class="o">).</span><span class="nc">CloseTo</span><span class="o">.*(</span><span class="nc">CloseTo</span><span class="o">.</span><span class="n">weight</span><span class="o">.</span><span class="nc">Animal</span><span class="o">.</span><span class="n">name</span><span class="o">).</span><span class="n">get</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="k">_</span> <span class="o">==&gt;</span> <span class="nc">List</span><span class="o">((</span><span class="mi">7</span><span class="o">,</span> <span class="s">&#34;Gus&#34;</span><span class="o">),</span> <span class="o">(</span><span class="mi">8</span><span class="o">,</span> <span class="s">&#34;Leo&#34;</span><span class="o">)))</span>
+
+<span class="c1">// Querying from Animal
+</span><span class="c1"></span><span class="nc">Animal</span><span class="o">.</span><span class="n">name_</span><span class="o">(</span><span class="s">&#34;Gus&#34;</span><span class="o">).</span><span class="nc">CloseTo</span><span class="o">.*(</span><span class="nc">CloseTo</span><span class="o">.</span><span class="n">weight</span><span class="o">.</span><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">).</span><span class="n">get</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="k">_</span> <span class="o">==&gt;</span> <span class="nc">List</span><span class="o">((</span><span class="mi">7</span><span class="o">,</span> <span class="s">&#34;Joe&#34;</span><span class="o">)))</span>
+<span class="nc">Animal</span><span class="o">.</span><span class="n">name_</span><span class="o">(</span><span class="s">&#34;Leo&#34;</span><span class="o">).</span><span class="nc">CloseTo</span><span class="o">.*(</span><span class="nc">CloseTo</span><span class="o">.</span><span class="n">weight</span><span class="o">.</span><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">).</span><span class="n">get</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="k">_</span> <span class="o">==&gt;</span> <span class="nc">List</span><span class="o">((</span><span class="mi">8</span><span class="o">,</span> <span class="s">&#34;Joe&#34;</span><span class="o">)))</span>
+</code></pre></div><h3 id="how-it-works">How it works</h3>
+<p>For each bidirectional reference created, Molecule creates a reverse reference:</p>
+<pre><code>Ann --&gt; Ben
+Ben &lt;-- Ann // reverse ref
+</code></pre><p>and for edges a full reverse edge entity with properties is created:</p>
+<pre><code>Ann --&gt; annLovesBen (7) --&gt;  Ben
+  \                         /
+    &lt;-- benLovesAnn (7) &lt;--       // reverse edge
+</code></pre><p>Since Molecule is a closed eco-system it can manage this redundancy with 100% control. The advantages of uniform queries should easily outweigh the impact of a bit of additional information for the reverse references.</p>
+<h3 id="more-bidirectional-graph-examples">More bidirectional graph examples&hellip;</h3>
+<p>Please have a look at the <a href="../../intro/compare/gremlin/">Gremlin examples</a> or the <a href="https://github.com/scalamolecule/molecule/blob/master/moleculeTests/shared/src/test/scala/moleculeTests/tests/core/bidirectionals">Bidirectional test suite</a>.</p>
+<h2 id="associative">Associative</h2>
+<p>Datomic allows for a very powerful special type of relationship that Molecule calls an <em>associative relationship</em>. This is simply when entities contain attributes from different namespaces. In the SQL world it would be like the ability to &ldquo;borrow&rdquo; columns from other tables.</p>
+<p>You might recall how <a href="../../intro/building-blocks/#entity">entities</a> are composed of attributes sharing the same entity id, like the pizza-liking 24-year-old John:</p>
+
+
+
+
+
+<table class="table table-bordered">
+<thead>
+<tr>
+<th style="text-align:center">Entity id</th>
+<th style="text-align:left">Attribue</th>
+<th style="text-align:left">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">101</td>
+<td style="text-align:left">:Person/name</td>
+<td style="text-align:left">&ldquo;John&rdquo;</td>
+</tr>
+<tr>
+<td style="text-align:center">101</td>
+<td style="text-align:left">:Person/likes</td>
+<td style="text-align:left">&ldquo;pizza&rdquo;</td>
+</tr>
+<tr>
+<td style="text-align:center">101</td>
+<td style="text-align:left">:Person/age</td>
+<td style="text-align:left">24</td>
+</tr>
+</tbody>
+</table>
+
+<p>Say, John registers with our website, and we want to categorize John as a customer. Then the challenge arises, how should we model that John is in a certain category? Since categories are applied to many things, this is a classical <a href="https://en.wikipedia.org/wiki/Cross-cutting_concern">cross-cutting concern</a>.</p>
+<p>A traditional way of modelling this is to make a relationship from Person to Site.cat, from this to Site.cat, from that to Site.cat etc. Not optimal. Having an external join table is not optimal either.</p>
+<p>Instead we can simply create an <em>association</em> by letting a Datom with a <code>Site.cat</code> attribute have a John id!:</p>
+
+
+
+
+
+<table class="table table-bordered">
+<thead>
+<tr>
+<th style="text-align:center">Entity id</th>
+<th style="text-align:left">Attribue</th>
+<th style="text-align:left">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">101</td>
+<td style="text-align:left">:Person/name</td>
+<td style="text-align:left">&ldquo;John&rdquo;</td>
+</tr>
+<tr>
+<td style="text-align:center">101</td>
+<td style="text-align:left">:Person/likes</td>
+<td style="text-align:left">&ldquo;pizza&rdquo;</td>
+</tr>
+<tr>
+<td style="text-align:center">101</td>
+<td style="text-align:left">:Person/age</td>
+<td style="text-align:left">24</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>101</strong></td>
+<td style="text-align:left"><strong>:Site/cat</strong></td>
+<td style="text-align:left"><strong>&ldquo;customer&rdquo;</strong></td>
+</tr>
+</tbody>
+</table>
+
+<p>In Molecule we associate with the <code>+</code> operator. We could therefore save John like this:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="n">m</span><span class="o">(</span><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">(</span><span class="s">&#34;John&#34;</span><span class="o">).</span><span class="n">age</span><span class="o">(</span><span class="mi">24</span><span class="o">).</span><span class="n">likes</span><span class="o">(</span><span class="s">&#34;pizza&#34;</span><span class="o">)</span> <span class="o">+</span> <span class="nc">Site</span><span class="o">.</span><span class="n">cat</span><span class="o">(</span><span class="s">&#34;customer&#34;</span><span class="o">)).</span><span class="n">save</span>
+
+<span class="c1">// or
+</span><span class="c1"></span>
+<span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">(</span><span class="s">&#34;John&#34;</span><span class="o">).</span><span class="n">age</span><span class="o">(</span><span class="mi">24</span><span class="o">).</span><span class="n">likes</span><span class="o">(</span><span class="s">&#34;pizza&#34;</span><span class="o">).+(</span><span class="nc">Site</span><span class="o">.</span><span class="n">cat</span><span class="o">(</span><span class="s">&#34;customer&#34;</span><span class="o">)).</span><span class="n">save</span>
+</code></pre></div><p>And we can retrieve &ldquo;customers&rdquo;, also using the <code>+</code> operator:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="c1">// With tacit associated attribute category value &#34;customer&#34;
+</span><span class="c1"></span><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">age</span><span class="o">.</span><span class="n">likes</span><span class="o">.+(</span><span class="nc">Site</span><span class="o">.</span><span class="n">cat_</span><span class="o">(</span><span class="s">&#34;customer&#34;</span><span class="o">)).</span><span class="n">get</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="k">_</span><span class="o">.</span><span class="n">head</span> <span class="o">==&gt;</span> <span class="o">(</span><span class="s">&#34;John&#34;</span><span class="o">,</span> <span class="mi">24</span><span class="o">,</span> <span class="s">&#34;pizza&#34;</span><span class="o">))</span>
+</code></pre></div><h3 id="avoiding-non-intrinsic-model-pollution">Avoiding non-intrinsic model pollution</h3>
+<p>If we imagine that we had created a normal relationship from a Person namespace to a Site namespace in order to save the category connection, we could say that we had <em>polluted the semantic integrity of the Person namespace!</em></p>
+<p>A traditional relationships from <code>Person</code> to <code>Site</code> would simply not be <em>intrinsic</em> to or a natural core part of what a <code>Person</code> is.</p>
+<p>Littering non-intrinsic relationships to <code>Site</code> - and possibly other cross-cutting namespaces like <code>Tags</code>, <code>Likes</code> etc - all over the place, would quickly clutter and pollute our Data Model.</p>
+<p>Instead we want to create associative relationships to <code>Site</code>, <code>Tags</code>, <code>Likes</code> etc.</p>
+<h2 id="composite-molecules">Composite molecules</h2>
+<p>We call a molecule with one or more associations a <em>composite</em> molecule, or simply a <em>composite</em>.</p>
+<p>A composite contains two or more <em>sub-molecules</em>. Sub-molecules are like normal molecules.</p>
+<p>When we get data with composites, each sub-molecule is returned as a sub-tuple, and a single value if it has only one attribute:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="n">m</span><span class="o">(</span><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">likes</span><span class="o">.</span><span class="n">age</span> <span class="o">+</span> <span class="nc">Site</span><span class="o">.</span><span class="n">cat</span><span class="o">).</span><span class="n">get</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="k">_</span> <span class="o">==&gt;</span> <span class="nc">List</span><span class="o">(</span>
+  <span class="o">((</span><span class="s">&#34;John&#34;</span><span class="o">,</span> <span class="s">&#34;pizza&#34;</span><span class="o">,</span> <span class="mi">24</span><span class="o">),</span> <span class="s">&#34;customer&#34;</span><span class="o">)</span>
+<span class="o">))</span>
+</code></pre></div><p>This composite had two sub-molecules: <code>Person.name.likes.age</code> and <code>Site.cat</code>.</p>
+<p>If the last sub-molecule had 2 attributes we would get a sub-tuple for that too:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="n">m</span><span class="o">(</span><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">likes</span><span class="o">.</span><span class="n">age</span> <span class="o">+</span> <span class="nc">Site</span><span class="o">.</span><span class="n">cat</span><span class="o">.</span><span class="n">status</span><span class="o">).</span><span class="n">get</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="k">_</span> <span class="o">==&gt;</span> <span class="nc">List</span><span class="o">(</span>
+  <span class="o">((</span><span class="s">&#34;John&#34;</span><span class="o">,</span> <span class="s">&#34;pizza&#34;</span><span class="o">,</span> <span class="mi">24</span><span class="o">),</span> <span class="o">(</span><span class="s">&#34;customer&#34;</span><span class="o">,</span> <span class="s">&#34;good&#34;</span><span class="o">))</span>
+<span class="o">))</span>
+</code></pre></div><p>And we can add even more sub-molecules&hellip;</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="n">m</span><span class="o">(</span><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">likes</span><span class="o">.</span><span class="n">age</span> 
+  <span class="o">+</span> <span class="nc">Site</span><span class="o">.</span><span class="n">cat</span><span class="o">.</span><span class="n">status</span> 
+  <span class="o">+</span> <span class="nc">Loc</span><span class="o">.</span><span class="n">tags</span> 
+  <span class="o">+</span> <span class="nc">Emotion</span><span class="o">.</span><span class="n">like</span><span class="o">).</span><span class="n">get</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="k">_</span> <span class="o">==&gt;</span> <span class="nc">List</span><span class="o">(</span>
+  <span class="o">(</span>
+    <span class="o">(</span><span class="s">&#34;John&#34;</span><span class="o">,</span> <span class="s">&#34;pizza&#34;</span><span class="o">,</span> <span class="mi">24</span><span class="o">),</span> 
+    <span class="o">(</span><span class="s">&#34;customer&#34;</span><span class="o">,</span> <span class="s">&#34;good&#34;</span><span class="o">),</span> 
+    <span class="nc">Set</span><span class="o">(</span><span class="s">&#34;inner city&#34;</span><span class="o">,</span> <span class="s">&#34;hipster&#34;</span><span class="o">),</span> 
+    <span class="kc">true</span>
+  <span class="o">)</span>
+<span class="o">))</span>
+</code></pre></div><p>And expressions too&hellip;</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="c1">// Which positive adult hipster customers like what?
+</span><span class="c1"></span><span class="n">m</span><span class="o">(</span><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">likes</span><span class="o">.</span><span class="n">age_</span><span class="o">.&gt;(</span><span class="mi">20</span><span class="o">)</span> 
+  <span class="o">+</span> <span class="nc">Site</span><span class="o">.</span><span class="n">cat_</span><span class="o">(</span><span class="s">&#34;customer&#34;</span><span class="o">)</span>
+  <span class="o">+</span> <span class="nc">Loc</span><span class="o">.</span><span class="n">tags_</span><span class="o">(</span><span class="s">&#34;hipster&#34;</span><span class="o">)</span> 
+  <span class="o">+</span> <span class="nc">Emotion</span><span class="o">.</span><span class="n">like_</span><span class="o">(</span><span class="kc">true</span><span class="o">)).</span><span class="n">get</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="k">_</span> <span class="o">==&gt;</span> <span class="nc">List</span><span class="o">(</span>
+  <span class="o">(</span><span class="s">&#34;John&#34;</span><span class="o">,</span> <span class="s">&#34;pizza&#34;</span><span class="o">)</span>
+<span class="o">))</span>
+</code></pre></div><p>The combinations are quite endless - while you can keep your domain model/schema clean and intrinsic!</p>
+<h3 id="arity-22-molecules">Arity 22+ molecules</h3>
+<p>Composites can be composed of up to 22 sub-molecules! So, we can potentially insert and retrieve mega composite molecules with up to 22 x 22 = 484 attributes!</p>
+<p>Since sub-molecules don&rsquo;t necessarily have to be about another namespace, we can simply use the same mechanism to add sub-molecules with more attributes from the same namespace. Here&rsquo;s an example of inserting composite data with 3 sub-molecules having 23 attributes in total:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="c1">// Insert composite data with 3 sub-molecules
+</span><span class="c1"></span><span class="nc">Ns</span><span class="o">.</span><span class="n">bool</span><span class="o">.</span><span class="n">bools</span><span class="o">.</span><span class="n">date</span><span class="o">.</span><span class="n">dates</span><span class="o">.</span><span class="n">double</span><span class="o">.</span><span class="n">doubles</span><span class="o">.</span><span class="n">enum</span><span class="o">.</span><span class="n">enums</span> <span class="o">+</span>
+  <span class="nc">Ns</span><span class="o">.</span><span class="n">int</span><span class="o">.</span><span class="n">ints</span><span class="o">.</span><span class="n">long</span><span class="o">.</span><span class="n">longs</span><span class="o">.</span><span class="n">ref1</span> <span class="o">+</span>
+  <span class="nc">Ns</span><span class="o">.</span><span class="n">refSub1</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">strs</span><span class="o">.</span><span class="n">uri</span><span class="o">.</span><span class="n">uris</span><span class="o">.</span><span class="n">uuid</span><span class="o">.</span><span class="n">uuids</span><span class="o">.</span><span class="n">refs1</span> <span class="n">insert</span> <span class="nc">Seq</span><span class="o">(</span>
+  <span class="c1">// Two rows with tuples of 3 sub-tuples that type-safely match the 3 sub-molecules above
+</span><span class="c1"></span>  <span class="o">(</span>
+    <span class="o">(</span><span class="kc">true</span><span class="o">,</span> <span class="nc">Set</span><span class="o">(</span><span class="kc">true</span><span class="o">),</span> <span class="n">date1</span><span class="o">,</span> <span class="nc">Set</span><span class="o">(</span><span class="n">date2</span><span class="o">,</span> <span class="n">date3</span><span class="o">),</span> <span class="mf">1.0</span><span class="o">,</span> <span class="nc">Set</span><span class="o">(</span><span class="mf">2.0</span><span class="o">,</span> <span class="mf">3.0</span><span class="o">),</span> <span class="s">&#34;enum1&#34;</span><span class="o">,</span> <span class="nc">Set</span><span class="o">(</span><span class="s">&#34;enum2&#34;</span><span class="o">,</span> <span class="s">&#34;enum3&#34;</span><span class="o">)),</span>
+    <span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="nc">Set</span><span class="o">(</span><span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">),</span> <span class="mi">1L</span><span class="o">,</span> <span class="nc">Set</span><span class="o">(</span><span class="mi">2L</span><span class="o">,</span> <span class="mi">3L</span><span class="o">),</span> <span class="n">r1</span><span class="o">),</span>
+    <span class="o">(</span><span class="n">r2</span><span class="o">,</span> <span class="s">&#34;a&#34;</span><span class="o">,</span> <span class="nc">Set</span><span class="o">(</span><span class="s">&#34;b&#34;</span><span class="o">,</span> <span class="s">&#34;c&#34;</span><span class="o">),</span> <span class="n">uri1</span><span class="o">,</span> <span class="nc">Set</span><span class="o">(</span><span class="n">uri2</span><span class="o">,</span> <span class="n">uri3</span><span class="o">),</span> <span class="n">uuid1</span><span class="o">,</span> <span class="nc">Set</span><span class="o">(</span><span class="n">uuid2</span><span class="o">),</span> <span class="nc">Set</span><span class="o">(</span><span class="mi">42L</span><span class="o">))</span>
+  <span class="o">),</span>
+  <span class="o">(</span>
+    <span class="o">(</span><span class="kc">false</span><span class="o">,</span> <span class="nc">Set</span><span class="o">(</span><span class="kc">false</span><span class="o">),</span> <span class="n">date4</span><span class="o">,</span> <span class="nc">Set</span><span class="o">(</span><span class="n">date5</span><span class="o">,</span> <span class="n">date6</span><span class="o">),</span> <span class="mf">4.0</span><span class="o">,</span> <span class="nc">Set</span><span class="o">(</span><span class="mf">5.0</span><span class="o">,</span> <span class="mf">6.0</span><span class="o">),</span> <span class="s">&#34;enum4&#34;</span><span class="o">,</span> <span class="nc">Set</span><span class="o">(</span><span class="s">&#34;enum5&#34;</span><span class="o">,</span> <span class="s">&#34;enum6&#34;</span><span class="o">)),</span>
+    <span class="o">(</span><span class="mi">4</span><span class="o">,</span> <span class="nc">Set</span><span class="o">(</span><span class="mi">5</span><span class="o">,</span> <span class="mi">6</span><span class="o">),</span> <span class="mi">4L</span><span class="o">,</span> <span class="nc">Set</span><span class="o">(</span><span class="mi">5L</span><span class="o">,</span> <span class="mi">6L</span><span class="o">),</span> <span class="n">r3</span><span class="o">),</span>
+    <span class="o">(</span><span class="n">r4</span><span class="o">,</span> <span class="s">&#34;d&#34;</span><span class="o">,</span> <span class="nc">Set</span><span class="o">(</span><span class="s">&#34;e&#34;</span><span class="o">,</span> <span class="s">&#34;f&#34;</span><span class="o">),</span> <span class="n">uri4</span><span class="o">,</span> <span class="nc">Set</span><span class="o">(</span><span class="n">uri5</span><span class="o">,</span> <span class="n">uri6</span><span class="o">),</span> <span class="n">uuid4</span><span class="o">,</span> <span class="nc">Set</span><span class="o">(</span><span class="n">uuid5</span><span class="o">),</span> <span class="nc">Set</span><span class="o">(</span><span class="mi">43L</span><span class="o">))</span>
+  <span class="o">)</span>
+<span class="o">)</span>
+</code></pre></div><p>Retrieve the same composite data:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="n">m</span><span class="o">(</span><span class="nc">Ns</span><span class="o">.</span><span class="n">bool</span><span class="o">.</span><span class="n">bools</span><span class="o">.</span><span class="n">date</span><span class="o">.</span><span class="n">dates</span><span class="o">.</span><span class="n">double</span><span class="o">.</span><span class="n">doubles</span><span class="o">.</span><span class="n">enum</span><span class="o">.</span><span class="n">enums</span> <span class="o">+</span>
+  <span class="nc">Ns</span><span class="o">.</span><span class="n">int</span><span class="o">.</span><span class="n">ints</span><span class="o">.</span><span class="n">long</span><span class="o">.</span><span class="n">longs</span><span class="o">.</span><span class="n">ref1</span> <span class="o">+</span>
+  <span class="nc">Ns</span><span class="o">.</span><span class="n">refSub1</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">strs</span><span class="o">.</span><span class="n">uri</span><span class="o">.</span><span class="n">uris</span><span class="o">.</span><span class="n">uuid</span><span class="o">.</span><span class="n">uuids</span><span class="o">.</span><span class="n">refs1</span><span class="o">).</span><span class="n">get</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="k">_</span> <span class="o">==&gt;</span> <span class="nc">List</span><span class="o">(</span>
+  <span class="o">(</span>
+    <span class="o">(</span><span class="kc">false</span><span class="o">,</span> <span class="nc">Set</span><span class="o">(</span><span class="kc">false</span><span class="o">),</span> <span class="n">date4</span><span class="o">,</span> <span class="nc">Set</span><span class="o">(</span><span class="n">date5</span><span class="o">,</span> <span class="n">date6</span><span class="o">),</span> <span class="mf">4.0</span><span class="o">,</span> <span class="nc">Set</span><span class="o">(</span><span class="mf">5.0</span><span class="o">,</span> <span class="mf">6.0</span><span class="o">),</span> <span class="s">&#34;enum4&#34;</span><span class="o">,</span> <span class="nc">Set</span><span class="o">(</span><span class="s">&#34;enum5&#34;</span><span class="o">,</span> <span class="s">&#34;enum6&#34;</span><span class="o">)),</span>
+    <span class="o">(</span><span class="mi">4</span><span class="o">,</span> <span class="nc">Set</span><span class="o">(</span><span class="mi">5</span><span class="o">,</span> <span class="mi">6</span><span class="o">),</span> <span class="mi">4L</span><span class="o">,</span> <span class="nc">Set</span><span class="o">(</span><span class="mi">5L</span><span class="o">,</span> <span class="mi">6L</span><span class="o">),</span> <span class="n">r3</span><span class="o">),</span>
+    <span class="o">(</span><span class="n">r4</span><span class="o">,</span> <span class="s">&#34;d&#34;</span><span class="o">,</span> <span class="nc">Set</span><span class="o">(</span><span class="s">&#34;e&#34;</span><span class="o">,</span> <span class="s">&#34;f&#34;</span><span class="o">),</span> <span class="n">uri4</span><span class="o">,</span> <span class="nc">Set</span><span class="o">(</span><span class="n">uri5</span><span class="o">,</span> <span class="n">uri6</span><span class="o">),</span> <span class="n">uuid4</span><span class="o">,</span> <span class="nc">Set</span><span class="o">(</span><span class="n">uuid5</span><span class="o">),</span> <span class="nc">Set</span><span class="o">(</span><span class="mi">42L</span><span class="o">))</span>
+  <span class="o">),</span>
+  <span class="o">(</span>
+    <span class="o">(</span><span class="kc">true</span><span class="o">,</span> <span class="nc">Set</span><span class="o">(</span><span class="kc">true</span><span class="o">),</span> <span class="n">date1</span><span class="o">,</span> <span class="nc">Set</span><span class="o">(</span><span class="n">date2</span><span class="o">,</span> <span class="n">date3</span><span class="o">),</span> <span class="mf">1.0</span><span class="o">,</span> <span class="nc">Set</span><span class="o">(</span><span class="mf">2.0</span><span class="o">,</span> <span class="mf">3.0</span><span class="o">),</span> <span class="s">&#34;enum1&#34;</span><span class="o">,</span> <span class="nc">Set</span><span class="o">(</span><span class="s">&#34;enum2&#34;</span><span class="o">,</span> <span class="s">&#34;enum3&#34;</span><span class="o">)),</span>
+    <span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="nc">Set</span><span class="o">(</span><span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">),</span> <span class="mi">1L</span><span class="o">,</span> <span class="nc">Set</span><span class="o">(</span><span class="mi">2L</span><span class="o">,</span> <span class="mi">3L</span><span class="o">),</span> <span class="n">r1</span><span class="o">),</span>
+    <span class="o">(</span><span class="n">r2</span><span class="o">,</span> <span class="s">&#34;a&#34;</span><span class="o">,</span> <span class="nc">Set</span><span class="o">(</span><span class="s">&#34;b&#34;</span><span class="o">,</span> <span class="s">&#34;c&#34;</span><span class="o">),</span> <span class="n">uri1</span><span class="o">,</span> <span class="nc">Set</span><span class="o">(</span><span class="n">uri2</span><span class="o">,</span> <span class="n">uri3</span><span class="o">),</span> <span class="n">uuid1</span><span class="o">,</span> <span class="nc">Set</span><span class="o">(</span><span class="n">uuid2</span><span class="o">),</span> <span class="nc">Set</span><span class="o">(</span><span class="mi">43L</span><span class="o">))</span>
+  <span class="o">)</span>
+<span class="o">))</span>
+</code></pre></div><p>..or a subset of the same composite data:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="n">m</span><span class="o">(</span><span class="nc">Ns</span><span class="o">.</span><span class="n">bool</span><span class="o">.</span><span class="n">bools</span><span class="o">.</span><span class="n">date</span><span class="o">.</span><span class="n">dates</span> <span class="o">+</span>
+  <span class="nc">Ns</span><span class="o">.</span><span class="n">int</span> <span class="o">+</span>
+  <span class="nc">Ns</span><span class="o">.</span><span class="n">refSub1</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">strs</span><span class="o">).</span><span class="n">get</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="k">_</span> <span class="o">==&gt;</span> <span class="nc">List</span><span class="o">(</span>
+  <span class="o">(</span>
+    <span class="o">(</span><span class="kc">false</span><span class="o">,</span> <span class="nc">Set</span><span class="o">(</span><span class="kc">false</span><span class="o">),</span> <span class="n">date4</span><span class="o">,</span> <span class="nc">Set</span><span class="o">(</span><span class="n">date5</span><span class="o">,</span> <span class="n">date6</span><span class="o">)),</span>
+    <span class="mi">4</span><span class="o">,</span>
+    <span class="o">(</span><span class="n">r4</span><span class="o">,</span> <span class="s">&#34;d&#34;</span><span class="o">,</span> <span class="nc">Set</span><span class="o">(</span><span class="s">&#34;e&#34;</span><span class="o">,</span> <span class="s">&#34;f&#34;</span><span class="o">))</span>
+  <span class="o">),</span>
+  <span class="o">(</span>
+    <span class="o">(</span><span class="kc">true</span><span class="o">,</span> <span class="nc">Set</span><span class="o">(</span><span class="kc">true</span><span class="o">),</span> <span class="n">date1</span><span class="o">,</span> <span class="nc">Set</span><span class="o">(</span><span class="n">date2</span><span class="o">,</span> <span class="n">date3</span><span class="o">)),</span>
+    <span class="mi">1</span><span class="o">,</span>
+    <span class="o">(</span><span class="n">r2</span><span class="o">,</span> <span class="s">&#34;a&#34;</span><span class="o">,</span> <span class="nc">Set</span><span class="o">(</span><span class="s">&#34;b&#34;</span><span class="o">,</span> <span class="s">&#34;c&#34;</span><span class="o">))</span>
+  <span class="o">)</span>
+<span class="o">))</span>
+</code></pre></div><p>Since the subset uses less than 22 attributes, we can return single tuples without the need for a composite:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="n">m</span><span class="o">(</span><span class="nc">Ns</span><span class="o">.</span><span class="n">bool</span><span class="o">.</span><span class="n">bools</span><span class="o">.</span><span class="n">date</span><span class="o">.</span><span class="n">dates</span><span class="o">.</span><span class="n">int</span>
+  <span class="o">.</span><span class="n">refSub1</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">strs</span><span class="o">).</span><span class="n">get</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="k">_</span> <span class="o">==&gt;</span> <span class="nc">List</span><span class="o">(</span>
+  <span class="o">(</span>
+    <span class="kc">false</span><span class="o">,</span> <span class="nc">Set</span><span class="o">(</span><span class="kc">false</span><span class="o">),</span> <span class="n">date1</span><span class="o">,</span> <span class="nc">Set</span><span class="o">(</span><span class="n">date2</span><span class="o">,</span> <span class="n">date3</span><span class="o">),</span> <span class="mi">1</span><span class="o">,</span>
+    <span class="n">r2</span><span class="o">,</span> <span class="s">&#34;a&#34;</span><span class="o">,</span> <span class="nc">Set</span><span class="o">(</span><span class="s">&#34;b&#34;</span><span class="o">,</span> <span class="s">&#34;c&#34;</span><span class="o">)</span>
+  <span class="o">),</span>
+  <span class="o">(</span>
+    <span class="kc">true</span><span class="o">,</span> <span class="nc">Set</span><span class="o">(</span><span class="kc">true</span><span class="o">),</span> <span class="n">date4</span><span class="o">,</span> <span class="nc">Set</span><span class="o">(</span><span class="n">date5</span><span class="o">,</span> <span class="n">date6</span><span class="o">),</span> <span class="mi">4</span><span class="o">,</span>
+    <span class="n">r4</span><span class="o">,</span> <span class="s">&#34;d&#34;</span><span class="o">,</span> <span class="nc">Set</span><span class="o">(</span><span class="s">&#34;e&#34;</span><span class="o">,</span> <span class="s">&#34;f&#34;</span><span class="o">)</span>
+  <span class="o">)</span>
+<span class="o">))</span>
+</code></pre></div><h3 id="next">Next</h3>
+<p><a href="../../documentation/transactions">Transactions&hellip;</a></p>
+
+    </div>
+
+    <div class="col-sm-2" style="padding-left:24px;padding-right: 0px;position:sticky;top:115px">
+        
+<button type="button" id="sidebarCollapse" class="navbar-toggle collapsed" data-toggle="collapse" style="color:#bbb">
+  <i class="glyphicon glyphicon-align-left"></i>
+</button>
+
+<nav class="bs-docs-sidebar" id="sidebar">
+  <ul class="bs-docs-sidenav nav">
+    
+      
+
+        
+        
+          
+            <li><a href="../../documentation/">Overview</a></li>
+          
+          
+        
+          
+            <li><a href="../../documentation/attributes/">Attributes</a></li>
+          
+          
+        
+          
+            <li class="open"><a href="../../documentation/relationships/"><b>Relationships</b></a></li>
+            
+              <nav id="TableOfContents">
+  <ul>
+    <li><a href="#card-one">Card-one</a></li>
+    <li><a href="#card-many">Card-many</a></li>
+    <li><a href="#self-join">Self-join</a></li>
+    <li><a href="#bidirectional">Bidirectional</a></li>
+    <li><a href="#associative">Associative</a></li>
+    <li><a href="#composite-molecules">Composite molecules</a></li>
+  </ul>
+</nav>
+            
+          
+          
+        
+          
+            <li><a href="../../documentation/transactions/">Transactions</a></li>
+          
+          
+        
+          
+            <li><a href="../../documentation/transaction-functions/">Transaction Functions</a></li>
+          
+          
+        
+          
+            <li><a href="../../documentation/time/">Time</a></li>
+          
+          
+        
+          
+            <li><a href="../../documentation/generic/">Generic APIs</a></li>
+          
+          
+        
+          
+            <li><a href="../../documentation/dynamic/">Dynamic molecules</a></li>
+          
+          
+        
+
+      
+    
+  </ul>
+</nav>
+    </div>
+
+</div> 
+
+     
+   
+ 
+
+
+</div> 
+
+<footer class="bs-docs-footer">
+
+  <div class="container" style="font-size:15px">
+    <ul class="bs-docs-footer-links">
+      <li style="margin-top: 8px;"><a href="../../front/"><img src="https://www.scalamolecule.org/img/logo/MoleculeLogo150.png" alt=""></a></li>
+      <li><a href="https://github.com/scalamolecule/molecule">GitHub</a></li>
+      <li><a href="https://github.com/scalamolecule/molecule-web">GitHub-web</a></li>
+      <li><a href="https://gitter.im/scalamolecule/Lobby">Gitter</a></li>
+      <li><a href="https://groups.google.com/forum/#!forum/molecule-dsl">Forum</a></li>
+      <li><a href="../../about/">About</a></li>
+      <li><a href="../../credits/">Credits</a></li>
+      <li><a href="../../changelog">Changelog</a></li>
+    </ul>
+    <p>Licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0" target="_blank" rel="license">Apache License 2.0</a></p>
+  </div>
+</footer>
+
+
+<script type="text/javascript" src="../../js/jquery-1.11.2.min.js"></script>
+<script type="text/javascript" src="../../js/bootstrap.min.js"></script>
+
+
+<script type="text/javascript" src="../../js/scripts.js"></script>
+<script async defer id="github-bjs" src="https://buttons.github.io/buttons.js"></script>
+<script src="../../js/copy-button.js"></script>
+<script src="../../js/sidebar-collapser.js"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-2787756-3', 'auto');
+  ga('send', 'pageview');
+</script>
+
+</body>
+</html>

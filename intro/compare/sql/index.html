@@ -56,7 +56,7 @@
                     
                         
                             <li class="dropdown">
-                                <a href="../../../code/" target="_top">Code</a>
+                                <a href="../../../documentation/" target="_top">Documentation</a>
                             </li>
                         
                     
@@ -74,8 +74,8 @@
                     
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="https://javadoc.io/doc/org.scalamolecule/molecule_2.13/latest/index.html" target="_blank" style="">Docs</a></li>
-                    <li><a href="../../../changelog" style="">v0.25.1</a></li>
+                    <li><a href="https://javadoc.io/doc/org.scalamolecule/molecule_2.13/latest/index.html" target="_blank" style="">ScalaDocs</a></li>
+                    <li><a href="../../../changelog" style="">v1.0.0</a></li>
                     <li><a href="https://github.com/scalamolecule/molecule" target="_blank">
                         <img src="https://www.scalamolecule.org/vendor/GitHub-Mark/PNG/GitHub-Mark-Light-32px.png"
                              style="margin-top:-4px;padding-left:15px;opacity:0.6;width:42px;">
@@ -97,14 +97,14 @@
 <pre><code>sql&quot;select * from PERSON&quot;.as[Person].list
 </code></pre><p>With Molecule we only need to fetch the attributes that we need:</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">age</span><span class="o">.</span><span class="n">get</span>
-</code></pre></div><p>Returned type is <code>List[(String, Int)]</code></p>
+</code></pre></div><p>Returned type is <code>Future[List[(String, Int)]]</code></p>
 <h4 id="select">SELECT</h4>
 <pre><code>sql&quot;&quot;&quot;
   select AGE, concat(concat(concat(NAME,' ('),ID),')')
   from PERSON
 &quot;&quot;&quot;.as[(Int,String)].list
 </code></pre><p>With Molecule we would concatenate <code>name</code> and <code>id</code> with the returned result set:</p>
-<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">.</span><span class="n">age</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">e</span><span class="o">.</span><span class="n">get</span> <span class="n">map</span> <span class="o">{</span> <span class="k">case</span> <span class="o">(</span><span class="n">age</span><span class="o">,</span> <span class="n">name</span><span class="o">,</span> <span class="n">id</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="o">(</span><span class="n">age</span><span class="o">,</span> <span class="s">s&#34;</span><span class="si">$name</span><span class="s"> (</span><span class="si">$id</span><span class="s">)&#34;</span> <span class="o">}</span>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">.</span><span class="n">age</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">e</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="k">_</span><span class="o">.</span><span class="n">map</span> <span class="o">{</span> <span class="k">case</span> <span class="o">(</span><span class="n">age</span><span class="o">,</span> <span class="n">name</span><span class="o">,</span> <span class="n">id</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="o">(</span><span class="n">age</span><span class="o">,</span> <span class="s">s&#34;</span><span class="si">$name</span><span class="s"> (</span><span class="si">$id</span><span class="s">)&#34;</span> <span class="o">})</span>
 </code></pre></div><h4 id="where">WHERE</h4>
 <pre><code>sql&quot;select * from PERSON where AGE &gt;= 18 AND NAME = 'C. Vogt'&quot;.as[Person].list
 </code></pre><p>Molecule filter values by applying a required value to an attribute or supply a value to compare against (<code>&gt;=(18)</code>):</p>
@@ -113,7 +113,7 @@
 <h4 id="order-by">ORDER BY</h4>
 <pre><code>sql&quot;select * from PERSON order by AGE asc, NAME&quot;.as[Person].list
 </code></pre><p>Ordering is applied on the result set:</p>
-<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">.</span><span class="n">age</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">toSeq</span><span class="o">.</span><span class="n">sortBy</span><span class="o">(</span><span class="k">_</span><span class="o">.</span><span class="n">_1</span><span class="o">)</span>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">.</span><span class="n">age</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="k">_</span><span class="o">.</span><span class="n">sortBy</span><span class="o">(</span><span class="k">_</span><span class="o">.</span><span class="n">_1</span><span class="o">))</span>
 </code></pre></div><h4 id="aggregations">Aggregations</h4>
 <pre><code>sql&quot;select max(AGE) from PERSON&quot;.as[Option[Int]].first
 </code></pre><p>Aggregate functions like <code>max</code> are all applied as a keyword value to an attribute.</p>
@@ -136,7 +136,7 @@
   group by ADDRESS_ID
   having avg(AGE) &gt; 50
 &quot;&quot;&quot;.as[Int].list
-</code></pre><div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">.</span><span class="n">address</span><span class="o">.</span><span class="n">age</span><span class="o">(</span><span class="n">avg</span><span class="o">).</span><span class="n">get</span><span class="o">.</span><span class="n">toSeq</span><span class="o">.</span><span class="n">filter</span><span class="o">(</span><span class="k">_</span><span class="o">.</span><span class="n">_2</span> <span class="o">&gt;</span> <span class="mi">50</span><span class="o">)</span>
+</code></pre><div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">.</span><span class="n">address</span><span class="o">.</span><span class="n">age</span><span class="o">(</span><span class="n">avg</span><span class="o">).</span><span class="n">get</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="k">_</span><span class="o">.</span><span class="n">filter</span><span class="o">(</span><span class="k">_</span><span class="o">.</span><span class="n">_2</span> <span class="o">&gt;</span> <span class="mi">50</span><span class="o">))</span>
 </code></pre></div><h4 id="implicit-join">Implicit join</h4>
 <pre><code>sql&quot;&quot;&quot;
   select P.NAME, A.CITY
@@ -158,8 +158,8 @@
   left join PERSON P on P.ADDRESS_ID = A.id
 &quot;&quot;&quot;.as[(Option[String],String)].list
 </code></pre><div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="c1">// Add `$` to attribute name to get optional values
-</span><span class="c1"></span><span class="k">val</span> <span class="n">persons</span><span class="k">:</span> <span class="kt">List</span><span class="o">[(</span><span class="kt">Option</span><span class="o">[</span><span class="kt">String</span><span class="o">]</span>, <span class="kt">String</span><span class="o">)]</span> <span class="k">=</span> <span class="nc">Person</span><span class="o">.</span><span class="n">name$</span><span class="o">.</span><span class="nc">Address</span><span class="o">.</span><span class="n">city</span><span class="o">.</span><span class="n">get</span>
-</code></pre></div><h4 id="subquery">Subquery</h4>
+</span><span class="c1"></span><span class="k">val</span> <span class="n">persons</span><span class="k">:</span> <span class="kt">Future</span><span class="o">[</span><span class="kt">List</span><span class="o">[(</span><span class="kt">Option</span><span class="o">[</span><span class="kt">String</span><span class="o">]</span>, <span class="kt">String</span><span class="o">)]]</span> <span class="k">=</span> <span class="nc">Person</span><span class="o">.</span><span class="n">name$</span><span class="o">.</span><span class="nc">Address</span><span class="o">.</span><span class="n">city</span><span class="o">.</span><span class="n">get</span>
+</code></pre></div><h4 id="sub-query">Sub query</h4>
 <pre><code>sql&quot;&quot;&quot;
   select *
   from PERSON P
@@ -177,15 +177,17 @@
 <pre><code>sqlu&quot;&quot;&quot;
   update PERSON set NAME='M. Odersky', AGE=54321 where NAME='M Odersky'
 &quot;&quot;&quot;.first
-</code></pre><div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="c1">// Find entity id with generic Molecule attribute `e`
-</span><span class="c1"></span><span class="k">val</span> <span class="n">oderskyId</span> <span class="k">=</span> <span class="nc">Person</span><span class="o">.</span><span class="n">e</span><span class="o">.</span><span class="n">name_</span><span class="o">(</span><span class="s">&#34;M Odersky&#34;</span><span class="o">).</span><span class="n">get</span><span class="o">.</span><span class="n">head</span>
-<span class="nc">Person</span><span class="o">(</span><span class="n">oderskyId</span><span class="o">).</span><span class="n">name</span><span class="o">(</span><span class="s">&#34;M. Odersky&#34;</span><span class="o">).</span><span class="n">age</span><span class="o">(</span><span class="mi">54321</span><span class="o">).</span><span class="n">update</span>
+</code></pre><div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">for</span> <span class="o">{</span>
+  <span class="c1">// Find entity id with generic Molecule attribute `e`
+</span><span class="c1"></span>  <span class="n">oderskyId</span> <span class="k">&lt;-</span> <span class="nc">Person</span><span class="o">.</span><span class="n">e</span><span class="o">.</span><span class="n">name_</span><span class="o">(</span><span class="s">&#34;M Odersky&#34;</span><span class="o">).</span><span class="n">get</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="k">_</span><span class="o">.</span><span class="n">head</span><span class="o">)</span>
+  <span class="k">_</span> <span class="k">&lt;-</span> <span class="nc">Person</span><span class="o">(</span><span class="n">oderskyId</span><span class="o">).</span><span class="n">name</span><span class="o">(</span><span class="s">&#34;M. Odersky&#34;</span><span class="o">).</span><span class="n">age</span><span class="o">(</span><span class="mi">54321</span><span class="o">).</span><span class="n">update</span>
+<span class="o">}</span> <span class="k">yield</span> <span class="o">()</span>
 </code></pre></div><h4 id="delete">DELETE</h4>
 <pre><code>sqlu&quot;&quot;&quot;
   delete PERSON where NAME='M. Odersky'
 &quot;&quot;&quot;.first
-</code></pre><div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="c1">// Retract entity
-</span><span class="c1"></span><span class="nc">Person</span><span class="o">.</span><span class="n">e</span><span class="o">.</span><span class="n">name_</span><span class="o">(</span><span class="s">&#34;M. Odersky&#34;</span><span class="o">).</span><span class="n">get</span><span class="o">.</span><span class="n">head</span><span class="o">.</span><span class="n">retract</span>
+</code></pre><div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="c1">// Retract entity by calling `retract` on the entity id
+</span><span class="c1"></span><span class="nc">Person</span><span class="o">.</span><span class="n">e</span><span class="o">.</span><span class="n">name_</span><span class="o">(</span><span class="s">&#34;M. Odersky&#34;</span><span class="o">).</span><span class="n">get</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="k">_</span><span class="o">.</span><span class="n">head</span><span class="o">.</span><span class="n">retract</span><span class="o">)</span>
 </code></pre></div><h4 id="case">CASE</h4>
 <pre><code>sql&quot;&quot;&quot;
   select
@@ -195,10 +197,10 @@
     end
   from PERSON P
 &quot;&quot;&quot;.as[Option[String]].list
-</code></pre><div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">.</span><span class="n">address</span><span class="o">(</span><span class="mi">1</span> <span class="n">or</span> <span class="mi">2</span><span class="o">).</span><span class="n">get</span> <span class="n">map</span> <span class="o">{</span>
+</code></pre><div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">.</span><span class="n">address</span><span class="o">(</span><span class="mi">1</span> <span class="n">or</span> <span class="mi">2</span><span class="o">).</span><span class="n">get</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="k">_</span><span class="o">.</span><span class="n">map</span> <span class="o">{</span>
   <span class="k">case</span> <span class="mi">1</span> <span class="k">=&gt;</span> <span class="s">&#34;A&#34;</span>
   <span class="k">case</span> <span class="mi">2</span> <span class="k">=&gt;</span> <span class="s">&#34;B&#34;</span>
-<span class="o">}</span>
+<span class="o">})</span>
 </code></pre></div><h3 id="next">Next</h3>
 <p><a href="../../../intro/compare/slick/">Compare Slick&hellip;</a></p>
 
