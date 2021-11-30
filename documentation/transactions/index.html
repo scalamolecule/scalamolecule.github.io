@@ -107,26 +107,7 @@
 <pre><code>johnId    :Person/name    &quot;John&quot;
 johnId    :Person/likes   &quot;pizza&quot;
 johnId    :Person/age     24
-</code></pre><h3 id="type-safety">Type-safety</h3>
-<p>Type-safety is guaranteed since each attribute only accepts values of its defined type.</p>
-<h3 id="asynchronous-save">Asynchronous save</h3>
-<p>All transactional operators have an asynchronous equivalent. Saving data asynchronously with <code>saveAsync</code> uses Datomic&rsquo;s asynchronous API and returns a <code>Future</code> with a <code>TxReport</code>.</p>
-<p>Here, we map over the result of saving asynchronously:</p>
-<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="c1">// Map over a Future
-</span><span class="c1"></span><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">(</span><span class="s">&#34;John&#34;</span><span class="o">).</span><span class="n">likes</span><span class="o">(</span><span class="s">&#34;pizza&#34;</span><span class="o">).</span><span class="n">age</span><span class="o">(</span><span class="mi">24</span><span class="o">).</span><span class="n">saveAsync</span><span class="o">.</span><span class="n">map</span> <span class="o">{</span> <span class="n">tx</span> <span class="k">=&gt;</span> <span class="c1">// tx report from successful save transaction
-</span><span class="c1"></span>  <span class="c1">// (synchronous get)
-</span><span class="c1"></span>  <span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">likes</span><span class="o">.</span><span class="n">age</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="k">_</span><span class="o">.</span><span class="n">head</span> <span class="o">==&gt;</span> <span class="o">(</span><span class="s">&#34;Ben&#34;</span><span class="o">,</span> <span class="s">&#34;pizza&#34;</span><span class="o">,</span> <span class="mi">24</span><span class="o">)</span>
-<span class="o">}</span>
-</code></pre></div><p>Or we could defer the resolution of the <code>Future</code></p>
-<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">val</span> <span class="n">futureSave</span><span class="k">:</span> <span class="kt">Future</span><span class="o">[</span><span class="kt">TxReport</span><span class="o">]</span> <span class="k">=</span> <span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">(</span><span class="s">&#34;John&#34;</span><span class="o">).</span><span class="n">likes</span><span class="o">(</span><span class="s">&#34;pizza&#34;</span><span class="o">).</span><span class="n">age</span><span class="o">(</span><span class="mi">24</span><span class="o">).</span><span class="n">saveAsync</span>
-<span class="k">for</span> <span class="o">{</span>
-  <span class="k">_</span> <span class="k">&lt;-</span> <span class="n">futureSave</span>
-  <span class="n">result</span> <span class="k">&lt;-</span> <span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">likes</span><span class="o">.</span><span class="n">age</span><span class="o">.</span><span class="n">getAsync</span>
-<span class="o">}</span> <span class="k">yield</span> <span class="o">{</span>
-  <span class="c1">// Data was saved
-</span><span class="c1"></span>  <span class="n">result</span><span class="o">.</span><span class="n">head</span> <span class="o">===</span> <span class="o">(</span><span class="s">&#34;Ben&#34;</span><span class="o">,</span> <span class="s">&#34;pizza&#34;</span><span class="o">,</span> <span class="mi">24</span><span class="o">)</span>
-<span class="o">}</span>
-</code></pre></div><p>For brevity, the following examples use the synchronous <code>save</code> operation.</p>
+</code></pre><p>Type-safety is guaranteed since each molecule attribute only accepts values of its defined type.</p>
 <h3 id="related-data">Related data</h3>
 <p>We can even save related date in the same operation</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">(</span><span class="s">&#34;John&#34;</span><span class="o">).</span><span class="n">likes</span><span class="o">(</span><span class="s">&#34;pizza&#34;</span><span class="o">).</span><span class="n">age</span><span class="o">(</span><span class="mi">24</span><span class="o">).</span><span class="nc">Home</span><span class="o">.</span><span class="n">street</span><span class="o">(</span><span class="s">&#34;5th Avenue&#34;</span><span class="o">).</span><span class="n">city</span><span class="o">(</span><span class="s">&#34;Boston&#34;</span><span class="o">).</span><span class="n">save</span>
@@ -181,7 +162,7 @@ johnId    :Person/age     24
   <span class="o">(</span><span class="s">&#34;Lisa&#34;</span><span class="o">,</span> <span class="s">&#34;pizza&#34;</span><span class="o">,</span> <span class="mi">20</span><span class="o">),</span>
   <span class="o">(</span><span class="s">&#34;Ben&#34;</span><span class="o">,</span> <span class="s">&#34;pasta&#34;</span><span class="o">,</span> <span class="mi">25</span><span class="o">)</span>
 <span class="o">)</span>
-</code></pre></div><h3 id="type-safety-1">Type-safety</h3>
+</code></pre></div><h3 id="type-safety">Type-safety</h3>
 <p>Type-safety is guaranteed since the type of each tuple of data is enforced by the compiler to conform to the molecule type.</p>
 <p>If the data set is not accepted type-wise, then either the molecule needs to be adjusted to match the type of data rows. Or, the data set might be irregular and have some variable size of tuples or varying types within tuples that need to be sorted out.</p>
 <h3 id="asynchronous-insert">Asynchronous insert</h3>

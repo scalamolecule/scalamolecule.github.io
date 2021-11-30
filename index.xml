@@ -233,7 +233,7 @@ object PersonDataModel { trait Person { val name = oneString val pet = one[Anima
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://www.scalamolecule.org/intro/compare/slick/</guid>
-      <description>Molecule vs Slick Using examples from Coming from SQL to Slick:
+      <description>Molecule vs Slick Using examples from SQL vs. Slick examples:
 Select all table values // Slick people.result In molecule we would declare each attribute we are interested in also to infer the exact return type
 // Molecule Person.name.age.get Select certain columns people.map(p =&amp;gt; (p.age, p.name ++ &amp;quot; (&amp;quot; ++ p.id.asColumnOf[String] ++ &amp;quot;)&amp;quot;)).result With Molecule we would concatenate name and id with the returned result set:
 Person.age.name.e.get.map(_.map { case (age, name, id) =&amp;gt; (age, s&amp;#34;$name($id)&amp;#34; } ) filter / WHERE people.</description>
@@ -245,7 +245,7 @@ Person.age.name.e.get.map(_.map { case (age, name, id) =&amp;gt; (age, s&amp;#34
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://www.scalamolecule.org/setup/js-connection/</guid>
-      <description>Database connection, js Molecule is fully implemented with Scala.js too. This allows us to transact and query data directly from the client/js side. Molecule calls are identical on both the server and client side and are therefore easy to refactor between the two platforms if needed.
+      <description>Database connection, js Transparent RPC Molecule is fully implemented with Scala.js too. This allows us to transact and query data directly from the client/js side. Molecule calls are identical on both the server and client side and are therefore easy to refactor between the two platforms if needed.
 Molecule transparently sends and retrieves data via ajax calls to the server and takes care of marshalling data back and forth with highly efficient Byte encoding/decoding using BooPickle.</description>
     </item>
     
@@ -255,8 +255,8 @@ Molecule transparently sends and retrieves data via ajax calls to the server and
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://www.scalamolecule.org/dev/clojure-exchanges/</guid>
-      <description>Clojure Schemas To ease exchanging Datomic schemas with the Clojure world where Namespaces start with a lowercase letter by convention, Molecule also creates two convenience Schema &amp;ldquo;converters&amp;rdquo; that transact aliased attribute names where the first letter is either raised or lowered.
-lowercase to Uppercase If you for instance want to use Molecule with an externally defined Datomic database Schema or data sets with lowercase namespace names you can define the Data Model as usual in Molecule with uppercase Namespace names and then rea:</description>
+      <description>Clojure Schemas To ease exchanging Datomic schemas with the Clojure world where Namespaces start with a lowercase letter by convention, Molecule can also creates two convenience Schema &amp;ldquo;converters&amp;rdquo; that transact aliased attribute names where the first letter is either raised or lowered. To generate these converters, set the MoleculePlugin parameter moleculeSchemaConversions to true in your build.sbt file:
+Putting all the configuration together, we here have a minimal project build.sbt setup for a free Datomic Peer system on the jvm platform:</description>
     </item>
     
     <item>
@@ -280,7 +280,7 @@ Graph graph = TinkerGraph.open(); (1) Vertex marko = graph.addVertex(T.label, &a
       <description>Transactions Molecule has 4 basic transaction operations:
  save insert update retract  Save In Molecule we can populate a molecule with data and save it:
 Person.name(&amp;#34;John&amp;#34;).likes(&amp;#34;pizza&amp;#34;).age(24).save This will assert 3 facts in Datomic that all share the id of the new entity id johnId that is automatically created by Datomic:
-johnId :Person/name &amp;quot;John&amp;quot; johnId :Person/likes &amp;quot;pizza&amp;quot; johnId :Person/age 24 Type-safety Type-safety is guaranteed since each attribute only accepts values of its defined type.</description>
+johnId :Person/name &amp;quot;John&amp;quot; johnId :Person/likes &amp;quot;pizza&amp;quot; johnId :Person/age 24 Type-safety is guaranteed since each molecule attribute only accepts values of its defined type.</description>
     </item>
     
     <item>

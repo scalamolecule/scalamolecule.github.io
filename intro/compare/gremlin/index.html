@@ -93,7 +93,7 @@
 
     <div class="col-sm-10 " style="padding-left:8px;">
         <h1 id="molecule-vs-gremlin">Molecule vs Gremlin</h1>
-<p>Let&rsquo;s compare the queries/traversals in the <a href="http://tinkerpop.apache.org/docs/current/tutorials/getting-started/">Gremlin Getting Started Tutorial</a> with equivalent <a href="https://github.com/scalamolecule/molecule/blob/master/examples/src/test/scala/molecule/examples/gremlin/gettingStarted/Friends.scala">Molecule queries</a>.</p>
+<p>Let&rsquo;s compare the queries/traversals in the <a href="http://tinkerpop.apache.org/docs/current/tutorials/getting-started/">Gremlin Getting Started Tutorial</a> with equivalent <a href="https://github.com/scalamolecule/molecule/blob/master/moleculeTests/shared/src/test/scala/moleculeTests/tests/examples/gremlin/gettingStarted/Friends.scala">Molecule queries</a>.</p>
 <p>For the examples we&rsquo;ll use the same &ldquo;Modern&rdquo; graph as the tutorial:</p>
 <br>
 <p><img src="../../../img/page/compare/tinkerpop-modern.png" alt=""></p>
@@ -240,7 +240,7 @@ Excluding marko from the result
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="k">_</span> <span class="o">==&gt;</span> <span class="nc">List</span><span class="o">(</span><span class="s">&#34;peter&#34;</span><span class="o">,</span> <span class="s">&#34;vadas&#34;</span><span class="o">,</span> <span class="s">&#34;josh&#34;</span><span class="o">,</span> <span class="s">&#34;marko&#34;</span><span class="o">))</span>
 <span class="nc">Software</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="k">_</span> <span class="o">==&gt;</span> <span class="nc">List</span><span class="o">(</span><span class="s">&#34;ripple&#34;</span><span class="o">,</span> <span class="s">&#34;lop&#34;</span><span class="o">))</span>
 </code></pre></div><h2 id="edge-property-queries">Edge property queries</h2>
-<p>The Gremlin tutorial doesn&rsquo;t actually use any of the <code>weight</code> properties so we made the <a href="https://github.com/scalamolecule/molecule/blob/master/examples/src/test/scala/molecule/examples/gremlin/gettingStarted/Knows.scala">Knows</a> test suite to see how we can work with edge property molecules.</p>
+<p>The Gremlin tutorial doesn&rsquo;t actually use any of the <code>weight</code> properties so we made the <a href="https://github.com/scalamolecule/molecule/blob/master/moleculeTests/shared/src/test/scala/moleculeTests/tests/examples/gremlin/gettingStarted/Friends2.scala">Friends2</a> test suite to see how we can work with edge property molecules.</p>
 <p>Let&rsquo;s ask a few more complex questions - a reminder of the graph could be useful here</p>
 <br>
 <p><img src="../../../img/page/compare/tinkerpop-modern.png" alt=""></p>

@@ -37,7 +37,7 @@ Person.age.name.e.get.map(_.map { case (age, name, id) =&amp;gt; (age, s&amp;#34
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://www.scalamolecule.org/intro/compare/slick/</guid>
-      <description>Molecule vs Slick Using examples from Coming from SQL to Slick:
+      <description>Molecule vs Slick Using examples from SQL vs. Slick examples:
 Select all table values // Slick people.result In molecule we would declare each attribute we are interested in also to infer the exact return type
 // Molecule Person.name.age.get Select certain columns people.map(p =&amp;gt; (p.age, p.name ++ &amp;quot; (&amp;quot; ++ p.id.asColumnOf[String] ++ &amp;quot;)&amp;quot;)).result With Molecule we would concatenate name and id with the returned result set:
 Person.age.name.e.get.map(_.map { case (age, name, id) =&amp;gt; (age, s&amp;#34;$name($id)&amp;#34; } ) filter / WHERE people.</description>

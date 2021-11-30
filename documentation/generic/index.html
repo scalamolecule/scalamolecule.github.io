@@ -411,7 +411,7 @@
 <span class="nc">VAET</span><span class="o">(</span><span class="n">a1</span><span class="o">,</span> <span class="s">&#34;:Release/artist&#34;</span><span class="o">,</span> <span class="n">r2</span><span class="o">).</span><span class="n">e</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="k">_</span> <span class="o">==&gt;</span> <span class="nc">List</span><span class="o">(</span><span class="n">r2</span><span class="o">))</span>
 <span class="nc">VAET</span><span class="o">(</span><span class="n">a1</span><span class="o">,</span> <span class="s">&#34;:Release/artist&#34;</span><span class="o">,</span> <span class="n">r2</span><span class="o">,</span> <span class="n">t7</span><span class="o">).</span><span class="n">e</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="k">_</span> <span class="o">==&gt;</span> <span class="nc">List</span><span class="o">(</span><span class="n">r2</span><span class="o">))</span>
 </code></pre></div><h2 id="log-api">Log API</h2>
-<p><em>Some index descriptions in the following sections respectfully quoted from the <a href="https://docs.datomic.com/on-prem/log.html">Datomic documentation</a>.</em></p>
+<p><em>Some index descriptions in the following sections respectfully quoted from the <a href="https://docs.datomic.com/on-prem/api/log.html">Datomic Log api documentation</a>.</em></p>
 <p>Datomic&rsquo;s database log is a recording of all transaction data in historic order, organized for efficient access by transaction. The Log is therefore an efficient source of finding data by transaction time.</p>
 <h3 id="tx-range-and-generic-log-attributes">Tx range and generic Log attributes</h3>
 <p>The Molecule Log implementation takes two arguments to define a range of transactions between <code>from</code> (inclusive) and <code>until</code> (exclusive). One or more generic attributes are then added to the Log molecule to define what data to return.</p>
@@ -681,7 +681,9 @@
   <span class="o">(</span><span class="n">t1</span><span class="o">,</span> <span class="n">tx1</span><span class="o">,</span> <span class="o">&lt;</span><span class="nc">Date</span><span class="k">:</span> <span class="err">2018</span><span class="kt">-</span><span class="err">11</span><span class="kt">-</span><span class="err">07</span> <span class="err">09</span><span class="kt">:</span><span class="err">28</span><span class="kt">:</span><span class="err">10</span><span class="kt">&gt;</span><span class="o">),</span> <span class="c1">// Initial schema transaction
 </span><span class="c1"></span>  <span class="o">(</span><span class="n">t2</span><span class="o">,</span> <span class="n">tx2</span><span class="o">,</span> <span class="o">&lt;</span><span class="nc">Date</span><span class="k">:</span> <span class="err">2019</span><span class="kt">-</span><span class="err">01</span><span class="kt">-</span><span class="err">12</span> <span class="err">12</span><span class="kt">:</span><span class="err">43</span><span class="kt">:</span><span class="err">27</span><span class="kt">&gt;</span><span class="o">),</span> <span class="c1">// Additional schema attribute definitions...
 </span><span class="c1"></span><span class="o">))</span>
-</code></pre></div>
+</code></pre></div><h3 id="next">Next</h3>
+<p><a href="../../documentation/dynamic">Dynamic molecules&hellip;</a></p>
+
     </div>
 
     <div class="col-sm-2" style="padding-left:24px;padding-right: 0px;position:sticky;top:115px">

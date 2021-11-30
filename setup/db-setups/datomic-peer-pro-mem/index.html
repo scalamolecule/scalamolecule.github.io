@@ -139,17 +139,17 @@
   <span class="o">)</span>
 </code></pre></div><h3 id="1-connect-to-peer">1. Connect to Peer</h3>
 <p>Connect, recreate in-memory database and get database connection</p>
-<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">implicit</span> <span class="k">val</span> <span class="n">conn</span> <span class="k">=</span> <span class="nc">Datomic_Peer</span><span class="o">.</span><span class="n">recreateDbFrom</span><span class="o">(</span><span class="nc">PersonSchema</span><span class="o">)</span> 
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">implicit</span> <span class="k">val</span> <span class="n">conn</span> <span class="k">=</span> <span class="nc">Datomic_Peer</span><span class="o">.</span><span class="n">recreateDbFrom</span><span class="o">(</span><span class="nc">SampleSchema</span><span class="o">)</span> 
 </code></pre></div><p>Since we are not persisting the database, we let Molecule create a random database name. We don&rsquo;t need to supply the default &ldquo;mem&rdquo; protocol either. So this is really simple.</p>
 <p>If you need persisting data, please see <a href="https://docs.datomic.com/on-prem/storage.html">other storage options</a> or have a look at one of the other sample projects.</p>
 <h3 id="2-make-molecules">2. Make molecules</h3>
-<p>Having an implicit connection in scope, we can start transacting and querying <code>personDb</code> with molecules:</p>
+<p>Having an implicit connection in scope, we can start transacting and querying <code>sampleDb</code> with molecules:</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="c1">// Transact
 </span><span class="c1"></span><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">(</span><span class="s">&#34;John&#34;</span><span class="o">).</span><span class="n">age</span><span class="o">(</span><span class="mi">24</span><span class="o">).</span><span class="n">save</span>
 
 <span class="c1">// Query
 </span><span class="c1"></span><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">age</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="k">_</span><span class="o">.</span><span class="n">head</span> <span class="o">==&gt;</span> <span class="o">(</span><span class="s">&#34;John&#34;</span><span class="o">,</span> <span class="mi">24</span><span class="o">))</span>
-</code></pre></div><p>Add/change definitions in the PersonDataModel and run <code>sbt clean compile -Dmolecule=true</code> in your project root to have Molecule re-generate boilerplate code. Then you can try out using your new attributes in new molecules in <code>App</code>.</p>
+</code></pre></div><p>Add/change definitions in the SampleDataModel and run <code>sbt clean compile -Dmolecule=true</code> in your project root to have Molecule re-generate boilerplate code. Then you can try out using your new attributes in new molecules in <code>App</code>.</p>
 
     </div>
 

@@ -46,8 +46,8 @@ If your code starts to have huge numbers of molecules, you can save time on comp
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://www.scalamolecule.org/dev/clojure-exchanges/</guid>
-      <description>Clojure Schemas To ease exchanging Datomic schemas with the Clojure world where Namespaces start with a lowercase letter by convention, Molecule also creates two convenience Schema &amp;ldquo;converters&amp;rdquo; that transact aliased attribute names where the first letter is either raised or lowered.
-lowercase to Uppercase If you for instance want to use Molecule with an externally defined Datomic database Schema or data sets with lowercase namespace names you can define the Data Model as usual in Molecule with uppercase Namespace names and then rea:</description>
+      <description>Clojure Schemas To ease exchanging Datomic schemas with the Clojure world where Namespaces start with a lowercase letter by convention, Molecule can also creates two convenience Schema &amp;ldquo;converters&amp;rdquo; that transact aliased attribute names where the first letter is either raised or lowered. To generate these converters, set the MoleculePlugin parameter moleculeSchemaConversions to true in your build.sbt file:
+Putting all the configuration together, we here have a minimal project build.sbt setup for a free Datomic Peer system on the jvm platform:</description>
     </item>
     
     <item>

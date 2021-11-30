@@ -93,6 +93,7 @@
 
     <div class="col-sm-10 " style="padding-left:8px;">
         <h1 id="database-connection-js">Database connection, js</h1>
+<h3 id="transparent-rpc">Transparent RPC</h3>
 <p>Molecule is fully implemented with Scala.js too. This allows us to transact and query data directly from the client/js side. Molecule calls are identical on both the server and client side and are therefore easy to refactor between the two platforms if needed.</p>
 <p>Molecule transparently sends and retrieves data via ajax calls to the server and takes care of marshalling data back and forth with highly efficient Byte encoding/decoding using <a href="https://boopickle.suzaku.io">BooPickle</a>.</p>
 <p>Since Molecule knows the exact structure of our data at compile time, only data without attribute names etc is encoded. Compared to json that redundantly adds property names to all values, Molecule avoids this and can thereby more efficiently transfer the bare minimum of actual data.</p>
@@ -234,6 +235,7 @@
             
               <nav id="TableOfContents">
   <ul>
+    <li></li>
     <li><a href="#ajax-server-endpoint">Ajax Server endpoint</a></li>
     <li><a href="#client-side-imports">Client side imports</a></li>
     <li><a href="#client-proxy-connection">Client proxy connection</a></li>

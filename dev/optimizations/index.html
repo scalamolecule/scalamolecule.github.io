@@ -113,7 +113,7 @@
 <span class="k">val</span> <span class="n">male22</span> <span class="k">=</span> <span class="n">personsOfAgeGender</span><span class="o">(</span><span class="mi">22</span><span class="o">,</span> <span class="s">&#34;male&#34;</span><span class="o">).</span><span class="n">get</span>
 </code></pre></div><h2 id="automatic-query-optimization">Automatic Query optimization</h2>
 <p>Molecule transparently optimize all queries sent to Datomic.</p>
-<p>Most selective Clauses are automatically grouped first in the :where section of the Datomic query as per the recommendation in <a href="https://docs.datomic.com/on-prem/best-practices.html">Datomic Best Practices</a>.</p>
+<p>Most selective Clauses are automatically grouped first in the :where section of the Datomic query as per the recommendation in <a href="https://docs.datomic.com/on-prem/best-practices.html#datomic-query">Datomic Query Best Practices</a>.</p>
 <p>This brings dramatic performance gains of in some cases beyond 100x compared to un-optimized queries. The optimization happens automatically in the background so that you can focus entirely on your domain without concern for the optimal order of attributes in your molecules.</p>
 
     </div>

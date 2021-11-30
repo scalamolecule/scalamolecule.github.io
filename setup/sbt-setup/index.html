@@ -187,7 +187,7 @@ pass=&lt;your-password&gt;
 <p>The MoleculePlugin needs to know where your Data Model(s) are.</p>
 <p>You can have a single or several Data Model files in a project, each corresponding to a single database.</p>
 <p>Data Model files should reside in directories named <code>dataModel</code> anywhere in your source code. Use the <code>moleculeDataModelPaths</code> sbt settings key of the MoleculePlugin to list paths to those directories.</p>
-<p>Say you have a project <code>app</code> like the <a href="https://github.com/scalamolecule/molecule-samples/tree/main/molecule-basic">molecule-basic project</a> project and a single Data Model file <code>YourDomainDataModel.scala</code>:</p>
+<p>Say you have a project <code>app</code> like the <a href="https://github.com/scalamolecule/molecule-samples/tree/main/molecule-basic">molecule-basic project</a> project and a single Data Model file <code>PersonDataModel.scala</code>:</p>
 <p><img src="../../img/page/setup/setup1.png" alt=""></p>
 <p>Then you simply add the following:</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala">  <span class="o">.</span><span class="n">settings</span><span class="o">(</span>
@@ -200,15 +200,15 @@ pass=&lt;your-password&gt;
 <p>We list these paths like this in our <code>build.sbt</code>:</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala">  <span class="o">.</span><span class="n">settings</span><span class="o">(</span>
     <span class="n">moleculeDataModelPaths</span> <span class="k">:</span><span class="o">=</span> <span class="nc">Seq</span><span class="o">(</span>
-      <span class="s">&#34;molecule/tests/core/base&#34;</span><span class="o">,</span>
-      <span class="s">&#34;molecule/tests/core/bidirectionals&#34;</span><span class="o">,</span>
-      <span class="s">&#34;molecule/tests/core/ref&#34;</span><span class="o">,</span>
-      <span class="s">&#34;molecule/tests/core/schemaDef&#34;</span><span class="o">,</span>
-  
-      <span class="s">&#34;molecule/tests/examples/datomic/dayOfDatomic&#34;</span><span class="o">,</span>
-      <span class="s">&#34;molecule/tests/examples/datomic/mbrainz&#34;</span><span class="o">,</span>
-      <span class="s">&#34;molecule/tests/examples/datomic/seattle&#34;</span><span class="o">,</span>
-      <span class="s">&#34;molecule/tests/examples/gremlin/gettingStarted&#34;</span>
+      <span class="s">&#34;moleculeTests/dataModels/core/base&#34;</span><span class="o">,</span>
+      <span class="s">&#34;moleculeTests/dataModels/core/bidirectionals&#34;</span><span class="o">,</span>
+      <span class="s">&#34;moleculeTests/dataModels/core/ref&#34;</span><span class="o">,</span>
+      <span class="s">&#34;moleculeTests/dataModels/core/schemaDef&#34;</span><span class="o">,</span>
+
+      <span class="s">&#34;moleculeTests/dataModels/examples/datomic/dayOfDatomic&#34;</span><span class="o">,</span>
+      <span class="s">&#34;moleculeTests/dataModels/examples/datomic/mbrainz&#34;</span><span class="o">,</span>
+      <span class="s">&#34;moleculeTests/dataModels/examples/datomic/seattle&#34;</span><span class="o">,</span>
+      <span class="s">&#34;moleculeTests/dataModels/examples/gremlin/gettingStarted&#34;</span>
     <span class="o">)</span>
   <span class="o">)</span>
 </code></pre></div><h2 id="moleculeplugin-options">MoleculePlugin options</h2>
@@ -282,10 +282,10 @@ pass=&lt;your-password&gt;
 </ol>
 <p>In our <a href="https://github.com/scalamolecule/molecule-samples/tree/main/molecule-basic">basic sample projects</a> these two jars are created:</p>
 <p><img src="../../img/page/setup/setup3.png" alt=""></p>
-<p><code>dsl</code> contains the generated Molecule boilerplate code for the defined Person Data Model and <code>schema</code> contains boilerplate code for transacting our Datomic schema.</p>
+<p><code>dsl</code> contains the generated Molecule boilerplate code for the defined Person Data Model and <code>schema</code> contains boilerplate code for transacting our Datomic schema. The name of each jar (one for compiled classes, one for source code) has &ldquo;molecule-&rdquo; prepended to your project name to avoid name clashes in <code>lib</code>.</p>
 <p>Whenever you make changes to your Data Model, you can simply <code>sbt compile -Dmolecule=true</code> and have your Schema transaction boilerplate code re-generated with your latest changes.</p>
 <h3 id="next">Next</h3>
-<p><a href="../../setup/db-connection">Get a database connection&hellip;</a></p>
+<p><a href="../../setup/jvm-connection/">Get a database connection&hellip;</a></p>
 
     </div>
 

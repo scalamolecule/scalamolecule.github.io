@@ -103,7 +103,7 @@
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Community</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">`type`</span><span class="o">(</span><span class="s">&#34;twitter&#34;</span> <span class="n">or</span> <span class="s">&#34;facebook_page&#34;</span><span class="o">)</span>
   <span class="o">.</span><span class="nc">Neighborhood</span><span class="o">.</span><span class="nc">District</span><span class="o">.</span><span class="n">region</span><span class="o">(</span><span class="s">&#34;sw&#34;</span> <span class="n">or</span> <span class="s">&#34;s&#34;</span> <span class="n">or</span> <span class="s">&#34;se&#34;</span><span class="o">)</span>
 </code></pre></div><h2 id="2-model-ast">2. Model AST</h2>
-<p>The source code of our molecule is pattern matched in <a href="https://github.com/scalamolecule/molecule/blob/master/molecule/jvm/src/main/scala/molecule/core/transform/Dsl2Model.scala">Dsl2Model</a> element by element in order to create an abstracted internal Molecule <code>Model</code> of <code>Atom</code>s and <code>Bond</code>s with information about Namespace, Atribute name, type, cardinality, value, generic options etc. for each attribute/<code>Atom</code> and relationship/<code>Bond</code>  (just a simple selection shown here):</p>
+<p>The source code of our molecule is pattern matched in <a href="https://github.com/scalamolecule/molecule/blob/master/molecule/shared/src/main/scala/molecule/core/transform/Dsl2Model.scala">Dsl2Model</a> element by element in order to create an abstracted internal Molecule <code>Model</code> of <code>Atom</code>s and <code>Bond</code>s with information about Namespace, Atribute name, type, cardinality, value, generic options etc. for each attribute/<code>Atom</code> and relationship/<code>Bond</code>  (just a simple selection shown here):</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Model</span><span class="o">(</span><span class="nc">List</span><span class="o">(</span>
   <span class="nc">Atom</span><span class="o">(</span><span class="s">&#34;Community&#34;</span><span class="o">,</span> <span class="s">&#34;name&#34;</span><span class="o">,</span> <span class="s">&#34;String&#34;</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="nc">VarValue</span><span class="o">,</span> <span class="nc">None</span><span class="o">),</span>
   <span class="nc">Atom</span><span class="o">(</span><span class="s">&#34;Community&#34;</span><span class="o">,</span> <span class="s">&#34;type_&#34;</span><span class="o">,</span> <span class="s">&#34;String&#34;</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="nc">Eq</span><span class="o">(</span><span class="nc">List</span><span class="o">(</span><span class="s">&#34;twitter&#34;</span><span class="o">,</span> <span class="s">&#34;facebook_page&#34;</span><span class="o">)),</span> <span class="nc">Some</span><span class="o">(</span><span class="s">&#34;:Community.type/&#34;</span><span class="o">)),</span>
@@ -113,7 +113,7 @@
 <span class="o">)</span>
 </code></pre></div><p>This Molecule <code>Model</code> is the generic representation of how we combine the Attributes of our Data Model into molecules.</p>
 <h2 id="3-query-ast">3. Query AST</h2>
-<p>Our Molecule Model is then transformed in <a href="https://github.com/scalamolecule/molecule/blob/master/molecule/shared/src/main/scala/molecule/core/transform/Model2Query.scala">Model2Query</a> to a Query AST which is a little more elaborate:</p>
+<p>Our Molecule Model is then transformed in <a href="https://github.com/scalamolecule/molecule/blob/master/molecule/shared/src/main/scala/molecule/datomic/base/transform/Model2Query.scala">Model2Query</a> to a Query AST which is a little more elaborate:</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Query</span><span class="o">(</span>
   <span class="nc">Find</span><span class="o">(</span><span class="nc">List</span><span class="o">(</span>
     <span class="nc">Var</span><span class="o">(</span><span class="s">&#34;b&#34;</span><span class="o">))),</span>
@@ -135,10 +135,10 @@
     <span class="nc">DataClause</span><span class="o">(</span><span class="nc">ImplDS</span><span class="o">,</span> <span class="nc">Var</span><span class="o">(</span><span class="s">&#34;d&#34;</span><span class="o">),</span> <span class="nc">KW</span><span class="o">(</span><span class="s">&#34;Neighborhood&#34;</span><span class="o">,</span> <span class="s">&#34;district&#34;</span><span class="o">,</span> <span class="s">&#34;District&#34;</span><span class="o">),</span> <span class="nc">Var</span><span class="o">(</span><span class="s">&#34;e&#34;</span><span class="o">),</span> <span class="nc">Empty</span><span class="o">),</span>
     <span class="nc">RuleInvocation</span><span class="o">(</span><span class="s">&#34;rule2&#34;</span><span class="o">,</span> <span class="nc">List</span><span class="o">(</span><span class="nc">Var</span><span class="o">(</span><span class="s">&#34;e&#34;</span><span class="o">)))))</span>
 <span class="o">)</span>
-</code></pre></div><p>As you see this <a href="https://github.com/scalamolecule/molecule/blob/master/molecule/shared/src/main/scala/molecule/core/ast/query.scala">Query AST</a> is tailored to Datomic.</p>
+</code></pre></div><p>As you see this <a href="https://github.com/scalamolecule/molecule/blob/master/molecule/shared/src/main/scala/molecule/datomic/base/ast/query.scala">Query AST</a> is tailored to Datomic.</p>
 <p>In principle we should be able to use the same model to create other Query abstractions tailored to other database systems!&hellip;</p>
 <h2 id="4-datomic-query-string">4. Datomic query string</h2>
-<p>Finally Molecule transforms our Query AST in <a href="https://github.com/scalamolecule/molecule/blob/master/molecule/shared/src/main/scala/molecule/core/transform/Query2String.scala">Query2String</a> to a Datomic query text strings:</p>
+<p>Finally Molecule transforms our Query AST in <a href="https://github.com/scalamolecule/molecule/blob/master/molecule/shared/src/main/scala/molecule/datomic/base/transform/Query2String.scala">Query2String</a> to a Datomic query text strings:</p>
 <pre>
 [:find  ?b
  :in    $ %
@@ -158,9 +158,8 @@ List(
      [(rule2 ?e) [?e :District/region ":District.region/se"]]]
 </pre>
 <p>All 3 transformations happen at compile time and therefore have no impact on the runtime performance.</p>
-<p>See more examples of <a href="https://github.com/scalamolecule/molecule/blob/master/molecule-tests/src/test/scala/molecule/tests/examples/datomic/seattle/SeattleTransformationTests.scala">transformation of the Seattle molecules&hellip;</a></p>
 <h2 id="transactional-data">Transactional data</h2>
-<p>Transactional data is created by transforming a molecule Model to a Transaction Model in <a href="https://github.com/scalamolecule/molecule/blob/master/molecule/jvm/src/main/scala-2.13%2B/molecule/core/transform/Model2Transaction.scala">Model2Transaction</a>.</p>
+<p>Transactional data is created by transforming a molecule Model to Statements in <a href="https://github.com/scalamolecule/molecule/blob/master/molecule/shared/src/main/scala/molecule/core/transform/Model2Stmts.scala">Model2Stmts</a>.</p>
 
     </div>
 

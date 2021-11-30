@@ -93,8 +93,14 @@
 
     <div class="col-sm-10 " style="padding-left:8px;">
         <h1 id="clojure-schemas">Clojure Schemas</h1>
-<p>To ease exchanging Datomic schemas with the Clojure world where Namespaces start with a lowercase letter by convention, Molecule also creates two convenience Schema &ldquo;converters&rdquo; that transact aliased attribute names where the first letter is either raised or lowered.</p>
-<h3 id="lowercase-to-uppercase">lowercase to Uppercase</h3>
+<p>To ease exchanging Datomic schemas with the Clojure world where Namespaces start with a lowercase letter by convention, Molecule can also creates two convenience Schema &ldquo;converters&rdquo; that transact aliased attribute names where the first letter is either raised or lowered. To generate these converters, set the MoleculePlugin parameter <code>moleculeSchemaConversions</code> to true in your <code>build.sbt</code> file:</p>
+<p>Putting all the configuration together, we here have a minimal project <code>build.sbt</code> setup for a free Datomic Peer system on the jvm platform:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala">  <span class="o">.</span><span class="n">settings</span><span class="o">(</span>
+    <span class="c1">// Generate lover/upper schema conversion files (default is false)
+</span><span class="c1"></span>    <span class="n">moleculeSchemaConversions</span> <span class="k">:</span><span class="o">=</span> <span class="kc">true</span><span class="o">,</span>
+    <span class="o">...</span>
+  <span class="o">)</span>
+</code></pre></div><h3 id="lowercase-to-uppercase">lowercase to Uppercase</h3>
 <p>If you for instance want to use Molecule with an externally defined Datomic database Schema or data sets with lowercase namespace names you can define the Data Model as usual in Molecule with uppercase Namespace names and then rea:</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="c1">// Read lowercase schema from edn data
 </span><span class="c1"></span><span class="k">val</span> <span class="n">lowercaseExternalSchema</span> <span class="k">=</span> <span class="n">datomic</span><span class="o">.</span><span class="nc">Util</span><span class="o">.</span><span class="n">readAll</span><span class="o">(</span><span class="k">new</span> <span class="nc">FileReader</span><span class="o">(</span><span class="s">&#34;external-schema.dtm&#34;</span><span class="o">))</span>
@@ -104,7 +110,7 @@
 </span><span class="c1"></span><span class="n">conn</span><span class="o">.</span><span class="n">transact</span><span class="o">(</span><span class="nc">ExternalSchemaLowerToUpper</span><span class="o">.</span><span class="n">edn</span><span class="o">)</span>
 
 <span class="c1">// Make molecules with uppercase Namespace names...
-</span></code></pre></div><p>When we test the mBrainz dataset for instance, we <a href="https://github.com/scalamolecule/molecule/blob/master/molecule-tests/src/test/scala/molecule/TestSpec.scala#L166-L170">convert from from lower to Upper</a>.</p>
+</span></code></pre></div><p>When we test the mBrainz dataset for instance, we <a href="https://github.com/scalamolecule/molecule/blob/master/moleculeTests/jvm/src/test/scala/moleculeTests/setup/AsyncTestSuiteImpl.scala#L76">convert from from lower to Upper</a>.</p>
 <h3 id="uppercase-to-lowercase">Uppercase to lowercase</h3>
 <p>Vice versa, you can &ldquo;export&rdquo; an Uppercase schema to lowercase by transacting <code>&lt;your-domain&gt;SchemaUpperToLower</code>:</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="n">conn</span><span class="o">.</span><span class="n">transact</span><span class="o">(</span><span class="nc">YourSchemaUpperToLower</span><span class="o">.</span><span class="n">edn</span><span class="o">)</span>
