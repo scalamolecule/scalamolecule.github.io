@@ -280,7 +280,7 @@ pass=&lt;your-password&gt;
 <li>Sources and classes are packaged into two <code>jar</code>s in the <code>lib</code> directory.</li>
 <li>Generated source code and compiled classes are removed.</li>
 </ol>
-<p>In our <a href="https://github.com/scalamolecule/molecule-samples/tree/main/molecule-basic">basic sample projects</a> these two jars are created:</p>
+<p>In our <a href="https://github.com/scalamolecule/molecule-samples/tree/main/molecule-basic">basic sample project</a> these two jars are created:</p>
 <p><img src="../../img/page/setup/setup3.png" alt=""></p>
 <p><code>dsl</code> contains the generated Molecule boilerplate code for the defined Person Data Model and <code>schema</code> contains boilerplate code for transacting our Datomic schema. The name of each jar (one for compiled classes, one for source code) has &ldquo;molecule-&rdquo; prepended to your project name to avoid name clashes in <code>lib</code>.</p>
 <p>Whenever you make changes to your Data Model, you can simply <code>sbt compile -Dmolecule=true</code> and have your Schema transaction boilerplate code re-generated with your latest changes.</p>
