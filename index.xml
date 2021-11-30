@@ -131,7 +131,7 @@ lazy val yourProject = project.in(file(&amp;#34;app&amp;#34;)) .enablePlugins(Mo
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://www.scalamolecule.org/intro/building-blocks/</guid>
-      <description>Molecule building blocks Here&amp;rsquo;s a quick overview of various building blocks in the Molecule eco-system.
+      <description>Molecule building blocks Here&amp;rsquo;s a quick overview of various building blocks in the Molecule platform.
 Molecule A molecule is a model of a data structure containing one or more attributes.
 Here we describe a data structure of name, age of persons and what street they live on:
 Person.name.age.Address.street.get.map(_.head ==&amp;gt; (&amp;#34;John&amp;#34;, 24, &amp;#34;5th Avenue&amp;#34;)) Calling get on a molecule returns typed data that matches the molecular data structure.
