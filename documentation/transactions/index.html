@@ -165,31 +165,6 @@ johnId    :Person/age     24
 </code></pre></div><h3 id="type-safety">Type-safety</h3>
 <p>Type-safety is guaranteed since the type of each tuple of data is enforced by the compiler to conform to the molecule type.</p>
 <p>If the data set is not accepted type-wise, then either the molecule needs to be adjusted to match the type of data rows. Or, the data set might be irregular and have some variable size of tuples or varying types within tuples that need to be sorted out.</p>
-<h3 id="asynchronous-insert">Asynchronous insert</h3>
-<p>All transactional operators have an asynchronous equivalent. Inserting data asynchronously with <code>insertAsync</code> uses Datomic&rsquo;s asynchronous API and returns a <code>Future</code> with a <code>TxReport</code>.</p>
-<p>Here, we insert data as argument list/tuples asynchronously:</p>
-<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="c1">// Insert single row of data with individual args
-</span><span class="c1"></span><span class="k">val</span> <span class="n">singleInsertFuture</span><span class="k">:</span> <span class="kt">Future</span><span class="o">[</span><span class="kt">TxReport</span><span class="o">]</span> <span class="k">=</span> <span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">likes</span><span class="o">.</span><span class="n">age</span><span class="o">.</span><span class="n">insertAsync</span><span class="o">(</span><span class="s">&#34;John&#34;</span><span class="o">,</span> <span class="s">&#34;pizza&#34;</span><span class="o">,</span> <span class="mi">24</span><span class="o">)</span>
-
-<span class="c1">// Insert Iterable of multiple rows of data
-</span><span class="c1"></span><span class="k">val</span> <span class="n">multipleInsertFuture</span><span class="k">:</span> <span class="kt">Future</span><span class="o">[</span><span class="kt">TxReport</span><span class="o">]</span> <span class="k">=</span> <span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">likes</span><span class="o">.</span><span class="n">age</span> <span class="n">insertAsync</span> <span class="nc">List</span><span class="o">(</span>
-  <span class="o">(</span><span class="s">&#34;Lisa&#34;</span><span class="o">,</span> <span class="s">&#34;pizza&#34;</span><span class="o">,</span> <span class="mi">20</span><span class="o">),</span>
-  <span class="o">(</span><span class="s">&#34;Ben&#34;</span><span class="o">,</span> <span class="s">&#34;pasta&#34;</span><span class="o">,</span> <span class="mi">25</span><span class="o">)</span>
-<span class="o">)</span>
-
-<span class="k">for</span> <span class="o">{</span>
-  <span class="k">_</span> <span class="k">&lt;-</span> <span class="n">singleInsertFuture</span>
-  <span class="k">_</span> <span class="k">&lt;-</span> <span class="n">multipleInsertFuture</span>
-  <span class="n">result</span> <span class="k">&lt;-</span> <span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">likes</span><span class="o">.</span><span class="n">age</span><span class="o">.</span><span class="n">getAsync</span>
-<span class="o">}</span> <span class="k">yield</span> <span class="o">{</span>
-  <span class="c1">// Both inserts applied
-</span><span class="c1"></span>  <span class="n">result</span> <span class="o">===</span> <span class="nc">List</span><span class="o">(</span>
-    <span class="o">(</span><span class="s">&#34;John&#34;</span><span class="o">,</span> <span class="s">&#34;pizza&#34;</span><span class="o">,</span> <span class="mi">24</span><span class="o">),</span>
-    <span class="o">(</span><span class="s">&#34;Lisa&#34;</span><span class="o">,</span> <span class="s">&#34;pizza&#34;</span><span class="o">,</span> <span class="mi">20</span><span class="o">),</span>
-    <span class="o">(</span><span class="s">&#34;Ben&#34;</span><span class="o">,</span> <span class="s">&#34;pasta&#34;</span><span class="o">,</span> <span class="mi">25</span><span class="o">)</span>
-  <span class="o">)</span>
-<span class="o">}</span>
-</code></pre></div><p>For brevity, the following examples use the synchronous <code>save</code> operation.</p>
 <h3 id="optional-values-1">Optional values</h3>
 <p><code>null</code> values are not allowed as data-input values whereas Optional values are:</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">likes$</span><span class="o">.</span><span class="n">age</span> <span class="n">insert</span> <span class="nc">List</span><span class="o">(</span>
@@ -326,51 +301,6 @@ johnId    :Person/age     24
 <p>Update multiple entities in one transaction so that they have the same values:</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="c1">// Both Bob and Ann turned 25 and became cool club members
 </span><span class="c1"></span><span class="nc">Person</span><span class="o">(</span><span class="n">bobId</span><span class="o">,</span> <span class="n">annId</span><span class="o">).</span><span class="n">age</span><span class="o">(</span><span class="mi">25</span><span class="o">).</span><span class="n">memberOf</span><span class="o">(</span><span class="s">&#34;cool club&#34;</span><span class="o">).</span><span class="n">update</span>
-</code></pre></div><h3 id="asynchronous-update">Asynchronous update</h3>
-<p>All transactional operators have an asynchronous equivalent. Updating data asynchronously with <code>updateAsync</code> uses Datomic&rsquo;s asynchronous API and returns a <code>Future</code> with a <code>TxReport</code>.</p>
-<p>Here, we map over the result of updating an entity asynchronously:</p>
-<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">for</span> <span class="o">{</span>
-  <span class="c1">// Initial data
-</span><span class="c1"></span>  <span class="n">saveTx</span> <span class="k">&lt;-</span> <span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">age</span> <span class="n">insertAsync</span> <span class="nc">List</span><span class="o">((</span><span class="s">&#34;Ben&#34;</span><span class="o">,</span> <span class="mi">25</span><span class="o">),</span> <span class="o">(</span><span class="s">&#34;Liz&#34;</span><span class="o">,</span> <span class="mi">23</span><span class="o">))</span>
-  <span class="nc">List</span><span class="o">(</span><span class="n">ben</span><span class="o">,</span> <span class="n">liz</span><span class="o">)</span> <span class="k">=</span> <span class="n">saveTx</span><span class="o">.</span><span class="n">eids</span>
-
-  <span class="c1">// Update Liz&#39; age
-</span><span class="c1"></span>  <span class="n">updateTx</span> <span class="k">&lt;-</span> <span class="nc">Ns</span><span class="o">(</span><span class="n">liz</span><span class="o">).</span><span class="n">age</span><span class="o">(</span><span class="mi">24</span><span class="o">).</span><span class="n">updateAsync</span>
-
-  <span class="c1">// Get result
-</span><span class="c1"></span>  <span class="n">result</span> <span class="k">&lt;-</span> <span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">age</span><span class="o">.</span><span class="n">getAsync</span>
-<span class="o">}</span> <span class="k">yield</span> <span class="o">{</span>
-  <span class="c1">// Liz had a birthday
-</span><span class="c1"></span>  <span class="n">result</span> <span class="o">===</span> <span class="nc">List</span><span class="o">((</span><span class="s">&#34;Ben&#34;</span><span class="o">,</span> <span class="mi">25</span><span class="o">),</span> <span class="o">(</span><span class="s">&#34;Liz&#34;</span><span class="o">,</span> <span class="mi">24</span><span class="o">))</span>
-<span class="o">}</span>
-</code></pre></div><h3 id="updating-multiple-entities-asynchronously">Updating multiple entities asynchronously</h3>
-<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="c1">// Initial data
-</span><span class="c1"></span><span class="nc">Ns</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">int</span> <span class="n">insertAsync</span> <span class="nc">List</span><span class="o">(</span>
-  <span class="o">(</span><span class="s">&#34;a&#34;</span><span class="o">,</span> <span class="mi">1</span><span class="o">),</span>
-  <span class="o">(</span><span class="s">&#34;b&#34;</span><span class="o">,</span> <span class="mi">2</span><span class="o">),</span>
-  <span class="o">(</span><span class="s">&#34;c&#34;</span><span class="o">,</span> <span class="mi">3</span><span class="o">),</span>
-  <span class="o">(</span><span class="s">&#34;d&#34;</span><span class="o">,</span> <span class="mi">4</span><span class="o">)</span>
-<span class="o">)</span> <span class="n">map</span> <span class="o">{</span> <span class="n">tx</span> <span class="k">=&gt;</span> <span class="c1">// tx report from successful insert transaction
-</span><span class="c1"></span>  <span class="c1">// 4 inserted entities
-</span><span class="c1"></span>  <span class="k">val</span> <span class="nc">List</span><span class="o">(</span><span class="n">a</span><span class="o">,</span> <span class="n">b</span><span class="o">,</span> <span class="n">c</span><span class="o">,</span> <span class="n">d</span><span class="o">)</span> <span class="k">=</span> <span class="n">tx</span><span class="o">.</span><span class="n">eids</span>
-  <span class="nc">Ns</span><span class="o">.</span><span class="n">int</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="k">_</span> <span class="o">==&gt;</span> <span class="nc">List</span><span class="o">(</span>
-    <span class="o">(</span><span class="s">&#34;a&#34;</span><span class="o">,</span> <span class="mi">1</span><span class="o">),</span>
-    <span class="o">(</span><span class="s">&#34;b&#34;</span><span class="o">,</span> <span class="mi">2</span><span class="o">),</span>
-    <span class="o">(</span><span class="s">&#34;c&#34;</span><span class="o">,</span> <span class="mi">3</span><span class="o">),</span>
-    <span class="o">(</span><span class="s">&#34;d&#34;</span><span class="o">,</span> <span class="mi">4</span><span class="o">)</span>
-  <span class="o">)</span>
-
-  <span class="c1">// Update multiple entities asynchronously
-</span><span class="c1"></span>  <span class="nc">Ns</span><span class="o">(</span><span class="n">a</span><span class="o">,</span> <span class="n">b</span><span class="o">).</span><span class="n">int</span><span class="o">(</span><span class="mi">5</span><span class="o">).</span><span class="n">updateAsync</span><span class="o">.</span><span class="n">map</span> <span class="o">{</span> <span class="n">tx2</span> <span class="k">=&gt;</span> <span class="c1">// tx report from successful update transaction
-</span><span class="c1"></span>    <span class="c1">// Current data
-</span><span class="c1"></span>    <span class="nc">Ns</span><span class="o">.</span><span class="n">int</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">sorted</span> <span class="o">===</span> <span class="nc">List</span><span class="o">(</span>
-      <span class="o">(</span><span class="s">&#34;a&#34;</span><span class="o">,</span> <span class="mi">5</span><span class="o">),</span>
-      <span class="o">(</span><span class="s">&#34;b&#34;</span><span class="o">,</span> <span class="mi">5</span><span class="o">),</span>
-      <span class="o">(</span><span class="s">&#34;c&#34;</span><span class="o">,</span> <span class="mi">3</span><span class="o">),</span>
-      <span class="o">(</span><span class="s">&#34;d&#34;</span><span class="o">,</span> <span class="mi">4</span><span class="o">)</span>
-    <span class="o">)</span>
-  <span class="o">}</span>
-<span class="o">}</span>
 </code></pre></div><h2 id="retract-1">Retract</h2>
 <p>In Datomic, retracting a fact saves a Datom with the fifth component <code>op</code> set to <code>false</code>.</p>
 <p>Retracted datoms will not show up in queries of the current data. But if you query historical data with for instance <a href="../../documentation/time/#asof">asOf</a> you&rsquo;ll see what the value was before it was retracted. This mechanism provides Datomic with built-in auditing of all of its data since nothing is deleted!</p>
@@ -425,36 +355,7 @@ johnId    :Person/age     24
 <span class="c1">// or
 </span><span class="c1"></span><span class="n">retract</span><span class="o">(</span><span class="n">orderId</span><span class="o">)</span>
 </code></pre></div><p>Component entities are recursively retracted! So if <code>LineItem</code> would have had subcomponents then those would have been retracted too when the order was retracted - and so on down the hierarchy of subcomponents.</p>
-<h3 id="asynchronous-retract">Asynchronous retract</h3>
-<p>All transactional operators have an asynchronous equivalent.</p>
-<p>Retracting entities asynchronously uses Datomic&rsquo;s asynchronous API and returns a <code>Future</code> with a <code>TxReport</code>.</p>
-<p>Here, we map over the result of retracting an entity asynchronously (in the inner mapping):</p>
-<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="c1">// Initial data
-</span><span class="c1"></span><span class="nc">Ns</span><span class="o">.</span><span class="n">int</span><span class="o">.</span><span class="n">insertAsync</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">).</span><span class="n">map</span> <span class="o">{</span> <span class="n">tx</span> <span class="k">=&gt;</span> <span class="c1">// tx report from successful insert transaction
-</span><span class="c1"></span>  <span class="c1">// 2 inserted entities
-</span><span class="c1"></span>  <span class="k">val</span> <span class="nc">List</span><span class="o">(</span><span class="n">e1</span><span class="o">,</span> <span class="n">e2</span><span class="o">)</span> <span class="k">=</span> <span class="n">tx</span><span class="o">.</span><span class="n">eids</span>
-  <span class="nc">Ns</span><span class="o">.</span><span class="n">int</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="k">_</span> <span class="o">==&gt;</span> <span class="nc">List</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">)</span>
-
-  <span class="c1">// Retract first entity asynchronously
-</span><span class="c1"></span>  <span class="n">e1</span><span class="o">.</span><span class="n">retractAsync</span><span class="o">.</span><span class="n">map</span> <span class="o">{</span> <span class="n">tx2</span> <span class="k">=&gt;</span> <span class="c1">// tx report from successful retract transaction
-</span><span class="c1"></span>    <span class="c1">// Current data
-</span><span class="c1"></span>    <span class="nc">Ns</span><span class="o">.</span><span class="n">int</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="k">_</span> <span class="o">==&gt;</span> <span class="nc">List</span><span class="o">(</span><span class="mi">2</span><span class="o">)</span>
-  <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div><p>Retract multiple entities asynchronously:</p>
-<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="c1">// Initial data
-</span><span class="c1"></span><span class="nc">Ns</span><span class="o">.</span><span class="n">int</span><span class="o">.</span><span class="n">insertAsync</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">).</span><span class="n">map</span> <span class="o">{</span> <span class="n">tx</span> <span class="k">=&gt;</span> <span class="c1">// tx report from successful insert transaction
-</span><span class="c1"></span>  <span class="c1">// 2 inserted entities
-</span><span class="c1"></span>  <span class="k">val</span> <span class="nc">List</span><span class="o">(</span><span class="n">e1</span><span class="o">,</span> <span class="n">e2</span><span class="o">,</span> <span class="n">e3</span><span class="o">)</span> <span class="k">=</span> <span class="n">tx</span><span class="o">.</span><span class="n">eids</span>
-  <span class="nc">Ns</span><span class="o">.</span><span class="n">int</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="k">_</span> <span class="o">==&gt;</span> <span class="nc">List</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">)</span>
-
-  <span class="c1">// Retract first entity asynchronously
-</span><span class="c1"></span>  <span class="n">retractAsync</span><span class="o">(</span><span class="nc">Seq</span><span class="o">(</span><span class="n">e1</span><span class="o">,</span> <span class="n">e2</span><span class="o">)).</span><span class="n">map</span> <span class="o">{</span> <span class="n">tx2</span> <span class="k">=&gt;</span> <span class="c1">// tx report from successful retract transaction
-</span><span class="c1"></span>    <span class="c1">// Current data
-</span><span class="c1"></span>    <span class="nc">Ns</span><span class="o">.</span><span class="n">int</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="k">_</span> <span class="o">==&gt;</span> <span class="nc">List</span><span class="o">(</span><span class="mi">3</span><span class="o">)</span>
-  <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div><h2 id="tx-report">Tx report</h2>
+<h2 id="tx-report">Tx report</h2>
 <p>All assertions and retractions in Datomic happen within a transaction that guarantees ACID consistency. Along with the domain data involved, Datomic also automatically asserts a timestamp as part of a created Transaction entity for that transaction.</p>
 <p>Say that we create a new person with entity id <code>johnId</code>:</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">val</span> <span class="n">johnId</span> <span class="k">=</span> <span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">(</span><span class="s">&#34;John&#34;</span><span class="o">).</span><span class="n">likes</span><span class="o">(</span><span class="s">&#34;pizza&#34;</span><span class="o">).</span><span class="n">save</span><span class="o">.</span><span class="n">eid</span>
@@ -552,20 +453,6 @@ johnId    :Person/age     24
 </span><span class="c1"></span>  <span class="mi">5</span><span class="o">,</span> <span class="mi">6</span><span class="o">,</span> <span class="c1">// inserted
 </span><span class="c1"></span>  <span class="mi">20</span> <span class="c1">// 2 updated
 </span><span class="c1"></span><span class="o">)</span>
-</code></pre></div><p>Bundled transactions can also use Datomic&rsquo;s asynchronous API by calling <code>transactAsync</code>:</p>
-<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="nc">Await</span><span class="o">.</span><span class="n">result</span><span class="o">(</span>
-  <span class="n">transactAsync</span><span class="o">(</span>
-    <span class="n">e1</span><span class="o">.</span><span class="n">getRetractStmts</span><span class="o">,</span>
-    <span class="nc">Ns</span><span class="o">.</span><span class="n">int</span><span class="o">(</span><span class="mi">4</span><span class="o">).</span><span class="n">getSaveStmts</span><span class="o">,</span>
-    <span class="nc">Ns</span><span class="o">.</span><span class="n">int</span><span class="o">.</span><span class="n">getInsertStmts</span><span class="o">(</span><span class="nc">List</span><span class="o">(</span><span class="mi">5</span><span class="o">,</span> <span class="mi">6</span><span class="o">)),</span>
-    <span class="nc">Ns</span><span class="o">(</span><span class="n">e2</span><span class="o">).</span><span class="n">int</span><span class="o">(</span><span class="mi">20</span><span class="o">).</span><span class="n">getUpdateStmts</span>
-  <span class="o">)</span> <span class="n">map</span> <span class="o">{</span> <span class="n">bundleTx</span> <span class="k">=&gt;</span>
-    <span class="nc">Ns</span><span class="o">.</span><span class="n">int</span><span class="o">.</span><span class="n">getAsync</span> <span class="n">map</span> <span class="o">{</span> <span class="n">queryResult</span> <span class="k">=&gt;</span> 
-      <span class="n">queryResult</span> <span class="o">===</span> <span class="nc">List</span><span class="o">(</span><span class="mi">3</span><span class="o">,</span> <span class="mi">4</span><span class="o">,</span> <span class="mi">5</span><span class="o">,</span> <span class="mi">6</span><span class="o">,</span> <span class="mi">20</span><span class="o">)</span>    
-    <span class="o">}</span>  
-  <span class="o">},</span>
-  <span class="mf">2.</span><span class="n">seconds</span>
-<span class="o">)</span>
 </code></pre></div><h3 id="inspecting-bundled-transactions">Inspecting bundled transactions</h3>
 <p>If you want to see the transactional output from a bundled transaction you can call <code>inspectTransaction</code> on some bundled transaction data:</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="c1">// Print inspect info for group transaction without affecting live db
