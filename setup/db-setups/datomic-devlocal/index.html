@@ -96,13 +96,10 @@
 <p>Minimal project setup to test a <a href="https://docs.datomic.com/cloud/dev-local.html">Cloud setup locally</a> without connecting to a server.</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">import</span> <span class="nn">sbt.Keys._</span>
 
-<span class="k">lazy</span> <span class="k">val</span> <span class="n">demo</span> <span class="k">=</span> <span class="n">project</span><span class="o">.</span><span class="n">in</span><span class="o">(</span><span class="n">file</span><span class="o">(</span><span class="s">&#34;.&#34;</span><span class="o">))</span>
-  <span class="o">.</span><span class="n">aggregate</span><span class="o">(</span><span class="n">app</span><span class="o">)</span>
-  <span class="o">.</span><span class="n">settings</span><span class="o">(</span><span class="n">name</span> <span class="k">:</span><span class="o">=</span> <span class="s">&#34;molecule-datomic-devlocal&#34;</span><span class="o">)</span>
-
-<span class="k">lazy</span> <span class="k">val</span> <span class="n">app</span> <span class="k">=</span> <span class="n">project</span><span class="o">.</span><span class="n">in</span><span class="o">(</span><span class="n">file</span><span class="o">(</span><span class="s">&#34;app&#34;</span><span class="o">))</span>
+<span class="k">lazy</span> <span class="k">val</span> <span class="n">`molecule-basic`</span> <span class="k">=</span> <span class="n">project</span><span class="o">.</span><span class="n">in</span><span class="o">(</span><span class="n">file</span><span class="o">(</span><span class="s">&#34;.&#34;</span><span class="o">))</span>
   <span class="o">.</span><span class="n">enablePlugins</span><span class="o">(</span><span class="nc">MoleculePlugin</span><span class="o">)</span>
   <span class="o">.</span><span class="n">settings</span><span class="o">(</span>
+    <span class="n">name</span> <span class="k">:</span><span class="o">=</span> <span class="s">&#34;molecule-datomic-devlocal&#34;</span><span class="o">,</span>
     <span class="n">scalaVersion</span> <span class="k">:</span><span class="o">=</span> <span class="s">&#34;2.13.7&#34;</span><span class="o">,</span>
     <span class="n">resolvers</span> <span class="o">++=</span> <span class="nc">Seq</span><span class="o">(</span>
       <span class="nc">Resolver</span><span class="o">.</span><span class="n">sonatypeRepo</span><span class="o">(</span><span class="s">&#34;releases&#34;</span><span class="o">),</span>
@@ -125,11 +122,11 @@
 </span><span class="c1"></span>    <span class="n">exportJars</span> <span class="k">:</span><span class="o">=</span> <span class="kc">true</span>
   <span class="o">)</span>
 </code></pre></div><h3 id="1-create-local-client">1. Create local client</h3>
-<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">implicit</span> <span class="k">val</span> <span class="n">conn</span> <span class="k">=</span> <span class="nc">Datomic_DevLocal</span><span class="o">(</span><span class="s">&#34;datomic-samples&#34;</span><span class="o">).</span><span class="n">recreateDbFrom</span><span class="o">(</span><span class="nc">SampleSchema</span><span class="o">,</span> <span class="s">&#34;sampledb&#34;</span><span class="o">)</span>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">implicit</span> <span class="k">val</span> <span class="n">conn</span> <span class="k">=</span> <span class="nc">Datomic_DevLocal</span><span class="o">(</span><span class="s">&#34;datomic-samples&#34;</span><span class="o">).</span><span class="n">recreateDbFrom</span><span class="o">(</span><span class="nc">PersonSchema</span><span class="o">,</span> <span class="s">&#34;personDb&#34;</span><span class="o">)</span>
 </code></pre></div><p>Or, when the database has been created, only connect to it:</p>
-<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">implicit</span> <span class="k">val</span> <span class="n">conn</span> <span class="k">=</span> <span class="nc">Datomic_DevLocal</span><span class="o">(</span><span class="s">&#34;datomic-samples&#34;</span><span class="o">).</span><span class="n">connect</span><span class="o">(</span><span class="s">&#34;sampledb&#34;</span><span class="o">)</span>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">implicit</span> <span class="k">val</span> <span class="n">conn</span> <span class="k">=</span> <span class="nc">Datomic_DevLocal</span><span class="o">(</span><span class="s">&#34;datomic-samples&#34;</span><span class="o">).</span><span class="n">connect</span><span class="o">(</span><span class="s">&#34;personDb&#34;</span><span class="o">)</span>
 </code></pre></div><h3 id="2-make-molecules">2. Make molecules</h3>
-<p>Having an implicit connection in scope, we can start transacting and querying <code>sampledb</code> with molecules:</p>
+<p>Having an implicit connection in scope, we can start transacting and querying <code>personDb</code> with molecules:</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="c1">// Transact
 </span><span class="c1"></span><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">(</span><span class="s">&#34;John&#34;</span><span class="o">).</span><span class="n">age</span><span class="o">(</span><span class="mi">24</span><span class="o">).</span><span class="n">save</span>
 
@@ -137,7 +134,7 @@
 </span><span class="c1"></span><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">age</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="k">_</span><span class="o">.</span><span class="n">head</span> <span class="o">==&gt;</span> <span class="o">(</span><span class="s">&#34;John&#34;</span><span class="o">,</span> <span class="mi">24</span><span class="o">))</span>
 
 <span class="c1">// etc..
-</span></code></pre></div><p>Add/change definitions in the SampleDataModel and run <code>sbt clean compile -Dmolecule=true</code> in your project root to have Molecule re-generate boilerplate code. Then you can try out using your new attributes in new molecules in <code>SampleApp</code>.</p>
+</span></code></pre></div><p>Add/change definitions in the SampleDataModel and run <code>sbt clean compile -Dmolecule=true</code> in your project root to have Molecule re-generate boilerplate code. Then you can try out using your new attributes in new molecules in <code>App</code>.</p>
 
     </div>
 

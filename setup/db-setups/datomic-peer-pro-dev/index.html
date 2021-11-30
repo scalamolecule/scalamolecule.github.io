@@ -96,13 +96,10 @@
 <p>Minimal project setup to persist data to disk with Molecule and a starter/pro <a href="https://docs.datomic.com/on-prem/peer-getting-started.html">Datomic Peer</a> database (protocol: dev).</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">import</span> <span class="nn">sbt.Keys._</span>
 
-<span class="k">lazy</span> <span class="k">val</span> <span class="n">demo</span> <span class="k">=</span> <span class="n">project</span><span class="o">.</span><span class="n">in</span><span class="o">(</span><span class="n">file</span><span class="o">(</span><span class="s">&#34;.&#34;</span><span class="o">))</span>
-  <span class="o">.</span><span class="n">aggregate</span><span class="o">(</span><span class="n">app</span><span class="o">)</span>
-  <span class="o">.</span><span class="n">settings</span><span class="o">(</span><span class="n">name</span> <span class="k">:</span><span class="o">=</span> <span class="s">&#34;molecule-datomic-peer-pro-dev&#34;</span><span class="o">)</span>
-
-<span class="k">lazy</span> <span class="k">val</span> <span class="n">app</span> <span class="k">=</span> <span class="n">project</span><span class="o">.</span><span class="n">in</span><span class="o">(</span><span class="n">file</span><span class="o">(</span><span class="s">&#34;app&#34;</span><span class="o">))</span>
+<span class="k">lazy</span> <span class="k">val</span> <span class="n">`molecule-basic`</span> <span class="k">=</span> <span class="n">project</span><span class="o">.</span><span class="n">in</span><span class="o">(</span><span class="n">file</span><span class="o">(</span><span class="s">&#34;.&#34;</span><span class="o">))</span>
   <span class="o">.</span><span class="n">enablePlugins</span><span class="o">(</span><span class="nc">MoleculePlugin</span><span class="o">)</span>
   <span class="o">.</span><span class="n">settings</span><span class="o">(</span>
+    <span class="n">name</span> <span class="k">:</span><span class="o">=</span> <span class="s">&#34;molecule-datomic-peer-pro-dev&#34;</span><span class="o">,</span>
     <span class="n">scalaVersion</span> <span class="k">:</span><span class="o">=</span> <span class="s">&#34;2.13.7&#34;</span><span class="o">,</span>
     <span class="n">resolvers</span> <span class="o">++=</span> <span class="nc">Seq</span><span class="o">(</span>
       <span class="nc">Resolver</span><span class="o">.</span><span class="n">sonatypeRepo</span><span class="o">(</span><span class="s">&#34;releases&#34;</span><span class="o">),</span>
@@ -148,18 +145,18 @@ bin/transactor config/samples/dev-transactor-template.properties
 <p>Note that although the Peer in your application code in this project setup is the pro version of Peer, the transactor can be of any type - a free or a starter/pro. As long as your application code can reach it via a matching host:port it will work. A datomic database is in other words interchangeable between free/pro.</p>
 <h3 id="2-connect-to-peer">2. Connect to Peer</h3>
 <p>Then connect to the database:</p>
-<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">implicit</span> <span class="k">val</span> <span class="n">conn</span> <span class="k">=</span> <span class="nc">Datomic_Peer</span><span class="o">.</span><span class="n">connect</span><span class="o">(</span><span class="s">&#34;localhost:4334/sampledb&#34;</span><span class="o">,</span> <span class="s">&#34;dev&#34;</span><span class="o">)</span>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">implicit</span> <span class="k">val</span> <span class="n">conn</span> <span class="k">=</span> <span class="nc">Datomic_Peer</span><span class="o">.</span><span class="n">connect</span><span class="o">(</span><span class="s">&#34;localhost:4334/personDb&#34;</span><span class="o">,</span> <span class="s">&#34;dev&#34;</span><span class="o">)</span>
 </code></pre></div><p>Or, if we want to test a clean database each time, we could recreate the database and transact the schema on each run:</p>
-<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">implicit</span> <span class="k">val</span> <span class="n">conn</span> <span class="k">=</span> <span class="nc">Datomic_Peer</span><span class="o">.</span><span class="n">recreateDbFrom</span><span class="o">(</span><span class="nc">SampleSchema</span><span class="o">,</span> <span class="s">&#34;localhost:4334/sampledb&#34;</span><span class="o">,</span> <span class="s">&#34;dev&#34;</span><span class="o">)</span>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">implicit</span> <span class="k">val</span> <span class="n">conn</span> <span class="k">=</span> <span class="nc">Datomic_Peer</span><span class="o">.</span><span class="n">recreateDbFrom</span><span class="o">(</span><span class="nc">PersonSchema</span><span class="o">,</span> <span class="s">&#34;localhost:4334/personDb&#34;</span><span class="o">,</span> <span class="s">&#34;dev&#34;</span><span class="o">)</span>
 </code></pre></div><p>In this setup we use the &ldquo;dev&rdquo; protocol which is intended for development databases that are persisted on local disk. See <a href="https://docs.datomic.com/on-prem/storage.html">other storage options</a> for alternative storage options.</p>
 <h3 id="3-make-molecules">3. Make molecules</h3>
-<p>Having an implicit connection in scope, we can start transacting and querying <code>sampledb</code> with molecules:</p>
+<p>Having an implicit connection in scope, we can start transacting and querying <code>personDb</code> with molecules:</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="c1">// Transact
 </span><span class="c1"></span><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">(</span><span class="s">&#34;John&#34;</span><span class="o">).</span><span class="n">age</span><span class="o">(</span><span class="mi">24</span><span class="o">).</span><span class="n">save</span>
 
 <span class="c1">// Query
 </span><span class="c1"></span><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">age</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="k">_</span><span class="o">.</span><span class="n">head</span> <span class="o">==&gt;</span> <span class="o">(</span><span class="s">&#34;John&#34;</span><span class="o">,</span> <span class="mi">24</span><span class="o">))</span>
-</code></pre></div><p>Add/change definitions in the SampleDataModel and run <code>sbt clean compile -Dmolecule=true</code> in your project root to have Molecule re-generate boilerplate code. Then you can try out using your new attributes in new molecules in <code>SampleApp</code>.</p>
+</code></pre></div><p>Add/change definitions in the SampleDataModel and run <code>sbt clean compile -Dmolecule=true</code> in your project root to have Molecule re-generate boilerplate code. Then you can try out using your new attributes in new molecules in <code>App</code>.</p>
 
     </div>
 

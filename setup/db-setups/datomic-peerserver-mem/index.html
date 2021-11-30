@@ -96,13 +96,10 @@
 <p>Minimal project setup to test using Molecule with a <a href="https://docs.datomic.com/on-prem/peer-server.html">Datomic Peer Server</a> in-memory database (protocol: mem).</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">import</span> <span class="nn">sbt.Keys._</span>
 
-<span class="k">lazy</span> <span class="k">val</span> <span class="n">demo</span> <span class="k">=</span> <span class="n">project</span><span class="o">.</span><span class="n">in</span><span class="o">(</span><span class="n">file</span><span class="o">(</span><span class="s">&#34;.&#34;</span><span class="o">))</span>
-  <span class="o">.</span><span class="n">aggregate</span><span class="o">(</span><span class="n">app</span><span class="o">)</span>
-  <span class="o">.</span><span class="n">settings</span><span class="o">(</span><span class="n">name</span> <span class="k">:</span><span class="o">=</span> <span class="s">&#34;molecule-datomic-peerserver-mem&#34;</span><span class="o">)</span>
-
-<span class="k">lazy</span> <span class="k">val</span> <span class="n">app</span> <span class="k">=</span> <span class="n">project</span><span class="o">.</span><span class="n">in</span><span class="o">(</span><span class="n">file</span><span class="o">(</span><span class="s">&#34;app&#34;</span><span class="o">))</span>
+<span class="k">lazy</span> <span class="k">val</span> <span class="n">`molecule-basic`</span> <span class="k">=</span> <span class="n">project</span><span class="o">.</span><span class="n">in</span><span class="o">(</span><span class="n">file</span><span class="o">(</span><span class="s">&#34;.&#34;</span><span class="o">))</span>
   <span class="o">.</span><span class="n">enablePlugins</span><span class="o">(</span><span class="nc">MoleculePlugin</span><span class="o">)</span>
   <span class="o">.</span><span class="n">settings</span><span class="o">(</span>
+    <span class="n">name</span> <span class="k">:</span><span class="o">=</span> <span class="s">&#34;molecule-datomic-peerserver-mem&#34;</span><span class="o">,</span>
     <span class="n">scalaVersion</span> <span class="k">:</span><span class="o">=</span> <span class="s">&#34;2.13.7&#34;</span><span class="o">,</span>
     <span class="n">resolvers</span> <span class="o">++=</span> <span class="nc">Seq</span><span class="o">(</span>
       <span class="nc">Resolver</span><span class="o">.</span><span class="n">sonatypeRepo</span><span class="o">(</span><span class="s">&#34;releases&#34;</span><span class="o">),</span>
@@ -143,7 +140,7 @@
 </code></pre></div><h3 id="1-start-peer-server">1. Start Peer Server</h3>
 <p>First, you need to start the Peer Server with an automatically created in-memory database:</p>
 <pre><code>cd &lt;your-datomic-starter/pro-distribution&gt;
-bin/run -m datomic.peer-server -h localhost -p 8998 -a k,s -d sampledb,datomic:mem://sampledb
+bin/run -m datomic.peer-server -h localhost -p 8998 -a k,s -d personDb,datomic:mem://personDb
 </code></pre>
 <p>In this setup we use a <a href="https://docs.datomic.com/on-prem/javadoc/datomic/Peer.html#connect-java.lang.Object-">database connection URI</a> with the &ldquo;mem&rdquo; protocol which is intended for in-memory databases.</p>
 <p>If you need persisting data, please see <a href="https://docs.datomic.com/on-prem/storage.html">other storage options</a> or have a look at one of the other sample projects.</p>
@@ -152,29 +149,29 @@ bin/run -m datomic.peer-server -h localhost -p 8998 -a k,s -d sampledb,datomic:m
 -h localhost                        // host name
 -p 8998                             // port number
 -a k,s                              // access-key,secret
--d sampledb,datomic:mem://sampledb  // dbName-alias,URI
+-d personDb,datomic:mem://personDb  // dbName-alias,URI
 </code></pre>
 <p>There can be no space after comma in the pairs of options!</p>
 <p>For simplicity, we just chose to write &ldquo;k,s&rdquo; for access-key,secret. The important thing is that you need to supply the same pair when you connect to the Peer Server in your code (as with host/port names).</p>
-<p>If successful, it will show something like &ldquo;Serving datomic:mem://sampledb as sampledb&rdquo;.</p>
+<p>If successful, it will show something like &ldquo;Serving datomic:mem://personDb as personDb&rdquo;.</p>
 <h3 id="2-connect-to-peer-server">2. Connect to Peer Server</h3>
-<p>Presuming the transactor is running and the Peer Server is serving <code>sampledb</code> we can connect to it:</p>
+<p>Presuming the transactor is running and the Peer Server is serving <code>personDb</code> we can connect to it:</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">implicit</span> <span class="k">val</span> <span class="n">conn</span> <span class="k">=</span> 
   <span class="nc">Datomic_PeerServer</span><span class="o">(</span><span class="s">&#34;k&#34;</span><span class="o">,</span> <span class="s">&#34;s&#34;</span><span class="o">,</span> <span class="s">&#34;localhost:8998&#34;</span><span class="o">)</span>
-   <span class="o">.</span><span class="n">connect</span><span class="o">(</span><span class="s">&#34;sampledb&#34;</span><span class="o">)</span>
+   <span class="o">.</span><span class="n">connect</span><span class="o">(</span><span class="s">&#34;personDb&#34;</span><span class="o">)</span>
 </code></pre></div><p>We use the same coordinates here as when we started the Peer Server.</p>
 <p>For the purpose of testing, we want to make sure that our schema is up-to-date and therefore transact it on every run:</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">implicit</span> <span class="k">val</span> <span class="n">conn</span> <span class="k">=</span> 
   <span class="nc">Datomic_PeerServer</span><span class="o">(</span><span class="s">&#34;k&#34;</span><span class="o">,</span> <span class="s">&#34;s&#34;</span><span class="o">,</span> <span class="s">&#34;localhost:8998&#34;</span><span class="o">)</span>
-    <span class="o">.</span><span class="n">transactSchema</span><span class="o">(</span><span class="nc">SampleSchema</span><span class="o">,</span> <span class="s">&#34;sampledb&#34;</span><span class="o">)</span>
+    <span class="o">.</span><span class="n">transactSchema</span><span class="o">(</span><span class="nc">PersonSchema</span><span class="o">,</span> <span class="s">&#34;personDb&#34;</span><span class="o">)</span>
 </code></pre></div><h3 id="3-make-molecules">3. Make molecules</h3>
-<p>From here on, we can start transacting and querying <code>sampledb</code> with molecules:</p>
+<p>From here on, we can start transacting and querying <code>personDb</code> with molecules:</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="c1">// Transact
 </span><span class="c1"></span><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">(</span><span class="s">&#34;John&#34;</span><span class="o">).</span><span class="n">age</span><span class="o">(</span><span class="mi">24</span><span class="o">).</span><span class="n">save</span>
 
 <span class="c1">// Query
 </span><span class="c1"></span><span class="nc">Person</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">age</span><span class="o">.</span><span class="n">get</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="k">_</span><span class="o">.</span><span class="n">head</span> <span class="o">==&gt;</span> <span class="o">(</span><span class="s">&#34;John&#34;</span><span class="o">,</span> <span class="mi">24</span><span class="o">))</span>
-</code></pre></div><p>Add/change definitions in <code>SampleDataModel</code> and run <code>sbt clean compile -Dmolecule=true</code> in your project root to have Molecule re-generate boilerplate code. Then you can try out using your new attributes in new molecules in <code>SampleApp</code>.</p>
+</code></pre></div><p>Add/change definitions in <code>SampleDataModel</code> and run <code>sbt clean compile -Dmolecule=true</code> in your project root to have Molecule re-generate boilerplate code. Then you can try out using your new attributes in new molecules in <code>App</code>.</p>
 
     </div>
 
