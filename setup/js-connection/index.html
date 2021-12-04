@@ -123,7 +123,7 @@
     <span class="o">}</span>
   <span class="o">}</span>
 <span class="o">}</span>
-</code></pre></div><h2 id="client-side-imports">Client side imports</h2>
+</code></pre></div><h2 id="client-imports">Client imports</h2>
 <p>To use Molecule on the client/js side we need a few imports: the Molecule api, the generated DSL for your Data Model and a <code>Conn_Js</code> that holds a proxy connection:</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">import</span> <span class="nn">molecule.datomic.api._</span>
 <span class="k">import</span> <span class="nn">app.dsl.yourDomain._</span>
@@ -192,7 +192,16 @@
 </span><span class="c1"></span>  <span class="nc">MBrainzSchema</span><span class="o">.</span><span class="n">attrMap</span>
 <span class="o">)</span>
 </code></pre></div><p>For examples of complete Client setups, please have a look at the two rpc projects in the <a href="https://github.com/scalamolecule/molecule-samples">molecule samples repo</a></p>
-<h3 id="next">Next</h3>
+<h2 id="jsdom-environment">jsdom environment</h2>
+<p>To make the DOM available on the Client side, add the following to your project/plugins.sbt:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="n">libraryDependencies</span> <span class="o">+=</span> <span class="s">&#34;org.scala-js&#34;</span> <span class="o">%%</span> <span class="s">&#34;scalajs-env-jsdom-nodejs&#34;</span> <span class="o">%</span> <span class="s">&#34;1.1.0&#34;</span>
+</code></pre></div><p>and the following to your build.sbt:</p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="n">jsEnv</span> <span class="k">:</span><span class="o">=</span> <span class="k">new</span> <span class="n">org</span><span class="o">.</span><span class="n">scalajs</span><span class="o">.</span><span class="n">jsenv</span><span class="o">.</span><span class="n">jsdomnodejs</span><span class="o">.</span><span class="nc">JSDOMNodeJSEnv</span><span class="o">()</span>
+</code></pre></div><p>This will use the jsdom library to simulate a DOM in Node.js. You need to install it separately. It is usually best to install it locally for this project. You can initialize a private package.json as follows:</p>
+<pre><code>$ npm init private
+</code></pre><p>Then you can install jsdom:</p>
+<pre><code>$ npm install jsdom
+</code></pre><h3 id="next">Next</h3>
 <p>Explore various <a href="../../setup/db-setups">example database setups&hellip;</a>. These are all examples of Server setups. But you&rsquo;ll find that most settings apply to a Client setup too.</p>
 
     </div>
@@ -237,8 +246,9 @@
   <ul>
     <li></li>
     <li><a href="#ajax-server-endpoint">Ajax Server endpoint</a></li>
-    <li><a href="#client-side-imports">Client side imports</a></li>
+    <li><a href="#client-imports">Client imports</a></li>
     <li><a href="#client-proxy-connection">Client proxy connection</a></li>
+    <li><a href="#jsdom-environment">jsdom environment</a></li>
   </ul>
 </nav>
             
