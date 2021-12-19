@@ -74,7 +74,7 @@
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="https://javadoc.io/doc/org.scalamolecule/molecule_2.13/latest/index.html" target="_blank" style="">ScalaDocs</a></li>
-                    <li><a href="../changelog" style="">v1.0.0</a></li>
+                    <li><a href="../changelog" style="">v1.0.1</a></li>
                     <li><a href="https://github.com/scalamolecule/molecule" target="_blank">
                         <img src="https://www.scalamolecule.org/vendor/GitHub-Mark/PNG/GitHub-Mark-Light-32px.png"
                              style="margin-top:-4px;padding-left:15px;opacity:0.6;width:42px;">
@@ -94,6 +94,7 @@
         <h1 id="molecule-changelog">Molecule changelog</h1>
 <p><a href="https://github.com/scalamolecule/molecule/releases">Github releases</a></p>
 <ul>
+<li>2021-12-19 v1.0.1 <a href="#47">Upgrade to Scala.js 1.8, js-dom 2.0</a></li>
 <li>2021-11-29 v1.0.0 <a href="#46">Molecule 1.0.0</a></li>
 <li>2021-03-14 v0.25.1 <a href="#45">Time getters for object output</a></li>
 <li>2021-03-04 v0.25.0 <a href="#44">Molecule object output and dynamic molecules</a></li>
@@ -141,8 +142,11 @@
 <li>2014-12-25 v0.2.0 <a href="#2">Implemented Day-Of-Datomic and MBrainz</a></li>
 <li>2014-07-02 v0.1.0 <a href="#1">Initial commit - Seattle tutorial</a></li>
 </ul>
+<h2 id="47"><a href="#top">☝︎</a>  Upgrade to Scala.js 1.8, js-dom 2.0</h2>
+<p><em>2021-12-19 v1.0.1</em></p>
+<p>Introduces <code>&quot;org.scala-js&quot; %%% &quot;scala-js-macrotask-executor&quot; % &quot;1.0.0&quot;</code> as ExecutionContext in most of the code base.</p>
 <h2 id="46"><a href="#top">☝︎</a> Molecule 1.0.0</h2>
-<p><em>2021-11.29 v1.0.0</em></p>
+<p><em>2021-11-29 v1.0.0</em></p>
 <p>This is the first major release of Molecule! Here are some of the major changes compared to earlier iterations:</p>
 <h3 id="asynchronous-and-non-blocking-api">Asynchronous and non-blocking api</h3>
 <p>Molecule is now fully asynchronous and non-blocking. Futures with data are returned that we can then map over:</p>
