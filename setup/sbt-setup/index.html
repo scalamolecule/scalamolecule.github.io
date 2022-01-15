@@ -75,7 +75,7 @@
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="https://javadoc.io/doc/org.scalamolecule/molecule_2.13/latest/index.html" target="_blank" style="">ScalaDocs</a></li>
-                    <li><a href="../../changelog" style="">v1.0.3</a></li>
+                    <li><a href="../../changelog" style="">v1.1.0</a></li>
                     <li><a href="https://github.com/scalamolecule/molecule" target="_blank">
                         <img src="https://www.scalamolecule.org/vendor/GitHub-Mark/PNG/GitHub-Mark-Light-32px.png"
                              style="margin-top:-4px;padding-left:15px;opacity:0.6;width:42px;">
@@ -97,7 +97,7 @@
 <h2 id="moleculeplugin">MoleculePlugin</h2>
 <p>The sbt <a href="https://github.com/scalamolecule/sbt-molecule">MoleculePlugin</a> generates Molecule boilerplate code when you compile your project.</p>
 <p>Add the latest version of the plugin in <code>project/buildinfo.sbt</code>:</p>
-<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="n">addSbtPlugin</span><span class="o">(</span><span class="s">&#34;org.scalamolecule&#34;</span> <span class="o">%</span> <span class="s">&#34;sbt-molecule&#34;</span> <span class="o">%</span> <span class="s">&#34;1.0.0&#34;</span><span class="o">)</span>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="n">addSbtPlugin</span><span class="o">(</span><span class="s">&#34;org.scalamolecule&#34;</span> <span class="o">%</span> <span class="s">&#34;sbt-molecule&#34;</span> <span class="o">%</span> <span class="s">&#34;1.0.2&#34;</span><span class="o">)</span>
 </code></pre></div><p>And add it to the project <code>build.sbt</code> file</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">lazy</span> <span class="k">val</span> <span class="n">yourProject</span> <span class="k">=</span> <span class="n">project</span><span class="o">.</span><span class="n">in</span><span class="o">(</span><span class="n">file</span><span class="o">(</span><span class="s">&#34;app&#34;</span><span class="o">))</span>
     <span class="o">.</span><span class="n">enablePlugins</span><span class="o">(</span><span class="nc">MoleculePlugin</span><span class="o">)</span>
@@ -144,7 +144,7 @@
       <span class="s">&#34;clojars&#34;</span> <span class="n">at</span> <span class="s">&#34;https://clojars.org/repo&#34;</span> 
     <span class="o">),</span>
     <span class="n">libraryDependencies</span> <span class="o">++=</span> <span class="nc">Seq</span><span class="o">(</span>
-      <span class="s">&#34;org.scalamolecule&#34;</span> <span class="o">%%</span> <span class="s">&#34;molecule&#34;</span> <span class="o">%</span> <span class="s">&#34;1.0.3&#34;</span><span class="o">,</span>
+      <span class="s">&#34;org.scalamolecule&#34;</span> <span class="o">%%</span> <span class="s">&#34;molecule&#34;</span> <span class="o">%</span> <span class="s">&#34;1.1.0&#34;</span><span class="o">,</span>
       <span class="s">&#34;com.datomic&#34;</span> <span class="o">%</span> <span class="s">&#34;datomic-free&#34;</span> <span class="o">%</span> <span class="s">&#34;0.9.5697&#34;</span>
     <span class="o">)</span>
   <span class="o">)</span>
@@ -165,8 +165,8 @@ pass=&lt;your-password&gt;
     <span class="o">),</span>
     <span class="n">credentials</span> <span class="o">+=</span> <span class="nc">Credentials</span><span class="o">(</span><span class="nc">Path</span><span class="o">.</span><span class="n">userHome</span> <span class="o">/</span> <span class="s">&#34;.sbt&#34;</span> <span class="o">/</span> <span class="s">&#34;.credentials&#34;</span><span class="o">),</span>
     <span class="n">libraryDependencies</span> <span class="o">++=</span> <span class="nc">Seq</span><span class="o">(</span>
-      <span class="s">&#34;org.scalamolecule&#34;</span> <span class="o">%%</span> <span class="s">&#34;molecule&#34;</span> <span class="o">%</span> <span class="s">&#34;1.0.3&#34;</span><span class="o">,</span>
-      <span class="s">&#34;com.datomic&#34;</span> <span class="o">%</span> <span class="s">&#34;datomic-pro&#34;</span> <span class="o">%</span> <span class="s">&#34;1.0.6269&#34;</span>
+      <span class="s">&#34;org.scalamolecule&#34;</span> <span class="o">%%</span> <span class="s">&#34;molecule&#34;</span> <span class="o">%</span> <span class="s">&#34;1.1.0&#34;</span><span class="o">,</span>
+      <span class="s">&#34;com.datomic&#34;</span> <span class="o">%</span> <span class="s">&#34;datomic-pro&#34;</span> <span class="o">%</span> <span class="s">&#34;1.0.6344&#34;</span>
     <span class="o">)</span>
   <span class="o">)</span>
 </code></pre></div><h3 id="dev-local">dev-local</h3>
@@ -179,8 +179,8 @@ pass=&lt;your-password&gt;
     <span class="o">),</span>
   
     <span class="n">libraryDependencies</span> <span class="o">++=</span> <span class="nc">Seq</span><span class="o">(</span>
-      <span class="s">&#34;org.scalamolecule&#34;</span> <span class="o">%%</span> <span class="s">&#34;molecule&#34;</span> <span class="o">%</span> <span class="s">&#34;1.0.3&#34;</span><span class="o">,</span>
-      <span class="s">&#34;com.datomic&#34;</span> <span class="o">%</span> <span class="s">&#34;dev-local&#34;</span> <span class="o">%</span> <span class="s">&#34;0.9.232&#34;</span>
+      <span class="s">&#34;org.scalamolecule&#34;</span> <span class="o">%%</span> <span class="s">&#34;molecule&#34;</span> <span class="o">%</span> <span class="s">&#34;1.1.0&#34;</span><span class="o">,</span>
+      <span class="s">&#34;com.datomic&#34;</span> <span class="o">%</span> <span class="s">&#34;dev-local&#34;</span> <span class="o">%</span> <span class="s">&#34;1.0.238&#34;</span>
     <span class="o">)</span>
   <span class="o">)</span>
 </code></pre></div><h2 id="data-model-paths">Data Model paths</h2>
@@ -245,14 +245,14 @@ pass=&lt;your-password&gt;
   <span class="o">.</span><span class="n">enablePlugins</span><span class="o">(</span><span class="nc">MoleculePlugin</span><span class="o">)</span>
   <span class="o">.</span><span class="n">settings</span><span class="o">(</span>
     <span class="n">name</span> <span class="k">:</span><span class="o">=</span> <span class="s">&#34;molecule-datomic-peer-free&#34;</span><span class="o">,</span>
-    <span class="n">scalaVersion</span> <span class="k">:</span><span class="o">=</span> <span class="s">&#34;2.13.7&#34;</span><span class="o">,</span>
+    <span class="n">scalaVersion</span> <span class="k">:</span><span class="o">=</span> <span class="s">&#34;2.13.8&#34;</span><span class="o">,</span>
     <span class="n">resolvers</span> <span class="o">++=</span> <span class="nc">Seq</span><span class="o">(</span>
       <span class="nc">Resolver</span><span class="o">.</span><span class="n">sonatypeRepo</span><span class="o">(</span><span class="s">&#34;releases&#34;</span><span class="o">),</span>
       <span class="s">&#34;clojars&#34;</span> <span class="n">at</span> <span class="s">&#34;https://clojars.org/repo&#34;</span><span class="o">,</span>
     <span class="o">)</span>
 
     <span class="n">libraryDependencies</span> <span class="o">++=</span> <span class="nc">Seq</span><span class="o">(</span>
-      <span class="s">&#34;org.scalamolecule&#34;</span> <span class="o">%%</span> <span class="s">&#34;molecule&#34;</span> <span class="o">%</span> <span class="s">&#34;1.0.3&#34;</span><span class="o">,</span>
+      <span class="s">&#34;org.scalamolecule&#34;</span> <span class="o">%%</span> <span class="s">&#34;molecule&#34;</span> <span class="o">%</span> <span class="s">&#34;1.1.0&#34;</span><span class="o">,</span>
       <span class="s">&#34;com.datomic&#34;</span> <span class="o">%</span> <span class="s">&#34;datomic-free&#34;</span> <span class="o">%</span> <span class="s">&#34;0.9.5697&#34;</span>
     <span class="o">),</span>
 

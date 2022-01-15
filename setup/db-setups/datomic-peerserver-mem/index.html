@@ -75,7 +75,7 @@
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="https://javadoc.io/doc/org.scalamolecule/molecule_2.13/latest/index.html" target="_blank" style="">ScalaDocs</a></li>
-                    <li><a href="../../../changelog" style="">v1.0.3</a></li>
+                    <li><a href="../../../changelog" style="">v1.1.0</a></li>
                     <li><a href="https://github.com/scalamolecule/molecule" target="_blank">
                         <img src="https://www.scalamolecule.org/vendor/GitHub-Mark/PNG/GitHub-Mark-Light-32px.png"
                              style="margin-top:-4px;padding-left:15px;opacity:0.6;width:42px;">
@@ -100,7 +100,7 @@
   <span class="o">.</span><span class="n">enablePlugins</span><span class="o">(</span><span class="nc">MoleculePlugin</span><span class="o">)</span>
   <span class="o">.</span><span class="n">settings</span><span class="o">(</span>
     <span class="n">name</span> <span class="k">:</span><span class="o">=</span> <span class="s">&#34;molecule-datomic-peerserver-mem&#34;</span><span class="o">,</span>
-    <span class="n">scalaVersion</span> <span class="k">:</span><span class="o">=</span> <span class="s">&#34;2.13.7&#34;</span><span class="o">,</span>
+    <span class="n">scalaVersion</span> <span class="k">:</span><span class="o">=</span> <span class="s">&#34;2.13.8&#34;</span><span class="o">,</span>
     <span class="n">resolvers</span> <span class="o">++=</span> <span class="nc">Seq</span><span class="o">(</span>
       <span class="nc">Resolver</span><span class="o">.</span><span class="n">sonatypeRepo</span><span class="o">(</span><span class="s">&#34;releases&#34;</span><span class="o">),</span>
       <span class="s">&#34;clojars&#34;</span> <span class="n">at</span> <span class="s">&#34;https://clojars.org/repo&#34;</span><span class="o">,</span>
@@ -121,8 +121,8 @@
     <span class="n">credentials</span> <span class="o">+=</span> <span class="nc">Credentials</span><span class="o">(</span><span class="nc">Path</span><span class="o">.</span><span class="n">userHome</span> <span class="o">/</span> <span class="s">&#34;.sbt&#34;</span> <span class="o">/</span> <span class="s">&#34;.credentials&#34;</span><span class="o">),</span>
 
     <span class="n">libraryDependencies</span> <span class="o">++=</span> <span class="nc">Seq</span><span class="o">(</span>
-      <span class="s">&#34;org.scalamolecule&#34;</span> <span class="o">%%</span> <span class="s">&#34;molecule&#34;</span> <span class="o">%</span> <span class="s">&#34;1.0.3&#34;</span><span class="o">,</span>
-      <span class="s">&#34;com.datomic&#34;</span> <span class="o">%</span> <span class="s">&#34;datomic-pro&#34;</span> <span class="o">%</span> <span class="s">&#34;1.0.6269&#34;</span>
+      <span class="s">&#34;org.scalamolecule&#34;</span> <span class="o">%%</span> <span class="s">&#34;molecule&#34;</span> <span class="o">%</span> <span class="s">&#34;1.1.0&#34;</span><span class="o">,</span>
+      <span class="s">&#34;com.datomic&#34;</span> <span class="o">%</span> <span class="s">&#34;datomic-pro&#34;</span> <span class="o">%</span> <span class="s">&#34;1.0.6344&#34;</span>
     <span class="o">),</span>
 
     <span class="c1">// Important to exclude fee version when using pro to avoid clashes with pro version
